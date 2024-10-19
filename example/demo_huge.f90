@@ -35,7 +35,7 @@
 
       contains
       impure elemental function checkprod(i,j) result(ij32)
-      !@(#) checkprod(3f) - check for overflow when multiplying two 32-bit integers
+      ! checkprod(3f) - check for overflow when multiplying 32-bit integers
       use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
       integer(kind=int32),intent(in)  :: i, j
       integer(kind=int64)             :: ij64

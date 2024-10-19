@@ -2,7 +2,7 @@
 
 ### **Name**
    where(7f) - [ASSIGNMENT] masked array assignment
-           
+
 ### **Syntax**
   **where** statement:
 ```fortran
@@ -180,10 +180,10 @@
    where (b.ne.0) c=a/b
    write (*,2000) c(1:nd)
    !
-   !  The above protects against divide by zero, but doesn't actually assign
-   !  values to elements in c when the corresponding element in b is zero
-   !  The following covers that, and sets a flag when a divide by zero is
-   !  present
+   ! The above protects against divide by zero, but doesn't actually
+   ! assign values to elements in c when the corresponding element in
+   ! b is zero The following covers that, and sets a flag when a divide
+   ! by zero is present
    !
    where (b(1:nd).ne.0.0)
       c=a/b
@@ -198,4 +198,13 @@
    1000 format ('iflag= ',/,(10i7))
    2000 format ('a/b = ',/,(10f7.2))
    end program demo_where
+```
+Results:
+```text
+ > a/b = 
+ >    2.00   4.00   6.00   8.00  10.00 -77.77   7.00   8.00   9.00  10.00
+ > a/b = 
+ >    2.00   4.00   6.00   8.00  10.00   0.00   7.00   8.00   9.00  10.00
+ > iflag= 
+ >       0      0      0      0      0      1      0      0      0      0
 ```

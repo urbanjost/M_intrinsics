@@ -249,30 +249,45 @@ function crayons(oldblock) result(newblock)
 ! just playing. There is a lot of stuff not done robustly here
 character(len=256),intent(in),allocatable :: oldblock(:)
 character(len=256),allocatable :: newblock(:)
-integer :: ilen
+integer :: ilen, gt, ipad
 integer :: lead
-logical :: program_text
+logical :: program_text, after_demo
    program_text=.false.
+   after_demo=.false.
    newblock= oldblock
    lead=0
    do j=1,size(oldblock)
+      ! test if entering demo program text
       if( index(oldblock(j),'end program demo_') .eq. 0 .and. index(oldblock(j),'program demo_') .ne. 0)then
          program_text=.true.
          lead=indent(oldblock(j))
       endif
+      ! if in program text
       if(program_text .eqv. .true.)then
-        newblock(j)=attr('<E>'//repeat(' ',lead)//'<E><y>'//atleast(trim(oldblock(j)(lead+1:)),80-lead) )
+        ipad=len_trim(oldblock(j))
+        ipad=len_trim(than(oldblock(j)))-ipad
+        newblock(j)=attr('<E>'//repeat(' ',lead)//'<E><c>'//atleast(trim(than(oldblock(j)(lead+1:))),80-lead+ipad) )
+      ! section header
       elseif(verify(oldblock(j)(1:1), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' ) == 0 .and. &
       & verify(oldblock(j), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ _') == 0 )then
          ilen=len_trim(oldblock(j))
          newblock(j)=attr('<E><y><bo> '//trim(oldblock(j))//' </bo>'//repeat(' ',max(0,80-ilen-2))//'<reset>')
+         after_demo=.false. ! started new section so indicate left EXAMPLE section. This is repeated when not needed
+      ! demo program results
+      elseif(after_demo.and.index(adjustl(oldblock(j)),'>').eq.1)then
+         ilen=len_trim(oldblock(j))
+         gt=index(oldblock(j),'>')
+         newblock(j)=attr('<E><w>'//oldblock(j)(:gt)//&
+         & '<E><y>'//trim(than(oldblock(j)(gt+1:)))//'</bo>'//repeat(' ',max(0,80-ilen))//'<reset>')
+       ! not header or demo program or demo program results
        else
-          ilen=len_trim(oldblock(j))
-          ilen=len_trim(than(oldblock(j)))-ilen
-          newblock(j)=attr('<E><w>'//atleast(than(oldblock(j)),80+ilen)//'<reset>')
+         ipad=len_trim(oldblock(j))
+         ipad=len_trim(than(oldblock(j)))-ipad
+          newblock(j)=attr('<E><w>'//atleast(than(oldblock(j)),80+ipad)//'<reset>')
        endif
       if( index(oldblock(j),'end program demo_') .ne.0)then
          program_text=.false.
+         after_demo=.true.
       endif
    enddo
 end function crayons

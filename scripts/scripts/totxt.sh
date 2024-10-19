@@ -1,8 +1,10 @@
 #!/bin/bash
 # https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html  Sphinx uses reST.
 ####################################################################################################################################
+for NUM in 3 5 7
+do
 (
-cd md
+cd md${NUM}
 MD=markdown_mmd
 MD=commonmark
 for NAME in *.md
@@ -10,28 +12,13 @@ do
    SHORTNAME=$(basename $NAME .md)
    SHORTNAME=${SHORTNAME,,}
    echo $NAME
-   tail -n +3 $NAME|pandoc -f $MD -t man -i - -o ../man/man3/$SHORTNAME.3fortran
-   #tail -n +3 $NAME|pandoc -f $MD --wrap preserve -t plain -i - -o ../txt/$SHORTNAME.3fortran.man
-   tail -n +3 $NAME|pandoc --lua-filter ../scripts/deEmph.lua -f $MD -t plain -i - -o ../txt/$SHORTNAME.3fortran.man
-   tail -n +3 $NAME|pandoc -f $MD -t html -i - -o ../docs/$SHORTNAME.3fortran.html
+   tail -n +3 $NAME|pandoc -f $MD -t man -i - -o ../man/man${NUM}/$SHORTNAME.${NUM}fortran
+   #tail -n +3 $NAME|pandoc -f $MD --wrap preserve -t plain -i - -o ../txt/$SHORTNAME.${NUM}fortran.man
+   tail -n +3 $NAME|pandoc --lua-filter ../scripts/deEmph.lua -f $MD -t plain -i - -o ../txt/$SHORTNAME.${NUM}fortran.man
+   tail -n +3 $NAME|pandoc -f $MD -t html -i - -o ../docs/$SHORTNAME.${NUM}fortran.html
 done
 )
-####################################################################################################################################
-(
-cd md7
-MD=markdown_mmd
-MD=commonmark
-for NAME in *.md
-do
-   SHORTNAME=$(basename $NAME .md)
-   SHORTNAME=${SHORTNAME,,}
-   echo $NAME
-   tail -n +3 $NAME|pandoc -f $MD -t man -i - -o ../man/man7/$SHORTNAME.7fortran
-   #tail -n +3 $NAME|pandoc -f $MD --wrap preserve -t plain -i - -o ../txt/$SHORTNAME.7fortran.man
-   tail -n +3 $NAME|pandoc --lua-filter ../scripts/deEmph.lua -f $MD -t plain -i - -o ../txt/$SHORTNAME.7fortran.man
-   tail -n +3 $NAME|pandoc -f $MD -t html -i - -o ../docs/$SHORTNAME.7fortran.html
 done
-)
 ####################################################################################################################################
 #(
 #cd man/man3

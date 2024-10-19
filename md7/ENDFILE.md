@@ -17,21 +17,21 @@ SEQUENTIAL ACCESS writes an endfile record as the next record of the
 file. The file is then positioned after the endfile record, which
 becomes the last record of the file.
 
--  SEQUENTIAL ACCESS 
+-  SEQUENTIAL ACCESS
    : After execution of an **endfile**(7F) statement for
    a file connected for sequential access, a BACKSPACE(7F) or
    REWIND(7F) statement shall be used to reposition the file prior to
    execution of any data transfer input/output statement or **endfile**(7F)
    statement.
 
--  DIRECT ACCESS 
+-  DIRECT ACCESS
    : For a file connected for DIRECT ACCESS, only those
    records before the endfile record are considered to have been
    written. Thus, only those records or additional records subsequently
    written shall be read during subsequent direct access connections to
    the file.
 
--  STREAM ACCESS 
+-  STREAM ACCESS
    : Execution of an **endfile**(7F) statement for a file
    connected for STREAM ACCESS causes the terminal point of the file to
    become equal to the current file position. Only file storage units

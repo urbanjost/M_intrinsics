@@ -3,7 +3,7 @@
 ### **Name**
    select_case(7f) - [EXECUTION CONTROL] select a block based on the
    value of an expression (a case)
-   
+
 ### **Synopsis**
 The CASE construct selects for execution at most one of its constituent
 blocks. The selection is based on the value of an expression.
@@ -40,7 +40,7 @@ blocks. The selection is based on the value of an expression.
   be DEFAULT.
 
   - For a given case-construct, each case-value shall be
-    of the same type as case-expr 
+    of the same type as case-expr
   - For character type, the kind type parameters shall be the same
   - character length differences are allowed.
   - A case-value-range using a colon shall not be used if case-expr is
@@ -83,7 +83,7 @@ An integer signum function:
 integer function signum (n)
    select case (n)
    case (:-1)
-      signum = -1  ! if <= -1 set to negative 1 
+      signum = -1  ! if <= -1 set to negative 1
    case (0)
       signum = 0
    case (1:)

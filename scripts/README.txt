@@ -1,5 +1,5 @@
 The only files that should require being edited are the text files ending
-in *.md in the md/ directory.
+in *.md in the md?/ directores.
 
 They require being in a format readable 
 by the pandoc(1) script. Documentation is available by entering
@@ -10,7 +10,7 @@ This will convert the files to text in the txt/ document by entering
 scripts/totxt.sh
 
 This directory contains the tools required to convert the files in the
-../md directory:
+../md[357] directory:
 
    * to text in txt/
    * to manpages in ../man/man3 

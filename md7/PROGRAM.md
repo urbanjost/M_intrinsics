@@ -51,7 +51,7 @@ Basic Fortran program sections:
   to the program-name specified in the program-stmt.
 
   NOTE1
-  The program name is global to the program. 
+  The program name is global to the program.
 
   An example of a main program is:
 ```fortran

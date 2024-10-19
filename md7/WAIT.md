@@ -3,7 +3,7 @@
 ### **Name**
   wait(7f) - [IO] statement performs a wait operation for
   specified pending asynchronous data transfer operations
-  
+
 ### **Synopsis**
 ```fortran
     WAIT( [UNIT=] file-unit-number,
@@ -12,7 +12,7 @@
      [EOR=label,]
      [ERR=label,]
      [ID=scalar-int-expr,]
-     [IOMSG=iomsg-variable,] 
+     [IOMSG=iomsg-variable,]
      [IOSTAT=scalar-int-variable]
      )
 ```

@@ -3,14 +3,14 @@
 ### **Name**
    close(7f) - [IO] terminate the connection of a specified unit
    to an external file.
-   
+
 ### **Synopsis**
 ```fortran
    CLOSE ( [UNIT= ] file-unit-number,
 
     [IOSTAT= scalar-int-variable,]
-    [IOMSG= iomsg-variable,] 
-    [ERR= label,] 
+    [IOMSG= iomsg-variable,]
+    [ERR= label,]
     [STATUS= scalar-default-char-expr]
    )
 ```

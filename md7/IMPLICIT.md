@@ -138,7 +138,7 @@
   an IMPLICIT statement for the name of the result variable of that
   function subprogram.
 
-OPTIONS
+### **Options**
     NONE         Turns off implicit typing. Recommended. It must
                  follow USE statements but be before any variable
                  declarations, including PARAMETER statements.  When used
@@ -159,7 +159,7 @@ OPTIONS
                  more than once in all of the IMPLICIT statements
                  in a scoping unit.
 
-EXAMPLE
+## **Example**
   The following are examples of the use of IMPLICIT statements:
 
 ```fortran

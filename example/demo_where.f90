@@ -11,10 +11,10 @@
          where (b.ne.0) c=a/b
          write (*,2000) c(1:nd)
          !
-         !  The above protects against divide by zero, but doesn't actually assign
-         !  values to elements in c when the corresponding element in b is zero
-         !  The following covers that, and sets a flag when a divide by zero is
-         !  present
+         ! The above protects against divide by zero, but doesn't actually
+         ! assign values to elements in c when the corresponding element in
+         ! b is zero The following covers that, and sets a flag when a divide
+         ! by zero is present
          !
          where (b(1:nd).ne.0.0)
             c=a/b

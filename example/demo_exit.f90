@@ -44,7 +44,8 @@
            !
             ! run a loop but quit as soon as 200 random integers are odd
             j=0
-            do i=1, 10000 ! fun facts: What are the odds of not getting 200 in 10000?
+            ! fun facts: What are the odds of not getting 200 in 10000?
+            do i=1, 10000
                k=irand(0,99)
                if((k+1)/2 /= k/2)j=j+1 ! cheap integer math trick to tell if odd
                if(j .ge. 200) exit
@@ -52,7 +53,7 @@
             if(j.lt.200) then
                print gen,'Oh no! Not enough odd samples. only found',j
                print gen,'That is REALLY unlikely.'
-           stop '<ERROR> unexpectedly low number of odd values'
+               stop '<ERROR> unexpectedly low number of odd values'
             else
                print gen,'only did I=',i,'passes to get 200 odd samples'
             endif
@@ -113,13 +114,13 @@
             iarr=[(i,i=1,size(iarr))] ! fill array with 1 to N
             LOOKFOR: block
                do i=1,size(iarr)
-             ! when you find what you are looking for use an EXIT instead
-             ! of a GOTO , which follows much more restricted rules on
-             ! on where you can land, preventing the threat of spaghetti code
+                 ! when you find what you are looking for use an EXIT instead
+                 ! of a GOTO , which follows much more restricted rules on
+                 ! on where you can land, preventing the threat of spaghetti code
                  if(iarr(i).eq.5) exit LOOKFOR
                enddo
-           write(*,*)'should not get here. iarr=',iarr
-           stop '<INTERNAL ERROR> should never get here! is array too small?'
+               write(*,*)'should not get here. iarr=',iarr
+               stop '<INTERNAL ERROR> should never get here! is array too small?'
             endblock LOOKFOR
             print gen,'Good Found 5 at position I=',i,'so exited BLOCK construct'
 

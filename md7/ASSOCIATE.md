@@ -39,14 +39,14 @@ Syntax:
 ```
 ### **Description**
 
-An ASSOCIATE statement creates either an 
+An ASSOCIATE statement creates either an
 
-1. abbreviation for the value of an expression that becomes a 
+1. abbreviation for the value of an expression that becomes a
    constant in the ASSOCIATE block.
 
    or
 
-2. an alias for a long variable name. If the LHS is a variable it 
+2. an alias for a long variable name. If the LHS is a variable it
    can actually have the value change the associated name outside
    of the block as well.
 
@@ -110,7 +110,7 @@ entities" are "associating entities". The names are
   or VOLATILE attribute if and only if the selector is a variable and has
   the attribute. The associating entity has the TARGET attribute if and
   only if the selector is a variable and has either the TARGET or POINTER
-  attribute. 
+  attribute.
 
   If the associating entity is polymorphic, it assumes the dynamic type
   and type parameter values of the selector. If the selector has the
@@ -162,7 +162,7 @@ entities" are "associating entities". The names are
 ```
   The following example illustrates multiple associations.
 ```fortran
-       associate ( w => result(i,j)%w, zx => ax%b(i,j)%d, zy => ay%b(i,j)%d )
+       associate ( w => result(i,j)%w, zx=>ax%b(i,j)%d, zy=>ay%b(i,j)%d )
          w = zx*x + zy*y
        end associate
 ```

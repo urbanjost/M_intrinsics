@@ -84,12 +84,12 @@ regions.
 ### **Options**
    **construct-name**  (Optional for **do-loop** exits) Is the name of the
                        **do-loop** or block construct. Note the construct
-		       names must be unique within the same scope.
+                       names must be unique within the same scope.
 
                        Unnamed **exit** statements could introduce errors
                        when loop nesting is modified. Therefore names
-                       are strongly recommended accept perhaps where the    
-		       loop comprises only a few lines of code.
+                       are strongly recommended accept perhaps where the
+                       loop comprises only a few lines of code.
 ### **Examples**
 Samples:
 ```fortran
@@ -114,12 +114,12 @@ Samples:
       do
         i=i+1
         ! we will test on a random value to simulate an actual criteria
-        ! to meet that indicates the loop should be terminated 
+        ! to meet that indicates the loop should be terminated
         if(irand(-100,100).gt.95)exit
       enddo
       print gen, 'escaped infinite loop after only ',i,'tries'
 
-     ! a related common use is to read a file of unknown size 
+     ! a related common use is to read a file of unknown size
      ! till an error or end-of-file, although READ does have
      ! the options ERR=numeric-label and EOF=numeric-label.
      ! INFINITE: do
@@ -139,15 +139,16 @@ Samples:
      !
       ! run a loop but quit as soon as 200 random integers are odd
       j=0
-      do i=1, 10000 ! fun facts: What are the odds of not getting 200 in 10000?
+      ! fun facts: What are the odds of not getting 200 in 10000?
+      do i=1, 10000 
          k=irand(0,99)
          if((k+1)/2 /= k/2)j=j+1 ! cheap integer math trick to tell if odd
          if(j .ge. 200) exit
       enddo
-      if(j.lt.200) then 
+      if(j.lt.200) then
          print gen,'Oh no! Not enough odd samples. only found',j
          print gen,'That is REALLY unlikely.'
-	 stop '<ERROR> unexpectedly low number of odd values'
+         stop '<ERROR> unexpectedly low number of odd values'
       else
          print gen,'only did I=',i,'passes to get 200 odd samples'
       endif
@@ -208,13 +209,13 @@ Samples:
       iarr=[(i,i=1,size(iarr))] ! fill array with 1 to N
       LOOKFOR: block
          do i=1,size(iarr)
-	   ! when you find what you are looking for use an EXIT instead
-	   ! of a GOTO , which follows much more restricted rules on 
-	   ! on where you can land, preventing the threat of spaghetti code
-           if(iarr(i).eq.5) exit LOOKFOR 
+           ! when you find what you are looking for use an EXIT instead
+           ! of a GOTO , which follows much more restricted rules on
+           ! on where you can land, preventing the threat of spaghetti code
+           if(iarr(i).eq.5) exit LOOKFOR
          enddo
-	 write(*,*)'should not get here. iarr=',iarr
-	 stop '<INTERNAL ERROR> should never get here! is array too small?'
+         write(*,*)'should not get here. iarr=',iarr
+         stop '<INTERNAL ERROR> should never get here! is array too small?'
       endblock LOOKFOR
       print gen,'Good Found 5 at position I=',i,'so exited BLOCK construct'
 
@@ -254,11 +255,11 @@ Samples:
    ! this would fail
    ! because the same construct name was used in the same scope:
    !x! LEVELA block:
-   !x! exit LEVELA 
+   !x! exit LEVELA
    !x! endblock LEVELA
-   !x! 
+   !x!
    !x! LEVELA block:
-   !x! exit LEVELA 
+   !x! exit LEVELA
    !x! endblock LEVELA
 
    contains

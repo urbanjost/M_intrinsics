@@ -1,4 +1,3 @@
- 
 !>>>>> ././src/M_intrinsics.f90
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
@@ -264,22 +263,22 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_abs', &
-'      implicit none', &
-'      integer,parameter :: dp=kind(0.0d0)', &
+'        implicit none', &
+'        integer,parameter :: dp=kind(0.0d0)', &
 '', &
 '      ! some values to use with ABS(3)', &
-'      integer          :: i = -1', &
-'      real             :: x = -1.0', &
-'      complex          :: z = (-3.0,-4.0)', &
-'      doubleprecision  :: rr = -45.78_dp', &
+'        integer           :: i = -1', &
+'        real              :: x = -1.0', &
+'        complex           :: z = (-3.0,-4.0)', &
+'        doubleprecision   :: rr = -45.78_dp', &
 '', &
 '      ! some formats for pretty-printing some information', &
-'      character(len=*),parameter :: &', &
-'        frmt  =  ''(1x,a15,1x," In: ",g0,           T51," Out: ",g0)'', &', &
-'        frmtc = ''(1x,a15,1x," In: (",g0,",",g0,")",T51," Out: ",g0)'',        &', &
-'        gen   = ''(*(g0,1x))''', &
+'        character(len=*),parameter :: &', &
+'           frmt  =  ''(1x,a15,1x," In: ",g0,           T51," Out: ",g0)'', &', &
+'           frmtc = ''(1x,a15,1x," In: (",g0,",",g0,")",T51," Out: ",g0)'',  &', &
+'           gen   = ''(*(g0,1x))''', &
 '', &
-'       ! the basics', &
+'        ! the basics', &
 '        print gen,  ''basic usage:''', &
 '        ! any integer, real, or complex type', &
 '        write(*, frmt)  ''integer        '',  i, abs(i)', &
@@ -287,79 +286,79 @@ textblock=[character(len=256) :: &
 '        write(*, frmt)  ''doubleprecision '', rr, abs(rr)', &
 '        write(*, frmtc) ''complex        '',  z, abs(z)', &
 '', &
-'       ! elemental', &
+'        ! elemental', &
 '        print gen, ''abs is elemental:'', abs([20,  0,  -1,  -3,  100])', &
 '', &
-'       ! the returned value for complex input can be thought of as the', &
-'       ! distance from the origin <0,0>', &
+'        ! the returned value for complex input can be thought of as the', &
+'        ! distance from the origin <0,0>', &
 '        print gen, ''distance of ('', z, '') from zero is'', abs( z )', &
 '', &
-'      call DUSTY_CORNERS_1("beware of abs(-huge(0)-1)")', &
-'      call DUSTY_CORNERS_2("beware of losing precision using CMPLX(3)")', &
-'      call DUSTY_CORNERS_3("beware of overflow of complex values")', &
-'      call DUSTY_CORNERS_4("custom meaning for absolute value of COMPLEX")', &
+'        call DUSTY_CORNERS_1("beware of abs(-huge(0)-1)")', &
+'        call DUSTY_CORNERS_2("beware of losing precision using CMPLX(3)")', &
+'        call DUSTY_CORNERS_3("beware of overflow of complex values")', &
+'        call DUSTY_CORNERS_4("custom meaning for absolute value of COMPLEX")', &
 '', &
 '      contains', &
 '', &
-'      subroutine DUSTY_CORNERS_1(message)', &
-'      character(len=*),intent(in) :: message', &
+'        subroutine DUSTY_CORNERS_1(message)', &
+'           character(len=*),intent(in) :: message', &
 '', &
-'        ! A dusty corner is that abs(-huge(0)-1) of an integer would be', &
-'        ! a representable negative value on most machines but result in a', &
-'        ! positive value out of range.', &
+'           ! A dusty corner is that abs(-huge(0)-1) of an integer would be', &
+'           ! a representable negative value on most machines but result in a', &
+'           ! positive value out of range.', &
 '', &
-'        print gen,  message', &
-'        ! By definition:', &
-'        !   You can take the absolute value of any value whose POSITIVE value', &
-'        !   is representable with the same type and kind.', &
+'           print gen,  message', &
+'           ! By definition:', &
+'           !   You can take the absolute value of any value whose POSITIVE value', &
+'           !   is representable with the same type and kind.', &
 '', &
-'        print gen, ''abs range test : '', abs(huge(0)), abs(-huge(0))', &
-'        print gen, ''abs range test : '', abs(huge(0.0)), abs(-huge(0.0))', &
-'        print gen, ''abs range test : '', abs(tiny(0.0)), abs(-tiny(0.0))', &
+'           print gen, ''abs range test : '', abs(huge(0)), abs(-huge(0))', &
+'           print gen, ''abs range test : '', abs(huge(0.0)), abs(-huge(0.0))', &
+'           print gen, ''abs range test : '', abs(tiny(0.0)), abs(-tiny(0.0))', &
 '', &
-'      end subroutine DUSTY_CORNERS_1', &
+'        end subroutine DUSTY_CORNERS_1', &
 '', &
-'      subroutine DUSTY_CORNERS_2(message)', &
-'      character(len=*),intent(in) :: message', &
+'        subroutine DUSTY_CORNERS_2(message)', &
+'           character(len=*),intent(in) :: message', &
 '', &
-'        ! dusty corner: "kind=dp" is required or the value returned by', &
-'        ! CMPLX() is a default real instead of double precision.', &
+'           ! dusty corner: "kind=dp" is required or the value returned by', &
+'           ! CMPLX() is a default real instead of double precision.', &
 '', &
-'        ! Working with complex values you often encounter the CMPLX(3)', &
-'        ! function. CMPLX(3) defaults to returning a default REAL regardless', &
-'        ! of input type. Not really a direct problem with ABS(2f) per-se,', &
-'        ! but a common error when working with doubleprecision complex values', &
+'           ! Working with complex values you often encounter the CMPLX(3)', &
+'           ! function. CMPLX(3) defaults to returning a default REAL regardless', &
+'           ! of input type. Not really a direct problem with ABS(2f) per-se,', &
+'           ! but a common error when working with doubleprecision complex values', &
 '', &
-'        print gen,  message', &
-'        print gen, ''real result versus doubleprecision result'', &', &
-'        & abs(cmplx(30.0_dp,40.0_dp)), &', &
-'        & abs(cmplx(30.0_dp,40.0_dp,kind=dp))', &
+'           print gen,  message', &
+'           print gen, ''real result versus doubleprecision result'', &', &
+'           & abs(cmplx(30.0_dp,40.0_dp)), &', &
+'           & abs(cmplx(30.0_dp,40.0_dp,kind=dp))', &
 '', &
-'      end subroutine DUSTY_CORNERS_2', &
+'        end subroutine DUSTY_CORNERS_2', &
 '', &
-'      subroutine DUSTY_CORNERS_3(message)', &
-'      character(len=*),intent(in) :: message', &
-'        print gen, message', &
+'        subroutine DUSTY_CORNERS_3(message)', &
+'           character(len=*),intent(in) :: message', &
+'           print gen, message', &
 '', &
-'        ! this will probably cause an overflow error, or', &
-'        !print gen,  abs(cmplx( huge(0.0), huge(0.0) ))', &
+'           ! this will probably cause an overflow error, or', &
+'           !print gen,  abs(cmplx( huge(0.0), huge(0.0) ))', &
 '', &
-'        print gen, ''because the biggest default real is'',huge(0.0)', &
-'        print gen, ''because returning magnitude of sqrt(x%re**2,x%im**2)''', &
+'           print gen, ''because the biggest default real is'',huge(0.0)', &
+'           print gen, ''because returning magnitude of sqrt(x%re**2,x%im**2)''', &
 '', &
-'      end subroutine DUSTY_CORNERS_3', &
+'        end subroutine DUSTY_CORNERS_3', &
 '', &
-'      subroutine DUSTY_CORNERS_4(message)', &
-'      character(len=*),intent(in) :: message', &
-'        print gen, message', &
+'        subroutine DUSTY_CORNERS_4(message)', &
+'           character(len=*),intent(in) :: message', &
+'           print gen, message', &
 '', &
-'        ! if you do not want the distance for a complex value you', &
-'        ! might want something like returning a complex value with', &
-'        ! both the imaginary and real parts. One way to do that is', &
+'           ! if you do not want the distance for a complex value you', &
+'           ! might want something like returning a complex value with', &
+'           ! both the imaginary and real parts. One way to do that is', &
 '', &
-'        print gen, cmplx(abs(z%re),abs(z%im),kind=kind(z))', &
+'           print gen, cmplx(abs(z%re),abs(z%im),kind=kind(z))', &
 '', &
-'      end subroutine DUSTY_CORNERS_4', &
+'        end subroutine DUSTY_CORNERS_4', &
 '', &
 '      end program demo_abs', &
 '', &
@@ -394,12 +393,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  abs(3fortran)', &
+'                              October 19, 2024                  abs(3fortran)', &
 '']
 
 shortname="abs"
 call process()
-
 
 case('2','achar')
 
@@ -492,7 +490,7 @@ textblock=[character(len=256) :: &
 '        write(*,''("octal      =",o0)'')achar(i)', &
 '        write(*,''("hexadecimal =",z0)'')achar(i)', &
 '', &
-'        write(*,''(8(i3,1x,a,1x),/)'')(i,achar(i), i=32,126)', &
+'        write(*,''(8(i3,1x,a,1x))'')(i,achar(i), i=32,126)', &
 '', &
 '        write(*,''(a)'')upper(''Mixed Case'')', &
 '      contains', &
@@ -525,36 +523,26 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'        decimal     =65', &
-'        character   =A', &
-'        binary      =1000001', &
-'        octal       =101', &
-'        hexadecimal =41', &
-'         32    33 !  34 "  35 #  36 $  37 %  38 &  39 ''', &
+'       > decimal     =65', &
+'       > character   =A', &
+'       > binary      =1000001', &
+'       > octal      =101', &
+'       > hexadecimal =41', &
+'       >  32   33 !  34 "  35 #  36 $  37 %  38 &  39 ''', &
+'       >  40 ( 41 )  42 *  43 +  44 ,  45 -  46 .  47 /', &
+'       >  48 0 49 1  50 2  51 3  52 4  53 5  54 6  55 7', &
+'       >  56 8 57 9  58 :  59 ;  60 <  61 =  62 >  63 ?', &
+'       >  64 @ 65 A  66 B  67 C  68 D  69 E  70 F  71 G', &
+'       >  72 H 73 I  74 J  75 K  76 L  77 M  78 N  79 O', &
+'       >  80 P 81 Q  82 R  83 S  84 T  85 U  86 V  87 W', &
+'       >  88 X 89 Y  90 Z  91 [  92 \  93 ]  94 ^  95 _', &
+'       >  96 ` 97 a  98 b  99 c 100 d 101 e 102 f 103 g', &
+'       > 104 h 105 i 106 j 107 k 108 l 109 m 110 n 111 o', &
+'       > 112 p 113 q 114 r 115 s 116 t 117 u 118 v 119 w', &
+'       > 120 x 121 y 122 z 123 { 124 | 125 } 126 ~', &
+'       > MIXED CASE', &
 '', &
-'         40 (  41 )  42 *  43 +  44 ,  45 -  46 .  47 /', &
 '', &
-'         48 0  49 1  50 2  51 3  52 4  53 5  54 6  55 7', &
-'', &
-'         56 8  57 9  58 :  59 ;  60 <  61 =  62 >  63 ?', &
-'', &
-'         64 @  65 A  66 B  67 C  68 D  69 E  70 F  71 G', &
-'', &
-'         72 H  73 I  74 J  75 K  76 L  77 M  78 N  79 O', &
-'', &
-'         80 P  81 Q  82 R  83 S  84 T  85 U  86 V  87 W', &
-'', &
-'         88 X  89 Y  90 Z  91 [  92 \  93 ]  94 ^  95 _', &
-'', &
-'         96 `  97 a  98 b  99 c 100 d 101 e 102 f 103 g', &
-'', &
-'        104 h 105 i 106 j 107 k 108 l 109 m 110 n 111 o', &
-'', &
-'        112 p 113 q 114 r 115 s 116 t 117 u 118 v 119 w', &
-'', &
-'        120 x 121 y 122 z 123 { 124 | 125 } 126 ~', &
-'', &
-'   MIXED CASE', &
 'STANDARD', &
 '  FORTRAN 77. KIND argument added Fortran 2003', &
 '', &
@@ -570,12 +558,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                achar(3fortran)', &
+'                              October 19, 2024                achar(3fortran)', &
 '']
 
 shortname="achar"
 call process()
-
 
 case('3','acos')
 
@@ -619,7 +606,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_acos', &
-'      use, intrinsic :: iso_fortran_env, only : real_kinds,real32,real64,real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32,real64,real128', &
 '      implicit none', &
 '      character(len=*),parameter :: all=''(*(g0,1x))''', &
 '      real(kind=real64) :: x , d2r', &
@@ -629,8 +616,8 @@ textblock=[character(len=256) :: &
 '         print all,''acos('',x,'') is '', acos(x)', &
 '', &
 '        ! acos(-1) should be PI', &
-'         print all,''for reference &', &
-'         &PI ~= 3.14159265358979323846264338327950288419716939937510''', &
+'         print all,''for reference'', new_line(''a''), &', &
+'         &''PI ~= 3.14159265358979323846264338327950288419716939937510''', &
 '         write(*,*) acos(-1.0_real64)', &
 '         d2r=acos(-1.0_real64)/180.0_real64', &
 '         print all,''90 degrees is '', d2r*90.0_real64, '' radians''', &
@@ -646,15 +633,16 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'       acos( 0.86599999999999999 ) is  0.52364958093182890', &
-'       for reference PI ~= 3.14159265358979323846264338327950288419716939937510', &
-'         3.1415926535897931', &
-'       90 degrees is  1.5707963267948966  radians', &
-'       elemental 3.14159274 2.09439516 1.57079637 1.04719758 0.00000000', &
-'       complex            (3.14159274,-0.00000000)', &
-'       complex             (2.23703575,1.06127501)', &
-'       complex             (1.57079637,0.00000000)', &
-'       complex            (0.00000000,-0.00000000)', &
+'       > acos( 0.86599999999999999 ) is  0.52364958093182890', &
+'       > for reference', &
+'       >  PI ~= 3.14159265358979323846264338327950288419716939937510', &
+'       >    3.1415926535897931', &
+'       > 90 degrees is 1.5707963267948966  radians', &
+'       > elemental 3.14159274 2.09439516 1.57079637 1.04719758 0.00000000', &
+'       >  complex           (3.14159274,-0.00000000)', &
+'       >  complex            (2.23703575,1.06127501)', &
+'       >  complex            (1.57079637,0.00000000)', &
+'       >  complex           (0.00000000,-0.00000000)', &
 '', &
 '', &
 'STANDARD', &
@@ -670,12 +658,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 acos(3fortran)', &
+'                              October 19, 2024                 acos(3fortran)', &
 '']
 
 shortname="acos"
 call process()
-
 
 case('4','acosd')
 
@@ -723,7 +710,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_acosd', &
-'      use, intrinsic :: iso_fortran_env, only : real_kinds,real32,real64,real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32,real64,real128', &
 '      implicit none', &
 '      character(len=*),parameter :: all=''(*(g0,1x))''', &
 '      real(kind=real64) :: x , d2r', &
@@ -764,12 +751,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                acosd(3fortran)', &
+'                              October 19, 2024                acosd(3fortran)', &
 '']
 
 shortname="acosd"
 call process()
-
 
 case('5','acosh')
 
@@ -820,7 +806,7 @@ textblock=[character(len=256) :: &
 '      program demo_acosh', &
 '      use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32', &
 '      implicit none', &
-'      real(kind=dp), dimension(3) :: x = [ 1.0d0, 2.0d0, 3.0d0 ]', &
+'      real(kind=dp), dimension(3) :: x = [ 1.0_dp, 2.0_dp, 3.0_dp ]', &
 '        if( any(x.lt.1) )then', &
 '           write (*,*) '' warning: values < 1 are present''', &
 '        endif', &
@@ -829,7 +815,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'       0.000000000000000E+000  1.31695789692482        1.76274717403909', &
+'       >    0.0000000000000000 1.3169578969248166 1.7627471740390861', &
 '', &
 '', &
 'STANDARD', &
@@ -845,12 +831,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                acosh(3fortran)', &
+'                              October 19, 2024                acosh(3fortran)', &
 '']
 
 shortname="acosh"
 call process()
-
 
 case('6','acospi')
 
@@ -901,7 +886,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_acospi', &
-'      use, intrinsic :: iso_fortran_env, only : real_kinds,real32,real64,real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32,real64,real128', &
 '      implicit none', &
 '      character(len=*),parameter :: all=''(*(g0,1x))''', &
 '      real(kind=real64) :: x , d2r', &
@@ -927,6 +912,15 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
+'       > acospi( 0.78539816339744828 ) is  0.21245823046654463', &
+'       >    1.0000000000000000', &
+'       > 90 degrees is 0.50000000000000000  radians', &
+'       > elemental 1.00000000 0.666666687 0.500000000 0.333333343 0.00000000', &
+'       >  -1.0  1.00000000', &
+'       >   0.0 0.500000000', &
+'       >   1.0  0.00000000', &
+'', &
+'', &
 'STANDARD', &
 '  Fortran 2023', &
 '', &
@@ -944,12 +938,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               acospi(3fortran)', &
+'                              October 19, 2024               acospi(3fortran)', &
 '']
 
 shortname="acospi"
 call process()
-
 
 case('7','adjustl')
 
@@ -1041,12 +1034,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024              adjustl(3fortran)', &
+'                              October 19, 2024              adjustl(3fortran)', &
 '']
 
 shortname="adjustl"
 call process()
-
 
 case('8','adjustr')
 
@@ -1134,12 +1126,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024              adjustr(3fortran)', &
+'                              October 19, 2024              adjustr(3fortran)', &
 '']
 
 shortname="adjustr"
 call process()
-
 
 case('9','aimag')
 
@@ -1150,7 +1141,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  AIMAG(3) - [TYPE:NUMERIC] Imaginary part of complex number', &
+'  AIMAG(3) - [TYPE:CONVERSION] Imaginary part of complex number', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -1188,8 +1179,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_aimag', &
-'      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
-'       & real32, real64, real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32, real64, real128', &
 '      implicit none', &
 '      character(len=*),parameter :: g=''(*(1x,g0))''', &
 '      complex             :: z4', &
@@ -1249,12 +1239,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                aimag(3fortran)', &
+'                              October 19, 2024                aimag(3fortran)', &
 '']
 
 shortname="aimag"
 call process()
-
 
 case('10','aint')
 
@@ -1349,12 +1338,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 aint(3fortran)', &
+'                              October 19, 2024                 aint(3fortran)', &
 '']
 
 shortname="aint"
 call process()
-
 
 case('11','all')
 
@@ -1469,12 +1457,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  all(3fortran)', &
+'                              October 19, 2024                  all(3fortran)', &
 '']
 
 shortname="all"
 call process()
-
 
 case('12','allocated')
 
@@ -1576,12 +1563,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024            allocated(3fortran)', &
+'                              October 19, 2024            allocated(3fortran)', &
 '']
 
 shortname="allocated"
 call process()
-
 
 case('13','anint')
 
@@ -1702,12 +1688,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                anint(3fortran)', &
+'                              October 19, 2024                anint(3fortran)', &
 '']
 
 shortname="anint"
 call process()
-
 
 case('14','any')
 
@@ -1868,12 +1853,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  any(3fortran)', &
+'                              October 19, 2024                  any(3fortran)', &
 '']
 
 shortname="any"
 call process()
-
 
 case('15','asin')
 
@@ -1990,12 +1974,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 asin(3fortran)', &
+'                              October 19, 2024                 asin(3fortran)', &
 '']
 
 shortname="asin"
 call process()
-
 
 case('16','asind')
 
@@ -2122,12 +2105,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                asind(3fortran)', &
+'                              October 19, 2024                asind(3fortran)', &
 '']
 
 shortname="asind"
 call process()
-
 
 case('17','asinh')
 
@@ -2204,12 +2186,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                asinh(3fortran)', &
+'                              October 19, 2024                asinh(3fortran)', &
 '']
 
 shortname="asinh"
 call process()
-
 
 case('18','asinpi')
 
@@ -2342,12 +2323,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               asinpi(3fortran)', &
+'                              October 19, 2024               asinpi(3fortran)', &
 '']
 
 shortname="asinpi"
 call process()
-
 
 case('19','associate')
 
@@ -2511,7 +2491,7 @@ textblock=[character(len=256) :: &
 '', &
 '  The following example illustrates multiple associations.', &
 '', &
-'            associate ( w => result(i,j)%w, zx => ax%b(i,j)%d, zy => ay%b(i,j)%d )', &
+'            associate ( w => result(i,j)%w, zx=>ax%b(i,j)%d, zy=>ay%b(i,j)%d )', &
 '              w = zx*x + zy*y', &
 '            end associate', &
 '', &
@@ -2594,12 +2574,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024            associate(7fortran)', &
+'                              October 19, 2024            associate(7fortran)', &
 '']
 
 shortname="associate"
 call process()
-
 
 case('20','associated')
 
@@ -2712,12 +2691,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024           associated(3fortran)', &
+'                              October 19, 2024           associated(3fortran)', &
 '']
 
 shortname="associated"
 call process()
-
 
 case('21','atan2')
 
@@ -2834,7 +2812,6 @@ textblock=[character(len=256) :: &
 '         (-1.0, 1.0 ), & ! 135', &
 '         (-1.0, 0.0 ), & ! 180', &
 '         (-1.0,-1.0 ), & ! 225', &
-'      /bin/bash: pb0: command not found', &
 '         ( 0.0,-1.0 )]   ! 270', &
 '       do i=1,size(vals)', &
 '          call cartesian_to_polar(vals(i)%re, vals(i)%im, radius,ang)', &
@@ -2899,12 +2876,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                atan2(3fortran)', &
+'                              October 19, 2024                atan2(3fortran)', &
 '']
 
 shortname="atan2"
 call process()
-
 
 case('22','atan2d')
 
@@ -3079,12 +3055,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               atan2d(3fortran)', &
+'                              October 19, 2024               atan2d(3fortran)', &
 '']
 
 shortname="atan2d"
 call process()
-
 
 case('23','atan2pi')
 
@@ -3245,12 +3220,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024              atan2pi(3fortran)', &
+'                              October 19, 2024              atan2pi(3fortran)', &
 '']
 
 shortname="atan2pi"
 call process()
-
 
 case('24','atan')
 
@@ -3300,8 +3274,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_atan', &
-'      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
-'       & real32, real64, real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32, real64, real128', &
 '      implicit none', &
 '      character(len=*),parameter :: all=''(*(g0,1x))''', &
 '      real(kind=real64),parameter :: &', &
@@ -3339,12 +3312,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 atan(3fortran)', &
+'                              October 19, 2024                 atan(3fortran)', &
 '']
 
 shortname="atan"
 call process()
-
 
 case('25','atand')
 
@@ -3394,9 +3366,8 @@ textblock=[character(len=256) :: &
 '', &
 '  Sample program:', &
 '', &
-'      program demo_atan', &
-'      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
-'       & real32, real64, real128', &
+'      program demo_atand', &
+'      use, intrinsic :: iso_fortran_env, only : real32, real64, real128', &
 '      implicit none', &
 '      character(len=*),parameter :: all=''(*(g0,1x))''', &
 '      real(kind=real64),parameter :: &', &
@@ -3410,7 +3381,7 @@ textblock=[character(len=256) :: &
 '         print all, atand(-2.0d0, 2.0d0),atand(-2.0d0, 2.0d0)/Deg_Per_Rad', &
 '         print all, atand(-2.0d0,-2.0d0),atand(-2.0d0,-2.0d0)/Deg_Per_Rad', &
 '', &
-'      end program demo_atan', &
+'      end program demo_atand', &
 '', &
 '  Results:', &
 '', &
@@ -3434,12 +3405,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                atand(3fortran)', &
+'                              October 19, 2024                atand(3fortran)', &
 '']
 
 shortname="atand"
 call process()
-
 
 case('26','atanh')
 
@@ -3508,12 +3478,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                atanh(3fortran)', &
+'                              October 19, 2024                atanh(3fortran)', &
 '']
 
 shortname="atanh"
 call process()
-
 
 case('27','atanpi')
 
@@ -3585,11 +3554,11 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'        1.235085437457879', &
-'        .7853981633974483 45.00000000000000', &
-'        2.356194490192345 135.0000000000000', &
-'        -.7853981633974483 -45.00000000000000', &
-'        -2.356194490192345 -135.0000000000000', &
+'       > 0.39313990502447488', &
+'       > 0.25000000000000000 45.000000000000000', &
+'       > 0.75000000000000000 135.00000000000000', &
+'       > -0.25000000000000000 -45.000000000000000', &
+'       > -0.75000000000000000 -135.00000000000000', &
 '', &
 '', &
 'STANDARD', &
@@ -3603,12 +3572,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               atanpi(3fortran)', &
+'                              October 19, 2024               atanpi(3fortran)', &
 '']
 
 shortname="atanpi"
 call process()
-
 
 case('28','atomic_add')
 
@@ -3680,12 +3648,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024           atomic_add(3fortran)', &
+'                              October 19, 2024           atomic_add(3fortran)', &
 '']
 
 shortname="atomic_add"
 call process()
-
 
 case('29','atomic_and')
 
@@ -3758,12 +3725,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024           atomic_and(3fortran)', &
+'                              October 19, 2024           atomic_and(3fortran)', &
 '']
 
 shortname="atomic_and"
 call process()
-
 
 case('30','atomic_cas')
 
@@ -3828,12 +3794,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024           atomic_cas(3fortran)', &
+'                              October 19, 2024           atomic_cas(3fortran)', &
 '']
 
 shortname="atomic_cas"
 call process()
-
 
 case('31','atomic_define')
 
@@ -3904,12 +3869,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024        atomic_define(3fortran)', &
+'                              October 19, 2024        atomic_define(3fortran)', &
 '']
 
 shortname="atomic_define"
 call process()
-
 
 case('32','atomic_fetch_add')
 
@@ -3975,12 +3939,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024     atomic_fetch_add(3fortran)', &
+'                              October 19, 2024     atomic_fetch_add(3fortran)', &
 '']
 
 shortname="atomic_fetch_add"
 call process()
-
 
 case('33','atomic_fetch_and')
 
@@ -4047,12 +4010,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024     atomic_fetch_and(3fortran)', &
+'                              October 19, 2024     atomic_fetch_and(3fortran)', &
 '']
 
 shortname="atomic_fetch_and"
 call process()
-
 
 case('34','atomic_fetch_or')
 
@@ -4119,12 +4081,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024      atomic_fetch_or(3fortran)', &
+'                              October 19, 2024      atomic_fetch_or(3fortran)', &
 '']
 
 shortname="atomic_fetch_or"
 call process()
-
 
 case('35','atomic_fetch_xor')
 
@@ -4191,12 +4152,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024     atomic_fetch_xor(3fortran)', &
+'                              October 19, 2024     atomic_fetch_xor(3fortran)', &
 '']
 
 shortname="atomic_fetch_xor"
 call process()
-
 
 case('36','atomic_or')
 
@@ -4272,12 +4232,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024            atomic_or(3fortran)', &
+'                              October 19, 2024            atomic_or(3fortran)', &
 '']
 
 shortname="atomic_or"
 call process()
-
 
 case('37','atomic_ref')
 
@@ -4356,12 +4315,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024           atomic_ref(3fortran)', &
+'                              October 19, 2024           atomic_ref(3fortran)', &
 '']
 
 shortname="atomic_ref"
 call process()
-
 
 case('38','atomic_xor')
 
@@ -4435,12 +4393,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024           atomic_xor(3fortran)', &
+'                              October 19, 2024           atomic_xor(3fortran)', &
 '']
 
 shortname="atomic_xor"
 call process()
-
 
 case('39','backspace')
 
@@ -4569,12 +4526,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024            backspace(7fortran)', &
+'                              October 19, 2024            backspace(7fortran)', &
 '']
 
 shortname="backspace"
 call process()
-
 
 case('40','bessel_j0')
 
@@ -4615,8 +4571,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_bessel_j0', &
-'      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
-'      & real32, real64, real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32, real64, real128', &
 '        implicit none', &
 '        real(kind=real64) :: x', &
 '        x = 0.0_real64', &
@@ -4639,12 +4594,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024            bessel_j0(3fortran)', &
+'                              October 19, 2024            bessel_j0(3fortran)', &
 '']
 
 shortname="bessel_j0"
 call process()
-
 
 case('41','bessel_j1')
 
@@ -4685,8 +4639,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_bessel_j1', &
-'      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
-'       & real32, real64, real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32, real64, real128', &
 '      implicit none', &
 '      real(kind=real64) :: x = 1.0_real64', &
 '        x = bessel_j1(x)', &
@@ -4708,12 +4661,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024            bessel_j1(3fortran)', &
+'                              October 19, 2024            bessel_j1(3fortran)', &
 '']
 
 shortname="bessel_j1"
 call process()
-
 
 case('42','bessel_jn')
 
@@ -4789,8 +4741,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_bessel_jn', &
-'      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
-'        & real32, real64, real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32, real64, real128', &
 '      implicit none', &
 '      real(kind=real64) :: x = 1.0_real64', &
 '         x = bessel_jn(5,x)', &
@@ -4812,12 +4763,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024            bessel_jn(3fortran)', &
+'                              October 19, 2024            bessel_jn(3fortran)', &
 '']
 
 shortname="bessel_jn"
 call process()
-
 
 case('43','bessel_y0')
 
@@ -4858,8 +4808,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_bessel_y0', &
-'      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
-'      & real32, real64, real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32, real64, real128', &
 '      implicit none', &
 '       real(kind=real64) :: x = 0.0_real64', &
 '       x = bessel_y0(x)', &
@@ -4881,12 +4830,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024            bessel_y0(3fortran)', &
+'                              October 19, 2024            bessel_y0(3fortran)', &
 '']
 
 shortname="bessel_y0"
 call process()
-
 
 case('44','bessel_y1')
 
@@ -4927,8 +4875,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_bessel_y1', &
-'      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
-'      & real32, real64, real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32, real64, real128', &
 '      implicit none', &
 '       real(kind=real64) :: x = 1.0_real64', &
 '       write(*,*)x, bessel_y1(x)', &
@@ -4949,12 +4896,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024            bessel_y1(3fortran)', &
+'                              October 19, 2024            bessel_y1(3fortran)', &
 '']
 
 shortname="bessel_y1"
 call process()
-
 
 case('45','bessel_yn')
 
@@ -5031,8 +4977,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_bessel_yn', &
-'      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
-'      & real32, real64, real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32, real64, real128', &
 '      implicit none', &
 '      real(kind=real64) :: x = 1.0_real64', &
 '       write(*,*) x,bessel_yn(5,x)', &
@@ -5053,12 +4998,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024            bessel_yn(3fortran)', &
+'                              October 19, 2024            bessel_yn(3fortran)', &
 '']
 
 shortname="bessel_yn"
 call process()
-
 
 case('46','bge')
 
@@ -5218,12 +5162,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  bge(3fortran)', &
+'                              October 19, 2024                  bge(3fortran)', &
 '']
 
 shortname="bge"
 call process()
-
 
 case('47','bgt')
 
@@ -5330,12 +5273,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  bgt(3fortran)', &
+'                              October 19, 2024                  bgt(3fortran)', &
 '']
 
 shortname="bgt"
 call process()
-
 
 case('48','bit_size')
 
@@ -5423,12 +5365,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024             bit_size(3fortran)', &
+'                              October 19, 2024             bit_size(3fortran)', &
 '']
 
 shortname="bit_size"
 call process()
-
 
 case('49','ble')
 
@@ -5524,12 +5465,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  ble(3fortran)', &
+'                              October 19, 2024                  ble(3fortran)', &
 '']
 
 shortname="ble"
 call process()
-
 
 case('50','block')
 
@@ -5655,12 +5595,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                block(7fortran)', &
+'                              October 19, 2024                block(7fortran)', &
 '']
 
 shortname="block"
 call process()
-
 
 case('51','blt')
 
@@ -5750,12 +5689,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  blt(3fortran)', &
+'                              October 19, 2024                  blt(3fortran)', &
 '']
 
 shortname="blt"
 call process()
-
 
 case('52','btest')
 
@@ -5888,12 +5826,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                btest(3fortran)', &
+'                              October 19, 2024                btest(3fortran)', &
 '']
 
 shortname="btest"
 call process()
-
 
 case('53','c_associated')
 
@@ -5966,12 +5903,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024         c_associated(3fortran)', &
+'                              October 19, 2024         c_associated(3fortran)', &
 '']
 
 shortname="c_associated"
 call process()
-
 
 case('54','ceiling')
 
@@ -6210,12 +6146,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024              ceiling(3fortran)', &
+'                              October 19, 2024              ceiling(3fortran)', &
 '']
 
 shortname="ceiling"
 call process()
-
 
 case('55','c_f_pointer')
 
@@ -6286,12 +6221,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024          c_f_pointer(3fortran)', &
+'                              October 19, 2024          c_f_pointer(3fortran)', &
 '']
 
 shortname="c_f_pointer"
 call process()
-
 
 case('56','c_f_procpointer')
 
@@ -6361,12 +6295,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024      c_f_procpointer(3fortran)', &
+'                              October 19, 2024      c_f_procpointer(3fortran)', &
 '']
 
 shortname="c_f_procpointer"
 call process()
-
 
 case('57','c_funloc')
 
@@ -6435,12 +6368,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024             c_funloc(3fortran)', &
+'                              October 19, 2024             c_funloc(3fortran)', &
 '']
 
 shortname="c_funloc"
 call process()
-
 
 case('58','char')
 
@@ -6571,12 +6503,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 char(3fortran)', &
+'                              October 19, 2024                 char(3fortran)', &
 '']
 
 shortname="char"
 call process()
-
 
 case('59','c_loc')
 
@@ -6632,12 +6563,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                c_loc(3fortran)', &
+'                              October 19, 2024                c_loc(3fortran)', &
 '']
 
 shortname="c_loc"
 call process()
-
 
 case('60','close')
 
@@ -6770,12 +6700,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                close(7fortran)', &
+'                              October 19, 2024                close(7fortran)', &
 '']
 
 shortname="close"
 call process()
-
 
 case('61','cmplx')
 
@@ -6786,7 +6715,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  CMPLX(3) - [TYPE:NUMERIC] Conversion to a complex type', &
+'  CMPLX(3) - [TYPE:CONVERSION] Conversion to a complex type', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -7042,12 +6971,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                cmplx(3fortran)', &
+'                              October 19, 2024                cmplx(3fortran)', &
 '']
 
 shortname="cmplx"
 call process()
-
 
 case('62','co_broadcast')
 
@@ -7110,12 +7038,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024         co_broadcast(3fortran)', &
+'                              October 19, 2024         co_broadcast(3fortran)', &
 '']
 
 shortname="co_broadcast"
 call process()
-
 
 case('63','co_lbound')
 
@@ -7162,7 +7089,6 @@ textblock=[character(len=256) :: &
 
 shortname="co_lbound"
 call process()
-
 
 case('64','co_max')
 
@@ -7230,12 +7156,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               co_max(3fortran)', &
+'                              October 19, 2024               co_max(3fortran)', &
 '']
 
 shortname="co_max"
 call process()
-
 
 case('65','co_min')
 
@@ -7299,12 +7224,11 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               co_min(3fortran)', &
+'                              October 19, 2024               co_min(3fortran)', &
 '']
 
 shortname="co_min"
 call process()
-
 
 case('66','command_argument_count')
 
@@ -7377,14 +7301,142 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 202command_argument_count(3fortran)', &
+'                              October 19, 202command_argument_count(3fortran)', &
 '']
 
 shortname="command_argument_count"
 call process()
 
+case('67','comment')
 
-case('67','compiler_options')
+textblock=[character(len=256) :: &
+'', &
+'comment(5fortran)                                           comment(5fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  COMMENT(5) - [SYNTAX] code annotation', &
+'', &
+'', &
+'SYNOPSIS', &
+'  C fixed-format comment ! free-format comment', &
+'', &
+'DESCRIPTION', &
+'  In free-format files The character "!" initiates a comment except when it', &
+'  appears in a character context as part of a literal string.', &
+'', &
+'  The comment extends to the end of the line.', &
+'', &
+'  If the first nonblank character on a line is an "!", the line is a "comment', &
+'  line". Lines containing only blanks or containing no characters are also', &
+'  comment lines.', &
+'', &
+'  "comment lines" may appear anywhere. There are a few restrictions on', &
+'  comments trailing statements or continued statements though.', &
+'', &
+'  Comments may appear anywhere in a program unit and may precede the first', &
+'  statement of a program unit or follow the last statement of a program unit.', &
+'', &
+'  Comments have no effect on the interpretation of the program unit.', &
+'', &
+'  A continued line ending in an ampersand can additionally be followed by an', &
+'  exclamation and remarks unless a literal string is being continued.', &
+'', &
+'  Comment lines cannot be continued with an ampersand. An ampersand appearing', &
+'  in a comment has no special effect and is merely a regular character.', &
+'', &
+'  The standard does not restrict the number of consecutive comment lines.', &
+'', &
+'  FIXED-FORMAT SOURCE FILES', &
+'', &
+'  Additionally, in fixed-format source files a "C" in column 1 indicates the', &
+'  remainder of the line is a comment. An asterisk "*" in column 1 beginning a', &
+'  comment is a common extension as well.', &
+'', &
+'  There is a conflict in fixed-format files that can occur with the otherwise', &
+'  universal rule that at exclamation outside of a literal string begins a', &
+'  comment -- If the first non-blank character in a line is in column 6 in a', &
+'  fixed-format file it is a continuation line, not a comment. This rule', &
+'  includes an exclamation character as well.', &
+'', &
+'FREE FORM COMMENTARY', &
+'  A comment is explanatory text embedded in program source intended to help', &
+'  human readers understand it.', &
+'', &
+'  Code completely without comments is often hard to read, but code with too', &
+'  many comments is also bad, especially if the comments are not kept up-to-', &
+'  date with changes to the code.', &
+'', &
+'  Too much commenting may mean that the code is over-complicated.', &
+'', &
+'  A good rule is to comment everything that needs it but write code that', &
+'  doesn''t need much of it.', &
+'', &
+'  Comments that explain WHY something is done and how the code relates to its', &
+'  environment are useful.', &
+'', &
+'  A particularly irksome form of over-commenting explains exactly what each', &
+'  statement does, even when it is obvious to any reasonably competant', &
+'  programmer.', &
+'', &
+'EXAMPLES', &
+'  Sample program:', &
+'', &
+'      program demo_comment', &
+'      integer :: values(8)', &
+'      character(len=:),allocatable :: string', &
+'      character(len=1),parameter   :: dash=''-'',colon='':'',dot=''.''', &
+'      real :: x=3.0, y=4.0', &
+'        ! comments may appear on a continued line', &
+'        ! blank lines are comment lines', &
+'        call date_and_time(values=values)', &
+'        associate( &', &
+'', &
+'         ! DATE', &
+'         YR=>values(1),      & ! The year', &
+'         MO=>values(2),      & ! The month', &
+'         DY=>values(3),      & ! The day of the month', &
+'', &
+'         ! TIME', &
+'         UTC=>values(4),     & ! Time difference with UTC in minutes', &
+'         HR=>values(5),      & ! The hour of the day', &
+'         MIN=>values(6),     & ! The minutes of the hour', &
+'         SEC=>values(7),     & ! The seconds of the minute', &
+'         MILLI=>values(8) )    ! The milliseconds of the second', &
+'', &
+'         write(*,''(*(g0))'')YR,dash,MO,dash,DY,''T'', &', &
+'         & HR,colon,MIN,colon,SEC,dot,MILLI', &
+'        end associate', &
+'', &
+'        string=''no comment allowed &', &
+'           &on the end of a continued string &', &
+'           ! keep going ...', &
+'           & but comment lines are allowed between '' ! but can go on the end', &
+'', &
+'        ! the next exclamation is part of a literal string, and so has', &
+'        ! nothing to do with comments', &
+'        print *, ''Hello World! X='',x,''Y='',y', &
+'', &
+'      end program demo_comment', &
+'', &
+'  Results:', &
+'', &
+'    2024-10-13T0:7:25.283 Hello World! X= 4.59107416E-41 Y= 2.76724564E-36', &
+'', &
+'', &
+'SEE ALSO', &
+'  CONTINUATION(5),', &
+'', &
+'', &
+'', &
+'                              October 19, 2024              comment(5fortran)', &
+'']
+
+shortname="comment"
+call process()
+
+case('68','compiler_options')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7465,14 +7517,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024     compiler_options(3fortran)', &
+'                              October 19, 2024     compiler_options(3fortran)', &
 '']
 
 shortname="compiler_options"
 call process()
 
-
-case('68','compiler_version')
+case('69','compiler_version')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7537,14 +7588,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024     compiler_version(3fortran)', &
+'                              October 19, 2024     compiler_version(3fortran)', &
 '']
 
 shortname="compiler_version"
 call process()
 
-
-case('69','conjg')
+case('70','conjg')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7594,8 +7644,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_conjg', &
-'      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
-'      & real32, real64, real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32, real64, real128', &
 '      implicit none', &
 '      complex :: z = (2.0, 3.0)', &
 '      complex(kind=real64) :: dz = (   &', &
@@ -7668,14 +7717,398 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                conjg(3fortran)', &
+'                              October 19, 2024                conjg(3fortran)', &
 '']
 
 shortname="conjg"
 call process()
 
+case('71','continuation')
 
-case('70','continue')
+textblock=[character(len=256) :: &
+'', &
+'continuation(5fortran)                                 continuation(5fortran)', &
+'', &
+'', &
+'', &
+'NAME', &
+'  CONTINUATION(5) - [FORTRAN] - the rules for free-format line continuation', &
+'', &
+'', &
+'', &
+'SYNOPSIS', &
+'  general rule:', &
+'', &
+'        original long statement', &
+'', &
+'           becomes', &
+'', &
+'        original&', &
+'        & long&', &
+'        & statement', &
+'', &
+'', &
+'', &
+'DESCRIPTION', &
+'  You may split almost all free-format Fortran statements into multiple lines', &
+'  by inserting the sequence "&\n&", where "\n" represents a newline.  That is,', &
+'  split the line into two lines and place an ampersand at the right end of the', &
+'  first line and as the first (non-space) character in the second line.', &
+'', &
+'  You CANNOT split a comment or an INCLUDE pre-processor directive onto', &
+'  multiple lines using this syntax.', &
+'', &
+'  The rule for commenting continued lines is simple, really. Comments can go', &
+'  in the same places on continued lines as on non-continued lines accept they', &
+'  cannot appear after the right-hand "&" when continuing a long string.', &
+'', &
+'  So applying the general rule the line', &
+'', &
+'       integer,save :: xx(2,3)= reshape([ 1,2,3,4,5,6 ],shape(xx),order=[2,1])', &
+'', &
+'  may be split into many lines by simple repeated application of the rule:', &
+'', &
+'         integer,save :: xx(2,3)= reshape([&', &
+'         & 1, 2, 3,  &', &
+'         & 4, 5, 6   &', &
+'         &],shape(xx),order=[2,1])', &
+'', &
+'  Of course, when used for continuation the "&" is not part of the equivalent', &
+'  concatenated statement.', &
+'', &
+'  That is basically it for the general rule, but there are a few variants and', &
+'  details to cover.', &
+'', &
+'  When a line is split using the general rule any trailing spaces before the', &
+'  amersand at the end of the line are included in the equivalent single-line', &
+'  statement.', &
+'', &
+'  However, spaces before the ampersand beginning the second line are ignored.', &
+'  So you can indent the lines beginning with an ampersand any way you like:', &
+'', &
+'         integer,save :: xx(2,3)= reshape([&', &
+'              & 1, 2, 3, &', &
+'              & 4, 5, 6  &', &
+'         &],shape(xx),order=[2,1])', &
+'', &
+'  Now it ends up the leading ampersand is actually optional if not splitting a', &
+'  lexical token or constant numeric or string value (which is generally not', &
+'  recommended anyway). If not present the result is the same as if an', &
+'  ampersand were inserted as the first character of the line -- so the leading', &
+'  spaces are significant when the leading ampersand is absent. When not', &
+'  splitting strings multiple spaces generally are treated the same as a single', &
+'  space so this is equivalent to the previous example:', &
+'', &
+'         integer,save :: xx(2,3)= reshape([ &', &
+'                1, 2, 3,                    &', &
+'                4, 5, 6                     &', &
+'         ],shape(xx),order=[2,1])', &
+'', &
+'', &
+'COMMENTS ON COMMENTING CONTINUED LINES', &
+'  First, note you cannot continue a comment onto another line. An "&" in a', &
+'  comment is treated like any other character, with no special effect (Just', &
+'  start an additional comment line if you want a comment to appear across', &
+'  multiple lines).', &
+'', &
+'  That being said, comments themselves may occur as individual lines inbetween', &
+'  sections of a continued statement, or after the ending ampersand IF NOT', &
+'  CONTINUING A STRING CONSTANT.', &
+'', &
+'  So lets add an explanation about the continued line using in-line comments,', &
+'  comment lines and blank lines:', &
+'', &
+'         integer,save :: xx(2,3)= reshape([& ! define array in row-column order', &
+'', &
+'            !===========!', &
+'            & 1, 2, 3,  &   ! row 1', &
+'            & 4, 5, 6   &   ! row 2', &
+'            !===========!', &
+'', &
+'         ],shape(xx),order=[2,1])', &
+'', &
+'  So trailing comments are allowed on non-character continuations, and comment', &
+'  lines and blank lines are always allowed.', &
+'', &
+'  Note no line shall contain a single "&" as the only nonblank character or as', &
+'  the only nonblank character before an ! that initiates a comment.', &
+'', &
+'  you have to have the leading amersand on continued lines when splitting', &
+'  quoted strings or lexical words or constant values.', &
+'', &
+'  But try to never split constants or lexical words!', &
+'', &
+'         character(len=*), parameter :: str1=''my first str'', str2=''my second str''', &
+'', &
+'  could be written as', &
+'', &
+'         char&', &
+'         &acter(len=*), para&', &
+'         &meter :: str1=''my fi&', &
+'         &rst str'', str2=''my se&', &
+'         &cond str''', &
+'', &
+'  where things were split in two in a haphazard way as long as no spaces are', &
+'  introduced before the ending amersand and after the leading amersand that', &
+'  would make the statement illegal if all appearing on one line (ignoring', &
+'  length for the moment).', &
+'', &
+'  This is a more realistic example (a very long string):', &
+'', &
+'        character(len=*),parameter=''this is a really long string &', &
+'          &that I needed to put onto several lines because it would be&', &
+'          & so long if I left it on a single line that it might be longer&', &
+'          & than allowed in older compilers and would certainly not fit &', &
+'          &in my favorite 80-column&', &
+'          & terminal window''', &
+'', &
+'', &
+'HOW LONG YOU CAN CONTINUE', &
+'  Since we are talking about very long lines, how long can a single statement', &
+'  be? In the Fortran 95 standard, only a maximum of 39 continuation lines is', &
+'  required to be conformant. In Fortran 2003 and Fortran 2008, at least 255 is', &
+'  to be allowed. There is no limit specified in Fortran 2018. See your', &
+'  compiler documentation to see if your compiler still has a limit, but it is', &
+'  probably at least a few hundred lines.', &
+'', &
+'FIXED FORMAT AND INCLUDE FILES', &
+'  NOTE: Skip this session if you do not need to deal with (typically old)', &
+'  fixed-format Fortran files.', &
+'', &
+'  Fixed-format Fortran has a very different continuation rule where the first', &
+'  line has nothing added to it except an optional zero in column six and all', &
+'  continuations have a non-space non-zero character that is part of the', &
+'  Fortran character set in column six. If a quoted string is broken the first', &
+'  line acts as if padded with spaces out to column 72.', &
+'', &
+'  Even though the rules for continueing statements on multiple lines are so', &
+'  different, source code can be formatted in a format that works in both free', &
+'  and fixed-format files.', &
+'', &
+'  Other than being just a curiosity, this is useful if an INCLUDE file is', &
+'  needed by both free and fixed-format files. (Note that INCLUDE statements', &
+'  themselves are one of the few statements that cannot be split across', &
+'  multiple lines!).', &
+'', &
+'  So here is how to make an INCLUDE file for both fixed and free-format files:', &
+'', &
+'  o  Conne statement labels to character positions 1 to 5 and statements to', &
+'     character positions 7 to 72, which is a requirement of fixed-format.', &
+'', &
+'  o  Treat blanks as being significant, which they are in free-format.', &
+'', &
+'  o  Use only the exclamation mark (!) to indicate a comment, but do not start', &
+'     the comment in character position 6.', &
+'', &
+'  o  For continued statements, place an ampersand (&) in both character', &
+'     position 73 of a continued line and character position 6 of a', &
+'     continuation line.', &
+'', &
+'  Why does this work?', &
+'', &
+'  If every line being continued has an ampersand in column 73 or further the', &
+'  ampersand will be ignored by standard fixed-format Fortran.', &
+'', &
+'  Combined with the second ampersand always present and in column six for all', &
+'  but the first line both rules for free and fixed source files are satisfied.', &
+'', &
+'  Fixed-format can use most printable characters in column 6 to indication', &
+'  continuation. One of the allowed characters is "&", which is the one and', &
+'  only character used by free-format. So using it obeys both rules.', &
+'', &
+'  Therefore the following is equivalent in fixed and free-format parsing:', &
+'', &
+'       >12345 continue', &
+'       >      character(len=*), parameter :: string1="hello world", string2="hel&', &
+'       >     &lo world"', &
+'', &
+'  Obviously, this is not compatible with extended length fixed-format source', &
+'  files (which some compilers support as an extension) unless the ampersand is', &
+'  shifted beyond the extended limit (which in standard fixed-format files', &
+'  would be past column 72).', &
+'', &
+'  You may want to look for a compiler option to disable long-line warnings', &
+'  when using characters past column 72.', &
+'', &
+'EXAMPLE', &
+'  Example program', &
+'', &
+'      program demo_continuation', &
+'      implicit none', &
+'      integer :: point(3)', &
+'      character(len=:),allocatable :: string', &
+'', &
+'      ! one statement using continuation:', &
+'      integer,save :: xx(3,5)= reshape([& ! define in row-column order', &
+'      !-------------------------!', &
+'       1,    2,   3,   4,   5, &  ! row 1', &
+'       10,  20,  30,  40,  50, &  ! row 2', &
+'       11,  22,  33,  44,  55  &  ! row 3', &
+'      !-------------------------!', &
+'', &
+'      ],shape(xx),order=[2,1])', &
+'', &
+'      ! print it in row-column order too', &
+'       call print_matrix_int(''xx array:'',xx)', &
+'       xx(3,5)= -1051', &
+'       call print_matrix_int(''xx array:'',xx)', &
+'', &
+'      ! So this is OK:', &
+'        POINT=[&   ! define a Point <X,Y,Z>', &
+'        & 10, &    ! the X component', &
+'        & 20, &    ! the Y component', &
+'        & 30  ]    ! the Z component', &
+'', &
+'      ! because you can have comments after the ampersand when it is not', &
+'      ! a string.', &
+'      ! But this is not OK:', &
+'      !   STRING=''&    ! create a sentence', &
+'      !   & This&      ! first word', &
+'      !   & is&        ! second word', &
+'      !   & sentence&  ! third word', &
+'      !   & a''               ! forth word (a comment here is OK)', &
+'      !Because when continuing a string you cannot have a comment after the "&".', &
+'      !', &
+'      ! This is OK:', &
+'        STRING=''&', &
+'        ! create a sentence', &
+'        & This&', &
+'        ! first word', &
+'        & is&', &
+'        ! second word', &
+'        & sentence&', &
+'        ! third word', &
+'        & a''       ! forth word (a comment here is OK)', &
+'      ! because comment LINES can go anywhere in Fortran source files', &
+'', &
+'      ! Dusty corners', &
+'        call splitting_a_token()', &
+'        call longstring()', &
+'      contains', &
+'', &
+'      subroutine splitting_a_token()', &
+'', &
+'      ! Often denoted by "e" in honor of Euler,', &
+'      ! Napier''s constant is the base of the natural logarithm system.', &
+'      real(kind=kind(0.0d0)),parameter :: &', &
+'      & Napier_constant = 2.71828182845904523d0', &
+'', &
+'      ! without continuation', &
+'      write(*,*)napier_constant', &
+'', &
+'      ! splitting a token the & is required', &
+'      write(*,*)napier_&', &
+'      &constant', &
+'', &
+'      ! the left-hand ampersand is required when splitting constants to,', &
+'      ! including characters strings', &
+'      write(*,*)''Expecting &', &
+'               &the value'',2.71828182&', &
+'               &845904523d0', &
+'', &
+'      !NOT ALLOWED <<<<<<', &
+'      !write(*,*)napier_&', &
+'      !constant', &
+'      !>>>>>>>', &
+'', &
+'      ! splitting a token is not recommended as it complicates identifying', &
+'      ! the use of a token name.', &
+'', &
+'      end subroutine splitting_a_token', &
+'      Subroutine LongString()', &
+'      ! Long strings:', &
+'', &
+'      Character (len=200) :: string1, String2', &
+'      character(len=:), allocatable :: a,b,c, big', &
+'', &
+'        string1 = "A very long string that won''t fit on a single &', &
+'                   &line can be made through proper continuation."', &
+'', &
+'        ! alternatives to continuation lines', &
+'        string2 = "A very long string that won''t fit on a single " // &', &
+'                  "line can be made through proper continuation " // &', &
+'                  "and concatenation of multiple strings."', &
+'        print *, "string1=",string1', &
+'        print *, "string2=",string2', &
+'', &
+'        ! append multiple strings together to construct a long line', &
+'        a=repeat(''A'',100)', &
+'        b=repeat(''B'',100)', &
+'        big=a//b', &
+'        c=repeat(''C'',100)', &
+'        big=a//c', &
+'        big=big//"more at end"', &
+'        print *, "big=",big', &
+'', &
+'      End Subroutine LongString', &
+'', &
+'      subroutine print_matrix_int(title,arr)', &
+'      ! bonus points -- print an integer array in RC order with bells on.', &
+'      ! ie. It calculates the width needed for the longest variable and', &
+'      ! puts a frame around the array', &
+'      implicit none', &
+'      character(len=*),intent(in)  :: title', &
+'      integer,intent(in)          :: arr(:,:)', &
+'      integer                     :: i', &
+'      integer                     :: size_needed', &
+'      character(len=:),allocatable :: biggest', &
+'       write(*,*)trim(title)', &
+'       biggest=''          ''  ! make buffer to write integer into', &
+'       ! find how many characters to use for integers', &
+'       size_needed=ceiling(log10(real(maxval(abs(arr)))))+2', &
+'       write(biggest,''(i0)'')size_needed', &
+'       ! use this format to write a row', &
+'       biggest=''("   |",*(i''//trim(biggest)//'':," |"))''', &
+'       ! print one row of array at a time', &
+'       write(*,''(*(g0))'')&', &
+'       &''   #'',(repeat(''-'',size_needed),''-#'',i=1,size(arr,dim=2))', &
+'       do i=1,size(arr,dim=1)', &
+'          write(*,fmt=biggest,advance=''no'')arr(i,:)', &
+'          write(*,''(" |")'')', &
+'       enddo', &
+'       write(*,''(*(g0))'')&', &
+'       &''   #'',(repeat(''-'',size_needed),''-#'',i=1,size(arr,dim=2))', &
+'      end subroutine print_matrix_int', &
+'      end program demo_continuation', &
+'      ``', &
+'       Results:', &
+'      ```text', &
+'       xx array:', &
+'        #-----#-----#-----#-----#-----#', &
+'        |   1 |   2 |   3 |   4 |   5 |', &
+'        |  10 |  20 |  30 |  40 |  50 |', &
+'        |  11 |  22 |  33 |  44 |  55 |', &
+'        #-----#-----#-----#-----#-----#', &
+'       xx array:', &
+'        #-------#-------#-------#-------#-------#', &
+'        |     1 |     2 |     3 |     4 |     5 |', &
+'        |    10 |    20 |    30 |    40 |    50 |', &
+'        |    11 |    22 |    33 |    44 | -1051 |', &
+'        #-------#-------#-------#-------#-------#', &
+'        2.7182818284590451', &
+'        2.7182818284590451', &
+'       Expecting the value   2.7182818284590451', &
+'       string1=A very long string that won''t fit on a single \', &
+'       line can be made through proper continuation.', &
+'       string2=A very long string that won''t fit on a single \', &
+'       line can be made through proper continuation and \', &
+'       concatenation of multiple strings.', &
+'       big=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\', &
+'       AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACCCCCC\', &
+'       CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC\', &
+'       CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCmore at end', &
+'', &
+'  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
+'', &
+'', &
+'', &
+'                              October 19, 2024         continuation(5fortran)', &
+'']
+
+shortname="continuation"
+call process()
+
+case('72','continue')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7750,14 +8183,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024             continue(7fortran)', &
+'                              October 19, 2024             continue(7fortran)', &
 '']
 
 shortname="continue"
 call process()
 
-
-case('71','co_reduce')
+case('73','co_reduce')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7852,14 +8284,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024            co_reduce(3fortran)', &
+'                              October 19, 2024            co_reduce(3fortran)', &
 '']
 
 shortname="co_reduce"
 call process()
 
-
-case('72','cos')
+case('74','cos')
 
 textblock=[character(len=256) :: &
 '', &
@@ -7946,14 +8377,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  cos(3fortran)', &
+'                              October 19, 2024                  cos(3fortran)', &
 '']
 
 shortname="cos"
 call process()
 
-
-case('73','cosd')
+case('75','cosd')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8036,14 +8466,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 cosd(3fortran)', &
+'                              October 19, 2024                 cosd(3fortran)', &
 '']
 
 shortname="cosd"
 call process()
 
-
-case('74','cosh')
+case('76','cosh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8086,8 +8515,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_cosh', &
-'      use, intrinsic :: iso_fortran_env, only : &', &
-'       & real_kinds, real32, real64, real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32, real64, real128', &
 '      implicit none', &
 '      real(kind=real64) :: x = 1.0_real64', &
 '         write(*,*)''X='',x,''COSH(X=)'',cosh(x)', &
@@ -8111,14 +8539,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 cosh(3fortran)', &
+'                              October 19, 2024                 cosh(3fortran)', &
 '']
 
 shortname="cosh"
 call process()
 
-
-case('75','cospi')
+case('77','cospi')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8209,14 +8636,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                cospi(3fortran)', &
+'                              October 19, 2024                cospi(3fortran)', &
 '']
 
 shortname="cospi"
 call process()
 
-
-case('76','co_sum')
+case('78','co_sum')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8286,14 +8712,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               co_sum(3fortran)', &
+'                              October 19, 2024               co_sum(3fortran)', &
 '']
 
 shortname="co_sum"
 call process()
 
-
-case('77','co_ubound')
+case('79','co_ubound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8339,8 +8764,7 @@ textblock=[character(len=256) :: &
 shortname="co_ubound"
 call process()
 
-
-case('78','count')
+case('80','count')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8577,14 +9001,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                count(3fortran)', &
+'                              October 19, 2024                count(3fortran)', &
 '']
 
 shortname="count"
 call process()
 
-
-case('79','cpu_time')
+case('81','cpu_time')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8644,7 +9067,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_cpu_time', &
-'      use, intrinsic :: iso_fortran_env, only : real_kinds,real32,real64,real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32,real64,real128', &
 '      implicit none', &
 '      real :: start, finish', &
 '      real(kind=real64) :: startd, finishd', &
@@ -8690,14 +9113,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024             cpu_time(3fortran)', &
+'                              October 19, 2024             cpu_time(3fortran)', &
 '']
 
 shortname="cpu_time"
 call process()
 
-
-case('80','cshift')
+case('82','cshift')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8706,7 +9128,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  CSHIFT(3) - [TRANSFORMATIONAL] Circular shift elements of an array', &
+'  CSHIFT(3) - [ARRAY:TRANSFORMATIONAL] Circular shift elements of an array', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -8828,14 +9250,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               cshift(3fortran)', &
+'                              October 19, 2024               cshift(3fortran)', &
 '']
 
 shortname="cshift"
 call process()
 
-
-case('81','c_sizeof')
+case('83','c_sizeof')
 
 textblock=[character(len=256) :: &
 '', &
@@ -8892,14 +9313,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024             c_sizeof(3fortran)', &
+'                              October 19, 2024             c_sizeof(3fortran)', &
 '']
 
 shortname="c_sizeof"
 call process()
 
-
-case('82','date_and_time')
+case('84','date_and_time')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9081,14 +9501,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024        date_and_time(3fortran)', &
+'                              October 19, 2024        date_and_time(3fortran)', &
 '']
 
 shortname="date_and_time"
 call process()
 
-
-case('83','dble')
+case('85','dble')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9097,7 +9516,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  DBLE(3) - [TYPE:NUMERIC] Converstion to double precision real', &
+'  DBLE(3) - [TYPE:CONVERSION] Converstion to double precision real', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -9160,14 +9579,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 dble(3fortran)', &
+'                              October 19, 2024                 dble(3fortran)', &
 '']
 
 shortname="dble"
 call process()
 
-
-case('84','deallocate')
+case('86','deallocate')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9338,14 +9756,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024           deallocate(7fortran)', &
+'                              October 19, 2024           deallocate(7fortran)', &
 '']
 
 shortname="deallocate"
 call process()
 
-
-case('85','digits')
+case('87','digits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9354,7 +9771,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  DIGITS(3) - [NUMERIC MODEL] Significant digits in the numeric model', &
+'  DIGITS(3) - [MODEL:NUMERIC] Significant digits in the numeric model', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -9413,14 +9830,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               digits(3fortran)', &
+'                              October 19, 2024               digits(3fortran)', &
 '']
 
 shortname="digits"
 call process()
 
-
-case('86','dim')
+case('88','dim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9524,14 +9940,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  dim(3fortran)', &
+'                              October 19, 2024                  dim(3fortran)', &
 '']
 
 shortname="dim"
 call process()
 
-
-case('87','dot_product')
+case('89','dot_product')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9540,7 +9955,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  DOT_PRODUCT(3) - [TRANSFORMATIONAL] Dot product of two vectors', &
+'  DOT_PRODUCT(3) - [ARRAY:TRANSFORMATIONAL] Dot product of two vectors', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -9627,14 +10042,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024          dot_product(3fortran)', &
+'                              October 19, 2024          dot_product(3fortran)', &
 '']
 
 shortname="dot_product"
 call process()
 
-
-case('88','dprod')
+case('90','dprod')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9741,14 +10155,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                dprod(3fortran)', &
+'                              October 19, 2024                dprod(3fortran)', &
 '']
 
 shortname="dprod"
 call process()
 
-
-case('89','dshiftl')
+case('91','dshiftl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -9893,14 +10306,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024              dshiftl(3fortran)', &
+'                              October 19, 2024              dshiftl(3fortran)', &
 '']
 
 shortname="dshiftl"
 call process()
 
-
-case('90','dshiftr')
+case('92','dshiftr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10048,14 +10460,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024              dshiftr(3fortran)', &
+'                              October 19, 2024              dshiftr(3fortran)', &
 '']
 
 shortname="dshiftr"
 call process()
 
-
-case('91','endfile')
+case('93','endfile')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10144,14 +10555,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024              endfile(7fortran)', &
+'                              October 19, 2024              endfile(7fortran)', &
 '']
 
 shortname="endfile"
 call process()
 
-
-case('92','eoshift')
+case('94','eoshift')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10160,7 +10570,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  EOSHIFT(3) - [TRANSFORMATIONAL] End-off shift of elements of an array', &
+'  EOSHIFT(3) - [ARRAY:TRANSFORMATIONAL] End-off shift of elements of an array', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -10277,14 +10687,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024              eoshift(3fortran)', &
+'                              October 19, 2024              eoshift(3fortran)', &
 '']
 
 shortname="eoshift"
 call process()
 
-
-case('93','epsilon')
+case('95','epsilon')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10293,7 +10702,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  EPSILON(3) - [NUMERIC MODEL] Epsilon function', &
+'  EPSILON(3) - [MODEL:NUMERIC] Epsilon function', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -10409,14 +10818,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024              epsilon(3fortran)', &
+'                              October 19, 2024              epsilon(3fortran)', &
 '']
 
 shortname="epsilon"
 call process()
 
-
-case('94','erf')
+case('96','erf')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10457,8 +10865,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_erf', &
-'      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
-'       & real32, real64, real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32, real64, real128', &
 '      implicit none', &
 '      real(kind=real64) :: x = 0.17_real64', &
 '         write(*,*)x, erf(x)', &
@@ -10482,14 +10889,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  erf(3fortran)', &
+'                              October 19, 2024                  erf(3fortran)', &
 '']
 
 shortname="erf"
 call process()
 
-
-case('95','erfc')
+case('97','erfc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10543,8 +10949,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_erfc', &
-'      use, intrinsic :: iso_fortran_env, only : &', &
-'       & real_kinds, real32, real64, real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32, real64, real128', &
 '      implicit none', &
 '      real(kind=real64) :: x = 0.17_real64', &
 '        write(*,''(*(g0))'')''X='',x, '' ERFC(X)='',erfc(x)', &
@@ -10570,14 +10975,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 erfc(3fortran)', &
+'                              October 19, 2024                 erfc(3fortran)', &
 '']
 
 shortname="erfc"
 call process()
 
-
-case('96','erfc_scaled')
+case('98','erfc_scaled')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10652,14 +11056,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024          erfc_scaled(3fortran)', &
+'                              October 19, 2024          erfc_scaled(3fortran)', &
 '']
 
 shortname="erfc_scaled"
 call process()
 
-
-case('97','event_query')
+case('99','event_query')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10742,14 +11145,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024          event_query(3fortran)', &
+'                              October 19, 2024          event_query(3fortran)', &
 '']
 
 shortname="event_query"
 call process()
 
-
-case('98','execute_command_line')
+case('100','execute_command_line')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10777,12 +11179,12 @@ textblock=[character(len=256) :: &
 'CHARACTERISTICS', &
 '  o  COMMAND is a default character scalar', &
 '', &
-'  o  WAIT is a default logical scalar. If WAIT is present with the', &
+'  o  WAIT is a default logical scalar.', &
 '', &
 '  o  EXITSTAT is an integer of the default kind. It must be of a kind with at', &
 '     least a decimal exponent range of 9.', &
 '', &
-'  o  CMDSTAT is an integer of default kind The kind of the variable must', &
+'  o  CMDSTAT is an integer of default kind. The kind of the variable must', &
 '     support at least a decimal exponent range of four.', &
 '', &
 '  o  CMDMSG is a character scalar of the default kind.', &
@@ -10854,16 +11256,70 @@ textblock=[character(len=256) :: &
 'EXAMPLES', &
 '  Sample program:', &
 '', &
-'      program demo_exec', &
+'      program demo_execute_command_line', &
 '      implicit none', &
-'        integer :: i', &
+'      integer :: exitstat, cmdstat', &
+'      character(len=256) :: cmdmsg', &
 '', &
-'        call execute_command_line("external_prog.exe", exitstat=i)', &
-'        print *, "Exit status of external_prog.exe was ", i', &
+'        call execute_command_line( &', &
+'        &  command  = "external_prog.exe", &', &
+'        &  exitstat = exitstat,            &', &
+'        &  cmdstat  = cmdstat,             &', &
+'        &  cmdmsg   = cmdmsg)', &
+'        print *, "Exit status of external_prog.exe was ", exitstat', &
+'        if(cmdstat.ne.0)then', &
+'           print *, ''<ERROR>''//trim(cmdmsg)', &
+'        endif', &
 '', &
+'        ! if asynchronous exitstat and cmdstat may not be relied on', &
 '        call execute_command_line("reindex_files.exe", wait=.false.)', &
-'        print *, "Now reindexing files in the background"', &
-'      end program demo_exec', &
+'        print *, "Now hopefully reindexing files in the background"', &
+'', &
+'        if(cmd(''dir''))then', &
+'           write(*,*)''OK''', &
+'        else', &
+'           stop 4', &
+'        endif', &
+'', &
+'        ! might short-circuit or not if a command fails', &
+'        if(all(cmd([character(len=80) :: ''date'',''time myprg'',''date''])))then', &
+'            write(*,*)''good time''', &
+'        else', &
+'            write(*,*)''bad time''', &
+'        endif', &
+'', &
+'        stop ''end of program''', &
+'      contains', &
+'', &
+'      elemental impure function cmd(command)', &
+'      ! a functional interface for calling system commands', &
+'      use, intrinsic :: iso_fortran_env, only : &', &
+'      & stderr=>ERROR_UNIT, stdout=>OUTPUT_UNIT', &
+'      character(len=*),intent(in) :: command', &
+'      logical                    :: cmd', &
+'      logical                    :: wait', &
+'      integer                    :: exitstat', &
+'      integer                    :: cmdstat', &
+'      character(len=256)         :: cmdmsg', &
+'        wait=.false.', &
+'        exitstat=0', &
+'        cmdstat=0', &
+'        call execute_command_line(command=command,wait=wait, &', &
+'        & exitstat=exitstat,cmdstat=cmdstat,cmdmsg=cmdmsg)', &
+'        if(cmdstat.ne.0)then', &
+'           flush(stdout)', &
+'           write(stderr,''(a)'')trim(cmdmsg)', &
+'           flush(stderr)', &
+'        endif', &
+'        if(exitstat.ne.0)then', &
+'           flush(stdout)', &
+'           write(stderr,''(*(g0))'')''exitstat='',exitstat,'':'',trim(command)', &
+'           flush(stderr)', &
+'        endif', &
+'        cmd=merge(.true.,.false.,exitstat==0)', &
+'      end function cmd', &
+'', &
+'      end program demo_execute_command_line', &
 '', &
 '', &
 'STANDARD', &
@@ -10876,14 +11332,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024 execute_command_line(3fortran)', &
+'                              October 19, 2024 execute_command_line(3fortran)', &
 '']
 
 shortname="execute_command_line"
 call process()
 
-
-case('99','exit')
+case('101','exit')
 
 textblock=[character(len=256) :: &
 '', &
@@ -10982,7 +11437,8 @@ textblock=[character(len=256) :: &
 '                        Unnamed **exit** statements could introduce errors', &
 '                        when loop nesting is modified. Therefore names', &
 '                        are strongly recommended accept perhaps where the', &
-'  loop comprises only a few lines of code.', &
+'                        loop comprises only a few lines of code.', &
+'', &
 '', &
 'EXAMPLES', &
 '  Samples:', &
@@ -11033,7 +11489,8 @@ textblock=[character(len=256) :: &
 '          !', &
 '           ! run a loop but quit as soon as 200 random integers are odd', &
 '           j=0', &
-'           do i=1, 10000 ! fun facts: What are the odds of not getting 200 in 10000?', &
+'           ! fun facts: What are the odds of not getting 200 in 10000?', &
+'           do i=1, 10000', &
 '              k=irand(0,99)', &
 '              if((k+1)/2 /= k/2)j=j+1 ! cheap integer math trick to tell if odd', &
 '              if(j .ge. 200) exit', &
@@ -11041,7 +11498,7 @@ textblock=[character(len=256) :: &
 '           if(j.lt.200) then', &
 '              print gen,''Oh no! Not enough odd samples. only found'',j', &
 '              print gen,''That is REALLY unlikely.''', &
-'          stop ''<ERROR> unexpectedly low number of odd values''', &
+'              stop ''<ERROR> unexpectedly low number of odd values''', &
 '           else', &
 '              print gen,''only did I='',i,''passes to get 200 odd samples''', &
 '           endif', &
@@ -11102,13 +11559,13 @@ textblock=[character(len=256) :: &
 '           iarr=[(i,i=1,size(iarr))] ! fill array with 1 to N', &
 '           LOOKFOR: block', &
 '              do i=1,size(iarr)', &
-'            ! when you find what you are looking for use an EXIT instead', &
-'            ! of a GOTO , which follows much more restricted rules on', &
-'            ! on where you can land, preventing the threat of spaghetti code', &
+'                ! when you find what you are looking for use an EXIT instead', &
+'                ! of a GOTO , which follows much more restricted rules on', &
+'                ! on where you can land, preventing the threat of spaghetti code', &
 '                if(iarr(i).eq.5) exit LOOKFOR', &
 '              enddo', &
-'          write(*,*)''should not get here. iarr='',iarr', &
-'          stop ''<INTERNAL ERROR> should never get here! is array too small?''', &
+'              write(*,*)''should not get here. iarr='',iarr', &
+'              stop ''<INTERNAL ERROR> should never get here! is array too small?''', &
 '           endblock LOOKFOR', &
 '           print gen,''Good Found 5 at position I='',i,''so exited BLOCK construct''', &
 '', &
@@ -11191,14 +11648,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 exit(7fortran)', &
+'                              October 19, 2024                 exit(7fortran)', &
 '']
 
 shortname="exit"
 call process()
 
-
-case('100','exp')
+case('102','exp')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11308,14 +11764,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  exp(3fortran)', &
+'                              October 19, 2024                  exp(3fortran)', &
 '']
 
 shortname="exp"
 call process()
 
-
-case('101','exponent')
+case('103','exponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11324,7 +11779,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  EXPONENT(3) - [MODEL_COMPONENTS] Exponent of floating-point number', &
+'  EXPONENT(3) - [MODEL:COMPONENTS] Exponent of floating-point number', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -11390,14 +11845,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024             exponent(3fortran)', &
+'                              October 19, 2024             exponent(3fortran)', &
 '']
 
 shortname="exponent"
 call process()
 
-
-case('102','extends_type_of')
+case('104','extends_type_of')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11571,14 +12025,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024      extends_type_of(3fortran)', &
+'                              October 19, 2024      extends_type_of(3fortran)', &
 '']
 
 shortname="extends_type_of"
 call process()
 
-
-case('103','findloc')
+case('105','findloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11864,14 +12317,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024              findloc(3fortran)', &
+'                              October 19, 2024              findloc(3fortran)', &
 '']
 
 shortname="findloc"
 call process()
 
-
-case('104','floor')
+case('106','floor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -11978,14 +12430,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                floor(3fortran)', &
+'                              October 19, 2024                floor(3fortran)', &
 '']
 
 shortname="floor"
 call process()
 
-
-case('105','flush')
+case('107','flush')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12075,14 +12526,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                flush(7fortran)', &
+'                              October 19, 2024                flush(7fortran)', &
 '']
 
 shortname="flush"
 call process()
 
-
-case('106','fraction')
+case('108','fraction')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12091,7 +12541,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  FRACTION(3) - [MODEL_COMPONENTS] Fractional part of the model representation', &
+'  FRACTION(3) - [MODEL:COMPONENTS] Fractional part of the model representation', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -12151,14 +12601,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024             fraction(3fortran)', &
+'                              October 19, 2024             fraction(3fortran)', &
 '']
 
 shortname="fraction"
 call process()
 
-
-case('107','gamma')
+case('109','gamma')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12306,14 +12755,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                gamma(3fortran)', &
+'                              October 19, 2024                gamma(3fortran)', &
 '']
 
 shortname="gamma"
 call process()
 
-
-case('108','get_command')
+case('110','get_command')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12415,14 +12863,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024          get_command(3fortran)', &
+'                              October 19, 2024          get_command(3fortran)', &
 '']
 
 shortname="get_command"
 call process()
 
-
-case('109','get_command_argument')
+case('111','get_command_argument')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12555,14 +13002,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024 get_command_argument(3fortran)', &
+'                              October 19, 2024 get_command_argument(3fortran)', &
 '']
 
 shortname="get_command_argument"
 call process()
 
-
-case('110','get_environment_variable')
+case('112','get_environment_variable')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12571,7 +13017,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  GET_ENVIRONMENT_VARIABLE(3) - [SYSTEM:ENVIRONMENT] Get value of an', &
+'  GET_ENVIRONMENT_VARIABLE(3) - [SYSTEM:ENVIRONMENT] Retrieve the value of an', &
 '  environment variable', &
 '', &
 '', &
@@ -12602,13 +13048,14 @@ textblock=[character(len=256) :: &
 '  o  TRIM_NAME is a scalar of type logical and of default kind.', &
 '', &
 'DESCRIPTION', &
-'  GET_ENVIRONMENT_VARIABLE(3) gets the VALUE of the environment variable NAME.', &
+'  GET_ENVIRONMENT_VARIABLE(3) retrieves the VALUE of the environment variable', &
+'  NAME.', &
 '', &
 '  Note that GET_ENVIRONMENT_VARIABLE(3) need not be thread-safe. It is the', &
 '  responsibility of the user to ensure that the environment is not being', &
 '  updated concurrently.', &
 '', &
-'  If running in parallel be aware It is processor dependent whether an', &
+'  When running in parallel be aware it is processor dependent whether an', &
 '  environment variable that exists on an image also exists on another image,', &
 '  and if it does exist on both images whether the values are the same or', &
 '  different.', &
@@ -12623,18 +13070,23 @@ textblock=[character(len=256) :: &
 '     is not set or has no value, or the processor does not support environment', &
 '     variables VALUE will be filled with blanks.', &
 '', &
-'  o  LENGTH : Argument LENGTH contains the length needed for storing the', &
-'     environment variable NAME. It is zero if the environment variable is not', &
+'  o  LENGTH : This argument contains the length needed to store the', &
+'     environment variable name. It is zero if the environment variable is not', &
 '     set.', &
 '', &
-'  o  STATUS : STATUS is -1 if VALUE is present but too short for the', &
-'     environment variable; it is 1 if the environment variable does not exist', &
-'     and 2 if the processor does not support environment variables; in all', &
-'     other cases STATUS is zero.', &
+'  o  STATUS : Returns', &
 '', &
-'  o  TRIM_NAME : If TRIM_NAME is present with the value .false., the trailing', &
-'     blanks in NAME are significant; otherwise they are not part of the', &
-'     environment variable name.', &
+'     o -1 if value is present but too short to fit in the provided variable.', &
+'', &
+'     o 1 if the environment variable does not exist', &
+'', &
+'     o 2 if the processor does not support environment variables', &
+'', &
+'     o and 0 in all other cases.', &
+'', &
+'  o  TRIM_NAME : If present and set to .false. the trailing blanks in name are', &
+'     significant; otherwise, they are not considered part of the environment', &
+'     variable name.', &
 '', &
 '  o  ERRMSG : is assigned a processor-dependent explanatory message if the', &
 '     optional argument STATUS is, or would be if present, assigned a positive', &
@@ -12656,6 +13108,7 @@ textblock=[character(len=256) :: &
 '', &
 '      function get_env(name,default) result(value)', &
 '      ! a function that makes calling get_environment_variable(3) simple', &
+'      use, intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT', &
 '      implicit none', &
 '      character(len=*),intent(in)         :: name', &
 '      character(len=*),intent(in),optional :: default', &
@@ -12670,11 +13123,12 @@ textblock=[character(len=256) :: &
 '           & length=howbig,status=stat,trim_name=.true.)', &
 '           select case (stat)', &
 '           case (1)', &
-'            print *, name, " is not defined in the environment. Strange..."', &
+'            write(stderr,*) &', &
+'            & name, " is not defined in the environment. Strange..."', &
 '            value=''''', &
 '           case (2)', &
-'            print *, &', &
-'            "This processor does not support environment variables. Boooh!"', &
+'            write(stderr,*) &', &
+'            & "This processor does not support environment variables. Boooh!"', &
 '            value=''''', &
 '           case default', &
 '            ! make string of sufficient size to hold value', &
@@ -12706,14 +13160,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2get_environment_variable(3fortran)', &
+'                              October 19, 2get_environment_variable(3fortran)', &
 '']
 
 shortname="get_environment_variable"
 call process()
 
-
-case('111','huge')
+case('113','huge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12722,7 +13175,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  HUGE(3) - [NUMERIC MODEL] Largest number of a type and kind', &
+'  HUGE(3) - [MODEL:NUMERIC] Largest number of a type and kind', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -12799,7 +13252,7 @@ textblock=[character(len=256) :: &
 '', &
 '      contains', &
 '      impure elemental function checkprod(i,j) result(ij32)', &
-'      !@(#) checkprod(3f) - check for overflow when multiplying two 32-bit integers', &
+'      ! checkprod(3f) - check for overflow when multiplying 32-bit integers', &
 '      use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64', &
 '      integer(kind=int32),intent(in)  :: i, j', &
 '      integer(kind=int64)            :: ij64', &
@@ -12851,14 +13304,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 huge(3fortran)', &
+'                              October 19, 2024                 huge(3fortran)', &
 '']
 
 shortname="huge"
 call process()
 
-
-case('112','hypot')
+case('114','hypot')
 
 textblock=[character(len=256) :: &
 '', &
@@ -12910,8 +13362,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_hypot', &
-'      use, intrinsic :: iso_fortran_env, only : &', &
-'       & real_kinds, real32, real64, real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32, real64, real128', &
 '      implicit none', &
 '      real(kind=real32) :: x, y', &
 '      real(kind=real32),allocatable :: xs(:), ys(:)', &
@@ -13032,14 +13483,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                hypot(3fortran)', &
+'                              October 19, 2024                hypot(3fortran)', &
 '']
 
 shortname="hypot"
 call process()
 
-
-case('113','iachar')
+case('115','iachar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13154,14 +13604,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               iachar(3fortran)', &
+'                              October 19, 2024               iachar(3fortran)', &
 '']
 
 shortname="iachar"
 call process()
 
-
-case('114','iall')
+case('116','iall')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13245,14 +13694,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 iall(3fortran)', &
+'                              October 19, 2024                 iall(3fortran)', &
 '']
 
 shortname="iall"
 call process()
 
-
-case('115','iand')
+case('117','iand')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13336,14 +13784,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 iand(3fortran)', &
+'                              October 19, 2024                 iand(3fortran)', &
 '']
 
 shortname="iand"
 call process()
 
-
-case('116','iany')
+case('118','iany')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13453,14 +13900,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 iany(3fortran)', &
+'                              October 19, 2024                 iany(3fortran)', &
 '']
 
 shortname="iany"
 call process()
 
-
-case('117','ibclr')
+case('119','ibclr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13559,14 +14005,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                ibclr(3fortran)', &
+'                              October 19, 2024                ibclr(3fortran)', &
 '']
 
 shortname="ibclr"
 call process()
 
-
-case('118','ibits')
+case('120','ibits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13668,14 +14113,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                ibits(3fortran)', &
+'                              October 19, 2024                ibits(3fortran)', &
 '']
 
 shortname="ibits"
 call process()
 
-
-case('119','ibset')
+case('121','ibset')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13773,14 +14217,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                ibset(3fortran)', &
+'                              October 19, 2024                ibset(3fortran)', &
 '']
 
 shortname="ibset"
 call process()
 
-
-case('120','ichar')
+case('122','ichar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13821,8 +14264,8 @@ textblock=[character(len=256) :: &
 '  See IACHAR(3) for specifically working with the ASCII character set.', &
 '', &
 'OPTIONS', &
-'  o  C : The input character to determine the code for. Its value shall be', &
-'     that of a character capable of representation in the processor.', &
+'  o  C : The input character to determine the decimal code of. The range of', &
+'     values capable of representation is processor-dependent.', &
 '', &
 '  o  KIND : indicates the kind parameter of the result. If KIND is absent, the', &
 '     return value is of default integer kind.', &
@@ -13848,19 +14291,32 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_ichar', &
+'      use,intrinsic :: iso_fortran_env, only : b=>int8', &
 '      implicit none', &
-'', &
+'      integer,parameter  :: bytes=80', &
+'      character         :: string*(bytes),lets((bytes))*1', &
+'      integer(kind=b)   :: ilets(bytes)', &
+'      equivalence (string,lets)', &
+'      equivalence (string,ilets)', &
 '        write(*,*)ichar([''a'',''z'',''A'',''Z''])', &
-'', &
+'        string=''Do unto others''', &
+'        associate (a=>ichar(lets))', &
+'         ilets=merge(a-32,a,a>=97.and.a<=122) ! uppercase', &
+'         write(*,*)string', &
+'         ilets=merge(a+32,a,a>=65.and.a<=90)  ! lowercase', &
+'         write(*,*)string', &
+'        end associate', &
 '      end program demo_ichar', &
 '', &
 '  Results:', &
 '', &
-'                  97         122          65          90', &
+'         >          97         122          65          90', &
+'         > DO UNTO OTHERS', &
+'         > do unto others', &
 '', &
 '', &
 'STANDARD', &
-'  Fortran 95 , with KIND argument -Fortran 2003', &
+'  Fortran 95, with KIND argument -Fortran 2003', &
 '', &
 'SEE ALSO', &
 '  ACHAR(3), CHAR(3), IACHAR(3)', &
@@ -13878,14 +14334,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                ichar(3fortran)', &
+'                              October 19, 2024                ichar(3fortran)', &
 '']
 
 shortname="ichar"
 call process()
 
-
-case('121','ieor')
+case('123','ieor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -13992,14 +14447,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 ieor(3fortran)', &
+'                              October 19, 2024                 ieor(3fortran)', &
 '']
 
 shortname="ieor"
 call process()
 
-
-case('122','if')
+case('124','if')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14180,14 +14634,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                   if(7fortran)', &
+'                              October 19, 2024                   if(7fortran)', &
 '']
 
 shortname="if"
 call process()
 
-
-case('123','image_index')
+case('125','image_index')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14237,14 +14690,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024          image_index(3fortran)', &
+'                              October 19, 2024          image_index(3fortran)', &
 '']
 
 shortname="image_index"
 call process()
 
-
-case('124','implicit')
+case('126','implicit')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14379,26 +14831,28 @@ textblock=[character(len=256) :: &
 '  type specification in a FUNCTION statement overrides an IMPLICIT statement', &
 '  for the name of the result variable of that function subprogram.', &
 '', &
-'  OPTIONS NONE Turns off implicit typing. Recommended. It must follow USE', &
-'  statements but be before any variable declarations, including PARAMETER', &
-'  statements. When used there shall be no other IMPLICIT statements in the', &
-'  scoping unit.', &
+'OPTIONS', &
+'  NONE', &
+'    Turns off implicit typing. Recommended. It must follow USE statements but', &
+'    be before any variable', &
 '', &
-'      TYPE() letter-spec  is', &
-'                 (letter-or-range[,letter-or-range] [,letter-or-range] )', &
-'                  If the minus and second letter appear, the second', &
-'                  letter shall follow the first letter alphabetically.', &
-'                  A letter-spec consisting of two letter s separated by', &
-'                  a minus is equivalent to writing a list containing', &
-'                  all of the letters in alphabetical order in the', &
-'                  alphabetic sequence from the first letter through', &
-'                  the second letter. For example, A-C is equivalent', &
-'                  to A, B, C. The same letter shall not appear as a', &
-'                  single letter, or be included in a range of letters,', &
-'                  more than once in all of the IMPLICIT statements', &
-'                  in a scoping unit.', &
+'    declarations, including PARAMETER statements.', &
+'      When used there shall be no other IMPLICIT statements in the scoping', &
+'      unit.', &
 '', &
-'  EXAMPLE The following are examples of the use of IMPLICIT statements:', &
+'  TYPE() letter-spec', &
+'    is (letter-or-range[,letter-or-range] [,letter-or-range] ) If the minus', &
+'    and second letter appear, the second letter shall follow the first letter', &
+'    alphabetically.  A letter-spec consisting of two letter s separated by a', &
+'    minus is equivalent to writing a list containing all of the letters in', &
+'    alphabetical order in the alphabetic sequence from the first letter', &
+'    through the second letter. For example, A-C is equivalent to A, B, C. The', &
+'    same letter shall not appear as a single letter, or be included in a range', &
+'    of letters, more than once in all of the IMPLICIT statements in a scoping', &
+'    unit.', &
+'', &
+'EXAMPLE', &
+'  The following are examples of the use of IMPLICIT statements:', &
 '', &
 '             module example_module', &
 '                implicit none', &
@@ -14518,14 +14972,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024             implicit(7fortran)', &
+'                              October 19, 2024             implicit(7fortran)', &
 '']
 
 shortname="implicit"
 call process()
 
-
-case('125','include')
+case('127','include')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14702,14 +15155,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024              include(7fortran)', &
+'                              October 19, 2024              include(7fortran)', &
 '']
 
 shortname="include"
 call process()
 
-
-case('126','index')
+case('128','index')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14809,14 +15261,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                index(3fortran)', &
+'                              October 19, 2024                index(3fortran)', &
 '']
 
 shortname="index"
 call process()
 
-
-case('127','inquire')
+case('129','inquire')
 
 textblock=[character(len=256) :: &
 '', &
@@ -14829,45 +15280,45 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'SYNOPSIS', &
-'  INQUIRE([UNIT=file_unit_number]|[FILE=file_name_expr])', &
+'  INQUIRE([UNIT=file_unit_number]|[FILE=file_name_expr],', &
 '', &
-'         and  ACCESS = scalar_default_char_variable', &
-'         or   ACTION = scalar_default_char_variable', &
-'         or   ASYNCHRONOUS = scalar_default_char_variable', &
-'         or   DIRECT = scalar_default_char_variable', &
+'         ACCESS = scalar_default_char_variable,', &
+'         ACTION = scalar_default_char_variable,', &
+'         ASYNCHRONOUS = scalar_default_char_variable,', &
+'         DIRECT = scalar_default_char_variable,', &
 '', &
-'         or   BLANK = scalar_default_char_variable', &
-'         or   DECIMAL = scalar_default_char_variable', &
-'         or   DELIM = scalar_default_char_variable', &
-'         or   ENCODING = scalar_default_char_variable', &
-'         or   PAD = scalar_default_char_variable', &
-'         or   SIGN = scalar_default_char_variable', &
+'         BLANK = scalar_default_char_variable,', &
+'         DECIMAL = scalar_default_char_variable,', &
+'         DELIM = scalar_default_char_variable,', &
+'         ENCODING = scalar_default_char_variable,', &
+'         PAD = scalar_default_char_variable,', &
+'         SIGN = scalar_default_char_variable,', &
 '', &
-'         or   ERR = label', &
-'         or   IOMSG = iomsg_variable', &
-'         or   IOSTAT = scalar_int_variable', &
+'         ERR = label,', &
+'         IOMSG = iomsg_variable,', &
+'         IOSTAT = scalar_int_variable,', &
 '', &
-'         or   EXIST = scalar_logical_variable', &
-'         or   FORM = scalar_default_char_variable', &
-'         or   FORMATTED = scalar_default_char_variable', &
-'         or   ID = scalar_int_expr', &
-'         or   NAME = scalar_default_char_variable', &
-'         or   NAMED = scalar_logical_variable', &
-'         or   NEXTREC = scalar_int_variable', &
-'         or   NUMBER = scalar_int_variable', &
-'         or   OPENED = scalar_logical_variable', &
-'         or   PENDING = scalar_logical_variable', &
-'         or   POS = scalar_int_variable', &
-'         or   POSITION = scalar_default_char_variable', &
-'         or   READ = scalar_default_char_variable', &
-'         or   READWRITE = scalar_default_char_variable', &
-'         or   RECL = scalar_int_variable', &
-'         or   ROUND = scalar_default_char_variable', &
-'         or   SEQUENTIAL = scalar_default_char_variable', &
-'         or   SIZE = scalar_int_variable', &
-'         or   STREAM = scalar_default_char_variable', &
-'         or   UNFORMATTED = scalar_default_char_variable', &
-'         or   WRITE = scalar_default_char_variable', &
+'         EXIST = scalar_logical_variable,', &
+'         FORM = scalar_default_char_variable,', &
+'         FORMATTED = scalar_default_char_variable,', &
+'         ID = scalar_int_expr,', &
+'         NAME = scalar_default_char_variable,', &
+'         NAMED = scalar_logical_variable,', &
+'         NEXTREC = scalar_int_variable,', &
+'         NUMBER = scalar_int_variable,', &
+'         OPENED = scalar_logical_variable,', &
+'         PENDING = scalar_logical_variable,', &
+'         POS = scalar_int_variable,', &
+'         POSITION = scalar_default_char_variable,', &
+'         READ = scalar_default_char_variable,', &
+'         READWRITE = scalar_default_char_variable,', &
+'         RECL = scalar_int_variable,', &
+'         ROUND = scalar_default_char_variable,', &
+'         SEQUENTIAL = scalar_default_char_variable,', &
+'         SIZE = scalar_int_variable,', &
+'         STREAM = scalar_default_char_variable,', &
+'         UNFORMATTED = scalar_default_char_variable,', &
+'         WRITE = scalar_default_char_variable )', &
 '', &
 '          or', &
 '', &
@@ -14913,8 +15364,11 @@ textblock=[character(len=256) :: &
 '     specifier, but not both.', &
 '', &
 '  o  In the inquire by unit form of the INQUIRE statement, if the optional', &
-'     characters UNIT= are omitted, the file_unit-number shall be the first', &
-'     item in the inquire_spec_list.', &
+'     characters UNIT= are omitted,', &
+'', &
+'       the file_unit-number shall be the first item in the', &
+'       inquire_spec_list.', &
+'', &
 '', &
 '  o  If an ID= specifier appears in an inquire_spec_list, a PENDING= specifier', &
 '     shall also appear.', &
@@ -15011,8 +15465,11 @@ textblock=[character(len=256) :: &
 '', &
 '  NO', &
 '    if DIRECT is not included in the set of allowed access methods for the', &
-'    file UNKNOWN if the processor is unable to determine whether DIRECT is', &
-'    included in the set of allowed access methods for the file.', &
+'    file', &
+'', &
+'  UNKNOWN', &
+'    if the processor is unable to determine whether DIRECT is included in the', &
+'    set of allowed access methods for the file.', &
 '', &
 'ENCODING', &
 '  UTF-8', &
@@ -15274,194 +15731,137 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'EXAMPLES', &
-'  program demo_inquire implicit none', &
+'  Sample program:', &
 '', &
-'  character(len=4096)', &
-'    :: filename', &
+'      program demo_inquire', &
+'      implicit none', &
+'      character(len=4096)  :: filename', &
+'      character(len=20)    :: mode', &
+'      integer             :: ios', &
+'      character(len=256)   :: message', &
+'      integer             :: lun', &
+'      call print_inquire(lun,'''')', &
+'      contains', &
+'      subroutine print_inquire(lun_in,namein_in)', &
 '', &
-'  character(len=20)', &
-'    :: mode', &
+'      !@(#) print_inquire(3f) INQUIRE a file by name/number and print results', &
 '', &
-'  integer', &
-'    :: ios', &
+'      ! if unit >= 0 then query by unit number, else by name', &
+'      integer,intent(in),optional            :: lun_in', &
+'      character(len=*),intent(in),optional    :: namein_in', &
 '', &
-'  character(len=256)', &
-'    :: message', &
+'      integer                       :: ios', &
+'      character(len=256)            :: message', &
+'      character(len=:),allocatable   :: namein', &
+'      integer                       :: lun', &
 '', &
-'  integer', &
-'    :: lun call print_inquire(lun,'''') contains subroutine', &
-'    print_inquire(lun_in,namein_in)', &
+'      ! STATUS=NEW|REPLACE|OLD|SCRATCH|UNKNOWN', &
 '', &
-'  ! @(#) M_io print_inquire(3f) Do INQUIRE on file by name/number and print', &
-'  results', &
+'      ! SEQUENTIAL | DIRECT | STREAM', &
+'      character(len=20) :: access        ; namelist/inquire/access', &
 '', &
-'  integer,intent(in),optional', &
-'    :: lun_in       ! if unit >= 0 then query by unit number, else by name', &
+'      ! FORMATTED | UNFORMATTED', &
+'      character(len=20) :: form          ; namelist/inquire/form', &
 '', &
-'  character(len=*),intent(in),optional', &
-'    :: namein_in', &
+'      ! ASIS | REWIND | APPEND', &
+'      character(len=20) :: position      ; namelist/inquire/position', &
 '', &
-'  integer', &
-'    :: ios', &
+'      ! READ | WRITE | READWRITE', &
+'      character(len=20) :: action        ; namelist/inquire/action', &
 '', &
-'  character(len=256)', &
-'    :: message', &
+'      character(len=20) :: asynchronous   ; namelist/inquire/asynchronous', &
+'      character(len=20) :: blank         ; namelist/inquire/blank', &
+'      character(len=20) :: decimal       ; namelist/inquire/decimal', &
+'      character(len=20) :: delim         ; namelist/inquire/delim', &
+'      character(len=20) :: direct        ; namelist/inquire/direct', &
+'      character(len=20) :: encoding      ; namelist/inquire/encoding', &
+'      character(len=20) :: formatted     ; namelist/inquire/formatted', &
+'      character(len=20) :: name          ; namelist/inquire/name', &
+'      character(len=20) :: pad           ; namelist/inquire/pad', &
+'      character(len=20) :: read          ; namelist/inquire/read', &
+'      character(len=20) :: readwrite     ; namelist/inquire/readwrite', &
+'      character(len=20) :: round         ; namelist/inquire/round', &
+'      character(len=20) :: sequential    ; namelist/inquire/sequential', &
+'      character(len=20) :: sign          ; namelist/inquire/sign', &
+'      character(len=20) :: stream        ; namelist/inquire/stream', &
+'      character(len=20) :: unformatted   ; namelist/inquire/unformatted', &
+'      character(len=20) :: write         ; namelist/inquire/write', &
+'      integer          :: id             ; namelist/inquire/id', &
+'      integer          :: nextrec        ; namelist/inquire/nextrec', &
+'      integer          :: number         ; namelist/inquire/number', &
+'      integer          :: pos            ; namelist/inquire/pos', &
+'      integer          :: recl           ; namelist/inquire/recl', &
+'      integer          :: size           ; namelist/inquire/size', &
+'      logical          :: exist          ; namelist/inquire/exist', &
+'      logical          :: named          ; namelist/inquire/named', &
+'      logical          :: opened         ; namelist/inquire/opened', &
+'      logical          :: pending        ; namelist/inquire/pending', &
 '', &
-'  character(len=:),allocatable', &
-'    :: namein', &
-'', &
-'  integer', &
-'    :: lun', &
-'    !==============================================================================================', &
-'    ! STATUS=NEW|REPLACE|OLD|SCRATCH|UNKNOWN', &
-'', &
-'  character(len=20)', &
-'    :: access        ; namelist/inquire/access       ! SEQUENTIAL | DIRECT |', &
-'    STREAM', &
-'', &
-'  character(len=20)', &
-'    :: asynchronous   ; namelist/inquire/asynchronous', &
-'', &
-'  character(len=20)', &
-'    :: blank         ; namelist/inquire/blank', &
-'', &
-'  character(len=20)', &
-'    :: decimal       ; namelist/inquire/decimal', &
-'', &
-'  character(len=20)', &
-'    :: delim         ; namelist/inquire/delim', &
-'', &
-'  character(len=20)', &
-'    :: direct        ; namelist/inquire/direct', &
-'', &
-'  character(len=20)', &
-'    :: encoding       ; namelist/inquire/encoding', &
-'', &
-'  logical', &
-'    :: exist         ; namelist/inquire/exist', &
-'', &
-'  character(len=20)', &
-'    :: form          ; namelist/inquire/form          ! FORMATTED |', &
-'    UNFORMATTED', &
-'', &
-'  character(len=20)', &
-'    :: formatted      ; namelist/inquire/formatted', &
-'', &
-'  character(len=20)', &
-'    :: unformatted    ; namelist/inquire/unformatted', &
-'', &
-'  integer', &
-'    :: id            ; namelist/inquire/id', &
-'', &
-'  character(len=20)', &
-'    :: name          ; namelist/inquire/name', &
-'', &
-'  logical', &
-'    :: named         ; namelist/inquire/named', &
-'', &
-'  integer', &
-'    :: nextrec       ; namelist/inquire/nextrec', &
-'', &
-'  integer', &
-'    :: number        ; namelist/inquire/number', &
-'', &
-'  logical', &
-'    :: opened        ; namelist/inquire/opened', &
-'', &
-'  character(len=20)', &
-'    :: pad           ; namelist/inquire/pad', &
-'', &
-'  logical', &
-'    :: pending       ; namelist/inquire/pending', &
-'', &
-'  integer', &
-'    :: pos           ; namelist/inquire/pos', &
-'', &
-'  character(len=20)', &
-'    :: position       ; namelist/inquire/position      ! ASIS | REWIND |', &
-'    APPEND', &
-'', &
-'  character(len=20)', &
-'    :: action        ; namelist/inquire/action         ! READ | WRITE |', &
-'    READWRITE', &
-'', &
-'  character(len=20)', &
-'    :: read          ; namelist/inquire/read', &
-'', &
-'  character(len=20)', &
-'    :: readwrite      ; namelist/inquire/readwrite', &
-'', &
-'  character(len=20)', &
-'    :: write         ; namelist/inquire/write', &
-'', &
-'  integer', &
-'    :: recl          ; namelist/inquire/recl', &
-'', &
-'  character(len=20)', &
-'    :: round         ; namelist/inquire/round', &
-'', &
-'  character(len=20)', &
-'    :: sequential     ; namelist/inquire/sequential', &
-'', &
-'  character(len=20)', &
-'    :: sign          ; namelist/inquire/sign', &
-'', &
-'  integer', &
-'    :: size          ; namelist/inquire/size', &
-'', &
-'  character(len=20)', &
-'    :: stream        ; namelist/inquire/stream', &
-'', &
-'        namein=merge_str(namein_in,'''',present(namein_in))', &
-'        lun=merge(lun_in,-1,present(lun_in))', &
-'        ! exist, opened, and named always become defined unless an error condition occurs.', &
+'        if(present(namein_in))then', &
+'           namein=namein_in', &
+'        else', &
+'           namein=''''', &
+'        endif', &
+'        if(present(lun_in))then', &
+'           lun=lun_in', &
+'        else', &
+'           lun=-1', &
+'        endif', &
+'        ! exist, opened, and named always become defined', &
+'        ! unless an error condition occurs.', &
 '        !!write(*,*)''LUN='',lun,'' FILENAME='',namein', &
 '        name=''''', &
 '        if(namein == ''''.and.lun /= -1)then', &
-'              call journal(''sc'',''*print_inquire* checking unit'',lun)', &
-'              inquire(unit=lun,                                                                               &', &
-'          &   recl=recl,nextrec=nextrec,pos=pos,size=size,                                                    &', &
-'          &   position=position,                                                                              &', &
-'          &   name=name,                                                                                      &', &
-'          &   form=form,formatted=formatted,unformatted=unformatted,                                          &', &
-'          &   access=access,sequential=sequential,direct=direct,stream=stream,                                &', &
-'          &   action=action,read=read,write=write,readwrite=readwrite,                                        &', &
-'          &   sign=sign,                                                                                      &', &
-'          &   round=round,                                                                                    &', &
-'          &   blank=blank,decimal=decimal,delim=delim,encoding=encoding,pad=pad,                              &', &
-'          &   named=named,opened=opened,exist=exist,number=number,pending=pending,asynchronous=asynchronous,  &', &
-'          &   iostat=ios,err=999,iomsg=message)', &
-'         elseif(namein /= '''')then', &
-'              call journal(''sc'',''*print_inquire* checking file:''//namein)', &
-'              inquire(file=namein,                                                                            &', &
-'          &   recl=recl,nextrec=nextrec,pos=pos,size=size,                                                    &', &
-'          &   position=position,                                                                              &', &
-'          &   name=name,                                                                                      &', &
-'          &   form=form,formatted=formatted,unformatted=unformatted,                                          &', &
-'          &   access=access,sequential=sequential,direct=direct,stream=stream,                                &', &
-'          &   action=action,read=read,write=write,readwrite=readwrite,                                        &', &
-'          &   sign=sign,                                                                                      &', &
-'          &   round=round,                                                                                    &', &
-'          &   blank=blank,decimal=decimal,delim=delim,encoding=encoding,pad=pad,                              &', &
-'          &   named=named,opened=opened,exist=exist,number=number,pending=pending,asynchronous=asynchronous,  &', &
-'          &   iostat=ios,err=999,iomsg=message)', &
-'          if(name == '''')name=namein', &
-'         else', &
-'            call journal(''sc'',''*print_inquire* must specify either filename or unit number'')', &
-'         endif', &
-'', &
+'           write(*,*) ''*print_inquire* checking unit'',lun', &
+'           inquire(unit=lun,                                          &', &
+'           & recl=recl,nextrec=nextrec,pos=pos,size=size,             &', &
+'           & position=position,                                       &', &
+'           & name=name,                                               &', &
+'           & form=form,formatted=formatted,unformatted=unformatted,   &', &
+'           & access=access,sequential=sequential,direct=direct,       &', &
+'           & stream=stream,                                           &', &
+'           & action=action,read=read,write=write,readwrite=readwrite, &', &
+'           & sign=sign,                                               &', &
+'           & round=round,                                             &', &
+'           & blank=blank,decimal=decimal,delim=delim,                 &', &
+'           & encoding=encoding,pad=pad,                               &', &
+'           & named=named,opened=opened,exist=exist,number=number,     &', &
+'           & pending=pending,asynchronous=asynchronous,               &', &
+'           & iostat=ios,err=999,iomsg=message)', &
+'        elseif(namein /= '''')then', &
+'           write(*,*) ''*print_inquire* checking file:''//namein', &
+'           inquire(file=namein,                                       &', &
+'           & recl=recl,nextrec=nextrec,pos=pos,size=size,             &', &
+'           & position=position,                                       &', &
+'           & name=name,                                               &', &
+'           & form=form,formatted=formatted,unformatted=unformatted,   &', &
+'           & access=access,sequential=sequential,direct=direct,       &', &
+'           & stream=stream,                                           &', &
+'           & action=action,read=read,write=write,readwrite=readwrite, &', &
+'           & sign=sign,                                               &', &
+'           & round=round,                                             &', &
+'           & blank=blank,decimal=decimal,delim=delim,                 &', &
+'           & encoding=encoding,pad=pad,                               &', &
+'           & named=named,opened=opened,exist=exist,number=number,     &', &
+'           & pending=pending,asynchronous=asynchronous,               &', &
+'           & iostat=ios,err=999,iomsg=message)', &
+'           if(name == '''')name=namein', &
+'        else', &
+'           write(*,*) &', &
+'           &''*print_inquire* must specify either filename or unit number''', &
+'        endif', &
 '        write(*,nml=inquire,delim=''none'')', &
 '        return', &
 '', &
+'      999   continue', &
+'        write(*,*)''*print_inquire* bad inquire''', &
+'      !  If an error condition occurs during execution of an INQUIRE statement,', &
+'      !  all of the inquiry identifiers except ios become undefined.', &
+'        write(*,*) &', &
+'        &''*print_inquire* inquire call failed,iostat='',ios,''message='',message', &
+'      end subroutine print_inquire', &
+'      end program demo_inquire', &
 '', &
-'  999', &
-'    continue write(*,*)''*print_inquire* bad inquire''', &
-'', &
-'  ! If an error condition occurs during execution of an INQUIRE  statement,', &
-'', &
-'  ! all of the inquiry identifiers except ios become undefined.  write(*,*)', &
-'    ''*print_inquire* inquire call failed,iostat='',ios,''message='',message end', &
-'    subroutine print_inquire end program demo_inquire', &
 '', &
 'SEE ALSO', &
 '  BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),', &
@@ -15469,14 +15869,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024              inquire(7fortran)', &
+'                              October 19, 2024              inquire(7fortran)', &
 '']
 
 shortname="inquire"
 call process()
 
-
-case('128','int')
+case('130','int')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15485,7 +15884,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  INT(3) - [TYPE:NUMERIC] Truncate towards zero and convert to integer', &
+'  INT(3) - [TYPE:CONVERSION] Truncate towards zero and convert to integer', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -15605,14 +16004,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  int(3fortran)', &
+'                              October 19, 2024                  int(3fortran)', &
 '']
 
 shortname="int"
 call process()
 
-
-case('129','ior')
+case('131','ior')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15694,14 +16092,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  ior(3fortran)', &
+'                              October 19, 2024                  ior(3fortran)', &
 '']
 
 shortname="ior"
 call process()
 
-
-case('130','iparity')
+case('132','iparity')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15790,14 +16187,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024              iparity(3fortran)', &
+'                              October 19, 2024              iparity(3fortran)', &
 '']
 
 shortname="iparity"
 call process()
 
-
-case('131','is_contiguous')
+case('133','is_contiguous')
 
 textblock=[character(len=256) :: &
 '', &
@@ -15927,14 +16323,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024        is_contiguous(3fortran)', &
+'                              October 19, 2024        is_contiguous(3fortran)', &
 '']
 
 shortname="is_contiguous"
 call process()
 
-
-case('132','ishft')
+case('134','ishft')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16030,14 +16425,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                ishft(3fortran)', &
+'                              October 19, 2024                ishft(3fortran)', &
 '']
 
 shortname="ishft"
 call process()
 
-
-case('133','ishftc')
+case('135','ishftc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16179,14 +16573,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               ishftc(3fortran)', &
+'                              October 19, 2024               ishftc(3fortran)', &
 '']
 
 shortname="ishftc"
 call process()
 
-
-case('134','is_iostat_end')
+case('136','is_iostat_end')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16270,14 +16663,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024        is_iostat_end(3fortran)', &
+'                              October 19, 2024        is_iostat_end(3fortran)', &
 '']
 
 shortname="is_iostat_end"
 call process()
 
-
-case('135','is_iostat_eor')
+case('137','is_iostat_eor')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16376,14 +16768,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024        is_iostat_eor(3fortran)', &
+'                              October 19, 2024        is_iostat_eor(3fortran)', &
 '']
 
 shortname="is_iostat_eor"
 call process()
 
-
-case('136','kind')
+case('138','kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16466,14 +16857,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 kind(3fortran)', &
+'                              October 19, 2024                 kind(3fortran)', &
 '']
 
 shortname="kind"
 call process()
 
-
-case('137','lbound')
+case('139','lbound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16643,14 +17033,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               lbound(3fortran)', &
+'                              October 19, 2024               lbound(3fortran)', &
 '']
 
 shortname="lbound"
 call process()
 
-
-case('138','lcobound')
+case('140','lcobound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16695,14 +17084,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024             lcobound(3fortran)', &
+'                              October 19, 2024             lcobound(3fortran)', &
 '']
 
 shortname="lcobound"
 call process()
 
-
-case('139','leadz')
+case('141','leadz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16788,14 +17176,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                leadz(3fortran)', &
+'                              October 19, 2024                leadz(3fortran)', &
 '']
 
 shortname="leadz"
 call process()
 
-
-case('140','len')
+case('142','len')
 
 textblock=[character(len=256) :: &
 '', &
@@ -16937,14 +17324,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  len(3fortran)', &
+'                              October 19, 2024                  len(3fortran)', &
 '']
 
 shortname="len"
 call process()
 
-
-case('141','len_trim')
+case('143','len_trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17060,14 +17446,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024             len_trim(3fortran)', &
+'                              October 19, 2024             len_trim(3fortran)', &
 '']
 
 shortname="len_trim"
 call process()
 
-
-case('142','lge')
+case('144','lge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17178,14 +17563,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  lge(3fortran)', &
+'                              October 19, 2024                  lge(3fortran)', &
 '']
 
 shortname="lge"
 call process()
 
-
-case('143','lgt')
+case('145','lgt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17297,14 +17681,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  lgt(3fortran)', &
+'                              October 19, 2024                  lgt(3fortran)', &
 '']
 
 shortname="lgt"
 call process()
 
-
-case('144','lle')
+case('146','lle')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17440,14 +17823,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  lle(3fortran)', &
+'                              October 19, 2024                  lle(3fortran)', &
 '']
 
 shortname="lle"
 call process()
 
-
-case('145','llt')
+case('147','llt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17562,14 +17944,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  llt(3fortran)', &
+'                              October 19, 2024                  llt(3fortran)', &
 '']
 
 shortname="llt"
 call process()
 
-
-case('146','log10')
+case('148','log10')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17608,8 +17989,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_log10', &
-'      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
-'       & real32, real64, real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32, real64, real128', &
 '      implicit none', &
 '      real(kind=real64) :: x = 10.0_real64', &
 '', &
@@ -17706,14 +18086,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                log10(3fortran)', &
+'                              October 19, 2024                log10(3fortran)', &
 '']
 
 shortname="log10"
 call process()
 
-
-case('147','log')
+case('149','log')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17851,14 +18230,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  log(3fortran)', &
+'                              October 19, 2024                  log(3fortran)', &
 '']
 
 shortname="log"
 call process()
 
-
-case('148','log_gamma')
+case('150','log_gamma')
 
 textblock=[character(len=256) :: &
 '', &
@@ -17921,14 +18299,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024            log_gamma(3fortran)', &
+'                              October 19, 2024            log_gamma(3fortran)', &
 '']
 
 shortname="log_gamma"
 call process()
 
-
-case('149','logical')
+case('151','logical')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18010,14 +18387,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024              logical(3fortran)', &
+'                              October 19, 2024              logical(3fortran)', &
 '']
 
 shortname="logical"
 call process()
 
-
-case('150','maskl')
+case('152','maskl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18109,14 +18485,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                maskl(3fortran)', &
+'                              October 19, 2024                maskl(3fortran)', &
 '']
 
 shortname="maskl"
 call process()
 
-
-case('151','maskr')
+case('153','maskr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18225,14 +18600,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                maskr(3fortran)', &
+'                              October 19, 2024                maskr(3fortran)', &
 '']
 
 shortname="maskr"
 call process()
 
-
-case('152','matmul')
+case('154','matmul')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18241,7 +18615,8 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  MATMUL(3) - [TRANSFORMATIONAL] Numeric or logical matrix multiplication', &
+'  MATMUL(3) - [ARRAY:TRANSFORMATIONAL] Numeric or logical matrix', &
+'  multiplication', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -18472,14 +18847,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               matmul(3fortran)', &
+'                              October 19, 2024               matmul(3fortran)', &
 '']
 
 shortname="matmul"
 call process()
 
-
-case('153','max')
+case('155','max')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18521,25 +18895,27 @@ textblock=[character(len=256) :: &
 '  successively compared with the intrinsic operational operators, taking into', &
 '  account the collating sequence of the character kind.', &
 '', &
-'  If the selected character argument is shorter than the longest argument, the', &
-'  result is as all values were extended with blanks on the right to the length', &
-'  of the longest argument.', &
+'  The returned selected character argument is padded with blanks as needed on', &
+'  the right to the same length of the longest argument.', &
 '', &
 '  It is unusual for a Fortran intrinsic to take an arbitrary number of', &
 '  options, and in addition MAX(3) is elemental, meaning any number of', &
-'  arguments may be arrays as long as they are of the same shape. The examples', &
-'  have an extended description clarifying the resulting behavior for those not', &
-'  familiar with calling a "scalar" function elementally with arrays.', &
+'  arguments may be arrays as long as they are of the same shape.', &
+'', &
+'  The examples contain such cases as examples to clarify the resulting', &
+'  behavior for those not familiar with calling a "scalar" function elementally', &
+'  with arrays.', &
 '', &
 '  See maxval(3) for simply getting the max value of an array.', &
 '', &
 'OPTIONS', &
 '  o  A1 : The first argument determines the type and kind of the returned', &
-'     value, and of any remaining arguments as well as being a member of the', &
-'     set of values to find the maximum (most positive) value of.', &
+'     value, and of any remaining arguments as well.', &
 '', &
-'  o  A2,A3,... : the remaining arguments of which to find the maximum value(s)', &
-'     of. : There must be at least two arguments to MAX(3).', &
+'  o  A2,A3,... : the remaining arguments of the set of values to search for a', &
+'     maximum in.', &
+'', &
+'     : There must be at least two arguments to MAX(3).', &
 '', &
 'RESULT', &
 '  The return value corresponds to an array of the same shape of any array', &
@@ -18591,14 +18967,17 @@ textblock=[character(len=256) :: &
 '        ! Remember if any argument is an array by the definition of an', &
 '        ! elemental function all the array arguments must be the same shape.', &
 '', &
-'        ! to find the single largest value of arrays you could use something', &
-'        ! like MAXVAL([arr1, arr2]) or probably better (no large temp array),', &
-'        ! max(maxval(arr1),maxval(arr2)) instead', &
+'        ! to find the single largest value of multiple arrays you could', &
+'        ! use something like', &
+'        !    MAXVAL([arr1, arr2])', &
+'        ! or probably better (more likely to avoid creating a large temp array)', &
+'        !    max(maxval(arr1),maxval(arr2))', &
+'        ! instead', &
 '', &
 '        ! so this returns an array of the same shape as any input array', &
 '        ! where each result is the maximum that occurs at that position.', &
 '        write(*,*)max(arr1,arr2(1:4))', &
-'        ! this returns an array just like arr1 except all values less than', &
+'        ! this returns an array just like BOX  except all values less than', &
 '        ! zero are set to zero:', &
 '        write(*,*)max(box,0)', &
 '        ! When mixing arrays and scalars you can think of the scalars', &
@@ -18642,14 +19021,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  max(3fortran)', &
+'                              October 19, 2024                  max(3fortran)', &
 '']
 
 shortname="max"
 call process()
 
-
-case('154','maxexponent')
+case('156','maxexponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18658,7 +19036,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  MAXEXPONENT(3) - [NUMERIC MODEL] Maximum exponent of a real kind', &
+'  MAXEXPONENT(3) - [MODEL:NUMERIC] Maximum exponent of a real kind', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -18714,14 +19092,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024          maxexponent(3fortran)', &
+'                              October 19, 2024          maxexponent(3fortran)', &
 '']
 
 shortname="maxexponent"
 call process()
 
-
-case('155','maxloc')
+case('157','maxloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18844,14 +19221,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               maxloc(3fortran)', &
+'                              October 19, 2024               maxloc(3fortran)', &
 '']
 
 shortname="maxloc"
 call process()
 
-
-case('156','maxval')
+case('158','maxval')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18983,14 +19359,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               maxval(3fortran)', &
+'                              October 19, 2024               maxval(3fortran)', &
 '']
 
 shortname="maxval"
 call process()
 
-
-case('157','merge')
+case('159','merge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19170,14 +19545,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                merge(3fortran)', &
+'                              October 19, 2024                merge(3fortran)', &
 '']
 
 shortname="merge"
 call process()
 
-
-case('158','merge_bits')
+case('160','merge_bits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19307,14 +19681,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024           merge_bits(3fortran)', &
+'                              October 19, 2024           merge_bits(3fortran)', &
 '']
 
 shortname="merge_bits"
 call process()
 
-
-case('159','min')
+case('161','min')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19345,13 +19718,23 @@ textblock=[character(len=256) :: &
 'DESCRIPTION', &
 '  MIN(3) returns the argument with the smallest (most negative) value.', &
 '', &
-'  See MAX(3) for an extended example of the behavior of MIN(3) as and MAX(3).', &
+'  The arguments must the same type which shall be integer, real, or character', &
+'  and they also all have the same kind type parameter.', &
+'', &
+'  The type and kind type parameter of the result are the same as those of the', &
+'  arguments.', &
+'', &
+'  NOTE:', &
+'', &
+'  A common extension is that the argument kinds can vary. In that case the', &
+'  returned value may be the kind of the first argument, or might be the kind', &
+'  of the expression a1+a2+a3+a4... per the rules of promotion.', &
 '', &
 'OPTIONS', &
-'  o  A1 : the first element of the set of values to determine the minimum of.', &
+'  o  A1 : the first element of the set of values to examine.', &
 '', &
 '  o  A2, A3, ... : An expression of the same type and kind as A1 completing', &
-'     the set of values to find the minimum of.', &
+'     the set of values to evaluate.', &
 '', &
 'RESULT', &
 '  The return value corresponds to the minimum value among the arguments, and', &
@@ -19362,32 +19745,60 @@ textblock=[character(len=256) :: &
 '', &
 '      program demo_min', &
 '      implicit none', &
-'         write(*,*)min(10.0,11.0,30.0,-100.0)', &
+'      integer :: i', &
+'      integer :: rectangle(3,4)=reshape([(-6+i,i=0,11)],[3,4])', &
+'         print *, ''basics''', &
+'         print *, min(10.0,11.0,30.0,-100.0)', &
+'         print *, min(-200.0,-1.0)', &
+'         print *, ''elemental''', &
+'         print *, min(1,[2,3,4])', &
+'         print *, min(5,[2,3,4])', &
+'', &
+'         print *, ''box:''', &
+'         do i=1,size(rectangle,dim=1)', &
+'            write(*,''(*(i3,1x))'')rectangle(i,:)', &
+'         enddo', &
+'         print *, ''make all values 0 or less:''', &
+'         do i=1,size(rectangle,dim=1)', &
+'            write(*,''(*(i3,1x))'')min(rectangle(i,:),0)', &
+'         enddo', &
 '      end program demo_min', &
 '', &
 '  Results:', &
 '', &
-'           -100.0000000', &
+'       >  basics', &
+'       >   -100.000000', &
+'       >   -200.000000', &
+'       >  elemental', &
+'       >           1           1           1', &
+'       >           2           3           4', &
+'       >  box:', &
+'       >  -6  -3   0   3', &
+'       >  -5  -2   1   4', &
+'       >  -4  -1   2   5', &
+'       >  make all values 0 or less:', &
+'       >  -6  -3   0   0', &
+'       >  -5  -2   0   0', &
+'       >  -4  -1   0   0', &
 '', &
 '', &
 'STANDARD', &
 '  FORTRAN 77', &
 '', &
 'SEE ALSO', &
-'  MAXLOC(3), MINLOC(3), MINVAL(3), MAX(3),', &
+'  MAX(3), MAXLOC(3), MINLOC(3), MINVAL(3), MAXVAL(3)', &
 '', &
-'  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
+'  Fortran intrinsic descriptions (license: MIT) @urbanjost ''', &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  min(3fortran)', &
+'                              October 19, 2024                  min(3fortran)', &
 '']
 
 shortname="min"
 call process()
 
-
-case('160','minexponent')
+case('162','minexponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19396,7 +19807,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  MINEXPONENT(3) - [NUMERIC MODEL] Minimum exponent of a real kind', &
+'  MINEXPONENT(3) - [MODEL:NUMERIC] Minimum exponent of a real kind', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -19425,8 +19836,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_minexponent', &
-'      use, intrinsic :: iso_fortran_env, only : &', &
-'       &real_kinds, real32, real64, real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32, real64, real128', &
 '      implicit none', &
 '      real(kind=real32) :: x', &
 '      real(kind=real64) :: y', &
@@ -19453,14 +19863,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024          minexponent(3fortran)', &
+'                              October 19, 2024          minexponent(3fortran)', &
 '']
 
 shortname="minexponent"
 call process()
 
-
-case('161','minloc')
+case('163','minloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19571,14 +19980,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               minloc(3fortran)', &
+'                              October 19, 2024               minloc(3fortran)', &
 '']
 
 shortname="minloc"
 call process()
 
-
-case('162','minval')
+case('164','minval')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19587,7 +19995,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  MINVAL(3) - [ARRAY REDUCTION] Minimum value of all the elements of ARRAY', &
+'  MINVAL(3) - [ARRAY:REDUCTION] Minimum value of all the elements of ARRAY', &
 '  along dimension DIM corresponding to true elements of MASK.', &
 '', &
 '', &
@@ -19739,6 +20147,38 @@ textblock=[character(len=256) :: &
 '', &
 '      end program demo_minval', &
 '', &
+'  Result:', &
+'', &
+'       >  Given the array', &
+'       >     1  -2    3    4    5', &
+'       >    10  20  -30   40   50', &
+'       >    11  22   33  -44   55', &
+'       >', &
+'       >  What is the smallest element in the array?', &
+'       >    -44 at < 3 4 >', &
+'       >  What is the smallest element in each column?', &
+'       >    1 -2 -30 -44 5', &
+'       >  What is the smallest element in each row?', &
+'       >    -2 -30 -44', &
+'       >  What is the smallest element in each column,', &
+'       >  considering only those elements that are', &
+'       >  greater than zero?', &
+'       >    1 20 3 4 5', &
+'       >  if everything is false a zero-sized array is NOT returned', &
+'       >   2147483647  2147483647  2147483647  2147483647  2147483647', &
+'       >  even for a zero-sized input', &
+'       >    2147483647', &
+'       >  a scalar answer for everything false is huge()', &
+'       >    2147483647', &
+'       >    2147483647', &
+'       >  if zero-size character array all dels if ASCII', &
+'       >', &
+'       >  some calls with three dimensions', &
+'       >    -55', &
+'       >    1 -2 -30 -44 5 -11 -22 -33 -40 -55', &
+'       >    -2 -30 -44 -5 -50 -55', &
+'       >    shape of answer is 3 2', &
+'', &
 '', &
 'STANDARD', &
 '  Fortran 95', &
@@ -19750,14 +20190,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               minval(3fortran)', &
+'                              October 19, 2024               minval(3fortran)', &
 '']
 
 shortname="minval"
 call process()
 
-
-case('163','mod')
+case('165','mod')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19885,14 +20324,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  mod(3fortran)', &
+'                              October 19, 2024                  mod(3fortran)', &
 '']
 
 shortname="mod"
 call process()
 
-
-case('164','modulo')
+case('166','modulo')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19976,14 +20414,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               modulo(3fortran)', &
+'                              October 19, 2024               modulo(3fortran)', &
 '']
 
 shortname="modulo"
 call process()
 
-
-case('165','move_alloc')
+case('167','move_alloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20091,14 +20528,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024           move_alloc(3fortran)', &
+'                              October 19, 2024           move_alloc(3fortran)', &
 '']
 
 shortname="move_alloc"
 call process()
 
-
-case('166','mvbits')
+case('168','mvbits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20252,14 +20688,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               mvbits(3fortran)', &
+'                              October 19, 2024               mvbits(3fortran)', &
 '']
 
 shortname="mvbits"
 call process()
 
-
-case('167','namelist')
+case('169','namelist')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20321,17 +20756,23 @@ textblock=[character(len=256) :: &
 '', &
 '  Input for a namelist input statement consists of', &
 '', &
-'       1) optional blanks and namelist comments,', &
-'       2) the character & followed immediately by the namelist-group-name as specified in the NAMELIST', &
-'          statement,', &
-'       3) one or more blanks,', &
-'       4) a sequence of zero or more name-value subsequences separated by value separators, and', &
-'       5) a slash to terminate the namelist input.', &
+'    1. optional blanks and namelist comments,', &
 '', &
-'          A slash encountered in a namelist input record causes the input statement to terminate. A slash cannot be', &
-'          used to separate two values in a namelist input statement.', &
+'    2. the character & followed immediately by the namelist-group-name as', &
+'       specified in the NAMELIST statement,', &
 '', &
-'  A group name or object name is without regard to case.', &
+'    3. one or more blanks,', &
+'', &
+'    4. a sequence of zero or more name-value subsequences separated by value', &
+'       separators, and', &
+'', &
+'    5. a slash to terminate the namelist input.', &
+'', &
+'           A slash encountered in a namelist input record causes the input', &
+'           statement to terminate. A slash cannot be used to separate two', &
+'           values in a namelist input statement.', &
+'', &
+'    A group name or object name is without regard to case.', &
 '', &
 'EXAMPLE', &
 '  An example of a NAMELIST statement is:', &
@@ -20519,16 +20960,22 @@ textblock=[character(len=256) :: &
 '', &
 '  1.  Termination of an input/output data transfer statement occurs when', &
 '', &
-'          format processing encounters a colon or data edit descriptor and there are no remaining elements in the', &
-'          input-item-list or output-item-list,', &
-'          unformatted or list-directed data transfer exhausts the input-item-list or output-item-list,', &
-'          namelist output exhausts the namelist-group-object-list,', &
-'          an error condition occurs,', &
-'          an end-of-file condition occurs,', &
+'      format processing encounters a colon or data edit descriptor and', &
+'      there are no remaining elements in the input-item-list or', &
+'      output-item-list,', &
 '', &
-'          a slash (/) is encountered as a value separator (10.10, 10.11) in the record being read during list-directed', &
-'          or namelist input, or', &
-'          an end-of-record condition occurs during execution of a nonadvancing input statement (9.11).', &
+'      unformatted or list-directed data transfer exhausts the', &
+'      input-item-list or output-item-list, namelist output exhausts the', &
+'      namelist-group-object-list,', &
+'', &
+'      an error condition occurs,', &
+'', &
+'      an end-of-file condition occurs,', &
+'', &
+'      a slash (/) is encountered as a value separator (10.10, 10.11) in', &
+'      the record being read during list-directed or namelist input, or an', &
+'      end-of-record condition occurs during execution of a nonadvancing', &
+'      input statement (9.11).', &
 '', &
 '', &
 '  2.  If an error condition occurs during execution of an input/output', &
@@ -20636,11 +21083,11 @@ textblock=[character(len=256) :: &
 '      is as if sufficient null values had been appended to match any remaining', &
 '      list items in the expanded sequence.', &
 '', &
-'          NOTE 10.35', &
-'          For example, if the name in the input record is the name of an integer array of size 100, at most 100 values,', &
-'          each of which is either a digit string or a null value, may follow the equals; these values would then be', &
-'          assigned to the elements of the array in array element order.', &
-'', &
+'      NOTE 10.35 For example, if the name in the input record is the name of', &
+'      an integer array of size 100, at most 100 values, each of which is', &
+'      either a digit string or a null value, may follow the equals; these', &
+'      values would then be assigned to the elements of the array in array', &
+'      element order.', &
 '', &
 '  3.  A slash encountered as a value separator during the execution of a', &
 '      namelist input statement causes termination of execution of that input', &
@@ -20720,12 +21167,12 @@ textblock=[character(len=256) :: &
 '      needed. The characters blank, comma, semicolon, and slash may appear in', &
 '      such character sequences.', &
 '', &
-'            NOTE 10.36', &
-'            A character sequence corresponding to a namelist input item of character type shall be delimited either with', &
-'            apostrophes or with quotes. The delimiter is required to avoid ambiguity between undelimited character', &
-'            sequences and object names. The value of the DELIM= specifier, if any, in the OPEN statement for an', &
-'            external file is ignored during namelist input (9.5.6.8).', &
-'', &
+'      NOTE 10.36 A character sequence corresponding to a namelist input item', &
+'      of character type shall be delimited either with apostrophes or with', &
+'      quotes. The delimiter is required to avoid ambiguity between undelimited', &
+'      character sequences and object names. The value of the DELIM= specifier,', &
+'      if any, in the OPEN statement for an external file is ignored during', &
+'      namelist input (9.5.6.8).', &
 '', &
 '  13. Let len be the length of the next effective item, and let w be the', &
 '      length of the character sequence. If len is less than or equal to w, the', &
@@ -20740,10 +21187,13 @@ textblock=[character(len=256) :: &
 '', &
 '  1.  A null value is specified by', &
 '', &
-'            the r * form,', &
-'            blanks between two consecutive nonblank value separators following an equals,', &
-'            zero or more blanks preceding the first value separator and following an equals, or', &
-'            two consecutive nonblank value separators.', &
+'      the r * form,', &
+'', &
+'      blanks between two consecutive nonblank value separators following', &
+'      an equals,', &
+'', &
+'      zero or more blanks preceding the first value separator and', &
+'      following an equals, or two consecutive nonblank value separators.', &
 '', &
 '', &
 '  2.  A null value has no effect on the definition status of the corresponding', &
@@ -20780,33 +21230,33 @@ textblock=[character(len=256) :: &
 '      input statement. Namelist comments are not allowed in stream input', &
 '      because comments depend on record structure.', &
 '', &
-'          NOTE 10.38', &
-'          Namelist input example:', &
+'      NOTE 10.38 Namelist input example:', &
 '', &
-'             INTEGER I; REAL X (8); CHARACTER (11) P; COMPLEX Z;', &
-'             LOGICAL :: G', &
-'             NAMELIST / TODAY / G, I, P, Z, X', &
-'             READ (*, NML = TODAY)', &
+'            INTEGER I; REAL X (8); CHARACTER (11) P; COMPLEX Z;', &
+'            LOGICAL :: G', &
+'            NAMELIST / TODAY / G, I, P, Z, X', &
+'            READ (*, NML = TODAY)', &
 '', &
-'  The input data records are:', &
+'      The input data records are:', &
 '', &
-'             &TODAY I = 12345, X(1) = 12345, X(3:4) = 2*1.5, I=6, ! This is a comment.', &
+'            &TODAY I = 12345, X(1) = 12345, X(3:4) = 2*1.5,', &
+'             I=6, ! This is a comment.', &
 '             P = ''''ISN''T_BOB''S'''', Z = (123,0)/', &
 '', &
-'  The results stored are:', &
+'             The results stored are:', &
 '', &
-'                     Variable                         Value', &
-'                     I                                6', &
-'                     X (1)                            12345.0', &
-'                     X (2)                            unchanged', &
-'                     X (3)                            1.5', &
-'                     X (4)                            1.5', &
-'                     X (5)   X (8)                    unchanged', &
-'                     P                                ISN''T BOB''S', &
-'                     Z                                (123.0,0.0)', &
-'                     G                                unchanged', &
+'                         Variable                         Value', &
+'                         I                                6', &
+'                         X (1)                            12345.0', &
+'                         X (2)                            unchanged', &
+'                         X (3)                            1.5', &
+'                         X (4)                            1.5', &
+'                         X (5)   X (8)                    unchanged', &
+'                         P                                ISN''T BOB''S', &
+'                         Z                                (123.0,0.0)', &
+'                         G                                unchanged', &
 '', &
-'  10.11.4 Namelist output 10.11.4.1 Form of namelist output', &
+'      10.11.4 Namelist output 10.11.4.1 Form of namelist output', &
 '', &
 '  1.  The form of the output produced is the same as that required for input,', &
 '      except for the forms of real, character, and logical values.  The name', &
@@ -20823,17 +21273,17 @@ textblock=[character(len=256) :: &
 '      occur within a constant, character value, or name, and blanks shall not', &
 '      appear within a constant, character value, or name.', &
 '', &
-'          NOTE 10.39', &
-'          The length of the output records is not specified exactly and may be processor dependent.', &
+'      NOTE 10.39 The length of the output records is not specified exactly and', &
+'      may be processor dependent.', &
 '', &
 '  10.11.4.2 Namelist output editing', &
 '', &
 '  1.  Values in namelist output records are edited as for list-directed output', &
 '      (10.10.4).', &
 '', &
-'          NOTE 10.40', &
-'          Namelist output records produced with a DELIM= specifier with a value of NONE and which contain a', &
-'          character sequence might not be acceptable as namelist input records.', &
+'      NOTE 10.40 Namelist output records produced with a DELIM= specifier with', &
+'      a value of NONE and which contain a character sequence might not be', &
+'      acceptable as namelist input records.', &
 '', &
 '  10.11.4.3 Namelist output records', &
 '', &
@@ -20860,14 +21310,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024             namelist(7fortran)', &
+'                              October 19, 2024             namelist(7fortran)', &
 '']
 
 shortname="namelist"
 call process()
 
-
-case('168','nearest')
+case('170','nearest')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20876,7 +21325,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  NEAREST(3) - [MODEL_COMPONENTS] Nearest representable number', &
+'  NEAREST(3) - [MODEL:COMPONENTS] Nearest representable number', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -20959,14 +21408,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024              nearest(3fortran)', &
+'                              October 19, 2024              nearest(3fortran)', &
 '']
 
 shortname="nearest"
 call process()
 
-
-case('169','new_line')
+case('171','new_line')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21135,14 +21583,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024             new_line(3fortran)', &
+'                              October 19, 2024             new_line(3fortran)', &
 '']
 
 shortname="new_line"
 call process()
 
-
-case('170','nint')
+case('172','nint')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21151,7 +21598,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  NINT(3) - [TYPE:NUMERIC] Nearest whole number', &
+'  NINT(3) - [TYPE:CONVERSION] Nearest whole number', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -21294,14 +21741,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 nint(3fortran)', &
+'                              October 19, 2024                 nint(3fortran)', &
 '']
 
 shortname="nint"
 call process()
 
-
-case('171','norm2')
+case('173','norm2')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21423,14 +21869,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                norm2(3fortran)', &
+'                              October 19, 2024                norm2(3fortran)', &
 '']
 
 shortname="norm2"
 call process()
 
-
-case('172','not')
+case('174','not')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21521,14 +21966,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  not(3fortran)', &
+'                              October 19, 2024                  not(3fortran)', &
 '']
 
 shortname="not"
 call process()
 
-
-case('173','null')
+case('175','null')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21656,14 +22100,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 null(3fortran)', &
+'                              October 19, 2024                 null(3fortran)', &
 '']
 
 shortname="null"
 call process()
 
-
-case('174','num_images')
+case('176','num_images')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21749,14 +22192,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024           num_images(3fortran)', &
+'                              October 19, 2024           num_images(3fortran)', &
 '']
 
 shortname="num_images"
 call process()
 
-
-case('175','open')
+case('177','open')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22078,14 +22520,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 open(7fortran)', &
+'                              October 19, 2024                 open(7fortran)', &
 '']
 
 shortname="open"
 call process()
 
-
-case('176','out_of_range')
+case('178','out_of_range')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22094,7 +22535,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  OUT_OF_RANGE(3) - [TYPE:NUMERIC] Whether a numeric value can be converted', &
+'  OUT_OF_RANGE(3) - [TYPE:CONVERSION] Whether a numeric value can be converted', &
 '  safely to another type', &
 '', &
 '', &
@@ -22239,14 +22680,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024         out_of_range(3fortran)', &
+'                              October 19, 2024         out_of_range(3fortran)', &
 '']
 
 shortname="out_of_range"
 call process()
 
-
-case('177','pack')
+case('179','pack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22309,49 +22749,53 @@ textblock=[character(len=256) :: &
 'EXAMPLES', &
 '  Sample program:', &
 '', &
-'      program demo_pack', &
-'      implicit none', &
-'      integer, allocatable :: m(:)', &
-'      character(len=10) :: c(4)', &
+'         program demo_pack', &
+'         implicit none', &
+'         integer, allocatable :: m(:)', &
+'         character(len=10) :: c(4)', &
 '', &
-'       ! gathering nonzero elements from an array:', &
-'        m = [ 1, 0, 0, 0, 5, 0 ]', &
-'        write(*, fmt="(*(i0, '' ''))") pack(m, m /= 0)', &
+'          ! gathering nonzero elements from an array:', &
+'            m = [ 1, 0, 0, 0, 5, 0 ]', &
+'            write(*, fmt="(*(i0, '' ''))") pack(m, m /= 0)', &
 '', &
-'       ! Gathering nonzero elements from an array and appending elements', &
-'       ! from VECTOR till the size of the mask array (or array size if the', &
-'       ! mask is scalar):', &
-'        m = [ 1, 0, 0, 2 ]', &
-'        write(*, fmt="(*(i0, '' ''))") pack(m, m /= 0, [ 0, 0, 3, 4 ])', &
-'        write(*, fmt="(*(i0, '' ''))") pack(m, m /= 0 )', &
+'          ! Gathering nonzero elements from an array and appending elements', &
+'          ! from VECTOR till the size of the mask array (or array size if the', &
+'          ! mask is scalar):', &
+'            m = [ 1, 0, 0, 2 ]', &
+'            write(*, fmt="(*(i0, '' ''))") pack(m, m /= 0, [ 0, 0, 3, 4 ])', &
+'            write(*, fmt="(*(i0, '' ''))") pack(m, m /= 0 )', &
 '', &
-'       ! select strings whose second character is "a"', &
-'        c = [ character(len=10) :: ''ape'', ''bat'', ''cat'', ''dog'']', &
-'        write(*, fmt="(*(g0, '' ''))") pack(c, c(:)(2:2) == ''a'' )', &
+'          ! select strings whose second character is "a"', &
+'            c = [ character(len=10) :: ''ape'', ''bat'', ''cat'', ''dog'']', &
+'            write(*, fmt="(*(g0, '' ''))") pack(c, c(:)(2:2) == ''a'' )', &
 '', &
-'       ! creating a quicksort using PACK(3f)', &
-'', &
-'   BLOCK', &
-'  INTRINSIC RANDOM_SEED, RANDOM_NUMBER REAL :: x(10) CALL RANDOM_SEED() CALL', &
-'  RANDOM_NUMBER(x) WRITE (*,"(a10,*(1x,f0.3))") "initial",x WRITE', &
-'  (*,"(a10,*(1x,f0.3))") "sorted",qsort(x)', &
-'', &
-'   ENDBLOCK', &
-'   CONTAINS', &
-'  ! concise quicksort from @arjen and @beliavsky shows recursion, ! array', &
-'  sections, and vectorized comparisons.  PURE RECURSIVE FUNCTION qsort(values)', &
-'  RESULT(sorted) INTRINSIC PACK, SIZE REAL, INTENT(IN) :: values(:)', &
-'', &
-'  REAL', &
-'    :: sorted(SIZE(values)) IF (SIZE(values) > 1) THEN sorted =', &
-'    [qsort(PACK(values(2:),values(2:)<values(1))), values(1), &', &
-'    qsort(PACK(values(2:),values(2:)>=values(1)))]', &
-'', &
-'   ELSE', &
-'  sorted = values', &
-'', &
-'   ENDIF', &
-'  END FUNCTION qsort end program demo_pack', &
+'          ! creating a quicksort using PACK(3f)', &
+'            block', &
+'            intrinsic random_seed, random_number', &
+'            real :: x(10)', &
+'               call random_seed()', &
+'               call random_number(x)', &
+'               write (*,"(a10,*(1x,f0.3))") "initial",x', &
+'               write (*,"(a10,*(1x,f0.3))") "sorted",qsort(x)', &
+'            endblock', &
+'         contains', &
+'         !', &
+'         ! concise quicksort from @arjen and @beliavsky shows recursion,', &
+'         ! array sections, and vectorized comparisons.', &
+'         !', &
+'         pure recursive function qsort(values) result(sorted)', &
+'         intrinsic pack, size', &
+'         real, intent(in) :: values(:)', &
+'         real             :: sorted(size(values))', &
+'            if (size(values) > 1) then', &
+'               sorted = &', &
+'           & [qsort(pack(values(2:),values(2:)<values(1))), values(1), &', &
+'               & qsort(pack(values(2:),values(2:)>=values(1)))]', &
+'            else', &
+'               sorted = values', &
+'            endif', &
+'         end function qsort', &
+'         end program demo_pack', &
 '', &
 '  Result:', &
 '', &
@@ -22373,14 +22817,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 pack(3fortran)', &
+'                              October 19, 2024                 pack(3fortran)', &
 '']
 
 shortname="pack"
 call process()
 
-
-case('178','parity')
+case('180','parity')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22489,14 +22932,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               parity(3fortran)', &
+'                              October 19, 2024               parity(3fortran)', &
 '']
 
 shortname="parity"
 call process()
 
-
-case('179','popcnt')
+case('181','popcnt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22582,14 +23024,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               popcnt(3fortran)', &
+'                              October 19, 2024               popcnt(3fortran)', &
 '']
 
 shortname="popcnt"
 call process()
 
-
-case('180','poppar')
+case('182','poppar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22681,14 +23122,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               poppar(3fortran)', &
+'                              October 19, 2024               poppar(3fortran)', &
 '']
 
 shortname="poppar"
 call process()
 
-
-case('181','precision')
+case('183','precision')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22697,7 +23137,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  PRECISION(3) - [NUMERIC MODEL] Decimal precision of a real kind', &
+'  PRECISION(3) - [MODEL:NUMERIC] Decimal precision of a real kind', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -22756,14 +23196,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024            precision(3fortran)', &
+'                              October 19, 2024            precision(3fortran)', &
 '']
 
 shortname="precision"
 call process()
 
-
-case('182','present')
+case('184','present')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22888,14 +23327,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024              present(3fortran)', &
+'                              October 19, 2024              present(3fortran)', &
 '']
 
 shortname="present"
 call process()
 
-
-case('183','print')
+case('185','print')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22993,14 +23431,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                print(7fortran)', &
+'                              October 19, 2024                print(7fortran)', &
 '']
 
 shortname="print"
 call process()
 
-
-case('184','product')
+case('186','product')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23236,14 +23673,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024              product(3fortran)', &
+'                              October 19, 2024              product(3fortran)', &
 '']
 
 shortname="product"
 call process()
 
-
-case('185','program')
+case('187','program')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23332,14 +23768,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024              program(7fortran)', &
+'                              October 19, 2024              program(7fortran)', &
 '']
 
 shortname="program"
 call process()
 
-
-case('186','radix')
+case('188','radix')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23348,7 +23783,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  RADIX(3) - [NUMERIC MODEL] Base of a numeric model', &
+'  RADIX(3) - [MODEL:NUMERIC] Base of a numeric model', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -23411,14 +23846,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                radix(3fortran)', &
+'                              October 19, 2024                radix(3fortran)', &
 '']
 
 shortname="radix"
 call process()
 
-
-case('187','random_init')
+case('189','random_init')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23484,14 +23918,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024          random_init(3fortran)', &
+'                              October 19, 2024          random_init(3fortran)', &
 '']
 
 shortname="random_init"
 call process()
 
-
-case('188','random_number')
+case('190','random_number')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23581,14 +24014,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024        random_number(3fortran)', &
+'                              October 19, 2024        random_number(3fortran)', &
 '']
 
 shortname="random_number"
 call process()
 
-
-case('189','random_seed')
+case('191','random_seed')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23668,14 +24100,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024          random_seed(3fortran)', &
+'                              October 19, 2024          random_seed(3fortran)', &
 '']
 
 shortname="random_seed"
 call process()
 
-
-case('190','range')
+case('192','range')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23684,7 +24115,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  RANGE(3) - [NUMERIC MODEL] Decimal exponent range of a numeric kind', &
+'  RANGE(3) - [MODEL:NUMERIC] Decimal exponent range of a numeric kind', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -23756,14 +24187,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                range(3fortran)', &
+'                              October 19, 2024                range(3fortran)', &
 '']
 
 shortname="range"
 call process()
 
-
-case('191','rank')
+case('193','rank')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23936,14 +24366,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 rank(3fortran)', &
+'                              October 19, 2024                 rank(3fortran)', &
 '']
 
 shortname="rank"
 call process()
 
-
-case('192','read')
+case('194','read')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24006,14 +24435,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 read(7fortran)', &
+'                              October 19, 2024                 read(7fortran)', &
 '']
 
 shortname="read"
 call process()
 
-
-case('193','real')
+case('195','real')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24022,7 +24450,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  REAL(3) - [TYPE:NUMERIC] Convert to real type', &
+'  REAL(3) - [TYPE:CONVERSION] Convert to real type', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -24123,14 +24551,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 real(3fortran)', &
+'                              October 19, 2024                 real(3fortran)', &
 '']
 
 shortname="real"
 call process()
 
-
-case('194','reduce')
+case('196','reduce')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24139,7 +24566,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  REDUCE(3) - [TRANSFORMATIONAL] General reduction of an array', &
+'  REDUCE(3) - [ARRAY:TRANSFORMATIONAL] General reduction of an array', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -24333,14 +24760,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               reduce(3fortran)', &
+'                              October 19, 2024               reduce(3fortran)', &
 '']
 
 shortname="reduce"
 call process()
 
-
-case('195','repeat')
+case('197','repeat')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24416,22 +24842,19 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               repeat(3fortran)', &
+'                              October 19, 2024               repeat(3fortran)', &
 '']
 
 shortname="repeat"
 call process()
 
-
-case('196','reshape')
+case('198','reshape')
 
 textblock=[character(len=256) :: &
 '', &
 'reshape(3fortran)                                           reshape(3fortran)', &
 '', &
 '', &
-'', &
-'             reshape', &
 '', &
 'NAME', &
 '  RESHAPE(3) - [ARRAY:RESHAPE] Function to reshape an array', &
@@ -24640,14 +25063,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024              reshape(3fortran)', &
+'                              October 19, 2024              reshape(3fortran)', &
 '']
 
 shortname="reshape"
 call process()
 
-
-case('197','return')
+case('199','return')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24772,14 +25194,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               return(7fortran)', &
+'                              October 19, 2024               return(7fortran)', &
 '']
 
 shortname="return"
 call process()
 
-
-case('198','rewind')
+case('200','rewind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24875,14 +25296,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               rewind(7fortran)', &
+'                              October 19, 2024               rewind(7fortran)', &
 '']
 
 shortname="rewind"
 call process()
 
-
-case('199','rrspacing')
+case('201','rrspacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24904,7 +25324,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'CHARACTERISTICS', &
-'  o  X is type real an any kind', &
+'  o  X is type real of any kind', &
 '', &
 '  o  The return value is of the same type and kind as X.', &
 '', &
@@ -24919,8 +25339,49 @@ textblock=[character(len=256) :: &
 '  The return value is of the same type and kind as X. The value returned is', &
 '  equal to ABS(FRACTION(X)) * FLOAT(RADIX(X))**DIGITS(X).', &
 '', &
+'EXAMPLES', &
+'  Sample program:', &
+'', &
+'      program demo_rrspacing', &
+'      implicit none', &
+'      integer, parameter :: sgl = selected_real_kind(p=6, r=37)', &
+'      integer, parameter :: dbl = selected_real_kind(p=13, r=200)', &
+'      character(len=*),parameter :: gen=''(*(g0))'', nl=new_line(''A'')', &
+'      real(kind=sgl) :: x', &
+'        x=-3.0_sgl', &
+'        print gen, &', &
+'        ''rrspacing('',x,''_sgl)='', rrspacing(x),                   nl, &', &
+'        ''rrspacing(x)=abs(fraction(x))*float(radix(x))**digits(x)'',  nl, &', &
+'        ''so this should be the same as rrspacing():'',                      nl, &', &
+'        abs( fraction(x) ) * float( radix(x) )**digits(x),           nl, &', &
+'        ''RRSPACING (-3.0) has the value 0.75x2**24 for reals'',       nl, &', &
+'        ''on current typical platforms. For reference:'',            nl, &', &
+'        ''   0.75*2**24='', 0.75*2**24,                                      nl, &', &
+'        ''sign should not matter, so'',rrspacing(x)==rrspacing(-x),    nl, &', &
+'        ''note the kind of the value is significant'',               nl, &', &
+'        rrspacing(-3.0_dbl),                                         nl, &', &
+'        ''for common platforms rrspacing(487923.3d0)=>'',            nl, &', &
+'        ''   8.382458680573952E+015'',                               nl, &', &
+'        rrspacing(487923.3d0),                                       nl, &', &
+'        '' ''', &
+'      end program demo_rrspacing', &
+'', &
+'       > rrspacing(-3.00000000_sgl)=12582912.0', &
+'       > rrspacing(x)=abs(fraction(x))*float(radix(x))**digits(x)', &
+'       > so this should be the same as rrspacing():', &
+'       > 12582912.0', &
+'       > RRSPACING (-3.0) has the value 0.75x2**24 for reals', &
+'       > on current typical platforms. For reference:', &
+'       > 0.75*2**24=12582912.0', &
+'       > sign should not matter, soT', &
+'       > note the kind of the value is significant', &
+'       > 6755399441055744.0', &
+'       > for common platforms rrspacing(487923.3d0)=>8.382458680573952E+015', &
+'       > 8382458465825587.0', &
+'', &
+'', &
 'STANDARD', &
-'  Fortran 95', &
+'  Fortran 90', &
 '', &
 'SEE ALSO', &
 '  DIGITS(3), EPSILON(3), EXPONENT(3), FRACTION(3), HUGE(3), MAXEXPONENT(3),', &
@@ -24931,14 +25392,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024            rrspacing(3fortran)', &
+'                              October 19, 2024            rrspacing(3fortran)', &
 '']
 
 shortname="rrspacing"
 call process()
 
-
-case('200','same_type_as')
+case('202','same_type_as')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25073,14 +25533,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024         same_type_as(3fortran)', &
+'                              October 19, 2024         same_type_as(3fortran)', &
 '']
 
 shortname="same_type_as"
 call process()
 
-
-case('201','scale')
+case('203','scale')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25089,7 +25548,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  SCALE(3) - [MODEL_COMPONENTS] Scale a real value by a whole power of the', &
+'  SCALE(3) - [MODEL:COMPONENTS] Scale a real value by a whole power of the', &
 '  radix', &
 '', &
 '', &
@@ -25182,14 +25641,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                scale(3fortran)', &
+'                              October 19, 2024                scale(3fortran)', &
 '']
 
 shortname="scale"
 call process()
 
-
-case('202','scan')
+case('204','scan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25288,14 +25746,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 scan(3fortran)', &
+'                              October 19, 2024                 scan(3fortran)', &
 '']
 
 shortname="scan"
 call process()
 
-
-case('203','select_case')
+case('205','select_case')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25456,14 +25913,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024          select_case(7fortran)', &
+'                              October 19, 2024          select_case(7fortran)', &
 '']
 
 shortname="select_case"
 call process()
 
-
-case('204','selected_char_kind')
+case('206','selected_char_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25624,14 +26080,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024   selected_char_kind(3fortran)', &
+'                              October 19, 2024   selected_char_kind(3fortran)', &
 '']
 
 shortname="selected_char_kind"
 call process()
 
-
-case('205','selected_int_kind')
+case('207','selected_int_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25712,14 +26167,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024    selected_int_kind(3fortran)', &
+'                              October 19, 2024    selected_int_kind(3fortran)', &
 '']
 
 shortname="selected_int_kind"
 call process()
 
-
-case('206','selected_real_kind')
+case('208','selected_real_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25840,14 +26294,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024   selected_real_kind(3fortran)', &
+'                              October 19, 2024   selected_real_kind(3fortran)', &
 '']
 
 shortname="selected_real_kind"
 call process()
 
-
-case('207','set_exponent')
+case('209','set_exponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25856,7 +26309,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  SET_EXPONENT(3) - [MODEL_COMPONENTS] real value with specified exponent', &
+'  SET_EXPONENT(3) - [MODEL:COMPONENTS] real value with specified exponent', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -25924,14 +26377,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024         set_exponent(3fortran)', &
+'                              October 19, 2024         set_exponent(3fortran)', &
 '']
 
 shortname="set_exponent"
 call process()
 
-
-case('208','shape')
+case('210','shape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26042,14 +26494,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                shape(3fortran)', &
+'                              October 19, 2024                shape(3fortran)', &
 '']
 
 shortname="shape"
 call process()
 
-
-case('209','shifta')
+case('211','shifta')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26176,14 +26627,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               shifta(3fortran)', &
+'                              October 19, 2024               shifta(3fortran)', &
 '']
 
 shortname="shifta"
 call process()
 
-
-case('210','shiftl')
+case('212','shiftl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26313,14 +26763,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               shiftl(3fortran)', &
+'                              October 19, 2024               shiftl(3fortran)', &
 '']
 
 shortname="shiftl"
 call process()
 
-
-case('211','shiftr')
+case('213','shiftr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26452,14 +26901,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               shiftr(3fortran)', &
+'                              October 19, 2024               shiftr(3fortran)', &
 '']
 
 shortname="shiftr"
 call process()
 
-
-case('212','sign')
+case('214','sign')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26550,14 +26998,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 sign(3fortran)', &
+'                              October 19, 2024                 sign(3fortran)', &
 '']
 
 shortname="sign"
 call process()
 
-
-case('213','sin')
+case('215','sin')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26692,14 +27139,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  sin(3fortran)', &
+'                              October 19, 2024                  sin(3fortran)', &
 '']
 
 shortname="sin"
 call process()
 
-
-case('214','sind')
+case('216','sind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26831,14 +27277,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 sind(3fortran)', &
+'                              October 19, 2024                 sind(3fortran)', &
 '']
 
 shortname="sind"
 call process()
 
-
-case('215','sinh')
+case('217','sinh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26885,8 +27330,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_sinh', &
-'      use, intrinsic :: iso_fortran_env, only : &', &
-'      & real_kinds, real32, real64, real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32, real64, real128', &
 '      implicit none', &
 '      real(kind=real64) :: x = - 1.0_real64', &
 '      real(kind=real64) :: nan, inf', &
@@ -26938,14 +27382,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 sinh(3fortran)', &
+'                              October 19, 2024                 sinh(3fortran)', &
 '']
 
 shortname="sinh"
 call process()
 
-
-case('216','sinpi')
+case('218','sinpi')
 
 textblock=[character(len=256) :: &
 '', &
@@ -27051,14 +27494,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                sinpi(3fortran)', &
+'                              October 19, 2024                sinpi(3fortran)', &
 '']
 
 shortname="sinpi"
 call process()
 
-
-case('217','size')
+case('219','size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -27230,14 +27672,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 size(3fortran)', &
+'                              October 19, 2024                 size(3fortran)', &
 '']
 
 shortname="size"
 call process()
 
-
-case('218','spacing')
+case('220','spacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -27317,14 +27758,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024              spacing(3fortran)', &
+'                              October 19, 2024              spacing(3fortran)', &
 '']
 
 shortname="spacing"
 call process()
 
-
-case('219','split')
+case('221','split')
 
 textblock=[character(len=256) :: &
 '', &
@@ -27461,14 +27901,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                split(3fortran)', &
+'                              October 19, 2024                split(3fortran)', &
 '']
 
 shortname="split"
 call process()
 
-
-case('220','spread')
+case('222','spread')
 
 textblock=[character(len=256) :: &
 '', &
@@ -27650,14 +28089,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               spread(3fortran)', &
+'                              October 19, 2024               spread(3fortran)', &
 '']
 
 shortname="spread"
 call process()
 
-
-case('221','sqrt')
+case('223','sqrt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -27719,8 +28157,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_sqrt', &
-'      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
-'       & real32, real64, real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32, real64, real128', &
 '      implicit none', &
 '      real(kind=real64) :: x, x2', &
 '      complex :: z, z2', &
@@ -27763,14 +28200,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 sqrt(3fortran)', &
+'                              October 19, 2024                 sqrt(3fortran)', &
 '']
 
 shortname="sqrt"
 call process()
 
-
-case('222','stop')
+case('224','stop')
 
 textblock=[character(len=256) :: &
 '', &
@@ -27885,14 +28321,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 stop(7fortran)', &
+'                              October 19, 2024                 stop(7fortran)', &
 '']
 
 shortname="stop"
 call process()
 
-
-case('223','storage_size')
+case('225','storage_size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -27996,14 +28431,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024         storage_size(3fortran)', &
+'                              October 19, 2024         storage_size(3fortran)', &
 '']
 
 shortname="storage_size"
 call process()
 
-
-case('224','sum')
+case('226','sum')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28222,14 +28656,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  sum(3fortran)', &
+'                              October 19, 2024                  sum(3fortran)', &
 '']
 
 shortname="sum"
 call process()
 
-
-case('225','system_clock')
+case('227','system_clock')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28387,14 +28820,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024         system_clock(3fortran)', &
+'                              October 19, 2024         system_clock(3fortran)', &
 '']
 
 shortname="system_clock"
 call process()
 
-
-case('226','tan')
+case('228','tan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28433,8 +28865,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_tan', &
-'      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
-'      & real32, real64, real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32, real64, real128', &
 '      implicit none', &
 '      real(kind=real64) :: x = 0.165_real64', &
 '          write(*,*)x, tan(x)', &
@@ -28455,14 +28886,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  tan(3fortran)', &
+'                              October 19, 2024                  tan(3fortran)', &
 '']
 
 shortname="tan"
 call process()
 
-
-case('227','tand')
+case('229','tand')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28503,12 +28933,15 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_tand', &
-'      use, intrinsic :: iso_fortran_env, only : real_kinds, &', &
-'      & real32, real64, real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32, real64, real128', &
 '      implicit none', &
 '      real(kind=real64) :: x = 0.5_real64', &
 '          write(*,*)x, tand(x)', &
 '      end program demo_tand', &
+'', &
+'  Result:', &
+'', &
+'       > 0.50000000000000000        8.7268677907587893E-003', &
 '', &
 '', &
 'STANDARD', &
@@ -28521,14 +28954,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 tand(3fortran)', &
+'                              October 19, 2024                 tand(3fortran)', &
 '']
 
 shortname="tand"
 call process()
 
-
-case('228','tanh')
+case('230','tanh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28575,8 +29007,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_tanh', &
-'      use, intrinsic :: iso_fortran_env, only : &', &
-'      & real_kinds, real32, real64, real128', &
+'      use, intrinsic :: iso_fortran_env, only : real32, real64, real128', &
 '      implicit none', &
 '      real(kind=real64) :: x = 2.1_real64', &
 '        write(*,*)x, tanh(x)', &
@@ -28600,14 +29031,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 tanh(3fortran)', &
+'                              October 19, 2024                 tanh(3fortran)', &
 '']
 
 shortname="tanh"
 call process()
 
-
-case('229','tanpi')
+case('231','tanpi')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28685,14 +29115,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                tanpi(3fortran)', &
+'                              October 19, 2024                tanpi(3fortran)', &
 '']
 
 shortname="tanpi"
 call process()
 
-
-case('230','this_image')
+case('232','this_image')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28777,14 +29206,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024           this_image(3fortran)', &
+'                              October 19, 2024           this_image(3fortran)', &
 '']
 
 shortname="this_image"
 call process()
 
-
-case('231','tiny')
+case('233','tiny')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28793,7 +29221,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'NAME', &
-'  TINY(3) - [NUMERIC MODEL] Smallest positive number of a real kind', &
+'  TINY(3) - [MODEL:NUMERIC] Smallest positive number of a real kind', &
 '', &
 '', &
 'SYNOPSIS', &
@@ -28852,14 +29280,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 tiny(3fortran)', &
+'                              October 19, 2024                 tiny(3fortran)', &
 '']
 
 shortname="tiny"
 call process()
 
-
-case('232','tokenize')
+case('234','tokenize')
 
 textblock=[character(len=256) :: &
 '', &
@@ -29048,14 +29475,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024             tokenize(3fortran)', &
+'                              October 19, 2024             tokenize(3fortran)', &
 '']
 
 shortname="tokenize"
 call process()
 
-
-case('233','trailz')
+case('235','trailz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -29156,14 +29582,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               trailz(3fortran)', &
+'                              October 19, 2024               trailz(3fortran)', &
 '']
 
 shortname="trailz"
 call process()
 
-
-case('234','transfer')
+case('236','transfer')
 
 textblock=[character(len=256) :: &
 '', &
@@ -29289,14 +29714,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024             transfer(3fortran)', &
+'                              October 19, 2024             transfer(3fortran)', &
 '']
 
 shortname="transfer"
 call process()
 
-
-case('235','transpose')
+case('237','transpose')
 
 textblock=[character(len=256) :: &
 '', &
@@ -29405,14 +29829,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024            transpose(3fortran)', &
+'                              October 19, 2024            transpose(3fortran)', &
 '']
 
 shortname="transpose"
 call process()
 
-
-case('236','trim')
+case('238','trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -29513,14 +29936,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 trim(3fortran)', &
+'                              October 19, 2024                 trim(3fortran)', &
 '']
 
 shortname="trim"
 call process()
 
-
-case('237','ubound')
+case('239','ubound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -29697,14 +30119,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               ubound(3fortran)', &
+'                              October 19, 2024               ubound(3fortran)', &
 '']
 
 shortname="ubound"
 call process()
 
-
-case('238','ucobound')
+case('240','ucobound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -29747,14 +30168,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024             ucobound(3fortran)', &
+'                              October 19, 2024             ucobound(3fortran)', &
 '']
 
 shortname="ucobound"
 call process()
 
-
-case('239','unpack')
+case('241','unpack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -29913,14 +30333,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               unpack(3fortran)', &
+'                              October 19, 2024               unpack(3fortran)', &
 '']
 
 shortname="unpack"
 call process()
 
-
-case('240','use')
+case('242','use')
 
 textblock=[character(len=256) :: &
 '', &
@@ -30179,14 +30598,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                  use(7fortran)', &
+'                              October 19, 2024                  use(7fortran)', &
 '']
 
 shortname="use"
 call process()
 
-
-case('241','verify')
+case('243','verify')
 
 textblock=[character(len=256) :: &
 '', &
@@ -30567,14 +30985,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024               verify(3fortran)', &
+'                              October 19, 2024               verify(3fortran)', &
 '']
 
 shortname="verify"
 call process()
 
-
-case('242','wait')
+case('244','wait')
 
 textblock=[character(len=256) :: &
 '', &
@@ -30651,14 +31068,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                 wait(7fortran)', &
+'                              October 19, 2024                 wait(7fortran)', &
 '']
 
 shortname="wait"
 call process()
 
-
-case('243','where')
+case('245','where')
 
 textblock=[character(len=256) :: &
 '', &
@@ -30841,10 +31257,10 @@ textblock=[character(len=256) :: &
 '        where (b.ne.0) c=a/b', &
 '        write (*,2000) c(1:nd)', &
 '        !', &
-'        !  The above protects against divide by zero, but doesn''t actually assign', &
-'        !  values to elements in c when the corresponding element in b is zero', &
-'        !  The following covers that, and sets a flag when a divide by zero is', &
-'        !  present', &
+'        ! The above protects against divide by zero, but doesn''t actually', &
+'        ! assign values to elements in c when the corresponding element in', &
+'        ! b is zero The following covers that, and sets a flag when a divide', &
+'        ! by zero is present', &
 '        !', &
 '        where (b(1:nd).ne.0.0)', &
 '           c=a/b', &
@@ -30860,16 +31276,24 @@ textblock=[character(len=256) :: &
 '        2000 format (''a/b = '',/,(10f7.2))', &
 '        end program demo_where', &
 '', &
+'  Results:', &
+'', &
+'       > a/b =', &
+'       >    2.00   4.00   6.00  8.00  10.00 -77.77   7.00   8.00   9.00  10.00', &
+'       > a/b =', &
+'       >    2.00   4.00   6.00  8.00  10.00   0.00   7.00   8.00   9.00  10.00', &
+'       > iflag=', &
+'       >       0      0      0     0      0      1      0      0      0      0', &
 '', &
 '', &
-'                              October 02, 2024                where(7fortran)', &
+'', &
+'                              October 19, 2024                where(7fortran)', &
 '']
 
 shortname="where"
 call process()
 
-
-case('244','write')
+case('246','write')
 
 textblock=[character(len=256) :: &
 '', &
@@ -30887,7 +31311,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 02, 2024                write(7fortran)', &
+'                              October 19, 2024                write(7fortran)', &
 '']
 
 shortname="write"
@@ -30981,8 +31405,7 @@ end module M_intrinsics
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
- 
- 
+
 !>>>>> ./././/../GLINKS/M_CLI2/src/M_CLI2.F90
 !VERSION 1.0 20200115
 !VERSION 2.0 20200802
@@ -36876,8 +37299,7 @@ end module M_CLI2
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
 !===================================================================================================================================
- 
- 
+
 !>>>>> ./././/../GLINKS/M_match/src/M_match.f90
 !09/22/1980  15:38:34
 !04/19/2020  11:05:06
@@ -38046,8 +38468,7 @@ end module M_match
 !==================================================================================================================================!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !==================================================================================================================================!
- 
- 
+
 !>>>>> ./././/../GLINKS/M_strings/src/M_strings.F90
 !>
 !!##NAME
@@ -49325,10 +49746,6 @@ logical                              :: trimit
          type is (integer(kind=int64));    fmt_local='(i0,a)'
          type is (real(kind=real32));      fmt_local='(1pg0,a)'
          type is (real(kind=real64));      fmt_local='(1pg0,a)'
-#ifdef __NVCOMPILER
-#else
-         type is (real(kind=real128));     fmt_local='(1pg0,a)'
-#endif
          type is (logical);                fmt_local='(l1,a)'
          type is (character(len=*));       fmt_local='(a,a)'
          type is (complex);                fmt_local='("(",1pg0,",",1pg0,")",a)'
@@ -49349,10 +49766,6 @@ logical                              :: trimit
       type is (integer(kind=int64));    write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
       type is (real(kind=real32));      write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
       type is (real(kind=real64));      write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
-#ifdef __NVCOMPILER
-#else
-      type is (real(kind=real128));     write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
-#endif
       type is (logical);                write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
       type is (character(len=*));       write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
       type is (complex);
@@ -50972,8 +51385,7 @@ end function atoi_int64
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
 end module M_strings
- 
- 
+
 !>>>>> ./././/../GLINKS/M_attr/src/M_attr.f90
 !>
 !!##NAME
@@ -51209,7 +51621,6 @@ character(len=*),parameter  :: FG_INTENSE='9'
 character(len=*),parameter  :: BG_INTENSE='10'
 character(len=*),parameter  :: ON=''
 character(len=*),parameter  :: OFF='2'
-
 
 ! foreground colors
 character(len=*),parameter,public :: fg_red      =  CODE_START//FG//RED//CODE_END
@@ -52483,8 +52894,7 @@ end subroutine print_generic
 
 end function msg_one
 end module M_attr
- 
- 
+
 !>>>>> app/fpm-man.f90
 program fman
 use M_intrinsics, only : help_intrinsics
@@ -52737,30 +53147,45 @@ function crayons(oldblock) result(newblock)
 ! just playing. There is a lot of stuff not done robustly here
 character(len=256),intent(in),allocatable :: oldblock(:)
 character(len=256),allocatable :: newblock(:)
-integer :: ilen
+integer :: ilen, gt, ipad
 integer :: lead
-logical :: program_text
+logical :: program_text, after_demo
    program_text=.false.
+   after_demo=.false.
    newblock= oldblock
    lead=0
    do j=1,size(oldblock)
+      ! test if entering demo program text
       if( index(oldblock(j),'end program demo_') .eq. 0 .and. index(oldblock(j),'program demo_') .ne. 0)then
          program_text=.true.
          lead=indent(oldblock(j))
       endif
+      ! if in program text
       if(program_text .eqv. .true.)then
-        newblock(j)=attr('<E>'//repeat(' ',lead)//'<E><y>'//atleast(trim(oldblock(j)(lead+1:)),80-lead) )
+        ipad=len_trim(oldblock(j))
+        ipad=len_trim(than(oldblock(j)))-ipad
+        newblock(j)=attr('<E>'//repeat(' ',lead)//'<E><c>'//atleast(trim(than(oldblock(j)(lead+1:))),80-lead+ipad) )
+      ! section header
       elseif(verify(oldblock(j)(1:1), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' ) == 0 .and. &
       & verify(oldblock(j), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ _') == 0 )then
          ilen=len_trim(oldblock(j))
          newblock(j)=attr('<E><y><bo> '//trim(oldblock(j))//' </bo>'//repeat(' ',max(0,80-ilen-2))//'<reset>')
+         after_demo=.false. ! started new section so indicate left EXAMPLE section. This is repeated when not needed
+      ! demo program results
+      elseif(after_demo.and.index(adjustl(oldblock(j)),'>').eq.1)then
+         ilen=len_trim(oldblock(j))
+         gt=index(oldblock(j),'>')
+         newblock(j)=attr('<E><w>'//oldblock(j)(:gt)//&
+         & '<E><y>'//trim(than(oldblock(j)(gt+1:)))//'</bo>'//repeat(' ',max(0,80-ilen))//'<reset>')
+       ! not header or demo program or demo program results
        else
-          ilen=len_trim(oldblock(j))
-          ilen=len_trim(than(oldblock(j)))-ilen
-          newblock(j)=attr('<E><w>'//atleast(than(oldblock(j)),80+ilen)//'<reset>')
+         ipad=len_trim(oldblock(j))
+         ipad=len_trim(than(oldblock(j)))-ipad
+          newblock(j)=attr('<E><w>'//atleast(than(oldblock(j)),80+ipad)//'<reset>')
        endif
       if( index(oldblock(j),'end program demo_') .ne.0)then
          program_text=.false.
+         after_demo=.true.
       endif
    enddo
 end function crayons
@@ -52850,4 +53275,4 @@ end subroutine setup
 
 end program fman
 ! kludge1: older versions of gfortran do not handle character arrays with both line and size allocatable
- 
+

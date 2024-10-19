@@ -3,7 +3,7 @@
 ### **Name**
     namelist(7f) - [STATEMENT] specify a group of data to be referred
     to by a single name in data input/output
-    
+
 ### **Synopsis**
 ```fortran
    NAMELIST /namelist-group-name/ namelist-group-object-list [[,] /namelist-group-name/
@@ -56,27 +56,30 @@
 
    Input for a namelist input statement consists of
 
-      1) optional blanks and namelist comments,
-      2) the character & followed immediately by the namelist-group-name as specified in the NAMELIST
-         statement,
-      3) one or more blanks,
-      4) a sequence of zero or more name-value subsequences separated by value separators, and
-      5) a slash to terminate the namelist input.
+     1. optional blanks and namelist comments,
+     2. the character & followed immediately by the namelist-group-name
+        as specified in the NAMELIST statement,
+     3. one or more blanks,
+     4. a sequence of zero or more name-value subsequences separated by
+        value separators, and
+     5. a slash to terminate the namelist input.
 
-         A slash encountered in a namelist input record causes the input statement to terminate. A slash cannot be
-         used to separate two values in a namelist input statement.
+        A slash encountered in a namelist input record causes the input
+        statement to terminate. A slash cannot be used to separate two
+        values in a namelist input statement.
 
    A group name or object name is without regard to case.
 
 ### **Example**
-   
+
    An example of a NAMELIST statement is:
 
 ```fortran
      NAMELIST /NLIST/ A, B, C
 ```
 
-   or a group may be defined by multiple statements using the same group name in a scoping unit:
+   or a group may be defined by multiple statements using the same group
+   name in a scoping unit:
 
 ```fortran
      NAMELIST /NLIST/ A, B
@@ -240,16 +243,20 @@ OTHER
 
 1. Termination of an input/output data transfer statement occurs when
 
-        format processing encounters a colon or data edit descriptor and there are no remaining elements in the
-        input-item-list or output-item-list,
-        unformatted or list-directed data transfer exhausts the input-item-list or output-item-list,
-        namelist output exhausts the namelist-group-object-list,
-        an error condition occurs,
-        an end-of-file condition occurs,
+      format processing encounters a colon or data edit descriptor and there are no remaining elements in the
+      input-item-list or output-item-list,
 
-        a slash (/) is encountered as a value separator (10.10, 10.11) in the record being read during list-directed
-        or namelist input, or
-        an end-of-record condition occurs during execution of a nonadvancing input statement (9.11).
+      unformatted or list-directed data transfer exhausts the input-item-list or output-item-list,
+      namelist output exhausts the namelist-group-object-list,
+
+      an error condition occurs,
+
+      an end-of-file condition occurs,
+
+      a slash (/) is encountered as a value separator (10.10, 10.11) in the record being read during list-directed
+      or namelist input, or
+      an end-of-record condition occurs during execution of a nonadvancing input statement (9.11).
+
 2. If an error condition occurs during execution of an input/output statement that contains neither an ERR= nor
    IOSTAT= specifier, error termination of the program is initiated. If an error condition occurs during execution
    of an input/output statement that contains either an ERR= specifier or an IOSTAT= specifier then:
@@ -323,10 +330,10 @@ OTHER
    in the expanded sequence, but may be less; in the latter case, the effect is as if sufficient null values had been
    appended to match any remaining list items in the expanded sequence.
 
-        NOTE 10.35
-        For example, if the name in the input record is the name of an integer array of size 100, at most 100 values,
-        each of which is either a digit string or a null value, may follow the equals; these values would then be
-        assigned to the elements of the array in array element order.
+      NOTE 10.35
+      For example, if the name in the input record is the name of an integer array of size 100, at most 100 values,
+      each of which is either a digit string or a null value, may follow the equals; these values would then be
+      assigned to the elements of the array in array element order.
 
 3. A slash encountered as a value separator during the execution of a namelist input statement causes termination
    of execution of that input statement after transference of the previous value. If there are additional items in the
@@ -384,11 +391,11 @@ OTHER
    of the sequence. The sequence may be continued on as many records as needed. The characters blank, comma,
    semicolon, and slash may appear in such character sequences.
 
-          NOTE 10.36
-          A character sequence corresponding to a namelist input item of character type shall be delimited either with
-          apostrophes or with quotes. The delimiter is required to avoid ambiguity between undelimited character
-          sequences and object names. The value of the DELIM= specifier, if any, in the OPEN statement for an
-          external file is ignored during namelist input (9.5.6.8).
+      NOTE 10.36
+      A character sequence corresponding to a namelist input item of character type shall be delimited either with
+      apostrophes or with quotes. The delimiter is required to avoid ambiguity between undelimited character
+      sequences and object names. The value of the DELIM= specifier, if any, in the OPEN statement for an
+      external file is ignored during namelist input (9.5.6.8).
 
 8. Let len be the length of the next effective item, and let w be the length of the character sequence. If len is less
    than or equal to w, the leftmost len characters of the sequence are transmitted to the next effective item. If len
@@ -400,10 +407,12 @@ OTHER
 
 1. A null value is specified by
 
-          the r * form,
-          blanks between two consecutive nonblank value separators following an equals,
-          zero or more blanks preceding the first value separator and following an equals, or
-          two consecutive nonblank value separators.
+      the r * form,
+
+      blanks between two consecutive nonblank value separators following an equals,
+
+      zero or more blanks preceding the first value separator and following an equals, or
+      two consecutive nonblank value separators.
 
 2. A null value has no effect on the definition status of the corresponding input list item. If the namelist group
    object list item is defined, it retains its previous value; if it is undefined, it remains undefined. A null value shall
@@ -433,21 +442,22 @@ OTHER
    within the namelist comment does not terminate execution of the namelist input statement. Namelist comments
    are not allowed in stream input because comments depend on record structure.
 
-        NOTE 10.38
-        Namelist input example:
+      NOTE 10.38
+      Namelist input example:
 
 ```fortran
-        INTEGER I; REAL X (8); CHARACTER (11) P; COMPLEX Z;
-        LOGICAL :: G
-        NAMELIST / TODAY / G, I, P, Z, X
-        READ (*, NML = TODAY)
+   INTEGER I; REAL X (8); CHARACTER (11) P; COMPLEX Z;
+   LOGICAL :: G
+   NAMELIST / TODAY / G, I, P, Z, X
+   READ (*, NML = TODAY)
 ```
 
-        The input data records are:
+   The input data records are:
 
 ```code
-        &TODAY I = 12345, X(1) = 12345, X(3:4) = 2*1.5, I=6, ! This is a comment.
-        P = ''ISN'T_BOB'S'', Z = (123,0)/
+   &TODAY I = 12345, X(1) = 12345, X(3:4) = 2*1.5,
+    I=6, ! This is a comment.
+    P = ''ISN'T_BOB'S'', Z = (123,0)/
 ```
 
         The results stored are:
@@ -479,16 +489,16 @@ OTHER
    the end of a record shall not occur within a constant, character value, or name, and blanks shall not appear
    within a constant, character value, or name.
 
-        NOTE 10.39
-        The length of the output records is not specified exactly and may be processor dependent.
+      NOTE 10.39
+      The length of the output records is not specified exactly and may be processor dependent.
 
 10.11.4.2    Namelist output editing
 
 1. Values in namelist output records are edited as for list-directed output (10.10.4).
 
-        NOTE 10.40
-        Namelist output records produced with a DELIM= specifier with a value of NONE and which contain a
-        character sequence might not be acceptable as namelist input records.
+      NOTE 10.40
+      Namelist output records produced with a DELIM= specifier with a value of NONE and which contain a
+      character sequence might not be acceptable as namelist input records.
 
 10.11.4.3    Namelist output records
 
