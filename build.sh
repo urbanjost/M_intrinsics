@@ -46,21 +46,27 @@ bash ../scripts/play.sh demo_*.f90 > ../docs/playground.html
 set +x
 fpm install
 echo 'Check for long lines'
-fpm-man manual |grep '##'
-fpm-man manual |findll -l 80
+fpm-man -lines 0 manual |grep '##'
+fpm-man -lines 0 manual |findll -l 80
 echo 'Check for lines that will be accidently seen as *roff directives'
 grep '^\.' txt/*.man
 grep ' _' txt/*.man
-file md/*.md|grep -v ASCII
+file md?/*.md|grep -v ASCII
 )|tee /tmp/M_intrinsics.log
 ######################################
 fpm install
 cp standalone/fman.F90 $HOME/github/lockstockandbarrel/mars/bootstrap/fman.F90
 cp docs/manpages7.zip $HOME/github/lockstockandbarrel/mars/docs/7fortran.zip
-cp docs/manpages.zip  $HOME/github/lockstockandbarrel/mars/docs/3fortran.zip
+cp docs/manpages5.zip $HOME/github/lockstockandbarrel/mars/docs/5fortran.zip
+cp docs/manpages3.zip  $HOME/github/lockstockandbarrel/mars/docs/3fortran.zip
 ######################################
 # man-page source for building GPF (General Purpose Fortran) library documents
 cp txt/* $HOME/LIBRARY/libGPF/download/doc/
+######################################
+(
+# build and install fpm-man
+bash scripts/rebuild.sh
+)
 ######################################
 exit
 ######################################

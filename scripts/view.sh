@@ -10,7 +10,7 @@
 cd $HOME/github/FORK/webpage
 
 # copy my markdown to the webpage markdown
-cp $HOME/github/M_intrinsics/md/*.md ./source/learn/intrinsics/_pages/
+cp $HOME/github/M_intrinsics/md3/*.md ./source/learn/intrinsics/_pages/
 # rebuild the site by invoking
 python3 build.py en  # en to limit to a single language subtree
 # The website will be built in build/html 

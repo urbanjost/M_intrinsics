@@ -2,48 +2,48 @@
 
 ### **Name**
    inquire(7f) - [FILE_INQUIRE] File inquiry statement
-   
+
 ### **Synopsis**
 ```fortran
-   INQUIRE([UNIT=file_unit_number]|[FILE=file_name_expr])
+   INQUIRE([UNIT=file_unit_number]|[FILE=file_name_expr],
 
-    and  ACCESS = scalar_default_char_variable
-    or   ACTION = scalar_default_char_variable
-    or   ASYNCHRONOUS = scalar_default_char_variable
-    or   DIRECT = scalar_default_char_variable
+    ACCESS = scalar_default_char_variable,
+    ACTION = scalar_default_char_variable,
+    ASYNCHRONOUS = scalar_default_char_variable,
+    DIRECT = scalar_default_char_variable,
 
-    or   BLANK = scalar_default_char_variable
-    or   DECIMAL = scalar_default_char_variable
-    or   DELIM = scalar_default_char_variable
-    or   ENCODING = scalar_default_char_variable
-    or   PAD = scalar_default_char_variable
-    or   SIGN = scalar_default_char_variable
+    BLANK = scalar_default_char_variable,
+    DECIMAL = scalar_default_char_variable,
+    DELIM = scalar_default_char_variable,
+    ENCODING = scalar_default_char_variable,
+    PAD = scalar_default_char_variable,
+    SIGN = scalar_default_char_variable,
 
-    or   ERR = label
-    or   IOMSG = iomsg_variable
-    or   IOSTAT = scalar_int_variable
+    ERR = label,
+    IOMSG = iomsg_variable,
+    IOSTAT = scalar_int_variable,
 
-    or   EXIST = scalar_logical_variable
-    or   FORM = scalar_default_char_variable
-    or   FORMATTED = scalar_default_char_variable
-    or   ID = scalar_int_expr
-    or   NAME = scalar_default_char_variable
-    or   NAMED = scalar_logical_variable
-    or   NEXTREC = scalar_int_variable
-    or   NUMBER = scalar_int_variable
-    or   OPENED = scalar_logical_variable
-    or   PENDING = scalar_logical_variable
-    or   POS = scalar_int_variable
-    or   POSITION = scalar_default_char_variable
-    or   READ = scalar_default_char_variable
-    or   READWRITE = scalar_default_char_variable
-    or   RECL = scalar_int_variable
-    or   ROUND = scalar_default_char_variable
-    or   SEQUENTIAL = scalar_default_char_variable
-    or   SIZE = scalar_int_variable
-    or   STREAM = scalar_default_char_variable
-    or   UNFORMATTED = scalar_default_char_variable
-    or   WRITE = scalar_default_char_variable
+    EXIST = scalar_logical_variable,
+    FORM = scalar_default_char_variable,
+    FORMATTED = scalar_default_char_variable,
+    ID = scalar_int_expr,
+    NAME = scalar_default_char_variable,
+    NAMED = scalar_logical_variable,
+    NEXTREC = scalar_int_variable,
+    NUMBER = scalar_int_variable,
+    OPENED = scalar_logical_variable,
+    PENDING = scalar_logical_variable,
+    POS = scalar_int_variable,
+    POSITION = scalar_default_char_variable,
+    READ = scalar_default_char_variable,
+    READWRITE = scalar_default_char_variable,
+    RECL = scalar_int_variable,
+    ROUND = scalar_default_char_variable,
+    SEQUENTIAL = scalar_default_char_variable,
+    SIZE = scalar_int_variable,
+    STREAM = scalar_default_char_variable,
+    UNFORMATTED = scalar_default_char_variable,
+    WRITE = scalar_default_char_variable )
 
      or
 
@@ -92,15 +92,17 @@
      specifier, but not both.
 
    o In the inquire by unit form of the INQUIRE statement, if the optional
-     characters UNIT= are omitted, the file_unit-number shall be the
-     first item in the inquire_spec_list.
+     characters UNIT= are omitted,
+
+     the file_unit-number shall be the first item in the
+     inquire_spec_list.
 
    o If an ID= specifier appears in an inquire_spec_list, a PENDING=
      specifier shall also appear.
 
    o The label in the ERR= specifier shall be the statement label of a
-     branch target statement that appears in the same scoping unit as
-     the INQUIRE statement.
+     branch target statement that
+     appears in the same scoping unit as the INQUIRE statement.
 
   If file_unit-number identifies an internal unit, an error condition
   occurs.
@@ -156,12 +158,15 @@
 
     COMMA      treat a comma as the separator between mantissa and decimal
     POINT      use a decimal point as the separator
+    UNDEFINED  no connection or the connection is not for formatted
+               input/output
 
   DELIM
 
     APOSTROPHE,  the delimiter mode in effect for a connection for
-    QUOTE,       formatted input/output.
-    NONE   
+                 formatted input/output.
+    QUOTE,
+    NONE
 
     UNDEFINED  no connection or the connection is not for formatted
                input/output
@@ -221,7 +226,7 @@
 
    The value of the expression specified in the ID= specifier shall be
    the identifier of a pending data transfer operation for the specified
-   unit. This specifier interacts with the PENDING= specifier.
+   unit. This specifier interacts with the PENDING= specifier (9.10.2.21).
 
   NAME
 
@@ -278,7 +283,7 @@
    YES,       corresponding to the pad mode in effect for a connection.
    NO
 
-   UNDEFINED  
+   UNDEFINED
 
    If there is no connection or if the connection is not for
    formatted input/output,
@@ -476,104 +481,130 @@ Sample program:
 ```fortran
 program demo_inquire
 implicit none
-integer :: lun=40
-integer :: iostat
-   write(*,*)'is it open or predefined?'
-   call print_inquire(lun,'')
-   write(*,*)'what are the defaults?'
-   open(unit=lun)
-   call print_inquire(lun,'')
-   close(unit=lun,status='delete',iostat=iostat)
+character(len=4096)  :: filename
+character(len=20)    :: mode
+integer              :: ios
+character(len=256)   :: message
+integer              :: lun
+call print_inquire(lun,'')
 contains
-subroutine print_inquire(lun_in,filename) 
+subroutine print_inquire(lun_in,namein_in)
 
-! @(#) print_inquire(3f) print INQUIRE of file by name/number
+!@(#) print_inquire(3f) INQUIRE a file by name/number and print results
 
-integer,intent(in),optional           ::  lun_in
-character(len=*),intent(in),optional  ::  filename
-integer                               ::  iostat
-character(len=256)                    ::  message
-character(len=:),allocatable          ::  filename_ 
-integer                               ::  lun
+! if unit >= 0 then query by unit number, else by name
+integer,intent(in),optional             :: lun_in
+character(len=*),intent(in),optional    :: namein_in
+
+integer                        :: ios
+character(len=256)             :: message
+character(len=:),allocatable   :: namein
+integer                        :: lun
+
 ! STATUS=NEW|REPLACE|OLD|SCRATCH|UNKNOWN
-! SEQUENTIAL | DIRECT | STREAM | UNDEFINED
-character(len=20)  ::  access        ;  namelist/inquire/access  
-character(len=20)  ::  asynchronous  ;  namelist/inquire/asynchronous                                    
-character(len=20)  ::  blank         ;  namelist/inquire/blank                                           
-character(len=20)  ::  decimal       ;  namelist/inquire/decimal                                         
-character(len=20)  ::  delim         ;  namelist/inquire/delim                                           
-character(len=20)  ::  direct        ;  namelist/inquire/direct                                          
-character(len=20)  ::  encoding      ;  namelist/inquire/encoding                                        
-!  FORMATTED   |  UNFORMATTED     
-character(len=20)  ::  form          ;  namelist/inquire/form         
-character(len=20)  ::  formatted     ;  namelist/inquire/formatted                                       
-character(len=20)  ::  unformatted   ;  namelist/inquire/unformatted                                     
-character(len=20)  ::  name          ;  namelist/inquire/name                                            
-character(len=20)  ::  pad           ;  namelist/inquire/pad                                             
-!  ASIS        |  REWIND       |  APPEND
-character(len=20)  ::  position      ;  namelist/inquire/position 
-!  READ        |  WRITE        |  READWRITE
-character(len=20)  ::  action        ;  namelist/inquire/action   
-character(len=20)  ::  read          ;  namelist/inquire/read                                            
-character(len=20)  ::  readwrite     ;  namelist/inquire/readwrite                                       
-character(len=20)  ::  write         ;  namelist/inquire/write                                           
-character(len=20)  ::  round         ;  namelist/inquire/round                                           
-character(len=20)  ::  sequential    ;  namelist/inquire/sequential                                      
-character(len=20)  ::  sign          ;  namelist/inquire/sign                                            
-character(len=20)  ::  stream        ;  namelist/inquire/stream                                          
-integer            ::  id            ;  namelist/inquire/id                                              
-integer            ::  nextrec       ;  namelist/inquire/nextrec                                         
-integer            ::  number        ;  namelist/inquire/number                                          
-integer            ::  pos           ;  namelist/inquire/pos                                             
-integer            ::  recl          ;  namelist/inquire/recl                                            
-integer            ::  size          ;  namelist/inquire/size                                            
-logical            ::  exist         ;  namelist/inquire/exist                                           
-logical            ::  named         ;  namelist/inquire/named                                           
-logical            ::  opened        ;  namelist/inquire/opened                                          
-logical            ::  pending       ;  namelist/inquire/pending                                         
 
-   if(present(filename))then
-      filename_ =filename
+! SEQUENTIAL | DIRECT | STREAM
+character(len=20) :: access         ; namelist/inquire/access
+
+! FORMATTED | UNFORMATTED
+character(len=20) :: form           ; namelist/inquire/form
+
+! ASIS | REWIND | APPEND
+character(len=20) :: position       ; namelist/inquire/position
+
+! READ | WRITE | READWRITE
+character(len=20) :: action         ; namelist/inquire/action
+
+character(len=20) :: asynchronous   ; namelist/inquire/asynchronous
+character(len=20) :: blank          ; namelist/inquire/blank
+character(len=20) :: decimal        ; namelist/inquire/decimal
+character(len=20) :: delim          ; namelist/inquire/delim
+character(len=20) :: direct         ; namelist/inquire/direct
+character(len=20) :: encoding       ; namelist/inquire/encoding
+character(len=20) :: formatted      ; namelist/inquire/formatted
+character(len=20) :: name           ; namelist/inquire/name
+character(len=20) :: pad            ; namelist/inquire/pad
+character(len=20) :: read           ; namelist/inquire/read
+character(len=20) :: readwrite      ; namelist/inquire/readwrite
+character(len=20) :: round          ; namelist/inquire/round
+character(len=20) :: sequential     ; namelist/inquire/sequential
+character(len=20) :: sign           ; namelist/inquire/sign
+character(len=20) :: stream         ; namelist/inquire/stream
+character(len=20) :: unformatted    ; namelist/inquire/unformatted
+character(len=20) :: write          ; namelist/inquire/write
+integer           :: id             ; namelist/inquire/id
+integer           :: nextrec        ; namelist/inquire/nextrec
+integer           :: number         ; namelist/inquire/number
+integer           :: pos            ; namelist/inquire/pos
+integer           :: recl           ; namelist/inquire/recl
+integer           :: size           ; namelist/inquire/size
+logical           :: exist          ; namelist/inquire/exist
+logical           :: named          ; namelist/inquire/named
+logical           :: opened         ; namelist/inquire/opened
+logical           :: pending        ; namelist/inquire/pending
+
+   if(present(namein_in))then
+      namein=namein_in
    else
-      filename_ =''
+      namein=''
    endif
-   lun=merge(lun_in,-1,present(lun_in))
-   ! exist, opened, and named always become defined 
-   ! unless an error condition occurs.
-   if(filename_  == ''.and.lun /= -1)then
-     write(*,*)'*print_inquire* checking unit',lun
-     inquire(unit=lun,recl=recl,nextrec=nextrec,pos=pos,size=size,      &
-     & position=position,name=name,form=form,formatted=formatted,       &
-     & unformatted=unformatted,access=access,sequential=sequential,     &
-     & direct=direct,stream=stream,action=action,read=read,write=write, &
-     & readwrite=readwrite,sign=sign,round=round,blank=blank,           &
-     & decimal=decimal,delim=delim,encoding=encoding,pad=pad,           &
-     & named=named,opened=opened,exist=exist,number=number,             &
-!bug & pending=pending,                                                 & 
-     & asynchronous=asynchronous,                                       &
-     & iostat=iostat,err=999,iomsg=message)
-   elseif(filename_  /= '')then
-     write(*,*)'*print_inquire* checking file:'//filename_ 
-     inquire(file=filename_ ,recl=recl,nextrec=nextrec,pos=pos,         &
-     & size=size,position=position,name=name,                           &
-     & form=form,formatted=formatted,unformatted=unformatted,           &
-     & access=access,sequential=sequential,direct=direct,stream=stream, &
-     & action=action,read=read,write=write,readwrite=readwrite,         &
-     & sign=sign,round=round,blank=blank,decimal=decimal,delim=delim,   &
-     & encoding=encoding,pad=pad,named=named,opened=opened,exist=exist, &
-     & number=number,pending=pending,asynchronous=asynchronous,         &
-     & iostat=iostat,err=999,iomsg=message)
+   if(present(lun_in))then
+      lun=lun_in
    else
-      write(*,*)'*print_inquire* must specify either filename or unit number'
+      lun=-1
+   endif
+   ! exist, opened, and named always become defined
+   ! unless an error condition occurs.
+   !!write(*,*)'LUN=',lun,' FILENAME=',namein
+   name=''
+   if(namein == ''.and.lun /= -1)then
+      write(*,*) '*print_inquire* checking unit',lun
+      inquire(unit=lun,                                          &
+      & recl=recl,nextrec=nextrec,pos=pos,size=size,             &
+      & position=position,                                       &
+      & name=name,                                               &
+      & form=form,formatted=formatted,unformatted=unformatted,   &
+      & access=access,sequential=sequential,direct=direct,       &
+      & stream=stream,                                           &
+      & action=action,read=read,write=write,readwrite=readwrite, &
+      & sign=sign,                                               &
+      & round=round,                                             &
+      & blank=blank,decimal=decimal,delim=delim,                 &
+      & encoding=encoding,pad=pad,                               &
+      & named=named,opened=opened,exist=exist,number=number,     &
+      & pending=pending,asynchronous=asynchronous,               &
+      & iostat=ios,err=999,iomsg=message)
+   elseif(namein /= '')then
+      write(*,*) '*print_inquire* checking file:'//namein
+      inquire(file=namein,                                       &
+      & recl=recl,nextrec=nextrec,pos=pos,size=size,             &
+      & position=position,                                       &
+      & name=name,                                               &
+      & form=form,formatted=formatted,unformatted=unformatted,   &
+      & access=access,sequential=sequential,direct=direct,       &
+      & stream=stream,                                           &
+      & action=action,read=read,write=write,readwrite=readwrite, &
+      & sign=sign,                                               &
+      & round=round,                                             &
+      & blank=blank,decimal=decimal,delim=delim,                 &
+      & encoding=encoding,pad=pad,                               &
+      & named=named,opened=opened,exist=exist,number=number,     &
+      & pending=pending,asynchronous=asynchronous,               &
+      & iostat=ios,err=999,iomsg=message)
+      if(name == '')name=namein
+   else
+      write(*,*) &
+      &'*print_inquire* must specify either filename or unit number'
    endif
    write(*,nml=inquire,delim='none')
    return
+
 999   continue
    write(*,*)'*print_inquire* bad inquire'
-!  If an error condition occurs during execution of an INQUIRE  statement,
-!  all of the inquiry identifiers except iostat become undefined.
-   write(*,*) '*print_inquire* inquire call failed,iostat=',iostat, &
-   & 'message=',message
+!  If an error condition occurs during execution of an INQUIRE statement,
+!  all of the inquiry identifiers except ios become undefined.
+   write(*,*) &
+   &'*print_inquire* inquire call failed,iostat=',ios,'message=',message
 end subroutine print_inquire
 end program demo_inquire
 ```

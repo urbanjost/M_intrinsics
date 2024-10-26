@@ -1,6 +1,5 @@
-      program demo_atan
-      use, intrinsic :: iso_fortran_env, only : real_kinds, &
-       & real32, real64, real128
+      program demo_atand
+      use, intrinsic :: iso_fortran_env, only : real32, real64, real128
       implicit none
       character(len=*),parameter :: all='(*(g0,1x))'
       real(kind=real64),parameter :: &
@@ -14,4 +13,4 @@
           print all, atand(-2.0d0, 2.0d0),atand(-2.0d0, 2.0d0)/Deg_Per_Rad
           print all, atand(-2.0d0,-2.0d0),atand(-2.0d0,-2.0d0)/Deg_Per_Rad
 
-      end program demo_atan
+      end program demo_atand

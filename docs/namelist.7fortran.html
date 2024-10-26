@@ -50,6 +50,7 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 <CENTER>
 <H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>namelist (7fortran)</NOBR><HR></H1>
 </CENTER>
+<P>
 <A name=0>
 
      <H3>NAME</H3>
@@ -141,20 +142,46 @@ writes, like list-directed output
 <P>
 </PRE>
 Input for a namelist input statement consists of
-<P>
+<BLOCKQUOTE>
+<TABLE cellpadding=3><!-- tsb: Input for a namelist input statement consists of
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=4%>
+1.
+</TD><TD>
+optional blanks and namelist comments,
+</TD></TR>
+<TR valign=top><TD width=4%>
+2.
+</TD><TD>
+the character & followed immediately by the namelist-group-name
+as specified in the NAMELIST statement,
+</TD></TR>
+<TR valign=top><TD width=4%>
+3.
+</TD><TD>
+one or more blanks,
+</TD></TR>
+<TR valign=top><TD width=4%>
+4.
+</TD><TD>
+a sequence of zero or more name-value subsequences separated by
+value separators, and
+</TD></TR>
+<TR valign=top><TD width=4%>
+5.
+</TD><TD>
+a slash to terminate the namelist input.
+</TD></TR>
+<TR></TR></TABLE><!-- .nf -->
 <PRE>
-      1) optional blanks and namelist comments,
-      2) the character & followed immediately by the namelist-group-name as specified in the NAMELIST
-         statement,
-      3) one or more blanks,
-      4) a sequence of zero or more name-value subsequences separated by value separators, and
-      5) a slash to terminate the namelist input.
-<P>
-         A slash encountered in a namelist input record causes the input statement to terminate. A slash cannot be
-         used to separate two values in a namelist input statement.
+        A slash encountered in a namelist input record causes the input
+        statement to terminate. A slash cannot be used to separate two
+        values in a namelist input statement.
 <P>
 </PRE>
 A group name or object name is without regard to case.
+</BLOCKQUOTE>
 </BLOCKQUOTE>
 <A name=3>
 
@@ -447,16 +474,22 @@ Termination of an input/output data transfer statement occurs when
 </TD></TR>
 <TR></TR></TABLE><!-- .nf -->
 <PRE>
-         format processing encounters a colon or data edit descriptor and there are no remaining elements in the
-         input-item-list or output-item-list,
-         unformatted or list-directed data transfer exhausts the input-item-list or output-item-list,
-         namelist output exhausts the namelist-group-object-list,
-         an error condition occurs,
-         an end-of-file condition occurs,
+    format processing encounters a colon or data edit descriptor and
+    there are no remaining elements in the input-item-list or
+    output-item-list,
 <P>
-         a slash (/) is encountered as a value separator (10.10, 10.11) in the record being read during list-directed
-         or namelist input, or
-         an end-of-record condition occurs during execution of a nonadvancing input statement (9.11).
+    unformatted or list-directed data transfer exhausts the
+    input-item-list or output-item-list, namelist output exhausts the
+    namelist-group-object-list,
+<P>
+    an error condition occurs,
+<P>
+    an end-of-file condition occurs,
+<P>
+    a slash (/) is encountered as a value separator (10.10, 10.11) in
+    the record being read during list-directed or namelist input, or an
+    end-of-record condition occurs during execution of a nonadvancing
+    input statement (9.11).
 <P>
 </PRE>
 <TABLE cellpadding=3>
@@ -628,16 +661,13 @@ not exceed the number of list items in the expanded sequence, but
 may be less; in the latter case, the effect is as if sufficient null
 values had been appended to match any remaining list items in the
 expanded sequence.
-</TD></TR>
-<TR></TR></TABLE><!-- .nf -->
-<PRE>
-         NOTE 10.35
-         For example, if the name in the input record is the name of an integer array of size 100, at most 100 values,
-         each of which is either a digit string or a null value, may follow the equals; these values would then be
-         assigned to the elements of the array in array element order.
 <P>
-</PRE>
-<TABLE cellpadding=3>
+NOTE 10.35 For example, if the name in the input record is the name
+of an integer array of size 100, at most 100 values, each of which
+is either a digit string or a null value, may follow the equals;
+these values would then be assigned to the elements of the array in
+array element order.
+</TD></TR>
 <TR valign=top><TD width=4%>
 3.
 </TD><TD>
@@ -749,17 +779,14 @@ The end of the record does not cause a blank or any other character
 to become part of the sequence. The sequence may be continued on as
 many records as needed. The characters blank, comma, semicolon, and
 slash may appear in such character sequences.
-</TD></TR>
-<TR></TR></TABLE><!-- .nf -->
-<PRE>
-           NOTE 10.36
-           A character sequence corresponding to a namelist input item of character type shall be delimited either with
-           apostrophes or with quotes. The delimiter is required to avoid ambiguity between undelimited character
-           sequences and object names. The value of the DELIM= specifier, if any, in the OPEN statement for an
-           external file is ignored during namelist input (9.5.6.8).
 <P>
-</PRE>
-<TABLE cellpadding=3>
+NOTE 10.36 A character sequence corresponding to a namelist input
+item of character type shall be delimited either with apostrophes or
+with quotes. The delimiter is required to avoid ambiguity between
+undelimited character sequences and object names. The value of the
+DELIM= specifier, if any, in the OPEN statement for an external file
+is ignored during namelist input (9.5.6.8).
+</TD></TR>
 <TR valign=top><TD width=4%>
 13.
 </TD><TD>
@@ -784,10 +811,13 @@ A null value is specified by
 </TD></TR>
 <TR></TR></TABLE><!-- .nf -->
 <PRE>
-           the r * form,
-           blanks between two consecutive nonblank value separators following an equals,
-           zero or more blanks preceding the first value separator and following an equals, or
-           two consecutive nonblank value separators.
+    the r * form,
+<P>
+    blanks between two consecutive nonblank value separators following
+    an equals,
+<P>
+    zero or more blanks preceding the first value separator and
+    following an equals, or two consecutive nonblank value separators.
 <P>
 </PRE>
 <TABLE cellpadding=3>
@@ -845,28 +875,25 @@ the processor-dependent character set. The comment is ignored. A
 slash within the namelist comment does not terminate execution of
 the namelist input statement. Namelist comments are not allowed in
 stream input because comments depend on record structure.
-</TD></TR>
-<TR></TR></TABLE><!-- .nf -->
-<PRE>
-         NOTE 10.38
-         Namelist input example:
 <P>
-            INTEGER I; REAL X (8); CHARACTER (11) P; COMPLEX Z;
-            LOGICAL :: G
-            NAMELIST / TODAY / G, I, P, Z, X
-            READ (*, NML = TODAY)
+NOTE 10.38 Namelist input example:
+<P>
+<PRE>
+       INTEGER I; REAL X (8); CHARACTER (11) P; COMPLEX Z;
+       LOGICAL :: G
+       NAMELIST / TODAY / G, I, P, Z, X
+       READ (*, NML = TODAY)
 <P>
 </PRE>
 The input data records are:
 <P>
 <PRE>
-            &TODAY I = 12345, X(1) = 12345, X(3:4) = 2*1.5, I=6, ! This is a comment.
-            P = &#146;&#146;ISN&#146;T_BOB&#146;S&#146;&#146;, Z = (123,0)/
+       &TODAY I = 12345, X(1) = 12345, X(3:4) = 2*1.5,
+        I=6, ! This is a comment.
+        P = &#146;&#146;ISN&#146;T_BOB&#146;S&#146;&#146;, Z = (123,0)/
 <P>
-</PRE>
-The results stored are:
+        The results stored are:
 <P>
-<PRE>
                     Variable                         Value
                     I                                6
                     X (1)                            12345.0
@@ -880,9 +907,7 @@ The results stored are:
 <P>
 </PRE>
 10.11.4 Namelist output 10.11.4.1 Form of namelist output
-<TABLE cellpadding=3><!-- tsb: 10.11.4 Namelist output 10.11.4.1 Form of namelist output
- -->
-<TR></TR><TR></TR>
+</TD></TR>
 <TR valign=top><TD width=4%>
 1.
 </TD><TD>
@@ -906,14 +931,11 @@ The processor may begin new records as necessary. However, except
 for complex constants and character values, the end of a record
 shall not occur within a constant, character value, or name, and
 blanks shall not appear within a constant, character value, or name.
-</TD></TR>
-<TR></TR></TABLE><!-- .nf -->
-<PRE>
-         NOTE 10.39
-         The length of the output records is not specified exactly and may be processor dependent.
 <P>
-</PRE>
-10.11.4.2 Namelist output editing
+NOTE 10.39 The length of the output records is not specified exactly
+and may be processor dependent.
+</TD></TR>
+<TR></TR></TABLE>10.11.4.2 Namelist output editing
 <TABLE cellpadding=3><!-- tsb: 10.11.4.2 Namelist output editing
  -->
 <TR></TR><TR></TR>
@@ -922,15 +944,12 @@ blanks shall not appear within a constant, character value, or name.
 </TD><TD>
 Values in namelist output records are edited as for list-directed
 output (10.10.4).
-</TD></TR>
-<TR></TR></TABLE><!-- .nf -->
-<PRE>
-         NOTE 10.40
-         Namelist output records produced with a DELIM= specifier with a value of NONE and which contain a
-         character sequence might not be acceptable as namelist input records.
 <P>
-</PRE>
-10.11.4.3 Namelist output records
+NOTE 10.40 Namelist output records produced with a DELIM= specifier
+with a value of NONE and which contain a character sequence might
+not be acceptable as namelist input records.
+</TD></TR>
+<TR></TR></TABLE>10.11.4.3 Namelist output records
 <TABLE cellpadding=3><!-- tsb: 10.11.4.3 Namelist output records
  -->
 <TR></TR><TR></TR>
@@ -972,7 +991,7 @@ sequences, each output record begins with a blank character.
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>namelist (7fortran)</TD> <TD align=right width=33%><I>September 07, 2024</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 7e94b25c-458c-4532-8d87-3e241819b747 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>Nemo Release 3.1</I></TD> <TD width=33% align=center>namelist (7fortran)</TD> <TD align=right width=33%><I>October 25, 2024</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from 465719fe-bce0-42ea-8b6f-c569e6318d39 using man macros.</FONT>
 <br><br><center><img src="images/namelist.7fortran.gif"></center>
 </div>
 </div>

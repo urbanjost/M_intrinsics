@@ -2,7 +2,7 @@
 <head> 
 <title> </title>
 <style> 
-px {font-family: "Lucida Console", Monaco }
+px {font-family: "Lucida Console", Monaco, monospace }
 p { font-size:100%; line-height:1.1em; }
 body {xfont-style: sans-serif}
 body {
@@ -41,7 +41,10 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </style> 
 </head>
 <BODY bgcolor=#F0F0F0 text=#000000 link=#0000ff vlink=#C000C0 alink=#ff0000><A NAME=top></A>
+<!--
 <h5><a href="index.html">[UP]</a></h5>
+<button type="button" onclick="javascript:history.back()">Back</button>
+-->
 <div id="Container">
 <div id="Content">
 <CENTER>
@@ -53,7 +56,7 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 
 </A>
 <BLOCKQUOTE>
-<B>fpm-man</B>(1f) - [DEVELOPER] output descriptions of Fortran intrinsics
+fman(1f) - [DEVELOPER] output descriptions of Fortran intrinsics
 (LICENSE:PD)
 <P>
 </BLOCKQUOTE>
@@ -62,18 +65,19 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 <A HREF=#1>Synopsis</A><BR>
 <A HREF=#2>Description</A><BR>
 <A HREF=#3>Options</A><BR>
-<A HREF=#4>Examples</A><BR>
+<A HREF=#4>Environment</A><BR>
+<A HREF=#5>Examples</A><BR>
 </BLOCKQUOTE>
-<A name=5>
+<A name=6>
 
      <H3>SYNOPSIS</H3>
 
 </A>
 <BLOCKQUOTE>
-fpm-man <B>NAME</B>(<I>s</I>) [[-ignorecase][-<B>-regex</B> Regular_Expression]]|[-topic_only]
-[-<B>-color</B>][-<B>-demo</B>]
+fman NAME(s) [[-ignorecase][-<B>-regex</B> Regular_Expression]]|[-topic_only]
+[-<B>-color</B>][-<B>-demo</B>][-lines LINES_PER_AGE]
 <P>
-fpm-man [ <B>--help</B>| <B>--version</B>]
+fman [ <B>--help</B>| <B>--version</B>]
 </BLOCKQUOTE>
 <A name=2>
 
@@ -81,9 +85,9 @@ fpm-man [ <B>--help</B>| <B>--version</B>]
 
 </A>
 <BLOCKQUOTE>
-<B>fpm-man</B>(1) prints descriptions of Fortran intrinsics as simple flat text.
+fman(1) prints descriptions of Fortran intrinsics as simple flat text.
 <P>
-The text is formatted in the <B>txt2man</B>(1) markdown language so one can easily
+The text is formatted in the txt2man(1) markdown language so one can easily
 generate man-pages on ULS (Unix-Like Systems).
 </BLOCKQUOTE>
 <A name=3>
@@ -94,10 +98,10 @@ generate man-pages on ULS (Unix-Like Systems).
 <BLOCKQUOTE>
 <TABLE cellpadding=3>
 <TR valign=top><TD colspan=2>
-<B></B><B>TOPIC</B>(<I>s</I>) </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<B>TOPIC(s)</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
 A list of Fortran intrinsic names or the special names
 "toc" and "manual" (which generate a table of contents
-and the entire set of documents respecively).
+and the entire set of documents respectively).
 The default is "toc" and to ignore case.
 </TD></TR>
 <TR valign=top><TD colspan=2>
@@ -106,7 +110,7 @@ Search all output per the provided Regular Expression.
 Output is prefixed with the topic it was found in.
 </TD></TR>
 <TR valign=top><TD colspan=2>
-<B></B><B>--itopic_only</B>,<B>-t</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+<B></B><B>--topic_only</B>,<B>-t</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
 Only show topic names. Other switches are ignored.
 </TD></TR>
 <TR valign=top><TD colspan=2>
@@ -116,14 +120,20 @@ Ignore case when searching for a Regular Expression.
 <TR valign=top><TD colspan=2>
 <B></B><B>--demo</B>,<B>-d</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
 extract first demo program found for a topic (starting with
-"program demo_" and ending with "end program demo_").
+"program demo_*" and ending with "end program demo_*").
 </TD></TR>
 <TR valign=top><TD colspan=2>
 <B></B><B>--color</B> </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
 Use ANSI in-line escape sequences to display the text in
 set colors. Does not work with all terminal emulators or
-terminals. Must use the <B>-r</B> switch with <B>less</B>(1) for <B>less</B>(1)
+terminals. Must use the <B>-r</B> switch with less(1) for less(1)
 to display colors.
+</TD></TR>
+<TR valign=top><TD colspan=2>
+<B></B><B>--lines</B> N,<B>-l</B> N </TD></TR><TR valign=top><TD width=6%>&nbsp;</TD><TD>
+pause every N lines. In page mode commands may be entered
+at the prompt. Enter "h" to display available commands.
+Set to zero if using fman(1) in a pipe or redirection.
 </TD></TR>
 <TR valign=top><TD width=6% nowrap>
 <B></B><B>--help</B> </TD><TD valign=bottom>
@@ -136,6 +146,25 @@ Output version information and exit
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=4>
 
+     <H3>ENVIRONMENT</H3>
+
+</A>
+<BLOCKQUOTE>
+Allows specifying the strings used by the M_attr module to select colors.
+FMAN_COLORS="bg=&#146;&lt;E&gt;&#146;,fg=&#146;&lt;w&gt;&#146;,prg=&#146;&lt;c&gt;&#146;,
+head=&#146;&lt;y&gt;&lt;/bo&gt;&#146;,head_=&#146;&lt;/bo&gt;&#146;,fixed=&#146;&lt;w&gt;&#146;,
+output=&#146;&lt;y&gt;&#146;,output_=&#146;&lt;/bo&gt;&#146;"
+</BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; LINES</H4>
+</A>
+<BLOCKQUOTE>
+use "export LINES" from the bash shell to use the automatically generated
+value. Set to a numeric value it activates paging of the output.
+</BLOCKQUOTE>
+<A name=5>
+
      <H3>EXAMPLES</H3>
 
 </A>
@@ -143,24 +172,36 @@ Output version information and exit
 Sample commands
 <P>
 <PRE>
-   fpm-man                 # list table of contents
-   fpm-man -e character    # check TOC for string. try "trigo","size","complex"
-   fpm-man tan|less        # display a description of tan(3f)
+   fman tan|less            # display a description of tan(3f)
+   fman                     # list table of contents
+   fman manual&gt;fortran.txt  # create a copy of all descriptions
+   fman -e character        # check TOC for string. try "trigo","size","complex"
 <P>
-   fpm-man --regex &#146;&#146;character&#146;&#146; # look for string in the TOC ignoring case
-<P>
-   fpm-man manual&gt;fortran.txt    # create a copy of all descriptions
+   fman --regex &#146;character&#146;   # look for string in the TOC ignoring case
 <P>
    # list the topic "scan" if found and lines containing "scan" from the entire
    # manual, prefixing the lines with the section name, while ignoring case.
-   fpm-man -e scan -i manual
+   fman -e scan -i manual
 <P>
-   fpm-man -d verify &gt;demo_verify.f90 # get sample program to try VERIFY(3f).
+   fman -d verify &gt;demo_verify.f90 # get demo program to try VERIFY(3f).
+<P>
+   # change background to blue, page every 30 lines
+   env FMAN_COLORS="bg=&#146;&lt;B&gt;&#146;" fman --color --lines 30 abs
+<P>
+   # Interactive mode
+   export LINES # in bash(1) sense terminal size
+   fman --color # bring up Table of Contents
+   T cos        # load description of intrinsic "cos"
+   T verify     # load description of intrinsic "verify"
+   T            # reload TOC (Table of Contents)
+   /trig        # move forward to a line with "trig" in it
+   #            # toggle on line numbers
+   h            # display crib sheet of commands
 <P>
 </PRE>
 </BLOCKQUOTE>
 <P><HR>
-<TABLE width=100%><TR> <TD width=33%><I>fpm-man-1.0.2,</I></TD> <TD width=33% align=center>fpm-man (1)</TD> <TD align=right width=33%><I>July 05, 2022</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from man/man1/fpm-man.1 using man macros.</FONT>
+<TABLE width=100%><TR> <TD width=33%><I>fpm-man-2.0.0,</I></TD> <TD width=33% align=center>fpm-man (1)</TD> <TD align=right width=33%><I>October 25, 2024</I></TD> </TR></TABLE><FONT SIZE=-1>Generated by <A HREF="http://www.squarebox.co.uk/download/manServer.shtml">manServer 1.08</A> from man/man1/fpm-man.1 using man macros.</FONT>
 <br><br><center><img src="images/fpm-man.1.gif"></center>
 </div>
 </div>

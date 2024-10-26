@@ -7,12 +7,12 @@ FULLSRC3 := $(wildcard ../txt/*3fortran.man)
 FULLSRC5 := $(wildcard ../txt/*5fortran.man)
 FULLSRC7 := $(wildcard ../txt/*7fortran.man)
 SRC3=$(notdir $(FULLSRC3))
-SRC7=$(notdir $(FULLSRC7))
 SRC5=$(notdir $(FULLSRC5))
+SRC7=$(notdir $(FULLSRC7))
 VPATH=../txt
 VPATH=../man/man3
-VPATH=../man/man7
 VPATH=../man/man5
+VPATH=../man/man7
 
 FULLMAN3=$(patsubst %3fortran.man,../man/man3/%3fortran,$(SRC3))
 FULLHTML3=$(patsubst %3fortran.man,%3fortran.html,$(SRC3))
@@ -23,10 +23,10 @@ FULLHTML5=$(patsubst %5fortran.man,%5fortran.html,$(SRC5))
 FULLMAN7=$(patsubst %7fortran.man,../man/man7/%7fortran,$(SRC7))
 FULLHTML7=$(patsubst %7fortran.man,%7fortran.html,$(SRC7))
 
-FULLMANS=$(FULLMAN3) $(FULLMAN7) $(FULLMAN5)
+FULLMANS=$(FULLMAN3) $(FULLMAN5) $(FULLMAN7)
 
 .SUFFIXES:
-.SUFFIXES: $(SUFFIXES) .3fortran.man .3fortran .html .7fortran.man .7fortran .5fortran.man .5fortran
+.SUFFIXES: $(SUFFIXES) .3fortran.man .3fortran .html .5fortran.man .5fortran .7fortran.man .7fortran
 
 .phony : roff
 
@@ -87,7 +87,9 @@ demos:
 clean:
 	rm -f $(FULLMANS) 
 	cd ../docs &&rm -f $(FULLHTML3) $(FULLHTML7) $(FULLHTML5)
-	rm -f ../docs/manpages.zip ../docs/manpages.tgz
+	rm -f ../docs/manpages3.zip ../docs/manpages3.tgz
+	rm -f ../docs/manpages5.zip ../docs/manpages5.tgz
+	rm -f ../docs/manpages7.zip ../docs/manpages7.tgz
 	cd ../example/ && make clean
 
 .PHONY : vi
@@ -128,9 +130,14 @@ ship:
 	mkdir -p ../man/man3
 	cd ../man/man3;\
 	   gzip *.3fortran;\
-	   zip -r ../../docs/manpages.zip *gz;\
-	   tar cvfz ../../docs/manpages.tgz *gz;\
+	   zip -r ../../docs/manpages3.zip *gz;\
+	   tar cvfz ../../docs/manpages3.tgz *gz;\
 	   gunzip *.3fortran.gz
+	cd ../man/man5;\
+	   gzip *.5fortran;\
+	   zip -r ../../docs/manpages5.zip *gz;\
+	   tar cvfz ../../docs/manpages5.tgz *gz;\
+	   gunzip *.5fortran.gz
 	cd ../man/man7;\
 	   gzip *.7fortran;\
 	   zip -r ../../docs/manpages7.zip *gz;\

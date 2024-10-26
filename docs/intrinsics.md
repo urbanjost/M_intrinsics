@@ -68,22 +68,22 @@ Sample program:
 
 ```fortran
 program demo_abs
-implicit none
-integer,parameter :: dp=kind(0.0d0)
+   implicit none
+   integer,parameter :: dp=kind(0.0d0)
 
 ! some values to use with ABS(3)
-integer           :: i = -1
-real              :: x = -1.0
-complex           :: z = (-3.0,-4.0)
-doubleprecision   :: rr = -45.78_dp
+   integer           :: i = -1
+   real              :: x = -1.0
+   complex           :: z = (-3.0,-4.0)
+   doubleprecision   :: rr = -45.78_dp
 
 ! some formats for pretty-printing some information
-character(len=*),parameter :: &
-   frmt  =  '(1x,a15,1x," In: ",g0,            T51," Out: ",g0)', &
-   frmtc = '(1x,a15,1x," In: (",g0,",",g0,")",T51," Out: ",g0)',  &
-   gen   = '(*(g0,1x))'
+   character(len=*),parameter :: &
+      frmt  =  '(1x,a15,1x," In: ",g0,            T51," Out: ",g0)', &
+      frmtc = '(1x,a15,1x," In: (",g0,",",g0,")",T51," Out: ",g0)',  &
+      gen   = '(*(g0,1x))'
 
-  ! the basics
+   ! the basics
    print gen,  'basic usage:'
    ! any integer, real, or complex type
    write(*, frmt)  'integer         ',  i, abs(i)
@@ -91,79 +91,79 @@ character(len=*),parameter :: &
    write(*, frmt)  'doubleprecision ', rr, abs(rr)
    write(*, frmtc) 'complex         ',  z, abs(z)
 
-  ! elemental
+   ! elemental
    print gen, 'abs is elemental:', abs([20,  0,  -1,  -3,  100])
 
-  ! the returned value for complex input can be thought of as the
-  ! distance from the origin <0,0>
+   ! the returned value for complex input can be thought of as the
+   ! distance from the origin <0,0>
    print gen, 'distance of (', z, ') from zero is', abs( z )
 
-call DUSTY_CORNERS_1("beware of abs(-huge(0)-1)")
-call DUSTY_CORNERS_2("beware of losing precision using CMPLX(3)")
-call DUSTY_CORNERS_3("beware of overflow of complex values")
-call DUSTY_CORNERS_4("custom meaning for absolute value of COMPLEX")
+   call DUSTY_CORNERS_1("beware of abs(-huge(0)-1)")
+   call DUSTY_CORNERS_2("beware of losing precision using CMPLX(3)")
+   call DUSTY_CORNERS_3("beware of overflow of complex values")
+   call DUSTY_CORNERS_4("custom meaning for absolute value of COMPLEX")
 
 contains
 
-subroutine DUSTY_CORNERS_1(message)
-character(len=*),intent(in) :: message
+   subroutine DUSTY_CORNERS_1(message)
+      character(len=*),intent(in) :: message
 
-   ! A dusty corner is that abs(-huge(0)-1) of an integer would be
-   ! a representable negative value on most machines but result in a
-   ! positive value out of range.
+      ! A dusty corner is that abs(-huge(0)-1) of an integer would be
+      ! a representable negative value on most machines but result in a
+      ! positive value out of range.
 
-   print gen,  message
-   ! By definition:
-   !   You can take the absolute value of any value whose POSITIVE value
-   !   is representable with the same type and kind.
+      print gen,  message
+      ! By definition:
+      !   You can take the absolute value of any value whose POSITIVE value
+      !   is representable with the same type and kind.
 
-   print gen, 'abs range test : ', abs(huge(0)), abs(-huge(0))
-   print gen, 'abs range test : ', abs(huge(0.0)), abs(-huge(0.0))
-   print gen, 'abs range test : ', abs(tiny(0.0)), abs(-tiny(0.0))
+      print gen, 'abs range test : ', abs(huge(0)), abs(-huge(0))
+      print gen, 'abs range test : ', abs(huge(0.0)), abs(-huge(0.0))
+      print gen, 'abs range test : ', abs(tiny(0.0)), abs(-tiny(0.0))
 
-end subroutine DUSTY_CORNERS_1
+   end subroutine DUSTY_CORNERS_1
 
-subroutine DUSTY_CORNERS_2(message)
-character(len=*),intent(in) :: message
+   subroutine DUSTY_CORNERS_2(message)
+      character(len=*),intent(in) :: message
 
-   ! dusty corner: "kind=dp" is required or the value returned by
-   ! CMPLX() is a default real instead of double precision.
+      ! dusty corner: "kind=dp" is required or the value returned by
+      ! CMPLX() is a default real instead of double precision.
 
-   ! Working with complex values you often encounter the CMPLX(3)
-   ! function. CMPLX(3) defaults to returning a default REAL regardless
-   ! of input type. Not really a direct problem with ABS(2f) per-se,
-   ! but a common error when working with doubleprecision complex values
+      ! Working with complex values you often encounter the CMPLX(3)
+      ! function. CMPLX(3) defaults to returning a default REAL regardless
+      ! of input type. Not really a direct problem with ABS(2f) per-se,
+      ! but a common error when working with doubleprecision complex values
 
-   print gen,  message
-   print gen, 'real result versus doubleprecision result', &
-   & abs(cmplx(30.0_dp,40.0_dp)), &
-   & abs(cmplx(30.0_dp,40.0_dp,kind=dp))
+      print gen,  message
+      print gen, 'real result versus doubleprecision result', &
+      & abs(cmplx(30.0_dp,40.0_dp)), &
+      & abs(cmplx(30.0_dp,40.0_dp,kind=dp))
 
-end subroutine DUSTY_CORNERS_2
+   end subroutine DUSTY_CORNERS_2
 
-subroutine DUSTY_CORNERS_3(message)
-character(len=*),intent(in) :: message
-   print gen, message
+   subroutine DUSTY_CORNERS_3(message)
+      character(len=*),intent(in) :: message
+      print gen, message
 
-   ! this will probably cause an overflow error, or
-   !print gen,  abs(cmplx( huge(0.0), huge(0.0) ))
+      ! this will probably cause an overflow error, or
+      !print gen,  abs(cmplx( huge(0.0), huge(0.0) ))
 
-   print gen, 'because the biggest default real is',huge(0.0)
-   print gen, 'because returning magnitude of sqrt(x%re**2,x%im**2)'
+      print gen, 'because the biggest default real is',huge(0.0)
+      print gen, 'because returning magnitude of sqrt(x%re**2,x%im**2)'
 
-end subroutine DUSTY_CORNERS_3
+   end subroutine DUSTY_CORNERS_3
 
-subroutine DUSTY_CORNERS_4(message)
-character(len=*),intent(in) :: message
-   print gen, message
+   subroutine DUSTY_CORNERS_4(message)
+      character(len=*),intent(in) :: message
+      print gen, message
 
-   ! if you do not want the distance for a complex value you
-   ! might want something like returning a complex value with
-   ! both the imaginary and real parts. One way to do that is
+      ! if you do not want the distance for a complex value you
+      ! might want something like returning a complex value with
+      ! both the imaginary and real parts. One way to do that is
 
-   print gen, cmplx(abs(z%re),abs(z%im),kind=kind(z))
+      print gen, cmplx(abs(z%re),abs(z%im),kind=kind(z))
 
-end subroutine DUSTY_CORNERS_4
+   end subroutine DUSTY_CORNERS_4
 
 end program demo_abs
 ```
@@ -201,7 +201,8 @@ Results:
 
 ### **Name**
 
-**achar**(3) - \[CHARACTER:CONVERSION\] Returns a character in a specified position in the ASCII collating sequence
+**achar**(3) - \[CHARACTER:CONVERSION\] Returns a character in a specified
+position in the ASCII collating sequence
 
 ### **Synopsis**
 ```fortran
@@ -290,7 +291,7 @@ integer :: i
    write(*,'("octal       =",o0)')achar(i)
    write(*,'("hexadecimal =",z0)')achar(i)
 
-   write(*,'(8(i3,1x,a,1x),/)')(i,achar(i), i=32,126)
+   write(*,'(8(i3,1x,a,1x))')(i,achar(i), i=32,126)
 
    write(*,'(a)')upper('Mixed Case')
 contains
@@ -322,36 +323,25 @@ end function upper
 end program demo_achar
 ```
 Results:
-```
-   decimal     =65
-   character   =A
-   binary      =1000001
-   octal       =101
-   hexadecimal =41
-    32    33 !  34 "  35 #  36 $  37 %  38 &  39 '
-
-    40 (  41 )  42 *  43 +  44 ,  45 -  46 .  47 /
-
-    48 0  49 1  50 2  51 3  52 4  53 5  54 6  55 7
-
-    56 8  57 9  58 :  59 ;  60 <  61 =  62 >  63 ?
-
-    64 @  65 A  66 B  67 C  68 D  69 E  70 F  71 G
-
-    72 H  73 I  74 J  75 K  76 L  77 M  78 N  79 O
-
-    80 P  81 Q  82 R  83 S  84 T  85 U  86 V  87 W
-
-    88 X  89 Y  90 Z  91 [  92 \  93 ]  94 ^  95 _
-
-    96 `  97 a  98 b  99 c 100 d 101 e 102 f 103 g
-
-   104 h 105 i 106 j 107 k 108 l 109 m 110 n 111 o
-
-   112 p 113 q 114 r 115 s 116 t 117 u 118 v 119 w
-
-   120 x 121 y 122 z 123 { 124 | 125 } 126 ~
-   MIXED CASE
+```text
+ > decimal     =65
+ > character   =A
+ > binary      =1000001
+ > octal       =101
+ > hexadecimal =41
+ >  32    33 !  34 "  35 #  36 $  37 %  38 &  39 '
+ >  40 (  41 )  42 *  43 +  44 ,  45 -  46 .  47 /
+ >  48 0  49 1  50 2  51 3  52 4  53 5  54 6  55 7
+ >  56 8  57 9  58 :  59 ;  60 <  61 =  62 >  63 ?
+ >  64 @  65 A  66 B  67 C  68 D  69 E  70 F  71 G
+ >  72 H  73 I  74 J  75 K  76 L  77 M  78 N  79 O
+ >  80 P  81 Q  82 R  83 S  84 T  85 U  86 V  87 W
+ >  88 X  89 Y  90 Z  91 [  92 \  93 ]  94 ^  95 _
+ >  96 `  97 a  98 b  99 c 100 d 101 e 102 f 103 g
+ > 104 h 105 i 106 j 107 k 108 l 109 m 110 n 111 o
+ > 112 p 113 q 114 r 115 s 116 t 117 u 118 v 119 w
+ > 120 x 121 y 122 z 123 { 124 | 125 } 126 ~
+ > MIXED CASE
 ```
 ### **Standard**
 
@@ -415,7 +405,7 @@ Sample program:
 
 ```fortran
 program demo_acosd
-use, intrinsic :: iso_fortran_env, only : real_kinds,real32,real64,real128
+use, intrinsic :: iso_fortran_env, only : real32,real64,real128
 implicit none
 character(len=*),parameter :: all='(*(g0,1x))'
 real(kind=real64) :: x , d2r
@@ -502,7 +492,7 @@ Sample program:
 program demo_acosh
 use,intrinsic :: iso_fortran_env, only : dp=>real64,sp=>real32
 implicit none
-real(kind=dp), dimension(3) :: x = [ 1.0d0, 2.0d0, 3.0d0 ]
+real(kind=dp), dimension(3) :: x = [ 1.0_dp, 2.0_dp, 3.0_dp ]
    if( any(x.lt.1) )then
       write (*,*) ' warning: values < 1 are present'
    endif
@@ -511,7 +501,7 @@ end program demo_acosh
 ```
 Results:
 ```text
- 0.000000000000000E+000   1.31695789692482        1.76274717403909
+ >    0.0000000000000000 1.3169578969248166 1.7627471740390861
 ```
 ### **Standard**
 
@@ -567,7 +557,7 @@ Sample program:
 
 ```fortran
 program demo_acos
-use, intrinsic :: iso_fortran_env, only : real_kinds,real32,real64,real128
+use, intrinsic :: iso_fortran_env, only : real32,real64,real128
 implicit none
 character(len=*),parameter :: all='(*(g0,1x))'
 real(kind=real64) :: x , d2r
@@ -577,8 +567,8 @@ real(kind=real64) :: x , d2r
     print all,'acos(',x,') is ', acos(x)
 
    ! acos(-1) should be PI
-    print all,'for reference &
-    &PI ~= 3.14159265358979323846264338327950288419716939937510'
+    print all,'for reference', new_line('a'), &
+    &'PI ~= 3.14159265358979323846264338327950288419716939937510'
     write(*,*) acos(-1.0_real64)
     d2r=acos(-1.0_real64)/180.0_real64
     print all,'90 degrees is ', d2r*90.0_real64, ' radians'
@@ -594,15 +584,16 @@ end program demo_acos
 ```
 Results:
 ```text
- acos( 0.86599999999999999 ) is  0.52364958093182890
- for reference PI ~= 3.14159265358979323846264338327950288419716939937510
-    3.1415926535897931
- 90 degrees is  1.5707963267948966  radians
- elemental 3.14159274 2.09439516 1.57079637 1.04719758 0.00000000
-  complex            (3.14159274,-0.00000000)
-  complex             (2.23703575,1.06127501)
-  complex             (1.57079637,0.00000000)
-  complex            (0.00000000,-0.00000000)
+ > acos( 0.86599999999999999 ) is  0.52364958093182890
+ > for reference
+ >  PI ~= 3.14159265358979323846264338327950288419716939937510
+ >    3.1415926535897931
+ > 90 degrees is  1.5707963267948966  radians
+ > elemental 3.14159274 2.09439516 1.57079637 1.04719758 0.00000000
+ >  complex            (3.14159274,-0.00000000)
+ >  complex             (2.23703575,1.06127501)
+ >  complex             (1.57079637,0.00000000)
+ >  complex            (0.00000000,-0.00000000)
 ```
 ### **Standard**
 
@@ -667,7 +658,7 @@ Sample program:
 
 ```fortran
 program demo_acospi
-use, intrinsic :: iso_fortran_env, only : real_kinds,real32,real64,real128
+use, intrinsic :: iso_fortran_env, only : real32,real64,real128
 implicit none
 character(len=*),parameter :: all='(*(g0,1x))'
 real(kind=real64) :: x , d2r
@@ -693,6 +684,13 @@ end program demo_acospi
 ```
 Results:
 ```text
+ > acospi( 0.78539816339744828 ) is  0.21245823046654463
+ >    1.0000000000000000
+ > 90 degrees is  0.50000000000000000  radians
+ > elemental 1.00000000 0.666666687 0.500000000 0.333333343 0.00000000
+ >  -1.0   1.00000000
+ >   0.0  0.500000000
+ >   1.0   0.00000000
 ```
 ### **Standard**
 
@@ -778,13 +776,13 @@ end program demo_adjustl
 ```
 Results:
 ```text
-   original: [   sample string    ]
-   adjusted: [sample string       ]
-   trimmed:  [sample string]
-   substring:[sample string]
-   original:[    allocatable string   ]
-   adjusted:[allocatable string       ]
-   trimmed: [allocatable string]
+   > original: [   sample string    ]
+   > adjusted: [sample string       ]
+   > trimmed:  [sample string]
+   > substring:[sample string]
+   > original:[    allocatable string   ]
+   > adjusted:[allocatable string       ]
+   > trimmed: [allocatable string]
 ```
 ### **Standard**
 
@@ -865,14 +863,14 @@ end program demo_adjustr
 ```
 Results:
 ```text
-   12345678901234567890
-     sample string
-          sample string
-   12345678901234567890123456789012345678901234567890
-                                                first
-                                               second
-                                                third
-   12345678901234567890123456789012345678901234567890
+   > 12345678901234567890
+   >   sample string
+   >        sample string
+   > 12345678901234567890123456789012345678901234567890
+   >                                              first
+   >                                             second
+   >                                              third
+   > 12345678901234567890123456789012345678901234567890
 ```
 ### **Standard**
 
@@ -889,7 +887,7 @@ Fortran 95
 
 ### **Name**
 
-**aimag**(3) - \[TYPE:NUMERIC\] Imaginary part of complex number
+**aimag**(3) - \[TYPE:CONVERSION\] Imaginary part of complex number
 
 ### **Synopsis**
 ```fortran
@@ -935,8 +933,7 @@ Sample program:
 
 ```fortran
 program demo_aimag
-use, intrinsic :: iso_fortran_env, only : real_kinds, &
- & real32, real64, real128
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
 character(len=*),parameter :: g='(*(1x,g0))'
 complex              :: z4
@@ -961,15 +958,15 @@ end program demo_aimag
 ```
 Results:
 ```text
- value= (1.00000000,2.00000000)
- imaginary part= 2.00000000 or 2.00000000
- value= (3.0000000000000000,4.0000000000000000)
- imaginary part= 4.0000000000000000 or 4.0000000000000000
-
- (1.00000000,2.00000000) (0.500000000,1.00000000) (2.00000000,4.00000000)
- (-11.0000000,-2.00000000)
-
-   2.00000000       1.00000000       4.00000000      -2.00000000
+  > value= (1.00000000,2.00000000)
+  > imaginary part= 2.00000000 or 2.00000000
+  > value= (3.0000000000000000,4.0000000000000000)
+  > imaginary part= 4.0000000000000000 or 4.0000000000000000
+  >
+  > (1.00000000,2.00000000) (0.500000000,1.00000000) (2.00000000,4.00000000)
+  > (-11.0000000,-2.00000000)
+  >
+  >  2.00000000       1.00000000       4.00000000      -2.00000000
 ```
 ### **Standard**
 
@@ -1090,17 +1087,17 @@ end program demo_aint
 ```
 Results:
 ```text
- basics:
-  just chops off the fractional part
-  -2.000000      -2.000000
-  if |x| < 1 a positive zero is returned
-  0.0000000E+00  0.0000000E+00
-  input may be of any real kind
-  -4.00000000000000        4.00000000000000
- elemental:
-  -2.000000      -2.000000      -2.000000      -2.000000      -1.000000
-  -1.000000      0.0000000E+00  0.0000000E+00  0.0000000E+00   1.000000
-   1.000000       2.000000       2.000000       2.000000       2.000000
+ > basics:
+ >  just chops off the fractional part
+ >  -2.000000      -2.000000
+ >  if |x| < 1 a positive zero is returned
+ >  0.0000000E+00  0.0000000E+00
+ >  input may be of any real kind
+ >  -4.00000000000000        4.00000000000000
+ > elemental:
+ >  -2.000000      -2.000000      -2.000000      -2.000000      -1.000000
+ >  -1.000000      0.0000000E+00  0.0000000E+00  0.0000000E+00   1.000000
+ >   1.000000       2.000000       2.000000       2.000000       2.000000
 ```
 ### **Standard**
 
@@ -1797,7 +1794,7 @@ end program demo_asinh
 ```
 Results:
 ```text
-  -0.88137358701954305  0.0000000000000000  0.88137358701954305
+  >  -0.88137358701954305  0.0000000000000000  0.88137358701954305
 ```
 ### **Standard**
 
@@ -1899,9 +1896,9 @@ end program demo_asin
 ```
 Results:
 ```
-    angle of incline(radians) =    2.5002604899361139E-002
-    angle of incline(degrees) =    1.4325437375665075
-    percent grade=   2.5000000000000000
+ >  angle of incline(radians) =    2.5002604899361139E-002
+ >  angle of incline(degrees) =    1.4325437375665075
+ >  percent grade=   2.5000000000000000
 ```
 The percentage grade is the slope, written as a percent. To calculate
 the slope you divide the rise by the run. In the example the rise is
@@ -2158,7 +2155,16 @@ real, pointer :: ptr(:)
    & stop 'POINTER NOT ASSOCIATED'
    if (associated(ptr,tgt) .eqv. .false.) &
    & stop 'POINTER NOT ASSOCIATED TO TARGET'
+   if (associated(ptr) ) &
+   & print *, 'POINTER ASSOCIATED'
+   if (associated(ptr,tgt) ) &
+   & print *, 'POINTER ASSOCIATED TO TARGET'
 end program demo_associated
+```
+Results:
+```text
+ >  POINTER ASSOCIATED
+ >  POINTER ASSOCIATED TO TARGET
 ```
 ### **Standard**
 
@@ -2458,7 +2464,6 @@ complex :: c
     (-1.0, 1.0 ), & ! 135
     (-1.0, 0.0 ), & ! 180
     (-1.0,-1.0 ), & ! 225
-/bin/bash: pb0: command not found
     ( 0.0,-1.0 )]   ! 270
   do i=1,size(vals)
      call cartesian_to_polar(vals(i)%re, vals(i)%im, radius,ang)
@@ -2735,9 +2740,8 @@ atand(1.0) has the value 45.0 (approximately).
 Sample program:
 
 ```fortran
-program demo_atan
-use, intrinsic :: iso_fortran_env, only : real_kinds, &
- & real32, real64, real128
+program demo_atand
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
 character(len=*),parameter :: all='(*(g0,1x))'
 real(kind=real64),parameter :: &
@@ -2751,7 +2755,7 @@ real(kind=real64) :: x
     print all, atand(-2.0d0, 2.0d0),atand(-2.0d0, 2.0d0)/Deg_Per_Rad
     print all, atand(-2.0d0,-2.0d0),atand(-2.0d0,-2.0d0)/Deg_Per_Rad
 
-end program demo_atan
+end program demo_atand
 ```
 Results:
 ```text
@@ -2894,8 +2898,7 @@ Sample program:
 
 ```fortran
 program demo_atan
-use, intrinsic :: iso_fortran_env, only : real_kinds, &
- & real32, real64, real128
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
 character(len=*),parameter :: all='(*(g0,1x))'
 real(kind=real64),parameter :: &
@@ -2913,11 +2916,11 @@ end program demo_atan
 ```
 Results:
 ```text
-   1.235085437457879
-   .7853981633974483 45.00000000000000
-   2.356194490192345 135.0000000000000
-   -.7853981633974483 -45.00000000000000
-   -2.356194490192345 -135.0000000000000
+ > 1.235085437457879
+ > .7853981633974483 45.00000000000000
+ > 2.356194490192345 135.0000000000000
+ > -.7853981633974483 -45.00000000000000
+ > -2.356194490192345 -135.0000000000000
 ```
 ### **Standard**
 
@@ -3007,11 +3010,11 @@ end program demo_atanpi
 ```
 Results:
 ```text
-   1.235085437457879
-   .7853981633974483 45.00000000000000
-   2.356194490192345 135.0000000000000
-   -.7853981633974483 -45.00000000000000
-   -2.356194490192345 -135.0000000000000
+ > 0.39313990502447488
+ > 0.25000000000000000 45.000000000000000
+ > 0.75000000000000000 135.00000000000000
+ > -0.25000000000000000 -45.000000000000000
+ > -0.75000000000000000 -135.00000000000000
 ```
 ### **Standard**
 
@@ -3915,8 +3918,7 @@ Sample program:
 
 ```fortran
 program demo_bessel_j0
-use, intrinsic :: iso_fortran_env, only : real_kinds, &
-& real32, real64, real128
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
    implicit none
    real(kind=real64) :: x
    x = 0.0_real64
@@ -3927,7 +3929,7 @@ end program demo_bessel_j0
 Results:
 
 ```text
-      1.0000000000000000
+  > 1.0000000000000000
 ```
 ### **Standard**
 
@@ -3983,8 +3985,7 @@ The return value is of type _real_ and lies in the range
 Sample program:
 ```fortran
 program demo_bessel_j1
-use, intrinsic :: iso_fortran_env, only : real_kinds, &
- & real32, real64, real128
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
 real(kind=real64) :: x = 1.0_real64
    x = bessel_j1(x)
@@ -3993,7 +3994,7 @@ end program demo_bessel_j1
 ```
 Results:
 ```text
-     0.44005058574493350
+  > 0.44005058574493350
 ```
 ### **Standard**
 
@@ -4084,8 +4085,7 @@ Fortran 2008
 Sample program:
 ```fortran
 program demo_bessel_jn
-use, intrinsic :: iso_fortran_env, only : real_kinds, &
-   & real32, real64, real128
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
 real(kind=real64) :: x = 1.0_real64
     x = bessel_jn(5,x)
@@ -4095,7 +4095,7 @@ end program demo_bessel_jn
 Results:
 
 ```text
-      2.4975773021123450E-004
+  > 2.4975773021123450E-004
 ```
 ### **Standard**
 
@@ -4152,8 +4152,7 @@ Sample program:
 
 ```fortran
 program demo_bessel_y0
-use, intrinsic :: iso_fortran_env, only : real_kinds, &
-& real32, real64, real128
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
   real(kind=real64) :: x = 0.0_real64
   x = bessel_y0(x)
@@ -4162,7 +4161,7 @@ end program demo_bessel_y0
 ```
 Results:
 ```text
-                    -Infinity
+   > -Infinity
 ```
 ### **Standard**
 
@@ -4218,8 +4217,7 @@ The return value is _real_. It has the same kind as **x**.
 Sample program:
 ```fortran
 program demo_bessel_y1
-use, intrinsic :: iso_fortran_env, only : real_kinds, &
-& real32, real64, real128
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
   real(kind=real64) :: x = 1.0_real64
   write(*,*)x, bessel_y1(x)
@@ -4319,8 +4317,7 @@ Fortran 2008
 Sample program:
 ```fortran
 program demo_bessel_yn
-use, intrinsic :: iso_fortran_env, only : real_kinds, &
-& real32, real64, real128
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
 real(kind=real64) :: x = 1.0_real64
   write(*,*) x,bessel_yn(5,x)
@@ -4329,7 +4326,7 @@ end program demo_bessel_yn
 Results:
 
 ```text
-      1.0000000000000000       -260.40586662581222
+  > 1.0000000000000000       -260.40586662581222
 ```
 ### **Standard**
 
@@ -4685,12 +4682,12 @@ end program demo_bit_size
 ```
 Typical Results:
 ```text
-    default: bit size is  32 which is kind=  4 on this platform
-    int8   : bit size is   8 which is kind=  1 on this platform
-    int16  : bit size is  16 which is kind=  2 on this platform
-    int32  : bit size is  32 which is kind=  4 on this platform
-    int64  : bit size is  64 which is kind=  8 on this platform
-    The available kinds are 1, 2, 4, 8, 16
+  > default: bit size is  32 which is kind=  4 on this platform
+  > int8   : bit size is   8 which is kind=  1 on this platform
+  > int16  : bit size is  16 which is kind=  2 on this platform
+  > int32  : bit size is  32 which is kind=  4 on this platform
+  > int64  : bit size is  64 which is kind=  8 on this platform
+  > The available kinds are 1, 2, 4, 8, 16
 ```
 ### **Standard**
 
@@ -4771,22 +4768,22 @@ end program demo_ble
 ```
 Results:
 ```text
-   -0128  F 10000000
-   +0064    01000000
-   -0096  F 10100000
-   +0064    01000000
-   -0064  F 11000000
-   +0064    01000000
-   -0032  F 11100000
-   +0064    01000000
-   +0000  T 00000000
-   +0064    01000000
-   +0032  T 00100000
-   +0064    01000000
-   +0064  T 01000000
-   +0064    01000000
-   +0096  F 01100000
-   +0064    01000000
+ >  -0128  F 10000000
+ >  +0064    01000000
+ >  -0096  F 10100000
+ >  +0064    01000000
+ >  -0064  F 11000000
+ >  +0064    01000000
+ >  -0032  F 11100000
+ >  +0064    01000000
+ >  +0000  T 00000000
+ >  +0064    01000000
+ >  +0032  T 00100000
+ >  +0064    01000000
+ >  +0064  T 01000000
+ >  +0064    01000000
+ >  +0096  F 01100000
+ >  +0064    01000000
 ```
 ### **Standard**
 
@@ -5091,7 +5088,6 @@ end subroutine association_test
 
 end program demo_c_associated
 ```
-
 ### **Standard**
 
 Fortran 2003
@@ -5591,7 +5587,6 @@ Fortran 2003
       integer(kind=**),intent(in),optional :: KIND
 ```
 ### **Characteristics**
-
   - a kind designated as ** may be any supported kind for the type
   - **i** is an _integer_ of any kind
   - **KIND** is an _integer_ initialization expression indicating the kind
@@ -5618,7 +5613,6 @@ Fortran 2003
 -->
 
 ### **Options**
-
 - **i**
   : a value in the range **0 <= I <= n-1**, where **n** is the number of characters
   in the collating sequence associated with the specified kind type parameter.
@@ -5630,13 +5624,11 @@ Fortran 2003
   parameter of the result. If not present, the default kind is assumed.
 
 ### **Result**
-
 The return value is a single _character_ of the specified kind, determined by the
 position of **i** in the collating sequence associated with the specified **kind**.
 
 ### **Examples**
-
-Sample program:
+ Sample program:
 ```fortran
 program demo_char
 implicit none
@@ -5778,7 +5770,7 @@ Fortran 2003
 
 ### **Name**
 
-**cmplx**(3) - \[TYPE:NUMERIC\] Conversion to a complex type
+**cmplx**(3) - \[TYPE:CONVERSION\] Conversion to a complex type
 
 ### **Synopsis**
 ```fortran
@@ -6017,15 +6009,15 @@ end program demo_aimag
 ```
 Results:
 ```text
-    Z4= (-3.000000,0.0000000E+00)
-    Z4= (1.234568,1.234568)
-    Z4= 1.234568 1.234568
-    lost precision Z8= (1.23456788063049,-1.23456788063049)
-    kept precision Z8= (1.23456789012346,-1.23456789012346)
-    Z8 defined with constants= (1.11111111111111,2.22222222222222)
-    LHS=   1.11111111111111      RHS= (1.11111111111111,2.22222222222222)
-    zthree= (10.00000,-1.000000) (20.00000,-1.000000) (30.00000,-1.000000)
-    zthree= (100.0000,-1.000000) (200.0000,-1.000000) (30.00000,-1.000000)
+  > Z4= (-3.000000,0.0000000E+00)
+  > Z4= (1.234568,1.234568)
+  > Z4= 1.234568 1.234568
+  > lost precision Z8= (1.23456788063049,-1.23456788063049)
+  > kept precision Z8= (1.23456789012346,-1.23456789012346)
+  > Z8 defined with constants= (1.11111111111111,2.22222222222222)
+  > LHS=   1.11111111111111      RHS= (1.11111111111111,2.22222222222222)
+  > zthree= (10.00000,-1.000000) (20.00000,-1.000000) (30.00000,-1.000000)
+  > zthree= (100.0000,-1.000000) (200.0000,-1.000000) (30.00000,-1.000000)
 ```
 ### **Standard**
 
@@ -6200,13 +6192,11 @@ integer :: val
    endif
 end program demo_co_max
 ```
-
 Results:
 
 ```text
-    Maximal value           2
+  > Maximal value           2
 ```
-
 ### **Standard**
 
 TS 18508
@@ -6413,27 +6403,27 @@ end program demo_compiler_version
 ```
 Results:
 ```text
-This file was compiled by GCC version 10.3.0 using
-the options -I build/gfortran_2A42023B310FA28D
--mtune=generic -march=x86-64 -auxbase-strip
-build/gfortran_2A42023B310FA28D/compiler_options/app_main.f90.o
--g -Wall -Wextra -Wimplicit-interface -fPIC -fmax-errors=1
--fcheck=bounds -fcheck=array-temps -fbacktrace
--fcoarray=single -J build/gfortran_2A42023B310FA28D
--fpre-include=/usr/include/finclude/math-vector-fortran.h
+ > This file was compiled by GCC version 10.3.0 using
+ > the options -I build/gfortran_2A42023B310FA28D
+ > -mtune=generic -march=x86-64 -auxbase-strip
+ > build/gfortran_2A42023B310FA28D/compiler_options/app_main.f90.o
+ > -g -Wall -Wextra -Wimplicit-interface -fPIC -fmax-errors=1
+ > -fcheck=bounds -fcheck=array-temps -fbacktrace
+ > -fcoarray=single -J build/gfortran_2A42023B310FA28D
+ > -fpre-include=/usr/include/finclude/math-vector-fortran.h
 
-This file was compiled by nvfortran 21.5-0 LLVM
-using the options app/main.f90 -c -Minform=inform
--Mbackslash -Mbounds -Mchkptr -Mchkstk -traceback -module
-build/nvfortran_78229DCE997517A4 -Ibuild/nvfortran_78229DCE997517A4 -o
-build/nvfortran_78229DCE997517A4/compiler_options/app_main.f90.o
+ > This file was compiled by nvfortran 21.5-0 LLVM
+ > using the options app/main.f90 -c -Minform=inform
+ > -Mbackslash -Mbounds -Mchkptr -Mchkstk -traceback -module
+ > build/nvfortran_78229DCE997517A4 -Ibuild/nvfortran_78229DCE997517A4 -o
+ > build/nvfortran_78229DCE997517A4/compiler_options/app_main.f90.o
 
-This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler Classic
-for applications running on Intel(R) 64, Version 2021.3.0 Build
-20210609_000000 using the options -Ibuild/ifort_5C58216731706F11
--c -warn all -check all -error-limit 1 -O0 -g -assume
-byterecl -traceback -module build/ifort_5C58216731706F11 -o
-build/ifort_5C58216731706F11/compiler_options/app_main.f90.o
+ > This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler Classic
+ > for applications running on Intel(R) 64, Version 2021.3.0 Build
+ > 20210609_000000 using the options -Ibuild/ifort_5C58216731706F11
+ > -c -warn all -check all -error-limit 1 -O0 -g -assume
+ > byterecl -traceback -module build/ifort_5C58216731706F11 -o
+ > build/ifort_5C58216731706F11/compiler_options/app_main.f90.o
 ```
 ### **Standard**
 
@@ -6493,13 +6483,13 @@ end program demo_compiler_version
 ```
 Results:
 ```text
-This file was compiled by GCC version 10.3.0
+ > This file was compiled by GCC version 10.3.0
 
-This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler
-Classic for applications running on Intel(R) 64, Version 2021.3.0 Build
-20210609_000000
+ > This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler
+ > Classic for applications running on Intel(R) 64, Version 2021.3.0 Build
+ > 20210609_000000
 
-This file was compiled by nvfortran 21.5-0 LLVM
+ > This file was compiled by nvfortran 21.5-0 LLVM
 ```
 ### **Standard**
 
@@ -6566,8 +6556,7 @@ Sample program:
 
 ```fortran
 program demo_conjg
-use, intrinsic :: iso_fortran_env, only : real_kinds, &
-& real32, real64, real128
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
 complex :: z = (2.0, 3.0)
 complex(kind=real64) :: dz = (   &
@@ -6747,7 +6736,10 @@ end function myprod
 
 end program demo_co_reduce
 ```
-
+Results:
+```text
+ >  Product value           1
+```
 ### **Note**
 
 While the rules permit in principle an intrinsic function, none of the
@@ -6899,8 +6891,7 @@ in radians.
 Sample program:
 ```fortran
 program demo_cosh
-use, intrinsic :: iso_fortran_env, only : &
- & real_kinds, real32, real64, real128
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
 real(kind=real64) :: x = 1.0_real64
     write(*,*)'X=',x,'COSH(X=)',cosh(x)
@@ -7173,7 +7164,7 @@ end program demo_co_sum
 Results:
 
 ```text
-    The sum is            1
+  > The sum is            1
 ```
 
 ### **Standard**
@@ -7486,7 +7477,7 @@ Sample program:
 
 ```fortran
 program demo_cpu_time
-use, intrinsic :: iso_fortran_env, only : real_kinds,real32,real64,real128
+use, intrinsic :: iso_fortran_env, only : real32,real64,real128
 implicit none
 real :: start, finish
 real(kind=real64) :: startd, finishd
@@ -7517,9 +7508,9 @@ Results:
   and what if any options there are for parallel applications
   may very from system to system. See compiler-specific for details.
 ```text
-   Processor Time =  0.000 seconds.
-   Processor Time = .4000030E-05 seconds.
-   Processor Time = .2000000000000265E-05 seconds.
+   > Processor Time =  0.000 seconds.
+   > Processor Time = .4000030E-05 seconds.
+   > Processor Time = .2000000000000265E-05 seconds.
 ```
 ### **Standard**
 
@@ -7536,7 +7527,7 @@ Fortran 95
 
 ### **Name**
 
-**cshift**(3) - \[TRANSFORMATIONAL\] Circular shift elements of an array
+**cshift**(3) - \[ARRAY:TRANSFORMATIONAL\] Circular shift elements of an array
 
 ### **Synopsis**
 ```fortran
@@ -7715,7 +7706,7 @@ end program demo_c_sizeof
 Results:
 
 ```text
-    T
+ >   T
 ```
 
 The example will print _.true._ unless you are using a platform where
@@ -7909,7 +7900,7 @@ date and time conversion, formatting and computation
 
 ### **Name**
 
-**dble**(3) - \[TYPE:NUMERIC\] Converstion to double precision real
+**dble**(3) - \[TYPE:CONVERSION\] Converstion to double precision real
 
 ### **Synopsis**
 ```fortran
@@ -7957,7 +7948,7 @@ end program demo_dble
 Results:
 
 ```text
-  2.1800000667572021  5.0000000000000000   2.2999999523162842
+  > 2.1800000667572021  5.0000000000000000   2.2999999523162842
 ```
 ### **Standard**
 
@@ -7978,7 +7969,7 @@ FORTRAN 77
 
 ### **Name**
 
-**digits**(3) - \[NUMERIC MODEL\] Significant digits in the numeric model
+**digits**(3) - \[MODEL:NUMERIC\] Significant digits in the numeric model
 
 ### **Synopsis**
 ```fortran
@@ -8155,7 +8146,7 @@ FORTRAN 77
 
 ### **Name**
 
-**dot_product**(3) - \[TRANSFORMATIONAL\] Dot product of two vectors
+**dot_product**(3) - \[ARRAY:TRANSFORMATIONAL\] Dot product of two vectors
 
 ### **Synopsis**
 ```fortran
@@ -8664,7 +8655,7 @@ Fortran 2008
 
 ### **Name**
 
-**eoshift**(3) - \[TRANSFORMATIONAL\] End-off shift of elements of an array
+**eoshift**(3) - \[ARRAY:TRANSFORMATIONAL\] End-off shift of elements of an array
 
 ### **Synopsis**
 ```fortran
@@ -8796,7 +8787,7 @@ Fortran 95
 
 ### **Name**
 
-**epsilon**(3) - \[NUMERIC MODEL\] Epsilon function
+**epsilon**(3) - \[MODEL:NUMERIC\] Epsilon function
 
 ### **Synopsis**
 ```fortran
@@ -8896,15 +8887,15 @@ end program demo_epsilon
 ```
 Results:
 ```text
-  1.1920929E-07
-  1.1920929E-07
-  1.1920929E-07
-  2.220446049250313E-016
- F
- F
- T
- T
-  2.220446049250313E-016
+ >    1.19209290E-07
+ >    1.19209290E-07
+ >    1.19209290E-07
+ >    2.2204460492503131E-016
+ >  F
+ >  F
+ >  T
+ >  T
+ >    2.2204460492503131E-016
 ```
 ### **Standard**
 
@@ -8990,8 +8981,7 @@ function of **x** ( **1-erf(x)** ).
 Sample program:
 ```fortran
 program demo_erfc
-use, intrinsic :: iso_fortran_env, only : &
- & real_kinds, real32, real64, real128
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
 real(kind=real64) :: x = 0.17_real64
    write(*,'(*(g0))')'X=',x, ' ERFC(X)=',erfc(x)
@@ -9139,8 +9129,7 @@ range **-1** \<= **erf**(x) \<= 1 .
 Sample program:
 ```fortran
 program demo_erf
-use, intrinsic :: iso_fortran_env, only : real_kinds, &
- & real32, real64, real128
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
 real(kind=real64) :: x = 0.17_real64
     write(*,*)x, erf(x)
@@ -9148,7 +9137,7 @@ end program demo_erf
 ```
 Results:
 ```text
-     0.17000000000000001       0.18999246120180879
+   >  0.17000000000000001       0.18999246120180879
 ```
 ### **Standard**
 
@@ -9262,12 +9251,11 @@ TS 18508
 ```
 ### **Characteristics**
  - **command** is a default _character_ scalar
- - **wait** is a default _logical_ scalar. If **wait** is present with the
+ - **wait** is a default _logical_ scalar.
  - **exitstat** is an _integer_ of the default kind.
    It must be of a kind with at least a decimal exponent range of 9.
- - **cmdstat** is an _integer_ of default kind
-   The kind of the variable must support at least a decimal exponent range of four.
-
+ - **cmdstat** is an _integer_ of default kind. The kind of the variable
+   must support at least a decimal exponent range of four.
  - **cmdmsg** is a _character_ scalar of the default kind.
 
 ### **Description**
@@ -9348,16 +9336,70 @@ TS 18508
 
 Sample program:
 ```fortran
-program demo_exec
+program demo_execute_command_line
 implicit none
-   integer :: i
+integer :: exitstat, cmdstat
+character(len=256) :: cmdmsg
 
-   call execute_command_line("external_prog.exe", exitstat=i)
-   print *, "Exit status of external_prog.exe was ", i
+   call execute_command_line( &
+   &  command  = "external_prog.exe", &
+   &  exitstat = exitstat,            &
+   &  cmdstat  = cmdstat,             &
+   &  cmdmsg   = cmdmsg)
+   print *, "Exit status of external_prog.exe was ", exitstat
+   if(cmdstat.ne.0)then
+      print *, '<ERROR>'//trim(cmdmsg)
+   endif
 
+   ! if asynchronous exitstat and cmdstat may not be relied on
    call execute_command_line("reindex_files.exe", wait=.false.)
-   print *, "Now reindexing files in the background"
-end program demo_exec
+   print *, "Now hopefully reindexing files in the background"
+
+   if(cmd('dir'))then
+      write(*,*)'OK'
+   else
+      stop 4
+   endif
+
+   ! might short-circuit or not if a command fails
+   if(all(cmd([character(len=80) :: 'date','time myprg','date'])))then
+       write(*,*)'good time'
+   else
+       write(*,*)'bad time'
+   endif
+
+   stop 'end of program'
+contains
+
+elemental impure function cmd(command)
+! a functional interface for calling system commands
+use, intrinsic :: iso_fortran_env, only : &
+& stderr=>ERROR_UNIT, stdout=>OUTPUT_UNIT
+character(len=*),intent(in) :: command
+logical                     :: cmd
+logical                     :: wait
+integer                     :: exitstat
+integer                     :: cmdstat
+character(len=256)          :: cmdmsg
+   wait=.false.
+   exitstat=0
+   cmdstat=0
+   call execute_command_line(command=command,wait=wait, &
+   & exitstat=exitstat,cmdstat=cmdstat,cmdmsg=cmdmsg)
+   if(cmdstat.ne.0)then
+      flush(stdout)
+      write(stderr,'(a)')trim(cmdmsg)
+      flush(stderr)
+   endif
+   if(exitstat.ne.0)then
+      flush(stdout)
+      write(stderr,'(*(g0))')'exitstat=',exitstat,':',trim(command)
+      flush(stderr)
+   endif
+   cmd=merge(.true.,.false.,exitstat==0)
+end function cmd
+
+end program demo_execute_command_line
 ```
 ### **Standard**
 
@@ -9455,18 +9497,15 @@ complex :: cx
 
 end program demo_exp
 ```
-
 Results:
-
 ```text
- Euler's constant is approximately   2.718282
- given the complex value  (3.000000,4.000000)
- exp(x) is (-13.12878,-15.20078)
- is the same as (-13.12878,-15.20078)
- maximum real component   88.72284
- maximum doubleprecision component   709.782712893384
+ >  Euler's constant is approximately   2.71828175
+ >  given the complex value              (3.00000000,4.00000000)
+ >  exp(x) is           (-13.1287832,-15.2007847)
+ >  is the same as           (-13.1287832,-15.2007847)
+ >  maximum real component   88.7228394
+ >  maximum doubleprecision component   709.78271289338397
 ```
-
 ### **Standard**
 
 FORTRAN 77
@@ -9487,7 +9526,7 @@ FORTRAN 77
 
 ### **Name**
 
-**exponent**(3) - \[MODEL_COMPONENTS\] Exponent of floating-point number
+**exponent**(3) - \[MODEL:COMPONENTS\] Exponent of floating-point number
 
 ### **Synopsis**
 ```fortran
@@ -9716,21 +9755,21 @@ Sample program:
 ```
 Results:
 ```text
-    these should all be true
-    T I am descended from Grandpa
-    T Dad is descended from Grandpa
-    T Dad is my ancestor
-    is an object an extension of itself?
-    T self-propagating!
-    T clone!
-     you did not father your grandfather
-    F no paradox here
-    F no paradox here
-    F no relation whatsoever
-    F no relation
-    F not what everyone thinks
-    (P,Q) F mind your P's and Q's
-    (Q,P) T
+  > these should all be true
+  > T I am descended from Grandpa
+  > T Dad is descended from Grandpa
+  > T Dad is my ancestor
+  > is an object an extension of itself?
+  > T self-propagating!
+  > T clone!
+  >  you did not father your grandfather
+  > F no paradox here
+  > F no paradox here
+  > F no relation whatsoever
+  > F no relation
+  > F not what everyone thinks
+  > (P,Q) F mind your P's and Q's
+  > (Q,P) T
 ```
 ### **Standard**
 
@@ -10163,7 +10202,7 @@ end function floor
 
 ### **Name**
 
-**fraction**(3) - \[MODEL_COMPONENTS\] Fractional part of the model representation
+**fraction**(3) - \[MODEL:COMPONENTS\] Fractional part of the model representation
 
 ### **Synopsis**
 ```fortran
@@ -10216,7 +10255,7 @@ end program demo_fraction
 ```
 Results:
 ```text
-     0.5700439      0.5700439
+  >  0.5700439      0.5700439
 ```
 ### **Standard**
 
@@ -10515,12 +10554,12 @@ Results:
 ./demo_get_command_argument a  test 'of getting  arguments ' " leading"
 ```
 ```text
- The program's name is ./demo_get_command_argument
- The number of arguments is            4
-001 00000 00001 [a]
-002 00000 00004 [test]
-003 00000 00022 [of getting  arguments ]
-004 00000 00008 [ leading]
+ > The program's name is ./demo_get_command_argument
+ > The number of arguments is            4
+ >001 00000 00001 [a]
+ >002 00000 00004 [test]
+ >003 00000 00022 [of getting  arguments ]
+ >004 00000 00008 [ leading]
 ```
 ### **Standard**
 
@@ -10532,7 +10571,6 @@ Fortran 2003
 [**command_argument_count**(3)](#command_argument_count)
 
 _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
-#
 
 ## get_command
 
@@ -10636,13 +10674,13 @@ Fortran 2003
 [**command_argument_count**(3)](#command_argument_count)
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
-#
 
 ## get_environment_variable
 
 ### **Name**
 
-**get_environment_variable**(3) - \[SYSTEM:ENVIRONMENT\] Get value of an environment variable
+**get_environment_variable**(3) - \[SYSTEM:ENVIRONMENT\]
+   Retrieve the value of an environment variable
 
 ### **Synopsis**
 ```fortran
@@ -10672,17 +10710,17 @@ Fortran 2003
 
 ### **Description**
 
-**get_environment_variable**(3) gets the **value** of the environment
+**get_environment_variable**(3) retrieves the **value** of the environment
 variable **name**.
 
 Note that **get_environment_variable**(3) need not be thread-safe. It
 is the responsibility of the user to ensure that the environment is not
 being updated concurrently.
 
-If running in parallel be aware
-It is processor dependent whether an environment variable that exists
-on an image also exists on another image, and if it does exist on both
-images whether the values are the same or different.
+When running in parallel be aware it is processor dependent whether an
+environment variable that exists on an image also exists on another
+image, and if it does exist on both images whether the values are the
+same or different.
 
 ### **Options**
 
@@ -10694,25 +10732,27 @@ images whether the values are the same or different.
 
 - **value**
   : The value of the environment variable being queried. If **value**
-  is not large enough to hold the data, it is truncated. If the variable
-  **name** is not set or has no value, or the processor does not support
-  environment variables **value** will be filled with blanks.
+    is not large enough to hold the data, it is truncated. If the variable
+    **name** is not set or has no value, or the processor does not
+    support environment variables **value** will be filled with blanks.
 
 - **length**
-  : Argument **length** contains the length needed for storing the
-  environment variable **name**. It is zero if the environment variable
-  is not set.
-
+  : This argument contains the length needed to store the environment
+  variable name. It is zero if the environment variable is not set.
 - **status**
-  : **status** is **-1** if **value** is present but too short for the
-  environment variable; it is **1** if the environment variable does
-  not exist and **2** if the processor does not support environment
-  variables; in all other cases **status** is zero.
-
+  : Returns
+    + **-1** if value is present but too short to fit in the provided variable.
+    + **1** if the environment variable does not exist
+    + **2** if the processor does not support environment variables
+    + and **0** in all other cases.
 - **trim_name**
-  : If **trim_name** is present with the value _.false._, the trailing
-  blanks in **name** are significant; otherwise they are not part of
-  the environment variable name.
+  : If present and set to .false. the trailing blanks in name
+  are significant; otherwise, they are not considered part of the
+ environment variable name.
+- **errmsg**
+  : is assigned a processor-dependent explanatory message if the optional
+    argument **status** is, or would be if present, assigned a positive
+    value. Otherwise, it is unchanged.
 
 ### **Examples**
 
@@ -10731,6 +10771,7 @@ contains
 
 function get_env(name,default) result(value)
 ! a function that makes calling get_environment_variable(3) simple
+use, intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT
 implicit none
 character(len=*),intent(in)          :: name
 character(len=*),intent(in),optional :: default
@@ -10745,11 +10786,12 @@ integer                              :: length
       & length=howbig,status=stat,trim_name=.true.)
       select case (stat)
       case (1)
-       print *, name, " is not defined in the environment. Strange..."
+       write(stderr,*) &
+       & name, " is not defined in the environment. Strange..."
        value=''
       case (2)
-       print *, &
-       "This processor does not support environment variables. Boooh!"
+       write(stderr,*) &
+       & "This processor does not support environment variables. Boooh!"
        value=''
       case default
        ! make string of sufficient size to hold value
@@ -10768,7 +10810,7 @@ end program demo_getenv
 ```
 Typical Results:
 ```text
-   HOME="/home/urbanjs"
+ >  HOME="/home/urbanjs"
 ```
 ### **Standard**
 
@@ -10780,13 +10822,12 @@ Fortran 2003
 [**get_command**(3)](#get_command)
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
-#
 
 ## huge
 
 ### **Name**
 
-**huge**(3) - \[NUMERIC MODEL\] Largest number of a type and kind
+**huge**(3) - \[MODEL:NUMERIC\] Largest number of a type and kind
 
 ### **Synopsis**
 ```fortran
@@ -10870,7 +10911,7 @@ doubleprecision            :: tally
 
 contains
 impure elemental function checkprod(i,j) result(ij32)
-!@(#) checkprod(3f) - check for overflow when multiplying two 32-bit integers
+! checkprod(3f) - check for overflow when multiplying 32-bit integers
 use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
 integer(kind=int32),intent(in)  :: i, j
 integer(kind=int64)             :: ij64
@@ -10989,8 +11030,7 @@ Sample program:
 
 ```fortran
 program demo_hypot
-use, intrinsic :: iso_fortran_env, only : &
- & real_kinds, real32, real64, real128
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
 real(kind=real32) :: x, y
 real(kind=real32),allocatable :: xs(:), ys(:)
@@ -11015,25 +11055,24 @@ character(len=*),parameter :: f='(a,/,SP,*(3x,g0,1x,g0:,/))'
 
 end program demo_hypot
 ```
-
 Results:
-
 ```text
-   point <1.00000000,0.500000000> is 1.11803401
-   units away from the origin
-
-   the points
-      +1.00000000 +0.500000000
-      +1.00000000 +0.250000000
-      +10.0000000 -10.0000000
-      +15.0000000 +0.250000000
-      -1.00000000 -0.250000000
-   have distances from the origin of
-      +1.11803401 +1.03077638
-      +14.1421356 +15.0020828
-      +1.03077638
-   the closest is
-      +1.03077638
+ >
+ > point <1.00000000,0.500000000> is 1.11803401
+ > units away from the origin
+ >
+ > the points
+ >    +1.00000000 +0.500000000
+ >    +1.00000000 +0.250000000
+ >    +10.0000000 -10.0000000
+ >    +15.0000000 +0.250000000
+ >    -1.00000000 -0.250000000
+ > have distances from the origin of
+ >    +1.11803401 +1.03077638
+ >    +14.1421356 +15.0020828
+ >    +1.03077638
+ > the closest is
+ >    +1.03077638
 ```
 ### **Standard**
 
@@ -11172,9 +11211,9 @@ end program demo_iachar
 ```
 Results:
 ```text
-   65
-   65          90          97         122
-   abcdefg abcdefg
+ > 65
+ > 65          90          97         122
+ > abcdefg abcdefg
 ```
 ### **Standard**
 
@@ -11358,10 +11397,10 @@ end program demo_iand
 ```
 Results:
 ```text
-    a= 15  b= 3 iand(a,b)= 3
-   00000000000000000000000000001111
-   00000000000000000000000000000011
-   00000000000000000000000000000011
+ >  a= 15  b= 3 iand(a,b)= 3
+ > 00000000000000000000000000001111
+ > 00000000000000000000000000000011
+ > 00000000000000000000000000000011
 ```
 ### **Standard**
 
@@ -11468,22 +11507,22 @@ end program demo_iany
 ```
 Results:
 ```text
-    A=
-    00100100
-    01101010
-    10101010
-
-    IANY(A)=
-    11101110
-
-    IANY(A) with a mask
-    10101110
-
-    should match
-    10101110
-
-    does it?
-    T
+  > A=
+  > 00100100
+  > 01101010
+  > 10101010
+  >
+  > IANY(A)=
+  > 11101110
+  >
+  > IANY(A) with a mask
+  > 10101110
+  >
+  > should match
+  > 10101110
+  >
+  > does it?
+  > T
 ```
 ### **Standard**
 
@@ -11854,8 +11893,8 @@ Fortran 95
 ### **Options**
 
 - **c**
-  : The input character to determine the code for.
-    Its value shall be that of a character capable of representation in the processor.
+  : The input character to determine the decimal code of.
+    The range of values capable of representation is processor-dependent.
 
 - **kind**
   : indicates the kind parameter of the result. If **kind** is absent,
@@ -11885,19 +11924,32 @@ Sample program:
 
 ```fortran
 program demo_ichar
+use,intrinsic :: iso_fortran_env, only : b=>int8
 implicit none
-
+integer,parameter  :: bytes=80
+character          :: string*(bytes),lets((bytes))*1
+integer(kind=b)    :: ilets(bytes)
+equivalence (string,lets)
+equivalence (string,ilets)
    write(*,*)ichar(['a','z','A','Z'])
-
+   string='Do unto others'
+   associate (a=>ichar(lets))
+    ilets=merge(a-32,a,a>=97.and.a<=122) ! uppercase
+    write(*,*)string
+    ilets=merge(a+32,a,a>=65.and.a<=90)  ! lowercase
+    write(*,*)string
+   end associate
 end program demo_ichar
 ```
 Results:
 ```text
-             97         122          65          90
+    >          97         122          65          90
+    > DO UNTO OTHERS
+    > do unto others
 ```
 ### **Standard**
 
-Fortran 95 , with KIND argument -Fortran 2003
+Fortran 95, with KIND argument -Fortran 2003
 
 ### **See Also**
 
@@ -12184,7 +12236,7 @@ end program demo_index
 Expected Results:
 
 ```text
-   T T T
+  > T T T
 ```
 ### **Standard**
 
@@ -12210,7 +12262,7 @@ of arguments, and search for certain arguments:
 
 ### **Name**
 
-**int**(3) - \[TYPE:NUMERIC\] Truncate towards zero and convert to integer
+**int**(3) - \[TYPE:CONVERSION\] Truncate towards zero and convert to integer
 
 ### **Synopsis**
 ```fortran
@@ -12410,9 +12462,9 @@ end program demo_ior
 ```
 Results:
 ```
-         53 00110101
-         45 00101101
-         61 00111101
+   > 53 00110101
+   > 45 00101101
+   > 61 00111101
 ```
 ### **Standard**
 
@@ -12508,7 +12560,7 @@ end program demo_iparity
 ```
 Results:
 ```
-   01001110
+ > 01001110
 ```
 ### **Standard**
 
@@ -12641,8 +12693,8 @@ end program demo_is_contiguous
 Results:
 
 ```text
-    IN is  T
-    OUT is  F
+  > IN is  T
+  > OUT is  F
 ```
 ### **Standard**
 
@@ -13112,8 +13164,8 @@ end program demo_kind
 ```
 Results:
 ```text
-    The default character kind is            1
-    The default logical kind is            4
+  > The default character kind is            1
+  > The default logical kind is            4
 ```
 ### **Standard**
 
@@ -13263,10 +13315,10 @@ end
 ```
 Results:
 ```
-   MAIN: LOWER=         -10 UPPER=          10 SIZE=          21
-   CSUB: LOWER=         -10 UPPER=          10 SIZE=          21
-   MSUB: LOWER=           1 UPPER=          21 SIZE=          21
-   ESUB: LOWER=           1 UPPER=          21 SIZE=          21
+ >  MAIN: LOWER=         -10 UPPER=          10 SIZE=          21
+ >  CSUB: LOWER=         -10 UPPER=          10 SIZE=          21
+ >  MSUB: LOWER=           1 UPPER=          21 SIZE=          21
+ >  ESUB: LOWER=           1 UPPER=          21 SIZE=          21
 ```
 ### **Standard**
 
@@ -13420,13 +13472,13 @@ end program demo_leadz
 ```
 Results:
 ```text
-  LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111101101010 AKA -150
-  LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111110011100 AKA -100
-  LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111111001110 AKA -50
-  LEADING ZERO BITS= 32 OF VALUE 00000000000000000000000000000000 AKA 0
-  LEADING ZERO BITS= 26 OF VALUE 00000000000000000000000000110010 AKA 50
-  LEADING ZERO BITS= 25 OF VALUE 00000000000000000000000001100100 AKA 100
-  LEADING ZERO BITS= 24 OF VALUE 00000000000000000000000010010110 AKA 150
+ > LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111101101010 AKA -150
+ > LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111110011100 AKA -100
+ > LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111111001110 AKA -50
+ > LEADING ZERO BITS= 32 OF VALUE 00000000000000000000000000000000 AKA 0
+ > LEADING ZERO BITS= 26 OF VALUE 00000000000000000000000000110010 AKA 50
+ > LEADING ZERO BITS= 25 OF VALUE 00000000000000000000000001100100 AKA 100
+ > LEADING ZERO BITS= 24 OF VALUE 00000000000000000000000010010110 AKA 150
 ```
 ### **Standard**
 
@@ -13673,14 +13725,14 @@ end program demo_len_trim
 ```
 Results:
 ```text
-     how long is this string?
-    UNTRIMMED LENGTH=          30
-    TRIMMED LENGTH=          25
-    xxxxx   xxxxx   xxxxx
-    xxxxxxxxxxxxxxx
-    UNTRIMMED LENGTH=           256
-    TRIMMED LENGTH=              25          13
-    SUM TRIMMED LENGTH=          38
+  >   how long is this string?
+  >  UNTRIMMED LENGTH=          30
+  >  TRIMMED LENGTH=          25
+  >  xxxxx   xxxxx   xxxxx
+  >  xxxxxxxxxxxxxxx
+  >  UNTRIMMED LENGTH=           256
+  >  TRIMMED LENGTH=              25          13
+  >  SUM TRIMMED LENGTH=          38
 ```
 ### **Standard**
 
@@ -13751,7 +13803,7 @@ of arguments, and search for certain arguments:
 
 ### **Result**
 
-  Returns _.true._ if string_a == string_b, and _.false._ otherwise,
+  Returns _.true._ if string_a \>= string_b, and _.false._ otherwise,
   based on the ASCII collating sequence.
 
   If both input arguments are null strings, _.true._ is always returned.
@@ -14141,7 +14193,7 @@ of arguments, and search for certain arguments:
 
 ### **Result**
 
-  Returns _.true._ if string_a \<= string_b, and _.false._ otherwise,
+  Returns _.true._ if string_a \< string_b, and _.false._ otherwise,
   based on the ASCII collating sequence.
 
   If both input arguments are null strings, _.false._ is always returned.
@@ -14256,8 +14308,7 @@ of arguments, and search for certain arguments:
 Sample program:
 ```fortran
 program demo_log10
-use, intrinsic :: iso_fortran_env, only : real_kinds, &
- & real32, real64, real128
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
 real(kind=real64) :: x = 10.0_real64
 
@@ -14526,8 +14577,8 @@ end program demo_log
 ```
 Results:
 ```text
-      2.7182818284590451        1.0000000000000000
-   (1.00000000,2.00000000) (0.804718971,1.10714877)
+  >    2.7182818284590451        1.0000000000000000
+  > (1.00000000,2.00000000) (0.804718971,1.10714877)
 ```
 ### **Standard**
 
@@ -14771,7 +14822,7 @@ Fortran 2008
 
 ### **Name**
 
-**matmul**(3) - \[TRANSFORMATIONAL\] Numeric or logical matrix
+**matmul**(3) - \[ARRAY:TRANSFORMATIONAL\] Numeric or logical matrix
 multiplication
 
 ### **Synopsis**
@@ -15014,7 +15065,7 @@ Fortran 95
 
 ### **Name**
 
-**maxexponent**(3) - \[NUMERIC MODEL\] Maximum exponent of a real kind
+**maxexponent**(3) - \[MODEL:NUMERIC\] Maximum exponent of a real kind
 
 ### **Synopsis**
 ```fortran
@@ -15060,9 +15111,9 @@ end program demo_maxexponent
 ```
 Results:
 ```text
-   -125 128
-   -1021 1024
-   -16381 16384
+  >  -125 128
+  >  -1021 1024
+  >  -16381 16384
 ```
 ### **Standard**
 
@@ -15183,9 +15234,7 @@ integer,save :: ints(3,5)= reshape([&
 
 end program demo_maxloc
 ```
-
 Results:
-
 ```text
  >     3       5
  >     3       3       3       3       3
@@ -15198,7 +15247,6 @@ Results:
  >  2 48
  >  3 47
 ```
-
 ### **Standard**
 
 Fortran 95
@@ -15249,14 +15297,14 @@ Fortran 95
   been successively compared with the intrinsic operational operators,
   taking into account the collating sequence of the _character_ kind.
 
-  If the selected _character_ argument is shorter than the longest
-  argument, the result is as all values were extended with blanks on
-  the right to the length of the longest argument.
+  The returned selected character argument is padded with blanks as
+  needed on the right to the same length of the longest argument.
 
   It is unusual for a Fortran intrinsic to take an arbitrary number of
   options, and in addition **max**(3) is elemental, meaning any number
   of arguments may be arrays as long as they are of the same shape.
-  The examples have an extended description clarifying the resulting
+
+  The examples contain such cases as examples to clarify the resulting
   behavior for those not familiar with calling a "scalar" function
   elementally with arrays.
 
@@ -15266,11 +15314,12 @@ Fortran 95
 
 - **a1**
   : The first argument determines the type and kind of the returned
-  value, and of any remaining arguments as well as being a member of
-  the set of values to find the maximum (most positive) value of.
+  value, and of any remaining arguments as well.
 
 - **a2,a3,...**
-  : the remaining arguments of which to find the maximum value(s) of.
+  : the remaining arguments of the set of values to search for a
+  maximum in.
+
   : There must be at least two arguments to **max(3)**.
 
 ### **Result**
@@ -15325,14 +15374,17 @@ integer :: box(3,4)= reshape([-6,-5,-4,-3,-2,-1,1,2,3,4,5,6],shape(box))
    ! Remember if any argument is an array by the definition of an
    ! elemental function all the array arguments must be the same shape.
 
-   ! to find the single largest value of arrays you could use something
-   ! like MAXVAL([arr1, arr2]) or probably better (no large temp array),
-   ! max(maxval(arr1),maxval(arr2)) instead
+   ! to find the single largest value of multiple arrays you could
+   ! use something like
+   !    MAXVAL([arr1, arr2])
+   ! or probably better (more likely to avoid creating a large temp array)
+   !    max(maxval(arr1),maxval(arr2))
+   ! instead
 
    ! so this returns an array of the same shape as any input array
    ! where each result is the maximum that occurs at that position.
    write(*,*)max(arr1,arr2(1:4))
-   ! this returns an array just like arr1 except all values less than
+   ! this returns an array just like BOX  except all values less than
    ! zero are set to zero:
    write(*,*)max(box,0)
    ! When mixing arrays and scalars you can think of the scalars
@@ -15343,18 +15395,18 @@ end program demo_max
 ```
 Results:
 ```text
-    scalars:   30.00000
-    scalars: -9.9999997E-05
-    characters:words
-    characters:c
-    characters:b
-   "BB" "Z "
-   box=    -6  -5  -4  -3  -2  -1   1   2   3   4   5   6
-   box**2=-36 -25 -16  -9  -4  -1   1   4   9  16  25  36
-   max     -6  -5  -4  -3  -2  -1   1   4   9  16  25  36
-   20.00000  21.00000  32.00000  -100.0000
-   0  0  0  0  0  0
-   1  2  3  4  5  6
+ >   scalars:   30.00000
+ >   scalars: -9.9999997E-05
+ >   characters:words
+ >   characters:c
+ >   characters:b
+ >  "BB" "Z "
+ >  box=    -6  -5  -4  -3  -2  -1   1   2   3   4   5   6
+ >  box**2=-36 -25 -16  -9  -4  -1   1   4   9  16  25  36
+ >  max     -6  -5  -4  -3  -2  -1   1   4   9  16  25  36
+ >  20.00000  21.00000  32.00000  -100.0000
+ >  0  0  0  0  0  0
+ >  1  2  3  4  5  6
 ```
 ### **Standard**
 
@@ -15616,12 +15668,12 @@ end program demo_merge_bits
 ```
 Results:
 ```text
-    MERGE_BITS( 5,10,41) should be 3.=>           3
-    MERGE_BITS(13,18,22) should be 4.=>           4
-   should get all zero bits =>0000000000000000
-   should get all ones bits =>1111111111111111
-   32767 32751 5877
-   32767 32767 5877
+ >   MERGE_BITS( 5,10,41) should be 3.=>           3
+ >   MERGE_BITS(13,18,22) should be 4.=>           4
+ >  should get all zero bits =>0000000000000000
+ >  should get all ones bits =>1111111111111111
+ >  32767 32751 5877
+ >  32767 32767 5877
 ```
 ### **Standard**
 
@@ -15821,7 +15873,7 @@ Fortran 95
 
 ### **Name**
 
-**minexponent**(3) - \[NUMERIC MODEL\] Minimum exponent of a real kind
+**minexponent**(3) - \[MODEL:NUMERIC\] Minimum exponent of a real kind
 
 ### **Synopsis**
 ```fortran
@@ -15857,8 +15909,7 @@ Fortran 95
 Sample program:
 ```fortran
 program demo_minexponent
-use, intrinsic :: iso_fortran_env, only : &
- &real_kinds, real32, real64, real128
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
 real(kind=real32) :: x
 real(kind=real64) :: y
@@ -15868,8 +15919,8 @@ end program demo_minexponent
 ```
 Expected Results:
 ```
-        -125         128
-       -1021        1024
+  >     -125         128
+  >    -1021        1024
 ```
 ### **Standard**
 
@@ -16032,17 +16083,26 @@ Fortran 95
 
 **min**(3) returns the argument with the smallest (most negative) value.
 
-See **max**(3) for an extended example of the behavior of **min**(3) as
-and **max**(3).
+The arguments must the same type which shall be integer, real,
+or character and they also all have the same kind type parameter.
+
+The type and kind type parameter of the result are the same as those
+of the arguments.
+
+   NOTE:
+
+A common extension is that the argument kinds can vary. In that case
+the returned value may be the kind of the first argument, or might be
+the kind of the expression a1+a2+a3+a4... per the rules of promotion.
 
 ### **Options**
 
 - **a1**
-  : the first element of the set of values to determine the minimum of.
+  : the first element of the set of values to examine.
 
 - **a2, a3, ...**
   : An expression of the same type and kind as **a1** completing the
-  set of values to find the minimum of.
+  set of values to evaluate.
 
 ### **Result**
 
@@ -16055,12 +16115,41 @@ Sample program
 ```fortran
 program demo_min
 implicit none
-    write(*,*)min(10.0,11.0,30.0,-100.0)
+integer :: i
+integer :: rectangle(3,4)=reshape([(-6+i,i=0,11)],[3,4])
+    print *, 'basics'
+    print *, min(10.0,11.0,30.0,-100.0)
+    print *, min(-200.0,-1.0)
+    print *, 'elemental'
+    print *, min(1,[2,3,4])
+    print *, min(5,[2,3,4])
+
+    print *, 'box:'
+    do i=1,size(rectangle,dim=1)
+       write(*,'(*(i3,1x))')rectangle(i,:)
+    enddo
+    print *, 'make all values 0 or less:'
+    do i=1,size(rectangle,dim=1)
+       write(*,'(*(i3,1x))')min(rectangle(i,:),0)
+    enddo
 end program demo_min
 ```
 Results:
-```
-      -100.0000000
+```text
+ >  basics
+ >   -100.000000
+ >   -200.000000
+ >  elemental
+ >            1           1           1
+ >            2           3           4
+ >  box:
+ >  -6  -3   0   3
+ >  -5  -2   1   4
+ >  -4  -1   2   5
+ >  make all values 0 or less:
+ >  -6  -3   0   0
+ >  -5  -2   0   0
+ >  -4  -1   0   0
 ```
 ### **Standard**
 
@@ -16068,18 +16157,20 @@ FORTRAN 77
 
 ### **See Also**
 
+[**max**(3)](#max),
 [**maxloc**(3)](#maxloc),
 [**minloc**(3)](#minloc),
 [**minval**(3)](#minval),
-[**max**(3)](#max),
+[**maxval**(3)](#minval)
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
+     '
 
 ## minval
 
 ### **Name**
 
-**minval**(3) - \[ARRAY REDUCTION\] Minimum value of all the elements
+**minval**(3) - \[ARRAY:REDUCTION\] Minimum value of all the elements
 of ARRAY along dimension DIM corresponding to true elements of MASK.
 
 ### **Synopsis**
@@ -16234,6 +16325,38 @@ integer,save :: box(3,5,2)
 
 end program demo_minval
 ```
+Result:
+```text
+ >  Given the array
+ >     1   -2    3    4    5
+ >    10   20  -30   40   50
+ >    11   22   33  -44   55
+ >
+ >  What is the smallest element in the array?
+ >    -44 at < 3 4 >
+ >  What is the smallest element in each column?
+ >    1 -2 -30 -44 5
+ >  What is the smallest element in each row?
+ >    -2 -30 -44
+ >  What is the smallest element in each column,
+ >  considering only those elements that are
+ >  greater than zero?
+ >    1 20 3 4 5
+ >  if everything is false a zero-sized array is NOT returned
+ >   2147483647  2147483647  2147483647  2147483647  2147483647
+ >  even for a zero-sized input
+ >    2147483647
+ >  a scalar answer for everything false is huge()
+ >    2147483647
+ >    2147483647
+ >  if zero-size character array all dels if ASCII
+ >
+ >  some calls with three dimensions
+ >    -55
+ >    1 -2 -30 -44 5 -11 -22 -33 -40 -55
+ >    -2 -30 -44 -5 -50 -55
+ >    shape of answer is  3 2
+```
 ### **Standard**
 
 Fortran 95
@@ -16331,18 +16454,18 @@ end program demo_mod
 ```
 Results:
 ```text
-             -2           1
-              2          -1
-              2           2
-             -2          -2
-     -1.900001       3.299999
-      1.900001      -3.299999
-      1.900001       1.900001
-     -1.900001      -1.900001
-    -0.5000000      0.5000000
-     0.5000000     -0.5000000
-     0.5000000      0.5000000
-    -0.5000000     -0.5000000
+  >          -2           1
+  >           2          -1
+  >           2           2
+  >          -2          -2
+  >  -1.900001       3.299999
+  >   1.900001      -3.299999
+  >   1.900001       1.900001
+  >  -1.900001      -1.900001
+  > -0.5000000      0.5000000
+  >  0.5000000     -0.5000000
+  >  0.5000000      0.5000000
+  > -0.5000000     -0.5000000
 ```
 ### **Standard**
 
@@ -16542,8 +16665,8 @@ end program demo_move_alloc
 Results:
 
 ```text
-    T F
-      1.000   1.500   2.000   2.500   3.000   3.500
+  > T F
+  >   1.000   1.500   2.000   2.500   3.000   3.500
 ```
 
 ### **Standard**
@@ -16735,15 +16858,14 @@ character(len=*),parameter :: fmt= '(g0,t30,a,t40,b32.32)'
 ```
 Results:
 ```text
-
-   2147483647                   01111111111111111111111111111111
-   0                            00000000000000000000000000000000
-   1                            00000000000000000000000000000001
-   -1                           11111111111111111111111111111111
-    native
-   1684234849                   abcd      01100100011000110110001001100001
-    non-native
-   1633837924                   dcba      01100001011000100110001101100100
+ > 2147483647                   01111111111111111111111111111111
+ > 0                            00000000000000000000000000000000
+ > 1                            00000000000000000000000000000001
+ > -1                           11111111111111111111111111111111
+ >  native
+ > 1684234849                   abcd      01100100011000110110001001100001
+ >  non-native
+ > 1633837924                   dcba      01100001011000100110001101100100
 ```
 ### **Standard**
 
@@ -16766,7 +16888,7 @@ Fortran 95
 
 ### **Name**
 
-**nearest**(3) - \[MODEL_COMPONENTS\] Nearest representable number
+**nearest**(3) - \[MODEL:COMPONENTS\] Nearest representable number
 
 ### **Synopsis**
 ```fortran
@@ -16839,7 +16961,7 @@ end program demo_nearest
 ```
 Results:
 ```text
-   42.0000038146973    41.9999961853027    .762939453125000E-05
+  > 42.0000038146973    41.9999961853027    .762939453125000E-05
 ```
 ### **Standard**
 
@@ -17010,22 +17132,22 @@ end program demo_new_line
 ```
 Results:
 ```text
-   This is record 1.
-   This is record 2.
-
-   This is record 1.
-   This is record 2.
-    x x xxxx xxxxxxx xxxxxxxxxx xxxxxxxxx xxxx xxxxxxxxxx xxxxxxxx
-    xxxxxxxxx xxxx xxxxxxxxx x xxxxxxxxx xxxxxxxx xxxxxxxx xxxx x
-    xxxxxxxxxx x x x xxxxxx xxxxxxxxxx x xxxxxxxxxx x xxxxxxx xxxxxxxxx
-    xx xxxxxxxxxx xxxxxxxx x xx xxxxxxxxxx xxxxxxxx xxx xxxxxxx xxxxxx
-    xxxxx xxxxxxxxx x xxxxxxxxxx xxxxxx xxxxxxxx xxxxx xxxxxxxx xxxxxxxx
-    xxxxx xxx xxxxxxxx xxxxxxx xxxxxxxx xxx xxxx xxx xxxxxxxx xxxxxx
-    xxxxxxx xxxxxxx xxxxx xxxxx xx xxxxxx xx xxxxxxxxxx xxxxxx x xxxx
-    xxxxxx xxxxxxx x xxx xxxxx xxxxxxxxx xxx xxxxxxx x xxxxxx xxxxxxxxx
-    xxxx xxxxxxxxx xxxxxxxx xxxxxxxx xxx xxxxxxx xxxxxxx xxxxxxxxxx
-    xxxxxxxxxx xxxxxx xxxxx xxxx xxxxxxx xx xxxxxxxxxx xxxxxx xxxxxx
-    xxxxxx xxxx xxxxx
+ > This is record 1.
+ > This is record 2.
+ >
+ > This is record 1.
+ > This is record 2.
+ >  x x xxxx xxxxxxx xxxxxxxxxx xxxxxxxxx xxxx xxxxxxxxxx xxxxxxxx
+ >  xxxxxxxxx xxxx xxxxxxxxx x xxxxxxxxx xxxxxxxx xxxxxxxx xxxx x
+ >  xxxxxxxxxx x x x xxxxxx xxxxxxxxxx x xxxxxxxxxx x xxxxxxx xxxxxxxxx
+ >  xx xxxxxxxxxx xxxxxxxx x xx xxxxxxxxxx xxxxxxxx xxx xxxxxxx xxxxxx
+ >  xxxxx xxxxxxxxx x xxxxxxxxxx xxxxxx xxxxxxxx xxxxx xxxxxxxx xxxxxxxx
+ >  xxxxx xxx xxxxxxxx xxxxxxx xxxxxxxx xxx xxxx xxx xxxxxxxx xxxxxx
+ >  xxxxxxx xxxxxxx xxxxx xxxxx xx xxxxxx xx xxxxxxxxxx xxxxxx x xxxx
+ >  xxxxxx xxxxxxx x xxx xxxxx xxxxxxxxx xxx xxxxxxx x xxxxxx xxxxxxxxx
+ >  xxxx xxxxxxxxx xxxxxxxx xxxxxxxx xxx xxxxxxx xxxxxxx xxxxxxxxxx
+ >  xxxxxxxxxx xxxxxx xxxxx xxxx xxxxxxx xx xxxxxxxxxx xxxxxx xxxxxx
+ >  xxxxxx xxxx xxxxx
 ```
 ### **Standard**
 
@@ -17045,7 +17167,7 @@ Fortran 2003
 
 ### **Name**
 
-**nint**(3) - \[TYPE:NUMERIC\] Nearest whole number
+**nint**(3) - \[TYPE:CONVERSION\] Nearest whole number
 
 ### **Synopsis**
 ```fortran
@@ -17392,15 +17514,15 @@ end program demo_not
 ```
 Results:
 ```text
-    the input value      -13741 represented in bits is
-    11111111111111111100101001010011 -13741
-    on output it is       13740
-    00000000000000000011010110101100 13740
-     on a two's complement machine flip the bits and add 1
-     to get the value with the sign changed, for example.
-           1234       -1234
-          -1234        1234
-     of course 'x=-x' works just fine and more generally.
+  > the input value      -13741 represented in bits is
+  > 11111111111111111100101001010011 -13741
+  > on output it is       13740
+  > 00000000000000000011010110101100 13740
+  >  on a two's complement machine flip the bits and add 1
+  >  to get the value with the sign changed, for example.
+  >        1234       -1234
+  >       -1234        1234
+  >  of course 'x=-x' works just fine and more generally.
 ```
 ### **Standard**
 
@@ -17531,10 +17653,10 @@ end program demo_null
 ```
 Results:
 ```text
-   One integer in S2:, 1
-   One integer in S1:, 2
-   integer and real in S2:, 3 and 200.000000
-   Two integers in S1:, 4 and 100
+  > One integer in S2:, 1
+  > One integer in S1:, 2
+  > integer and real in S2:, 3 and 200.000000
+  > Two integers in S1:, 4 and 100
 ```
 ### **Standard**
 
@@ -17634,7 +17756,7 @@ Fortran 2008 . With DISTANCE or FAILED argument, TS 18508
 
 ### **Name**
 
-**out_of_range**(3) - \[TYPE:NUMERIC\] Whether a numeric value can be
+**out_of_range**(3) - \[TYPE:CONVERSION\] Whether a numeric value can be
 converted safely to another type
 
 ### **Synopsis**
@@ -17849,34 +17971,62 @@ size is the size of **array**.
 Sample program:
 
 ```fortran
-program demo_pack
-implicit none
-integer, allocatable :: m(:)
-character(len=10) :: c(4)
+    program demo_pack
+    implicit none
+    integer, allocatable :: m(:)
+    character(len=10) :: c(4)
 
- ! gathering nonzero elements from an array:
-   m = [ 1, 0, 0, 0, 5, 0 ]
-   write(*, fmt="(*(i0, ' '))") pack(m, m /= 0)
+     ! gathering nonzero elements from an array:
+       m = [ 1, 0, 0, 0, 5, 0 ]
+       write(*, fmt="(*(i0, ' '))") pack(m, m /= 0)
 
- ! Gathering nonzero elements from an array and appending elements
- ! from VECTOR till the size of the mask array (or array size if the
- ! mask is scalar):
-   m = [ 1, 0, 0, 2 ]
-   write(*, fmt="(*(i0, ' '))") pack(m, m /= 0, [ 0, 0, 3, 4 ])
-   write(*, fmt="(*(i0, ' '))") pack(m, m /= 0 )
+     ! Gathering nonzero elements from an array and appending elements
+     ! from VECTOR till the size of the mask array (or array size if the
+     ! mask is scalar):
+       m = [ 1, 0, 0, 2 ]
+       write(*, fmt="(*(i0, ' '))") pack(m, m /= 0, [ 0, 0, 3, 4 ])
+       write(*, fmt="(*(i0, ' '))") pack(m, m /= 0 )
 
- ! select strings whose second character is "a"
-   c = [ character(len=10) :: 'ape', 'bat', 'cat', 'dog']
-   write(*, fmt="(*(g0, ' '))") pack(c, c(:)(2:2) == 'a' )
+     ! select strings whose second character is "a"
+       c = [ character(len=10) :: 'ape', 'bat', 'cat', 'dog']
+       write(*, fmt="(*(g0, ' '))") pack(c, c(:)(2:2) == 'a' )
 
-end program demo_pack
+     ! creating a quicksort using PACK(3f)
+       block
+       intrinsic random_seed, random_number
+       real :: x(10)
+          call random_seed()
+          call random_number(x)
+          write (*,"(a10,*(1x,f0.3))") "initial",x
+          write (*,"(a10,*(1x,f0.3))") "sorted",qsort(x)
+       endblock
+    contains
+    !
+    ! concise quicksort from @arjen and @beliavsky shows recursion,
+    ! array sections, and vectorized comparisons.
+    !
+    pure recursive function qsort(values) result(sorted)
+    intrinsic pack, size
+    real, intent(in) :: values(:)
+    real             :: sorted(size(values))
+       if (size(values) > 1) then
+          sorted = &
+          & [qsort(pack(values(2:),values(2:)<values(1))), values(1), &
+          & qsort(pack(values(2:),values(2:)>=values(1)))]
+       else
+          sorted = values
+       endif
+    end function qsort
+    end program demo_pack
 ```
-Results:
+Result:
 ```text
- > 1 5
- > 1 2 3 4
- > 1 2
- > bat        cat
+    > 1 5
+    > 1 2 3 4
+    > 1 2
+    > bat        cat
+    >    initial .833 .367 .958 .454 .122 .602 .418 .942 .566 .400
+    >     sorted .122 .367 .400 .418 .454 .566 .602 .833 .942 .958
 ```
 ### **Standard**
 
@@ -18231,7 +18381,7 @@ There are many procedures that operator or query values at the bit level:
 
 ### **Name**
 
-**precision**(3) - \[NUMERIC MODEL\] Decimal precision of a real kind
+**precision**(3) - \[MODEL:NUMERIC\] Decimal precision of a real kind
 
 ### **Synopsis**
 ```fortran
@@ -18424,11 +18574,11 @@ end program demo_present
 ```
 Results:
 ```text
-    optional argument x is not present
-              0
-    optional argument x is present
-    already tested X is defined 1492
-        2226064
+  > optional argument x is not present
+  >           0
+  > optional argument x is present
+  > already tested X is defined 1492
+  >     2226064
 ```
 ### **Standard**
 
@@ -18602,70 +18752,67 @@ end subroutine print_matrix_int
 
 end program demo_product
 ```
-
 Results:
-
 ```text
-factorial of  1  is  1.000000
-factorial of  2  is  2.000000
-factorial of  3  is  6.000000
-factorial of  4  is  24.00000
-factorial of  5  is  120.0000
-factorial of  6  is  720.0000
-factorial of  7  is  5040.000
-factorial of  8  is  40320.00
-factorial of  9  is  362880.0
-factorial of  10  is  3628800.
-
- product of all elements 351000000
- odd * even =
- 4875 * 72000 = 351000000
-
-zero-sized array=> 1
-all elements have a false mask=> 1
-
-rect :( 2 3 )
- > [  1,  2,  3 ]
- > [  4,  5,  6 ]
-product of columns= 4 10 18
-product of rows= 6 120
-
-box 1 :( 2 3 )
- > [  1,  2,  3 ]
- > [  4,  5,  6 ]
-
-box 2 :( 2 3 )
- > [  10,  20,  30 ]
- > [  40,  50,  60 ]
-
-box 3 :( 2 3 )
- > [ -10, -20, -30 ]
- > [ -40, -50, -60 ]
-
-box 4 :( 2 3 )
- > [   2,   4,   6 ]
- > [   8,  10,  12 ]
-no dim gives a scalar .1719927E+26
-
-negative values :( 3 4 )
- > [     1,     1,   400,     1 ]
- > [     1,     1,  1000,     1 ]
- > [     1,     1,  1800,     1 ]
-
-dim=1 :( 3 4 )
- > [     4,   400,   400,    16 ]
- > [    10,  1000,  1000,    40 ]
- > [    18,  1800,  1800,    72 ]
-
-dim=2 :( 2 4 )
- > [       6,    6000,   -6000,      48 ]
- > [     120,  120000, -120000,     960 ]
-
-dim=3 :( 2 3 )
- > [    -200,   -3200,  -16200 ]
- > [  -51200, -125000, -259200 ]
+ > factorial of  1  is  1.00000000
+ > factorial of  2  is  2.00000000
+ > factorial of  3  is  6.00000000
+ > factorial of  4  is  24.0000000
+ > factorial of  5  is  120.000000
+ > factorial of  6  is  720.000000
+ > factorial of  7  is  5040.00000
+ > factorial of  8  is  40320.0000
+ > factorial of  9  is  362880.000
+ > factorial of  10  is  3628800.00
+ >
+ >  product of all elements 351000000
+ >  odd * even =
+ >  4875 * 72000 = 351000000
+ >
+ > zero-sized array=> 1
+ > all elements have a false mask=> 1
+ >
+ > rect :( 2 3 )
+ >  > [  1,  2,  3 ]
+ >  > [  4,  5,  6 ]
+ > product of columns= 4 10 18
+ > product of rows= 6 120
+ >
+ > box 1 :( 2 3 )
+ >  > [  1,  2,  3 ]
+ >  > [  4,  5,  6 ]
+ >
+ > box 2 :( 2 3 )
+ >  > [  10,  20,  30 ]
+ >  > [  40,  50,  60 ]
+ >
+ > box 3 :( 2 3 )
+ >  > [ -10, -20, -30 ]
+ >  > [ -40, -50, -60 ]
+ >
+ > box 4 :( 2 3 )
+ >  > [   2,   4,   6 ]
+ >  > [   8,  10,  12 ]
+ > no dim gives a scalar 0.171992703E+26
+ >
+ > negative values :( 3 4 )
+ >  > [     1,     1,   400,     1 ]
+ >  > [     1,     1,  1000,     1 ]
+ >  > [     1,     1,  1800,     1 ]
+ >
+ > dim=1 :( 3 4 )
+ >  > [     4,   400,   400,    16 ]
+ >  > [    10,  1000,  1000,    40 ]
+ >  > [    18,  1800,  1800,    72 ]
+ >
+ > dim=2 :( 2 4 )
+ >  > [       6,    6000,   -6000,      48 ]
+ >  > [     120,  120000, -120000,     960 ]
+ >
+ > dim=3 :( 2 3 )
+ >  > [    -200,   -3200,  -16200 ]
+ >  > [  -51200, -125000, -259200 ]
 ```
-
 ### **Standard**
 
 Fortran 95
@@ -18681,7 +18828,7 @@ directly using the star character.
 
 ### **Name**
 
-**radix**(3) - \[NUMERIC MODEL\] Base of a numeric model
+**radix**(3) - \[MODEL:NUMERIC\] Base of a numeric model
 
 ### **Synopsis**
 ```fortran
@@ -18796,10 +18943,10 @@ execution of the program.
 If it is **.false.**, the seed is set to a processor-dependent value.
 
 **image_distinct**
-: If is `.true.`, the seed is set to a processor-dependent value that
+: If it is `.true.`, the seed is set to a processor-dependent value that
 is distinct from the seed set by a call to **random_init**in another
-image. If it is **.false.**, the seed is set value that does depend
-which image called **random_init**.
+image. If it is **.false.**, the seed is set to a value that does depend
+on which image called **random_init**.
 
 ### **Examples**
 
@@ -18815,7 +18962,22 @@ Sample program:
        call random_number(y)
        ! x and y should be the same sequence
        if ( any(x /= y) ) stop "x(:) and y(:) are not all equal"
+       write(*,*)x
+       write(*,*)y
     end program demo_random_init
+```
+Results:
+
+RUN 1:
+```text
+ >   0.825262189      0.191325366      0.155503273
+ >   0.825262189      0.191325366      0.155503273
+```
+
+RUN 2:
+```text
+ >   0.825262189      0.191325366      0.155503273
+ >   0.825262189      0.191325366      0.155503273
 ```
 ### **Standard**
 
@@ -18824,7 +18986,7 @@ Fortran 2018
 ### **See also**
 
 [random_number](#random_number),
-[random_seed](random_seed)
+[random_seed](#random_seed)
 
  _Fortran intrinsic descriptions
 
@@ -18906,16 +19068,16 @@ end program demo_random_number
 ```
 Results:
 ```
-   1 10003588
-   2 10000104
-   3 10000169
-   4 9997996
-   5 9995349
-   6 10001304
-   7 10001909
-   8 9999133
-   9 10000252
-   10 10000196
+ >  1 10003588
+ >  2 10000104
+ >  3 10000169
+ >  4 9997996
+ >  5 9995349
+ >  6 10001304
+ >  7 10001909
+ >  8 9999133
+ >  9 10000252
+ >  10 10000196
 ```
 ### **Standard**
 
@@ -18991,8 +19153,8 @@ Sample program:
 ```
 Results:
 ```text
-     -674862499 -1750483360  -183136071  -317862567   682500039
-     349459   344020729 -1725483289
+ >    -674862499 -1750483360  -183136071  -317862567   682500039
+ >    349459   344020729 -1725483289
 ```
 ### **Standard**
 
@@ -19008,7 +19170,7 @@ Fortran 95
 
 ### **Name**
 
-**range**(3) - \[NUMERIC MODEL\] Decimal exponent range of a numeric kind
+**range**(3) - \[MODEL:NUMERIC\] Decimal exponent range of a numeric kind
 
 ### **Synopsis**
 ```fortran
@@ -19217,17 +19379,17 @@ end program demo_rank
 ```
 Results:
 ```text
-    rank of scalar a=           0
-    rank of matrix b=           2
-    rank of vector pointer c=           1
-    rank of complex scalar d=           0
-    rank of any arbitrary type=           5
-   passed a scalar to an assumed rank,   rank= 0
-   passed an array to an assumed rank,   rank= 1
-   passed an array to an assumed rank,   rank= 2
-   passed a scalar to an unlimited polymorphic rank= 0
-   passed an array to an unlimited polymorphic, rank= 1
-   passed an array to an unlimited polymorphic, rank= 2
+  >  rank of scalar a=           0
+  >  rank of matrix b=           2
+  >  rank of vector pointer c=           1
+  >  rank of complex scalar d=           0
+  >  rank of any arbitrary type=           5
+  > passed a scalar to an assumed rank,   rank= 0
+  > passed an array to an assumed rank,   rank= 1
+  > passed an array to an assumed rank,   rank= 2
+  > passed a scalar to an unlimited polymorphic rank= 0
+  > passed an array to an unlimited polymorphic, rank= 1
+  > passed an array to an unlimited polymorphic, rank= 2
 ```
 ### **Standard**
 
@@ -19257,13 +19419,12 @@ Results:
 - [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
-#
 
 ## real
 
 ### **Name**
 
-**real**(3) - \[TYPE:NUMERIC\] Convert to real type
+**real**(3) - \[TYPE:CONVERSION\] Convert to real type
 
 ### **Synopsis**
 ```fortran
@@ -19336,9 +19497,9 @@ end program demo_real
 ```
 Results:
 ```
- 1.00000000       2.00000000
- 4.0000000000000000       5.0000000000000000
- 1.7976931348623157E+308  1.7976931348623157E+308  1.7976931348623157E+308
+ > 1.00000000       2.00000000
+ > 4.0000000000000000       5.0000000000000000
+ > 1.7976931348623157E+308  1.7976931348623157E+308  1.7976931348623157E+30
 ```
 ### **Standard**
 
@@ -19392,7 +19553,7 @@ logical expressions:
 
 ### **Name**
 
-**reduce**(3) - \[TRANSFORMATIONAL\] General reduction of an array
+**reduce**(3) - \[ARRAY:TRANSFORMATIONAL\] General reduction of an array
 
 ### **Synopsis**
 There are two forms to this function:
@@ -19673,7 +19834,6 @@ Functions that perform operations on character strings:
   [**trim**(3)](#trim)
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
-#
 
 ## reshape
 
@@ -19896,7 +20056,8 @@ Fortran 95
 
 ### **Name**
 
-**rrspacing**(3) - \[MODEL_COMPONENTS\] Reciprocal of the relative spacing of a numeric type
+**rrspacing**(3) - \[MODEL_COMPONENTS\] Reciprocal of the relative
+spacing of a numeric type
 
 ### **Synopsis**
 ```fortran
@@ -19909,7 +20070,7 @@ Fortran 95
 ```
 ### **Characteristics**
 
- - **x** is type _real_ an any kind
+ - **x** is type _real_ of any kind
  - The return value is of the same type and kind as **x**.
 
 ### **Description**
@@ -19918,11 +20079,14 @@ Fortran 95
 numbers near **x**.
 
 <!--
- 5 Result Value. The result has the value |Y* b-e|*bp = ABS (FRACTION (Y)) * RADIX (X) / EPSILON (X),
-    where b, e, and p are as defined in 16.4 for Y, the value nearest to X in the model for real values whose kind type
-    parameter is that of X; if there are two such values, the value of greater absolute value is taken. If X is an IEEE
-    infinity, the result is an IEEE NaN. If X is an IEEE NaN, the result is that NaN.
- 6 Example. RRSPACING (-3.0) has the value 0:75x224 for reals whose model is as in 16.4, NOTE 1.
+ 5 Result Value. The result has the value
+   |Y* b-e|*bp = ABS (FRACTION (Y)) * RADIX (X) / EPSILON (X),
+   where b, e, and p are as defined in 16.4 for Y, the value nearest
+   to X in the model for real values whose kind type
+   parameter is that of X; if there are two such values, the value of
+   greater absolute value is taken. If X is an IEEE
+   infinity, the result is an IEEE NaN. If X is an IEEE NaN, the result
+   is that NaN.
 -->
 
 ### **Options**
@@ -19932,12 +20096,56 @@ numbers near **x**.
 
 ### **Result**
 
-  The return value is of the same type and kind as **x**. The value returned
-  is equal to **abs(fraction(x)) \* float(radix(x))\*\*digits(x)**.
+  The return value is of the same type and kind as **x**. The value
+  returned is equal to
+  **abs(fraction(x)) \* float(radix(x))\*\*digits(x)**.
 
+### **Examples**
+
+Sample program:
+
+```fortran
+program demo_rrspacing
+implicit none
+integer, parameter :: sgl = selected_real_kind(p=6, r=37)
+integer, parameter :: dbl = selected_real_kind(p=13, r=200)
+character(len=*),parameter :: gen='(*(g0))', nl=new_line('A')
+real(kind=sgl) :: x
+   x=-3.0_sgl
+   print gen, &
+   'rrspacing(',x,'_sgl)=', rrspacing(x),                       nl, &
+   'rrspacing(x)=abs(fraction(x))*float(radix(x))**digits(x)',  nl, &
+   'so this should be the same as rrspacing():',                nl, &
+   abs( fraction(x) ) * float( radix(x) )**digits(x),           nl, &
+   'RRSPACING (-3.0) has the value 0.75x2**24 for reals',       nl, &
+   'on current typical platforms. For reference:',              nl, &
+   '   0.75*2**24=', 0.75*2**24,                                nl, &
+   'sign should not matter, so',rrspacing(x)==rrspacing(-x),    nl, &
+   'note the kind of the value is significant',                 nl, &
+   rrspacing(-3.0_dbl),                                         nl, &
+   'for common platforms rrspacing(487923.3d0)=>',              nl, &
+   '   8.382458680573952E+015',                                 nl, &
+   rrspacing(487923.3d0),                                       nl, &
+   ' '
+end program demo_rrspacing
+```
+```text
+ > rrspacing(-3.00000000_sgl)=12582912.0
+ > rrspacing(x)=abs(fraction(x))*float(radix(x))**digits(x)
+ > so this should be the same as rrspacing():
+ > 12582912.0
+ > RRSPACING (-3.0) has the value 0.75x2**24 for reals
+ > on current typical platforms. For reference:
+ > 0.75*2**24=12582912.0
+ > sign should not matter, soT
+ > note the kind of the value is significant
+ > 6755399441055744.0
+ > for common platforms rrspacing(487923.3d0)=>8.382458680573952E+015
+ > 8382458465825587.0
+```
 ### **Standard**
 
-Fortran 95
+Fortran 90
 
 ### **See Also**
 
@@ -20077,13 +20285,13 @@ Sample program:
 ```
 Results:
 ```text
-    F I am descended from Dad, but equal?
-    T I am what I am
-    T what a pair!
-    F no paradox here
-    F no relation
-    (P,Q) T mind your P's and Q's
-    (P,R) F
+  >  F I am descended from Dad, but equal?
+  >  T I am what I am
+  >  T what a pair!
+  >  F no paradox here
+  >  F no relation
+  >  (P,Q) T mind your P's and Q's
+  >  (P,R) F
 ```
 ### **Standard**
 
@@ -20099,7 +20307,7 @@ Fortran 2003
 
 ### **Name**
 
-**scale**(3) - \[MODEL_COMPONENTS\] Scale a real value by a whole power of the radix
+**scale**(3) - \[MODEL:COMPONENTS\] Scale a real value by a whole power of the radix
 
 ### **Synopsis**
 ```fortran
@@ -20696,7 +20904,7 @@ Fortran 95 ; with RADIX - Fortran 2008
 
 ### **Name**
 
-**set_exponent**(3) - \[MODEL_COMPONENTS\] real value with specified exponent
+**set_exponent**(3) - \[MODEL:COMPONENTS\] real value with specified exponent
 
 ### **Synopsis**
 ```fortran
@@ -20755,7 +20963,7 @@ end program demo_setexp
 ```
 Results:
 ```text
-      74716.7891       74716.7891
+  >   74716.7891       74716.7891
 ```
 ### **Standard**
 
@@ -20853,11 +21061,11 @@ end program demo_shape
 ```
 Results:
 ```text
-   shape of array= 3 4
-   shape of constant=
-   size of shape of constant= 0
-   ubound of array= 1 2
-   lbound of array= -1 -1
+ > shape of array= 3 4
+ > shape of constant=
+ > size of shape of constant= 0
+ > ubound of array= 1 2
+ > lbound of array= -1 -1
 ```
 ### **Standard**
 
@@ -21357,14 +21565,14 @@ end program demo_sign
 ```
 Results:
 ```text
-             12
-             12
-            -12
-             12
-             12
-            -12
-    this processor does not distinguish +0 from -0
-    elemental   12.00000       12.00000      -12.00000
+    >        12
+    >        12
+    >       -12
+    >        12
+    >        12
+    >       -12
+    > this processor does not distinguish +0 from -0
+    > elemental   12.00000       12.00000      -12.00000
 ```
 ### **Standard**
 
@@ -21568,8 +21776,7 @@ Fortran 2023
 Sample program:
 ```fortran
 program demo_sinh
-use, intrinsic :: iso_fortran_env, only : &
-& real_kinds, real32, real64, real128
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
 real(kind=real64) :: x = - 1.0_real64
 real(kind=real64) :: nan, inf
@@ -21600,12 +21807,12 @@ end program demo_sinh
 ```
 Results:
 ```text
-  -1.1752011936438014
-  -1.1752011936438014
-  -1.1752011936438014       -3.6268604078470190      -0.33954055725615012
-                       NaN
-                  Infinity
-                  Infinity
+ > -1.1752011936438014
+ > -1.1752011936438014
+ > -1.1752011936438014       -3.6268604078470190      -0.33954055725615012
+ >                      NaN
+ >                 Infinity
+ >                 Infinity
 ```
 ### **Standard**
 
@@ -21993,15 +22200,15 @@ end program demo_size
 ```
 Results:
 ```text
-    SIZE of simple two-dimensional array
-    SIZE(arr)       :total count of elements:          33
-    SIZE(arr,DIM=1) :number of rows         :           3
-    SIZE(arr,DIM=2) :number of columns      :          11
-    interfaced assumed-shape array
-    SIZE(arr1)        :          33
-    SIZE(arr1,DIM=1)  :           3
-    SIZE(arr1,DIM=2)  :          11
-    SIZE(arr2,DIM=1)  :           2
+  > SIZE of simple two-dimensional array
+  > SIZE(arr)       :total count of elements:          33
+  > SIZE(arr,DIM=1) :number of rows         :           3
+  > SIZE(arr,DIM=2) :number of columns      :          11
+  > interfaced assumed-shape array
+  > SIZE(arr1)        :          33
+  > SIZE(arr1,DIM=1)  :           3
+  > SIZE(arr1,DIM=2)  :          11
+  > SIZE(arr2,DIM=1)  :           2
 ```
 ### **Standard**
 
@@ -22066,8 +22273,9 @@ Fortran 95 , with **kind** argument - Fortran 2003
 
 ### **Result**
 
-   If **x** does not have the value zero and is not an IEEE infinity or NaN, the result has the value
-   nearest to **x** for values of the same type and kind assuming the value is representable.
+   If **x** does not have the value zero and is not an IEEE infinity or
+   NaN, the result has the value nearest to **x** for values of the same
+   type and kind assuming the value is representable.
 
    Otherwise, the value is the same as **tiny(x)**.
      + zero produces **tiny(x)**
@@ -22101,10 +22309,10 @@ Results:
 Typical values ...
 
 ```text
-     1.1920929E-07
-      1.000000      1.1920929E-07
-     0.9999999     -5.9604645E-08
-     2.220446049250313E-016
+  >  1.1920929E-07
+  >   1.000000      1.1920929E-07
+  >  0.9999999     -5.9604645E-08
+  >  2.220446049250313E-016
 ```
 ### **Standard**
 
@@ -22520,8 +22728,7 @@ Sample program:
 
 ```fortran
 program demo_sqrt
-use, intrinsic :: iso_fortran_env, only : real_kinds, &
- & real32, real64, real128
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
 real(kind=real64) :: x, x2
 complex :: z, z2
@@ -22548,10 +22755,10 @@ end program demo_sqrt
 ```
 Results:
 ```text
-    input values    2.00000000000000      (1.000000,2.000000)
-    output values    1.41421356237310      (1.272020,0.7861513)
-    elemental   8.000000       11.00000       5.477226
-    alternatively   1.41421356237310      (1.272020,0.7861513)
+  > input values    2.00000000000000      (1.000000,2.000000)
+  > output values    1.41421356237310      (1.272020,0.7861513)
+  > elemental   8.000000       11.00000       5.477226
+  > alternatively   1.41421356237310      (1.272020,0.7861513)
 ```
 ### **Standard**
 
@@ -22654,11 +22861,11 @@ end program demo_storage_size
 ```
 Results:
 ```text
-    size of integer                 32
-    size of real                    32
-    size of logical                 32
-    size of complex                 64
-    size of integer array           32
+  > size of integer                 32
+  > size of real                    32
+  > size of logical                 32
+  > size of complex                 64
+  > size of integer array           32
 ```
 ### **Standard**
 
@@ -22805,66 +23012,67 @@ end program demo_sum
 ```
 Results:
 ```text
-    sum all elements:           9
-    real :   26.00000
-    complex : (13.10000,-4.300000)
-    sum odd elements:           6
-    sum positive values:          12
-    the input array  (a matrix)
-    > [   -1,    2,   -3,    4 ]
-    > [   10,  -20,   30,  -40 ]
-    > [  100,  200, -300,  400 ]
-    >shape= 3 4 ,rank= 2 ,size= 12
-
-    sum of all elements in matrix  (a scalar)
-    > [  382 ]
-    >shape= ,rank= 0 ,size= 1
-
-    sum of positive elements  (a scalar)
-    > [  746 ]
-    >shape= ,rank= 0 ,size= 1
-
-    sum along rows  (a vector)
-    > [  109 ]
-    > [  182 ]
-    > [ -273 ]
-    > [  364 ]
-    >shape= 4 ,rank= 1 ,size= 4
-
-    sum along columns  (a vector)
-    > [    2 ]
-    > [  -20 ]
-    > [  400 ]
-    >shape= 3 ,rank= 1 ,size= 3
-
-    sum of a vector is always a scalar  (a scalar)
-    > [  9 ]
-    >shape= ,rank= 0 ,size= 1
-
-    sum of a volume by row  (a matrix)
-    > [  55,  55,  55,  55,  55,  55,  55 ]
-    > [  55,  55,  55,  55,  55,  55,  55 ]
-    > [  55,  55,  55,  55,  55,  55,  55 ]
-    > [  55,  55,  55,  55,  55,  55,  55 ]
-    > [  55,  55,  55,  55,  55,  55,  55 ]
-    > [  55,  55,  55,  55,  55,  55,  55 ]
-    >shape= 6 7 ,rank= 2 ,size= 42
-
-    sum of a volume by column  (a matrix)
-    > [  66,  66,  66,  66,  66,  66,  66 ]
-    > [  66,  66,  66,  66,  66,  66,  66 ]
-    > [  66,  66,  66,  66,  66,  66,  66 ]
-    > [  66,  66,  66,  66,  66,  66,  66 ]
-    > [  66,  66,  66,  66,  66,  66,  66 ]
-    >shape= 5 7 ,rank= 2 ,size= 35
-
-    sum of a volume by depth  (a matrix)
-    > [  77,  77,  77,  77,  77,  77 ]
-    > [  77,  77,  77,  77,  77,  77 ]
-    > [  77,  77,  77,  77,  77,  77 ]
-    > [  77,  77,  77,  77,  77,  77 ]
-    > [  77,  77,  77,  77,  77,  77 ]
-    >shape= 5 6 ,rank= 2 ,size= 30
+ >  sum all elements:           9
+ >  real :   26.0000000
+ >  complex :            (13.1000004,-4.30000019)
+ >  sum odd elements:           6
+ >  sum positive values:          12
+ >  the input array  (a matrix)
+ >  > [   -1,    2,   -3,    4 ]
+ >  > [   10,  -20,   30,  -40 ]
+ >  > [  100,  200, -300,  400 ]
+ >  >shape= 3 4 ,rank= 2 ,size= 12
+ >
+ >  sum of all elements in matrix  (a scalar)
+ >  > [  382 ]
+ >  >shape= ,rank= 0 ,size= 1
+ >
+ >  sum of positive elements  (a scalar)
+ >  > [  746 ]
+ >  >shape= ,rank= 0 ,size= 1
+ >
+ >  sum along rows  (a vector)
+ >  > [  109 ]
+ >  > [  182 ]
+ >  > [ -273 ]
+ >  > [  364 ]
+ >  >shape= 4 ,rank= 1 ,size= 4
+ >
+ >  sum along columns  (a vector)
+ >  > [    2 ]
+ >  > [  -20 ]
+ >  > [  400 ]
+ >  >shape= 3 ,rank= 1 ,size= 3
+ >
+ >  sum of a vector is always a scalar  (a scalar)
+ >  > [  9 ]
+ >  >shape= ,rank= 0 ,size= 1
+ >
+ >  sum of a volume by row  (a matrix)
+ >  > [  55,  55,  55,  55,  55,  55,  55 ]
+ >  > [  55,  55,  55,  55,  55,  55,  55 ]
+ >  > [  55,  55,  55,  55,  55,  55,  55 ]
+ >  > [  55,  55,  55,  55,  55,  55,  55 ]
+ >  > [  55,  55,  55,  55,  55,  55,  55 ]
+ >  > [  55,  55,  55,  55,  55,  55, 113 ]
+ >  >shape= 6 7 ,rank= 2 ,size= 42
+ >
+ >  sum of a volume by column  (a matrix)
+ >  > [  66,  66,  66,  66,  66,  66,  66 ]
+ >  > [  66,  66,  66,  66,  66,  66,  66 ]
+ >  > [  66,  66,  66,  66,  66,  66,  66 ]
+ >  > [  66,  66,  66,  66,  66,  66,  66 ]
+ >  > [  66,  66,  66,  66,  66,  66,**** ]
+ >  >shape= 5 7 ,rank= 2 ,size= 35
+ >
+ >  sum of a volume by depth  (a matrix)
+ >  > [  77,  77,  77,  77,  77,  77 ]
+ >  > [  77,  77,  77,  77,  77,  77 ]
+ >  > [  77,  77,  77,  77,  77,  77 ]
+ >  > [  77,  77,  77,  77,  77,  77 ]
+ >  > [  77,  77,  77,  77,  77,4193 ]
+ >  >shape= 5 6 ,rank= 2 ,size= 30
+ >
 ```
 ### **Standard**
 
@@ -23085,12 +23293,15 @@ tand(180.0) has the value 0.0 (approximately).
 Sample program:
 ```fortran
 program demo_tand
-use, intrinsic :: iso_fortran_env, only : real_kinds, &
-& real32, real64, real128
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
 real(kind=real64) :: x = 0.5_real64
      write(*,*)x, tand(x)
 end program demo_tand
+```
+Result:
+```text
+  > 0.50000000000000000        8.7268677907587893E-003
 ```
 ### **Standard**
 
@@ -23154,8 +23365,7 @@ Returns the hyperbolic tangent of **x**.
 Sample program:
 ```fortran
 program demo_tanh
-use, intrinsic :: iso_fortran_env, only : &
-& real_kinds, real32, real64, real128
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
 real(kind=real64) :: x = 2.1_real64
    write(*,*)x, tanh(x)
@@ -23163,7 +23373,7 @@ end program demo_tanh
 ```
 Results:
 ```text
-      2.1000000000000001       0.97045193661345386
+  >   2.1000000000000001       0.97045193661345386
 ```
 ### **Standard**
 
@@ -23220,8 +23430,7 @@ result = tan(x)
 Sample program:
 ```fortran
 program demo_tan
-use, intrinsic :: iso_fortran_env, only : real_kinds, &
-& real32, real64, real128
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
 real(kind=real64) :: x = 0.165_real64
      write(*,*)x, tan(x)
@@ -23229,7 +23438,7 @@ end program demo_tan
 ```
 Results:
 ```text
-     0.16500000000000001       0.16651386310913616
+  >  0.16500000000000001       0.16651386310913616
 ```
 ### **Standard**
 
@@ -23399,7 +23608,7 @@ end program demo_this_image
 ```
 Results:
 ```text
-   value[1] is 1
+ >  value[1] is 1
 ```
 ### **Standard**
 
@@ -23416,7 +23625,7 @@ Fortran 2008. With DISTANCE argument, TS 18508
 
 ### **Name**
 
-**tiny**(3) - \[NUMERIC MODEL\] Smallest positive number of a real kind
+**tiny**(3) - \[MODEL:NUMERIC\] Smallest positive number of a real kind
 
 ### **Synopsis**
 ```fortran
@@ -23464,9 +23673,9 @@ end program demo_tiny
 Results:
 
 ```text
- default real is from 1.17549435E-38 to 3.40282347E+38
- doubleprecision is from 2.2250738585072014E-308 to
- 1.7976931348623157E+308
+ > default real is from 1.17549435E-38 to 3.40282347E+38
+ > doubleprecision is from 2.2250738585072014E-308 to
+ > 1.7976931348623157E+308
 ```
 ### **Standard**
 
@@ -23759,16 +23968,16 @@ end program demo_trailz
 ```
 Results:
 ```text
-    Note default integer is          32 bits
-    value=  -1, value(bits)=11111111111111111111111111111111 , trailz=  0
-    value=   0, value(bits)=00000000000000000000000000000000 , trailz= 32
-    value=   1, value(bits)=00000000000000000000000000000001 , trailz=  0
-    value=  96, value(bits)=00000000000000000000000001100000 , trailz=  5
-    elemental and any integer kind:
-              5          13           4
-    0000000000000000000000000000000000000000000000000000000000100000
-    0000000000000000000000000000000000000000000000000010000000000000
-    0000000000000000000000000000000000000000000000000000000000010000
+ >  Note default integer is          32 bits
+ >  value=  -1, value(bits)=11111111111111111111111111111111 , trailz=  0
+ >  value=   0, value(bits)=00000000000000000000000000000000 , trailz= 32
+ >  value=   1, value(bits)=00000000000000000000000000000001 , trailz=  0
+ >  value=  96, value(bits)=00000000000000000000000001100000 , trailz=  5
+ >  elemental and any integer kind:
+ >            5          13           4
+ >  0000000000000000000000000000000000000000000000000000000000100000
+ >  0000000000000000000000000000000000000000000000000010000000000000
+ >  0000000000000000000000000000000000000000000000000000000000010000
 ```
 ### **Standard**
 
@@ -23872,16 +24081,13 @@ character(len=1)    :: chars(10)
    write(*,'(*("[",a,"]":,1x))')chars
 end program demo_transfer
 ```
-
 Results:
-
 ```text
-   1111111110000000000000000000000 NaN
-   1111111110000000000000000000000 2143289344
-   [abcdefghij]
-   [a] [b] [c] [d] [e] [f] [g] [h] [i] [j]
+ > 1111111110000000000000000000000 NaN
+ > 1111111110000000000000000000000 2143289344
+ > [abcdefghij]
+ > [a] [b] [c] [d] [e] [f] [g] [h] [i] [j]
 ```
-
 ### **Comments**
 
 _Joe Krahn_: Fortran uses **molding** rather than **casting**.

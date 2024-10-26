@@ -111,7 +111,7 @@
   Given the file "subr.inc":
 ```fortran
    function subr(val)
-   ! trivial function. What to note is 
+   ! trivial function. What to note is
    ! all the kinds are specified via "WP"
    real(kind=wp) :: subr
    real(kind=wp),intent(in) :: val

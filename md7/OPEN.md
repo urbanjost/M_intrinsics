@@ -3,7 +3,7 @@
 ### **Name**
    open(7f) - [IO] Initiates or modifies a connection between
    an external file and a specified unit.
-   
+
 ### **Synopsis**
 ```fortran
   OPEN (
@@ -328,7 +328,7 @@ integer :: lun
    & iostat=ios,            &
    & iomsg=message)
    if (ios < 0) then
-      ! Perform end-of-file processing on the file connected to unit 
+      ! Perform end-of-file processing on the file connected to unit
       call end_processing()
    elseif (ios > 0) then
       ! Perform error processing

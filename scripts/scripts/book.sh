@@ -25,6 +25,7 @@ HTML >$TOPHTML/BOOK_$TOPIC.html
 	# put section 3 topics first
         $MAN_CMD -s "3${SECTION}" -k .|env LC_ALL=C /usr/bin/sort -k 2r,2r -k 1,1|grep -i  "(3${TOPIC})"
 	# put non-section 3 topics next
+        $MAN_CMD -s "5{$SECTION}" -k .|env LC_ALL=C /usr/bin/sort -k 2r,2r -k 1,1|grep -vi "(5${TOPIC})"
         $MAN_CMD -s "7{$SECTION}" -k .|env LC_ALL=C /usr/bin/sort -k 2r,2r -k 1,1|grep -vi "(7${TOPIC})"
       )|tr -d '()'| awk '{printf "%s.%s.html\n",$1,$2}'
    fi| uniq|while read NAME

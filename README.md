@@ -18,9 +18,9 @@ integrate the descriptions into fpm(1) as a plugin, read on.
 Unlike many parts of the Fortran language, intrinsics can naturally be
 described in discrete units using man-page-like descriptions.
 
-This is a project to 
+This is a project to
 
-+ provide standard Fortran intrinsic markdown descriptions for the fortran-lang.org site 
++ provide standard Fortran intrinsic markdown descriptions for the fortran-lang.org site
 + generate a set of man-page and HTML Fortran intrinsic documents
 + extract [demo programs](https://urbanjost.github.io/M_intrinsics/playground.html)
   from each document into an fpm(1) package for easy verification
@@ -34,13 +34,21 @@ platforms; providing a convenient CLI (Command Line Interface).
 The man-pages are available as archive files:
 
 <!--
-   - [manpages.tgz](docs/manpages.zip)
-   - [manpages.zip](docs/manpages.tgz)
+   - [manpages3.tgz](docs/manpages3.zip)
+   - [manpages3.zip](docs/manpages3.tgz)
+   - [manpages5.tgz](docs/manpages5.zip)
+   - [manpages5.zip](docs/manpages5.tgz)
+   - [manpages7.tgz](docs/manpages7.zip)
+   - [manpages7.zip](docs/manpages7.tgz)
    -->
-   - [manpages.tgz](https://urbanjost.github.io/M_intrinsics/manpages.tgz)
-   - [manpages.zip](https://urbanjost.github.io/M_intrinsics/manpages.zip)
+   - [manpages3.tgz](https://urbanjost.github.io/M_intrinsics/manpages3.tgz)
+   - [manpages3.zip](https://urbanjost.github.io/M_intrinsics/manpages3.zip)
+   - [manpages5.tgz](https://urbanjost.github.io/M_intrinsics/manpages5.tgz)
+   - [manpages5.zip](https://urbanjost.github.io/M_intrinsics/manpages5.zip)
+   - [manpages7.tgz](https://urbanjost.github.io/M_intrinsics/manpages7.tgz)
+   - [manpages7.zip](https://urbanjost.github.io/M_intrinsics/manpages7.zip)
 
-A single-file version of the CLI program fpm-man(1) is in 
+A single-file version of the CLI program fpm-man(1) is in
 [fman.f90](https://raw.githubusercontent.com/urbanjost/M_intrinsics/master/standalone/fman.f90).
 
    - builds with `gfortran  fman.f90`
@@ -59,25 +67,35 @@ documentation, but at a minimum if you create the directory $HOME/man/man3
 and place the man-pages there and add $HOME/man to your $MANPATH you
 should be able to use the man-pages. For example:
 ```bash
-        mkdir -p $HOME/man/man3
-        cd $HOME/man/man3
-        tar xvfz $WHERE_YOU_PUT_TARFILE/manpages.tgz
-	cd ..
+        for NUM in 3 5 7
+	do
+	(
+           mkdir -p $HOME/man/man${NUM}
+           cd $HOME/man/man${NUM}
+           tar xvfz $WHERE_YOU_PUT_TARFILE/manpages${NUM}.tgz
+	)
+	done
+        cd ..
         mandb -c .
         export MANPATH=$HOME/man:$MANPATH
-	export MANWIDTH=80   # optional, displays manpages in columns 1 to 80
-        man -s 3fortran -k . # list topic line for all Fortran man-pages
+        export MANWIDTH=80   # optional, displays manpages in columns 1 to 80
+        man -s 3fortran,5fortran,7fortran -k . # list topic line for all Fortran man-pages
 ```
 
 Typical installation on a Linux platform as an administrator ( but it varies) :
 ```bash
      # as the administrator
-     cd /usr/share/man/man3
-     tar xvfz /$WHERE_YOU_PUT_TARFILE/manpages.tgz
+     for NUM in 3 5 7
+     do
+     (
+        cd /usr/share/man/man${NUM}
+        tar xvfz /$WHERE_YOU_PUT_TARFILE/manpages${NUM}.tgz
+     )
+     done
      cd /usr/share/man
      mandb -c .
 ```
-     then anyone on that platform can enter commands like 
+     then anyone on that platform can enter commands like
 ```bash
      man sinh.3fortran     # specifically show Fortran sinh(3) documentation
      man sinh.3f           # section abbreviations are often supported for this format
@@ -85,7 +103,7 @@ Typical installation on a Linux platform as an administrator ( but it varies) :
      man -s 3fortran --regex '.*' |col -b # show all Fortran intrinsics
 ```
     See man(1) (ie. enter "man man") for more information.
-    
+
 ## Documentation Formats  ![docs](docs/images/docs.gif)
 
 The documents are maintained as Myst markdown files to be compatible
@@ -114,7 +132,7 @@ the environment variable MANPATH -see man(1) for more information).
 
 Because there are name collisions with the Fortran procedures and
 other languages you may want to customize your .vimrc file to use
-a custom script or command when editing Fortran files. Just as 
+a custom script or command when editing Fortran files. Just as
 an example, create a little Fortran file called "test.f90" and try:
 ```bash
    vim -c 'set keywordprg=env\ MANPATH=$HOME/man\ man\ -s\ 3fortran\ -a' test.f90
@@ -131,7 +149,7 @@ site from github. obtain a copy of the repository:
 
 At a minimum, you can cd(1) into the md/ directory and change the files
 there. Then push the git repository back to your fork and make a pull
-request. 
+request.
 
 If you are not familiar with this method, you can just post your changes
 on this site as an "Issue".
@@ -148,7 +166,7 @@ work, or whether a branch is required. Looking for more information ...
 You have to have a Fortran compiler, fpm(1) and pandoc(1) installed to
 use the method used here to convert the markdown files to man-pages,
 a Fortran utility program, and HTML. For reference
-``` 
+```
 # use pandoc to convert the markdown files to text
 scripts/scripts/totxt.sh
 # run make(1) to generate all the other files

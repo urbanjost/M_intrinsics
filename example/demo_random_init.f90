@@ -7,4 +7,6 @@
              call random_number(y)
              ! x and y should be the same sequence
              if ( any(x /= y) ) stop "x(:) and y(:) are not all equal"
+             write(*,*)x
+             write(*,*)y
           end program demo_random_init

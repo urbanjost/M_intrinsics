@@ -31,7 +31,6 @@
           (-1.0, 1.0 ), & ! 135
           (-1.0, 0.0 ), & ! 180
           (-1.0,-1.0 ), & ! 225
-      /bin/bash: pb0: command not found
           ( 0.0,-1.0 )]   ! 270
         do i=1,size(vals)
            call cartesian_to_polar(vals(i)%re, vals(i)%im, radius,ang)
