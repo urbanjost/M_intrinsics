@@ -116,8 +116,8 @@ end program demo_is_contiguous
 Results:
 
 ```text
-    IN is  T
-    OUT is  F
+  > IN is  T
+  > OUT is  F
 ```
 ### **Standard**
 

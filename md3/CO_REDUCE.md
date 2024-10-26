@@ -82,7 +82,10 @@ end function myprod
 
 end program demo_co_reduce
 ```
-
+Results:
+```text
+ >  Product value           1
+```
 ### **Note**
 
 While the rules permit in principle an intrinsic function, none of the

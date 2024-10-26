@@ -79,14 +79,14 @@ end program demo_len_trim
 ```
 Results:
 ```text
-     how long is this string?
-    UNTRIMMED LENGTH=          30
-    TRIMMED LENGTH=          25
-    xxxxx   xxxxx   xxxxx
-    xxxxxxxxxxxxxxx
-    UNTRIMMED LENGTH=           256
-    TRIMMED LENGTH=              25          13
-    SUM TRIMMED LENGTH=          38
+  >   how long is this string?
+  >  UNTRIMMED LENGTH=          30
+  >  TRIMMED LENGTH=          25
+  >  xxxxx   xxxxx   xxxxx
+  >  xxxxxxxxxxxxxxx
+  >  UNTRIMMED LENGTH=           256
+  >  TRIMMED LENGTH=              25          13
+  >  SUM TRIMMED LENGTH=          38
 ```
 ### **Standard**
 

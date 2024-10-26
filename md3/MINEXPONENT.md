@@ -48,8 +48,8 @@ end program demo_minexponent
 ```
 Expected Results:
 ```
-        -125         128
-       -1021        1024
+  >     -125         128
+  >    -1021        1024
 ```
 ### **Standard**
 

@@ -75,7 +75,7 @@ end program demo_iparity
 ```
 Results:
 ```
-   01001110
+ > 01001110
 ```
 ### **Standard**
 

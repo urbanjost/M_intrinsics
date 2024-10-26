@@ -50,7 +50,7 @@ end program demo_bessel_j0
 Results:
 
 ```text
-      1.0000000000000000
+  > 1.0000000000000000
 ```
 ### **Standard**
 

@@ -87,7 +87,7 @@ end program demo_index
 Expected Results:
 
 ```text
-   T T T
+  > T T T
 ```
 ### **Standard**
 

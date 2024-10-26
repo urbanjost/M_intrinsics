@@ -131,18 +131,18 @@ end program demo_max
 ```
 Results:
 ```text
-    scalars:   30.00000
-    scalars: -9.9999997E-05
-    characters:words
-    characters:c
-    characters:b
-   "BB" "Z "
-   box=    -6  -5  -4  -3  -2  -1   1   2   3   4   5   6
-   box**2=-36 -25 -16  -9  -4  -1   1   4   9  16  25  36
-   max     -6  -5  -4  -3  -2  -1   1   4   9  16  25  36
-   20.00000  21.00000  32.00000  -100.0000
-   0  0  0  0  0  0
-   1  2  3  4  5  6
+ >   scalars:   30.00000
+ >   scalars: -9.9999997E-05
+ >   characters:words
+ >   characters:c
+ >   characters:b
+ >  "BB" "Z "
+ >  box=    -6  -5  -4  -3  -2  -1   1   2   3   4   5   6
+ >  box**2=-36 -25 -16  -9  -4  -1   1   4   9  16  25  36
+ >  max     -6  -5  -4  -3  -2  -1   1   4   9  16  25  36
+ >  20.00000  21.00000  32.00000  -100.0000
+ >  0  0  0  0  0  0
+ >  1  2  3  4  5  6
 ```
 ### **Standard**
 

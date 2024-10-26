@@ -71,7 +71,7 @@ end program demo_this_image
 ```
 Results:
 ```text
-   value[1] is 1
+ >  value[1] is 1
 ```
 ### **Standard**
 

@@ -776,13 +776,13 @@ end program demo_adjustl
 ```
 Results:
 ```text
-   original: [   sample string    ]
-   adjusted: [sample string       ]
-   trimmed:  [sample string]
-   substring:[sample string]
-   original:[    allocatable string   ]
-   adjusted:[allocatable string       ]
-   trimmed: [allocatable string]
+   > original: [   sample string    ]
+   > adjusted: [sample string       ]
+   > trimmed:  [sample string]
+   > substring:[sample string]
+   > original:[    allocatable string   ]
+   > adjusted:[allocatable string       ]
+   > trimmed: [allocatable string]
 ```
 ### **Standard**
 
@@ -863,14 +863,14 @@ end program demo_adjustr
 ```
 Results:
 ```text
-   12345678901234567890
-     sample string
-          sample string
-   12345678901234567890123456789012345678901234567890
-                                                first
-                                               second
-                                                third
-   12345678901234567890123456789012345678901234567890
+   > 12345678901234567890
+   >   sample string
+   >        sample string
+   > 12345678901234567890123456789012345678901234567890
+   >                                              first
+   >                                             second
+   >                                              third
+   > 12345678901234567890123456789012345678901234567890
 ```
 ### **Standard**
 
@@ -958,15 +958,15 @@ end program demo_aimag
 ```
 Results:
 ```text
- value= (1.00000000,2.00000000)
- imaginary part= 2.00000000 or 2.00000000
- value= (3.0000000000000000,4.0000000000000000)
- imaginary part= 4.0000000000000000 or 4.0000000000000000
-
- (1.00000000,2.00000000) (0.500000000,1.00000000) (2.00000000,4.00000000)
- (-11.0000000,-2.00000000)
-
-   2.00000000       1.00000000       4.00000000      -2.00000000
+  > value= (1.00000000,2.00000000)
+  > imaginary part= 2.00000000 or 2.00000000
+  > value= (3.0000000000000000,4.0000000000000000)
+  > imaginary part= 4.0000000000000000 or 4.0000000000000000
+  >
+  > (1.00000000,2.00000000) (0.500000000,1.00000000) (2.00000000,4.00000000)
+  > (-11.0000000,-2.00000000)
+  >
+  >  2.00000000       1.00000000       4.00000000      -2.00000000
 ```
 ### **Standard**
 
@@ -1087,17 +1087,17 @@ end program demo_aint
 ```
 Results:
 ```text
- basics:
-  just chops off the fractional part
-  -2.000000      -2.000000
-  if |x| < 1 a positive zero is returned
-  0.0000000E+00  0.0000000E+00
-  input may be of any real kind
-  -4.00000000000000        4.00000000000000
- elemental:
-  -2.000000      -2.000000      -2.000000      -2.000000      -1.000000
-  -1.000000      0.0000000E+00  0.0000000E+00  0.0000000E+00   1.000000
-   1.000000       2.000000       2.000000       2.000000       2.000000
+ > basics:
+ >  just chops off the fractional part
+ >  -2.000000      -2.000000
+ >  if |x| < 1 a positive zero is returned
+ >  0.0000000E+00  0.0000000E+00
+ >  input may be of any real kind
+ >  -4.00000000000000        4.00000000000000
+ > elemental:
+ >  -2.000000      -2.000000      -2.000000      -2.000000      -1.000000
+ >  -1.000000      0.0000000E+00  0.0000000E+00  0.0000000E+00   1.000000
+ >   1.000000       2.000000       2.000000       2.000000       2.000000
 ```
 ### **Standard**
 
@@ -1794,7 +1794,7 @@ end program demo_asinh
 ```
 Results:
 ```text
-  -0.88137358701954305  0.0000000000000000  0.88137358701954305
+  >  -0.88137358701954305  0.0000000000000000  0.88137358701954305
 ```
 ### **Standard**
 
@@ -1896,9 +1896,9 @@ end program demo_asin
 ```
 Results:
 ```
-    angle of incline(radians) =    2.5002604899361139E-002
-    angle of incline(degrees) =    1.4325437375665075
-    percent grade=   2.5000000000000000
+ >  angle of incline(radians) =    2.5002604899361139E-002
+ >  angle of incline(degrees) =    1.4325437375665075
+ >  percent grade=   2.5000000000000000
 ```
 The percentage grade is the slope, written as a percent. To calculate
 the slope you divide the rise by the run. In the example the rise is
@@ -2155,7 +2155,16 @@ real, pointer :: ptr(:)
    & stop 'POINTER NOT ASSOCIATED'
    if (associated(ptr,tgt) .eqv. .false.) &
    & stop 'POINTER NOT ASSOCIATED TO TARGET'
+   if (associated(ptr) ) &
+   & print *, 'POINTER ASSOCIATED'
+   if (associated(ptr,tgt) ) &
+   & print *, 'POINTER ASSOCIATED TO TARGET'
 end program demo_associated
+```
+Results:
+```text
+ >  POINTER ASSOCIATED
+ >  POINTER ASSOCIATED TO TARGET
 ```
 ### **Standard**
 
@@ -2907,11 +2916,11 @@ end program demo_atan
 ```
 Results:
 ```text
-   1.235085437457879
-   .7853981633974483 45.00000000000000
-   2.356194490192345 135.0000000000000
-   -.7853981633974483 -45.00000000000000
-   -2.356194490192345 -135.0000000000000
+ > 1.235085437457879
+ > .7853981633974483 45.00000000000000
+ > 2.356194490192345 135.0000000000000
+ > -.7853981633974483 -45.00000000000000
+ > -2.356194490192345 -135.0000000000000
 ```
 ### **Standard**
 
@@ -3920,7 +3929,7 @@ end program demo_bessel_j0
 Results:
 
 ```text
-      1.0000000000000000
+  > 1.0000000000000000
 ```
 ### **Standard**
 
@@ -3985,7 +3994,7 @@ end program demo_bessel_j1
 ```
 Results:
 ```text
-     0.44005058574493350
+  > 0.44005058574493350
 ```
 ### **Standard**
 
@@ -4086,7 +4095,7 @@ end program demo_bessel_jn
 Results:
 
 ```text
-      2.4975773021123450E-004
+  > 2.4975773021123450E-004
 ```
 ### **Standard**
 
@@ -4152,7 +4161,7 @@ end program demo_bessel_y0
 ```
 Results:
 ```text
-                    -Infinity
+   > -Infinity
 ```
 ### **Standard**
 
@@ -4317,7 +4326,7 @@ end program demo_bessel_yn
 Results:
 
 ```text
-      1.0000000000000000       -260.40586662581222
+  > 1.0000000000000000       -260.40586662581222
 ```
 ### **Standard**
 
@@ -4673,12 +4682,12 @@ end program demo_bit_size
 ```
 Typical Results:
 ```text
-    default: bit size is  32 which is kind=  4 on this platform
-    int8   : bit size is   8 which is kind=  1 on this platform
-    int16  : bit size is  16 which is kind=  2 on this platform
-    int32  : bit size is  32 which is kind=  4 on this platform
-    int64  : bit size is  64 which is kind=  8 on this platform
-    The available kinds are 1, 2, 4, 8, 16
+  > default: bit size is  32 which is kind=  4 on this platform
+  > int8   : bit size is   8 which is kind=  1 on this platform
+  > int16  : bit size is  16 which is kind=  2 on this platform
+  > int32  : bit size is  32 which is kind=  4 on this platform
+  > int64  : bit size is  64 which is kind=  8 on this platform
+  > The available kinds are 1, 2, 4, 8, 16
 ```
 ### **Standard**
 
@@ -4759,22 +4768,22 @@ end program demo_ble
 ```
 Results:
 ```text
-   -0128  F 10000000
-   +0064    01000000
-   -0096  F 10100000
-   +0064    01000000
-   -0064  F 11000000
-   +0064    01000000
-   -0032  F 11100000
-   +0064    01000000
-   +0000  T 00000000
-   +0064    01000000
-   +0032  T 00100000
-   +0064    01000000
-   +0064  T 01000000
-   +0064    01000000
-   +0096  F 01100000
-   +0064    01000000
+ >  -0128  F 10000000
+ >  +0064    01000000
+ >  -0096  F 10100000
+ >  +0064    01000000
+ >  -0064  F 11000000
+ >  +0064    01000000
+ >  -0032  F 11100000
+ >  +0064    01000000
+ >  +0000  T 00000000
+ >  +0064    01000000
+ >  +0032  T 00100000
+ >  +0064    01000000
+ >  +0064  T 01000000
+ >  +0064    01000000
+ >  +0096  F 01100000
+ >  +0064    01000000
 ```
 ### **Standard**
 
@@ -5079,7 +5088,6 @@ end subroutine association_test
 
 end program demo_c_associated
 ```
-
 ### **Standard**
 
 Fortran 2003
@@ -6001,15 +6009,15 @@ end program demo_aimag
 ```
 Results:
 ```text
-    Z4= (-3.000000,0.0000000E+00)
-    Z4= (1.234568,1.234568)
-    Z4= 1.234568 1.234568
-    lost precision Z8= (1.23456788063049,-1.23456788063049)
-    kept precision Z8= (1.23456789012346,-1.23456789012346)
-    Z8 defined with constants= (1.11111111111111,2.22222222222222)
-    LHS=   1.11111111111111      RHS= (1.11111111111111,2.22222222222222)
-    zthree= (10.00000,-1.000000) (20.00000,-1.000000) (30.00000,-1.000000)
-    zthree= (100.0000,-1.000000) (200.0000,-1.000000) (30.00000,-1.000000)
+  > Z4= (-3.000000,0.0000000E+00)
+  > Z4= (1.234568,1.234568)
+  > Z4= 1.234568 1.234568
+  > lost precision Z8= (1.23456788063049,-1.23456788063049)
+  > kept precision Z8= (1.23456789012346,-1.23456789012346)
+  > Z8 defined with constants= (1.11111111111111,2.22222222222222)
+  > LHS=   1.11111111111111      RHS= (1.11111111111111,2.22222222222222)
+  > zthree= (10.00000,-1.000000) (20.00000,-1.000000) (30.00000,-1.000000)
+  > zthree= (100.0000,-1.000000) (200.0000,-1.000000) (30.00000,-1.000000)
 ```
 ### **Standard**
 
@@ -6184,13 +6192,11 @@ integer :: val
    endif
 end program demo_co_max
 ```
-
 Results:
 
 ```text
-    Maximal value           2
+  > Maximal value           2
 ```
-
 ### **Standard**
 
 TS 18508
@@ -6397,27 +6403,27 @@ end program demo_compiler_version
 ```
 Results:
 ```text
-This file was compiled by GCC version 10.3.0 using
-the options -I build/gfortran_2A42023B310FA28D
--mtune=generic -march=x86-64 -auxbase-strip
-build/gfortran_2A42023B310FA28D/compiler_options/app_main.f90.o
--g -Wall -Wextra -Wimplicit-interface -fPIC -fmax-errors=1
--fcheck=bounds -fcheck=array-temps -fbacktrace
--fcoarray=single -J build/gfortran_2A42023B310FA28D
--fpre-include=/usr/include/finclude/math-vector-fortran.h
+ > This file was compiled by GCC version 10.3.0 using
+ > the options -I build/gfortran_2A42023B310FA28D
+ > -mtune=generic -march=x86-64 -auxbase-strip
+ > build/gfortran_2A42023B310FA28D/compiler_options/app_main.f90.o
+ > -g -Wall -Wextra -Wimplicit-interface -fPIC -fmax-errors=1
+ > -fcheck=bounds -fcheck=array-temps -fbacktrace
+ > -fcoarray=single -J build/gfortran_2A42023B310FA28D
+ > -fpre-include=/usr/include/finclude/math-vector-fortran.h
 
-This file was compiled by nvfortran 21.5-0 LLVM
-using the options app/main.f90 -c -Minform=inform
--Mbackslash -Mbounds -Mchkptr -Mchkstk -traceback -module
-build/nvfortran_78229DCE997517A4 -Ibuild/nvfortran_78229DCE997517A4 -o
-build/nvfortran_78229DCE997517A4/compiler_options/app_main.f90.o
+ > This file was compiled by nvfortran 21.5-0 LLVM
+ > using the options app/main.f90 -c -Minform=inform
+ > -Mbackslash -Mbounds -Mchkptr -Mchkstk -traceback -module
+ > build/nvfortran_78229DCE997517A4 -Ibuild/nvfortran_78229DCE997517A4 -o
+ > build/nvfortran_78229DCE997517A4/compiler_options/app_main.f90.o
 
-This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler Classic
-for applications running on Intel(R) 64, Version 2021.3.0 Build
-20210609_000000 using the options -Ibuild/ifort_5C58216731706F11
--c -warn all -check all -error-limit 1 -O0 -g -assume
-byterecl -traceback -module build/ifort_5C58216731706F11 -o
-build/ifort_5C58216731706F11/compiler_options/app_main.f90.o
+ > This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler Classic
+ > for applications running on Intel(R) 64, Version 2021.3.0 Build
+ > 20210609_000000 using the options -Ibuild/ifort_5C58216731706F11
+ > -c -warn all -check all -error-limit 1 -O0 -g -assume
+ > byterecl -traceback -module build/ifort_5C58216731706F11 -o
+ > build/ifort_5C58216731706F11/compiler_options/app_main.f90.o
 ```
 ### **Standard**
 
@@ -6477,13 +6483,13 @@ end program demo_compiler_version
 ```
 Results:
 ```text
-This file was compiled by GCC version 10.3.0
+ > This file was compiled by GCC version 10.3.0
 
-This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler
-Classic for applications running on Intel(R) 64, Version 2021.3.0 Build
-20210609_000000
+ > This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler
+ > Classic for applications running on Intel(R) 64, Version 2021.3.0 Build
+ > 20210609_000000
 
-This file was compiled by nvfortran 21.5-0 LLVM
+ > This file was compiled by nvfortran 21.5-0 LLVM
 ```
 ### **Standard**
 
@@ -6730,7 +6736,10 @@ end function myprod
 
 end program demo_co_reduce
 ```
-
+Results:
+```text
+ >  Product value           1
+```
 ### **Note**
 
 While the rules permit in principle an intrinsic function, none of the
@@ -7155,7 +7164,7 @@ end program demo_co_sum
 Results:
 
 ```text
-    The sum is            1
+  > The sum is            1
 ```
 
 ### **Standard**
@@ -7499,9 +7508,9 @@ Results:
   and what if any options there are for parallel applications
   may very from system to system. See compiler-specific for details.
 ```text
-   Processor Time =  0.000 seconds.
-   Processor Time = .4000030E-05 seconds.
-   Processor Time = .2000000000000265E-05 seconds.
+   > Processor Time =  0.000 seconds.
+   > Processor Time = .4000030E-05 seconds.
+   > Processor Time = .2000000000000265E-05 seconds.
 ```
 ### **Standard**
 
@@ -7697,7 +7706,7 @@ end program demo_c_sizeof
 Results:
 
 ```text
-    T
+ >   T
 ```
 
 The example will print _.true._ unless you are using a platform where
@@ -7939,7 +7948,7 @@ end program demo_dble
 Results:
 
 ```text
-  2.1800000667572021  5.0000000000000000   2.2999999523162842
+  > 2.1800000667572021  5.0000000000000000   2.2999999523162842
 ```
 ### **Standard**
 
@@ -8878,15 +8887,15 @@ end program demo_epsilon
 ```
 Results:
 ```text
-  1.1920929E-07
-  1.1920929E-07
-  1.1920929E-07
-  2.220446049250313E-016
- F
- F
- T
- T
-  2.220446049250313E-016
+ >    1.19209290E-07
+ >    1.19209290E-07
+ >    1.19209290E-07
+ >    2.2204460492503131E-016
+ >  F
+ >  F
+ >  T
+ >  T
+ >    2.2204460492503131E-016
 ```
 ### **Standard**
 
@@ -9128,7 +9137,7 @@ end program demo_erf
 ```
 Results:
 ```text
-     0.17000000000000001       0.18999246120180879
+   >  0.17000000000000001       0.18999246120180879
 ```
 ### **Standard**
 
@@ -9488,18 +9497,15 @@ complex :: cx
 
 end program demo_exp
 ```
-
 Results:
-
 ```text
- Euler's constant is approximately   2.718282
- given the complex value  (3.000000,4.000000)
- exp(x) is (-13.12878,-15.20078)
- is the same as (-13.12878,-15.20078)
- maximum real component   88.72284
- maximum doubleprecision component   709.782712893384
+ >  Euler's constant is approximately   2.71828175
+ >  given the complex value              (3.00000000,4.00000000)
+ >  exp(x) is           (-13.1287832,-15.2007847)
+ >  is the same as           (-13.1287832,-15.2007847)
+ >  maximum real component   88.7228394
+ >  maximum doubleprecision component   709.78271289338397
 ```
-
 ### **Standard**
 
 FORTRAN 77
@@ -9749,21 +9755,21 @@ Sample program:
 ```
 Results:
 ```text
-    these should all be true
-    T I am descended from Grandpa
-    T Dad is descended from Grandpa
-    T Dad is my ancestor
-    is an object an extension of itself?
-    T self-propagating!
-    T clone!
-     you did not father your grandfather
-    F no paradox here
-    F no paradox here
-    F no relation whatsoever
-    F no relation
-    F not what everyone thinks
-    (P,Q) F mind your P's and Q's
-    (Q,P) T
+  > these should all be true
+  > T I am descended from Grandpa
+  > T Dad is descended from Grandpa
+  > T Dad is my ancestor
+  > is an object an extension of itself?
+  > T self-propagating!
+  > T clone!
+  >  you did not father your grandfather
+  > F no paradox here
+  > F no paradox here
+  > F no relation whatsoever
+  > F no relation
+  > F not what everyone thinks
+  > (P,Q) F mind your P's and Q's
+  > (Q,P) T
 ```
 ### **Standard**
 
@@ -10249,7 +10255,7 @@ end program demo_fraction
 ```
 Results:
 ```text
-     0.5700439      0.5700439
+  >  0.5700439      0.5700439
 ```
 ### **Standard**
 
@@ -10548,12 +10554,12 @@ Results:
 ./demo_get_command_argument a  test 'of getting  arguments ' " leading"
 ```
 ```text
- The program's name is ./demo_get_command_argument
- The number of arguments is            4
-001 00000 00001 [a]
-002 00000 00004 [test]
-003 00000 00022 [of getting  arguments ]
-004 00000 00008 [ leading]
+ > The program's name is ./demo_get_command_argument
+ > The number of arguments is            4
+ >001 00000 00001 [a]
+ >002 00000 00004 [test]
+ >003 00000 00022 [of getting  arguments ]
+ >004 00000 00008 [ leading]
 ```
 ### **Standard**
 
@@ -10565,7 +10571,6 @@ Fortran 2003
 [**command_argument_count**(3)](#command_argument_count)
 
 _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
-#
 
 ## get_command
 
@@ -10669,7 +10674,6 @@ Fortran 2003
 [**command_argument_count**(3)](#command_argument_count)
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
-#
 
 ## get_environment_variable
 
@@ -10806,7 +10810,7 @@ end program demo_getenv
 ```
 Typical Results:
 ```text
-   HOME="/home/urbanjs"
+ >  HOME="/home/urbanjs"
 ```
 ### **Standard**
 
@@ -11051,25 +11055,24 @@ character(len=*),parameter :: f='(a,/,SP,*(3x,g0,1x,g0:,/))'
 
 end program demo_hypot
 ```
-
 Results:
-
 ```text
-   point <1.00000000,0.500000000> is 1.11803401
-   units away from the origin
-
-   the points
-      +1.00000000 +0.500000000
-      +1.00000000 +0.250000000
-      +10.0000000 -10.0000000
-      +15.0000000 +0.250000000
-      -1.00000000 -0.250000000
-   have distances from the origin of
-      +1.11803401 +1.03077638
-      +14.1421356 +15.0020828
-      +1.03077638
-   the closest is
-      +1.03077638
+ >
+ > point <1.00000000,0.500000000> is 1.11803401
+ > units away from the origin
+ >
+ > the points
+ >    +1.00000000 +0.500000000
+ >    +1.00000000 +0.250000000
+ >    +10.0000000 -10.0000000
+ >    +15.0000000 +0.250000000
+ >    -1.00000000 -0.250000000
+ > have distances from the origin of
+ >    +1.11803401 +1.03077638
+ >    +14.1421356 +15.0020828
+ >    +1.03077638
+ > the closest is
+ >    +1.03077638
 ```
 ### **Standard**
 
@@ -11208,9 +11211,9 @@ end program demo_iachar
 ```
 Results:
 ```text
-   65
-   65          90          97         122
-   abcdefg abcdefg
+ > 65
+ > 65          90          97         122
+ > abcdefg abcdefg
 ```
 ### **Standard**
 
@@ -11394,10 +11397,10 @@ end program demo_iand
 ```
 Results:
 ```text
-    a= 15  b= 3 iand(a,b)= 3
-   00000000000000000000000000001111
-   00000000000000000000000000000011
-   00000000000000000000000000000011
+ >  a= 15  b= 3 iand(a,b)= 3
+ > 00000000000000000000000000001111
+ > 00000000000000000000000000000011
+ > 00000000000000000000000000000011
 ```
 ### **Standard**
 
@@ -11504,22 +11507,22 @@ end program demo_iany
 ```
 Results:
 ```text
-    A=
-    00100100
-    01101010
-    10101010
-
-    IANY(A)=
-    11101110
-
-    IANY(A) with a mask
-    10101110
-
-    should match
-    10101110
-
-    does it?
-    T
+  > A=
+  > 00100100
+  > 01101010
+  > 10101010
+  >
+  > IANY(A)=
+  > 11101110
+  >
+  > IANY(A) with a mask
+  > 10101110
+  >
+  > should match
+  > 10101110
+  >
+  > does it?
+  > T
 ```
 ### **Standard**
 
@@ -12233,7 +12236,7 @@ end program demo_index
 Expected Results:
 
 ```text
-   T T T
+  > T T T
 ```
 ### **Standard**
 
@@ -12459,9 +12462,9 @@ end program demo_ior
 ```
 Results:
 ```
-         53 00110101
-         45 00101101
-         61 00111101
+   > 53 00110101
+   > 45 00101101
+   > 61 00111101
 ```
 ### **Standard**
 
@@ -12557,7 +12560,7 @@ end program demo_iparity
 ```
 Results:
 ```
-   01001110
+ > 01001110
 ```
 ### **Standard**
 
@@ -12690,8 +12693,8 @@ end program demo_is_contiguous
 Results:
 
 ```text
-    IN is  T
-    OUT is  F
+  > IN is  T
+  > OUT is  F
 ```
 ### **Standard**
 
@@ -13161,8 +13164,8 @@ end program demo_kind
 ```
 Results:
 ```text
-    The default character kind is            1
-    The default logical kind is            4
+  > The default character kind is            1
+  > The default logical kind is            4
 ```
 ### **Standard**
 
@@ -13312,10 +13315,10 @@ end
 ```
 Results:
 ```
-   MAIN: LOWER=         -10 UPPER=          10 SIZE=          21
-   CSUB: LOWER=         -10 UPPER=          10 SIZE=          21
-   MSUB: LOWER=           1 UPPER=          21 SIZE=          21
-   ESUB: LOWER=           1 UPPER=          21 SIZE=          21
+ >  MAIN: LOWER=         -10 UPPER=          10 SIZE=          21
+ >  CSUB: LOWER=         -10 UPPER=          10 SIZE=          21
+ >  MSUB: LOWER=           1 UPPER=          21 SIZE=          21
+ >  ESUB: LOWER=           1 UPPER=          21 SIZE=          21
 ```
 ### **Standard**
 
@@ -13469,13 +13472,13 @@ end program demo_leadz
 ```
 Results:
 ```text
-  LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111101101010 AKA -150
-  LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111110011100 AKA -100
-  LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111111001110 AKA -50
-  LEADING ZERO BITS= 32 OF VALUE 00000000000000000000000000000000 AKA 0
-  LEADING ZERO BITS= 26 OF VALUE 00000000000000000000000000110010 AKA 50
-  LEADING ZERO BITS= 25 OF VALUE 00000000000000000000000001100100 AKA 100
-  LEADING ZERO BITS= 24 OF VALUE 00000000000000000000000010010110 AKA 150
+ > LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111101101010 AKA -150
+ > LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111110011100 AKA -100
+ > LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111111001110 AKA -50
+ > LEADING ZERO BITS= 32 OF VALUE 00000000000000000000000000000000 AKA 0
+ > LEADING ZERO BITS= 26 OF VALUE 00000000000000000000000000110010 AKA 50
+ > LEADING ZERO BITS= 25 OF VALUE 00000000000000000000000001100100 AKA 100
+ > LEADING ZERO BITS= 24 OF VALUE 00000000000000000000000010010110 AKA 150
 ```
 ### **Standard**
 
@@ -13722,14 +13725,14 @@ end program demo_len_trim
 ```
 Results:
 ```text
-     how long is this string?
-    UNTRIMMED LENGTH=          30
-    TRIMMED LENGTH=          25
-    xxxxx   xxxxx   xxxxx
-    xxxxxxxxxxxxxxx
-    UNTRIMMED LENGTH=           256
-    TRIMMED LENGTH=              25          13
-    SUM TRIMMED LENGTH=          38
+  >   how long is this string?
+  >  UNTRIMMED LENGTH=          30
+  >  TRIMMED LENGTH=          25
+  >  xxxxx   xxxxx   xxxxx
+  >  xxxxxxxxxxxxxxx
+  >  UNTRIMMED LENGTH=           256
+  >  TRIMMED LENGTH=              25          13
+  >  SUM TRIMMED LENGTH=          38
 ```
 ### **Standard**
 
@@ -13800,7 +13803,7 @@ of arguments, and search for certain arguments:
 
 ### **Result**
 
-  Returns _.true._ if string_a == string_b, and _.false._ otherwise,
+  Returns _.true._ if string_a \>= string_b, and _.false._ otherwise,
   based on the ASCII collating sequence.
 
   If both input arguments are null strings, _.true._ is always returned.
@@ -14190,7 +14193,7 @@ of arguments, and search for certain arguments:
 
 ### **Result**
 
-  Returns _.true._ if string_a \<= string_b, and _.false._ otherwise,
+  Returns _.true._ if string_a \< string_b, and _.false._ otherwise,
   based on the ASCII collating sequence.
 
   If both input arguments are null strings, _.false._ is always returned.
@@ -14574,8 +14577,8 @@ end program demo_log
 ```
 Results:
 ```text
-      2.7182818284590451        1.0000000000000000
-   (1.00000000,2.00000000) (0.804718971,1.10714877)
+  >    2.7182818284590451        1.0000000000000000
+  > (1.00000000,2.00000000) (0.804718971,1.10714877)
 ```
 ### **Standard**
 
@@ -15108,9 +15111,9 @@ end program demo_maxexponent
 ```
 Results:
 ```text
-   -125 128
-   -1021 1024
-   -16381 16384
+  >  -125 128
+  >  -1021 1024
+  >  -16381 16384
 ```
 ### **Standard**
 
@@ -15231,9 +15234,7 @@ integer,save :: ints(3,5)= reshape([&
 
 end program demo_maxloc
 ```
-
 Results:
-
 ```text
  >     3       5
  >     3       3       3       3       3
@@ -15246,7 +15247,6 @@ Results:
  >  2 48
  >  3 47
 ```
-
 ### **Standard**
 
 Fortran 95
@@ -15395,18 +15395,18 @@ end program demo_max
 ```
 Results:
 ```text
-    scalars:   30.00000
-    scalars: -9.9999997E-05
-    characters:words
-    characters:c
-    characters:b
-   "BB" "Z "
-   box=    -6  -5  -4  -3  -2  -1   1   2   3   4   5   6
-   box**2=-36 -25 -16  -9  -4  -1   1   4   9  16  25  36
-   max     -6  -5  -4  -3  -2  -1   1   4   9  16  25  36
-   20.00000  21.00000  32.00000  -100.0000
-   0  0  0  0  0  0
-   1  2  3  4  5  6
+ >   scalars:   30.00000
+ >   scalars: -9.9999997E-05
+ >   characters:words
+ >   characters:c
+ >   characters:b
+ >  "BB" "Z "
+ >  box=    -6  -5  -4  -3  -2  -1   1   2   3   4   5   6
+ >  box**2=-36 -25 -16  -9  -4  -1   1   4   9  16  25  36
+ >  max     -6  -5  -4  -3  -2  -1   1   4   9  16  25  36
+ >  20.00000  21.00000  32.00000  -100.0000
+ >  0  0  0  0  0  0
+ >  1  2  3  4  5  6
 ```
 ### **Standard**
 
@@ -15668,12 +15668,12 @@ end program demo_merge_bits
 ```
 Results:
 ```text
-    MERGE_BITS( 5,10,41) should be 3.=>           3
-    MERGE_BITS(13,18,22) should be 4.=>           4
-   should get all zero bits =>0000000000000000
-   should get all ones bits =>1111111111111111
-   32767 32751 5877
-   32767 32767 5877
+ >   MERGE_BITS( 5,10,41) should be 3.=>           3
+ >   MERGE_BITS(13,18,22) should be 4.=>           4
+ >  should get all zero bits =>0000000000000000
+ >  should get all ones bits =>1111111111111111
+ >  32767 32751 5877
+ >  32767 32767 5877
 ```
 ### **Standard**
 
@@ -15919,8 +15919,8 @@ end program demo_minexponent
 ```
 Expected Results:
 ```
-        -125         128
-       -1021        1024
+  >     -125         128
+  >    -1021        1024
 ```
 ### **Standard**
 
@@ -16454,18 +16454,18 @@ end program demo_mod
 ```
 Results:
 ```text
-             -2           1
-              2          -1
-              2           2
-             -2          -2
-     -1.900001       3.299999
-      1.900001      -3.299999
-      1.900001       1.900001
-     -1.900001      -1.900001
-    -0.5000000      0.5000000
-     0.5000000     -0.5000000
-     0.5000000      0.5000000
-    -0.5000000     -0.5000000
+  >          -2           1
+  >           2          -1
+  >           2           2
+  >          -2          -2
+  >  -1.900001       3.299999
+  >   1.900001      -3.299999
+  >   1.900001       1.900001
+  >  -1.900001      -1.900001
+  > -0.5000000      0.5000000
+  >  0.5000000     -0.5000000
+  >  0.5000000      0.5000000
+  > -0.5000000     -0.5000000
 ```
 ### **Standard**
 
@@ -16665,8 +16665,8 @@ end program demo_move_alloc
 Results:
 
 ```text
-    T F
-      1.000   1.500   2.000   2.500   3.000   3.500
+  > T F
+  >   1.000   1.500   2.000   2.500   3.000   3.500
 ```
 
 ### **Standard**
@@ -16858,15 +16858,14 @@ character(len=*),parameter :: fmt= '(g0,t30,a,t40,b32.32)'
 ```
 Results:
 ```text
-
-   2147483647                   01111111111111111111111111111111
-   0                            00000000000000000000000000000000
-   1                            00000000000000000000000000000001
-   -1                           11111111111111111111111111111111
-    native
-   1684234849                   abcd      01100100011000110110001001100001
-    non-native
-   1633837924                   dcba      01100001011000100110001101100100
+ > 2147483647                   01111111111111111111111111111111
+ > 0                            00000000000000000000000000000000
+ > 1                            00000000000000000000000000000001
+ > -1                           11111111111111111111111111111111
+ >  native
+ > 1684234849                   abcd      01100100011000110110001001100001
+ >  non-native
+ > 1633837924                   dcba      01100001011000100110001101100100
 ```
 ### **Standard**
 
@@ -16962,7 +16961,7 @@ end program demo_nearest
 ```
 Results:
 ```text
-   42.0000038146973    41.9999961853027    .762939453125000E-05
+  > 42.0000038146973    41.9999961853027    .762939453125000E-05
 ```
 ### **Standard**
 
@@ -17133,22 +17132,22 @@ end program demo_new_line
 ```
 Results:
 ```text
-   This is record 1.
-   This is record 2.
-
-   This is record 1.
-   This is record 2.
-    x x xxxx xxxxxxx xxxxxxxxxx xxxxxxxxx xxxx xxxxxxxxxx xxxxxxxx
-    xxxxxxxxx xxxx xxxxxxxxx x xxxxxxxxx xxxxxxxx xxxxxxxx xxxx x
-    xxxxxxxxxx x x x xxxxxx xxxxxxxxxx x xxxxxxxxxx x xxxxxxx xxxxxxxxx
-    xx xxxxxxxxxx xxxxxxxx x xx xxxxxxxxxx xxxxxxxx xxx xxxxxxx xxxxxx
-    xxxxx xxxxxxxxx x xxxxxxxxxx xxxxxx xxxxxxxx xxxxx xxxxxxxx xxxxxxxx
-    xxxxx xxx xxxxxxxx xxxxxxx xxxxxxxx xxx xxxx xxx xxxxxxxx xxxxxx
-    xxxxxxx xxxxxxx xxxxx xxxxx xx xxxxxx xx xxxxxxxxxx xxxxxx x xxxx
-    xxxxxx xxxxxxx x xxx xxxxx xxxxxxxxx xxx xxxxxxx x xxxxxx xxxxxxxxx
-    xxxx xxxxxxxxx xxxxxxxx xxxxxxxx xxx xxxxxxx xxxxxxx xxxxxxxxxx
-    xxxxxxxxxx xxxxxx xxxxx xxxx xxxxxxx xx xxxxxxxxxx xxxxxx xxxxxx
-    xxxxxx xxxx xxxxx
+ > This is record 1.
+ > This is record 2.
+ >
+ > This is record 1.
+ > This is record 2.
+ >  x x xxxx xxxxxxx xxxxxxxxxx xxxxxxxxx xxxx xxxxxxxxxx xxxxxxxx
+ >  xxxxxxxxx xxxx xxxxxxxxx x xxxxxxxxx xxxxxxxx xxxxxxxx xxxx x
+ >  xxxxxxxxxx x x x xxxxxx xxxxxxxxxx x xxxxxxxxxx x xxxxxxx xxxxxxxxx
+ >  xx xxxxxxxxxx xxxxxxxx x xx xxxxxxxxxx xxxxxxxx xxx xxxxxxx xxxxxx
+ >  xxxxx xxxxxxxxx x xxxxxxxxxx xxxxxx xxxxxxxx xxxxx xxxxxxxx xxxxxxxx
+ >  xxxxx xxx xxxxxxxx xxxxxxx xxxxxxxx xxx xxxx xxx xxxxxxxx xxxxxx
+ >  xxxxxxx xxxxxxx xxxxx xxxxx xx xxxxxx xx xxxxxxxxxx xxxxxx x xxxx
+ >  xxxxxx xxxxxxx x xxx xxxxx xxxxxxxxx xxx xxxxxxx x xxxxxx xxxxxxxxx
+ >  xxxx xxxxxxxxx xxxxxxxx xxxxxxxx xxx xxxxxxx xxxxxxx xxxxxxxxxx
+ >  xxxxxxxxxx xxxxxx xxxxx xxxx xxxxxxx xx xxxxxxxxxx xxxxxx xxxxxx
+ >  xxxxxx xxxx xxxxx
 ```
 ### **Standard**
 
@@ -17515,15 +17514,15 @@ end program demo_not
 ```
 Results:
 ```text
-    the input value      -13741 represented in bits is
-    11111111111111111100101001010011 -13741
-    on output it is       13740
-    00000000000000000011010110101100 13740
-     on a two's complement machine flip the bits and add 1
-     to get the value with the sign changed, for example.
-           1234       -1234
-          -1234        1234
-     of course 'x=-x' works just fine and more generally.
+  > the input value      -13741 represented in bits is
+  > 11111111111111111100101001010011 -13741
+  > on output it is       13740
+  > 00000000000000000011010110101100 13740
+  >  on a two's complement machine flip the bits and add 1
+  >  to get the value with the sign changed, for example.
+  >        1234       -1234
+  >       -1234        1234
+  >  of course 'x=-x' works just fine and more generally.
 ```
 ### **Standard**
 
@@ -17654,10 +17653,10 @@ end program demo_null
 ```
 Results:
 ```text
-   One integer in S2:, 1
-   One integer in S1:, 2
-   integer and real in S2:, 3 and 200.000000
-   Two integers in S1:, 4 and 100
+  > One integer in S2:, 1
+  > One integer in S1:, 2
+  > integer and real in S2:, 3 and 200.000000
+  > Two integers in S1:, 4 and 100
 ```
 ### **Standard**
 
@@ -18575,11 +18574,11 @@ end program demo_present
 ```
 Results:
 ```text
-    optional argument x is not present
-              0
-    optional argument x is present
-    already tested X is defined 1492
-        2226064
+  > optional argument x is not present
+  >           0
+  > optional argument x is present
+  > already tested X is defined 1492
+  >     2226064
 ```
 ### **Standard**
 
@@ -18753,70 +18752,67 @@ end subroutine print_matrix_int
 
 end program demo_product
 ```
-
 Results:
-
 ```text
-factorial of  1  is  1.000000
-factorial of  2  is  2.000000
-factorial of  3  is  6.000000
-factorial of  4  is  24.00000
-factorial of  5  is  120.0000
-factorial of  6  is  720.0000
-factorial of  7  is  5040.000
-factorial of  8  is  40320.00
-factorial of  9  is  362880.0
-factorial of  10  is  3628800.
-
- product of all elements 351000000
- odd * even =
- 4875 * 72000 = 351000000
-
-zero-sized array=> 1
-all elements have a false mask=> 1
-
-rect :( 2 3 )
- > [  1,  2,  3 ]
- > [  4,  5,  6 ]
-product of columns= 4 10 18
-product of rows= 6 120
-
-box 1 :( 2 3 )
- > [  1,  2,  3 ]
- > [  4,  5,  6 ]
-
-box 2 :( 2 3 )
- > [  10,  20,  30 ]
- > [  40,  50,  60 ]
-
-box 3 :( 2 3 )
- > [ -10, -20, -30 ]
- > [ -40, -50, -60 ]
-
-box 4 :( 2 3 )
- > [   2,   4,   6 ]
- > [   8,  10,  12 ]
-no dim gives a scalar .1719927E+26
-
-negative values :( 3 4 )
- > [     1,     1,   400,     1 ]
- > [     1,     1,  1000,     1 ]
- > [     1,     1,  1800,     1 ]
-
-dim=1 :( 3 4 )
- > [     4,   400,   400,    16 ]
- > [    10,  1000,  1000,    40 ]
- > [    18,  1800,  1800,    72 ]
-
-dim=2 :( 2 4 )
- > [       6,    6000,   -6000,      48 ]
- > [     120,  120000, -120000,     960 ]
-
-dim=3 :( 2 3 )
- > [    -200,   -3200,  -16200 ]
- > [  -51200, -125000, -259200 ]
+ > factorial of  1  is  1.00000000
+ > factorial of  2  is  2.00000000
+ > factorial of  3  is  6.00000000
+ > factorial of  4  is  24.0000000
+ > factorial of  5  is  120.000000
+ > factorial of  6  is  720.000000
+ > factorial of  7  is  5040.00000
+ > factorial of  8  is  40320.0000
+ > factorial of  9  is  362880.000
+ > factorial of  10  is  3628800.00
+ >
+ >  product of all elements 351000000
+ >  odd * even =
+ >  4875 * 72000 = 351000000
+ >
+ > zero-sized array=> 1
+ > all elements have a false mask=> 1
+ >
+ > rect :( 2 3 )
+ >  > [  1,  2,  3 ]
+ >  > [  4,  5,  6 ]
+ > product of columns= 4 10 18
+ > product of rows= 6 120
+ >
+ > box 1 :( 2 3 )
+ >  > [  1,  2,  3 ]
+ >  > [  4,  5,  6 ]
+ >
+ > box 2 :( 2 3 )
+ >  > [  10,  20,  30 ]
+ >  > [  40,  50,  60 ]
+ >
+ > box 3 :( 2 3 )
+ >  > [ -10, -20, -30 ]
+ >  > [ -40, -50, -60 ]
+ >
+ > box 4 :( 2 3 )
+ >  > [   2,   4,   6 ]
+ >  > [   8,  10,  12 ]
+ > no dim gives a scalar 0.171992703E+26
+ >
+ > negative values :( 3 4 )
+ >  > [     1,     1,   400,     1 ]
+ >  > [     1,     1,  1000,     1 ]
+ >  > [     1,     1,  1800,     1 ]
+ >
+ > dim=1 :( 3 4 )
+ >  > [     4,   400,   400,    16 ]
+ >  > [    10,  1000,  1000,    40 ]
+ >  > [    18,  1800,  1800,    72 ]
+ >
+ > dim=2 :( 2 4 )
+ >  > [       6,    6000,   -6000,      48 ]
+ >  > [     120,  120000, -120000,     960 ]
+ >
+ > dim=3 :( 2 3 )
+ >  > [    -200,   -3200,  -16200 ]
+ >  > [  -51200, -125000, -259200 ]
 ```
-
 ### **Standard**
 
 Fortran 95
@@ -18966,7 +18962,22 @@ Sample program:
        call random_number(y)
        ! x and y should be the same sequence
        if ( any(x /= y) ) stop "x(:) and y(:) are not all equal"
+       write(*,*)x
+       write(*,*)y
     end program demo_random_init
+```
+Results:
+
+RUN 1:
+```text
+ >   0.825262189      0.191325366      0.155503273
+ >   0.825262189      0.191325366      0.155503273
+```
+
+RUN 2:
+```text
+ >   0.825262189      0.191325366      0.155503273
+ >   0.825262189      0.191325366      0.155503273
 ```
 ### **Standard**
 
@@ -19057,16 +19068,16 @@ end program demo_random_number
 ```
 Results:
 ```
-   1 10003588
-   2 10000104
-   3 10000169
-   4 9997996
-   5 9995349
-   6 10001304
-   7 10001909
-   8 9999133
-   9 10000252
-   10 10000196
+ >  1 10003588
+ >  2 10000104
+ >  3 10000169
+ >  4 9997996
+ >  5 9995349
+ >  6 10001304
+ >  7 10001909
+ >  8 9999133
+ >  9 10000252
+ >  10 10000196
 ```
 ### **Standard**
 
@@ -19142,8 +19153,8 @@ Sample program:
 ```
 Results:
 ```text
-     -674862499 -1750483360  -183136071  -317862567   682500039
-     349459   344020729 -1725483289
+ >    -674862499 -1750483360  -183136071  -317862567   682500039
+ >    349459   344020729 -1725483289
 ```
 ### **Standard**
 
@@ -19368,17 +19379,17 @@ end program demo_rank
 ```
 Results:
 ```text
-    rank of scalar a=           0
-    rank of matrix b=           2
-    rank of vector pointer c=           1
-    rank of complex scalar d=           0
-    rank of any arbitrary type=           5
-   passed a scalar to an assumed rank,   rank= 0
-   passed an array to an assumed rank,   rank= 1
-   passed an array to an assumed rank,   rank= 2
-   passed a scalar to an unlimited polymorphic rank= 0
-   passed an array to an unlimited polymorphic, rank= 1
-   passed an array to an unlimited polymorphic, rank= 2
+  >  rank of scalar a=           0
+  >  rank of matrix b=           2
+  >  rank of vector pointer c=           1
+  >  rank of complex scalar d=           0
+  >  rank of any arbitrary type=           5
+  > passed a scalar to an assumed rank,   rank= 0
+  > passed an array to an assumed rank,   rank= 1
+  > passed an array to an assumed rank,   rank= 2
+  > passed a scalar to an unlimited polymorphic rank= 0
+  > passed an array to an unlimited polymorphic, rank= 1
+  > passed an array to an unlimited polymorphic, rank= 2
 ```
 ### **Standard**
 
@@ -19408,7 +19419,6 @@ Results:
 - [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
-#
 
 ## real
 
@@ -19487,9 +19497,9 @@ end program demo_real
 ```
 Results:
 ```
- 1.00000000       2.00000000
- 4.0000000000000000       5.0000000000000000
- 1.7976931348623157E+308  1.7976931348623157E+308  1.7976931348623157E+308
+ > 1.00000000       2.00000000
+ > 4.0000000000000000       5.0000000000000000
+ > 1.7976931348623157E+308  1.7976931348623157E+308  1.7976931348623157E+30
 ```
 ### **Standard**
 
@@ -19824,7 +19834,6 @@ Functions that perform operations on character strings:
   [**trim**(3)](#trim)
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
-#
 
 ## reshape
 
@@ -20276,13 +20285,13 @@ Sample program:
 ```
 Results:
 ```text
-    F I am descended from Dad, but equal?
-    T I am what I am
-    T what a pair!
-    F no paradox here
-    F no relation
-    (P,Q) T mind your P's and Q's
-    (P,R) F
+  >  F I am descended from Dad, but equal?
+  >  T I am what I am
+  >  T what a pair!
+  >  F no paradox here
+  >  F no relation
+  >  (P,Q) T mind your P's and Q's
+  >  (P,R) F
 ```
 ### **Standard**
 
@@ -20954,7 +20963,7 @@ end program demo_setexp
 ```
 Results:
 ```text
-      74716.7891       74716.7891
+  >   74716.7891       74716.7891
 ```
 ### **Standard**
 
@@ -21052,11 +21061,11 @@ end program demo_shape
 ```
 Results:
 ```text
-   shape of array= 3 4
-   shape of constant=
-   size of shape of constant= 0
-   ubound of array= 1 2
-   lbound of array= -1 -1
+ > shape of array= 3 4
+ > shape of constant=
+ > size of shape of constant= 0
+ > ubound of array= 1 2
+ > lbound of array= -1 -1
 ```
 ### **Standard**
 
@@ -21556,14 +21565,14 @@ end program demo_sign
 ```
 Results:
 ```text
-             12
-             12
-            -12
-             12
-             12
-            -12
-    this processor does not distinguish +0 from -0
-    elemental   12.00000       12.00000      -12.00000
+    >        12
+    >        12
+    >       -12
+    >        12
+    >        12
+    >       -12
+    > this processor does not distinguish +0 from -0
+    > elemental   12.00000       12.00000      -12.00000
 ```
 ### **Standard**
 
@@ -21798,12 +21807,12 @@ end program demo_sinh
 ```
 Results:
 ```text
-  -1.1752011936438014
-  -1.1752011936438014
-  -1.1752011936438014       -3.6268604078470190      -0.33954055725615012
-                       NaN
-                  Infinity
-                  Infinity
+ > -1.1752011936438014
+ > -1.1752011936438014
+ > -1.1752011936438014       -3.6268604078470190      -0.33954055725615012
+ >                      NaN
+ >                 Infinity
+ >                 Infinity
 ```
 ### **Standard**
 
@@ -22191,15 +22200,15 @@ end program demo_size
 ```
 Results:
 ```text
-    SIZE of simple two-dimensional array
-    SIZE(arr)       :total count of elements:          33
-    SIZE(arr,DIM=1) :number of rows         :           3
-    SIZE(arr,DIM=2) :number of columns      :          11
-    interfaced assumed-shape array
-    SIZE(arr1)        :          33
-    SIZE(arr1,DIM=1)  :           3
-    SIZE(arr1,DIM=2)  :          11
-    SIZE(arr2,DIM=1)  :           2
+  > SIZE of simple two-dimensional array
+  > SIZE(arr)       :total count of elements:          33
+  > SIZE(arr,DIM=1) :number of rows         :           3
+  > SIZE(arr,DIM=2) :number of columns      :          11
+  > interfaced assumed-shape array
+  > SIZE(arr1)        :          33
+  > SIZE(arr1,DIM=1)  :           3
+  > SIZE(arr1,DIM=2)  :          11
+  > SIZE(arr2,DIM=1)  :           2
 ```
 ### **Standard**
 
@@ -22300,10 +22309,10 @@ Results:
 Typical values ...
 
 ```text
-     1.1920929E-07
-      1.000000      1.1920929E-07
-     0.9999999     -5.9604645E-08
-     2.220446049250313E-016
+  >  1.1920929E-07
+  >   1.000000      1.1920929E-07
+  >  0.9999999     -5.9604645E-08
+  >  2.220446049250313E-016
 ```
 ### **Standard**
 
@@ -22746,10 +22755,10 @@ end program demo_sqrt
 ```
 Results:
 ```text
-    input values    2.00000000000000      (1.000000,2.000000)
-    output values    1.41421356237310      (1.272020,0.7861513)
-    elemental   8.000000       11.00000       5.477226
-    alternatively   1.41421356237310      (1.272020,0.7861513)
+  > input values    2.00000000000000      (1.000000,2.000000)
+  > output values    1.41421356237310      (1.272020,0.7861513)
+  > elemental   8.000000       11.00000       5.477226
+  > alternatively   1.41421356237310      (1.272020,0.7861513)
 ```
 ### **Standard**
 
@@ -22852,11 +22861,11 @@ end program demo_storage_size
 ```
 Results:
 ```text
-    size of integer                 32
-    size of real                    32
-    size of logical                 32
-    size of complex                 64
-    size of integer array           32
+  > size of integer                 32
+  > size of real                    32
+  > size of logical                 32
+  > size of complex                 64
+  > size of integer array           32
 ```
 ### **Standard**
 
@@ -23003,66 +23012,67 @@ end program demo_sum
 ```
 Results:
 ```text
-    sum all elements:           9
-    real :   26.00000
-    complex : (13.10000,-4.300000)
-    sum odd elements:           6
-    sum positive values:          12
-    the input array  (a matrix)
-    > [   -1,    2,   -3,    4 ]
-    > [   10,  -20,   30,  -40 ]
-    > [  100,  200, -300,  400 ]
-    >shape= 3 4 ,rank= 2 ,size= 12
-
-    sum of all elements in matrix  (a scalar)
-    > [  382 ]
-    >shape= ,rank= 0 ,size= 1
-
-    sum of positive elements  (a scalar)
-    > [  746 ]
-    >shape= ,rank= 0 ,size= 1
-
-    sum along rows  (a vector)
-    > [  109 ]
-    > [  182 ]
-    > [ -273 ]
-    > [  364 ]
-    >shape= 4 ,rank= 1 ,size= 4
-
-    sum along columns  (a vector)
-    > [    2 ]
-    > [  -20 ]
-    > [  400 ]
-    >shape= 3 ,rank= 1 ,size= 3
-
-    sum of a vector is always a scalar  (a scalar)
-    > [  9 ]
-    >shape= ,rank= 0 ,size= 1
-
-    sum of a volume by row  (a matrix)
-    > [  55,  55,  55,  55,  55,  55,  55 ]
-    > [  55,  55,  55,  55,  55,  55,  55 ]
-    > [  55,  55,  55,  55,  55,  55,  55 ]
-    > [  55,  55,  55,  55,  55,  55,  55 ]
-    > [  55,  55,  55,  55,  55,  55,  55 ]
-    > [  55,  55,  55,  55,  55,  55,  55 ]
-    >shape= 6 7 ,rank= 2 ,size= 42
-
-    sum of a volume by column  (a matrix)
-    > [  66,  66,  66,  66,  66,  66,  66 ]
-    > [  66,  66,  66,  66,  66,  66,  66 ]
-    > [  66,  66,  66,  66,  66,  66,  66 ]
-    > [  66,  66,  66,  66,  66,  66,  66 ]
-    > [  66,  66,  66,  66,  66,  66,  66 ]
-    >shape= 5 7 ,rank= 2 ,size= 35
-
-    sum of a volume by depth  (a matrix)
-    > [  77,  77,  77,  77,  77,  77 ]
-    > [  77,  77,  77,  77,  77,  77 ]
-    > [  77,  77,  77,  77,  77,  77 ]
-    > [  77,  77,  77,  77,  77,  77 ]
-    > [  77,  77,  77,  77,  77,  77 ]
-    >shape= 5 6 ,rank= 2 ,size= 30
+ >  sum all elements:           9
+ >  real :   26.0000000
+ >  complex :            (13.1000004,-4.30000019)
+ >  sum odd elements:           6
+ >  sum positive values:          12
+ >  the input array  (a matrix)
+ >  > [   -1,    2,   -3,    4 ]
+ >  > [   10,  -20,   30,  -40 ]
+ >  > [  100,  200, -300,  400 ]
+ >  >shape= 3 4 ,rank= 2 ,size= 12
+ >
+ >  sum of all elements in matrix  (a scalar)
+ >  > [  382 ]
+ >  >shape= ,rank= 0 ,size= 1
+ >
+ >  sum of positive elements  (a scalar)
+ >  > [  746 ]
+ >  >shape= ,rank= 0 ,size= 1
+ >
+ >  sum along rows  (a vector)
+ >  > [  109 ]
+ >  > [  182 ]
+ >  > [ -273 ]
+ >  > [  364 ]
+ >  >shape= 4 ,rank= 1 ,size= 4
+ >
+ >  sum along columns  (a vector)
+ >  > [    2 ]
+ >  > [  -20 ]
+ >  > [  400 ]
+ >  >shape= 3 ,rank= 1 ,size= 3
+ >
+ >  sum of a vector is always a scalar  (a scalar)
+ >  > [  9 ]
+ >  >shape= ,rank= 0 ,size= 1
+ >
+ >  sum of a volume by row  (a matrix)
+ >  > [  55,  55,  55,  55,  55,  55,  55 ]
+ >  > [  55,  55,  55,  55,  55,  55,  55 ]
+ >  > [  55,  55,  55,  55,  55,  55,  55 ]
+ >  > [  55,  55,  55,  55,  55,  55,  55 ]
+ >  > [  55,  55,  55,  55,  55,  55,  55 ]
+ >  > [  55,  55,  55,  55,  55,  55, 113 ]
+ >  >shape= 6 7 ,rank= 2 ,size= 42
+ >
+ >  sum of a volume by column  (a matrix)
+ >  > [  66,  66,  66,  66,  66,  66,  66 ]
+ >  > [  66,  66,  66,  66,  66,  66,  66 ]
+ >  > [  66,  66,  66,  66,  66,  66,  66 ]
+ >  > [  66,  66,  66,  66,  66,  66,  66 ]
+ >  > [  66,  66,  66,  66,  66,  66,**** ]
+ >  >shape= 5 7 ,rank= 2 ,size= 35
+ >
+ >  sum of a volume by depth  (a matrix)
+ >  > [  77,  77,  77,  77,  77,  77 ]
+ >  > [  77,  77,  77,  77,  77,  77 ]
+ >  > [  77,  77,  77,  77,  77,  77 ]
+ >  > [  77,  77,  77,  77,  77,  77 ]
+ >  > [  77,  77,  77,  77,  77,4193 ]
+ >  >shape= 5 6 ,rank= 2 ,size= 30
+ >
 ```
 ### **Standard**
 
@@ -23363,7 +23373,7 @@ end program demo_tanh
 ```
 Results:
 ```text
-      2.1000000000000001       0.97045193661345386
+  >   2.1000000000000001       0.97045193661345386
 ```
 ### **Standard**
 
@@ -23428,7 +23438,7 @@ end program demo_tan
 ```
 Results:
 ```text
-     0.16500000000000001       0.16651386310913616
+  >  0.16500000000000001       0.16651386310913616
 ```
 ### **Standard**
 
@@ -23598,7 +23608,7 @@ end program demo_this_image
 ```
 Results:
 ```text
-   value[1] is 1
+ >  value[1] is 1
 ```
 ### **Standard**
 
@@ -23663,9 +23673,9 @@ end program demo_tiny
 Results:
 
 ```text
- default real is from 1.17549435E-38 to 3.40282347E+38
- doubleprecision is from 2.2250738585072014E-308 to
- 1.7976931348623157E+308
+ > default real is from 1.17549435E-38 to 3.40282347E+38
+ > doubleprecision is from 2.2250738585072014E-308 to
+ > 1.7976931348623157E+308
 ```
 ### **Standard**
 
@@ -23958,16 +23968,16 @@ end program demo_trailz
 ```
 Results:
 ```text
-    Note default integer is          32 bits
-    value=  -1, value(bits)=11111111111111111111111111111111 , trailz=  0
-    value=   0, value(bits)=00000000000000000000000000000000 , trailz= 32
-    value=   1, value(bits)=00000000000000000000000000000001 , trailz=  0
-    value=  96, value(bits)=00000000000000000000000001100000 , trailz=  5
-    elemental and any integer kind:
-              5          13           4
-    0000000000000000000000000000000000000000000000000000000000100000
-    0000000000000000000000000000000000000000000000000010000000000000
-    0000000000000000000000000000000000000000000000000000000000010000
+ >  Note default integer is          32 bits
+ >  value=  -1, value(bits)=11111111111111111111111111111111 , trailz=  0
+ >  value=   0, value(bits)=00000000000000000000000000000000 , trailz= 32
+ >  value=   1, value(bits)=00000000000000000000000000000001 , trailz=  0
+ >  value=  96, value(bits)=00000000000000000000000001100000 , trailz=  5
+ >  elemental and any integer kind:
+ >            5          13           4
+ >  0000000000000000000000000000000000000000000000000000000000100000
+ >  0000000000000000000000000000000000000000000000000010000000000000
+ >  0000000000000000000000000000000000000000000000000000000000010000
 ```
 ### **Standard**
 
@@ -24071,16 +24081,13 @@ character(len=1)    :: chars(10)
    write(*,'(*("[",a,"]":,1x))')chars
 end program demo_transfer
 ```
-
 Results:
-
 ```text
-   1111111110000000000000000000000 NaN
-   1111111110000000000000000000000 2143289344
-   [abcdefghij]
-   [a] [b] [c] [d] [e] [f] [g] [h] [i] [j]
+ > 1111111110000000000000000000000 NaN
+ > 1111111110000000000000000000000 2143289344
+ > [abcdefghij]
+ > [a] [b] [c] [d] [e] [f] [g] [h] [i] [j]
 ```
-
 ### **Comments**
 
 _Joe Krahn_: Fortran uses **molding** rather than **casting**.

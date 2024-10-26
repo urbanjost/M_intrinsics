@@ -48,7 +48,7 @@ end program demo_c_sizeof
 Results:
 
 ```text
-    T
+ >   T
 ```
 
 The example will print _.true._ unless you are using a platform where

@@ -12,10 +12,26 @@ do
    SHORTNAME=$(basename $NAME .md)
    SHORTNAME=${SHORTNAME,,}
    echo $NAME
-   tail -n +3 $NAME|pandoc -f $MD -t man -i - -o ../man/man${NUM}/$SHORTNAME.${NUM}fortran
-   #tail -n +3 $NAME|pandoc -f $MD --wrap preserve -t plain -i - -o ../txt/$SHORTNAME.${NUM}fortran.man
-   tail -n +3 $NAME|pandoc --lua-filter ../scripts/deEmph.lua -f $MD -t plain -i - -o ../txt/$SHORTNAME.${NUM}fortran.man
-   tail -n +3 $NAME|pandoc -f $MD -t html -i - -o ../docs/$SHORTNAME.${NUM}fortran.html
+
+   tail -n +3 $NAME|
+   sed -e 's/^### \*\*\(.*\)\*\*$/# \U\1/'|
+   pandoc --eol=lf -f $MD -t man -i - -o ../man/man${NUM}/$SHORTNAME.${NUM}fortran
+
+   #tail -n +3 $NAME|
+   #sed -e 's/^### \*\*\(.*\)\*\*$/# \U\1/'|
+   #pandoc --eol=lf -f $MD --wrap preserve -t plain -i - -o -|
+   #cat -s |
+   #sed 's/\r$//' > ../txt/$SHORTNAME.${NUM}fortran.man
+
+   tail -n +3 $NAME|
+   sed -e 's/^### \*\*\(.*\)\*\*$/# \U\1/'|
+   pandoc --eol=lf --lua-filter ../scripts/deEmph.lua -f $MD -t plain -i - -o -|
+   cat -s |
+   sed 's/\r$//' > ../txt/$SHORTNAME.${NUM}fortran.man
+
+   tail -n +3 $NAME|
+   sed -e 's/^### \*\*\(.*\)\*\*$/# \U\1/'|
+   pandoc --eol=lf -f $MD -t html -i - -o ../docs/$SHORTNAME.${NUM}fortran.html
 done
 )
 done

@@ -133,66 +133,67 @@ end program demo_sum
 ```
 Results:
 ```text
-    sum all elements:           9
-    real :   26.00000
-    complex : (13.10000,-4.300000)
-    sum odd elements:           6
-    sum positive values:          12
-    the input array  (a matrix)
-    > [   -1,    2,   -3,    4 ]
-    > [   10,  -20,   30,  -40 ]
-    > [  100,  200, -300,  400 ]
-    >shape= 3 4 ,rank= 2 ,size= 12
-
-    sum of all elements in matrix  (a scalar)
-    > [  382 ]
-    >shape= ,rank= 0 ,size= 1
-
-    sum of positive elements  (a scalar)
-    > [  746 ]
-    >shape= ,rank= 0 ,size= 1
-
-    sum along rows  (a vector)
-    > [  109 ]
-    > [  182 ]
-    > [ -273 ]
-    > [  364 ]
-    >shape= 4 ,rank= 1 ,size= 4
-
-    sum along columns  (a vector)
-    > [    2 ]
-    > [  -20 ]
-    > [  400 ]
-    >shape= 3 ,rank= 1 ,size= 3
-
-    sum of a vector is always a scalar  (a scalar)
-    > [  9 ]
-    >shape= ,rank= 0 ,size= 1
-
-    sum of a volume by row  (a matrix)
-    > [  55,  55,  55,  55,  55,  55,  55 ]
-    > [  55,  55,  55,  55,  55,  55,  55 ]
-    > [  55,  55,  55,  55,  55,  55,  55 ]
-    > [  55,  55,  55,  55,  55,  55,  55 ]
-    > [  55,  55,  55,  55,  55,  55,  55 ]
-    > [  55,  55,  55,  55,  55,  55,  55 ]
-    >shape= 6 7 ,rank= 2 ,size= 42
-
-    sum of a volume by column  (a matrix)
-    > [  66,  66,  66,  66,  66,  66,  66 ]
-    > [  66,  66,  66,  66,  66,  66,  66 ]
-    > [  66,  66,  66,  66,  66,  66,  66 ]
-    > [  66,  66,  66,  66,  66,  66,  66 ]
-    > [  66,  66,  66,  66,  66,  66,  66 ]
-    >shape= 5 7 ,rank= 2 ,size= 35
-
-    sum of a volume by depth  (a matrix)
-    > [  77,  77,  77,  77,  77,  77 ]
-    > [  77,  77,  77,  77,  77,  77 ]
-    > [  77,  77,  77,  77,  77,  77 ]
-    > [  77,  77,  77,  77,  77,  77 ]
-    > [  77,  77,  77,  77,  77,  77 ]
-    >shape= 5 6 ,rank= 2 ,size= 30
+ >  sum all elements:           9
+ >  real :   26.0000000    
+ >  complex :            (13.1000004,-4.30000019)
+ >  sum odd elements:           6
+ >  sum positive values:          12
+ >  the input array  (a matrix)
+ >  > [   -1,    2,   -3,    4 ]
+ >  > [   10,  -20,   30,  -40 ]
+ >  > [  100,  200, -300,  400 ]
+ >  >shape= 3 4 ,rank= 2 ,size= 12
+ > 
+ >  sum of all elements in matrix  (a scalar)
+ >  > [  382 ]
+ >  >shape= ,rank= 0 ,size= 1
+ > 
+ >  sum of positive elements  (a scalar)
+ >  > [  746 ]
+ >  >shape= ,rank= 0 ,size= 1
+ > 
+ >  sum along rows  (a vector)
+ >  > [  109 ]
+ >  > [  182 ]
+ >  > [ -273 ]
+ >  > [  364 ]
+ >  >shape= 4 ,rank= 1 ,size= 4
+ > 
+ >  sum along columns  (a vector)
+ >  > [    2 ]
+ >  > [  -20 ]
+ >  > [  400 ]
+ >  >shape= 3 ,rank= 1 ,size= 3
+ > 
+ >  sum of a vector is always a scalar  (a scalar)
+ >  > [  9 ]
+ >  >shape= ,rank= 0 ,size= 1
+ > 
+ >  sum of a volume by row  (a matrix)
+ >  > [  55,  55,  55,  55,  55,  55,  55 ]
+ >  > [  55,  55,  55,  55,  55,  55,  55 ]
+ >  > [  55,  55,  55,  55,  55,  55,  55 ]
+ >  > [  55,  55,  55,  55,  55,  55,  55 ]
+ >  > [  55,  55,  55,  55,  55,  55,  55 ]
+ >  > [  55,  55,  55,  55,  55,  55, 113 ]
+ >  >shape= 6 7 ,rank= 2 ,size= 42
+ > 
+ >  sum of a volume by column  (a matrix)
+ >  > [  66,  66,  66,  66,  66,  66,  66 ]
+ >  > [  66,  66,  66,  66,  66,  66,  66 ]
+ >  > [  66,  66,  66,  66,  66,  66,  66 ]
+ >  > [  66,  66,  66,  66,  66,  66,  66 ]
+ >  > [  66,  66,  66,  66,  66,  66,**** ]
+ >  >shape= 5 7 ,rank= 2 ,size= 35
+ > 
+ >  sum of a volume by depth  (a matrix)
+ >  > [  77,  77,  77,  77,  77,  77 ]
+ >  > [  77,  77,  77,  77,  77,  77 ]
+ >  > [  77,  77,  77,  77,  77,  77 ]
+ >  > [  77,  77,  77,  77,  77,  77 ]
+ >  > [  77,  77,  77,  77,  77,4193 ]
+ >  >shape= 5 6 ,rank= 2 ,size= 30
+ > 
 ```
 ### **Standard**
 

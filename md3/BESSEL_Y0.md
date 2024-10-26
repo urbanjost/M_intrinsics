@@ -48,7 +48,7 @@ end program demo_bessel_y0
 ```
 Results:
 ```text
-                    -Infinity
+   > -Infinity
 ```
 ### **Standard**
 

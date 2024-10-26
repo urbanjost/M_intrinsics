@@ -164,70 +164,67 @@ end subroutine print_matrix_int
 
 end program demo_product
 ```
-
 Results:
-
 ```text
-factorial of  1  is  1.000000
-factorial of  2  is  2.000000
-factorial of  3  is  6.000000
-factorial of  4  is  24.00000
-factorial of  5  is  120.0000
-factorial of  6  is  720.0000
-factorial of  7  is  5040.000
-factorial of  8  is  40320.00
-factorial of  9  is  362880.0
-factorial of  10  is  3628800.
-
- product of all elements 351000000
- odd * even =
- 4875 * 72000 = 351000000
-
-zero-sized array=> 1
-all elements have a false mask=> 1
-
-rect :( 2 3 )
- > [  1,  2,  3 ]
- > [  4,  5,  6 ]
-product of columns= 4 10 18
-product of rows= 6 120
-
-box 1 :( 2 3 )
- > [  1,  2,  3 ]
- > [  4,  5,  6 ]
-
-box 2 :( 2 3 )
- > [  10,  20,  30 ]
- > [  40,  50,  60 ]
-
-box 3 :( 2 3 )
- > [ -10, -20, -30 ]
- > [ -40, -50, -60 ]
-
-box 4 :( 2 3 )
- > [   2,   4,   6 ]
- > [   8,  10,  12 ]
-no dim gives a scalar .1719927E+26
-
-negative values :( 3 4 )
- > [     1,     1,   400,     1 ]
- > [     1,     1,  1000,     1 ]
- > [     1,     1,  1800,     1 ]
-
-dim=1 :( 3 4 )
- > [     4,   400,   400,    16 ]
- > [    10,  1000,  1000,    40 ]
- > [    18,  1800,  1800,    72 ]
-
-dim=2 :( 2 4 )
- > [       6,    6000,   -6000,      48 ]
- > [     120,  120000, -120000,     960 ]
-
-dim=3 :( 2 3 )
- > [    -200,   -3200,  -16200 ]
- > [  -51200, -125000, -259200 ]
+ > factorial of  1  is  1.00000000
+ > factorial of  2  is  2.00000000
+ > factorial of  3  is  6.00000000
+ > factorial of  4  is  24.0000000
+ > factorial of  5  is  120.000000
+ > factorial of  6  is  720.000000
+ > factorial of  7  is  5040.00000
+ > factorial of  8  is  40320.0000
+ > factorial of  9  is  362880.000
+ > factorial of  10  is  3628800.00
+ > 
+ >  product of all elements 351000000
+ >  odd * even = 
+ >  4875 * 72000 = 351000000
+ > 
+ > zero-sized array=> 1
+ > all elements have a false mask=> 1
+ > 
+ > rect :( 2 3 )
+ >  > [  1,  2,  3 ]
+ >  > [  4,  5,  6 ]
+ > product of columns= 4 10 18
+ > product of rows= 6 120
+ > 
+ > box 1 :( 2 3 )
+ >  > [  1,  2,  3 ]
+ >  > [  4,  5,  6 ]
+ > 
+ > box 2 :( 2 3 )
+ >  > [  10,  20,  30 ]
+ >  > [  40,  50,  60 ]
+ > 
+ > box 3 :( 2 3 )
+ >  > [ -10, -20, -30 ]
+ >  > [ -40, -50, -60 ]
+ > 
+ > box 4 :( 2 3 )
+ >  > [   2,   4,   6 ]
+ >  > [   8,  10,  12 ]
+ > no dim gives a scalar 0.171992703E+26
+ > 
+ > negative values :( 3 4 )
+ >  > [     1,     1,   400,     1 ]
+ >  > [     1,     1,  1000,     1 ]
+ >  > [     1,     1,  1800,     1 ]
+ > 
+ > dim=1 :( 3 4 )
+ >  > [     4,   400,   400,    16 ]
+ >  > [    10,  1000,  1000,    40 ]
+ >  > [    18,  1800,  1800,    72 ]
+ > 
+ > dim=2 :( 2 4 )
+ >  > [       6,    6000,   -6000,      48 ]
+ >  > [     120,  120000, -120000,     960 ]
+ > 
+ > dim=3 :( 2 3 )
+ >  > [    -200,   -3200,  -16200 ]
+ >  > [  -51200, -125000, -259200 ]
 ```
-
 ### **Standard**
 
 Fortran 95

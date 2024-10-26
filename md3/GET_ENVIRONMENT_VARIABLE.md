@@ -63,7 +63,7 @@ same or different.
   : This argument contains the length needed to store the environment
   variable name. It is zero if the environment variable is not set.
 - **status**
-  : Returns 
+  : Returns
     + **-1** if value is present but too short to fit in the provided variable.
     + **1** if the environment variable does not exist
     + **2** if the processor does not support environment variables
@@ -133,7 +133,7 @@ end program demo_getenv
 ```
 Typical Results:
 ```text
-   HOME="/home/urbanjs"
+ >  HOME="/home/urbanjs"
 ```
 ### **Standard**
 

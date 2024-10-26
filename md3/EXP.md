@@ -84,18 +84,15 @@ complex :: cx
 
 end program demo_exp
 ```
-
 Results:
-
 ```text
- Euler's constant is approximately   2.718282
- given the complex value  (3.000000,4.000000)
- exp(x) is (-13.12878,-15.20078)
- is the same as (-13.12878,-15.20078)
- maximum real component   88.72284
- maximum doubleprecision component   709.782712893384
+ >  Euler's constant is approximately   2.71828175    
+ >  given the complex value              (3.00000000,4.00000000)
+ >  exp(x) is           (-13.1287832,-15.2007847)
+ >  is the same as           (-13.1287832,-15.2007847)
+ >  maximum real component   88.7228394    
+ >  maximum doubleprecision component   709.78271289338397     
 ```
-
 ### **Standard**
 
 FORTRAN 77

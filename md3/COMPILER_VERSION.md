@@ -45,13 +45,13 @@ end program demo_compiler_version
 ```
 Results:
 ```text
-This file was compiled by GCC version 10.3.0
+ > This file was compiled by GCC version 10.3.0
 
-This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler
-Classic for applications running on Intel(R) 64, Version 2021.3.0 Build
-20210609_000000
+ > This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler
+ > Classic for applications running on Intel(R) 64, Version 2021.3.0 Build
+ > 20210609_000000
 
-This file was compiled by nvfortran 21.5-0 LLVM
+ > This file was compiled by nvfortran 21.5-0 LLVM
 ```
 ### **Standard**
 

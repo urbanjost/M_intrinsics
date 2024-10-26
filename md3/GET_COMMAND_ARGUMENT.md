@@ -121,12 +121,12 @@ Results:
 ./demo_get_command_argument a  test 'of getting  arguments ' " leading"
 ```
 ```text
- The program's name is ./demo_get_command_argument
- The number of arguments is            4
-001 00000 00001 [a]
-002 00000 00004 [test]
-003 00000 00022 [of getting  arguments ]
-004 00000 00008 [ leading]
+ > The program's name is ./demo_get_command_argument
+ > The number of arguments is            4
+ >001 00000 00001 [a]
+ >002 00000 00004 [test]
+ >003 00000 00022 [of getting  arguments ]
+ >004 00000 00008 [ leading]
 ```
 ### **Standard**
 
@@ -138,4 +138,3 @@ Fortran 2003
 [**command_argument_count**(3)](#command_argument_count)
 
 _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
-#

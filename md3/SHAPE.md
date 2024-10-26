@@ -70,11 +70,11 @@ end program demo_shape
 ```
 Results:
 ```text
-   shape of array= 3 4
-   shape of constant=
-   size of shape of constant= 0
-   ubound of array= 1 2
-   lbound of array= -1 -1
+ > shape of array= 3 4
+ > shape of constant=
+ > size of shape of constant= 0
+ > ubound of array= 1 2
+ > lbound of array= -1 -1
 ```
 ### **Standard**
 

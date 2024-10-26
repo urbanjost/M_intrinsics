@@ -67,15 +67,15 @@ end program demo_not
 ```
 Results:
 ```text
-    the input value      -13741 represented in bits is
-    11111111111111111100101001010011 -13741
-    on output it is       13740
-    00000000000000000011010110101100 13740
-     on a two's complement machine flip the bits and add 1
-     to get the value with the sign changed, for example.
-           1234       -1234
-          -1234        1234
-     of course 'x=-x' works just fine and more generally.
+  > the input value      -13741 represented in bits is
+  > 11111111111111111100101001010011 -13741
+  > on output it is       13740
+  > 00000000000000000011010110101100 13740
+  >  on a two's complement machine flip the bits and add 1
+  >  to get the value with the sign changed, for example.
+  >        1234       -1234
+  >       -1234        1234
+  >  of course 'x=-x' works just fine and more generally.
 ```
 ### **Standard**
 

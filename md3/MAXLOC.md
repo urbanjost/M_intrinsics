@@ -93,9 +93,7 @@ integer,save :: ints(3,5)= reshape([&
 
 end program demo_maxloc
 ```
-
 Results:
-
 ```text
  >     3       5
  >     3       3       3       3       3
@@ -108,7 +106,6 @@ Results:
  >  2 48
  >  3 47
 ```
-
 ### **Standard**
 
 Fortran 95

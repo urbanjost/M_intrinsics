@@ -100,4 +100,3 @@ Fortran 2003
 [**command_argument_count**(3)](#command_argument_count)
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
-#

@@ -45,7 +45,7 @@
 
 ### **Result**
 
-  Returns _.true._ if string_a \<= string_b, and _.false._ otherwise,
+  Returns _.true._ if string_a \< string_b, and _.false._ otherwise,
   based on the ASCII collating sequence.
 
   If both input arguments are null strings, _.false._ is always returned.

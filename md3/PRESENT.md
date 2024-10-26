@@ -110,11 +110,11 @@ end program demo_present
 ```
 Results:
 ```text
-    optional argument x is not present
-              0
-    optional argument x is present
-    already tested X is defined 1492
-        2226064
+  > optional argument x is not present
+  >           0
+  > optional argument x is present
+  > already tested X is defined 1492
+  >     2226064
 ```
 ### **Standard**
 

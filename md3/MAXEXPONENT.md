@@ -48,9 +48,9 @@ end program demo_maxexponent
 ```
 Results:
 ```text
-   -125 128
-   -1021 1024
-   -16381 16384
+  >  -125 128
+  >  -1021 1024
+  >  -16381 16384
 ```
 ### **Standard**
 

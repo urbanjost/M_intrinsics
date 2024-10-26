@@ -159,7 +159,7 @@
                  more than once in all of the IMPLICIT statements
                  in a scoping unit.
 
-## **Example**
+### **Example**
   The following are examples of the use of IMPLICIT statements:
 
 ```fortran

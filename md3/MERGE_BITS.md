@@ -105,12 +105,12 @@ end program demo_merge_bits
 ```
 Results:
 ```text
-    MERGE_BITS( 5,10,41) should be 3.=>           3
-    MERGE_BITS(13,18,22) should be 4.=>           4
-   should get all zero bits =>0000000000000000
-   should get all ones bits =>1111111111111111
-   32767 32751 5877
-   32767 32767 5877
+ >   MERGE_BITS( 5,10,41) should be 3.=>           3
+ >   MERGE_BITS(13,18,22) should be 4.=>           4
+ >  should get all zero bits =>0000000000000000
+ >  should get all ones bits =>1111111111111111
+ >  32767 32751 5877
+ >  32767 32767 5877
 ```
 ### **Standard**
 

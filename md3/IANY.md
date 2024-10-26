@@ -86,22 +86,22 @@ end program demo_iany
 ```
 Results:
 ```text
-    A=
-    00100100
-    01101010
-    10101010
-
-    IANY(A)=
-    11101110
-
-    IANY(A) with a mask
-    10101110
-
-    should match
-    10101110
-
-    does it?
-    T
+  > A=
+  > 00100100
+  > 01101010
+  > 10101010
+  >
+  > IANY(A)=
+  > 11101110
+  >
+  > IANY(A) with a mask
+  > 10101110
+  >
+  > should match
+  > 10101110
+  >
+  > does it?
+  > T
 ```
 ### **Standard**
 

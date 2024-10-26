@@ -87,11 +87,11 @@ end program demo_storage_size
 ```
 Results:
 ```text
-    size of integer                 32
-    size of real                    32
-    size of logical                 32
-    size of complex                 64
-    size of integer array           32
+  > size of integer                 32
+  > size of real                    32
+  > size of logical                 32
+  > size of complex                 64
+  > size of integer array           32
 ```
 ### **Standard**
 

@@ -147,21 +147,21 @@ Sample program:
 ```
 Results:
 ```text
-    these should all be true
-    T I am descended from Grandpa
-    T Dad is descended from Grandpa
-    T Dad is my ancestor
-    is an object an extension of itself?
-    T self-propagating!
-    T clone!
-     you did not father your grandfather
-    F no paradox here
-    F no paradox here
-    F no relation whatsoever
-    F no relation
-    F not what everyone thinks
-    (P,Q) F mind your P's and Q's
-    (Q,P) T
+  > these should all be true
+  > T I am descended from Grandpa
+  > T Dad is descended from Grandpa
+  > T Dad is my ancestor
+  > is an object an extension of itself?
+  > T self-propagating!
+  > T clone!
+  >  you did not father your grandfather
+  > F no paradox here
+  > F no paradox here
+  > F no relation whatsoever
+  > F no relation
+  > F not what everyone thinks
+  > (P,Q) F mind your P's and Q's
+  > (Q,P) T
 ```
 ### **Standard**
 

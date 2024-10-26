@@ -61,7 +61,6 @@ end subroutine association_test
 
 end program demo_c_associated
 ```
-
 ### **Standard**
 
 Fortran 2003

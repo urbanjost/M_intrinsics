@@ -79,4 +79,3 @@ Functions that perform operations on character strings:
   [**trim**(3)](#trim)
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
-#

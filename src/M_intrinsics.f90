@@ -392,7 +392,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  abs(3fortran)', &
+'                              October 25, 2024                  abs(3fortran)', &
 '']
 
 shortname="abs"
@@ -558,7 +558,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                achar(3fortran)', &
+'                              October 25, 2024                achar(3fortran)', &
 '']
 
 shortname="achar"
@@ -659,7 +659,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 acos(3fortran)', &
+'                              October 25, 2024                 acos(3fortran)', &
 '']
 
 shortname="acos"
@@ -753,7 +753,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                acosd(3fortran)', &
+'                              October 25, 2024                acosd(3fortran)', &
 '']
 
 shortname="acosd"
@@ -834,7 +834,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                acosh(3fortran)', &
+'                              October 25, 2024                acosh(3fortran)', &
 '']
 
 shortname="acosh"
@@ -942,7 +942,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               acospi(3fortran)', &
+'                              October 25, 2024               acospi(3fortran)', &
 '']
 
 shortname="acospi"
@@ -1020,13 +1020,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'        original: [   sample string    ]', &
-'        adjusted: [sample string       ]', &
-'        trimmed:  [sample string]', &
-'        substring:[sample string]', &
-'        original:[    allocatable string   ]', &
-'        adjusted:[allocatable string       ]', &
-'        trimmed: [allocatable string]', &
+'        > original: [   sample string    ]', &
+'        > adjusted: [sample string       ]', &
+'        > trimmed:  [sample string]', &
+'        > substring:[sample string]', &
+'        > original:[    allocatable string   ]', &
+'        > adjusted:[allocatable string       ]', &
+'        > trimmed: [allocatable string]', &
 '', &
 '', &
 'STANDARD', &
@@ -1039,7 +1039,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024              adjustl(3fortran)', &
+'                              October 25, 2024              adjustl(3fortran)', &
 '']
 
 shortname="adjustl"
@@ -1112,14 +1112,14 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'        12345678901234567890', &
-'          sample string', &
-'               sample string', &
-'        12345678901234567890123456789012345678901234567890', &
-'                                                     first', &
-'                                                    second', &
-'                                                     third', &
-'        12345678901234567890123456789012345678901234567890', &
+'        > 12345678901234567890', &
+'        >   sample string', &
+'        >        sample string', &
+'        > 12345678901234567890123456789012345678901234567890', &
+'        >                                              first', &
+'        >                                             second', &
+'        >                                              third', &
+'        > 12345678901234567890123456789012345678901234567890', &
 '', &
 '', &
 'STANDARD', &
@@ -1132,7 +1132,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024              adjustr(3fortran)', &
+'                              October 25, 2024              adjustr(3fortran)', &
 '']
 
 shortname="adjustr"
@@ -1211,15 +1211,15 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'       value= (1.00000000,2.00000000)', &
-'       imaginary part= 2.00000000 or 2.00000000', &
-'       value= (3.0000000000000000,4.0000000000000000)', &
-'       imaginary part= 4.0000000000000000 or 4.0000000000000000', &
-'', &
-'       (1.00000000,2.00000000) (0.500000000,1.00000000) (2.00000000,4.00000000)', &
-'       (-11.0000000,-2.00000000)', &
-'', &
-'        2.00000000       1.00000000       4.00000000      -2.00000000', &
+'       > value= (1.00000000,2.00000000)', &
+'       > imaginary part= 2.00000000 or 2.00000000', &
+'       > value= (3.0000000000000000,4.0000000000000000)', &
+'       > imaginary part= 4.0000000000000000 or 4.0000000000000000', &
+'       >', &
+'       > (1.00000000,2.00000000) (0.500000000,1.00000000) (2.00000000,4.00000000)', &
+'       > (-11.0000000,-2.00000000)', &
+'       >', &
+'       >  2.00000000       1.00000000       4.00000000      -2.00000000', &
 '', &
 '', &
 'STANDARD', &
@@ -1246,7 +1246,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                aimag(3fortran)', &
+'                              October 25, 2024                aimag(3fortran)', &
 '']
 
 shortname="aimag"
@@ -1323,17 +1323,17 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'       basics:', &
-'       just chops off the fractional part', &
-'       -2.000000      -2.000000', &
-'       if |x| < 1 a positive zero is returned', &
-'       0.0000000E+00  0.0000000E+00', &
-'       input may be of any real kind', &
-'       -4.00000000000000        4.00000000000000', &
-'       elemental:', &
-'       -2.000000      -2.000000      -2.000000      -2.000000      -1.000000', &
-'       -1.000000      0.0000000E+00  0.0000000E+00  0.0000000E+00   1.000000', &
-'        1.000000       2.000000       2.000000       2.000000       2.000000', &
+'       > basics:', &
+'       >  just chops off the fractional part', &
+'       >  -2.000000     -2.000000', &
+'       >  if |x| < 1 a positive zero is returned', &
+'       >  0.0000000E+00  0.0000000E+00', &
+'       >  input may be of any real kind', &
+'       >  -4.00000000000000       4.00000000000000', &
+'       > elemental:', &
+'       >  -2.000000     -2.000000      -2.000000      -2.000000      -1.000000', &
+'       >  -1.000000     0.0000000E+00  0.0000000E+00  0.0000000E+00   1.000000', &
+'       >   1.000000      2.000000       2.000000       2.000000       2.000000', &
 '', &
 '', &
 'STANDARD', &
@@ -1346,7 +1346,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 aint(3fortran)', &
+'                              October 25, 2024                 aint(3fortran)', &
 '']
 
 shortname="aint"
@@ -1466,7 +1466,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  all(3fortran)', &
+'                              October 25, 2024                  all(3fortran)', &
 '']
 
 shortname="all"
@@ -1573,7 +1573,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024            allocated(3fortran)', &
+'                              October 25, 2024            allocated(3fortran)', &
 '']
 
 shortname="allocated"
@@ -1699,7 +1699,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                anint(3fortran)', &
+'                              October 25, 2024                anint(3fortran)', &
 '']
 
 shortname="anint"
@@ -1865,7 +1865,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  any(3fortran)', &
+'                              October 25, 2024                  any(3fortran)', &
 '']
 
 shortname="any"
@@ -1959,9 +1959,9 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         angle of incline(radians) =    2.5002604899361139E-002', &
-'         angle of incline(degrees) =    1.4325437375665075', &
-'         percent grade=   2.5000000000000000', &
+'       >  angle of incline(radians) =   2.5002604899361139E-002', &
+'       >  angle of incline(degrees) =   1.4325437375665075', &
+'       >  percent grade=   2.5000000000000000', &
 '', &
 '  The percentage grade is the slope, written as a percent. To calculate the', &
 '  slope you divide the rise by the run. In the example the rise is 1.25 mile', &
@@ -1987,7 +1987,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 asin(3fortran)', &
+'                              October 25, 2024                 asin(3fortran)', &
 '']
 
 shortname="asin"
@@ -2119,7 +2119,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                asind(3fortran)', &
+'                              October 25, 2024                asind(3fortran)', &
 '']
 
 shortname="asind"
@@ -2185,7 +2185,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'       -0.88137358701954305  0.0000000000000000  0.88137358701954305', &
+'       >  -0.88137358701954305  0.0000000000000000  0.88137358701954305', &
 '', &
 '', &
 'STANDARD', &
@@ -2201,7 +2201,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                asinh(3fortran)', &
+'                              October 25, 2024                asinh(3fortran)', &
 '']
 
 shortname="asinh"
@@ -2339,7 +2339,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               asinpi(3fortran)', &
+'                              October 25, 2024               asinpi(3fortran)', &
 '']
 
 shortname="asinpi"
@@ -2591,7 +2591,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024            associate(7fortran)', &
+'                              October 25, 2024            associate(7fortran)', &
 '']
 
 shortname="associate"
@@ -2696,7 +2696,16 @@ textblock=[character(len=256) :: &
 '        & stop ''POINTER NOT ASSOCIATED''', &
 '        if (associated(ptr,tgt) .eqv. .false.) &', &
 '        & stop ''POINTER NOT ASSOCIATED TO TARGET''', &
+'        if (associated(ptr) ) &', &
+'        & print *, ''POINTER ASSOCIATED''', &
+'        if (associated(ptr,tgt) ) &', &
+'        & print *, ''POINTER ASSOCIATED TO TARGET''', &
 '      end program demo_associated', &
+'', &
+'  Results:', &
+'', &
+'       >  POINTER ASSOCIATED', &
+'       >  POINTER ASSOCIATED TO TARGET', &
 '', &
 '', &
 'STANDARD', &
@@ -2709,7 +2718,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024           associated(3fortran)', &
+'                              October 25, 2024           associated(3fortran)', &
 '']
 
 shortname="associated"
@@ -2895,7 +2904,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                atan2(3fortran)', &
+'                              October 25, 2024                atan2(3fortran)', &
 '']
 
 shortname="atan2"
@@ -3075,7 +3084,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               atan2d(3fortran)', &
+'                              October 25, 2024               atan2d(3fortran)', &
 '']
 
 shortname="atan2d"
@@ -3241,7 +3250,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024              atan2pi(3fortran)', &
+'                              October 25, 2024              atan2pi(3fortran)', &
 '']
 
 shortname="atan2pi"
@@ -3314,11 +3323,11 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'        1.235085437457879', &
-'        .7853981633974483 45.00000000000000', &
-'        2.356194490192345 135.0000000000000', &
-'        -.7853981633974483 -45.00000000000000', &
-'        -2.356194490192345 -135.0000000000000', &
+'       > 1.235085437457879', &
+'       > .7853981633974483 45.00000000000000', &
+'       > 2.356194490192345 135.0000000000000', &
+'       > -.7853981633974483 -45.00000000000000', &
+'       > -2.356194490192345 -135.0000000000000', &
 '', &
 '', &
 'STANDARD', &
@@ -3334,7 +3343,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 atan(3fortran)', &
+'                              October 25, 2024                 atan(3fortran)', &
 '']
 
 shortname="atan"
@@ -3428,7 +3437,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                atand(3fortran)', &
+'                              October 25, 2024                atand(3fortran)', &
 '']
 
 shortname="atand"
@@ -3502,7 +3511,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                atanh(3fortran)', &
+'                              October 25, 2024                atanh(3fortran)', &
 '']
 
 shortname="atanh"
@@ -3597,7 +3606,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               atanpi(3fortran)', &
+'                              October 25, 2024               atanpi(3fortran)', &
 '']
 
 shortname="atanpi"
@@ -3674,7 +3683,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024           atomic_add(3fortran)', &
+'                              October 25, 2024           atomic_add(3fortran)', &
 '']
 
 shortname="atomic_add"
@@ -3752,7 +3761,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024           atomic_and(3fortran)', &
+'                              October 25, 2024           atomic_and(3fortran)', &
 '']
 
 shortname="atomic_and"
@@ -3822,7 +3831,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024           atomic_cas(3fortran)', &
+'                              October 25, 2024           atomic_cas(3fortran)', &
 '']
 
 shortname="atomic_cas"
@@ -3898,7 +3907,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024        atomic_define(3fortran)', &
+'                              October 25, 2024        atomic_define(3fortran)', &
 '']
 
 shortname="atomic_define"
@@ -3969,7 +3978,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024     atomic_fetch_add(3fortran)', &
+'                              October 25, 2024     atomic_fetch_add(3fortran)', &
 '']
 
 shortname="atomic_fetch_add"
@@ -4041,7 +4050,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024     atomic_fetch_and(3fortran)', &
+'                              October 25, 2024     atomic_fetch_and(3fortran)', &
 '']
 
 shortname="atomic_fetch_and"
@@ -4113,7 +4122,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024      atomic_fetch_or(3fortran)', &
+'                              October 25, 2024      atomic_fetch_or(3fortran)', &
 '']
 
 shortname="atomic_fetch_or"
@@ -4185,7 +4194,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024     atomic_fetch_xor(3fortran)', &
+'                              October 25, 2024     atomic_fetch_xor(3fortran)', &
 '']
 
 shortname="atomic_fetch_xor"
@@ -4266,7 +4275,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024            atomic_or(3fortran)', &
+'                              October 25, 2024            atomic_or(3fortran)', &
 '']
 
 shortname="atomic_or"
@@ -4350,7 +4359,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024           atomic_ref(3fortran)', &
+'                              October 25, 2024           atomic_ref(3fortran)', &
 '']
 
 shortname="atomic_ref"
@@ -4429,7 +4438,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024           atomic_xor(3fortran)', &
+'                              October 25, 2024           atomic_xor(3fortran)', &
 '']
 
 shortname="atomic_xor"
@@ -4563,7 +4572,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024            backspace(7fortran)', &
+'                              October 25, 2024            backspace(7fortran)', &
 '']
 
 shortname="backspace"
@@ -4619,7 +4628,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'           1.0000000000000000', &
+'       > 1.0000000000000000', &
 '', &
 '', &
 'STANDARD', &
@@ -4632,7 +4641,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024            bessel_j0(3fortran)', &
+'                              October 25, 2024            bessel_j0(3fortran)', &
 '']
 
 shortname="bessel_j0"
@@ -4687,7 +4696,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'          0.44005058574493350', &
+'       > 0.44005058574493350', &
 '', &
 '', &
 'STANDARD', &
@@ -4700,7 +4709,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024            bessel_j1(3fortran)', &
+'                              October 25, 2024            bessel_j1(3fortran)', &
 '']
 
 shortname="bessel_j1"
@@ -4790,7 +4799,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'           2.4975773021123450E-004', &
+'       > 2.4975773021123450E-004', &
 '', &
 '', &
 'STANDARD', &
@@ -4803,7 +4812,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024            bessel_jn(3fortran)', &
+'                              October 25, 2024            bessel_jn(3fortran)', &
 '']
 
 shortname="bessel_jn"
@@ -4858,7 +4867,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'                         -Infinity', &
+'        > -Infinity', &
 '', &
 '', &
 'STANDARD', &
@@ -4871,7 +4880,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024            bessel_y0(3fortran)', &
+'                              October 25, 2024            bessel_y0(3fortran)', &
 '']
 
 shortname="bessel_y0"
@@ -4938,7 +4947,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024            bessel_y1(3fortran)', &
+'                              October 25, 2024            bessel_y1(3fortran)', &
 '']
 
 shortname="bessel_y1"
@@ -5028,7 +5037,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'           1.0000000000000000       -260.40586662581222', &
+'       > 1.0000000000000000       -260.40586662581222', &
 '', &
 '', &
 'STANDARD', &
@@ -5041,7 +5050,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024            bessel_yn(3fortran)', &
+'                              October 25, 2024            bessel_yn(3fortran)', &
 '']
 
 shortname="bessel_yn"
@@ -5206,7 +5215,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  bge(3fortran)', &
+'                              October 25, 2024                  bge(3fortran)', &
 '']
 
 shortname="bge"
@@ -5318,7 +5327,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  bgt(3fortran)', &
+'                              October 25, 2024                  bgt(3fortran)', &
 '']
 
 shortname="bgt"
@@ -5391,12 +5400,12 @@ textblock=[character(len=256) :: &
 '', &
 '  Typical Results:', &
 '', &
-'         default: bit size is  32 which is kind=  4 on this platform', &
-'         int8   : bit size is   8 which is kind=  1 on this platform', &
-'         int16  : bit size is  16 which is kind=  2 on this platform', &
-'         int32  : bit size is  32 which is kind=  4 on this platform', &
-'         int64  : bit size is  64 which is kind=  8 on this platform', &
-'         The available kinds are 1, 2, 4, 8, 16', &
+'       > default: bit size is  32 which is kind=  4 on this platform', &
+'       > int8   : bit size is   8 which is kind=  1 on this platform', &
+'       > int16  : bit size is  16 which is kind=  2 on this platform', &
+'       > int32  : bit size is  32 which is kind=  4 on this platform', &
+'       > int64  : bit size is  64 which is kind=  8 on this platform', &
+'       > The available kinds are 1, 2, 4, 8, 16', &
 '', &
 '', &
 'STANDARD', &
@@ -5411,7 +5420,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024             bit_size(3fortran)', &
+'                              October 25, 2024             bit_size(3fortran)', &
 '']
 
 shortname="bit_size"
@@ -5484,22 +5493,22 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'        -0128  F 10000000', &
-'        +0064    01000000', &
-'        -0096  F 10100000', &
-'        +0064    01000000', &
-'        -0064  F 11000000', &
-'        +0064    01000000', &
-'        -0032  F 11100000', &
-'        +0064    01000000', &
-'        +0000  T 00000000', &
-'        +0064    01000000', &
-'        +0032  T 00100000', &
-'        +0064    01000000', &
-'        +0064  T 01000000', &
-'        +0064    01000000', &
-'        +0096  F 01100000', &
-'        +0064    01000000', &
+'       >  -0128  F 10000000', &
+'       >  +0064    01000000', &
+'       >  -0096  F 10100000', &
+'       >  +0064    01000000', &
+'       >  -0064  F 11000000', &
+'       >  +0064    01000000', &
+'       >  -0032  F 11100000', &
+'       >  +0064    01000000', &
+'       >  +0000  T 00000000', &
+'       >  +0064    01000000', &
+'       >  +0032  T 00100000', &
+'       >  +0064    01000000', &
+'       >  +0064  T 01000000', &
+'       >  +0064    01000000', &
+'       >  +0096  F 01100000', &
+'       >  +0064    01000000', &
 '', &
 '', &
 'STANDARD', &
@@ -5512,7 +5521,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  ble(3fortran)', &
+'                              October 25, 2024                  ble(3fortran)', &
 '']
 
 shortname="ble"
@@ -5643,7 +5652,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                block(7fortran)', &
+'                              October 25, 2024                block(7fortran)', &
 '']
 
 shortname="block"
@@ -5738,7 +5747,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  blt(3fortran)', &
+'                              October 25, 2024                  blt(3fortran)', &
 '']
 
 shortname="blt"
@@ -5876,7 +5885,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                btest(3fortran)', &
+'                              October 25, 2024                btest(3fortran)', &
 '']
 
 shortname="btest"
@@ -5954,7 +5963,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024         c_associated(3fortran)', &
+'                              October 25, 2024         c_associated(3fortran)', &
 '']
 
 shortname="c_associated"
@@ -6198,7 +6207,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024              ceiling(3fortran)', &
+'                              October 25, 2024              ceiling(3fortran)', &
 '']
 
 shortname="ceiling"
@@ -6274,7 +6283,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024          c_f_pointer(3fortran)', &
+'                              October 25, 2024          c_f_pointer(3fortran)', &
 '']
 
 shortname="c_f_pointer"
@@ -6349,7 +6358,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024      c_f_procpointer(3fortran)', &
+'                              October 25, 2024      c_f_procpointer(3fortran)', &
 '']
 
 shortname="c_f_procpointer"
@@ -6423,7 +6432,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024             c_funloc(3fortran)', &
+'                              October 25, 2024             c_funloc(3fortran)', &
 '']
 
 shortname="c_funloc"
@@ -6559,7 +6568,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 char(3fortran)', &
+'                              October 25, 2024                 char(3fortran)', &
 '']
 
 shortname="char"
@@ -6620,7 +6629,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                c_loc(3fortran)', &
+'                              October 25, 2024                c_loc(3fortran)', &
 '']
 
 shortname="c_loc"
@@ -6758,7 +6767,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                close(7fortran)', &
+'                              October 25, 2024                close(7fortran)', &
 '']
 
 shortname="close"
@@ -6995,15 +7004,15 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         Z4= (-3.000000,0.0000000E+00)', &
-'         Z4= (1.234568,1.234568)', &
-'         Z4= 1.234568 1.234568', &
-'         lost precision Z8= (1.23456788063049,-1.23456788063049)', &
-'         kept precision Z8= (1.23456789012346,-1.23456789012346)', &
-'         Z8 defined with constants= (1.11111111111111,2.22222222222222)', &
-'         LHS=   1.11111111111111      RHS= (1.11111111111111,2.22222222222222)', &
-'         zthree= (10.00000,-1.000000) (20.00000,-1.000000) (30.00000,-1.000000)', &
-'         zthree= (100.0000,-1.000000) (200.0000,-1.000000) (30.00000,-1.000000)', &
+'       > Z4= (-3.000000,0.0000000E+00)', &
+'       > Z4= (1.234568,1.234568)', &
+'       > Z4= 1.234568 1.234568', &
+'       > lost precision Z8= (1.23456788063049,-1.23456788063049)', &
+'       > kept precision Z8= (1.23456789012346,-1.23456789012346)', &
+'       > Z8 defined with constants= (1.11111111111111,2.22222222222222)', &
+'       > LHS=   1.11111111111111      RHS= (1.11111111111111,2.22222222222222)', &
+'       > zthree= (10.00000,-1.000000) (20.00000,-1.000000) (30.00000,-1.000000)', &
+'       > zthree= (100.0000,-1.000000) (200.0000,-1.000000) (30.00000,-1.000000)', &
 '', &
 '', &
 'STANDARD', &
@@ -7030,7 +7039,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                cmplx(3fortran)', &
+'                              October 25, 2024                cmplx(3fortran)', &
 '']
 
 shortname="cmplx"
@@ -7098,7 +7107,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024         co_broadcast(3fortran)', &
+'                              October 25, 2024         co_broadcast(3fortran)', &
 '']
 
 shortname="co_broadcast"
@@ -7205,7 +7214,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         Maximal value           2', &
+'       > Maximal value           2', &
 '', &
 '', &
 'STANDARD', &
@@ -7218,7 +7227,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               co_max(3fortran)', &
+'                              October 25, 2024               co_max(3fortran)', &
 '']
 
 shortname="co_max"
@@ -7287,7 +7296,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               co_min(3fortran)', &
+'                              October 25, 2024               co_min(3fortran)', &
 '']
 
 shortname="co_min"
@@ -7365,7 +7374,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 202command_argument_count(3fortran)', &
+'                              October 25, 202command_argument_count(3fortran)', &
 '']
 
 shortname="command_argument_count"
@@ -7385,7 +7394,13 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 'SYNOPSIS', &
-'  C fixed-format comment ! free-format comment', &
+'  Fixed and Free comments', &
+'', &
+'         C fixed-format comment', &
+'         ! free-format comment', &
+'            ! free-format comment', &
+'         CODE_LINE ! free-format comment', &
+'', &
 '', &
 'DESCRIPTION', &
 '  In free-format files The character "!" initiates a comment except when it', &
@@ -7495,7 +7510,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024              comment(5fortran)', &
+'                              October 25, 2024              comment(5fortran)', &
 '']
 
 shortname="comment"
@@ -7550,27 +7565,27 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'      This file was compiled by GCC version 10.3.0 using', &
-'      the options -I build/gfortran_2A42023B310FA28D', &
-'      -mtune=generic -march=x86-64 -auxbase-strip', &
-'      build/gfortran_2A42023B310FA28D/compiler_options/app_main.f90.o', &
-'      -g -Wall -Wextra -Wimplicit-interface -fPIC -fmax-errors=1', &
-'      -fcheck=bounds -fcheck=array-temps -fbacktrace', &
-'      -fcoarray=single -J build/gfortran_2A42023B310FA28D', &
-'      -fpre-include=/usr/include/finclude/math-vector-fortran.h', &
+'       > This file was compiled by GCC version 10.3.0 using', &
+'       > the options -I build/gfortran_2A42023B310FA28D', &
+'       > -mtune=generic -march=x86-64 -auxbase-strip', &
+'       > build/gfortran_2A42023B310FA28D/compiler_options/app_main.f90.o', &
+'       > -g -Wall -Wextra -Wimplicit-interface -fPIC -fmax-errors=1', &
+'       > -fcheck=bounds -fcheck=array-temps -fbacktrace', &
+'       > -fcoarray=single -J build/gfortran_2A42023B310FA28D', &
+'       > -fpre-include=/usr/include/finclude/math-vector-fortran.h', &
 '', &
-'      This file was compiled by nvfortran 21.5-0 LLVM', &
-'      using the options app/main.f90 -c -Minform=inform', &
-'      -Mbackslash -Mbounds -Mchkptr -Mchkstk -traceback -module', &
-'      build/nvfortran_78229DCE997517A4 -Ibuild/nvfortran_78229DCE997517A4 -o', &
-'      build/nvfortran_78229DCE997517A4/compiler_options/app_main.f90.o', &
+'       > This file was compiled by nvfortran 21.5-0 LLVM', &
+'       > using the options app/main.f90 -c -Minform=inform', &
+'       > -Mbackslash -Mbounds -Mchkptr -Mchkstk -traceback -module', &
+'       > build/nvfortran_78229DCE997517A4 -Ibuild/nvfortran_78229DCE997517A4 -o', &
+'       > build/nvfortran_78229DCE997517A4/compiler_options/app_main.f90.o', &
 '', &
-'      This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler Classic', &
-'      for applications running on Intel(R) 64, Version 2021.3.0 Build', &
-'      20210609_000000 using the options -Ibuild/ifort_5C58216731706F11', &
-'      -c -warn all -check all -error-limit 1 -O0 -g -assume', &
-'      byterecl -traceback -module build/ifort_5C58216731706F11 -o', &
-'      build/ifort_5C58216731706F11/compiler_options/app_main.f90.o', &
+'       > This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler Classic', &
+'       > for applications running on Intel(R) 64, Version 2021.3.0 Build', &
+'       > 20210609_000000 using the options -Ibuild/ifort_5C58216731706F11', &
+'       > -c -warn all -check all -error-limit 1 -O0 -g -assume', &
+'       > byterecl -traceback -module build/ifort_5C58216731706F11 -o', &
+'       > build/ifort_5C58216731706F11/compiler_options/app_main.f90.o', &
 '', &
 '', &
 'STANDARD', &
@@ -7583,7 +7598,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024     compiler_options(3fortran)', &
+'                              October 25, 2024     compiler_options(3fortran)', &
 '']
 
 shortname="compiler_options"
@@ -7636,13 +7651,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'      This file was compiled by GCC version 10.3.0', &
+'       > This file was compiled by GCC version 10.3.0', &
 '', &
-'      This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler', &
-'      Classic for applications running on Intel(R) 64, Version 2021.3.0 Build', &
-'      20210609_000000', &
+'       > This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler', &
+'       > Classic for applications running on Intel(R) 64, Version 2021.3.0 Build', &
+'       > 20210609_000000', &
 '', &
-'      This file was compiled by nvfortran 21.5-0 LLVM', &
+'       > This file was compiled by nvfortran 21.5-0 LLVM', &
 '', &
 '', &
 'STANDARD', &
@@ -7655,7 +7670,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024     compiler_version(3fortran)', &
+'                              October 25, 2024     compiler_version(3fortran)', &
 '']
 
 shortname="compiler_version"
@@ -7785,7 +7800,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                conjg(3fortran)', &
+'                              October 25, 2024                conjg(3fortran)', &
 '']
 
 shortname="conjg"
@@ -7804,7 +7819,6 @@ textblock=[character(len=256) :: &
 '  CONTINUATION(5) - [FORTRAN] - the rules for free-format line continuation', &
 '', &
 '', &
-'', &
 'SYNOPSIS', &
 '  general rule:', &
 '', &
@@ -7815,7 +7829,6 @@ textblock=[character(len=256) :: &
 '        original&', &
 '        & long&', &
 '        & statement', &
-'', &
 '', &
 '', &
 'DESCRIPTION', &
@@ -8171,7 +8184,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024         continuation(5fortran)', &
+'                              October 25, 2024         continuation(5fortran)', &
 '']
 
 shortname="continuation"
@@ -8253,7 +8266,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024             continue(7fortran)', &
+'                              October 25, 2024             continue(7fortran)', &
 '']
 
 shortname="continue"
@@ -8338,6 +8351,10 @@ textblock=[character(len=256) :: &
 '', &
 '      end program demo_co_reduce', &
 '', &
+'  Results:', &
+'', &
+'       >  Product value          1', &
+'', &
 '', &
 'NOTE', &
 '  While the rules permit in principle an intrinsic function, none of the', &
@@ -8355,7 +8372,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024            co_reduce(3fortran)', &
+'                              October 25, 2024            co_reduce(3fortran)', &
 '']
 
 shortname="co_reduce"
@@ -8449,7 +8466,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  cos(3fortran)', &
+'                              October 25, 2024                  cos(3fortran)', &
 '']
 
 shortname="cos"
@@ -8539,7 +8556,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 cosd(3fortran)', &
+'                              October 25, 2024                 cosd(3fortran)', &
 '']
 
 shortname="cosd"
@@ -8613,7 +8630,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 cosh(3fortran)', &
+'                              October 25, 2024                 cosh(3fortran)', &
 '']
 
 shortname="cosh"
@@ -8711,7 +8728,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                cospi(3fortran)', &
+'                              October 25, 2024                cospi(3fortran)', &
 '']
 
 shortname="cospi"
@@ -8775,7 +8792,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         The sum is            1', &
+'       > The sum is            1', &
 '', &
 '', &
 'STANDARD', &
@@ -8788,7 +8805,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               co_sum(3fortran)', &
+'                              October 25, 2024               co_sum(3fortran)', &
 '']
 
 shortname="co_sum"
@@ -9079,7 +9096,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                count(3fortran)', &
+'                              October 25, 2024                count(3fortran)', &
 '']
 
 shortname="count"
@@ -9177,9 +9194,9 @@ textblock=[character(len=256) :: &
 '  any options there are for parallel applications may very from system to', &
 '  system. See compiler-specific for details.', &
 '', &
-'        Processor Time =  0.000 seconds.', &
-'        Processor Time = .4000030E-05 seconds.', &
-'        Processor Time = .2000000000000265E-05 seconds.', &
+'        > Processor Time =  0.000 seconds.', &
+'        > Processor Time = .4000030E-05 seconds.', &
+'        > Processor Time = .2000000000000265E-05 seconds.', &
 '', &
 '', &
 'STANDARD', &
@@ -9192,7 +9209,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024             cpu_time(3fortran)', &
+'                              October 25, 2024             cpu_time(3fortran)', &
 '']
 
 shortname="cpu_time"
@@ -9261,7 +9278,7 @@ textblock=[character(len=256) :: &
 '  The rows of an array of rank two may all be shifted by the same amount or by', &
 '  different amounts.', &
 '', &
-'    cshift', &
+'  cshift', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -9330,7 +9347,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               cshift(3fortran)', &
+'                              October 25, 2024               cshift(3fortran)', &
 '']
 
 shortname="cshift"
@@ -9380,7 +9397,8 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'   T', &
+'       >   T', &
+'', &
 '  The example will print .true. unless you are using a platform where default', &
 '  real variables are unusually padded.', &
 '', &
@@ -9394,7 +9412,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024             c_sizeof(3fortran)', &
+'                              October 25, 2024             c_sizeof(3fortran)', &
 '']
 
 shortname="c_sizeof"
@@ -9583,7 +9601,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024        date_and_time(3fortran)', &
+'                              October 25, 2024        date_and_time(3fortran)', &
 '']
 
 shortname="date_and_time"
@@ -9639,7 +9657,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'       2.1800000667572021  5.0000000000000000   2.2999999523162842', &
+'       > 2.1800000667572021  5.0000000000000000   2.2999999523162842', &
 '', &
 '', &
 'STANDARD', &
@@ -9662,7 +9680,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 dble(3fortran)', &
+'                              October 25, 2024                 dble(3fortran)', &
 '']
 
 shortname="dble"
@@ -9840,7 +9858,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024           deallocate(7fortran)', &
+'                              October 25, 2024           deallocate(7fortran)', &
 '']
 
 shortname="deallocate"
@@ -9915,7 +9933,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               digits(3fortran)', &
+'                              October 25, 2024               digits(3fortran)', &
 '']
 
 shortname="digits"
@@ -10026,7 +10044,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  dim(3fortran)', &
+'                              October 25, 2024                  dim(3fortran)', &
 '']
 
 shortname="dim"
@@ -10129,7 +10147,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024          dot_product(3fortran)', &
+'                              October 25, 2024          dot_product(3fortran)', &
 '']
 
 shortname="dot_product"
@@ -10243,7 +10261,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                dprod(3fortran)', &
+'                              October 25, 2024                dprod(3fortran)', &
 '']
 
 shortname="dprod"
@@ -10395,7 +10413,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024              dshiftl(3fortran)', &
+'                              October 25, 2024              dshiftl(3fortran)', &
 '']
 
 shortname="dshiftl"
@@ -10550,7 +10568,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024              dshiftr(3fortran)', &
+'                              October 25, 2024              dshiftr(3fortran)', &
 '']
 
 shortname="dshiftr"
@@ -10646,7 +10664,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024              endfile(7fortran)', &
+'                              October 25, 2024              endfile(7fortran)', &
 '']
 
 shortname="endfile"
@@ -10779,7 +10797,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024              eoshift(3fortran)', &
+'                              October 25, 2024              eoshift(3fortran)', &
 '']
 
 shortname="eoshift"
@@ -10888,16 +10906,16 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'       1.1920929E-07', &
-'       1.1920929E-07', &
-'       1.1920929E-07', &
-'       2.220446049250313E-016', &
+'       >    1.19209290E-07', &
+'       >    1.19209290E-07', &
+'       >    1.19209290E-07', &
+'       >    2.2204460492503131E-016', &
+'       >  F', &
+'       >  F', &
+'       >  T', &
+'       >  T', &
+'       >    2.2204460492503131E-016', &
 '', &
-'   F', &
-'   F', &
-'   T', &
-'   T', &
-'  2.220446049250313E-016', &
 '', &
 'STANDARD', &
 '  Fortran 95', &
@@ -10911,7 +10929,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024              epsilon(3fortran)', &
+'                              October 25, 2024              epsilon(3fortran)', &
 '']
 
 shortname="epsilon"
@@ -10967,7 +10985,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'          0.17000000000000001       0.18999246120180879', &
+'        >  0.17000000000000001       0.18999246120180879', &
 '', &
 '', &
 'STANDARD', &
@@ -10983,7 +11001,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  erf(3fortran)', &
+'                              October 25, 2024                  erf(3fortran)', &
 '']
 
 shortname="erf"
@@ -11070,7 +11088,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 erfc(3fortran)', &
+'                              October 25, 2024                 erfc(3fortran)', &
 '']
 
 shortname="erfc"
@@ -11152,7 +11170,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024          erfc_scaled(3fortran)', &
+'                              October 25, 2024          erfc_scaled(3fortran)', &
 '']
 
 shortname="erfc_scaled"
@@ -11242,7 +11260,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024          event_query(3fortran)', &
+'                              October 25, 2024          event_query(3fortran)', &
 '']
 
 shortname="event_query"
@@ -11430,7 +11448,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024 execute_command_line(3fortran)', &
+'                              October 25, 2024 execute_command_line(3fortran)', &
 '']
 
 shortname="execute_command_line"
@@ -11747,7 +11765,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 exit(7fortran)', &
+'                              October 25, 2024                 exit(7fortran)', &
 '']
 
 shortname="exit"
@@ -11841,12 +11859,12 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'       Euler''s constant is approximately   2.718282', &
-'       given the complex value (3.000000,4.000000)', &
-'       exp(x) is (-13.12878,-15.20078)', &
-'       is the same as (-13.12878,-15.20078)', &
-'       maximum real component  88.72284', &
-'       maximum doubleprecision component   709.782712893384', &
+'       >  Euler''s constant is approximately   2.71828175', &
+'       >  given the complex value             (3.00000000,4.00000000)', &
+'       >  exp(x) is          (-13.1287832,-15.2007847)', &
+'       >  is the same as          (-13.1287832,-15.2007847)', &
+'       >  maximum real component   88.7228394', &
+'       >  maximum doubleprecision component   709.78271289338397', &
 '', &
 '', &
 'STANDARD', &
@@ -11864,7 +11882,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  exp(3fortran)', &
+'                              October 25, 2024                  exp(3fortran)', &
 '']
 
 shortname="exp"
@@ -11946,7 +11964,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024             exponent(3fortran)', &
+'                              October 25, 2024             exponent(3fortran)', &
 '']
 
 shortname="exponent"
@@ -12100,21 +12118,21 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         these should all be true', &
-'         T I am descended from Grandpa', &
-'         T Dad is descended from Grandpa', &
-'         T Dad is my ancestor', &
-'         is an object an extension of itself?', &
-'         T self-propagating!', &
-'         T clone!', &
-'          you did not father your grandfather', &
-'         F no paradox here', &
-'         F no paradox here', &
-'         F no relation whatsoever', &
-'         F no relation', &
-'         F not what everyone thinks', &
-'         (P,Q) F mind your P''s and Q''s', &
-'         (Q,P) T', &
+'       > these should all be true', &
+'       > T I am descended from Grandpa', &
+'       > T Dad is descended from Grandpa', &
+'       > T Dad is my ancestor', &
+'       > is an object an extension of itself?', &
+'       > T self-propagating!', &
+'       > T clone!', &
+'       >  you did not father your grandfather', &
+'       > F no paradox here', &
+'       > F no paradox here', &
+'       > F no relation whatsoever', &
+'       > F no relation', &
+'       > F not what everyone thinks', &
+'       > (P,Q) F mind your P''s and Q''s', &
+'       > (Q,P) T', &
 '', &
 '', &
 'STANDARD', &
@@ -12127,7 +12145,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024      extends_type_of(3fortran)', &
+'                              October 25, 2024      extends_type_of(3fortran)', &
 '']
 
 shortname="extends_type_of"
@@ -12420,7 +12438,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024              findloc(3fortran)', &
+'                              October 25, 2024              findloc(3fortran)', &
 '']
 
 shortname="findloc"
@@ -12534,7 +12552,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                floor(3fortran)', &
+'                              October 25, 2024                floor(3fortran)', &
 '']
 
 shortname="floor"
@@ -12631,7 +12649,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                flush(7fortran)', &
+'                              October 25, 2024                flush(7fortran)', &
 '']
 
 shortname="flush"
@@ -12692,7 +12710,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'          0.5700439      0.5700439', &
+'       >  0.5700439      0.5700439', &
 '', &
 '', &
 'STANDARD', &
@@ -12707,7 +12725,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024             fraction(3fortran)', &
+'                              October 25, 2024             fraction(3fortran)', &
 '']
 
 shortname="fraction"
@@ -12775,7 +12793,6 @@ textblock=[character(len=256) :: &
 '        write(*,*)xa', &
 '        write(*,*)', &
 '', &
-'', &
 '        ! gamma() is related to the factorial function', &
 '        do i = 1, 171', &
 '           ! check value is not too big for default integer type', &
@@ -12789,7 +12806,6 @@ textblock=[character(len=256) :: &
 '              write(*,*) i, gamma(real(i + 1, kind=wp)), ''gamma directly''', &
 '           endif', &
 '        enddo', &
-'', &
 '', &
 '      contains', &
 '      function factorial(i) result(f)', &
@@ -12862,7 +12878,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                gamma(3fortran)', &
+'                              October 25, 2024                gamma(3fortran)', &
 '']
 
 shortname="gamma"
@@ -12971,7 +12987,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024          get_command(3fortran)', &
+'                              October 25, 2024          get_command(3fortran)', &
 '']
 
 shortname="get_command"
@@ -13093,12 +13109,12 @@ textblock=[character(len=256) :: &
 '', &
 '      ./demo_get_command_argument a  test ''of getting  arguments '' " leading"', &
 '', &
-'       The program''s name is ./demo_get_command_argument', &
-'       The number of arguments is           4', &
-'      001 00000 00001 [a]', &
-'      002 00000 00004 [test]', &
-'      003 00000 00022 [of getting  arguments ]', &
-'      004 00000 00008 [ leading]', &
+'       > The program''s name is ./demo_get_command_argument', &
+'       > The number of arguments is           4', &
+'       >001 00000 00001 [a]', &
+'       >002 00000 00004 [test]', &
+'       >003 00000 00022 [of getting  arguments ]', &
+'       >004 00000 00008 [ leading]', &
 '', &
 '', &
 'STANDARD', &
@@ -13111,7 +13127,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024 get_command_argument(3fortran)', &
+'                              October 25, 2024 get_command_argument(3fortran)', &
 '']
 
 shortname="get_command_argument"
@@ -13257,7 +13273,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Typical Results:', &
 '', &
-'        HOME="/home/urbanjs"', &
+'       >  HOME="/home/urbanjs"', &
 '', &
 '', &
 'STANDARD', &
@@ -13270,7 +13286,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2get_environment_variable(3fortran)', &
+'                              October 25, 2get_environment_variable(3fortran)', &
 '']
 
 shortname="get_environment_variable"
@@ -13415,7 +13431,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 huge(3fortran)', &
+'                              October 25, 2024                 huge(3fortran)', &
 '']
 
 shortname="huge"
@@ -13501,21 +13517,22 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'        point <1.00000000,0.500000000> is 1.11803401', &
-'        units away from the origin', &
-'', &
-'        the points', &
-'           +1.00000000 +0.500000000', &
-'           +1.00000000 +0.250000000', &
-'           +10.0000000 -10.0000000', &
-'           +15.0000000 +0.250000000', &
-'           -1.00000000 -0.250000000', &
-'        have distances from the origin of', &
-'           +1.11803401 +1.03077638', &
-'           +14.1421356 +15.0020828', &
-'           +1.03077638', &
-'        the closest is', &
-'           +1.03077638', &
+'       >', &
+'       > point <1.00000000,0.500000000> is 1.11803401', &
+'       > units away from the origin', &
+'       >', &
+'       > the points', &
+'       >    +1.00000000 +0.500000000', &
+'       >    +1.00000000 +0.250000000', &
+'       >    +10.0000000 -10.0000000', &
+'       >    +15.0000000 +0.250000000', &
+'       >    -1.00000000 -0.250000000', &
+'       > have distances from the origin of', &
+'       >    +1.11803401 +1.03077638', &
+'       >    +14.1421356 +15.0020828', &
+'       >    +1.03077638', &
+'       > the closest is', &
+'       >    +1.03077638', &
 '', &
 '', &
 'STANDARD', &
@@ -13595,7 +13612,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                hypot(3fortran)', &
+'                              October 25, 2024                hypot(3fortran)', &
 '']
 
 shortname="hypot"
@@ -13692,9 +13709,9 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'        65', &
-'        65          90          97         122', &
-'        abcdefg abcdefg', &
+'       > 65', &
+'       > 65         90          97         122', &
+'       > abcdefg abcdefg', &
 '', &
 '', &
 'STANDARD', &
@@ -13717,7 +13734,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               iachar(3fortran)', &
+'                              October 25, 2024               iachar(3fortran)', &
 '']
 
 shortname="iachar"
@@ -13808,7 +13825,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 iall(3fortran)', &
+'                              October 25, 2024                 iall(3fortran)', &
 '']
 
 shortname="iall"
@@ -13885,9 +13902,11 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         a= 15  b= 3 iand(a,b)= 3', &
-'  00000000000000000000000000001111 00000000000000000000000000000011', &
-'  00000000000000000000000000000011', &
+'       >  a= 15  b= 3 iand(a,b)= 3', &
+'       > 00000000000000000000000000001111', &
+'       > 00000000000000000000000000000011', &
+'       > 00000000000000000000000000000011', &
+'', &
 '', &
 'STANDARD', &
 '  Fortran 2023', &
@@ -13899,7 +13918,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 iand(3fortran)', &
+'                              October 25, 2024                 iand(3fortran)', &
 '']
 
 shortname="iand"
@@ -13989,23 +14008,24 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         A=', &
-'         00100100', &
-'         01101010', &
-'         10101010', &
+'       > A=', &
+'       > 00100100', &
+'       > 01101010', &
+'       > 10101010', &
+'       >', &
+'       > IANY(A)=', &
+'       > 11101110', &
+'       >', &
+'       > IANY(A) with a mask', &
+'       > 10101110', &
+'       >', &
+'       > should match', &
+'       > 10101110', &
+'       >', &
+'       > does it?', &
+'       > T', &
 '', &
-'         IANY(A)=', &
-'         11101110', &
 '', &
-'         IANY(A) with a mask', &
-'         10101110', &
-'', &
-'         should match', &
-'         10101110', &
-'', &
-'         does it?', &
-'', &
-'   T', &
 'STANDARD', &
 '  Fortran 2008', &
 '', &
@@ -14016,7 +14036,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 iany(3fortran)', &
+'                              October 25, 2024                 iany(3fortran)', &
 '']
 
 shortname="iany"
@@ -14122,7 +14142,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                ibclr(3fortran)', &
+'                              October 25, 2024                ibclr(3fortran)', &
 '']
 
 shortname="ibclr"
@@ -14231,7 +14251,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                ibits(3fortran)', &
+'                              October 25, 2024                ibits(3fortran)', &
 '']
 
 shortname="ibits"
@@ -14336,7 +14356,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                ibset(3fortran)', &
+'                              October 25, 2024                ibset(3fortran)', &
 '']
 
 shortname="ibset"
@@ -14454,7 +14474,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                ichar(3fortran)', &
+'                              October 25, 2024                ichar(3fortran)', &
 '']
 
 shortname="ichar"
@@ -14568,7 +14588,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 ieor(3fortran)', &
+'                              October 25, 2024                 ieor(3fortran)', &
 '']
 
 shortname="ieor"
@@ -14756,7 +14776,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                   if(7fortran)', &
+'                              October 25, 2024                   if(7fortran)', &
 '']
 
 shortname="if"
@@ -14813,7 +14833,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024          image_index(3fortran)', &
+'                              October 25, 2024          image_index(3fortran)', &
 '']
 
 shortname="image_index"
@@ -15096,7 +15116,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024             implicit(7fortran)', &
+'                              October 25, 2024             implicit(7fortran)', &
 '']
 
 shortname="implicit"
@@ -15210,7 +15230,7 @@ textblock=[character(len=256) :: &
 '        position 73 of a continued line and character position 6 of a', &
 '        continuation line.', &
 '', &
-'  ### **Example** Sample program:', &
+'  # EXAMPLE Sample program:', &
 '', &
 '    In this example, the same code for the function subr is used to build a', &
 '    32-bit and 64-bit version that are then merged into a generic name', &
@@ -15280,7 +15300,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024              include(7fortran)', &
+'                              October 25, 2024              include(7fortran)', &
 '']
 
 shortname="include"
@@ -15371,7 +15391,9 @@ textblock=[character(len=256) :: &
 '', &
 '  Expected Results:', &
 '', &
-'   T T T', &
+'       > T T T', &
+'', &
+'', &
 'STANDARD', &
 '  FORTRAN 77 , with KIND argument Fortran 2003', &
 '', &
@@ -15387,7 +15409,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                index(3fortran)', &
+'                              October 25, 2024                index(3fortran)', &
 '']
 
 shortname="index"
@@ -15996,7 +16018,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024              inquire(7fortran)', &
+'                              October 25, 2024              inquire(7fortran)', &
 '']
 
 shortname="inquire"
@@ -16132,7 +16154,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  int(3fortran)', &
+'                              October 25, 2024                  int(3fortran)', &
 '']
 
 shortname="int"
@@ -16206,9 +16228,9 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'              53 00110101', &
-'              45 00101101', &
-'              61 00111101', &
+'        > 53 00110101', &
+'        > 45 00101101', &
+'        > 61 00111101', &
 '', &
 '', &
 'STANDARD', &
@@ -16221,7 +16243,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  ior(3fortran)', &
+'                              October 25, 2024                  ior(3fortran)', &
 '']
 
 shortname="ior"
@@ -16304,7 +16326,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'        01001110', &
+'       > 01001110', &
 '', &
 '', &
 'STANDARD', &
@@ -16317,7 +16339,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024              iparity(3fortran)', &
+'                              October 25, 2024              iparity(3fortran)', &
 '']
 
 shortname="iparity"
@@ -16428,8 +16450,8 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         IN is  T', &
-'         OUT is  F', &
+'       > IN is  T', &
+'       > OUT is  F', &
 '', &
 '', &
 'STANDARD', &
@@ -16454,7 +16476,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024        is_contiguous(3fortran)', &
+'                              October 25, 2024        is_contiguous(3fortran)', &
 '']
 
 shortname="is_contiguous"
@@ -16557,7 +16579,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                ishft(3fortran)', &
+'                              October 25, 2024                ishft(3fortran)', &
 '']
 
 shortname="ishft"
@@ -16706,7 +16728,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               ishftc(3fortran)', &
+'                              October 25, 2024               ishftc(3fortran)', &
 '']
 
 shortname="ishftc"
@@ -16797,7 +16819,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024        is_iostat_end(3fortran)', &
+'                              October 25, 2024        is_iostat_end(3fortran)', &
 '']
 
 shortname="is_iostat_end"
@@ -16903,7 +16925,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024        is_iostat_eor(3fortran)', &
+'                              October 25, 2024        is_iostat_eor(3fortran)', &
 '']
 
 shortname="is_iostat_eor"
@@ -16961,8 +16983,8 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         The default character kind is            1', &
-'         The default logical kind is            4', &
+'       > The default character kind is            1', &
+'       > The default logical kind is            4', &
 '', &
 '', &
 'STANDARD', &
@@ -16993,7 +17015,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 kind(3fortran)', &
+'                              October 25, 2024                 kind(3fortran)', &
 '']
 
 shortname="kind"
@@ -17126,10 +17148,10 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'        MAIN: LOWER=         -10 UPPER=          10 SIZE=          21', &
-'        CSUB: LOWER=         -10 UPPER=          10 SIZE=          21', &
-'        MSUB: LOWER=           1 UPPER=          21 SIZE=          21', &
-'        ESUB: LOWER=           1 UPPER=          21 SIZE=          21', &
+'       >  MAIN: LOWER=        -10 UPPER=          10 SIZE=          21', &
+'       >  CSUB: LOWER=        -10 UPPER=          10 SIZE=          21', &
+'       >  MSUB: LOWER=          1 UPPER=          21 SIZE=          21', &
+'       >  ESUB: LOWER=          1 UPPER=          21 SIZE=          21', &
 '', &
 '', &
 'STANDARD', &
@@ -17170,7 +17192,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               lbound(3fortran)', &
+'                              October 25, 2024               lbound(3fortran)', &
 '']
 
 shortname="lbound"
@@ -17222,7 +17244,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024             lcobound(3fortran)', &
+'                              October 25, 2024             lcobound(3fortran)', &
 '']
 
 shortname="lcobound"
@@ -17296,13 +17318,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'       LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111101101010 AKA -150', &
-'       LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111110011100 AKA -100', &
-'       LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111111001110 AKA -50', &
-'       LEADING ZERO BITS= 32 OF VALUE 00000000000000000000000000000000 AKA 0', &
-'       LEADING ZERO BITS= 26 OF VALUE 00000000000000000000000000110010 AKA 50', &
-'       LEADING ZERO BITS= 25 OF VALUE 00000000000000000000000001100100 AKA 100', &
-'       LEADING ZERO BITS= 24 OF VALUE 00000000000000000000000010010110 AKA 150', &
+'       > LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111101101010 AKA -150', &
+'       > LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111110011100 AKA -100', &
+'       > LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111111001110 AKA -50', &
+'       > LEADING ZERO BITS= 32 OF VALUE 00000000000000000000000000000000 AKA 0', &
+'       > LEADING ZERO BITS= 26 OF VALUE 00000000000000000000000000110010 AKA 50', &
+'       > LEADING ZERO BITS= 25 OF VALUE 00000000000000000000000001100100 AKA 100', &
+'       > LEADING ZERO BITS= 24 OF VALUE 00000000000000000000000010010110 AKA 150', &
 '', &
 '', &
 'STANDARD', &
@@ -17315,7 +17337,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                leadz(3fortran)', &
+'                              October 25, 2024                leadz(3fortran)', &
 '']
 
 shortname="leadz"
@@ -17464,7 +17486,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  len(3fortran)', &
+'                              October 25, 2024                  len(3fortran)', &
 '']
 
 shortname="len"
@@ -17552,25 +17574,15 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'          how long is this string?', &
+'       >   how long is this string?', &
+'       >  UNTRIMMED LENGTH=          30', &
+'       >  TRIMMED LENGTH=          25', &
+'       >  xxxxx   xxxxx   xxxxx', &
+'       >  xxxxxxxxxxxxxxx', &
+'       >  UNTRIMMED LENGTH=           256', &
+'       >  TRIMMED LENGTH=              25          13', &
+'       >  SUM TRIMMED LENGTH=          38', &
 '', &
-'    UNTRIMMED LENGTH=', &
-'      30', &
-'', &
-'    TRIMMED LENGTH=', &
-'      25', &
-'', &
-'    xxxxx', &
-'      xxxxx   xxxxx xxxxxxxxxxxxxxx', &
-'', &
-'    UNTRIMMED LENGTH=', &
-'      256', &
-'', &
-'    TRIMMED LENGTH=', &
-'      25         13', &
-'', &
-'    SUM TRIMMED LENGTH=', &
-'      38', &
 '', &
 'STANDARD', &
 '  Fortran 95 . KIND argument added with Fortran 2003.', &
@@ -17587,7 +17599,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024             len_trim(3fortran)', &
+'                              October 25, 2024             len_trim(3fortran)', &
 '']
 
 shortname="len_trim"
@@ -17640,7 +17652,7 @@ textblock=[character(len=256) :: &
 '  o  STRING_B : string to compare to STRING_A', &
 '', &
 'RESULT', &
-'  Returns .true. if string_a == string_b, and .false. otherwise, based on the', &
+'  Returns .true. if string_a >= string_b, and .false. otherwise, based on the', &
 '  ASCII collating sequence.', &
 '', &
 '  If both input arguments are null strings, .true. is always returned.', &
@@ -17705,7 +17717,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  lge(3fortran)', &
+'                              October 25, 2024                  lge(3fortran)', &
 '']
 
 shortname="lge"
@@ -17824,7 +17836,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  lgt(3fortran)', &
+'                              October 25, 2024                  lgt(3fortran)', &
 '']
 
 shortname="lgt"
@@ -17967,7 +17979,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  lle(3fortran)', &
+'                              October 25, 2024                  lle(3fortran)', &
 '']
 
 shortname="lle"
@@ -18020,7 +18032,7 @@ textblock=[character(len=256) :: &
 '  o  STRING_B : string to compare to STRING_A', &
 '', &
 'RESULT', &
-'  Returns .true. if string_a <= string_b, and .false. otherwise, based on the', &
+'  Returns .true. if string_a < string_b, and .false. otherwise, based on the', &
 '  ASCII collating sequence.', &
 '', &
 '  If both input arguments are null strings, .false. is always returned.', &
@@ -18089,7 +18101,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  llt(3fortran)', &
+'                              October 25, 2024                  llt(3fortran)', &
 '']
 
 shortname="llt"
@@ -18232,7 +18244,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                log10(3fortran)', &
+'                              October 25, 2024                log10(3fortran)', &
 '']
 
 shortname="log10"
@@ -18297,8 +18309,9 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'           2.7182818284590451        1.0000000000000000', &
-'  (1.00000000,2.00000000) (0.804718971,1.10714877)', &
+'       >    2.7182818284590451        1.0000000000000000', &
+'       > (1.00000000,2.00000000) (0.804718971,1.10714877)', &
+'', &
 '', &
 'STANDARD', &
 '  FORTRAN 77', &
@@ -18377,7 +18390,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  log(3fortran)', &
+'                              October 25, 2024                  log(3fortran)', &
 '']
 
 shortname="log"
@@ -18447,7 +18460,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024            log_gamma(3fortran)', &
+'                              October 25, 2024            log_gamma(3fortran)', &
 '']
 
 shortname="log_gamma"
@@ -18536,7 +18549,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024              logical(3fortran)', &
+'                              October 25, 2024              logical(3fortran)', &
 '']
 
 shortname="logical"
@@ -18635,7 +18648,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                maskl(3fortran)', &
+'                              October 25, 2024                maskl(3fortran)', &
 '']
 
 shortname="maskl"
@@ -18751,7 +18764,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                maskr(3fortran)', &
+'                              October 25, 2024                maskr(3fortran)', &
 '']
 
 shortname="maskr"
@@ -18999,7 +19012,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               matmul(3fortran)', &
+'                              October 25, 2024               matmul(3fortran)', &
 '']
 
 shortname="matmul"
@@ -19141,28 +19154,19 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         scalars:   30.00000', &
-'         scalars: -9.9999997E-05', &
-'         characters:words', &
-'         characters:c', &
-'         characters:b', &
-'  "BB" "Z "', &
+'       >   scalars:   30.00000', &
+'       >   scalars: -9.9999997E-05', &
+'       >   characters:words', &
+'       >   characters:c', &
+'       >   characters:b', &
+'       >  "BB" "Z "', &
+'       >  box=   -6  -5  -4  -3  -2  -1   1   2   3   4   5   6', &
+'       >  box**2=-36 -25 -16  -9  -4  -1   1   4   9  16  25  36', &
+'       >  max    -6  -5  -4  -3  -2  -1   1   4   9  16  25  36', &
+'       >  20.00000  21.00000  32.00000 -100.0000', &
+'       >  0  0 0  0  0  0', &
+'       >  1  2 3  4  5  6', &
 '', &
-'    box=', &
-'      -6  -5  -4  -3  -2  -1   1   2   3   4   5   6', &
-'', &
-'    box**2=-36 -25 -16', &
-'      -9  -4  -1   1   4   9  16  25  36', &
-'', &
-'    max', &
-'      -6  -5  -4  -3  -2  -1   1   4   9  16  25  36', &
-'', &
-'    20.00000', &
-'      21.00000 32.00000  -100.0000', &
-'', &
-'    0 0  0  0  0  0', &
-'', &
-'    1 2  3  4  5  6', &
 '', &
 'STANDARD', &
 '  FORTRAN 77', &
@@ -19174,7 +19178,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  max(3fortran)', &
+'                              October 25, 2024                  max(3fortran)', &
 '']
 
 shortname="max"
@@ -19229,9 +19233,9 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'        -125 128', &
-'        -1021 1024', &
-'        -16381 16384', &
+'       >  -125 128', &
+'       >  -1021 1024', &
+'       >  -16381 16384', &
 '', &
 '', &
 'STANDARD', &
@@ -19246,7 +19250,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024          maxexponent(3fortran)', &
+'                              October 25, 2024          maxexponent(3fortran)', &
 '']
 
 shortname="maxexponent"
@@ -19376,7 +19380,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               maxloc(3fortran)', &
+'                              October 25, 2024               maxloc(3fortran)', &
 '']
 
 shortname="maxloc"
@@ -19515,7 +19519,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               maxval(3fortran)', &
+'                              October 25, 2024               maxval(3fortran)', &
 '']
 
 shortname="maxval"
@@ -19702,7 +19706,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                merge(3fortran)', &
+'                              October 25, 2024                merge(3fortran)', &
 '']
 
 shortname="merge"
@@ -19816,10 +19820,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         MERGE_BITS( 5,10,41) should be 3.=>           3', &
-'         MERGE_BITS(13,18,22) should be 4.=>           4', &
-'  should get all zero bits =>0000000000000000 should get all ones bits', &
-'  =>1111111111111111 32767 32751 5877 32767 32767 5877', &
+'       >   MERGE_BITS( 5,10,41) should be 3.=>          3', &
+'       >   MERGE_BITS(13,18,22) should be 4.=>          4', &
+'       >  should get all zero bits =>0000000000000000', &
+'       >  should get all ones bits =>1111111111111111', &
+'       >  32767 32751 5877', &
+'       >  32767 32767 5877', &
+'', &
 '', &
 'STANDARD', &
 '  Fortran 2008', &
@@ -19839,7 +19846,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024           merge_bits(3fortran)', &
+'                              October 25, 2024           merge_bits(3fortran)', &
 '']
 
 shortname="merge_bits"
@@ -19951,7 +19958,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  min(3fortran)', &
+'                              October 25, 2024                  min(3fortran)', &
 '']
 
 shortname="min"
@@ -20006,10 +20013,9 @@ textblock=[character(len=256) :: &
 '', &
 '  Expected Results:', &
 '', &
-'             -125         128', &
+'       >     -125         128', &
+'       >    -1021        1024', &
 '', &
-'    -1021', &
-'      1024', &
 '', &
 'STANDARD', &
 '  Fortran 95', &
@@ -20023,7 +20029,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024          minexponent(3fortran)', &
+'                              October 25, 2024          minexponent(3fortran)', &
 '']
 
 shortname="minexponent"
@@ -20141,7 +20147,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               minloc(3fortran)', &
+'                              October 25, 2024               minloc(3fortran)', &
 '']
 
 shortname="minloc"
@@ -20352,7 +20358,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               minval(3fortran)', &
+'                              October 25, 2024               minval(3fortran)', &
 '']
 
 shortname="minval"
@@ -20440,34 +20446,19 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'                  -2           1', &
-'                   2          -1', &
-'                   2           2', &
-'                  -2          -2', &
+'       >          -2           1', &
+'       >           2          -1', &
+'       >           2           2', &
+'       >          -2          -2', &
+'       >  -1.900001       3.299999', &
+'       >   1.900001      -3.299999', &
+'       >   1.900001       1.900001', &
+'       >  -1.900001      -1.900001', &
+'       > -0.5000000      0.5000000', &
+'       >  0.5000000     -0.5000000', &
+'       >  0.5000000      0.5000000', &
+'       > -0.5000000     -0.5000000', &
 '', &
-'    -1.900001', &
-'      3.299999', &
-'', &
-'      1.900001', &
-'       -3.299999', &
-'', &
-'      1.900001', &
-'       1.900001', &
-'', &
-'    -1.900001', &
-'      -1.900001', &
-'', &
-'  -0.5000000', &
-'    0.5000000', &
-'', &
-'    0.5000000', &
-'      -0.5000000', &
-'', &
-'    0.5000000', &
-'      0.5000000', &
-'', &
-'  -0.5000000', &
-'    -0.5000000', &
 '', &
 'STANDARD', &
 '  FORTRAN 77', &
@@ -20487,7 +20478,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  mod(3fortran)', &
+'                              October 25, 2024                  mod(3fortran)', &
 '']
 
 shortname="mod"
@@ -20578,7 +20569,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               modulo(3fortran)', &
+'                              October 25, 2024               modulo(3fortran)', &
 '']
 
 shortname="modulo"
@@ -20679,9 +20670,9 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'   T F', &
-'  1.000', &
-'    1.500   2.000   2.500   3.000   3.500', &
+'       > T F', &
+'       >   1.000   1.500   2.000   2.500   3.000   3.500', &
+'', &
 '', &
 'STANDARD', &
 '  Fortran 2003, STAT and ERRMSG options added 2018', &
@@ -20693,7 +20684,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024           move_alloc(3fortran)', &
+'                              October 25, 2024           move_alloc(3fortran)', &
 '']
 
 shortname="move_alloc"
@@ -20834,14 +20825,14 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'        2147483647                   01111111111111111111111111111111', &
-'        0                            00000000000000000000000000000000', &
-'        1                            00000000000000000000000000000001', &
-'        -1                           11111111111111111111111111111111', &
-'         native', &
-'        1684234849                   abcd      01100100011000110110001001100001', &
-'         non-native', &
-'        1633837924                   dcba      01100001011000100110001101100100', &
+'       > 2147483647                  01111111111111111111111111111111', &
+'       > 0                           00000000000000000000000000000000', &
+'       > 1                           00000000000000000000000000000001', &
+'       > -1                          11111111111111111111111111111111', &
+'       >  native', &
+'       > 1684234849                  abcd      01100100011000110110001001100001', &
+'       >  non-native', &
+'       > 1633837924                  dcba      01100001011000100110001101100100', &
 '', &
 '', &
 'STANDARD', &
@@ -20854,7 +20845,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               mvbits(3fortran)', &
+'                              October 25, 2024               mvbits(3fortran)', &
 '']
 
 shortname="mvbits"
@@ -21477,7 +21468,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024             namelist(7fortran)', &
+'                              October 25, 2024             namelist(7fortran)', &
 '']
 
 shortname="namelist"
@@ -21561,7 +21552,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'        42.0000038146973    41.9999961853027    .762939453125000E-05', &
+'       > 42.0000038146973    41.9999961853027    .762939453125000E-05', &
 '', &
 '', &
 'STANDARD', &
@@ -21576,7 +21567,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024              nearest(3fortran)', &
+'                              October 25, 2024              nearest(3fortran)', &
 '']
 
 shortname="nearest"
@@ -21724,22 +21715,22 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'        This is record 1.', &
-'        This is record 2.', &
-'', &
-'        This is record 1.', &
-'        This is record 2.', &
-'         x x xxxx xxxxxxx xxxxxxxxxx xxxxxxxxx xxxx xxxxxxxxxx xxxxxxxx', &
-'         xxxxxxxxx xxxx xxxxxxxxx x xxxxxxxxx xxxxxxxx xxxxxxxx xxxx x', &
-'         xxxxxxxxxx x x x xxxxxx xxxxxxxxxx x xxxxxxxxxx x xxxxxxx xxxxxxxxx', &
-'         xx xxxxxxxxxx xxxxxxxx x xx xxxxxxxxxx xxxxxxxx xxx xxxxxxx xxxxxx', &
-'         xxxxx xxxxxxxxx x xxxxxxxxxx xxxxxx xxxxxxxx xxxxx xxxxxxxx xxxxxxxx', &
-'         xxxxx xxx xxxxxxxx xxxxxxx xxxxxxxx xxx xxxx xxx xxxxxxxx xxxxxx', &
-'         xxxxxxx xxxxxxx xxxxx xxxxx xx xxxxxx xx xxxxxxxxxx xxxxxx x xxxx', &
-'         xxxxxx xxxxxxx x xxx xxxxx xxxxxxxxx xxx xxxxxxx x xxxxxx xxxxxxxxx', &
-'         xxxx xxxxxxxxx xxxxxxxx xxxxxxxx xxx xxxxxxx xxxxxxx xxxxxxxxxx', &
-'         xxxxxxxxxx xxxxxx xxxxx xxxx xxxxxxx xx xxxxxxxxxx xxxxxx xxxxxx', &
-'         xxxxxx xxxx xxxxx', &
+'       > This is record 1.', &
+'       > This is record 2.', &
+'       >', &
+'       > This is record 1.', &
+'       > This is record 2.', &
+'       >  x x xxxx xxxxxxx xxxxxxxxxx xxxxxxxxx xxxx xxxxxxxxxx xxxxxxxx', &
+'       >  xxxxxxxxx xxxx xxxxxxxxx x xxxxxxxxx xxxxxxxx xxxxxxxx xxxx x', &
+'       >  xxxxxxxxxx x x x xxxxxx xxxxxxxxxx x xxxxxxxxxx x xxxxxxx xxxxxxxxx', &
+'       >  xx xxxxxxxxxx xxxxxxxx x xx xxxxxxxxxx xxxxxxxx xxx xxxxxxx xxxxxx', &
+'       >  xxxxx xxxxxxxxx x xxxxxxxxxx xxxxxx xxxxxxxx xxxxx xxxxxxxx xxxxxxxx', &
+'       >  xxxxx xxx xxxxxxxx xxxxxxx xxxxxxxx xxx xxxx xxx xxxxxxxx xxxxxx', &
+'       >  xxxxxxx xxxxxxx xxxxx xxxxx xx xxxxxx xx xxxxxxxxxx xxxxxx x xxxx', &
+'       >  xxxxxx xxxxxxx x xxx xxxxx xxxxxxxxx xxx xxxxxxx x xxxxxx xxxxxxxxx', &
+'       >  xxxx xxxxxxxxx xxxxxxxx xxxxxxxx xxx xxxxxxx xxxxxxx xxxxxxxxxx', &
+'       >  xxxxxxxxxx xxxxxx xxxxx xxxx xxxxxxx xx xxxxxxxxxx xxxxxx xxxxxx', &
+'       >  xxxxxx xxxx xxxxx', &
 '', &
 '', &
 'STANDARD', &
@@ -21752,7 +21743,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024             new_line(3fortran)', &
+'                              October 25, 2024             new_line(3fortran)', &
 '']
 
 shortname="new_line"
@@ -21911,7 +21902,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 nint(3fortran)', &
+'                              October 25, 2024                 nint(3fortran)', &
 '']
 
 shortname="nint"
@@ -22040,7 +22031,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                norm2(3fortran)', &
+'                              October 25, 2024                norm2(3fortran)', &
 '']
 
 shortname="norm2"
@@ -22115,15 +22106,15 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         the input value      -13741 represented in bits is', &
-'         11111111111111111100101001010011 -13741', &
-'         on output it is       13740', &
-'         00000000000000000011010110101100 13740', &
-'          on a two''s complement machine flip the bits and add 1', &
-'          to get the value with the sign changed, for example.', &
-'                1234       -1234', &
-'               -1234        1234', &
-'          of course ''x=-x'' works just fine and more generally.', &
+'       > the input value      -13741 represented in bits is', &
+'       > 11111111111111111100101001010011 -13741', &
+'       > on output it is       13740', &
+'       > 00000000000000000011010110101100 13740', &
+'       >  on a two''s complement machine flip the bits and add 1', &
+'       >  to get the value with the sign changed, for example.', &
+'       >        1234       -1234', &
+'       >       -1234        1234', &
+'       >  of course ''x=-x'' works just fine and more generally.', &
 '', &
 '', &
 'STANDARD', &
@@ -22138,7 +22129,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  not(3fortran)', &
+'                              October 25, 2024                  not(3fortran)', &
 '']
 
 shortname="not"
@@ -22257,10 +22248,10 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'        One integer in S2:, 1', &
-'        One integer in S1:, 2', &
-'        integer and real in S2:, 3 and 200.000000', &
-'        Two integers in S1:, 4 and 100', &
+'       > One integer in S2:, 1', &
+'       > One integer in S1:, 2', &
+'       > integer and real in S2:, 3 and 200.000000', &
+'       > Two integers in S1:, 4 and 100', &
 '', &
 '', &
 'STANDARD', &
@@ -22273,7 +22264,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 null(3fortran)', &
+'                              October 25, 2024                 null(3fortran)', &
 '']
 
 shortname="null"
@@ -22366,7 +22357,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024           num_images(3fortran)', &
+'                              October 25, 2024           num_images(3fortran)', &
 '']
 
 shortname="num_images"
@@ -22695,7 +22686,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 open(7fortran)', &
+'                              October 25, 2024                 open(7fortran)', &
 '']
 
 shortname="open"
@@ -22856,7 +22847,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024         out_of_range(3fortran)', &
+'                              October 25, 2024         out_of_range(3fortran)', &
 '']
 
 shortname="out_of_range"
@@ -22994,7 +22985,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 pack(3fortran)', &
+'                              October 25, 2024                 pack(3fortran)', &
 '']
 
 shortname="pack"
@@ -23110,7 +23101,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               parity(3fortran)', &
+'                              October 25, 2024               parity(3fortran)', &
 '']
 
 shortname="parity"
@@ -23203,7 +23194,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               popcnt(3fortran)', &
+'                              October 25, 2024               popcnt(3fortran)', &
 '']
 
 shortname="popcnt"
@@ -23302,7 +23293,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               poppar(3fortran)', &
+'                              October 25, 2024               poppar(3fortran)', &
 '']
 
 shortname="poppar"
@@ -23377,7 +23368,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024            precision(3fortran)', &
+'                              October 25, 2024            precision(3fortran)', &
 '']
 
 shortname="precision"
@@ -23495,11 +23486,11 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         optional argument x is not present', &
-'                   0', &
-'         optional argument x is present', &
-'         already tested X is defined 1492', &
-'             2226064', &
+'       > optional argument x is not present', &
+'       >           0', &
+'       > optional argument x is present', &
+'       > already tested X is defined 1492', &
+'       >     2226064', &
 '', &
 '', &
 'STANDARD', &
@@ -23509,7 +23500,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024              present(3fortran)', &
+'                              October 25, 2024              present(3fortran)', &
 '']
 
 shortname="present"
@@ -23614,7 +23605,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                print(7fortran)', &
+'                              October 25, 2024                print(7fortran)', &
 '']
 
 shortname="print"
@@ -23786,64 +23777,64 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'      factorial of  1  is  1.000000', &
-'      factorial of  2  is  2.000000', &
-'      factorial of  3  is  6.000000', &
-'      factorial of  4  is  24.00000', &
-'      factorial of  5  is  120.0000', &
-'      factorial of  6  is  720.0000', &
-'      factorial of  7  is  5040.000', &
-'      factorial of  8  is  40320.00', &
-'      factorial of  9  is  362880.0', &
-'      factorial of  10 is  3628800.', &
-'', &
-'       product of all elements 351000000', &
-'       odd * even =', &
-'       4875 * 72000 = 351000000', &
-'', &
-'      zero-sized array=> 1', &
-'      all elements have a false mask=> 1', &
-'', &
-'      rect :( 2 3 )', &
-'       > [  1, 2,  3 ]', &
-'       > [  4, 5,  6 ]', &
-'      product of columns= 4 10 18', &
-'      product of rows= 6 120', &
-'', &
-'      box 1 :( 2 3 )', &
-'       > [  1, 2,  3 ]', &
-'       > [  4, 5,  6 ]', &
-'', &
-'      box 2 :( 2 3 )', &
-'       > [  10,  20,  30 ]', &
-'       > [  40,  50,  60 ]', &
-'', &
-'      box 3 :( 2 3 )', &
-'       > [ -10, -20, -30 ]', &
-'       > [ -40, -50, -60 ]', &
-'', &
-'      box 4 :( 2 3 )', &
-'       > [   2,   4,   6 ]', &
-'       > [   8,  10,  12 ]', &
-'      no dim gives a scalar .1719927E+26', &
-'', &
-'      negative values :( 3 4 )', &
-'       > [     1,     1,   400,     1 ]', &
-'       > [     1,     1,  1000,     1 ]', &
-'       > [     1,     1,  1800,     1 ]', &
-'', &
-'      dim=1 :( 3 4 )', &
-'       > [     4,   400,   400,    16 ]', &
-'       > [    10,  1000,  1000,    40 ]', &
-'       > [    18,  1800,  1800,    72 ]', &
-'', &
-'      dim=2 :( 2 4 )', &
-'       > [      6,    6000,   -6000,      48 ]', &
-'       > [     120,  120000, -120000,    960 ]', &
-'', &
-'      dim=3 :( 2 3 )', &
-'       > [    -200,   -3200,  -16200 ]', &
-'       > [  -51200, -125000, -259200 ]', &
+'       > factorial of  1  is  1.00000000', &
+'       > factorial of  2  is  2.00000000', &
+'       > factorial of  3  is  6.00000000', &
+'       > factorial of  4  is  24.0000000', &
+'       > factorial of  5  is  120.000000', &
+'       > factorial of  6  is  720.000000', &
+'       > factorial of  7  is  5040.00000', &
+'       > factorial of  8  is  40320.0000', &
+'       > factorial of  9  is  362880.000', &
+'       > factorial of  10  is  3628800.00', &
+'       >', &
+'       >  product of all elements 351000000', &
+'       >  odd * even =', &
+'       >  4875 * 72000 = 351000000', &
+'       >', &
+'       > zero-sized array=> 1', &
+'       > all elements have a false mask=> 1', &
+'       >', &
+'       > rect :( 2 3 )', &
+'       >  > [  1,  2,  3 ]', &
+'       >  > [  4,  5,  6 ]', &
+'       > product of columns= 4 10 18', &
+'       > product of rows= 6 120', &
+'       >', &
+'       > box 1 :( 2 3 )', &
+'       >  > [  1,  2,  3 ]', &
+'       >  > [  4,  5,  6 ]', &
+'       >', &
+'       > box 2 :( 2 3 )', &
+'       >  > [  10,  20,  30 ]', &
+'       >  > [  40,  50,  60 ]', &
+'       >', &
+'       > box 3 :( 2 3 )', &
+'       >  > [ -10, -20, -30 ]', &
+'       >  > [ -40, -50, -60 ]', &
+'       >', &
+'       > box 4 :( 2 3 )', &
+'       >  > [  2,   4,   6 ]', &
+'       >  > [  8,  10,  12 ]', &
+'       > no dim gives a scalar 0.171992703E+26', &
+'       >', &
+'       > negative values :( 3 4 )', &
+'       >  > [    1,     1,   400,     1 ]', &
+'       >  > [    1,     1,  1000,     1 ]', &
+'       >  > [    1,     1,  1800,     1 ]', &
+'       >', &
+'       > dim=1 :( 3 4 )', &
+'       >  > [    4,   400,   400,    16 ]', &
+'       >  > [   10,  1000,  1000,    40 ]', &
+'       >  > [   18,  1800,  1800,    72 ]', &
+'       >', &
+'       > dim=2 :( 2 4 )', &
+'       >  > [      6,    6000,   -6000,      48 ]', &
+'       >  > [    120,  120000, -120000,     960 ]', &
+'       >', &
+'       > dim=3 :( 2 3 )', &
+'       >  > [   -200,   -3200,  -16200 ]', &
+'       >  > [  -51200, -125000, -259200 ]', &
 '', &
 '', &
 'STANDARD', &
@@ -23857,7 +23848,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024              product(3fortran)', &
+'                              October 25, 2024              product(3fortran)', &
 '']
 
 shortname="product"
@@ -23953,7 +23944,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024              program(7fortran)', &
+'                              October 25, 2024              program(7fortran)', &
 '']
 
 shortname="program"
@@ -24032,7 +24023,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                radix(3fortran)', &
+'                              October 25, 2024                radix(3fortran)', &
 '']
 
 shortname="radix"
@@ -24092,7 +24083,21 @@ textblock=[character(len=256) :: &
 '            call random_number(y)', &
 '            ! x and y should be the same sequence', &
 '            if ( any(x /= y) ) stop "x(:) and y(:) are not all equal"', &
+'            write(*,*)x', &
+'            write(*,*)y', &
 '         end program demo_random_init', &
+'', &
+'  Results:', &
+'', &
+'  RUN 1:', &
+'', &
+'       >   0.825262189     0.191325366      0.155503273', &
+'       >   0.825262189     0.191325366      0.155503273', &
+'', &
+'  RUN 2:', &
+'', &
+'       >   0.825262189     0.191325366      0.155503273', &
+'       >   0.825262189     0.191325366      0.155503273', &
 '', &
 '', &
 'STANDARD', &
@@ -24105,7 +24110,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024          random_init(3fortran)', &
+'                              October 25, 2024          random_init(3fortran)', &
 '']
 
 shortname="random_init"
@@ -24189,8 +24194,17 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'    1 10003588 2 10000104 3 10000169 4 9997996 5 9995349 6 10001304 7 10001909', &
-'    8 9999133 9 10000252 10 10000196', &
+'       >  1 10003588', &
+'       >  2 10000104', &
+'       >  3 10000169', &
+'       >  4 9997996', &
+'       >  5 9995349', &
+'       >  6 10001304', &
+'       >  7 10001909', &
+'       >  8 9999133', &
+'       >  9 10000252', &
+'       >  10 10000196', &
+'', &
 '', &
 'STANDARD', &
 '  Fortran 95', &
@@ -24202,7 +24216,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024        random_number(3fortran)', &
+'                              October 25, 2024        random_number(3fortran)', &
 '']
 
 shortname="random_number"
@@ -24275,8 +24289,8 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'          -674862499 -1750483360  -183136071  -317862567   682500039', &
-'          349459   344020729 -1725483289', &
+'       >    -674862499 -1750483360  -183136071 -317862567   682500039', &
+'       >    349459   344020729 -1725483289', &
 '', &
 '', &
 'STANDARD', &
@@ -24289,7 +24303,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024          random_seed(3fortran)', &
+'                              October 25, 2024          random_seed(3fortran)', &
 '']
 
 shortname="random_seed"
@@ -24377,7 +24391,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                range(3fortran)', &
+'                              October 25, 2024                range(3fortran)', &
 '']
 
 shortname="range"
@@ -24504,22 +24518,18 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         rank of scalar a=           0', &
-'         rank of matrix b=           2', &
-'         rank of vector pointer c=           1', &
-'         rank of complex scalar d=           0', &
-'         rank of any arbitrary type=           5', &
+'       >  rank of scalar a=           0', &
+'       >  rank of matrix b=           2', &
+'       >  rank of vector pointer c=           1', &
+'       >  rank of complex scalar d=           0', &
+'       >  rank of any arbitrary type=           5', &
+'       > passed a scalar to an assumed rank,   rank= 0', &
+'       > passed an array to an assumed rank,   rank= 1', &
+'       > passed an array to an assumed rank,   rank= 2', &
+'       > passed a scalar to an unlimited polymorphic rank= 0', &
+'       > passed an array to an unlimited polymorphic, rank= 1', &
+'       > passed an array to an unlimited polymorphic, rank= 2', &
 '', &
-'    passed a scalar to an assumed rank,', &
-'      rank= 0', &
-'', &
-'    passed an array to an assumed rank,', &
-'      rank= 1', &
-'', &
-'    passed an array to an assumed rank,', &
-'      rank= 2 passed a scalar to an unlimited polymorphic rank= 0 passed an', &
-'      array to an unlimited polymorphic, rank= 1 passed an array to an', &
-'      unlimited polymorphic, rank= 2', &
 '', &
 'STANDARD', &
 'SEE ALSO', &
@@ -24557,7 +24567,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 rank(3fortran)', &
+'                              October 25, 2024                 rank(3fortran)', &
 '']
 
 shortname="rank"
@@ -24627,7 +24637,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 read(7fortran)', &
+'                              October 25, 2024                 read(7fortran)', &
 '']
 
 shortname="read"
@@ -24715,9 +24725,9 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'       1.00000000      2.00000000', &
-'       4.0000000000000000      5.0000000000000000', &
-'       1.7976931348623157E+308 1.7976931348623157E+308  1.7976931348623157E+308', &
+'       > 1.00000000      2.00000000', &
+'       > 4.0000000000000000      5.0000000000000000', &
+'       > 1.7976931348623157E+308  1.7976931348623157E+308  1.7976931348623157E+30', &
 '', &
 '', &
 'STANDARD', &
@@ -24744,7 +24754,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 real(3fortran)', &
+'                              October 25, 2024                 real(3fortran)', &
 '']
 
 shortname="real"
@@ -24954,7 +24964,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               reduce(3fortran)', &
+'                              October 25, 2024               reduce(3fortran)', &
 '']
 
 shortname="reduce"
@@ -25037,7 +25047,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               repeat(3fortran)', &
+'                              October 25, 2024               repeat(3fortran)', &
 '']
 
 shortname="repeat"
@@ -25259,7 +25269,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024              reshape(3fortran)', &
+'                              October 25, 2024              reshape(3fortran)', &
 '']
 
 shortname="reshape"
@@ -25386,12 +25396,11 @@ textblock=[character(len=256) :: &
 '       >  second alternate return selected', &
 '       >  picked second alternate return', &
 '', &
-'', &
 '  Fortran statement descriptions (license: MIT) @urbanjost', &
 '', &
 '', &
 '', &
-'                              October 19, 2024               return(7fortran)', &
+'                              October 25, 2024               return(7fortran)', &
 '']
 
 shortname="return"
@@ -25494,7 +25503,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               rewind(7fortran)', &
+'                              October 25, 2024               rewind(7fortran)', &
 '']
 
 shortname="rewind"
@@ -25591,7 +25600,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024            rrspacing(3fortran)', &
+'                              October 25, 2024            rrspacing(3fortran)', &
 '']
 
 shortname="rrspacing"
@@ -25714,13 +25723,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         F I am descended from Dad, but equal?', &
-'         T I am what I am', &
-'         T what a pair!', &
-'         F no paradox here', &
-'         F no relation', &
-'         (P,Q) T mind your P''s and Q''s', &
-'         (P,R) F', &
+'       >  F I am descended from Dad, but equal?', &
+'       >  T I am what I am', &
+'       >  T what a pair!', &
+'       >  F no paradox here', &
+'       >  F no relation', &
+'       >  (P,Q) T mind your P''s and Q''s', &
+'       >  (P,R) F', &
 '', &
 '', &
 'STANDARD', &
@@ -25733,7 +25742,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024         same_type_as(3fortran)', &
+'                              October 25, 2024         same_type_as(3fortran)', &
 '']
 
 shortname="same_type_as"
@@ -25842,7 +25851,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                scale(3fortran)', &
+'                              October 25, 2024                scale(3fortran)', &
 '']
 
 shortname="scale"
@@ -25948,7 +25957,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 scan(3fortran)', &
+'                              October 25, 2024                 scan(3fortran)', &
 '']
 
 shortname="scan"
@@ -26116,7 +26125,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024          select_case(7fortran)', &
+'                              October 25, 2024          select_case(7fortran)', &
 '']
 
 shortname="select_case"
@@ -26284,7 +26293,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024   selected_char_kind(3fortran)', &
+'                              October 25, 2024   selected_char_kind(3fortran)', &
 '']
 
 shortname="selected_char_kind"
@@ -26372,7 +26381,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024    selected_int_kind(3fortran)', &
+'                              October 25, 2024    selected_int_kind(3fortran)', &
 '']
 
 shortname="selected_int_kind"
@@ -26500,7 +26509,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024   selected_real_kind(3fortran)', &
+'                              October 25, 2024   selected_real_kind(3fortran)', &
 '']
 
 shortname="selected_real_kind"
@@ -26569,7 +26578,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'           74716.7891       74716.7891', &
+'       >   74716.7891       74716.7891', &
 '', &
 '', &
 'STANDARD', &
@@ -26584,7 +26593,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024         set_exponent(3fortran)', &
+'                              October 25, 2024         set_exponent(3fortran)', &
 '']
 
 shortname="set_exponent"
@@ -26659,11 +26668,11 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'        shape of array= 3 4', &
-'        shape of constant=', &
-'        size of shape of constant= 0', &
-'        ubound of array= 1 2', &
-'        lbound of array= -1 -1', &
+'       > shape of array= 3 4', &
+'       > shape of constant=', &
+'       > size of shape of constant= 0', &
+'       > ubound of array= 1 2', &
+'       > lbound of array= -1 -1', &
 '', &
 '', &
 'STANDARD', &
@@ -26702,7 +26711,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                shape(3fortran)', &
+'                              October 25, 2024                shape(3fortran)', &
 '']
 
 shortname="shape"
@@ -26836,7 +26845,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               shifta(3fortran)', &
+'                              October 25, 2024               shifta(3fortran)', &
 '']
 
 shortname="shifta"
@@ -26973,7 +26982,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               shiftl(3fortran)', &
+'                              October 25, 2024               shiftl(3fortran)', &
 '']
 
 shortname="shiftl"
@@ -27112,7 +27121,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               shiftr(3fortran)', &
+'                              October 25, 2024               shiftr(3fortran)', &
 '']
 
 shortname="shiftr"
@@ -27193,12 +27202,15 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'                  12', &
-'                  12', &
-'  -12 12 12 -12 this processor does not distinguish +0 from -0', &
+'         >        12', &
+'         >        12', &
+'         >       -12', &
+'         >        12', &
+'         >        12', &
+'         >       -12', &
+'         > this processor does not distinguish +0 from -0', &
+'         > elemental   12.00000       12.00000      -12.00000', &
 '', &
-'    elemental', &
-'      12.00000      12.00000      -12.00000', &
 '', &
 'STANDARD', &
 '  FORTRAN 77', &
@@ -27210,7 +27222,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 sign(3fortran)', &
+'                              October 25, 2024                 sign(3fortran)', &
 '']
 
 shortname="sign"
@@ -27352,7 +27364,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  sin(3fortran)', &
+'                              October 25, 2024                  sin(3fortran)', &
 '']
 
 shortname="sin"
@@ -27491,7 +27503,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 sind(3fortran)', &
+'                              October 25, 2024                 sind(3fortran)', &
 '']
 
 shortname="sind"
@@ -27576,12 +27588,12 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'       -1.1752011936438014', &
-'       -1.1752011936438014', &
-'       -1.1752011936438014       -3.6268604078470190      -0.33954055725615012', &
-'                            NaN', &
-'                       Infinity', &
-'                       Infinity', &
+'       > -1.1752011936438014', &
+'       > -1.1752011936438014', &
+'       > -1.1752011936438014      -3.6268604078470190      -0.33954055725615012', &
+'       >                     NaN', &
+'       >                Infinity', &
+'       >                Infinity', &
 '', &
 '', &
 'STANDARD', &
@@ -27597,7 +27609,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 sinh(3fortran)', &
+'                              October 25, 2024                 sinh(3fortran)', &
 '']
 
 shortname="sinh"
@@ -27710,7 +27722,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                sinpi(3fortran)', &
+'                              October 25, 2024                sinpi(3fortran)', &
 '']
 
 shortname="sinpi"
@@ -27840,15 +27852,15 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         SIZE of simple two-dimensional array', &
-'         SIZE(arr)       :total count of elements:          33', &
-'         SIZE(arr,DIM=1) :number of rows         :           3', &
-'         SIZE(arr,DIM=2) :number of columns      :          11', &
-'         interfaced assumed-shape array', &
-'         SIZE(arr1)        :          33', &
-'         SIZE(arr1,DIM=1)  :           3', &
-'         SIZE(arr1,DIM=2)  :          11', &
-'         SIZE(arr2,DIM=1)  :           2', &
+'       > SIZE of simple two-dimensional array', &
+'       > SIZE(arr)       :total count of elements:          33', &
+'       > SIZE(arr,DIM=1) :number of rows         :           3', &
+'       > SIZE(arr,DIM=2) :number of columns      :          11', &
+'       > interfaced assumed-shape array', &
+'       > SIZE(arr1)        :          33', &
+'       > SIZE(arr1,DIM=1)  :           3', &
+'       > SIZE(arr1,DIM=2)  :          11', &
+'       > SIZE(arr2,DIM=1)  :           2', &
 '', &
 '', &
 'STANDARD', &
@@ -27889,7 +27901,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 size(3fortran)', &
+'                              October 25, 2024                 size(3fortran)', &
 '']
 
 shortname="size"
@@ -27958,10 +27970,10 @@ textblock=[character(len=256) :: &
 '', &
 '  Typical values ...', &
 '', &
-'          1.1920929E-07', &
-'           1.000000      1.1920929E-07', &
-'          0.9999999     -5.9604645E-08', &
-'          2.220446049250313E-016', &
+'       >  1.1920929E-07', &
+'       >   1.000000      1.1920929E-07', &
+'       >  0.9999999     -5.9604645E-08', &
+'       >  2.220446049250313E-016', &
 '', &
 '', &
 'STANDARD', &
@@ -27976,7 +27988,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024              spacing(3fortran)', &
+'                              October 25, 2024              spacing(3fortran)', &
 '']
 
 shortname="spacing"
@@ -28120,7 +28132,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                split(3fortran)', &
+'                              October 25, 2024                split(3fortran)', &
 '']
 
 shortname="split"
@@ -28309,7 +28321,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               spread(3fortran)', &
+'                              October 25, 2024               spread(3fortran)', &
 '']
 
 shortname="spread"
@@ -28405,10 +28417,10 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         input values    2.00000000000000      (1.000000,2.000000)', &
-'         output values    1.41421356237310      (1.272020,0.7861513)', &
-'         elemental   8.000000       11.00000       5.477226', &
-'         alternatively   1.41421356237310      (1.272020,0.7861513)', &
+'       > input values    2.00000000000000      (1.000000,2.000000)', &
+'       > output values    1.41421356237310      (1.272020,0.7861513)', &
+'       > elemental   8.000000       11.00000       5.477226', &
+'       > alternatively   1.41421356237310      (1.272020,0.7861513)', &
 '', &
 '', &
 'STANDARD', &
@@ -28421,7 +28433,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 sqrt(3fortran)', &
+'                              October 25, 2024                 sqrt(3fortran)', &
 '']
 
 shortname="sqrt"
@@ -28543,7 +28555,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 stop(7fortran)', &
+'                              October 25, 2024                 stop(7fortran)', &
 '']
 
 shortname="stop"
@@ -28637,11 +28649,11 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         size of integer                 32', &
-'         size of real                    32', &
-'         size of logical                 32', &
-'         size of complex                 64', &
-'         size of integer array           32', &
+'       > size of integer                 32', &
+'       > size of real                    32', &
+'       > size of logical                 32', &
+'       > size of complex                 64', &
+'       > size of integer array           32', &
 '', &
 '', &
 'STANDARD', &
@@ -28654,7 +28666,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024         storage_size(3fortran)', &
+'                              October 25, 2024         storage_size(3fortran)', &
 '']
 
 shortname="storage_size"
@@ -28796,66 +28808,67 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         sum all elements:           9', &
-'         real :   26.00000', &
-'         complex : (13.10000,-4.300000)', &
-'         sum odd elements:           6', &
-'         sum positive values:          12', &
-'         the input array  (a matrix)', &
-'         > [   -1,    2,   -3,    4 ]', &
-'         > [   10,  -20,   30,  -40 ]', &
-'         > [  100,  200, -300,  400 ]', &
-'         >shape= 3 4 ,rank= 2 ,size= 12', &
-'', &
-'         sum of all elements in matrix  (a scalar)', &
-'         > [  382 ]', &
-'         >shape= ,rank= 0 ,size= 1', &
-'', &
-'         sum of positive elements  (a scalar)', &
-'         > [  746 ]', &
-'         >shape= ,rank= 0 ,size= 1', &
-'', &
-'         sum along rows  (a vector)', &
-'         > [  109 ]', &
-'         > [  182 ]', &
-'         > [ -273 ]', &
-'         > [  364 ]', &
-'         >shape= 4 ,rank= 1 ,size= 4', &
-'', &
-'         sum along columns  (a vector)', &
-'         > [    2 ]', &
-'         > [  -20 ]', &
-'         > [  400 ]', &
-'         >shape= 3 ,rank= 1 ,size= 3', &
-'', &
-'         sum of a vector is always a scalar  (a scalar)', &
-'         > [  9 ]', &
-'         >shape= ,rank= 0 ,size= 1', &
-'', &
-'         sum of a volume by row  (a matrix)', &
-'         > [  55,  55,  55,  55,  55,  55,  55 ]', &
-'         > [  55,  55,  55,  55,  55,  55,  55 ]', &
-'         > [  55,  55,  55,  55,  55,  55,  55 ]', &
-'         > [  55,  55,  55,  55,  55,  55,  55 ]', &
-'         > [  55,  55,  55,  55,  55,  55,  55 ]', &
-'         > [  55,  55,  55,  55,  55,  55,  55 ]', &
-'         >shape= 6 7 ,rank= 2 ,size= 42', &
-'', &
-'         sum of a volume by column  (a matrix)', &
-'         > [  66,  66,  66,  66,  66,  66,  66 ]', &
-'         > [  66,  66,  66,  66,  66,  66,  66 ]', &
-'         > [  66,  66,  66,  66,  66,  66,  66 ]', &
-'         > [  66,  66,  66,  66,  66,  66,  66 ]', &
-'         > [  66,  66,  66,  66,  66,  66,  66 ]', &
-'         >shape= 5 7 ,rank= 2 ,size= 35', &
-'', &
-'         sum of a volume by depth  (a matrix)', &
-'         > [  77,  77,  77,  77,  77,  77 ]', &
-'         > [  77,  77,  77,  77,  77,  77 ]', &
-'         > [  77,  77,  77,  77,  77,  77 ]', &
-'         > [  77,  77,  77,  77,  77,  77 ]', &
-'         > [  77,  77,  77,  77,  77,  77 ]', &
-'         >shape= 5 6 ,rank= 2 ,size= 30', &
+'       >  sum all elements:          9', &
+'       >  real :   26.0000000', &
+'       >  complex :           (13.1000004,-4.30000019)', &
+'       >  sum odd elements:          6', &
+'       >  sum positive values:         12', &
+'       >  the input array  (a matrix)', &
+'       >  > [  -1,    2,   -3,    4 ]', &
+'       >  > [  10,  -20,   30,  -40 ]', &
+'       >  > [  100,  200, -300,  400 ]', &
+'       >  >shape= 3 4 ,rank= 2 ,size= 12', &
+'       >', &
+'       >  sum of all elements in matrix  (a scalar)', &
+'       >  > [  382 ]', &
+'       >  >shape= ,rank= 0 ,size= 1', &
+'       >', &
+'       >  sum of positive elements  (a scalar)', &
+'       >  > [  746 ]', &
+'       >  >shape= ,rank= 0 ,size= 1', &
+'       >', &
+'       >  sum along rows  (a vector)', &
+'       >  > [  109 ]', &
+'       >  > [  182 ]', &
+'       >  > [ -273 ]', &
+'       >  > [  364 ]', &
+'       >  >shape= 4 ,rank= 1 ,size= 4', &
+'       >', &
+'       >  sum along columns  (a vector)', &
+'       >  > [   2 ]', &
+'       >  > [  -20 ]', &
+'       >  > [  400 ]', &
+'       >  >shape= 3 ,rank= 1 ,size= 3', &
+'       >', &
+'       >  sum of a vector is always a scalar  (a scalar)', &
+'       >  > [  9 ]', &
+'       >  >shape= ,rank= 0 ,size= 1', &
+'       >', &
+'       >  sum of a volume by row  (a matrix)', &
+'       >  > [  55,  55,  55,  55,  55, 55,  55 ]', &
+'       >  > [  55,  55,  55,  55,  55, 55,  55 ]', &
+'       >  > [  55,  55,  55,  55,  55, 55,  55 ]', &
+'       >  > [  55,  55,  55,  55,  55, 55,  55 ]', &
+'       >  > [  55,  55,  55,  55,  55, 55,  55 ]', &
+'       >  > [  55,  55,  55,  55,  55, 55, 113 ]', &
+'       >  >shape= 6 7 ,rank= 2 ,size= 42', &
+'       >', &
+'       >  sum of a volume by column  (a matrix)', &
+'       >  > [  66,  66,  66,  66,  66, 66,  66 ]', &
+'       >  > [  66,  66,  66,  66,  66, 66,  66 ]', &
+'       >  > [  66,  66,  66,  66,  66, 66,  66 ]', &
+'       >  > [  66,  66,  66,  66,  66, 66,  66 ]', &
+'       >  > [  66,  66,  66,  66,  66, 66,**** ]', &
+'       >  >shape= 5 7 ,rank= 2 ,size= 35', &
+'       >', &
+'       >  sum of a volume by depth  (a matrix)', &
+'       >  > [  77,  77,  77,  77,  77, 77 ]', &
+'       >  > [  77,  77,  77,  77,  77, 77 ]', &
+'       >  > [  77,  77,  77,  77,  77, 77 ]', &
+'       >  > [  77,  77,  77,  77,  77, 77 ]', &
+'       >  > [  77,  77,  77,  77,  77,4193 ]', &
+'       >  >shape= 5 6 ,rank= 2 ,size= 30', &
+'       >', &
 '', &
 '', &
 'STANDARD', &
@@ -28880,7 +28893,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  sum(3fortran)', &
+'                              October 25, 2024                  sum(3fortran)', &
 '']
 
 shortname="sum"
@@ -29045,7 +29058,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024         system_clock(3fortran)', &
+'                              October 25, 2024         system_clock(3fortran)', &
 '']
 
 shortname="system_clock"
@@ -29099,7 +29112,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'          0.16500000000000001       0.16651386310913616', &
+'       >  0.16500000000000001       0.16651386310913616', &
 '', &
 '', &
 'STANDARD', &
@@ -29112,7 +29125,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  tan(3fortran)', &
+'                              October 25, 2024                  tan(3fortran)', &
 '']
 
 shortname="tan"
@@ -29181,7 +29194,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 tand(3fortran)', &
+'                              October 25, 2024                 tand(3fortran)', &
 '']
 
 shortname="tand"
@@ -29243,7 +29256,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'           2.1000000000000001       0.97045193661345386', &
+'       >   2.1000000000000001       0.97045193661345386', &
 '', &
 '', &
 'STANDARD', &
@@ -29259,7 +29272,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 tanh(3fortran)', &
+'                              October 25, 2024                 tanh(3fortran)', &
 '']
 
 shortname="tanh"
@@ -29344,7 +29357,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                tanpi(3fortran)', &
+'                              October 25, 2024                tanpi(3fortran)', &
 '']
 
 shortname="tanpi"
@@ -29423,7 +29436,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'        value[1] is 1', &
+'       >  value[1] is 1', &
 '', &
 '', &
 'STANDARD', &
@@ -29436,7 +29449,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024           this_image(3fortran)', &
+'                              October 25, 2024           this_image(3fortran)', &
 '']
 
 shortname="this_image"
@@ -29494,9 +29507,9 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'       default real is from 1.17549435E-38 to 3.40282347E+38', &
-'       doubleprecision is from 2.2250738585072014E-308 to', &
-'       1.7976931348623157E+308', &
+'       > default real is from 1.17549435E-38 to 3.40282347E+38', &
+'       > doubleprecision is from 2.2250738585072014E-308 to', &
+'       > 1.7976931348623157E+308', &
 '', &
 '', &
 'STANDARD', &
@@ -29511,7 +29524,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 tiny(3fortran)', &
+'                              October 25, 2024                 tiny(3fortran)', &
 '']
 
 shortname="tiny"
@@ -29707,7 +29720,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024             tokenize(3fortran)', &
+'                              October 25, 2024             tokenize(3fortran)', &
 '']
 
 shortname="tokenize"
@@ -29793,16 +29806,16 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'         Note default integer is          32 bits', &
-'         value=  -1, value(bits)=11111111111111111111111111111111 , trailz=  0', &
-'         value=   0, value(bits)=00000000000000000000000000000000 , trailz= 32', &
-'         value=   1, value(bits)=00000000000000000000000000000001 , trailz=  0', &
-'         value=  96, value(bits)=00000000000000000000000001100000 , trailz=  5', &
-'         elemental and any integer kind:', &
-'                   5          13           4', &
-'         0000000000000000000000000000000000000000000000000000000000100000', &
-'         0000000000000000000000000000000000000000000000000010000000000000', &
-'         0000000000000000000000000000000000000000000000000000000000010000', &
+'       >  Note default integer is         32 bits', &
+'       >  value=  -1, value(bits)=11111111111111111111111111111111 , trailz=  0', &
+'       >  value=   0, value(bits)=00000000000000000000000000000000 , trailz= 32', &
+'       >  value=   1, value(bits)=00000000000000000000000000000001 , trailz=  0', &
+'       >  value=  96, value(bits)=00000000000000000000000001100000 , trailz=  5', &
+'       >  elemental and any integer kind:', &
+'       >           5          13           4', &
+'       >  0000000000000000000000000000000000000000000000000000000000100000', &
+'       >  0000000000000000000000000000000000000000000000000010000000000000', &
+'       >  0000000000000000000000000000000000000000000000000000000000010000', &
 '', &
 '', &
 'STANDARD', &
@@ -29815,7 +29828,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               trailz(3fortran)', &
+'                              October 25, 2024               trailz(3fortran)', &
 '']
 
 shortname="trailz"
@@ -29912,10 +29925,10 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'        1111111110000000000000000000000 NaN', &
-'        1111111110000000000000000000000 2143289344', &
-'        [abcdefghij]', &
-'        [a] [b] [c] [d] [e] [f] [g] [h] [i] [j]', &
+'       > 1111111110000000000000000000000 NaN', &
+'       > 1111111110000000000000000000000 2143289344', &
+'       > [abcdefghij]', &
+'       > [a] [b] [c] [d] [e] [f] [g] [h] [i] [j]', &
 '', &
 '', &
 'COMMENTS', &
@@ -29948,7 +29961,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024             transfer(3fortran)', &
+'                              October 25, 2024             transfer(3fortran)', &
 '']
 
 shortname="transfer"
@@ -30064,7 +30077,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024            transpose(3fortran)', &
+'                              October 25, 2024            transpose(3fortran)', &
 '']
 
 shortname="transpose"
@@ -30172,7 +30185,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 trim(3fortran)', &
+'                              October 25, 2024                 trim(3fortran)', &
 '']
 
 shortname="trim"
@@ -30356,7 +30369,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               ubound(3fortran)', &
+'                              October 25, 2024               ubound(3fortran)', &
 '']
 
 shortname="ubound"
@@ -30406,7 +30419,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024             ucobound(3fortran)', &
+'                              October 25, 2024             ucobound(3fortran)', &
 '']
 
 shortname="ucobound"
@@ -30572,7 +30585,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               unpack(3fortran)', &
+'                              October 25, 2024               unpack(3fortran)', &
 '']
 
 shortname="unpack"
@@ -30838,7 +30851,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                  use(7fortran)', &
+'                              October 25, 2024                  use(7fortran)', &
 '']
 
 shortname="use"
@@ -31226,7 +31239,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024               verify(3fortran)', &
+'                              October 25, 2024               verify(3fortran)', &
 '']
 
 shortname="verify"
@@ -31310,7 +31323,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                 wait(7fortran)', &
+'                              October 25, 2024                 wait(7fortran)', &
 '']
 
 shortname="wait"
@@ -31530,7 +31543,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                where(7fortran)', &
+'                              October 25, 2024                where(7fortran)', &
 '']
 
 shortname="where"
@@ -31555,7 +31568,7 @@ textblock=[character(len=256) :: &
 '', &
 '', &
 '', &
-'                              October 19, 2024                write(7fortran)', &
+'                              October 25, 2024                write(7fortran)', &
 '']
 
 shortname="write"

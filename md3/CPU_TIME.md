@@ -91,9 +91,9 @@ Results:
   and what if any options there are for parallel applications
   may very from system to system. See compiler-specific for details.
 ```text
-   Processor Time =  0.000 seconds.
-   Processor Time = .4000030E-05 seconds.
-   Processor Time = .2000000000000265E-05 seconds.
+   > Processor Time =  0.000 seconds.
+   > Processor Time = .4000030E-05 seconds.
+   > Processor Time = .2000000000000265E-05 seconds.
 ```
 ### **Standard**
 

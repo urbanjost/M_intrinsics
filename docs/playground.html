@@ -738,7 +738,7 @@
       end program demo_asinpi
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fassociated%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20real%2C%20target%20%20%3A%3A%20tgt%282%29%20%3D%20%5B1%2E%2C%202%2E%5D%0D%0A%20%20%20%20%20%20real%2C%20pointer%20%3A%3A%20ptr%28%3A%29%0D%0A%20%20%20%20%20%20%20%20%20ptr%20%3D%3E%20tgt%0D%0A%20%20%20%20%20%20%20%20%20if%20%28associated%28ptr%29%20%20%20%20%20%2Eeqv%2E%20%2Efalse%2E%29%20%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20stop%20%27POINTER%20NOT%20ASSOCIATED%27%0D%0A%20%20%20%20%20%20%20%20%20if%20%28associated%28ptr%2Ctgt%29%20%2Eeqv%2E%20%2Efalse%2E%29%20%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20stop%20%27POINTER%20NOT%20ASSOCIATED%20TO%20TARGET%27%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fassociated%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fassociated%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20real%2C%20target%20%20%3A%3A%20tgt%282%29%20%3D%20%5B1%2E%2C%202%2E%5D%0D%0A%20%20%20%20%20%20real%2C%20pointer%20%3A%3A%20ptr%28%3A%29%0D%0A%20%20%20%20%20%20%20%20%20ptr%20%3D%3E%20tgt%0D%0A%20%20%20%20%20%20%20%20%20if%20%28associated%28ptr%29%20%20%20%20%20%2Eeqv%2E%20%2Efalse%2E%29%20%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20stop%20%27POINTER%20NOT%20ASSOCIATED%27%0D%0A%20%20%20%20%20%20%20%20%20if%20%28associated%28ptr%2Ctgt%29%20%2Eeqv%2E%20%2Efalse%2E%29%20%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20stop%20%27POINTER%20NOT%20ASSOCIATED%20TO%20TARGET%27%0D%0A%20%20%20%20%20%20%20%20%20if%20%28associated%28ptr%29%20%29%20%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20print%20%2A%2C%20%27POINTER%20ASSOCIATED%27%0D%0A%20%20%20%20%20%20%20%20%20if%20%28associated%28ptr%2Ctgt%29%20%29%20%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20print%20%2A%2C%20%27POINTER%20ASSOCIATED%20TO%20TARGET%27%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fassociated%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> associated
@@ -755,6 +755,10 @@
          & stop 'POINTER NOT ASSOCIATED'
          if (associated(ptr,tgt) .eqv. .false.) &
          & stop 'POINTER NOT ASSOCIATED TO TARGET'
+         if (associated(ptr) ) &
+         & print *, 'POINTER ASSOCIATED'
+         if (associated(ptr,tgt) ) &
+         & print *, 'POINTER ASSOCIATED TO TARGET'
       end program demo_associated
   </xmp>
   </details>
@@ -6861,7 +6865,7 @@
       end program demo_radix
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20%20%20%20%20program%20demo%5Frandom%5Finit%0D%0A%20%20%20%20%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%20%20%20%20real%20x%283%29%2C%20y%283%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20call%20random%5Finit%28%2Etrue%2E%2C%20%2Etrue%2E%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20call%20random%5Fnumber%28x%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20call%20random%5Finit%28%2Etrue%2E%2C%20%2Etrue%2E%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20call%20random%5Fnumber%28y%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20x%20and%20y%20should%20be%20the%20same%20sequence%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20if%20%28%20any%28x%20%2F%3D%20y%29%20%29%20stop%20%22x%28%3A%29%20and%20y%28%3A%29%20are%20not%20all%20equal%22%0D%0A%20%20%20%20%20%20%20%20%20%20end%20program%20demo%5Frandom%5Finit%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20%20%20%20%20program%20demo%5Frandom%5Finit%0D%0A%20%20%20%20%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%20%20%20%20real%20x%283%29%2C%20y%283%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20call%20random%5Finit%28%2Etrue%2E%2C%20%2Etrue%2E%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20call%20random%5Fnumber%28x%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20call%20random%5Finit%28%2Etrue%2E%2C%20%2Etrue%2E%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20call%20random%5Fnumber%28y%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20x%20and%20y%20should%20be%20the%20same%20sequence%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20if%20%28%20any%28x%20%2F%3D%20y%29%20%29%20stop%20%22x%28%3A%29%20and%20y%28%3A%29%20are%20not%20all%20equal%22%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29x%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29y%0D%0A%20%20%20%20%20%20%20%20%20%20end%20program%20demo%5Frandom%5Finit%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> random_init
@@ -6878,6 +6882,8 @@
              call random_number(y)
              ! x and y should be the same sequence
              if ( any(x /= y) ) stop "x(:) and y(:) are not all equal"
+             write(*,*)x
+             write(*,*)y
           end program demo_random_init
   </xmp>
   </details>

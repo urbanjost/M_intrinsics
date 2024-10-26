@@ -87,16 +87,13 @@ character(len=1)    :: chars(10)
    write(*,'(*("[",a,"]":,1x))')chars
 end program demo_transfer
 ```
-
 Results:
-
 ```text
-   1111111110000000000000000000000 NaN
-   1111111110000000000000000000000 2143289344
-   [abcdefghij]
-   [a] [b] [c] [d] [e] [f] [g] [h] [i] [j]
+ > 1111111110000000000000000000000 NaN
+ > 1111111110000000000000000000000 2143289344
+ > [abcdefghij]
+ > [a] [b] [c] [d] [e] [f] [g] [h] [i] [j]
 ```
-
 ### **Comments**
 
 _Joe Krahn_: Fortran uses **molding** rather than **casting**.

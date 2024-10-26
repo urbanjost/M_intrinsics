@@ -124,15 +124,15 @@ end program demo_size
 ```
 Results:
 ```text
-    SIZE of simple two-dimensional array
-    SIZE(arr)       :total count of elements:          33
-    SIZE(arr,DIM=1) :number of rows         :           3
-    SIZE(arr,DIM=2) :number of columns      :          11
-    interfaced assumed-shape array
-    SIZE(arr1)        :          33
-    SIZE(arr1,DIM=1)  :           3
-    SIZE(arr1,DIM=2)  :          11
-    SIZE(arr2,DIM=1)  :           2
+  > SIZE of simple two-dimensional array
+  > SIZE(arr)       :total count of elements:          33
+  > SIZE(arr,DIM=1) :number of rows         :           3
+  > SIZE(arr,DIM=2) :number of columns      :          11
+  > interfaced assumed-shape array
+  > SIZE(arr1)        :          33
+  > SIZE(arr1,DIM=1)  :           3
+  > SIZE(arr1,DIM=2)  :          11
+  > SIZE(arr2,DIM=1)  :           2
 ```
 ### **Standard**
 

@@ -48,8 +48,8 @@ end program demo_kind
 ```
 Results:
 ```text
-    The default character kind is            1
-    The default logical kind is            4
+  > The default character kind is            1
+  > The default logical kind is            4
 ```
 ### **Standard**
 

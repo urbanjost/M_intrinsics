@@ -118,17 +118,17 @@ end program demo_rank
 ```
 Results:
 ```text
-    rank of scalar a=           0
-    rank of matrix b=           2
-    rank of vector pointer c=           1
-    rank of complex scalar d=           0
-    rank of any arbitrary type=           5
-   passed a scalar to an assumed rank,   rank= 0
-   passed an array to an assumed rank,   rank= 1
-   passed an array to an assumed rank,   rank= 2
-   passed a scalar to an unlimited polymorphic rank= 0
-   passed an array to an unlimited polymorphic, rank= 1
-   passed an array to an unlimited polymorphic, rank= 2
+  >  rank of scalar a=           0
+  >  rank of matrix b=           2
+  >  rank of vector pointer c=           1
+  >  rank of complex scalar d=           0
+  >  rank of any arbitrary type=           5
+  > passed a scalar to an assumed rank,   rank= 0
+  > passed an array to an assumed rank,   rank= 1
+  > passed an array to an assumed rank,   rank= 2
+  > passed a scalar to an unlimited polymorphic rank= 0
+  > passed an array to an unlimited polymorphic, rank= 1
+  > passed an array to an unlimited polymorphic, rank= 2
 ```
 ### **Standard**
 
@@ -158,4 +158,3 @@ Results:
 - [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
-#

@@ -1,9 +1,9 @@
 ## continuation
 
-## **Name**
+### **Name**
    CONTINUATION(5) - [FORTRAN] - the rules for free-format line continuation
 
-## **Synopsis**
+### **Synopsis**
  general rule:
 ```fortran
    original long statement
@@ -14,7 +14,7 @@
    & long&
    & statement
 ```
-## **Description**
+### **Description**
 
 You may split almost all free-format Fortran statements into multiple
 lines by inserting the sequence "&\n&", where "\n" represents a

@@ -84,9 +84,9 @@ end program demo_asin
 ```
 Results:
 ```
-    angle of incline(radians) =    2.5002604899361139E-002
-    angle of incline(degrees) =    1.4325437375665075
-    percent grade=   2.5000000000000000
+ >  angle of incline(radians) =    2.5002604899361139E-002
+ >  angle of incline(degrees) =    1.4325437375665075
+ >  percent grade=   2.5000000000000000
 ```
 The percentage grade is the slope, written as a percent. To calculate
 the slope you divide the rise by the run. In the example the rise is

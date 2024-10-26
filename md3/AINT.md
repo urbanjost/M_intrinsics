@@ -69,17 +69,17 @@ end program demo_aint
 ```
 Results:
 ```text
- basics:
-  just chops off the fractional part
-  -2.000000      -2.000000
-  if |x| < 1 a positive zero is returned
-  0.0000000E+00  0.0000000E+00
-  input may be of any real kind
-  -4.00000000000000        4.00000000000000
- elemental:
-  -2.000000      -2.000000      -2.000000      -2.000000      -1.000000
-  -1.000000      0.0000000E+00  0.0000000E+00  0.0000000E+00   1.000000
-   1.000000       2.000000       2.000000       2.000000       2.000000
+ > basics:
+ >  just chops off the fractional part
+ >  -2.000000      -2.000000
+ >  if |x| < 1 a positive zero is returned
+ >  0.0000000E+00  0.0000000E+00
+ >  input may be of any real kind
+ >  -4.00000000000000        4.00000000000000
+ > elemental:
+ >  -2.000000      -2.000000      -2.000000      -2.000000      -1.000000
+ >  -1.000000      0.0000000E+00  0.0000000E+00  0.0000000E+00   1.000000
+ >   1.000000       2.000000       2.000000       2.000000       2.000000
 ```
 ### **Standard**
 

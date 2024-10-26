@@ -55,13 +55,11 @@ integer :: val
    endif
 end program demo_co_max
 ```
-
 Results:
 
 ```text
-    Maximal value           2
+  > Maximal value           2
 ```
-
 ### **Standard**
 
 TS 18508

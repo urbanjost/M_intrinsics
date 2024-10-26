@@ -93,9 +93,9 @@ end program demo_iachar
 ```
 Results:
 ```text
-   65
-   65          90          97         122
-   abcdefg abcdefg
+ > 65
+ > 65          90          97         122
+ > abcdefg abcdefg
 ```
 ### **Standard**
 

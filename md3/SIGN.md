@@ -73,14 +73,14 @@ end program demo_sign
 ```
 Results:
 ```text
-             12
-             12
-            -12
-             12
-             12
-            -12
-    this processor does not distinguish +0 from -0
-    elemental   12.00000       12.00000      -12.00000
+    >        12
+    >        12
+    >       -12
+    >        12
+    >        12
+    >       -12
+    > this processor does not distinguish +0 from -0
+    > elemental   12.00000       12.00000      -12.00000
 ```
 ### **Standard**
 

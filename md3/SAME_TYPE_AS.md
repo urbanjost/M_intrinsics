@@ -116,13 +116,13 @@ Sample program:
 ```
 Results:
 ```text
-    F I am descended from Dad, but equal?
-    T I am what I am
-    T what a pair!
-    F no paradox here
-    F no relation
-    (P,Q) T mind your P's and Q's
-    (P,R) F
+  >  F I am descended from Dad, but equal?
+  >  T I am what I am
+  >  T what a pair!
+  >  F no paradox here
+  >  F no relation
+  >  (P,Q) T mind your P's and Q's
+  >  (P,R) F
 ```
 ### **Standard**
 

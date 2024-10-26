@@ -52,7 +52,22 @@ Sample program:
        call random_number(y)
        ! x and y should be the same sequence
        if ( any(x /= y) ) stop "x(:) and y(:) are not all equal"
+       write(*,*)x
+       write(*,*)y
     end program demo_random_init
+```
+Results:
+
+RUN 1:
+```text
+ >   0.825262189      0.191325366      0.155503273    
+ >   0.825262189      0.191325366      0.155503273    
+```
+
+RUN 2:
+```text
+ >   0.825262189      0.191325366      0.155503273    
+ >   0.825262189      0.191325366      0.155503273    
 ```
 ### **Standard**
 

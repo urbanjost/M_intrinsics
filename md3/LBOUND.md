@@ -127,10 +127,10 @@ end
 ```
 Results:
 ```
-   MAIN: LOWER=         -10 UPPER=          10 SIZE=          21
-   CSUB: LOWER=         -10 UPPER=          10 SIZE=          21
-   MSUB: LOWER=           1 UPPER=          21 SIZE=          21
-   ESUB: LOWER=           1 UPPER=          21 SIZE=          21
+ >  MAIN: LOWER=         -10 UPPER=          10 SIZE=          21
+ >  CSUB: LOWER=         -10 UPPER=          10 SIZE=          21
+ >  MSUB: LOWER=           1 UPPER=          21 SIZE=          21
+ >  ESUB: LOWER=           1 UPPER=          21 SIZE=          21
 ```
 ### **Standard**
 

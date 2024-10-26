@@ -83,7 +83,7 @@ end program demo_bessel_jn
 Results:
 
 ```text
-      2.4975773021123450E-004
+  > 2.4975773021123450E-004
 ```
 ### **Standard**
 

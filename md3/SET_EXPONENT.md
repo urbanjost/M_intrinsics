@@ -61,7 +61,7 @@ end program demo_setexp
 ```
 Results:
 ```text
-      74716.7891       74716.7891
+  >   74716.7891       74716.7891
 ```
 ### **Standard**
 

@@ -64,12 +64,12 @@ end program demo_bit_size
 ```
 Typical Results:
 ```text
-    default: bit size is  32 which is kind=  4 on this platform
-    int8   : bit size is   8 which is kind=  1 on this platform
-    int16  : bit size is  16 which is kind=  2 on this platform
-    int32  : bit size is  32 which is kind=  4 on this platform
-    int64  : bit size is  64 which is kind=  8 on this platform
-    The available kinds are 1, 2, 4, 8, 16
+  > default: bit size is  32 which is kind=  4 on this platform
+  > int8   : bit size is   8 which is kind=  1 on this platform
+  > int16  : bit size is  16 which is kind=  2 on this platform
+  > int32  : bit size is  32 which is kind=  4 on this platform
+  > int64  : bit size is  64 which is kind=  8 on this platform
+  > The available kinds are 1, 2, 4, 8, 16
 ```
 ### **Standard**
 

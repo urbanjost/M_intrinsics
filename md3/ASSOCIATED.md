@@ -97,7 +97,16 @@ real, pointer :: ptr(:)
    & stop 'POINTER NOT ASSOCIATED'
    if (associated(ptr,tgt) .eqv. .false.) &
    & stop 'POINTER NOT ASSOCIATED TO TARGET'
+   if (associated(ptr) ) &
+   & print *, 'POINTER ASSOCIATED'
+   if (associated(ptr,tgt) ) &
+   & print *, 'POINTER ASSOCIATED TO TARGET'
 end program demo_associated
+```
+Results:
+```text
+ >  POINTER ASSOCIATED
+ >  POINTER ASSOCIATED TO TARGET
 ```
 ### **Standard**
 

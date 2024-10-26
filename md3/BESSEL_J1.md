@@ -47,7 +47,7 @@ end program demo_bessel_j1
 ```
 Results:
 ```text
-     0.44005058574493350
+  > 0.44005058574493350
 ```
 ### **Standard**
 

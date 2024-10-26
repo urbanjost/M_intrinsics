@@ -68,13 +68,13 @@ end program demo_adjustl
 ```
 Results:
 ```text
-   original: [   sample string    ]
-   adjusted: [sample string       ]
-   trimmed:  [sample string]
-   substring:[sample string]
-   original:[    allocatable string   ]
-   adjusted:[allocatable string       ]
-   trimmed: [allocatable string]
+   > original: [   sample string    ]
+   > adjusted: [sample string       ]
+   > trimmed:  [sample string]
+   > substring:[sample string]
+   > original:[    allocatable string   ]
+   > adjusted:[allocatable string       ]
+   > trimmed: [allocatable string]
 ```
 ### **Standard**
 

@@ -5,9 +5,12 @@
 **comment**(5) - \[SYNTAX\] code annotation
 
 ### **Synopsis**
+Fixed and Free comments
 ```fortran
     C fixed-format comment
     ! free-format comment
+       ! free-format comment
+    CODE_LINE ! free-format comment
 ```
 ### **Description**
 

@@ -64,7 +64,7 @@ end program demo_co_sum
 Results:
 
 ```text
-    The sum is            1
+  > The sum is            1
 ```
 
 ### **Standard**
