@@ -1,4 +1,3 @@
-!>>>>> ././src/M_intrinsics.f90
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
@@ -204,11 +203,8 @@ textblock=[character(len=256) :: &
 '', &
 'abs(3fortran)                                                   abs(3fortran)', &
 '', &
-'', &
-'', &
 'NAME', &
 '  ABS(3) - [NUMERIC] Absolute value', &
-'', &
 '', &
 'SYNOPSIS', &
 '  result = abs(a)', &
@@ -216,7 +212,6 @@ textblock=[character(len=256) :: &
 '          elemental TYPE(kind=KIND) function abs(a)', &
 '', &
 '           TYPE(kind=KIND),intent(in) :: a', &
-'', &
 '', &
 'CHARACTERISTICS', &
 '  o  A may be any real, integer, or complex value.', &
@@ -382,7 +377,6 @@ textblock=[character(len=256) :: &
 '       > making your own meaning for ABS(COMPLEX_VALUE)', &
 '       > 3.00000000 4.00000000', &
 '', &
-'', &
 'STANDARD', &
 '  FORTRAN 77', &
 '', &
@@ -390,8 +384,6 @@ textblock=[character(len=256) :: &
 '  SIGN(3)', &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
-'', &
-'', &
 '', &
 '                              October 25, 2024                  abs(3fortran)', &
 '']
@@ -1217,7 +1209,7 @@ textblock=[character(len=256) :: &
 '       > value= (3.0000000000000000,4.0000000000000000)', &
 '       > imaginary part= 4.0000000000000000 or 4.0000000000000000', &
 '       >', &
-'       > (1.00000000,2.00000000) (0.500000000,1.00000000) (2.00000000,4.00000000)', &
+'       > (1.0000000,2.0000000) (0.50000000,1.0000000) (2.0000000,4.0000000)', &
 '       > (-11.0000000,-2.00000000)', &
 '       >', &
 '       >  2.00000000       1.00000000       4.00000000      -2.00000000', &
@@ -7921,7 +7913,7 @@ textblock=[character(len=256) :: &
 '', &
 '  But try to never split constants or lexical words!', &
 '', &
-'         character(len=*), parameter :: str1=''my first str'', str2=''my second str''', &
+'        character(len=*),parameter :: str1=''my first str'', str2=''my second str''', &
 '', &
 '  could be written as', &
 '', &
@@ -8002,7 +7994,7 @@ textblock=[character(len=256) :: &
 '  Therefore the following is equivalent in fixed and free-format parsing:', &
 '', &
 '       >12345 continue', &
-'       >      character(len=*), parameter :: string1="hello world", string2="hel&', &
+'       >      character(len=*),parameter :: string1="hello world", string2="hel&', &
 '       >     &lo world"', &
 '', &
 '  Obviously, this is not compatible with extended length fixed-format source', &
@@ -10534,11 +10526,11 @@ textblock=[character(len=256) :: &
 '        i=int(b"00000000000000000000000000011111")', &
 '        j=int(b"11111111111111111111111111100000")', &
 '        ! appended together ( i//j )', &
-'        ! 0000000000000000000000000001111111111111111111111111111111100000', &
+'        ! 0000000000000000000000000001111111111111111111111111111111100000',&
 '        ! shifted right SHIFT values dropping off shifted values', &
-'        !      00000000000000000000000000011111111111111111111111111111111', &
+'        !      00000000000000000000000000011111111111111111111111111111111',&
 '        ! keep enough rightmost bits to fill the kind', &
-'        !                                 11111111111111111111111111111111', &
+'        !                                 11111111111111111111111111111111',&
 '        ! so the result should be all 1s bits ...', &
 '', &
 '         write(*,''(*(g0))'')''I='',i,'' J='',j,'' SHIFT='',shift', &
@@ -17319,13 +17311,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'       > LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111101101010 AKA -150', &
-'       > LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111110011100 AKA -100', &
-'       > LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111111001110 AKA -50', &
-'       > LEADING ZERO BITS= 32 OF VALUE 00000000000000000000000000000000 AKA 0', &
-'       > LEADING ZERO BITS= 26 OF VALUE 00000000000000000000000000110010 AKA 50', &
-'       > LEADING ZERO BITS= 25 OF VALUE 00000000000000000000000001100100 AKA 100', &
-'       > LEADING ZERO BITS= 24 OF VALUE 00000000000000000000000010010110 AKA 150', &
+'   > LEADING ZERO BITS=0 OF VALUE 11111111111111111111111101101010 AKA -150',&
+'   > LEADING ZERO BITS=0 OF VALUE 11111111111111111111111110011100 AKA -100',&
+'   > LEADING ZERO BITS=0 OF VALUE 11111111111111111111111111001110 AKA -50',&
+'   > LEADING ZERO BITS=32 OF VALUE 00000000000000000000000000000000 AKA 0',&
+'   > LEADING ZERO BITS=26 OF VALUE 00000000000000000000000000110010 AKA 50',&
+'   > LEADING ZERO BITS=25 OF VALUE 00000000000000000000000001100100 AKA 100',&
+'   > LEADING ZERO BITS=24 OF VALUE 00000000000000000000000010010110 AKA 150',&
 '', &
 '', &
 'STANDARD', &
@@ -24726,9 +24718,9 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'       > 1.00000000      2.00000000', &
-'       > 4.0000000000000000      5.0000000000000000', &
-'       > 1.7976931348623157E+308  1.7976931348623157E+308  1.7976931348623157E+30', &
+'    > 1.00000000      2.00000000', &
+'    > 4.0000000000000000      5.0000000000000000', &
+'    > 1.7976931348623157E+308 1.7976931348623157E+308 1.7976931348623157E+30',&
 '', &
 '', &
 'STANDARD', &
@@ -58488,14 +58480,14 @@ use M_CLI2,       only : set_args, sget, iget, lget, specified, topics=>unnamed
 use M_CLI2,       only : set_mode
 use M_match,      only : getpat, match, regex_pattern
 use M_match,      only : YES, ERR
-use M_strings,    only : lower, indent, atleast
+use M_strings,    only : lower, indent, atleast, str
 use M_attr,       only : attr, attr_update
 use M_io,         only : filewrite, fileread, get_env
 implicit none
 type(regex_pattern)            :: p, start_p, end_p
 character(len=*),parameter     :: gen='(*(g0:))'
 character(len=:),allocatable   :: help_text(:), version_text(:)
-character(len=256),allocatable :: manual(:),section(:)
+character(len=256),allocatable :: manual(:),section(:),clone_no_color(:)
 character(len=:),allocatable   :: doc(:)
 character(len=:),allocatable   :: regex, start, end
 character(len=:),allocatable   :: query
@@ -58515,20 +58507,23 @@ integer                        :: irestore
 integer                        :: search_end
 logical                        :: number
 logical                        :: topic
+logical                        :: cmdmode
 logical                        :: prefix, ignorecase, demo, color
-character(len=80)              :: paws
+character(len=512)             :: paws, remember
 character(len=20) ::  &
-& bg='<E>', &
-& fg='<w>', &
-& prg='<c>', &
-& head='<y></bo>', &
-& head_='</bo>', &
-& fixed='<w>', &
-& output='<y>', &
-& output_='</bo>'
+&  bg=       '<E>                ',  &  ! initial background color
+&  fg=       '<w>                ',  &  ! text color
+&  prg=      '<c>                ',  &  ! demo program text color
+&  head=     '<y></bo>           ',  &  ! header line
+&  head_=    '</bo>              ',  &
+&  fixed=    '<w>                ',  &  ! color of leading > in demo program output
+&  output=   '<y>                ',  &  ! demo program output
+&  output_=  '</bo>              '
 namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
    ! process command line
    number=.false.
+   remember=''
+   cmdmode=.false.
    iinf=0
    last='NAME'
    call setup()
@@ -58555,6 +58550,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
          stop
       else
          manual=doc
+         clone_no_color=doc
          if(allocated(doc))deallocate(doc)
       endif
       if(size(topics).eq.0)then
@@ -58610,16 +58606,16 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
    endif
 
    if(lget('verbose'))then
-      write(stdout,gen)'<INFO>AFTER NORMALIZING:'
-      write(stdout,gen)'<INFO>REGEX       ',regex
-      write(stdout,gen)'<INFO>IGNORECASE  ',ignorecase
-      write(stdout,gen)'<INFO>TOPIC_ONLY  ',topic
-      write(stdout,gen)'<INFO>PREFIX      ',prefix
-      write(stdout,gen)'<INFO>DEMO        ',demo
-      write(stdout,gen)'<INFO>TOPICS      ',topics
-      write(stdout,gen)'<INFO>START       ',start
-      write(stdout,gen)'<INFO>END         ',end
-      write(stdout,gen)'<INFO>LINES       ',lines
+      write(stdout,gen)attr(str('<INFO>AFTER NORMALIZING:'))
+      write(stdout,gen)attr(str('<INFO>REGEX       ',regex))
+      write(stdout,gen)attr(str('<INFO>IGNORECASE  ',ignorecase))
+      write(stdout,gen)attr(str('<INFO>TOPIC_ONLY  ',topic))
+      write(stdout,gen)attr(str('<INFO>PREFIX      ',prefix))
+      write(stdout,gen)attr(str('<INFO>DEMO        ',demo))
+      write(stdout,gen)attr(str('<INFO>TOPICS      ',str(topics)))
+      write(stdout,gen)attr(str('<INFO>START       ',start))
+      write(stdout,gen)attr(str('<INFO>END         ',end))
+      write(stdout,gen)attr(str('<INFO>LINES       ',lines))
    endif
    ! build text to display or search
    if(filename.ne.'')then
@@ -58642,9 +58638,9 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
       INFINITE: do
          if(regex.ne.'')then
             if(ignorecase)then
-              templine=lower(trim(manual(i)))//char(10)
+              templine=lower(trim(clone_no_color(i)))//char(10)
             else
-              templine=trim(manual(i))//char(10)
+              templine=trim(clone_no_color(i))//char(10)
             endif
             if(match(templine, p%pat) .eq. YES) then
                if(number)then
@@ -58664,7 +58660,9 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
             if(ilines.eq.lines-1)then
                ANOTHER: do
                   write(stdout,gen,advance='no')'[',i,']:'
-                  read(stdin,'(a)')paws
+                  read(stdin,'(a)',iostat=iostat)paws
+                  if(iostat.ne.0)exit INFINITE
+                  if(paws.eq.'')paws=remember
                   select case(paws(1:1))
                   case('b');
                              if(i.ge.size(manual))then
@@ -58672,20 +58670,34 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                              else
                                 i=max(0,i-2*lines+2) ! back
                              endif
+                             i=i-(len_trim(paws)-1)*lines
                              iinf=0
+                             remember=paws
                   case('u');
                              if(i.ge.size(manual))then
                                 i=max(0,i-1*lines) ! up
                              else
                                 i=max(0,i-2*lines+lines/2+2) ! up
                              endif
+                             i=i-(len_trim(paws)-1)*lines/2 ! up
+                             i=max(0,i)
                              iinf=0
-                  case('d'); i=max(0,i-1*lines+lines/2) ! down
+                             remember=paws
+                  case('d'); i=max(0,i-1*lines+len_trim(paws)*lines/2) ! down
                              iinf=0
-                  case('/','n','N','?'); i=i-1
+                              remember=paws
+                             iinf=0
+                             remember=paws
+                  case('/','n','N','?')
+                             i=i-1
                              irestore=i
+                             if(irestore.ge.size(manual))then
+                                irestore=max(0,irestore-1*lines) ! back
+                             else
+                                irestore=max(0,irestore-1*lines+2) ! back
+                             endif
                              regex=last
-                             if(regex.eq.'')regex='NAME'
+                             if(regex.eq.'')regex='^NAME$'
                              select case(paws(1:1))
                              case('/','n')
                                 i=max(0,i-1*lines+4) ! back
@@ -58703,12 +58715,14 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                              if(regex.ne.' ')then
                                 if (getpat(merge(lower(regex),regex,ignorecase), p%pat) .eq. ERR) then
                                    write(stdout,'(a)')'*fman* Illegal regex pattern.'
+                                   i=irestore
+                                   paws='r'
                                 else
                                    do m=i,search_end,direction
                                       if(ignorecase)then
-                                        templine=lower(trim(manual(m)))//char(10)
+                                        templine=lower(trim(clone_no_color(m)))//char(10)
                                       else
-                                        templine=trim(manual(m))//char(10)
+                                        templine=trim(clone_no_color(m))//char(10)
                                       endif
                                       if(match(templine, p%pat) .eq. YES) then
                                          i=m-1
@@ -58717,15 +58731,19 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                                    enddo
                                    if(m-direction.eq.search_end)then
                                       i=irestore
+                                      paws='r'
                                    endif
                                 endif
                              endif
                              last=regex
                              regex=''
                              iinf=0
-                  case('r'); i=i-1                      ! refresh
+                             remember=paws
+                  case('r'); i=i-1                         ! refresh
+                             !lines=get_env('LINES',lines)  ! adjust for screen size change if set
                              i=max(0,i-1*lines+2)
                              iinf=0
+                             remember=paws
                   case('L')
                              filename=adjustl(trim(paws(2:)))
                               if(filename.ne.'')then
@@ -58738,14 +58756,16 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                                  else
                                     i=0
                                     manual=doc
+                                    clone_no_color=manual
                                     if(allocated(doc))deallocate(doc)
                                     iinf=0
                                     if(color)manual=crayons(manual)
                                  endif
                               endif
+                              remember='f'
                   case('l')
                             if(paws(2:).eq.'')then
-                               lines=size(manual)
+                               !lines=get_env('LINES',lines) ! adjust for screen size change if set
                             else
                                read(paws(2:),'(g80.0)',iostat=iostat)rm
                                if(iostat.eq.0)then
@@ -58756,22 +58776,35 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                             endif
                              i=i-1
                              iinf=0
-                  case('y','j'); i=max(0,i-1*lines+2) ! down one line
+                              remember='f'
+                  case('y','j','v'); i=max(0,i-1*lines+2) ! down one line
                              i=i+len_trim(paws)-1
                              iinf=0
-                  case('e','k'); i=max(0,i-1*lines-0) ! up one line
+                              remember=paws
+                  case('e','k','^'); i=max(0,i-1*lines-0) ! up one line
                              i=max(0,i-len_trim(paws)+1)
                              iinf=0
+                              remember=paws
                   case('s'); paws=adjustl(paws(2:)) ! save to file
                              if(paws.eq.'')paws='fman.txt'
-                             iostat=filewrite(paws,manual)
+                             iostat=filewrite(paws,clone_no_color)
                              i=max(0,i-1)
                              iinf=0
-                  case('!'); i=max(0,i-1)  ! execute command
-                             call execute_command_line(paws(2:))
+                             remember='f'
+                  case('.','x'); i=max(0,i-1)  ! execute command
+                             if(paws.eq.'x')then
+                                cmdmode=.not.cmdmode
+                             elseif(paws(2:).ne.'')then
+                                call execute_command_line(paws(2:))
+                             endif
                              iinf=0
+                             remember='f'
                              cycle ANOTHER
-                  case('g','t'); ! top
+                  case('!',':'); i=max(0,i-1)  ! comment
+                             iinf=0
+                             remember='f'
+                             cycle ANOTHER
+                  case('g'); ! goto from top
                              paws=paws(2:)
                              if(paws.eq.'')then
                                 i=0
@@ -58779,47 +58812,74 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                                 call go_to(1)
                              endif
                              iinf=0
-                  case('G'); i=size(manual)         ! bottom
+                             remember='f'
+                  case('G'); i=size(manual) ! goto from bottom
                              paws=paws(2:)
                              if(paws.eq.'')then
-                                i=max(0,i-1)
+                                i=max(0,i-1*lines+1) ! back
                              else
                                 call go_to(-1)
                              endif
                              iinf=0
+                             remember='b'
                   case('#'); number=.not.number
                              i=max(0,i-1*lines-1)
                              iinf=0
+                             remember='f'
                   case('i'); ignorecase=.not.ignorecase
                              i=max(0,i-1*lines-1)
                              iinf=0
+                             remember='f'
                   case('q','Q'); exit INFINITE      ! quit
-                  case('0':'9'); iinf=0; call go_to(1)
+                  case('0':'9')
+                             iinf=0;
+                             call go_to(1)
+                             remember='f'
                   case('f')
-                     iinf=0
+                             i=i+(len_trim(paws)-1)*lines ! forward number of characters
+                             iinf=0
+                             remember='f'
                   case(' ')
+                             if(paws(2:).ne.' ')then
+                                call execute_command_line(paws(2:))
+                             endif
+                             iinf=0
+                             remember='f'
 !+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                  case('S'); paws=adjustl(paws(2:)) ! save to file with color sequences if present
+                             if(paws.eq.'')paws='fman.txt'
+                             iostat=filewrite(paws,manual)
+                             i=max(0,i-1)
+                             iinf=0
+                             remember='f'
                   case('D'); i=0                       ! developer: toggle demo mode
                              demo=.not.demo
                              call load_manual()
+                             if(color)manual=crayons(manual)
                              iinf=0
+                             remember='f'
                   case('P'); i=i-1                     ! developer: toggle prefix mode
                              i=max(0,i-1*lines+2)
                              prefix=.not.prefix
                              call load_manual()
+                             if(color)manual=crayons(manual)
                              iinf=0
-                  case('C'); i=i-1                      ! developer: display or set colors
+                             remember='f'
+                  case('c','C'); i=i-1                      ! developer: display or set colors
                              i=max(0,i-1*lines+2)
                              iinf=0
                              if(adjustl(paws(2:)).eq.'')then ! toggle color mode
                                 color=.not.color
                                 call load_manual()
+                                if(color)manual=crayons(manual)
                                 i=0
+                                remember='f'
                              elseif(adjustl(paws(2:)).eq.'?')then ! show colors
                                 write(stdout,nml=fman_colors,iostat=iostat,iomsg=iomsg,delim='quote')
                                 flush(stdout,iostat=iostat)
                                 write(stdout,gen,advance='no')'[',i,']Continue...'
                                 read(stdin,'(a)')paws
+                                remember='f'
                              else  ! change colors
                                 line='&FMAN_COLORS '//paws(2:)//' /'
                                 read(line,nml=fman_colors,iostat=iostat,iomsg=iomsg)
@@ -58828,64 +58888,86 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                                    write(stdout,*)'<ERROR> INPUT="'//trim(line)
                                 else
                                    call load_manual()
+                                   if(color)manual=crayons(manual)
                                    i=0
                                 endif
-                             endif
-                  case('T')
-                             i=0  ! developer: load a topic
-                             if(paws(2:).eq.'')paws(2:)='toc'
-                             if(paws(2:).ne.'')then
-                                topics=[adjustl(paws(2:))]
-                                call load_manual()
+                                remember='f'
                              endif
                   case ('H')
                      i=0
                      topics=['help_text']
                      call load_manual()
+                     if(color)manual=crayons(manual)
                      iinf=0
-                  case ('V')
+                     remember='f'
+                  case ('V') ! display version text
                      write(stdout,'(a)')(trim(version_text(m)),m=1,size(version_text))
                      flush(stdout,iostat=iostat)
                      write(stdout,gen,advance='no')'[',i,']Continue...'
                      read(stdin,'(a)')paws
                      i=max(0,i-2*lines+2) ! back
+                     remember='f'
 !+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                  case default
-                     ! '123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 '
-                     write(stdout,'(a)')[character(len=80) :: &
-                     & ' +------------+-----+----------------------+------+---------------------------+ ', &
-                     & ' |POSITIONING:| b   | back one page        | f    | forward one page(default) | ', &
-                     & ' |            | u   | up 1/2 page          | d    | down 1/2 page             | ', &
-                     & ' |            | e   | up 1 line, eeeeee... | y    | down 1 line, yyyyyy...    | ', &
-                     & ' |            | t   | top                  | NNN  | go to Nth line            | ', &
-                     & ' +------------+-----+----------------------+------+---------------------------+ ', &
-                     & ' |SEARCH:     | /RE | search for expression| ?RE  | backward search           | ', &
-                     & ' |            | n   | repeat last search   | N    | repeat last search upward | ', &
-                     & ' +------------+-----+----------------------+------+---------------------------+ ', &
-                     & ' |SYSTEM;     | s F | save to filename     | !cmd | execute system_command    | ', &
-                     & ' +------------+-----+----------------------+------+---------------------------+ ', &
-                     & ' |OPTIONS:    | #   | toggle line numbers  | lNNN | change lines per page     | ', &
-                     & ' |            | i   | toggle search by case|      |                           | ', &
-                     & ' +------------+-----+----------------------+------+---------------------------+ ', &
-                     & ' |GENERAL:    | q   | quit                 | r    | refresh                   | ', &
-                     & ' |            | Tstr| load specified topic |      |                           | ', &
-                     & ' +------------+-----+----------------------+------+---------------------------+ ', &
-                     & '                                                                ']
-                     if(paws(1:1).eq.'X')then
-                     write(stdout,'(a)')[character(len=80) :: &
-                     & ' +------------+-----+----------------------+------+---------------------------+ ', &
-                     & ' |DEVELOPER:  | C   | toggle color mode    | D    | toggle demo mode          | ', &
-                     & ' |            | Cstr| change colors        | P    | toggle prefix mode        | ', &
-                     & ' |            | C?  | show current colors  | X    | show developer help       | ', &
-                     & ' |            | H   | command help         | L    | load file                 | ', &
-                     & ' |            | V   | version help         |      |                           | ', &
-                     & ' +------------+-----+----------------------+------+---------------------------+ ', &
-                     & ' a loaded file cannot display a prefix string accept for the filename currently.']
+                  case('t','T')
+                     i=0  ! developer: load a topic
+                     if(paws.eq.'T')paws(2:)='toc'
+                        topics=[adjustl(paws(2:))]
+                     if(paws.eq.'t')then
+                        call shorttopics()
+                        if(color)manual=crayons(manual)
+                        topics=['']
+                     else
+                        topics=[adjustl(paws(2:))]
+                        call load_manual()
+                        if(color)manual=crayons(manual)
                      endif
-                     flush(stdout,iostat=iostat)
-                     write(stdout,gen,advance='no')'[',i,']Continue...'
-                     read(stdin,'(a)')paws
-                     i=max(0,i-2*lines+2) ! back
+                     remember='f'
+                  case default
+                     if(cmdmode.and.paws.ne.'h')then
+                        call execute_command_line(paws)
+                     else
+                        ! '123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 '
+                        write(stdout,'(a)')[character(len=80) :: &
+                        & ' +------------+-----+----------------------+------+---------------------------+ ', &
+                        & ' |POSITIONING:| b   | back one page        | f    | forward one page(default) | ', &
+                        & ' |            | u   | up 1/2 page          | d    | down 1/2 page             | ', &
+                        & ' |            | e   | up 1 line, eeeeee... | y    | down 1 line, yyyyyy...    | ', &
+                        & ' |            | gNNN| goto Nth line        | NNN  | go to Nth line            | ', &
+                        & ' +------------+-----+----------------------+------+---------------------------+ ', &
+                        & ' |SEARCH:     | /RE | search for expression| ?RE  | backward search           | ', &
+                        & ' |            | n   | repeat last search   | N    | repeat last search upward | ', &
+                        & ' +------------+-----+----------------------+------+---------------------------+ ', &
+                        & ' |SYSTEM:     | s F | save to filename     | xcmd | execute system_command    | ', &
+                        & ' +------------+-----+----------------------+------+---------------------------+ ', &
+                        & ' |OPTIONS:    | #   | toggle line numbers  | lNNN | change lines per page     | ', &
+                        & ' |            | i   | toggle search by case| c    | toggle color mode         | ', &
+                        & ' +------------+-----+----------------------+------+---------------------------+ ', &
+                        & ' |GENERAL:    | q   | quit                 | r    | refresh                   | ', &
+                        & ' |            | h   | display help         | T    | reload Table Of Contents  | ', &
+                        & ' |            | tstr| load specified topic |      |                           | ', &
+                        & ' +------------+-----+----------------------+------+---------------------------+ ', &
+                        & ' | An empty string repeats the last positioning or toggle command. So if you  | ', &
+                        & ' | searched for a string or did an "e" or "y" and then just hit return the    | ', &
+                        & ' | previous command is repeated until a non-blank command like "r" is entered.| ', &
+                        & ' +----------------------------------------------------------------------------+ ', &
+                        & '                                                                ']
+                        if(paws(1:1).eq.'X')then
+                        write(stdout,'(a)')[character(len=80) :: &
+                        & ' +------------+-----+----------------------+------+---------------------------+ ', &
+                        & ' |DEVELOPER:  | C   | toggle color mode    | D    | toggle demo mode          | ', &
+                        & ' |            | Cstr| change colors        | P    | toggle prefix mode        | ', &
+                        & ' |            | C?  | show current colors  | X    | show developer help       | ', &
+                        & ' |            | H   | command help         | L    | load file                 | ', &
+                        & ' |            | V   | version information  |      |                           | ', &
+                        & ' +------------+-----+----------------------+------+---------------------------+ ', &
+                        & ' a loaded file cannot display a prefix string accept for the filename currently.']
+                        endif
+                        flush(stdout,iostat=iostat)
+                        write(stdout,gen,advance='no')'[',i,']Continue...'
+                        read(stdin,'(a)')paws
+                        i=max(0,i-2*lines+2) ! back
+                        remember='f'
+                     endif
                   end select
 
                   ilines=0
@@ -58909,16 +58991,21 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
    endif
 contains
 subroutine load_manual()
+! use topics list to load the manual variable
 integer :: i
    manual=[character(len=0) ::]
+   if(size(topics).eq.1)then
+      if(topics(1).eq.'')then
+         call shorttopics()
+         return
+      endif
+   endif
    do i=1, size(topics)
       if(topics(i).eq.'help_text')then
          section = help_text
       else
          section = help_intrinsics(topics(i),prefix=prefix)
       endif
-      if(color)section=crayons(section)
-
       ! extract demo program if found (has to follow specific format)
       if(demo)then
          call find_demo()
@@ -58928,8 +59015,27 @@ integer :: i
       endif
 
       manual = [character(len=max(len(manual),len(section))) :: manual,section,'']
+      clone_no_color=manual
    enddo
 end subroutine load_manual
+subroutine shorttopics()
+! get list of topics, write 3 per line onto an internal character page
+integer :: m
+   doc = help_intrinsics('',topic=.true.)
+   if(allocated(manual))deallocate(manual)
+   allocate(manual((size(doc)+3)/3))
+   manual(:)=''
+   write(manual,'(3(g0))') ( [character(len=80/3) :: doc(m)], m=1, size(doc) )
+   manual=pack(manual,manual.ne.'')
+   manual=[character(len=len(manual)) :: manual, &
+   '', &
+   'Note: ', &
+   't manual # load entire set of available topics', &
+   't toc    # go to full Table of Contents', &
+   't NAME   # go to one of the listed topics', &
+   ' ']
+   clone_no_color=manual
+end subroutine shorttopics
 
 subroutine go_to(direction)
 integer,intent(in) :: direction
@@ -59185,8 +59291,8 @@ help_text=[ CHARACTER(LEN=128) :: &
 '   # Interactive mode                                                           ',&
 '   export LINES # in bash(1) sense terminal size                                ',&
 '   fman --color # bring up Table of Contents                                    ',&
-'   T cos        # load description of intrinsic "cos"                           ',&
-'   T verify     # load description of intrinsic "verify"                        ',&
+'   t cos        # load description of intrinsic "cos"                           ',&
+'   t verify     # load description of intrinsic "verify"                        ',&
 '   T            # reload TOC (Table of Contents)                                ',&
 '   /trig        # move forward to a line with "trig" in it                      ',&
 '   #            # toggle on line numbers                                        ',&
@@ -59205,4 +59311,4 @@ end subroutine setup
 
 end program fman
 ! kludge1: older versions of gfortran do not handle character arrays with both line and size allocatable
-
+! always make non-color and color and toggle between the two
