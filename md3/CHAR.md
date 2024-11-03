@@ -2,7 +2,8 @@
 
 ### **Name**
 
-**char**(3) - \[CHARACTER\] Generate a character from a code value
+**char**(3) - \[CHARACTER:CONVERSION\] Generate a character from a
+code value
 
 ### **Synopsis**
 ```fortran

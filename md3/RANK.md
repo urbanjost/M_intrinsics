@@ -26,7 +26,7 @@
 
 ### **Options**
 
-- **a** is the data object to query the dimensionality of. The rank returned
+- **a** : is the data object to query the dimensionality of. The rank returned
   may be from 0 to 16.
 
   The argument **a** may be any data object type, including an assumed-rank

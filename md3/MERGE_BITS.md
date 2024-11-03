@@ -46,13 +46,16 @@ so the BOZ values must be in the range of the type of the result.
 ### **Options**
 
 - **i**
-  : value to select bits from when the associated bit in the mask is **1**.
+  : value to select bits from when the associated bit in the mask
+    is **1**.
 
 - **j**
-  : value to select bits from when the associated bit in the mask is **0**.
+  : value to select bits from when the associated bit in the mask
+    is **0**.
 
 - **mask**
-  : a value whose bits are used as a mask to select bits from **i** and **j**
+  : a value whose bits are used as a mask to select bits from **i**
+    and **j**
 
 ### **Result**
 

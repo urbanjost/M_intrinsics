@@ -31,6 +31,7 @@ WRITE() and PRINT() when each statement completes:
    end
 ```
 produces:
+```text
     x=11
 
     y=22

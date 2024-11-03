@@ -28,14 +28,15 @@
 
 - **x**
   : The value to compute the arctangent of.
-  : If the type is _real_, the value must satisfy |**x**| <= 1.
+    If the type is _real_, the value must satisfy |**x**| <= 1.
 
 ### **Result**
 
 The return value is of the same type and kind as **x**.
 The result has a value equal to a processor-dependent approximation to
-the arc cosine of X. It is expressed in degrees and lies in the range 0 <=
-ACOSD (X) <= 180.
+the arc cosine of X. It is expressed in degrees and lies in the range
+
+    0 <= ACOSD (X) <= 180
 
 ### **Examples**
 

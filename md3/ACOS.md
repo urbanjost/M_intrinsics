@@ -27,7 +27,7 @@
 
 - **x**
   : The value to compute the arctangent of.
-  : If the type is _real_, the value must satisfy |**x**| <= 1.
+    If the type is _real_, the value must satisfy |**x**| <= 1.
 
 ### **Result**
 

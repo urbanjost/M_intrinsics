@@ -44,7 +44,7 @@
   : **dim** indicates the direction through the elements of **mask**
   to group elements for testing.
   : **dim** has a value that lies between one and the rank of **mask**.
-  : The corresponding actual argument shall not be an optional dummy
+    The corresponding actual argument shall not be an optional dummy
   argument.
   : If **dim** is not present all elements are tested and a single
   scalar value is returned.

@@ -67,8 +67,9 @@ Syntax:
    selected block will use those values. It is generally a bad idea to
    use functions changing the values, but what would you expect this
    to produce?
-```fortran
+
    Calling a function with side-effects on **i**;
+```fortran
         program change
         i=1
         if(increment(i).gt.10)then

@@ -1,5 +1,5 @@
          program demo_where
-         !  Example of **where**, ELSE **where**, END **where**
+         !  Example of WHERE, ELSE WHERE, END WHERE
          integer,parameter :: nd=10, ndh=nd/2, nduh=nd-ndh-1
          integer :: j
          real, dimension(nd):: a=[ (2*j,j=1,nd) ]

@@ -52,7 +52,7 @@
 ### **Options**
 
 - **count**
-  If there is no clock, the returned value for **count** is the negative
+  : If there is no clock, the returned value for **count** is the negative
   value **-huge(count)**.
 
   Otherwise, the **clock** value is incremented by one for each clock

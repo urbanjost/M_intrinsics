@@ -390,14 +390,15 @@ FORTRAN 77. KIND argument added Fortran 2003
 
 - **x**
   : The value to compute the arctangent of.
-  : If the type is _real_, the value must satisfy |**x**| <= 1.
+    If the type is _real_, the value must satisfy |**x**| <= 1.
 
 ### **Result**
 
 The return value is of the same type and kind as **x**.
 The result has a value equal to a processor-dependent approximation to
-the arc cosine of X. It is expressed in degrees and lies in the range 0 <=
-ACOSD (X) <= 180.
+the arc cosine of X. It is expressed in degrees and lies in the range
+
+    0 <= ACOSD (X) <= 180
 
 ### **Examples**
 
@@ -473,7 +474,7 @@ Inverse function: [**cosd**(3)](cosd)
 
 - **x**
   : The value to compute the hyperbolic cosine of. A real value should
-  be \>= 1 or the result with be a Nan.
+    be \>= 1 or the result with be a Nan.
 
 ### **Result**
 
@@ -544,7 +545,7 @@ Inverse function: [**cosh**(3)](#cosh)
 
 - **x**
   : The value to compute the arctangent of.
-  : If the type is _real_, the value must satisfy |**x**| <= 1.
+    If the type is _real_, the value must satisfy |**x**| <= 1.
 
 ### **Result**
 
@@ -641,7 +642,7 @@ and lies in the range
 
 - **x**
   : The value to compute the circular arctangent of.
-  : The value must satisfy |**x**| <= 1.
+    The value must satisfy |**x**| <= 1.
 
 ### **Result**
 
@@ -936,37 +937,46 @@ program demo_aimag
 use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
 character(len=*),parameter :: g='(*(1x,g0))'
+integer              :: i
 complex              :: z4
+complex              :: arr(3)
 complex(kind=real64) :: z8
-   ! basics
+
+    print g, 'basics:'
     z4 = cmplx(1.e0, 2.e0)
     print *, 'value=',z4
     print g, 'imaginary part=',aimag(z4),'or', z4%im
 
-    ! other kinds other than the default may be supported
+    print g, 'kinds other than the default may be supported'
     z8 = cmplx(3.e0_real64, 4.e0_real64,kind=real64)
     print *, 'value=',z8
     print g, 'imaginary part=',aimag(z8),'or', z8%im
 
-    ! an elemental function can be passed an array
-    print *
-    print *, [z4,z4/2.0,z4+z4,z4**3]
-    print *
-    print *, aimag([z4,z4/2.0,z4+z4,z4**3])
+    print g, 'an elemental function can be passed an array'
+    print g,'given a complex array:'
+    arr=[z4,z4/2.0,z4+z4]
+    print *, (arr(i),new_line('a'),i=1,size(arr))
+    print g,'the imaginary component is:'
+    print g, aimag( arr )
 
 end program demo_aimag
 ```
 Results:
 ```text
-  > value= (1.00000000,2.00000000)
-  > imaginary part= 2.00000000 or 2.00000000
-  > value= (3.0000000000000000,4.0000000000000000)
-  > imaginary part= 4.0000000000000000 or 4.0000000000000000
-  >
-  > (1.00000000,2.00000000) (0.500000000,1.00000000) (2.00000000,4.00000000)
-  > (-11.0000000,-2.00000000)
-  >
-  >  2.00000000       1.00000000       4.00000000      -2.00000000
+ >  basics:
+ >  value=             (1.00000000,2.00000000)
+ >  imaginary part= 2.00000000 or 2.00000000
+ >  kinds other than the default may be supported
+ >  value=               (3.0000000000000000,4.0000000000000000)
+ >  imaginary part= 4.0000000000000000 or 4.0000000000000000
+ >  an elemental function can be passed an array
+ >  given a complex array:
+ >              (1.00000000,2.00000000)
+ >             (0.500000000,1.00000000)
+ >              (2.00000000,4.00000000)
+ >
+ >  the imaginary component is:
+ >  2.00000000 1.00000000 4.00000000
 ```
 ### **Standard**
 
@@ -1160,7 +1170,7 @@ FORTRAN 77
   : **dim** indicates the direction through the elements of **mask**
   to group elements for testing.
   : **dim** has a value that lies between one and the rank of **mask**.
-  : The corresponding actual argument shall not be an optional dummy
+    The corresponding actual argument shall not be an optional dummy
   argument.
   : If **dim** is not present all elements are tested and a single
   scalar value is returned.
@@ -1646,9 +1656,9 @@ Example: **asind(1.0)** has the value 90.0 (approximately).
 
 - **x**
   : The value to compute the arc sine of
-  : The type shall be _real_ and a magnitude that is less than or
-  : equal to one |X| <= 1.
-  : It is expressed in degrees and lies in the range 90 <= asind(x) <= 90.
+    The type shall be _real_ and a magnitude that is less than or
+    equal to one |X| <= 1.
+    It is expressed in degrees and lies in the range 90 <= asind(x) <= 90.
 
 ### **Result**
 
@@ -1843,8 +1853,8 @@ the hypotenuse and the opposite side of a right triangle are known.
 
 - **x**
   : The value to compute the arcsine of
-  : The type shall be either _real_ and a magnitude that is less than or
-  equal to one; or be _complex_.
+    The type shall be either _real_ and a magnitude that is less than or
+    equal to one; or be _complex_.
 
 ### **Result**
 
@@ -1962,7 +1972,7 @@ Example: ASINPI(1:0) has the value 0:5 (approximately).
 
 - **x**
   : The value to compute the arcsine of; where |X| <= 1.
-  : The type shall be _real_
+    The type shall be _real_
 
 ### **Result**
 
@@ -5574,7 +5584,8 @@ Fortran 2003
 
 ### **Name**
 
-**char**(3) - \[CHARACTER\] Generate a character from a code value
+**char**(3) - \[CHARACTER:CONVERSION\] Generate a character from a
+code value
 
 ### **Synopsis**
 ```fortran
@@ -6309,7 +6320,7 @@ None
 
 ### **Result**
 
-  : The return value is of type default _integer_. It is the number of
+  The return value is of type default _integer_. It is the number of
   arguments passed on the command line when the program was invoked.
 
   If there are no command arguments available or if the processor does
@@ -8010,19 +8021,20 @@ Sample program:
 ```fortran
 program demo_digits
 implicit none
-integer :: i = 12345
-real :: x = 3.143
-doubleprecision :: y = 2.33d0
-   print *,'default integer:', digits(i)
-   print *,'default real:   ', digits(x)
-   print *,'default doubleprecision:', digits(y)
+character(len=*),parameter :: all='(*(g0:,1x))'
+integer                    :: i = 12345
+real                       :: x = 3.143
+doubleprecision            :: y = 2.33d0
+   print all, 'default integer:        ', digits(i)
+   print all, 'default real:           ', digits(x)
+   print all, 'default doubleprecision:', digits(y)
 end program demo_digits
 ```
 Results:
 ```text
- >  default integer:          31
- >  default real:             24
- >  default doubleprecision:          53
+ > default integer:         31
+ > default real:            24
+ > default doubleprecision: 53
 ```
 ### **Standard**
 
@@ -11150,7 +11162,7 @@ Fortran 2008
 
 - **c**
   : A character to determine the ASCII code of.
-  : A common extension is to allow strings but all but the first character
+    A common extension is to allow strings but all but the first character
   is then ignored.
 
 - **kind**
@@ -12515,7 +12527,8 @@ of **array** along dimension **dim** if the corresponding element in
 - **array**
   : an array of _integer_ values
 
-- **dim** a value from 1 to the rank of **array**.
+- **dim**
+  : a value from 1 to the rank of **array**.
 
 - **mask**
   : a _logical_ mask either a scalar or an array of the same shape
@@ -12530,21 +12543,24 @@ is returned. Otherwise, an array of rank **n-1**, where **n** equals the
 rank of **array**, and a shape similar to that of **array** with dimension **dim**
 dropped is returned.
 
-  Case (i):    The result of IPARITY (ARRAY) has a value equal to the
-               bitwise exclusive OR of all the elements of ARRAY. If
-               ARRAY has size zero the result has the value zero.
+  Case (i)
+  : The result of IPARITY (ARRAY) has a value equal to the
+    bitwise exclusive OR of all the elements of ARRAY. If
+    ARRAY has size zero the result has the value zero.
 
-  Case (ii):   The result of IPARITY (ARRAY, MASK=MASK) has a value
-               equal to that of
+  Case (ii)
+  : The result of IPARITY (ARRAY, MASK=MASK) has a value
+    equal to that of
 ```fortran
-               IPARITY (PACK (ARRAY, MASK)).
+       IPARITY (PACK (ARRAY, MASK)).
 ```
-  Case (iii):  The result of IPARITY (ARRAY, DIM=DIM [, MASK=MASK])
-               has a value equal to that of IPARITY (ARRAY [, MASK=MASK])
-               if ARRAY has rank one.
+  Case (iii)
+  : The result of IPARITY (ARRAY, DIM=DIM [, MASK=MASK])
+    has a value equal to that of IPARITY (ARRAY [, MASK=MASK])
+    if ARRAY has rank one.
 
-               Otherwise, an array of values reduced along the dimension
-               **dim** is returned.
+    Otherwise, an array of values reduced along the dimension
+    DIM is returned.
 
 ### **Examples**
 
@@ -12986,12 +13002,16 @@ Sample program:
 ```fortran
 program demo_iostat
 implicit none
-real               :: value
+integer,parameter  :: wp=kind(0.0d0)
+real(kind=wp)      :: value
 integer            :: ios
+integer            :: lun
 character(len=256) :: message
+   ! make a scratch input file for demonstration purposes
+   call makefile(lun)
    write(*,*)'Begin entering numeric values, one per line'
    do
-      read(*,*,iostat=ios,iomsg=message)value
+      read(lun,*,iostat=ios,iomsg=message)value
       if(ios.eq.0)then
          write(*,*)'VALUE=',value
       elseif( is_iostat_end(ios) ) then
@@ -13002,7 +13022,44 @@ character(len=256) :: message
       endif
       !
    enddo
+contains
+subroutine makefile(lun)
+! make a scratch file just for demonstration purposes
+integer :: iostat,lun
+integer :: i
+character(len=80),parameter  :: fakefile(*)=[character(len=80) :: &
+
+'3.141592653589793238462643383279502884197169399375105820974944592307 &
+ &/ pi', &
+
+'0.577215664901532860606512090082402431042 &
+ &/ The Euler-Mascheroni constant (Gamma)', &
+
+'2.71828182845904523536028747135266249775724709369995 &
+ &/ Napier''s constant "e"&
+ & is the base of the natural logarithm system,&
+ & named in honor of Euler ', &
+
+'1.6180339887498948482045868 &
+ &/ Golden_Ratio', &
+
+'1 / unity']
+
+   open(newunit=lun,status='scratch')
+   write(lun,'(a)')(trim(fakefile(i)),i=1,size(fakefile))
+   rewind(lun)
+end subroutine makefile
 end program demo_iostat
+```
+Results:
+```text
+STOP end of file. Goodbye!
+ >  Begin entering numeric values, one per line
+ >  VALUE=   3.1415926535897931
+ >  VALUE=  0.57721566490153287
+ >  VALUE=   2.7182818284590451
+ >  VALUE=   1.6180339887498949
+ >  VALUE=   1.0000000000000000
 ```
 ### **Standard**
 
@@ -13472,13 +13529,13 @@ end program demo_leadz
 ```
 Results:
 ```text
- > LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111101101010 AKA -150
- > LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111110011100 AKA -100
- > LEADING ZERO BITS=  0 OF VALUE 11111111111111111111111111001110 AKA -50
- > LEADING ZERO BITS= 32 OF VALUE 00000000000000000000000000000000 AKA 0
- > LEADING ZERO BITS= 26 OF VALUE 00000000000000000000000000110010 AKA 50
- > LEADING ZERO BITS= 25 OF VALUE 00000000000000000000000001100100 AKA 100
- > LEADING ZERO BITS= 24 OF VALUE 00000000000000000000000010010110 AKA 150
+ > LEADING ZERO BITS= 0 OF VALUE 11111111111111111111111101101010 AKA -150
+ > LEADING ZERO BITS= 0 OF VALUE 11111111111111111111111110011100 AKA -100
+ > LEADING ZERO BITS= 0 OF VALUE 11111111111111111111111111001110 AKA -50
+ > LEADING ZERO BITS=32 OF VALUE 00000000000000000000000000000000 AKA 0
+ > LEADING ZERO BITS=26 OF VALUE 00000000000000000000000000110010 AKA 50
+ > LEADING ZERO BITS=25 OF VALUE 00000000000000000000000001100100 AKA 100
+ > LEADING ZERO BITS=24 OF VALUE 00000000000000000000000010010110 AKA 150
 ```
 ### **Standard**
 
@@ -14480,7 +14537,6 @@ is not given.
 
 Sample program:
 ```fortran
-Linux
 program demo_logical
 ! Access array containing the kind type parameter values supported by this
 ! compiler for entities of logical type
@@ -15609,13 +15665,16 @@ so the BOZ values must be in the range of the type of the result.
 ### **Options**
 
 - **i**
-  : value to select bits from when the associated bit in the mask is **1**.
+  : value to select bits from when the associated bit in the mask
+    is **1**.
 
 - **j**
-  : value to select bits from when the associated bit in the mask is **0**.
+  : value to select bits from when the associated bit in the mask
+    is **0**.
 
 - **mask**
-  : a value whose bits are used as a mask to select bits from **i** and **j**
+  : a value whose bits are used as a mask to select bits from **i**
+    and **j**
 
 ### **Result**
 
@@ -16610,7 +16669,7 @@ the elements of the array.
   : If **stat** is present and execution is successful, it is assigned the
     value zero.
 
-  : If an error condition occurs,
+    Otherwise, if an error condition occurs:
 
     o if **stat** is absent, error termination is initiated;
     o otherwise, if **from** is a coarray and the current team contains a
@@ -17020,6 +17079,7 @@ WRITE() and PRINT() when each statement completes:
    end
 ```
 produces:
+```text
     x=11
 
     y=22
@@ -17364,18 +17424,20 @@ FORTRAN 77 , with KIND argument - Fortran 90
   **array**, and a shape similar to that of **array** with dimension DIM
   dropped is returned.
 
-      Case (i):     The result of NORM2 (X) has a value equal to a
-                    processor-dependent approximation to the generalized
-                    L norm of X, which is the square root of the sum of
-                    the squares of the elements of X. If X has size zero,
-                    the result has the value zero.
+  Case (i)
+  : The result of NORM2 (X) has a value equal to a
+    processor-dependent approximation to the generalized
+    L norm of X, which is the square root of the sum of
+    the squares of the elements of X. If X has size zero,
+    the result has the value zero.
 
-      Case (ii):    The result of NORM2 (X, DIM=DIM) has a value equal
-                    to that of NORM2 (X) if X has rank one. Otherwise,
-                    the resulting array is reduced in rank with dimension
-                    **dim** removed, and each remaining elment is the
-                    result of NORM2(X) for the values along dimension
-                    **dim**.
+  Case (ii)
+  : The result of NORM2 (X, DIM=DIM) has a value equal
+    to that of NORM2 (X) if X has rank one. Otherwise,
+    the resulting array is reduced in rank with dimension
+    **dim** removed, and each remaining elment is the
+    result of NORM2(X) for the values along dimension
+    **dim**.
 
   It is recommended that the processor compute the result without undue
   overflow or underflow.
@@ -17791,12 +17853,12 @@ converted safely to another type
     L2=out_of_range(-128.5, 0_int8,.true.)
     end
 ```
-    L1 likely will have the value __.false.__ because the value will
-    be truncated to -128.0, which is a representable integer number on a two's
-    complement machine.
+   L1 likely will have the value __.false.__ because the value will
+   be truncated to -128.0, which is a representable integer number on a two's
+   complement machine.
 
-    L2 will be __.true.__ because it will be rounded to -129.0, which is not
-    likely to be a representable eight-bit integer.
+   L2 will be __.true.__ because it will be rounded to -129.0, which is not
+   likely to be a representable eight-bit integer.
 
 ### **Options**
    - **x**
@@ -17818,29 +17880,29 @@ converted safely to another type
 
 From the standard:
 
-   Case (i):     If **mold** is of type integer, and **round** is absent or
-                 present with the value false, the result is true
-                 if and only if the value of X is an IEEE infinity or
-                 NaN, or if the integer with largest magnitude that lies
-                 between zero and X inclusive is not representable by
-                 objects with the type and kind of **mold**.
+   Case (i):    If **mold** is of type integer, and **round** is absent or
+                present with the value false, the result is true
+                if and only if the value of X is an IEEE infinity or
+                NaN, or if the integer with largest magnitude that lies
+                between zero and X inclusive is not representable by
+                objects with the type and kind of **mold**.
 
-   Case (ii):    If **mold** is of type integer, and **round** is present with
-                 the value true, the result is true if and only
-                 if the value of X is an IEEE infinity or NaN, or
-                 if the integer nearest X, or the integer of greater
-                 magnitude if two integers are equally near to X, is not
-                 representable by objects with the type and kind of **mold**.
+   Case (ii):   If **mold** is of type integer, and **round** is present with
+                the value true, the result is true if and only
+                if the value of X is an IEEE infinity or NaN, or
+                if the integer nearest X, or the integer of greater
+                magnitude if two integers are equally near to X, is not
+                representable by objects with the type and kind of **mold**.
 
-   Case (iii):   Otherwise, the result is true if and only if the value
-                 of X is an IEEE infinity or NaN that is not
-                 supported by objects of the type and kind of **mold**,
-                 or if X is a finite number and the result of rounding
-                 the value of X (according to the IEEE rounding mode if
-                 appropriate) to the extended model for the kind of **mold**
-                 has magnitude larger than that of the largest finite
-                 number with the same sign as X that is representable
-                 by objects with the type and kind of **mold**.
+   Case (iii):  Otherwise, the result is true if and only if the value
+                of X is an IEEE infinity or NaN that is not
+                supported by objects of the type and kind of **mold**,
+                or if X is a finite number and the result of rounding
+                the value of X (according to the IEEE rounding mode if
+                appropriate) to the extended model for the kind of **mold**
+                has magnitude larger than that of the largest finite
+                number with the same sign as X that is representable
+                by objects with the type and kind of **mold**.
 
    NOTE
 
@@ -19287,7 +19349,7 @@ Fortran 95
 
 ### **Options**
 
-- **a** is the data object to query the dimensionality of. The rank returned
+- **a** : is the data object to query the dimensionality of. The rank returned
   may be from 0 to 16.
 
   The argument **a** may be any data object type, including an assumed-rank
@@ -19496,10 +19558,10 @@ complex(kind=dp) :: zd=cmplx(4.0e0_dp,5.0e0_dp,kind=dp)
 end program demo_real
 ```
 Results:
-```
+```text
  > 1.00000000       2.00000000
- > 4.0000000000000000       5.0000000000000000
- > 1.7976931348623157E+308  1.7976931348623157E+308  1.7976931348623157E+30
+ > 4.0000000000000000      5.0000000000000000
+ > 1.7976931348623157E+308 1.7976931348623157E+308 1.7976931348623157E+30
 ```
 ### **Standard**
 
@@ -23144,7 +23206,7 @@ Fortran 95
 ### **Options**
 
 - **count**
-  If there is no clock, the returned value for **count** is the negative
+  : If there is no clock, the returned value for **count** is the negative
   value **-huge(count)**.
 
   Otherwise, the **clock** value is incremented by one for each clock

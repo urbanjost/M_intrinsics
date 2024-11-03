@@ -13,27 +13,27 @@ Syntax:
     :
   END ASSOCIATE [ construct-name ]
 
-    ASSOCIATE-NAME
+   ASSOCIATE-NAME
 
-     An identifier that becomes associated with the selector in the
-     ASSOCIATE block. The "associate-name" must be unique within the
-     construct.
+   An identifier that becomes associated with the selector in the
+   ASSOCIATE block. The "associate-name" must be unique within the
+   construct.
 
-    SELECTOR
+   SELECTOR
 
-     Is an expression or variable. It becomes the associated entity.
+   Is an expression or variable. It becomes the associated entity.
 
-    CONSTRUCT-NAME
+   CONSTRUCT-NAME
 
-     If a construct-name is specified the sme name must appear at both
-     the beginning of an ASSOCIATE and at its associated END ASSOCIATE
-     statement.
+   If a construct-name is specified the sme name must appear at both
+   the beginning of an ASSOCIATE and at its associated END ASSOCIATE
+   statement.
 
-     The same construct-name must not be used for different named
-     constructs in the same scoping unit.
+   The same construct-name must not be used for different named
+   constructs in the same scoping unit.
 
-     It is permissible to branch to an end-associate-stmt only from
-     within its ASSOCIATE construct.
+   It is permissible to branch to an end-associate-stmt only from
+   within its ASSOCIATE construct.
 ```fortran
         exit ASSOCIATE
 ```

@@ -37,12 +37,12 @@ converted safely to another type
     L2=out_of_range(-128.5, 0_int8,.true.)
     end
 ```
-    L1 likely will have the value __.false.__ because the value will
-    be truncated to -128.0, which is a representable integer number on a two's
-    complement machine.
+   L1 likely will have the value __.false.__ because the value will
+   be truncated to -128.0, which is a representable integer number on a two's
+   complement machine.
 
-    L2 will be __.true.__ because it will be rounded to -129.0, which is not
-    likely to be a representable eight-bit integer.
+   L2 will be __.true.__ because it will be rounded to -129.0, which is not
+   likely to be a representable eight-bit integer.
 
 ### **Options**
    - **x**
@@ -64,29 +64,29 @@ converted safely to another type
 
 From the standard:
 
-   Case (i):     If **mold** is of type integer, and **round** is absent or
-                 present with the value false, the result is true
-                 if and only if the value of X is an IEEE infinity or
-                 NaN, or if the integer with largest magnitude that lies
-                 between zero and X inclusive is not representable by
-                 objects with the type and kind of **mold**.
+   Case (i):    If **mold** is of type integer, and **round** is absent or
+                present with the value false, the result is true
+                if and only if the value of X is an IEEE infinity or
+                NaN, or if the integer with largest magnitude that lies
+                between zero and X inclusive is not representable by
+                objects with the type and kind of **mold**.
 
-   Case (ii):    If **mold** is of type integer, and **round** is present with
-                 the value true, the result is true if and only
-                 if the value of X is an IEEE infinity or NaN, or
-                 if the integer nearest X, or the integer of greater
-                 magnitude if two integers are equally near to X, is not
-                 representable by objects with the type and kind of **mold**.
+   Case (ii):   If **mold** is of type integer, and **round** is present with
+                the value true, the result is true if and only
+                if the value of X is an IEEE infinity or NaN, or
+                if the integer nearest X, or the integer of greater
+                magnitude if two integers are equally near to X, is not
+                representable by objects with the type and kind of **mold**.
 
-   Case (iii):   Otherwise, the result is true if and only if the value
-                 of X is an IEEE infinity or NaN that is not
-                 supported by objects of the type and kind of **mold**,
-                 or if X is a finite number and the result of rounding
-                 the value of X (according to the IEEE rounding mode if
-                 appropriate) to the extended model for the kind of **mold**
-                 has magnitude larger than that of the largest finite
-                 number with the same sign as X that is representable
-                 by objects with the type and kind of **mold**.
+   Case (iii):  Otherwise, the result is true if and only if the value
+                of X is an IEEE infinity or NaN that is not
+                supported by objects of the type and kind of **mold**,
+                or if X is a finite number and the result of rounding
+                the value of X (according to the IEEE rounding mode if
+                appropriate) to the extended model for the kind of **mold**
+                has magnitude larger than that of the largest finite
+                number with the same sign as X that is representable
+                by objects with the type and kind of **mold**.
 
    NOTE
 

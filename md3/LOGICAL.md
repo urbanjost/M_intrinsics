@@ -46,7 +46,6 @@ is not given.
 
 Sample program:
 ```fortran
-Linux
 program demo_logical
 ! Access array containing the kind type parameter values supported by this
 ! compiler for entities of logical type

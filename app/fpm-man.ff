@@ -19,6 +19,7 @@ character(len=:),allocatable   :: query
 character(len=:),allocatable   :: filename
 character(len=:),allocatable   :: templine
 character(len=:),allocatable   :: last
+character(len=:),allocatable   :: editor
 real                           :: rm
 integer                        :: i, j, k, m
 integer                        :: ilines
@@ -27,6 +28,7 @@ integer                        :: iostat
 character(len=256)             :: iomsg
 character(len=:),allocatable   :: line
 integer                        :: iinf
+integer                        :: lun
 integer                        :: direction
 integer                        :: irestore
 integer                        :: search_end
@@ -50,11 +52,11 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
    remember=''
    cmdmode=.false.
    iinf=0
-   last='NAME'
+   last='^NAME$'
    call setup()
    call set_mode('auto_response_file',.true.)
    call set_mode('lastonly')
-   call set_args(' --regex:e " " --ignorecase:i F --topic_only:t F --demo:d F --color:c --query:Q " " &
+   call set_args(' --regex:e " " --ignorecase:i F --topic_only:t F --demo:d F --color:c F --query:Q " " &
    & -start:S " " --end:E "^[A-Z][A-Z_ ]*$" --filename:f " " &
    & --prefixoff:O F --lines:l '//get_env('LINES','0')//'',&
    & help_text,version_text)
@@ -132,22 +134,25 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
 
    if(lget('verbose'))then
       write(stdout,gen)attr(str('<INFO>AFTER NORMALIZING:'))
-      write(stdout,gen)attr(str('<INFO>REGEX       ',regex))
-      write(stdout,gen)attr(str('<INFO>IGNORECASE  ',ignorecase))
-      write(stdout,gen)attr(str('<INFO>TOPIC_ONLY  ',topic))
-      write(stdout,gen)attr(str('<INFO>PREFIX      ',prefix))
-      write(stdout,gen)attr(str('<INFO>DEMO        ',demo))
-      write(stdout,gen)attr(str('<INFO>TOPICS      ',str(topics)))
-      write(stdout,gen)attr(str('<INFO>START       ',start))
-      write(stdout,gen)attr(str('<INFO>END         ',end))
-      write(stdout,gen)attr(str('<INFO>LINES       ',lines))
+      write(stdout,gen)attr(str('<INFO>REGEX.......',regex))
+      write(stdout,gen)attr(str('<INFO>IGNORECASE..',ignorecase))
+      write(stdout,gen)attr(str('<INFO>TOPIC_ONLY..',topic))
+      write(stdout,gen)attr(str('<INFO>PREFIX......',prefix))
+      write(stdout,gen)attr(str('<INFO>DEMO........',demo))
+      write(stdout,gen)attr(str('<INFO>TOPICS......',str(topics)))
+      write(stdout,gen)attr(str('<INFO>START.......',start))
+      write(stdout,gen)attr(str('<INFO>END.........',end))
+      write(stdout,gen)attr(str('<INFO>LINES.......',lines))
+      write(stdout,gen)attr(str('<INFO>COLOR.......',color))
+      write(stdout,gen)attr(str('<INFO>FILENAME....',filename))
+      write(stdout,gen,advance='no')'Continue...'
+      read(stdin,'(a)',iostat=iostat)paws
    endif
    ! build text to display or search
-   if(filename.ne.'')then
-      if(color)manual=crayons(manual)
-   else
+   if(filename.eq.'')then
       call load_manual()
    endif
+   if(color)manual=crayons(manual)
 
    ! display selected text
    if(size(manual).eq.0)then
@@ -184,7 +189,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
          if(lines.gt.0)then
             if(ilines.eq.lines-1)then
                ANOTHER: do
-                  write(stdout,gen,advance='no')'[',i,']:'
+                  write(stdout,gen,advance='no')'[',i,'/',size(manual),']:'
                   read(stdin,'(a)',iostat=iostat)paws
                   if(iostat.ne.0)exit INFINITE
                   if(paws.eq.'')paws=remember
@@ -289,19 +294,24 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                               endif
                               remember='f'
                   case('l')
-                            if(paws(2:).eq.'')then
-                               !lines=get_env('LINES',lines) ! adjust for screen size change if set
-                            else
-                               read(paws(2:),'(g80.0)',iostat=iostat)rm
-                               if(iostat.eq.0)then
-                                  rm=min(real(size(manual)),rm)
-                                  m=nint(rm)
-                                  lines=max(m,0)
-                               endif
-                            endif
+                             if(i.ge.size(manual))then
+                                i=max(0,i-1*lines) ! back
+                             else
+                                i=max(0,i-2*lines+2) ! back
+                             endif
+                             if(paws(2:).eq.'')then
+                                !lines=get_env('LINES',lines) ! adjust for screen size change if set
+                             else
+                                read(paws(2:),'(g80.0)',iostat=iostat)rm
+                                if(iostat.eq.0)then
+                                   rm=min(real(size(manual)),rm)
+                                   m=nint(rm)
+                                   lines=max(m,0)
+                                endif
+                             endif
                              i=i-1
                              iinf=0
-                              remember='f'
+                             remember='f'
                   case('y','j','v'); i=max(0,i-1*lines+2) ! down one line
                              i=i+len_trim(paws)-1
                              iinf=0
@@ -310,13 +320,27 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                              i=max(0,i-len_trim(paws)+1)
                              iinf=0
                               remember=paws
-                  case('s'); paws=adjustl(paws(2:)) ! save to file
+                  case('s','w'); paws=adjustl(paws(2:)) ! save to file
                              if(paws.eq.'')paws='fman.txt'
                              iostat=filewrite(paws,clone_no_color)
                              i=max(0,i-1)
                              iinf=0
                              remember='f'
-                  case('.','x'); i=max(0,i-1)  ! execute command
+                  case('E'); i=max(0,i-1)  ! execute editor command
+                             ! vim -c 'set ft=man ts=8 nomod nolist nonu' -c 'nnoremap i <nop>'
+                             ! vim -R
+                             editor=get_env('FCEDIT', get_env('FCEDIT', get_env('VISUAL','vi')))
+                             iostat=filewrite('_scratch_',clone_no_color)
+                             call execute_command_line(editor//' '//paws(2:)//' _scratch_')
+                             lun=-1
+                             open(newunit=lun,file='_scratch_',iostat=iostat,iomsg=iomsg)
+                             if(iostat.ne.0)write(*,*)trim(iomsg)
+                             close(unit=lun,status='delete',iostat=iostat,iomsg=iomsg)
+                             if(iostat.ne.0)write(*,*)trim(iomsg)
+                             iinf=0
+                             remember='f'
+                             cycle ANOTHER
+                  case('.','x',' '); i=max(0,i-1)  ! execute command
                              if(paws.eq.'x')then
                                 cmdmode=.not.cmdmode
                              elseif(paws(2:).ne.'')then
@@ -329,8 +353,8 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                              iinf=0
                              remember='f'
                              cycle ANOTHER
-                  case('g'); ! goto from top
-                             paws=paws(2:)
+                  case('g','0':'9','+','-'); ! goto from top
+                             if(paws(1:1).eq.'g') paws=paws(2:)
                              if(paws.eq.'')then
                                 i=0
                              else
@@ -356,18 +380,8 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                              iinf=0
                              remember='f'
                   case('q','Q'); exit INFINITE      ! quit
-                  case('0':'9')
-                             iinf=0;
-                             call go_to(1)
-                             remember='f'
                   case('f')
                              i=i+(len_trim(paws)-1)*lines ! forward number of characters
-                             iinf=0
-                             remember='f'
-                  case(' ')
-                             if(paws(2:).ne.' ')then
-                                call execute_command_line(paws(2:))
-                             endif
                              iinf=0
                              remember='f'
 !+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -457,7 +471,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                         & ' |POSITIONING:| b   | back one page        | f    | forward one page(default) | ', &
                         & ' |            | u   | up 1/2 page          | d    | down 1/2 page             | ', &
                         & ' |            | e   | up 1 line, eeeeee... | y    | down 1 line, yyyyyy...    | ', &
-                        & ' |            | gNNN| goto Nth line        | NNN  | go to Nth line            | ', &
+                        & ' |            | gN  | goto Nth line        | [+-]N| [relative] moveto Nth line| ', &
                         & ' +------------+-----+----------------------+------+---------------------------+ ', &
                         & ' |SEARCH:     | /RE | search for expression| ?RE  | backward search           | ', &
                         & ' |            | n   | repeat last search   | N    | repeat last search upward | ', &
@@ -474,8 +488,8 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                         & ' | An empty string repeats the last positioning or toggle command. So if you  | ', &
                         & ' | searched for a string or did an "e" or "y" and then just hit return the    | ', &
                         & ' | previous command is repeated until a non-blank command like "r" is entered.| ', &
-                        & ' +----------------------------------------------------------------------------+ ', &
-                        & '                                                                ']
+                        & ' |                                                                            | ', &
+                        & ' +----------------------------------------------------------------------------+ ']
                         if(paws(1:1).eq.'X')then
                         write(stdout,'(a)')[character(len=80) :: &
                         & ' +------------+-----+----------------------+------+---------------------------+ ', &
@@ -489,7 +503,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                         endif
                         flush(stdout,iostat=iostat)
                         write(stdout,gen,advance='no')'[',i,']Continue...'
-                        read(stdin,'(a)')paws
+                        read(stdin,'(a)',iostat=iostat)paws
                         i=max(0,i-2*lines+2) ! back
                         remember='f'
                      endif
@@ -564,7 +578,15 @@ end subroutine shorttopics
 
 subroutine go_to(direction)
 integer,intent(in) :: direction
+integer :: plusminus
+   paws=adjustl(paws)
    read(paws,'(i80)',iostat=iostat)m
+   select case(paws(1:1))
+   case('+');m=i+m-lines+2
+   case('-');m=i+m-lines+2
+   case default
+   end select
+
    if(direction>0)then
       i=merge(m,i,iostat.eq.0)
    else
@@ -754,77 +776,78 @@ $!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 $BLOCK VARIABLE -varname help_text
 NAME
     fman(1f) - [DEVELOPER] output descriptions of Fortran intrinsics
-    (LICENSE:PD)                                                    
-                                                                    
-SYNOPSIS                                                            
+    (LICENSE:PD)
+
+SYNOPSIS
     fman NAME(s) [[-ignorecase][--regex Regular_Expression]]|[-topic_only]
-                [--color][--demo][-lines LINES_PER_AGE]                   
-                                                                          
-    fman [ --help| --version]                                             
-                                                                          
-DESCRIPTION                                                               
-   fman(1) prints descriptions of Fortran intrinsics as simple flat text. 
-                                                                          
+                [--color][--demo][-lines LINES_PER_AGE]
+
+    fman [ --help| --version]
+
+DESCRIPTION
+   fman(1) prints descriptions of Fortran intrinsics as simple flat text.
+
    The text is formatted in the txt2man(1) markdown language so one can easily
-   generate man-pages on ULS (Unix-Like Systems).                             
-                                                                              
-OPTIONS                                                                       
-  TOPIC(s)          A list of Fortran intrinsic names or the special names    
-                    "toc" and "manual" (which generate a table of contents    
-                    and the entire set of documents respectively).            
-                    The default is "toc" and to ignore case.                  
-  --regex,-e        Search all output per the provided Regular Expression.    
-                    Output is prefixed with the topic it was found in.        
-  --topic_only,-t   Only show topic names. Other switches are ignored.        
-  --ignorecase,-i   Ignore case when searching for a Regular Expression.      
+   generate man-pages on ULS (Unix-Like Systems).
+
+OPTIONS
+  TOPIC(s)          A list of Fortran intrinsic names or the special names
+                    "toc" and "manual" (which generate a table of contents
+                    and the entire set of documents respectively).
+                    The default is "toc" and to ignore case.
+  --regex,-e        Search all output per the provided Regular Expression.
+                    Output is prefixed with the topic it was found in.
+  --topic_only,-t   Only show topic names. Other switches are ignored.
+  --ignorecase,-i   Ignore case when searching for a Regular Expression.
   --demo,-d         extract first demo program found for a topic (starting with
-                    "program demo_*" and ending with "end program demo_*").    
-  --color           Use ANSI in-line escape sequences to display the text in   
-                    set colors. Does not work with all terminal emulators or   
-                    terminals. Must use the -r switch with less(1) for less(1) 
-                    to display colors.                                         
-  --lines N,-l N    pause every N lines. In page mode commands may be entered  
-                    at the prompt. Enter "h" to display available commands.    
-  --help            Display this help and exit                                 
-  --version         Output version information and exit                        
-                                                                               
-ENVIRONMENT                                                                    
-   Allows specifying the strings used by the M_attr module to select colors.   
-   FMAN_COLORS="bg='<E>',fg='<w>',prg='<c>',                             
-      head='<y></bo>',head_='</bo>',fixed='<w>',                         
-      output='<y>',output_='</bo>'"                                        
-   LINES                                                                       
+                    "program demo_*" and ending with "end program demo_*").
+  --color           Use ANSI in-line escape sequences to display the text in
+                    set colors. Does not work with all terminal emulators or
+                    terminals. Must use the -r switch with less(1) for less(1)
+                    to display colors.
+  --lines N,-l N    pause every N lines. In page mode commands may be entered
+                    at the prompt. Enter "h" to display available commands.
+  --help            Display this help and exit
+  --version         Output version information and exit
+
+ENVIRONMENT
+   Allows specifying the strings used by the M_attr module to select colors.
+   FMAN_COLORS="bg='<E>',fg='<w>',prg='<c>',
+      head='<y></bo>',head_='</bo>',fixed='<w>',
+      output='<y>',output_='</bo>'"
+   LINES
       use "export LINES" from the bash shell to use the automatically generated
-      value. Set to a numeric value it activates paging of the output.         
-EXAMPLES                                                                       
-  Sample commands                                                              
-                                                                               
-   fman tan|less            # display a description of tan(3f)                 
-   fman                     # list table of contents                           
-   fman manual>fortran.txt  # create a copy of all descriptions                
+      value. Set to a numeric value it activates paging of the output.
+EXAMPLES
+  Sample commands
+
+   fman tan|less            # display a description of tan(3f)
+   fman                     # list table of contents
+   fman manual>fortran.txt  # create a copy of all descriptions
    fman -e character        # check TOC for string. try "trigo","size","complex"
-                                                                                
-   fman --regex 'character'   # look for string in the TOC ignoring case      
-                                                                                
-   # list the topic "scan" if found and lines containing "scan" from the entire 
-   # manual, prefixing the lines with the section name, while ignoring case.    
-   fman -e scan -i manual                                                       
-                                                                                
-   fman -d verify >demo_verify.f90 # get demo program to try VERIFY(3f).        
-                                                                                
-   # change background to blue, page every 30 lines                             
-   env FMAN_COLORS="bg='<B>'" fman --color --lines 30 abs                     
-                                                                                
-   # Interactive mode                                                           
-   export LINES # in bash(1) sense terminal size                                
-   fman --color # bring up Table of Contents                                    
-   t cos        # load description of intrinsic "cos"                           
-   t verify     # load description of intrinsic "verify"                        
-   T            # reload TOC (Table of Contents)                                
-   /trig        # move forward to a line with "trig" in it                      
-   #            # toggle on line numbers                                        
-   h            # display crib sheet of commands                                
+
+   fman --regex 'character'   # look for string in the TOC ignoring case
+
+   # list the topic "scan" if found and lines containing "scan" from the entire
+   # manual, prefixing the lines with the section name, while ignoring case.
+   fman -e scan -i manual
+
+   fman -d verify >demo_verify.f90 # get demo program to try VERIFY(3f).
+
+   # change background to blue, page every 30 lines
+   env FMAN_COLORS="bg='<B>'" fman --color --lines 30 abs
+
+   # Interactive mode
+   export LINES # in bash(1) sense terminal size
+   fman --color # bring up Table of Contents
+   t cos        # load description of intrinsic "cos"
+   t verify     # load description of intrinsic "verify"
+   T            # reload TOC (Table of Contents)
+   /trig        # move forward to a line with "trig" in it
+   #            # toggle on line numbers
+   h            # display crib sheet of commands
 $BLOCK END
+
 $!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 $BLOCK VARIABLE -varname version_text
 @(#) PRODUCT:         GPF (General Purpose Fortran) utilities and examples     >
@@ -839,8 +862,10 @@ $!@(#) VERSION:         1.0.2, 2021-01-08                                       
 @(#) LICENSE:         MIT License                                              >
 $BLOCK END
 $!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
 end subroutine setup
 
 end program fman
 ! kludge1: older versions of gfortran do not handle character arrays with both line and size allocatable
 ! always make non-color and color and toggle between the two
+! a search that shows topic prefix and line number in original file

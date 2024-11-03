@@ -30,7 +30,8 @@ of **array** along dimension **dim** if the corresponding element in
 - **array**
   : an array of _integer_ values
 
-- **dim** a value from 1 to the rank of **array**.
+- **dim**
+  : a value from 1 to the rank of **array**.
 
 - **mask**
   : a _logical_ mask either a scalar or an array of the same shape
@@ -45,21 +46,24 @@ is returned. Otherwise, an array of rank **n-1**, where **n** equals the
 rank of **array**, and a shape similar to that of **array** with dimension **dim**
 dropped is returned.
 
-  Case (i):    The result of IPARITY (ARRAY) has a value equal to the
-               bitwise exclusive OR of all the elements of ARRAY. If
-               ARRAY has size zero the result has the value zero.
+  Case (i)
+  : The result of IPARITY (ARRAY) has a value equal to the
+    bitwise exclusive OR of all the elements of ARRAY. If
+    ARRAY has size zero the result has the value zero.
 
-  Case (ii):   The result of IPARITY (ARRAY, MASK=MASK) has a value
-               equal to that of
+  Case (ii)
+  : The result of IPARITY (ARRAY, MASK=MASK) has a value
+    equal to that of
 ```fortran
-               IPARITY (PACK (ARRAY, MASK)).
+       IPARITY (PACK (ARRAY, MASK)).
 ```
-  Case (iii):  The result of IPARITY (ARRAY, DIM=DIM [, MASK=MASK])
-               has a value equal to that of IPARITY (ARRAY [, MASK=MASK])
-               if ARRAY has rank one.
+  Case (iii)
+  : The result of IPARITY (ARRAY, DIM=DIM [, MASK=MASK])
+    has a value equal to that of IPARITY (ARRAY [, MASK=MASK])
+    if ARRAY has rank one.
 
-               Otherwise, an array of values reduced along the dimension
-               **dim** is returned.
+    Otherwise, an array of values reduced along the dimension
+    DIM is returned.
 
 ### **Examples**
 

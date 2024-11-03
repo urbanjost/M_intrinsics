@@ -35,7 +35,7 @@ Example: ASINPI(1:0) has the value 0:5 (approximately).
 
 - **x**
   : The value to compute the arcsine of; where |X| <= 1.
-  : The type shall be _real_
+    The type shall be _real_
 
 ### **Result**
 

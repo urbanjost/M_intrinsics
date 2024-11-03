@@ -22,7 +22,7 @@ cat <<EOF
     <summary>Source</summary>
   <xmp>
 EOF
-cat $NAME
+cat -s $NAME
 cat <<\EOF
   </xmp>
   </details>

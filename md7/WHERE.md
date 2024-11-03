@@ -155,11 +155,11 @@
    Examples of function references in masked array assignments are:
 
 ```fortran
-      where (A > 0.0)
-         A = LOG (A)           ! LOG is invoked only for positive elements.
-         A = A / SUM (LOG (A)) ! LOG is invoked for all elements
-                               ! because SUM is transformational.
-      end where
+    where (A > 0.0)
+       A = LOG (A)           ! LOG is invoked only for positive elements.
+       A = A / SUM (LOG (A)) ! LOG is invoked for all elements
+                             ! because SUM is transformational.
+    end where
 ```
 
 ### **Example**
@@ -168,7 +168,7 @@
 
 ```fortran
    program demo_where
-   !  Example of **where**, ELSE **where**, END **where**
+   !  Example of WHERE, ELSE WHERE, END WHERE
    integer,parameter :: nd=10, ndh=nd/2, nduh=nd-ndh-1
    integer :: j
    real, dimension(nd):: a=[ (2*j,j=1,nd) ]

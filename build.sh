@@ -47,7 +47,7 @@ set +x
 fpm install
 echo 'Check for long lines'
 fpm-man -lines 0 manual |grep '##'
-fpm-man -lines 0 manual |findll.sh 80
+fpm-man -lines 0 manual |findll -l 80
 echo 'Check for lines that will be accidently seen as *roff directives'
 grep '^\.' txt/*.man
 grep ' _' txt/*.man

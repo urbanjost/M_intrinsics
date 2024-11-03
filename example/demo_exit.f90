@@ -30,7 +30,7 @@
            ! INFINITE: do
            !    read(*,'(a)',iostat=iostat) line
            !    if(iostat.ne.0)exit INFINITE
-           ! enddo
+           ! enddo INFINITE
 
          ! Some argue that an infinite loop is never a good idea.
          ! A common practice is to avoid even the possibility of an

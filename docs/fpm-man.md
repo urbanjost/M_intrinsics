@@ -57,8 +57,7 @@ OPTIONS
 ****--lines** N,**-l** N**
 
 :   pause every N lines. In page mode commands may be entered at the
-    prompt. Enter "h" to display available commands. Set to zero if
-    using fman(1) in a pipe or redirection.
+    prompt. Enter "h" to display available commands.
 
 ****--help****
 
@@ -107,8 +106,8 @@ Sample commands
        # Interactive mode
        export LINES # in bash(1) sense terminal size
        fman --color # bring up Table of Contents
-       T cos        # load description of intrinsic "cos"
-       T verify     # load description of intrinsic "verify"
+       t cos        # load description of intrinsic "cos"
+       t verify     # load description of intrinsic "verify"
        T            # reload TOC (Table of Contents)
        /trig        # move forward to a line with "trig" in it
        #            # toggle on line numbers

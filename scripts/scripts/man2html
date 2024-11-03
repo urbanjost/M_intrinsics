@@ -97,10 +97,10 @@ for FILENAME in ${*:-''}
 do
    case "$FILENAME" in
    ''|' ')
-      cat |$COMMAND
+      cat -s |$COMMAND
    ;;
    *.gz)
-      zcat $FILENAME|$COMMAND
+      zcat $FILENAME|cat -s|$COMMAND
    ;;
    *)
       if [ -r "$FILENAME" ]

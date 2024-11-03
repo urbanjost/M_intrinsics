@@ -46,14 +46,12 @@
 
    Why is NAMELIST not allowed in a BLOCK unit?
    Would be handy for quick writes, like list-directed output
-
 ```fortran
     block
        namelist /nlist/ a,b,c,d
        write(*,nlist)
     endblock
 ```
-
    Input for a namelist input statement consists of
 
      1. optional blanks and namelist comments,
@@ -77,10 +75,8 @@
 ```fortran
      NAMELIST /NLIST/ A, B, C
 ```
-
    or a group may be defined by multiple statements using the same group
    name in a scoping unit:
-
 ```fortran
      NAMELIST /NLIST/ A, B
      NAMELIST /NLIST/ C
@@ -90,7 +86,6 @@
      WRITE(*,NLIST)
      WRITE(*,NML=NLIST)
 ```
-
 ```fortran
       program sample_namelist
       implicit none
@@ -104,20 +99,17 @@
          write(*,nlist)
       end program sample_namelist
 ```
-
    Results:
-
 ```code
-      &NLIST
-       L=T,
-       C="XXXXXXXXXX",
-       R=  12.3456001    ,
-       I=        789,
-       X=(  12345.6787    ,  9876.54297    ),
-       D=  123456789.12345679     ,
-       /
+   > &NLIST
+   >  L=T,
+   >  C="XXXXXXXXXX",
+   >  R=  12.3456001    ,
+   >  I=        789,
+   >  X=(  12345.6787    ,  9876.54297    ),
+   >  D=  123456789.12345679     ,
+   >  /
 ```
-
    Longer example:
 
 ```fortran
@@ -160,49 +152,46 @@
 
       end program demo_namelist
 ```
-
   Results:
-
 ```code
-    initial nlist
-   &NLIST
-    L=T,
-    C="XXXXXXXXXX",
-    R=  12.3456001    ,
-    I=        789,
-    X=(12345.6787,9876.54297),
-    D=  123456789.12345679     ,
-    A=          1,          2,          3,          4,          5,
-
-    DOT%X=          0,
-    DOT%Y=          0,
-    DOT%COLOR="red       ",
-    /
-    change values and print nlist again
-    read back values. Can have multiple sets in a file
-   &NLIST
-    L=T,
-    C="XXXXXXXXXX",
-    R=  12.3456001    ,
-    I=        789,
-    X=(12345.6787,9876.54297),
-    D=  123456789.12345679     ,
-    A=         10,         20,         30,         40,         50,
-
-    DOT%X=          0,
-    DOT%Y=          0,
-    DOT%COLOR="orange    ",
-    /
+   >  initial nlist
+   > &NLIST
+   >  L=T,
+   >  C="XXXXXXXXXX",
+   >  R=  12.3456001    ,
+   >  I=        789,
+   >  X=(12345.6787,9876.54297),
+   >  D=  123456789.12345679     ,
+   >  A=          1,          2,          3,          4,          5,
+   > 
+   >  DOT%X=          0,
+   >  DOT%Y=          0,
+   >  DOT%COLOR="red       ",
+   >  /
+   >  change values and print nlist again
+   > read back values. Can have multiple sets in a file
+   > &NLIST
+   >  L=T,
+   >  C="XXXXXXXXXX",
+   >  R=  12.3456001    ,
+   >  I=        789,
+   >  X=(12345.6787,9876.54297),
+   >  D=  123456789.12345679     ,
+   >  A=         10,         20,         30,         40,         50,
+   > 
+   >  DOT%X=          0,
+   >  DOT%Y=          0,
+   >  DOT%COLOR="orange    ",
+   >  /
 
    o Scanning on input till group name is found
    o reading partial lists
    o string quoting
    o NAMELIST in internal read and write. See
-
+```
+```text
     ./arguments/namelist
 ```
-
-OTHER
 ### **Other**
 
   C915    (R913) A namelist-group-name shall be the name of a namelist group.
@@ -347,10 +336,10 @@ OTHER
 
    10.11.3.4    Namelist input values
 
-1. Each value is either a null value (10.11.3.5), c, r *c, or r *, where c is a literal constant, optionally signed if integer
+1. Each value is either a null value (10.11.3.5), c, r\*c, or r\*, where c is a literal constant, optionally signed if integer
    or real, and r is an unsigned, nonzero, integer literal constant. A kind type parameter shall not be specified for c
    or r. The constant c is interpreted as though it had the same kind type parameter as the corresponding effective
-   item. The r *c form is equivalent to r successive appearances of the constant c, and the r * form is equivalent to
+   item. The r\*c form is equivalent to r successive appearances of the constant c, and the r * form is equivalent to
    r successive null values. Neither of these forms may contain embedded blanks, except where permitted within
    the constant c.
 
@@ -451,30 +440,25 @@ OTHER
    NAMELIST / TODAY / G, I, P, Z, X
    READ (*, NML = TODAY)
 ```
-
    The input data records are:
-
 ```code
    &TODAY I = 12345, X(1) = 12345, X(3:4) = 2*1.5,
     I=6, ! This is a comment.
     P = ''ISN'T_BOB'S'', Z = (123,0)/
 ```
-
         The results stored are:
-
 ```code
-                Variable                         Value
-                I                                6
-                X (1)                            12345.0
-                X (2)                            unchanged
-                X (3)                            1.5
-                X (4)                            1.5
-                X (5)   X (8)                    unchanged
-                P                                ISN'T BOB'S
-                Z                                (123.0,0.0)
-                G                                unchanged
+             Variable                         Value
+               I                                6
+               X (1)                            12345.0
+               X (2)                            unchanged
+               X (3)                            1.5
+               X (4)                            1.5
+               X (5)   X (8)                    unchanged
+               P                                ISN'T BOB'S
+               Z                                (123.0,0.0)
+               G                                unchanged
 ```
-
   10.11.4      Namelist output
   10.11.4.1    Form of namelist output
 
@@ -503,7 +487,7 @@ OTHER
 10.11.4.3    Namelist output records
 
 1. If two or more successive values for the same namelist group item in an output record produced have identical
-   values, the processor has the option of producing a repeated constant of the form r *c instead of the sequence of
+   values, the processor has the option of producing a repeated constant of the form r \*c instead of the sequence of
    identical values.
 
 2. The name of each namelist group object list item is placed in the output record followed by an equals and a list

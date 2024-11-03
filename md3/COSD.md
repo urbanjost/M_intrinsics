@@ -37,9 +37,10 @@
 
   The return value is an approximation of the cosine of **x**.
 
-  The return value is in degrees and lies in
-  the range **-1 \<= cosd(x) \<= 1** .
-
+  The return value is in degrees and lies in the range
+```code
+  -1 \<= cosd(x) \<= 1
+```
 ### **Examples**
 
 cosd(180.0) has the value -1.0 (approximately).
