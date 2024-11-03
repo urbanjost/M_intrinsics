@@ -6810,9 +6810,10 @@ TS 18508
 
   The return value is an approximation of the cosine of **x**.
 
-  The return value is in degrees and lies in
-  the range **-1 \<= cosd(x) \<= 1** .
-
+  The return value is in degrees and lies in the range
+```code
+  -1 \<= cosd(x) \<= 1
+```
 ### **Examples**
 
 cosd(180.0) has the value -1.0 (approximately).
@@ -13027,7 +13028,7 @@ subroutine makefile(lun)
 ! make a scratch file just for demonstration purposes
 integer :: iostat,lun
 integer :: i
-character(len=80),parameter  :: fakefile(*)=[character(len=80) :: &
+character(len=255),parameter  :: fakefile(*)=[character(len=255) :: &
 
 '3.141592653589793238462643383279502884197169399375105820974944592307 &
  &/ pi', &
@@ -13043,9 +13044,11 @@ character(len=80),parameter  :: fakefile(*)=[character(len=80) :: &
 '1.6180339887498948482045868 &
  &/ Golden_Ratio', &
 
-'1 / unity']
+'1 / unity', &
+'']
+!'/ end of data']
 
-   open(newunit=lun,status='scratch')
+   open(newunit=lun,status='replace',file='data.txt',action='readwrite')
    write(lun,'(a)')(trim(fakefile(i)),i=1,size(fakefile))
    rewind(lun)
 end subroutine makefile
@@ -13053,13 +13056,13 @@ end program demo_iostat
 ```
 Results:
 ```text
-STOP end of file. Goodbye!
  >  Begin entering numeric values, one per line
  >  VALUE=   3.1415926535897931
  >  VALUE=  0.57721566490153287
  >  VALUE=   2.7182818284590451
  >  VALUE=   1.6180339887498949
  >  VALUE=   1.0000000000000000
+ >  STOP end of file. Goodbye!
 ```
 ### **Standard**
 
@@ -13125,24 +13128,32 @@ implicit none
 integer :: inums(5), lun, ios
 
   ! create a test file to read from
-   open(newunit=lun, form='formatted',status='scratch')
-   write(lun, '(a)') '10 20 30'
-   write(lun, '(a)') '40 50 60 70'
-   write(lun, '(a)') '80 90'
-   write(lun, '(a)') '100'
+   open(newunit=lun, form='formatted',status='scratch',action='readwrite')
+   write(lun, '(a)')     &
+   '10   20   30',       &
+   '40   50   60   70',  &
+   '80   90',            &
+   '100',                &
+   '110 120 130',        &
+   '140'
    rewind(lun)
 
    do
       read(lun, *, iostat=ios) inums
       write(*,*)'iostat=',ios
       if(is_iostat_eor(ios)) then
-         stop 'end of record'
+         inums=-huge(0)
+         print *, 'end of record'
       elseif(is_iostat_end(ios)) then
          print *,'end of file'
+         inums=-huge(0)
          exit
       elseif(ios.ne.0)then
          print *,'I/O error',ios
+         inums=-huge(0)
          exit
+      else
+         write(*,'(*(g0,1x))')'inums=',inums
       endif
    enddo
 
@@ -13153,9 +13164,20 @@ end program demo_is_iostat_eor
 Results:
 ```text
  >  iostat=           0
+ > inums= 10 20 30 40 50
+ >  iostat=           0
+ > inums= 80 90 100 110 120
  >  iostat=          -1
  >  end of file
 ```
+Note:
+the list-directed read starts on a new line with each read, and
+that the read values should not portably be used if IOSTAT is not zero.
+
+Format descriptors, Stream I/O and non-advancing I/O and reads into
+strings that can then be parsed or read multiple times give full control
+of what is read. List-directed I/O is generally more appropriate for
+interactive I/O.
 ### **Standard**
 
 Fortran 2003

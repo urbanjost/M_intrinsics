@@ -25,7 +25,7 @@
       ! make a scratch file just for demonstration purposes
       integer :: iostat,lun
       integer :: i
-      character(len=80),parameter  :: fakefile(*)=[character(len=80) :: &
+      character(len=255),parameter  :: fakefile(*)=[character(len=255) :: &
 
       '3.141592653589793238462643383279502884197169399375105820974944592307 &
        &/ pi', &
@@ -41,9 +41,11 @@
       '1.6180339887498948482045868 &
        &/ Golden_Ratio', &
 
-      '1 / unity']
+      '1 / unity', &
+      '']
+      !'/ end of data']
 
-         open(newunit=lun,status='scratch')
+         open(newunit=lun,status='replace',file='data.txt',action='readwrite')
          write(lun,'(a)')(trim(fakefile(i)),i=1,size(fakefile))
          rewind(lun)
       end subroutine makefile
