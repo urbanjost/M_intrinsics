@@ -27,7 +27,7 @@
 
 - **x**
   : The value to compute the hyperbolic cosine of. A real value should
-  be \>= 1 or the result with be a Nan.
+    be \>= 1 or the result with be a Nan.
 
 ### **Result**
 

@@ -23,38 +23,41 @@
 
 ### **Options**
 
-    allocated-object-list    Each allocate-object is a nonprocedure
-                             pointer or an allocatable variable.
+  **allocated-object-list**
+  : Each allocate-object is a nonprocedure
+  pointer or an allocatable variable.
 
-    STAT=stat-variable       If the STAT= specifier appears, successful
-                             execution of the **allocate** or **deallocate**
-                             statement causes the stat-variable
-                             to become defined with a value of zero.
+  **STAT=stat-variable**
+  : If the STAT= specifier appears, successful
+  execution of the **allocate** or **deallocate**
+  statement causes the stat-variable
+  to become defined with a value of zero.
 
-                             If an error condition occurs during
-                             execution of a **deallocate** statement that
-                             does not contain the STAT= specifier, error
-                             termination is initiated.
+  If an error condition occurs during
+  execution of a **deallocate** statement that
+  does not contain the STAT= specifier, error
+  termination is initiated.
 
-    ERRMSG=errmsg-variable   If an error condition occurs during execution
-                             of an **allocate** or **deallocate** statement, the
-                             processor assigns an explanatory message to
-                             errmsg-variable. If no such condition occurs,
-                             the processor does not change the value of
-                             the errmsg-variable.
+  **ERRMSG=errmsg-variable**
+  : If an error condition occurs during execution
+  of an **allocate** or **deallocate** statement, the
+  processor assigns an explanatory message to
+  errmsg-variable. If no such condition occurs,
+  the processor does not change the value of
+  the errmsg-variable.
 
-   No dealloc-opt shall appear more than once in a given **deallocate**
-   statement.
+  No dealloc-opt shall appear more than once in a given **deallocate**
+  statement.
 
-   The errmsg-variable and stat-variable cannot be allocated or
-   deallocated elsewhere in the statement or otherwise depend of any
-   allocatable object in the statement.
+  The errmsg-variable and stat-variable cannot be allocated or
+  deallocated elsewhere in the statement or otherwise depend of any
+  allocatable object in the statement.
 
 ### **Example**
 
    An example of a **deallocate** statement is:
 ```fortran
-         DEALLOCATE (X, B)
+       DEALLOCATE (X, B)
 ```
 
 ### **Deallocation of allocatable variables**
@@ -120,7 +123,7 @@
    the execution of a RETURN or END statement or the termination of a
    BLOCK construct.
 
-    In the following example:
+   In the following example:
 
        > SUBROUTINE PROCESS
        >   REAL, ALLOCATABLE :: TEMP(:)

@@ -32,7 +32,7 @@ and lies in the range
 
 - **x**
   : The value to compute the circular arctangent of.
-  : The value must satisfy |**x**| <= 1.
+    The value must satisfy |**x**| <= 1.
 
 ### **Result**
 

@@ -78,7 +78,7 @@
    type suffix is required for most constants. That is, even if A is
    implicitly double-precision
 ```fortran
-       A=123456789.01234 ! only the precision of a default REAL is retained
+     A=123456789.01234 ! only retains the precision of a default REAL
 ```
 ```fortran
        A=123456789.01234D0 ! precision of a double will be retained

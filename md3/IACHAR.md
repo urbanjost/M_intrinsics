@@ -32,7 +32,7 @@
 
 - **c**
   : A character to determine the ASCII code of.
-  : A common extension is to allow strings but all but the first character
+    A common extension is to allow strings but all but the first character
   is then ignored.
 
 - **kind**

@@ -86,10 +86,10 @@ regions.
                        **do-loop** or block construct. Note the construct
                        names must be unique within the same scope.
 
-                       Unnamed **exit** statements could introduce errors
-                       when loop nesting is modified. Therefore names
-                       are strongly recommended accept perhaps where the
-                       loop comprises only a few lines of code.
+   Unnamed **exit** statements could introduce errors when loop nesting
+   is modified. Therefore names are strongly recommended accept perhaps
+   where the loop comprises only a few lines of code.
+
 ### **Examples**
 Samples:
 ```fortran
@@ -125,7 +125,7 @@ Samples:
      ! INFINITE: do
      !    read(*,'(a)',iostat=iostat) line
      !    if(iostat.ne.0)exit INFINITE
-     ! enddo
+     ! enddo INFINITE
 
    ! Some argue that an infinite loop is never a good idea.
    ! A common practice is to avoid even the possibility of an

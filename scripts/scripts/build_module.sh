@@ -3,11 +3,11 @@ export NAME
 ###########################
 TOCHARACTER(){
 :
-cat $NAME |
+cat -s $NAME |
    sed -e "s/'/''/g" |
    sed -e "s/^/'/" |
    sed -e 's/$/'"'"', \&/'|
-cat
+cat -s
 }
 ###########################
 (

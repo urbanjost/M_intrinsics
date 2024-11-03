@@ -26,7 +26,7 @@ None
 
 ### **Result**
 
-  : The return value is of type default _integer_. It is the number of
+  The return value is of type default _integer_. It is the number of
   arguments passed on the command line when the program was invoked.
 
   If there are no command arguments available or if the processor does

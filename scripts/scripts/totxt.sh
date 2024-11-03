@@ -15,7 +15,9 @@ do
 
    tail -n +3 $NAME|
    sed -e 's/^### \*\*\(.*\)\*\*$/# \U\1/'|
-   pandoc --eol=lf -f $MD -t man -i - -o ../man/man${NUM}/$SHORTNAME.${NUM}fortran
+   pandoc --eol=lf -f $MD -t man -i -o -|
+   cat -s |
+   sed 's/\r$//' > ../man/man${NUM}/$SHORTNAME.${NUM}fortran
 
    #tail -n +3 $NAME|
    #sed -e 's/^### \*\*\(.*\)\*\*$/# \U\1/'|

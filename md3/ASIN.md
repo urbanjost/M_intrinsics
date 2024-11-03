@@ -31,8 +31,8 @@ the hypotenuse and the opposite side of a right triangle are known.
 
 - **x**
   : The value to compute the arcsine of
-  : The type shall be either _real_ and a magnitude that is less than or
-  equal to one; or be _complex_.
+    The type shall be either _real_ and a magnitude that is less than or
+    equal to one; or be _complex_.
 
 ### **Result**
 

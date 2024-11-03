@@ -1,7 +1,7 @@
 @fpm-man
 ###############################
 options --color
-options --lines 33
+#options --lines 33
 ###############################
 @man
 system esc -bg orange -fg black

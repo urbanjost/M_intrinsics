@@ -32,9 +32,9 @@ Example: **asind(1.0)** has the value 90.0 (approximately).
 
 - **x**
   : The value to compute the arc sine of
-  : The type shall be _real_ and a magnitude that is less than or
-  : equal to one |X| <= 1.
-  : It is expressed in degrees and lies in the range 90 <= asind(x) <= 90.
+    The type shall be _real_ and a magnitude that is less than or
+    equal to one |X| <= 1.
+    It is expressed in degrees and lies in the range 90 <= asind(x) <= 90.
 
 ### **Result**
 

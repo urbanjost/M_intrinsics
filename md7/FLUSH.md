@@ -37,9 +37,10 @@
    A **flush(7f)** statement has no effect on file position.
 
 ### **Options**
-   UNIT    A file-unit-number is required; if the optional characters
-           "UNIT=" are omitted, the unit-number must be the first
-           item in the **flush(7)** statement.
+   **unit** 
+   : A file-unit-number is required; if the optional characters
+     "UNIT=" are omitted, the unit-number must be the first
+     item in the **flush(7)** statement.
 
 ### **Returns**
    **iostat**

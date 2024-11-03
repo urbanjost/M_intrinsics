@@ -44,7 +44,7 @@ the elements of the array.
   : If **stat** is present and execution is successful, it is assigned the
     value zero.
 
-  : If an error condition occurs,
+    Otherwise, if an error condition occurs:
 
     o if **stat** is absent, error termination is initiated;
     o otherwise, if **from** is a coarray and the current team contains a

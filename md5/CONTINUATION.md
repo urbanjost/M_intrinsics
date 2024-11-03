@@ -107,7 +107,7 @@ quoted strings or lexical words or constant values.
 But try to never split constants or lexical words!
 
 ```fortran
-    character(len=*), parameter :: str1='my first str', str2='my second str'
+    character(len=*),parameter :: str1='my first str',str2='my second str'
 ```
 could be written as
 ```fortran
@@ -188,7 +188,7 @@ only character used by free-format. So using it obeys both rules.
 Therefore the following is equivalent in fixed and free-format parsing:
 ```fortran
  >12345 continue
- >      character(len=*), parameter :: string1="hello world", string2="hel&
+ >      character(len=*),parameter :: string1="hello world",string2="hel&
  >     &lo world"
 ```
 Obviously, this is not compatible with extended length fixed-format
@@ -339,7 +339,7 @@ character(len=:),allocatable :: biggest
   &'   #',(repeat('-',size_needed),'-#',i=1,size(arr,dim=2))
 end subroutine print_matrix_int
 end program demo_continuation
-``
+```
   Results:
 ```text
  xx array:
@@ -357,14 +357,14 @@ end program demo_continuation
    2.7182818284590451
    2.7182818284590451
  Expecting the value   2.7182818284590451
- string1=A very long string that won't fit on a single \
+ string1=A very long string that won't fit on a single \...
  line can be made through proper continuation.
- string2=A very long string that won't fit on a single \
- line can be made through proper continuation and \
+ string2=A very long string that won't fit on a single \...
+ line can be made through proper continuation and \...
  concatenation of multiple strings.
- big=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\
- AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACCCCCC\
- CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC\
+ big=AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\...
+ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACCCCCC\...
+ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC\...
  CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCmore at end
 ```
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

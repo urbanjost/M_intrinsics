@@ -42,18 +42,20 @@
   **array**, and a shape similar to that of **array** with dimension DIM
   dropped is returned.
 
-      Case (i):     The result of NORM2 (X) has a value equal to a
-                    processor-dependent approximation to the generalized
-                    L norm of X, which is the square root of the sum of
-                    the squares of the elements of X. If X has size zero,
-                    the result has the value zero.
+  Case (i)
+  : The result of NORM2 (X) has a value equal to a
+    processor-dependent approximation to the generalized
+    L norm of X, which is the square root of the sum of
+    the squares of the elements of X. If X has size zero,
+    the result has the value zero.
 
-      Case (ii):    The result of NORM2 (X, DIM=DIM) has a value equal
-                    to that of NORM2 (X) if X has rank one. Otherwise,
-                    the resulting array is reduced in rank with dimension
-                    **dim** removed, and each remaining elment is the
-                    result of NORM2(X) for the values along dimension
-                    **dim**.
+  Case (ii)
+  : The result of NORM2 (X, DIM=DIM) has a value equal
+    to that of NORM2 (X) if X has rank one. Otherwise,
+    the resulting array is reduced in rank with dimension
+    **dim** removed, and each remaining elment is the
+    result of NORM2(X) for the values along dimension
+    **dim**.
 
   It is recommended that the processor compute the result without undue
   overflow or underflow.
