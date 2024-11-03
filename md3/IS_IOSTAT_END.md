@@ -69,7 +69,7 @@ subroutine makefile(lun)
 ! make a scratch file just for demonstration purposes
 integer :: iostat,lun
 integer :: i
-character(len=80),parameter  :: fakefile(*)=[character(len=80) :: &
+character(len=255),parameter  :: fakefile(*)=[character(len=255) :: &
 
 '3.141592653589793238462643383279502884197169399375105820974944592307 &
  &/ pi', &
@@ -85,9 +85,11 @@ character(len=80),parameter  :: fakefile(*)=[character(len=80) :: &
 '1.6180339887498948482045868 &
  &/ Golden_Ratio', &
 
-'1 / unity']
+'1 / unity', &
+''] 
+!'/ end of data']
 
-   open(newunit=lun,status='scratch')
+   open(newunit=lun,status='replace',file='data.txt',action='readwrite')
    write(lun,'(a)')(trim(fakefile(i)),i=1,size(fakefile))
    rewind(lun)
 end subroutine makefile
@@ -95,13 +97,13 @@ end program demo_iostat
 ```
 Results:
 ```text
-STOP end of file. Goodbye!
  >  Begin entering numeric values, one per line
  >  VALUE=   3.1415926535897931     
  >  VALUE=  0.57721566490153287     
  >  VALUE=   2.7182818284590451     
  >  VALUE=   1.6180339887498949     
  >  VALUE=   1.0000000000000000     
+ >  STOP end of file. Goodbye!
 ```
 ### **Standard**
 

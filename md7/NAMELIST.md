@@ -133,7 +133,7 @@
       type(point) :: dot
       namelist /nlist/ l,c,r,i,x,d,a,dot
 
-      open(file='_tmp_',newunit=lun)
+      open(file='_tmp_',newunit=lun,action='readwrite')
 
          write(*,*)'initial nlist'
          write(*,nlist)

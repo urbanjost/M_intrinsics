@@ -47,24 +47,32 @@ implicit none
 integer :: inums(5), lun, ios
 
   ! create a test file to read from
-   open(newunit=lun, form='formatted',status='scratch')
-   write(lun, '(a)') '10 20 30'
-   write(lun, '(a)') '40 50 60 70'
-   write(lun, '(a)') '80 90'
-   write(lun, '(a)') '100'
+   open(newunit=lun, form='formatted',status='scratch',action='readwrite')
+   write(lun, '(a)')     &
+   '10   20   30',       &
+   '40   50   60   70',  &
+   '80   90',            &
+   '100',                &
+   '110 120 130',        &
+   '140'
    rewind(lun)
 
    do
       read(lun, *, iostat=ios) inums
       write(*,*)'iostat=',ios
       if(is_iostat_eor(ios)) then
-         stop 'end of record'
+	 inums=-huge(0)
+         print *, 'end of record'
       elseif(is_iostat_end(ios)) then
          print *,'end of file'
+	 inums=-huge(0)
          exit
       elseif(ios.ne.0)then
          print *,'I/O error',ios
+	 inums=-huge(0)
          exit
+      else
+         write(*,'(*(g0,1x))')'inums=',inums
       endif
    enddo
 
@@ -75,9 +83,20 @@ end program demo_is_iostat_eor
 Results:
 ```text
  >  iostat=           0
+ > inums= 10 20 30 40 50
+ >  iostat=           0
+ > inums= 80 90 100 110 120
  >  iostat=          -1
  >  end of file
 ```
+Note:
+the list-directed read starts on a new line with each read, and
+that the read values should not portably be used if IOSTAT is not zero.
+
+Format descriptors, Stream I/O and non-advancing I/O and reads into
+strings that can then be parsed or read multiple times give full control
+of what is read. List-directed I/O is generally more appropriate for
+interactive I/O.
 ### **Standard**
 
 Fortran 2003
