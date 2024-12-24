@@ -7916,7 +7916,7 @@ textblock=[character(len=256) :: &
 '  o  X : The angle in radians to compute the cosine of.', &
 '', &
 'RESULT', &
-'  The return value is the tangent of X.', &
+'  The return value is the cosine of X.', &
 '', &
 '  If X is of the type real, the return value is in radians and lies in the', &
 '  range -1 <= COS(X) <= 1 .', &

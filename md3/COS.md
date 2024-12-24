@@ -35,7 +35,7 @@
 
 ### **Result**
 
-  The return value is the tangent of **x**.
+  The return value is the cosine of **x**.
 
   If **x** is of the type _real_, the return value is in radians and lies in
   the range **-1 \<= cos(x) \<= 1** .
