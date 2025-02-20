@@ -264,8 +264,8 @@ ROUND
   DOWN, ZERO, NEAREST, COMPATIBLE, or PROCESSOR DEFINED.
   The ROUND= specifier is permitted only for a connection
   for formatted input/output. It specifies the current value
-  of the I/O rounding mode (10.7.2.3.7, 9.6.2.13) for this
-  connection. This is a changeable mode (9.5.2). If this
+  of the I/O rounding mode for this
+  connection. This is a changeable mode. If this
   specifier is omitted in an OPEN statement that initiates a
   connection, the I/O rounding mode is processor dependent;
   it shall be one of the above modes.
@@ -280,8 +280,8 @@ SIGN
   SUPPRESS, or PROCESSOR DEFINED. The
   SIGN= specifier is permitted only for a connection for formatted
   input/output. It specifies the current value of the sign mode
-  (10.8.4, 9.6.2.14) for this connection. This is a changeable
-  mode (9.5.2). If this specifier is omitted in an OPEN statement
+  this connection. This is a changeable
+  mode. If this specifier is omitted in an OPEN statement
   that initiates a connection, the default value is PROCESSOR
   DEFINED.
 

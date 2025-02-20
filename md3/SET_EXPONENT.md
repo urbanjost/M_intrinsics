@@ -39,7 +39,7 @@
 
   The return value is of the same type and kind as **x**. The real number
   whose fractional part is that of **x** and whose exponent part
-  if **i** is returned; it is **fraction(x) \* radix(x)\*\*i**.
+  if **i** is returned; it is **fraction(x) \* real(radix(x))\*\*i**.
 
   If **x** has the value zero, the result has the same value as **x**.
 
@@ -56,7 +56,7 @@ program demo_setexp
 implicit none
 real :: x = 178.1387e-4
 integer :: i = 17
-   print *, set_exponent(x, i), fraction(x) * radix(x)**i
+   print *, set_exponent(x, i), fraction(x) * real(radix(x))**i
 end program demo_setexp
 ```
 Results:

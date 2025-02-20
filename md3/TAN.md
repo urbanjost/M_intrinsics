@@ -26,9 +26,9 @@ result = tan(x)
 ### **Options**
 
 - **x**
-  : The angle in radians to compute the tangent of for _real_ input.
-    If **x** is of type _complex_, its real part is regarded as a value
-    in radians.
+  : The angle in radians to compute the tangent of when the input
+    is  _real_. If **x** is of type _complex_, its real part is regarded
+    as a value in radians.
 
 ### **Result**
 

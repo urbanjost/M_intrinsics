@@ -21,9 +21,10 @@
   - **mask** is a _logical_ array of any shape and kind.
   - If **dim** is present, the result is an array with the specified rank
     removed.
-  - **KIND** is a scalar integer constant expression valid as an _integer_ kind
-  - The return value is of default _integer_ type unless **kind** is specified
-    to declare the kind of the result.
+  - **KIND** is a scalar integer constant expression valid as an
+    _integer_ kind
+  - The return value is of default _integer_ type unless **kind**
+    is specified to declare the kind of the result.
 
 ### **Description**
 
@@ -41,9 +42,9 @@
 - **dim**
   : specifies to remove this dimension from the result and produce an
     array of counts of _.true._ values along the removed dimension.
-    If not present, the result is a scalar count of the true elements in **mask**
-    the value must be in the range 1 <= dim <= n, where n is the
-    rank(number of dimensions) of **mask**.
+    If not present, the result is a scalar count of the true elements
+    in **mask** the value must be in the range 1 <= dim <= n, where n
+    is the rank(number of dimensions) of **mask**.
 
     The corresponding actual argument shall not be an optional dummy
     argument, a disassociated pointer, or an unallocated allocatable.
@@ -58,10 +59,10 @@
   is not present.
 
   If **dim** is present, the result is an array with a rank one less
-  than the rank of the input array **mask**, and a size corresponding
-  to the shape of **array** with the **dim** dimension removed, with the
-  remaining elements containing the number of _.true._ elements along the
-  removed dimension.
+  than the rank of the input array **mask**, and a size corresponding to
+  the shape of **array** with the **dim** dimension removed, with the
+  remaining elements containing the number of _.true._ elements along
+  the removed dimension.
 
 ### **Examples**
 

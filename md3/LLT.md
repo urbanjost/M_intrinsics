@@ -16,7 +16,7 @@
 ```
 ### **Characteristics**
 
- - **string_a** is default _character_ or an ASCII character.
+ - **string_a** is default _character_ or an ASCII character string
  - **string_b** is the same type and kind as **string_a**
  - the result is a default logical
 

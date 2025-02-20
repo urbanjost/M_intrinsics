@@ -8,7 +8,7 @@
          integer,allocatable :: iarr(:)
 
             ! create a basic sequential file
-            open(10,file='dem_backspace.txt') ! open a file
+            open(10,file='dem_backspace.txt',action='readwrite') ! open a file
             do i=1,30                         ! write lines to it
                write(10,'(a,i3,*(i3))') 'line ',i, (j,j=1,i)
             enddo

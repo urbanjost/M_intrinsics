@@ -97,27 +97,78 @@ implicit none
 integer, dimension(3,3) :: a
 integer :: i
 
-    a = reshape( [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], [ 3, 3 ])
-    print '(3i3)', (a(i,:),i=1,3)
+   write(*,*)'original'
+   a = reshape( [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], [ 3, 3 ])
+   call printi(a)
 
-    print *
+   write(*,*)'shift each row differently'
+   a = eoshift(a, SHIFT=[1, 2, -2], BOUNDARY=-5, DIM=2)
+   call printi(a)
 
-    ! shift it
-    a = eoshift(a, SHIFT=[1, 2, 1], BOUNDARY=-5, DIM=2)
-    print '(3i3)', (a(i,:),i=1,3)
+   write(*,*)'shift each column differently'
+   a = eoshift(a, SHIFT=[1, 2, -2], BOUNDARY=-5, DIM=1)
+   call printi(a)
+
+   write(*,*)'original'
+   call printi(reshape([(i,i=1,12)],[3,4]))
+   write(*,'(*(g0))')'shift=+2,dim=1'
+   call printi(eoshift(reshape([(i,i=1,12)],[3,4]),+2,dim=1))
+   write(*,'(*(g0))')'shift=+2,dim=2'
+   call printi(eoshift(reshape([(i,i=1,12)],[3,4]),+2,dim=2))
+   write(*,'(*(g0))')'shift=-2,dim=1'
+   call printi(eoshift(reshape([(i,i=1,12)],[3,4]),-2,dim=1))
+   write(*,'(*(g0))')'shift=-2,dim=2'
+   call printi(eoshift(reshape([(i,i=1,12)],[3,4]),-2,dim=2))
+contains
+subroutine printi(arr)
+!@(#) print small 2d integer arrays in row-column format
+integer,intent(in) :: arr(:,:) 
+integer            :: i 
+character(len=40)  :: biggest 
+   write(biggest,'(*(g0))')'(1x,*(i',                   &
+   & ceiling(log10(max(1.0,real(maxval(abs(arr))))))+2, &
+   & ':,","))'
+   do i=1,size(arr,dim=1)
+      write(*,fmt=biggest)arr(i,:)
+   enddo
+end subroutine printi
 
 end program demo_eoshift
 ```
 Results:
-
 ```text
-  >  1  4  7
-  >  2  5  8
-  >  3  6  9
-  >
-  >  4  7 -5
-  >  8 -5 -5
-  >  6  9 -5
+ >  original
+ >    1,  4,  7
+ >    2,  5,  8
+ >    3,  6,  9
+ >  shift each row differently
+ >    4,  7, -5
+ >    8, -5, -5
+ >   -5, -5,  3
+ >  shift each column differently
+ >    8, -5, -5
+ >   -5, -5, -5
+ >   -5, -5, -5
+ >  original
+ >     1,   4,   7,  10
+ >     2,   5,   8,  11
+ >     3,   6,   9,  12
+ > shift=+2,dim=1
+ >     3,   6,   9,  12
+ >     0,   0,   0,   0
+ >     0,   0,   0,   0
+ > shift=+2,dim=2
+ >     7,  10,   0,   0
+ >     8,  11,   0,   0
+ >     9,  12,   0,   0
+ > shift=-2,dim=1
+ >    0,  0,  0,  0
+ >    0,  0,  0,  0
+ >    1,  4,  7, 10
+ > shift=-2,dim=2
+ >    0,  0,  1,  4
+ >    0,  0,  2,  5
+ >    0,  0,  3,  6
 ```
 ### **Standard**
 

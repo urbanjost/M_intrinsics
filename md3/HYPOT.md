@@ -20,30 +20,25 @@
 
 ### **Description**
 
-**hypot**(3) is referred to as the Euclidean distance function. It is
-equal to
+In mathematics, the _Euclidean distance_ between two points in Euclidean
+space is the length of a line segment between two points.
+
+**hypot(x,y)** returns the special case of the Euclidean distance between
+the point **<x,y>** and the origin. It is equal to
 ```fortran
 sqrt(x**2+y**2)
 ```
 without undue underflow or overflow.
 
-In mathematics, the _Euclidean distance_ between two points in Euclidean
-space is the length of a line segment between two points.
-
-**hypot(x,y)** returns the distance between the point **<x,y>** and
-the origin.
-
 ### **Options**
 
 - **x**
-: The type shall be _real_.
+: the x value of the point of interest
 
 - **y**
-  : The type and kind type parameter shall be the same as **x**.
+: the y value of the point of interest
 
 ### **Result**
-
-The return value has the same type and kind type parameter as **x**.
 
 The result is the positive magnitude of the distance of the point
 **<x,y>** from the origin **<0.0,0.0>** .
@@ -81,17 +76,17 @@ end program demo_hypot
 ```
 Results:
 ```text
- > 
+ >
  > point <1.00000000,0.500000000> is 1.11803401
  > units away from the origin
- > 
+ >
  > the points
  >    +1.00000000 +0.500000000
  >    +1.00000000 +0.250000000
  >    +10.0000000 -10.0000000
  >    +15.0000000 +0.250000000
  >    -1.00000000 -0.250000000
- > have distances from the origin of 
+ > have distances from the origin of
  >    +1.11803401 +1.03077638
  >    +14.1421356 +15.0020828
  >    +1.03077638

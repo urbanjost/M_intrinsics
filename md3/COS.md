@@ -16,7 +16,6 @@
 ### **Characteristics**
 
  - **x** is of type _real_ or _complex_ of any valid kind.
- - **KIND** may be any kind supported by the associated type of **x**.
  - The returned value will be of the same type and kind as the argument
    **x**.
 
@@ -31,17 +30,16 @@
 ### **Options**
 
 - **x**
-  : The angle in radians to compute the cosine of.
+  : The angle in radians when **x** is of type _real_.
+  If **x** is of type _complex_, its real part is regarded as a value
+  in radians, often called the phase.
 
 ### **Result**
 
   The return value is the cosine of **x**.
 
-  If **x** is of the type _real_, the return value is in radians and lies in
+  If **x** is type _real_, the return value lies in
   the range **-1 \<= cos(x) \<= 1** .
-
-  If **x** is of type complex, its real part is regarded as a value in
-  radians, often called the phase.
 
 ### **Examples**
 
@@ -50,14 +48,14 @@ Sample program:
 program demo_cos
 implicit none
 character(len=*),parameter :: g2='(a,t20,g0)'
-doubleprecision,parameter :: PI=atan(1.0d0)*4.0d0
-   write(*,g2)'COS(0.0)=',cos(0.0)
-   write(*,g2)'COS(PI)=',cos(PI)
-   write(*,g2)'COS(PI/2.0d0)=',cos(PI/2.0d0),'EPSILON=',epsilon(PI)
-   write(*,g2)'COS(2*PI)=',cos(2*PI)
-   write(*,g2)'COS(-2*PI)=',cos(-2*PI)
-   write(*,g2)'COS(-2000*PI)=',cos(-2000*PI)
-   write(*,g2)'COS(3000*PI)=',cos(3000*PI)
+doubleprecision,parameter  :: PI=atan(1.0d0)*4.0d0
+   write(*,g2)'COS(0.0)=     ', cos(0.0)
+   write(*,g2)'COS(PI)=      ', cos(PI)
+   write(*,g2)'COS(PI/2.0d0)=', cos(PI/2.0d0),'EPSILON=',epsilon(PI)
+   write(*,g2)'COS(2*PI)=    ', cos(2*PI)
+   write(*,g2)'COS(-2*PI)=   ', cos(-2*PI)
+   write(*,g2)'COS(-2000*PI)=', cos(-2000*PI)
+   write(*,g2)'COS(3000*PI)= ', cos(3000*PI)
 end program demo_cos
 ```
 Results:

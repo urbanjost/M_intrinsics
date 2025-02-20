@@ -12,8 +12,8 @@ function
 ```fortran
      elemental real(kind=KIND) function atan2(y, x)
 
-      real,kind=KIND) :: atan2
-      real,kind=KIND),intent(in) :: y, x
+      real,kind=KIND)            :: atan2 
+      real,kind=KIND),intent(in) :: y, x 
 ```
 ### **Characteristics**
 
@@ -23,14 +23,18 @@ function
 ### **Description**
 
   **atan2**(3) computes in radians a processor-dependent approximation of
-  the arctangent of the complex number ( **x**, **y** ) or equivalently the
-  principal value of the arctangent of the value **y/x** (which determines
-  a unique angle).
+  the arctangent of the complex number ( **x**, **y** ) or equivalently
+  the principal value of the arctangent of the value **y/x** (which
+  determines a unique angle).
 
   If **y** has the value zero, **x** shall not have the value zero.
 
-  The resulting phase lies in the range -PI <= ATAN2 (Y,X) <= PI and is equal to a
-  processor-dependent approximation to a value of arctan(Y/X).
+  The resulting phase lies in the range 
+
+      -PI <= ATAN2 (Y,X) <= PI 
+ 
+  and is equal to a processor-dependent approximation to a value of
+  arctan(Y/X).
 
 ### **Options**
 
@@ -45,7 +49,7 @@ function
 ### **Result**
 
 The value returned is by definition the principal value of the complex
-number **(x, y)**, or in other terms, the phase of the phasor x+i*y.
+number **(x, y)**, or in other terms, the phase of the phasor x+i\*y.
 
 The principal value is simply what we get when we adjust a radian value
 to lie between **-PI** and **PI** inclusive,
@@ -72,29 +76,29 @@ Range of returned values by quadrant:
 >                     |
 >                   -PI/2
 >
-     NOTES:
+   NOTES:
 
-     If the processor distinguishes -0 and +0 then the sign of the
-     returned value is that of Y when Y is zero, else when Y is zero
-     the returned value is always positive.
+   If the processor distinguishes -0 and +0 then the sign of the
+   returned value is that of Y when Y is zero, else when Y is zero
+   the returned value is always positive.
 ```
 ### **Examples**
 
 Sample program:
 ```fortran
 program demo_atan2
-real :: z
-complex :: c
+real    :: z 
+complex :: c 
  !
  ! basic usage
   ! ATAN2 (1.5574077, 1.0) has the value 1.0 (approximately).
   z=atan2(1.5574077, 1.0)
   write(*,*) 'radians=',z,'degrees=',r2d(z)
  !
- ! elemental arrays
+ ! elemental : arrays
   write(*,*)'elemental',atan2( [10.0, 20.0], [30.0,40.0] )
  !
- ! elemental arrays and scalars
+ ! elemental : arrays and scalars
   write(*,*)'elemental',atan2( [10.0, 20.0], 50.0 )
  !
  ! break complex values into real and imaginary components
@@ -109,23 +113,16 @@ complex :: c
   integer             :: i
  !
   vals=[ &
-    ( 1.0, 0.0 ), & ! 0
-    ( 1.0, 1.0 ), & ! 45
-    ( 0.0, 1.0 ), & ! 90
-    (-1.0, 1.0 ), & ! 135
-    (-1.0, 0.0 ), & ! 180
-    (-1.0,-1.0 ), & ! 225
-    ( 0.0,-1.0 )]   ! 270
+    !     0            45            90           135
+    ( 1.0, 0.0 ), ( 1.0, 1.0 ), ( 0.0, 1.0 ), (-1.0, 1.0 ), & 
+    !    180           225          270
+    (-1.0, 0.0 ), (-1.0,-1.0 ), ( 0.0,-1.0 ) ]   
   do i=1,size(vals)
-     call cartesian_to_polar(vals(i)%re, vals(i)%im, radius,ang)
+     call cartesian_to_polar(vals(i), radius,ang)
      write(*,101)vals(i),ang,r2d(ang),radius
   enddo
-  101 format(             &
-  & 'X= ',f5.2,           &
-  & ' Y= ',f5.2,          &
-  & ' ANGLE= ',g0,        &
-  & T38,'DEGREES= ',g0.4, &
-  & T54,'DISTANCE=',g0)
+  101 format( 'X= ',f5.2,' Y= ',f5.2,' ANGLE= ',g0, &
+  & T38,'DEGREES= ',g0.4, T54,'DISTANCE=',g0)
  endblock COMPLEX_VALS
 !
 contains
@@ -137,36 +134,34 @@ real,intent(in)           :: radians
    r2d=radians / DEGREE ! do the conversion
 end function r2d
 !
-subroutine cartesian_to_polar(x,y,radius,inclination)
+subroutine cartesian_to_polar(xy,radius,inclination)
 ! return angle in radians in range 0 to 2*PI
 implicit none
-real,intent(in)  :: x,y
+complex,intent(in)  :: xy
 real,intent(out) :: radius,inclination
-   radius=sqrt(x**2+y**2)
-   if(radius.eq.0)then
-      inclination=0.0
-   else
-      inclination=atan2(y,x)
-      if(inclination < 0.0)inclination=inclination+2*atan2(0.0d0,-1.0d0)
-   endif
+   radius=abs( xy )
+   ! arbitrarily set angle to zero when radius is zero
+   inclination=merge(0.0,atan2(x=xy%re, y=xy%im),radius==0.0)
+   ! bring into range 0 <= inclination < 2*PI
+   if(inclination < 0.0)inclination=inclination+2*atan2(0.0d0,-1.0d0)
 end subroutine cartesian_to_polar
 !
 end program demo_atan2
-```
+
 Results:
-```text
- >  radians=   1.000000     degrees=   57.29578
- >  elemental  0.3217506      0.4636476
- >  elemental  0.1973956      0.3805064
- >  complex (0.0000000E+00,1.000000)   1.570796
- > X=  1.00 Y=  0.00 ANGLE= .000000     DEGREES= .000   DISTANCE=1.000000
- > X=  1.00 Y=  1.00 ANGLE= .7853982    DEGREES= 45.00  DISTANCE=1.414214
- > X=  0.00 Y=  1.00 ANGLE= 1.570796    DEGREES= 90.00  DISTANCE=1.000000
- > X= -1.00 Y=  1.00 ANGLE= 2.356194    DEGREES= 135.0  DISTANCE=1.414214
- > X= -1.00 Y=  0.00 ANGLE= 3.141593    DEGREES= 180.0  DISTANCE=1.000000
- > X= -1.00 Y= -1.00 ANGLE= 3.926991    DEGREES= 225.0  DISTANCE=1.414214
- > X=  0.00 Y= -1.00 ANGLE= 4.712389    DEGREES= 270.0  DISTANCE=1.000000
-```
+
+ >  radians=   1.00000000     degrees=   57.2957802    
+ >  elemental  0.321750551      0.463647604    
+ >  elemental  0.197395563      0.380506366    
+ >  complex             (0.00000000,1.00000000)   1.57079637    
+ > X=  1.00 Y=  0.00 ANGLE= 0.00000000  DEGREES= 0.000  DISTANCE=1.00000000
+ > X=  1.00 Y=  1.00 ANGLE= 0.785398185 DEGREES= 45.00  DISTANCE=1.41421354
+ > X=  0.00 Y=  1.00 ANGLE= 1.57079637  DEGREES= 90.00  DISTANCE=1.00000000
+ > X= -1.00 Y=  1.00 ANGLE= 2.35619450  DEGREES= 135.0  DISTANCE=1.41421354
+ > X= -1.00 Y=  0.00 ANGLE= 3.14159274  DEGREES= 180.0  DISTANCE=1.00000000
+ > X= -1.00 Y= -1.00 ANGLE= 3.92699075  DEGREES= 225.0  DISTANCE=1.41421354
+ > X=  0.00 Y= -1.00 ANGLE= 4.71238899  DEGREES= 270.0  DISTANCE=1.00000000
+
 ### **Standard**
 
 FORTRAN 77
@@ -174,6 +169,8 @@ FORTRAN 77
 ### **See Also**
 
 - [**atan**(3)](#atan)
+- [**tan**(3)](#tan)
+- [**tan2**(3)](#tan2)
 
 ### **Resources**
 

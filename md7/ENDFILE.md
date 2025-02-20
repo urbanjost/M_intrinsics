@@ -57,7 +57,9 @@ An example of an **endfile**(7f) statement is:
     integer,parameter:: isz=10
        !
        ! create a little scratch file
-       open(newunit=lun,file='_scr.txt', form='formatted')
+       open(newunit=lun,file='_scr.txt',  &
+       & form='formatted',                &
+       & action='readwrite')
        write(lun,'(i0)')(100+i,i=1,isz)
        !
        ! write end of file after reading half of file
