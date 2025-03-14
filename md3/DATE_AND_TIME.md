@@ -2,23 +2,20 @@
 
 ### **Name**
 
-**date_and_time**(3) - \[SYSTEM:TIME\] Gets current date time
+**date_and_time**(3) - \[SYSTEM:TIME\] Gets current date and time
 
 ### **Synopsis**
 ```fortran
-    call date_and_time( [date] [,time] [,zone] [,values] )
-```
-```fortran
-     subroutine date_and_time(date, time, zone, values)
+    subroutine date_and_time(date, time, zone, values)
 
-      character(len=8),intent(out),optional :: date
-      character(len=10),intent(out),optional :: time
-      character(len=5),intent(out),optional :: zone
-      integer,intent(out),optional :: values(8)
+     character(len=8),intent(out),optional :: date
+     character(len=10),intent(out),optional :: time
+     character(len=5),intent(out),optional :: zone
+     integer,intent(out),optional :: values(8)
 ```
 ### **Characteristics**
 
- - **date**, - **time**, and **zone** are default _character_ scalar types
+ - **date**, **time**, and **zone** are default _character_ scalar types
  - **values** is a rank-one array of type integer with a decimal
  exponent range of at least four.
 
@@ -31,49 +28,45 @@
 
   Unavailable numeric parameters return **-huge(value)**.
 
-  These forms are compatible with the representations defined in ISO
-  8601:2004. UTC is established by the International Bureau of Weights
-  and Measures (BIPM, i.e. Bureau International des Poids et Mesures)
-  and the International Earth Rotation Service (IERS).
-
 ### **Options**
 
 - **date**
-  : A character string of default kind of the form CCYYMMDD, of length
+  : A character string of default kind of the form **CCYYMMDD**, of length
     8 or larger, where
 
-     + CCYY is the year in the Gregorian calendar
-     + MM is the month within the year
-     + DD is the day within the month.
+     + **CCYY** is the year in the Gregorian calendar
+     + **MM** is the month within the year
+     + **DD** is the day within the month.
 
     The characters of this value are all decimal digits.
 
-    If there is no date available, DATE is assigned all blanks.
+    If there is no date available, **date** is assigned all blanks.
 
 - **time**
-  : A character string of default kind of the form HHMMSS.SSS, of length
-    10 or larger, where
+  : A character string of default kind of the form **HHMMSS.SSS**,
+    of length 10 or larger, where
 
-     + hh is the hour of the day,
-     + mm is the minutes of the hour,
-     + and ss.sss is the seconds and milliseconds of the minute.
+     + **HH** is the hour of the day,
+     + **MM** is the minutes of the hour,
+     + and **SS.SSS** is the seconds and milliseconds of the minute.
 
     Except for the decimal point, the characters of this value shall
     all be decimal digits.
 
-    If there is no clock available, TIME is assigned all blanks.
+    If there is no clock available, **time** is assigned all blanks.
 
 - **zone**
-  : A string of the form (+-)HHMM, of length 5 or larger, representing
+  : A string of the form (+-)**HHMM**, of length 5 or larger, representing
     the difference with respect to Coordinated Universal Time (UTC), where
 
-     + hh and mm are the time difference with respect to Coordinated
-       Universal Time (UTC) in hours and minutes, respectively.
+     + **HH** and **MM** are the time difference with respect to
+       Coordinated Universal Time (UTC) in hours and minutes,
+       respectively.
 
-   The characters of this value following the sign character are
-   all decimal digits.
+   The characters of this value following the sign character are all
+   decimal digits.
 
-   If this information is not available, ZONE is assigned all blanks.
+   If this information is not available, **zone** is assigned all blanks.
 
 - **values**
   : An array of at least eight elements. If there is no data
@@ -159,8 +152,15 @@ Fortran 95
 
 ### **See Also**
 
-[**cpu_time**(3)](#cpu_time),
-[**system_clock**(3)](#system_clock)
+  These forms are compatible with the representations defined in ISO
+  8601:2004.
+
+  UTC is established by the International Bureau of Weights
+  and Measures (BIPM, i.e. Bureau International des Poids et Mesures)
+  and the International Earth Rotation Service (IERS).
+
+  [**cpu_time**(3)](#cpu_time),
+  [**system_clock**(3)](#system_clock)
 
 ### **Resources**
 

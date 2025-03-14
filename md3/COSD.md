@@ -37,7 +37,7 @@
 
   The return value is an approximation of the cosine of **x**.
 
-  The return value is in degrees and lies in the range
+  The return value lies in the range
 ```code
   -1 \<= cosd(x) \<= 1
 ```

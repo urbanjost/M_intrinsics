@@ -97,7 +97,6 @@ integer(kind=int64) :: count64, count_rate64, count_max64
 integer(kind=int64) :: start64, finish64
 
 integer(kind=int32) :: count32, count_rate32, count_max32
-integer(kind=int32) :: start32, finish32
 
 real(kind=wp)       :: time_read
 real(kind=wp)       :: sum

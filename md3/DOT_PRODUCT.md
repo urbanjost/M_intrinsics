@@ -53,13 +53,14 @@ If the vectors are _integer_ or _real_, the result is
 ```
 If the vectors are _complex_, the result is
 ```fortran
-     sum(conjg(vector_a)*vector_b)**
+     sum(conjg(vector_a)*vector_b)
 ```
+If the vectors have size zero, the result has the value zero.
+
 If the vectors are _logical_, the result is
 ```fortran
      any(vector_a .and. vector_b)
 ```
-
 ### **Examples**
 
 Sample program:

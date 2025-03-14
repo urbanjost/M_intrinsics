@@ -6,9 +6,11 @@
 identified by MASK along dimension DIM matching a target value
 
 ### **Synopsis**
+Syntax:
 ```fortran
-    result = findloc (array, value, dim [,mask] [,kind] [,back]) |
-             findloc (array, value [,mask] [,kind] [,back])
+    result = findloc (array, value, dim [,mask] [,kind] [,back])
+      or
+    result = findloc (array, value [,mask] [,kind] [,back])
 ```
 ```fortran
      function findloc (array, value, dim, mask, kind, back)

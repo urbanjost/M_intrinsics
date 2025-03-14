@@ -33,7 +33,7 @@
 The fractional part of the model representation of **x** is returned;
 it is
 ```fortran
-    x * radix(x)**(-exponent(x))
+    x * real(radix(x))**(-exponent(x))
 ```
 If **x** has the value zero, the result is zero.
 
@@ -50,12 +50,17 @@ program demo_fraction
 implicit none
 real :: x
    x = 178.1387e-4
-   print *, fraction(x), x * radix(x)**(-exponent(x))
+   print *, fraction(x), x * real(radix(x))**(-exponent(x))
+   x = 10.0
+   print *, fraction(x)
+   print *, fraction(x) * 2**4
 end program demo_fraction
 ```
 Results:
 ```text
-  >  0.5700439      0.5700439
+ >   0.570043862      0.570043862    
+ >   0.625000000    
+ >    10.0000000    
 ```
 ### **Standard**
 
