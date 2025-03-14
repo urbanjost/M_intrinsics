@@ -1,4 +1,4 @@
-The short version is to take the standalone/fman.f90 file, compile it
+The short version is to take the standalone/fman.F90 file, compile it
 and you have a CLI (Command Line Interface) to descriptions of the
 Fortran intrinsics; with instructions available via "fman --help".
 
@@ -49,10 +49,10 @@ The man-pages are available as archive files:
    - [manpages7.zip](https://urbanjost.github.io/M_intrinsics/manpages7.zip)
 
 A single-file version of the CLI program fpm-man(1) is in
-[fman.f90](https://raw.githubusercontent.com/urbanjost/M_intrinsics/master/standalone/fman.f90).
+[fman.F90](https://raw.githubusercontent.com/urbanjost/M_intrinsics/master/standalone/fman.F90).
 
-   - builds with `gfortran  fman.f90`
-   - builds with `ifort -O1 fman.f90`
+   - builds with `gfortran  fman.F90`
+   - builds with `ifort -O1 fman.F90`
 
 ## Project Information
 

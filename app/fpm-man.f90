@@ -778,13 +778,12 @@ integer                      :: i
    enddo
 end function than
 
-subroutine setup()
 elemental impure function run(command)
 ! ident_1="@(#) fman run(3f) funcion to call execute_command_line()"
 use, intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT, stdout=>OUTPUT_UNIT
 implicit none
 character(len=*),intent(in) :: command
-logical                    :: run
+integer                    :: run
 logical                    :: wait
 integer                    :: exitstat
 integer                    :: cmdstat
@@ -803,9 +802,10 @@ character(len=256)         :: cmdmsg
       write(stderr,'(*(g0))')'exitstat=',exitstat,':',trim(command)
       flush(stderr)
    endif
-   run=merge(.true.,.false.,exitstat==0)
+   run=merge(0,1,exitstat==0)
 end function run
 
+subroutine setup()
 help_text=[ CHARACTER(LEN=128) :: &
 'NAME',&
 '    fman(1f) - [DEVELOPER] output descriptions of Fortran intrinsics',&
