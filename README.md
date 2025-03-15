@@ -49,9 +49,9 @@ The man-pages are available as archive files:
    - [manpages7.zip](https://urbanjost.github.io/M_intrinsics/manpages7.zip)
 
 A single-file version of the CLI program fpm-man(1) is in
-[fman.F90](https://raw.githubusercontent.com/urbanjost/M_intrinsics/master/standalone/fman.F90).
+[fman.f90](https://raw.githubusercontent.com/urbanjost/M_intrinsics/master/standalone/fman.F90).
 
-   - builds with `gfortran  fman.F90`
+   - builds with `gfortran  -static fman.F90`
    - builds with `ifort -O1 fman.F90`
 
 ## Project Information
@@ -68,13 +68,13 @@ and place the man-pages there and add $HOME/man to your $MANPATH you
 should be able to use the man-pages. For example:
 ```bash
         for NUM in 3 5 7
-	do
-	(
+        do
+        (
            mkdir -p $HOME/man/man${NUM}
            cd $HOME/man/man${NUM}
            tar xvfz $WHERE_YOU_PUT_TARFILE/manpages${NUM}.tgz
-	)
-	done
+        )
+        done
         cd ..
         mandb -c .
         export MANPATH=$HOME/man:$MANPATH

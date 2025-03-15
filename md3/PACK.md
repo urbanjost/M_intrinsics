@@ -94,7 +94,7 @@ Sample program:
     contains
     !
     ! concise quicksort from @arjen and @beliavsky shows recursion,
-    ! array sections, and vectorized comparisons. 
+    ! array sections, and vectorized comparisons.
     !
     pure recursive function qsort(values) result(sorted)
     intrinsic pack, size
@@ -102,7 +102,7 @@ Sample program:
     real             :: sorted(size(values))
        if (size(values) > 1) then
           sorted = &
-	  & [qsort(pack(values(2:),values(2:)<values(1))), values(1), &
+          & [qsort(pack(values(2:),values(2:)<values(1))), values(1), &
           & qsort(pack(values(2:),values(2:)>=values(1)))]
        else
           sorted = values
@@ -112,10 +112,10 @@ Sample program:
 ```
 Result:
 ```text
-    > 1 5 
-    > 1 2 3 4 
-    > 1 2 
-    > bat        cat        
+    > 1 5
+    > 1 2 3 4
+    > 1 2
+    > bat        cat
     >    initial .833 .367 .958 .454 .122 .602 .418 .942 .566 .400
     >     sorted .122 .367 .400 .418 .454 .566 .602 .833 .942 .958
 ```

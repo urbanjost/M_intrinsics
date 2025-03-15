@@ -106,62 +106,62 @@ program demo_abs
 contains
 
    subroutine DUSTY_CORNERS_1(message)
-      character(len=*),intent(in) :: message
+   character(len=*),intent(in) :: message
 
-      ! A dusty corner is that abs(-huge(0)-1) of an integer would be
-      ! a representable negative value on most machines but result in a
-      ! positive value out of range.
+     ! A dusty corner is that abs(-huge(0)-1) of an integer would be
+     ! a representable negative value on most machines but result in a
+     ! positive value out of range.
 
-      print gen,  message
-      ! By definition:
-      !   You can take the absolute value of any value whose POSITIVE value
-      !   is representable with the same type and kind.
+     print gen,  message
+     ! By definition:
+     !   You can take the absolute value of any value whose POSITIVE value
+     !   is representable with the same type and kind.
 
-      print gen, 'abs range test : ', abs(huge(0)), abs(-huge(0))
-      print gen, 'abs range test : ', abs(huge(0.0)), abs(-huge(0.0))
-      print gen, 'abs range test : ', abs(tiny(0.0)), abs(-tiny(0.0))
+     print gen, 'abs range test : ', abs(huge(0)), abs(-huge(0))
+     print gen, 'abs range test : ', abs(huge(0.0)), abs(-huge(0.0))
+     print gen, 'abs range test : ', abs(tiny(0.0)), abs(-tiny(0.0))
 
    end subroutine DUSTY_CORNERS_1
 
    subroutine DUSTY_CORNERS_2(message)
-      character(len=*),intent(in) :: message
+   character(len=*),intent(in) :: message
 
-      ! dusty corner: "kind=dp" is required or the value returned by
-      ! CMPLX() is a default real instead of double precision.
+     ! dusty corner: "kind=dp" is required or the value returned by
+     ! CMPLX() is a default real instead of double precision.
 
-      ! Working with complex values you often encounter the CMPLX(3)
-      ! function. CMPLX(3) defaults to returning a default REAL regardless
-      ! of input type. Not really a direct problem with ABS(2f) per-se,
-      ! but a common error when working with doubleprecision complex values
+     ! Working with complex values you often encounter the CMPLX(3)
+     ! function. CMPLX(3) defaults to returning a default REAL regardless
+     ! of input type. Not really a direct problem with ABS(2f) per-se,
+     ! but a common error when working with doubleprecision complex values
 
-      print gen,  message
-      print gen, 'real result versus doubleprecision result', &
-      & abs(cmplx(30.0_dp,40.0_dp)), &
-      & abs(cmplx(30.0_dp,40.0_dp,kind=dp))
+     print gen,  message
+     print gen, 'real result versus doubleprecision result', &
+     & abs(cmplx(30.0_dp,40.0_dp)), &
+     & abs(cmplx(30.0_dp,40.0_dp,kind=dp))
 
    end subroutine DUSTY_CORNERS_2
 
    subroutine DUSTY_CORNERS_3(message)
-      character(len=*),intent(in) :: message
-      print gen, message
+   character(len=*),intent(in) :: message
+     print gen, message
 
-      ! this will probably cause an overflow error, or
-      !print gen,  abs(cmplx( huge(0.0), huge(0.0) ))
+     ! this will probably cause an overflow error, or
+     !print gen,  abs(cmplx( huge(0.0), huge(0.0) ))
 
-      print gen, 'because the biggest default real is',huge(0.0)
-      print gen, 'because returning magnitude of sqrt(x%re**2,x%im**2)'
+     print gen, 'because the biggest default real is',huge(0.0)
+     print gen, 'because returning magnitude of sqrt(x%re**2,x%im**2)'
 
    end subroutine DUSTY_CORNERS_3
 
    subroutine DUSTY_CORNERS_4(message)
-      character(len=*),intent(in) :: message
-      print gen, message
+   character(len=*),intent(in) :: message
+     print gen, message
 
-      ! if you do not want the distance for a complex value you
-      ! might want something like returning a complex value with
-      ! both the imaginary and real parts. One way to do that is
+     ! if you do not want the distance for a complex value you
+     ! might want something like returning a complex value with
+     ! both the imaginary and real parts. One way to do that is
 
-      print gen, cmplx(abs(z%re),abs(z%im),kind=kind(z))
+     print gen, cmplx(abs(z%re),abs(z%im),kind=kind(z))
 
    end subroutine DUSTY_CORNERS_4
 
@@ -171,7 +171,7 @@ Results:
 ```text
  >  integer          In: -1                        Out: 1
  >  real             In: -1.00000000               Out: 1.00000000
- >  doubleprecision  In: -45.780000000000001       Out: 45.780000000000001
+ >  doubleprecision  In: -45.78000000000000        Out: 45.78000000000000
  >  complex          In: (-3.00000000,-4.00000000) Out: 5.00000000
  > abs is elemental: 20 0 1 3 100
  > distance of ( -3.00000000 -4.00000000 ) from zero is 5.00000000
@@ -180,7 +180,7 @@ Results:
  > abs range test :  0.340282347E+39 0.340282347E+39
  > abs range test :  0.117549435E-37 0.117549435E-37
  > beware of losing precision using CMPLX(3)
- > real result versus doubleprecision result 50.0000000 50.000000000000000
+ > real result versus doubleprecision result 50.0000000 50.00000000000000
  > beware of overflow of complex values
  > because the biggest default real is 0.340282347E+39
  > because returning magnitude of sqrt(x%re**2,x%im**2)
@@ -2137,10 +2137,10 @@ There are several cases:
 
     As in case 2, the result is _.false._, if **pointer** is disassociated.
 
-4.  If **target** is present and an scalar pointer, the result is _.true._ if
-    **target** is associated with **pointer**, the target associated with **target**
-    are not zero-sized storage sequences and occupy the same storage
-    units.
+4.  If **target** is present and an scalar pointer, the result is
+    _.true._ if **target** is associated with **pointer**, the target
+    associated with **target** are not zero-sized storage sequences and
+    occupy the same storage units.
 
     The result is _.false._, if either **target** or **pointer** is disassociated.
 
@@ -2487,8 +2487,8 @@ complex :: c
      call cartesian_to_polar(vals(i), radius,ang)
      write(*,101)vals(i),ang,r2d(ang),radius
   enddo
-  101 format( 'X= ',f5.2,' Y= ',f5.2,' ANGLE= ',g0, &
-  & T38,'DEGREES= ',g0.4, T54,'DISTANCE=',g0)
+  101 format( 'X=',f5.2,' Y=',f5.2,' ANGLE=',g0, &
+  & T38,'DEGREES=',g0.4, T54,'DISTANCE=',g0)
  endblock COMPLEX_VALS
 !
 contains
@@ -2520,13 +2520,13 @@ Results:
  >  elemental  0.321750551      0.463647604
  >  elemental  0.197395563      0.380506366
  >  complex             (0.00000000,1.00000000)   1.57079637
- > X=  1.00 Y=  0.00 ANGLE= 0.00000000  DEGREES= 0.000  DISTANCE=1.00000000
- > X=  1.00 Y=  1.00 ANGLE= 0.785398185 DEGREES= 45.00  DISTANCE=1.41421354
- > X=  0.00 Y=  1.00 ANGLE= 1.57079637  DEGREES= 90.00  DISTANCE=1.00000000
- > X= -1.00 Y=  1.00 ANGLE= 2.35619450  DEGREES= 135.0  DISTANCE=1.41421354
- > X= -1.00 Y=  0.00 ANGLE= 3.14159274  DEGREES= 180.0  DISTANCE=1.00000000
- > X= -1.00 Y= -1.00 ANGLE= 3.92699075  DEGREES= 225.0  DISTANCE=1.41421354
- > X=  0.00 Y= -1.00 ANGLE= 4.71238899  DEGREES= 270.0  DISTANCE=1.00000000
+ > X= 1.00 Y= 0.00 ANGLE= 0.00000000  DEGREES= 0.000 DISTANCE=1.00000000
+ > X= 1.00 Y= 1.00 ANGLE= 0.785398185 DEGREES= 45.00 DISTANCE=1.41421354
+ > X= 0.00 Y= 1.00 ANGLE= 1.57079637  DEGREES= 90.00 DISTANCE=1.00000000
+ > X=-1.00 Y= 1.00 ANGLE= 2.35619450  DEGREES= 135.0 DISTANCE=1.41421354
+ > X=-1.00 Y= 0.00 ANGLE= 3.14159274  DEGREES= 180.0 DISTANCE=1.00000000
+ > X=-1.00 Y=-1.00 ANGLE= 3.92699075  DEGREES= 225.0 DISTANCE=1.41421354
+ > X= 0.00 Y=-1.00 ANGLE= 4.71238899  DEGREES= 270.0 DISTANCE=1.00000000
 
 ### **Standard**
 
@@ -2540,7 +2540,8 @@ FORTRAN 77
 
 ### **Resources**
 
-- [arctan:wikipedia](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
+- [arctan:wikipedia]
+  (https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## atan2pi
@@ -6982,27 +6983,150 @@ Sample program:
 ```fortran
 program demo_cos
 implicit none
-character(len=*),parameter :: g2='(a,t20,g0)'
-doubleprecision,parameter  :: PI=atan(1.0d0)*4.0d0
-   write(*,g2)'COS(0.0)=     ', cos(0.0)
-   write(*,g2)'COS(PI)=      ', cos(PI)
-   write(*,g2)'COS(PI/2.0d0)=', cos(PI/2.0d0),'EPSILON=',epsilon(PI)
-   write(*,g2)'COS(2*PI)=    ', cos(2*PI)
-   write(*,g2)'COS(-2*PI)=   ', cos(-2*PI)
-   write(*,g2)'COS(-2000*PI)=', cos(-2000*PI)
-   write(*,g2)'COS(3000*PI)= ', cos(3000*PI)
+real,parameter       :: PI=atan(1.0d0)*4.0d0
+real                 :: val
+character,parameter  :: nl=NEW_LINE('A')
+   write(*,'(*(g0))',advance='no') &
+
+'basics:',                                             nl, &
+' COS(0.0) =         ', cos(0.0),                      nl, &
+' COS(PI) =          ', cos(PI),                       nl, &
+' ',                                                   nl, &
+'X may be any real value',                             nl, &
+' COS(222*PI) =      ', cos(222*PI),                   nl, &
+' COS(-333*PI) =     ', cos(-333*PI),                  nl, &
+' ',                                                   nl, &
+'note: probably not exactly zero ....',                nl, &
+' COS(PI/2.0)=       ', cos(PI/2.0),                   nl, &
+' EPSILON=           ', epsilon(PI),                   nl, &
+' ',                                                   nl, &
+'COS() is elemental',                                  nl, &
+' COS([0.0,PI/4,PI/2,PI*3/4,PI]) = ',                  nl
+   write(*,'(*(1x,g0,1x))') COS([0.0,PI/4,PI/2,PI*3/4,PI])
+
+   write(*,'(*(g0))',advance='no') &
+' ',                                                   nl, &
+'Law of Cosines:',                                     nl, &
+' ',                                                   nl, &
+'right triangle',                                      nl, &
+two_sides_and_degrees_between(3.0,4.0,90.0),           nl, &
+'equilateral',                                         nl, &
+two_sides_and_degrees_between(3.3,3.3,60.0),           nl, &
+' ',                                                   nl, &
+'Dusty Corners:',                                      nl, &
+' ',                                                   nl, &
+'If very large, representable numbers are far apart',  nl, &
+'so adding or subtracting a few radians can not even', nl, &
+'change the value! Note the expected values here:',    nl
+   val=0.0
+   call delta( val-2.0, val-1.0 )
+
+   write(*,'(a)') 'but look at the same call when the values are huge;'
+   val=huge(0.0)/1000
+   call delta( val-2.0, val-1.0 )
+
+contains
+
+subroutine delta(A,B)
+real(kind=kind(0.0)),intent(in) :: a,b
+print '(a,t30,g0)' , &
+' A=                     ', A, &
+' B=                     ', B, &
+' B-A=                   ', B-A, &
+' COS(A*PI)=             ', cos(A*PI), &
+' COS(B*PI)=             ', cos(B*PI), &
+' spacing(A)=            ', spacing(A), &
+' COS((B-A)*PI)=         ', cos((B-A)*PI), &
+' COS(B*PI)-COS(A*PI)=   ', cos(B*PI)-cos(A*PI), &
+repeat('=',40)
+end subroutine delta
+
+function two_sides_and_degrees_between(a,b,X) result(str)
+real,intent(in)              :: a,b,X
+real                         :: c
+real,parameter               :: PI = atan(1.0d0) * 4.0d0
+real,parameter               :: degrees_to_radians = PI / 180.0
+character,parameter          :: nl=NEW_LINE('A')
+character(len=:),allocatable :: str
+! The law of cosines states that for a
+! triangle with sides of length a, b, and c
+! that if the angle X is formed by sides a and
+! b that the length of the third side c is
+!
+   c = sqrt( a**2 + b**2 - 2*a*b*cos(degrees_to_radians*X) )
+   allocate( character(len=132) :: str )
+   write(str,'(*(g0))')&
+   'For sides A=',a,', B=',b,' and X=',x,' degrees,',nl,'side C=',c
+   str=trim(str)
+!
+!                        \
+!                       / \
+!                      / Y \
+!                     /     \
+!                    /       \
+!                   /         \
+!                b /           \ c
+!                 /             \
+!                /               \
+!               /                 \
+!              /                   \
+!             / X                 Z \
+!            -------------------------
+!                        a
+end function two_sides_and_degrees_between
 end program demo_cos
 ```
 Results:
 ```text
- > COS(0.0)=          1.000000
- > COS(PI)=           -1.000000000000000
- > COS(PI/2.0d0)=     .6123233995736766E-16
- > EPSILON=           .2220446049250313E-15
- > COS(2*PI)=         1.000000000000000
- > COS(-2*PI)=        1.000000000000000
- > COS(-2000*PI)=     1.000000000000000
- > COS(3000*PI)=      1.000000000000000
+ > basics:
+ >  COS(0.0) =         1.00000000
+ >  COS(PI) =          -1.00000000
+ >
+ > X may be any real value
+ >  COS(222*PI) =      1.00000000
+ >  COS(-333*PI) =     -1.00000000
+ >
+ > note: probably not exactly zero ....
+ >  COS(PI/2.0)=       -0.437113883E-7
+ >  EPSILON=           0.119209290E-6
+ >
+ > COS() is elemental
+ >  COS([0.0,PI/4,PI/2,PI*3/4,PI]) =
+ >  1.00000000  0.707106769  -0.437113883E-7  -0.707106769  -1.00000000
+ >
+ > Law of Cosines:
+ >
+ > right triangle
+ > For sides A=3.00000000, B=4.00000000 and X=90.0000000 degrees,
+ > side C=5.00000000
+ > equilateral
+ > For sides A=3.29999995, B=3.29999995 and X=60.0000000 degrees,
+ > side C=3.29999995
+ >
+ > Dusty Corners:
+ >
+ > If very large, representable numbers are far apart
+ > so adding or subtracting a few radians can not even
+ > change the value! Note the expected values here:
+ >  A=                          -2.00000000
+ >  B=                          -1.00000000
+ >  B-A=                        1.00000000
+ >  COS(A*PI)=                  1.00000000
+ >  COS(B*PI)=                  -1.00000000
+ >  spacing(A)=                 0.238418579E-6
+ >  COS((B-A)*PI)=              -1.00000000
+ >  COS(B*PI)-COS(A*PI)=        -2.00000000
+ > ========================================
+ > but look at the same call when the values are huge;
+ >  A=                          0.340282343E+36
+ >  B=                          0.340282343E+36
+ >  B-A=                        0.00000000
+ >  COS(A*PI)=                  0.766595423
+ >  COS(B*PI)=                  0.766595423
+ >  spacing(A)=                 0.396140813E+29
+ >  COS((B-A)*PI)=              1.00000000
+ >  COS(B*PI)-COS(A*PI)=        0.00000000
+ > ========================================
 ```
 ### **Standard**
 
@@ -16314,18 +16438,18 @@ FORTRAN 77
 of ARRAY along dimension DIM corresponding to true elements of MASK.
 
 ### **Synopsis**
-forms
+forms:
 ```fortran
-    result = minval(array, [mask])
+    result = minval(array [,mask])
 ```
-or
+   or
 ```fortran
-    result = minval(array [,dim] [,mask])
+    result = minval(array ,dim [,mask])
 ```
 ```fortran
      type(TYPE(kind=**)) function minval(array, dim, mask)
 
-      NUMERIC,intent(in) :: array(..)
+      type(TYPE(kind=**)),intent(in) :: array(..)
       integer(kind=**),intent(in),optional :: dim
       logical(kind=**),intent(in),optional :: mask(..)
 ```
@@ -16503,11 +16627,11 @@ Fortran 95
 
 ### **See Also**
 
+[**maxval**(3)](#maxval),
 [**min**(3)](#min),
+[**max**(3)](#max)
 [**minloc**(3)](#minloc)
 [**maxloc**(3)](#maxloc),
-[**maxval**(3)](#maxval),
-[**min**(3)](#min)
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -22076,8 +22200,8 @@ function haversine(latA,lonA,latB,lonB) result (dist)
 ! given latitude and longitude in degrees
 !
 real,intent(in) :: latA,lonA,latB,lonB
-real :: a,c,dist,delta_lat,delta_lon,lat1,lat2
-real,parameter :: radius = 6371 ! mean earth radius in kilometers,
+real            :: a,c,dist,delta_lat,delta_lon,lat1,lat2
+real,parameter  :: radius = 6371 ! mean earth radius in kilometers,
 ! recommended by the International Union of Geodesy and Geophysics
 
 ! generate constant pi/180
@@ -24330,7 +24454,8 @@ character(len=*),intent(in)  :: title
 integer,intent(in)           :: arr(:,:)
 integer                      :: i
 character(len=:),allocatable :: biggest
-   write(*,'(a," shape(",i0,",",i0,")")')trim(title),shape(arr)  ! print title
+   ! print title
+   write(*,'(a," shape(",i0,",",i0,")")')trim(title),shape(arr)
    biggest='           '  ! make buffer to write integer into
    ! find how many characters to use for integers
    write(biggest,'(i0)')ceiling(log10(max(1.0,real(maxval(abs(arr))))))+2

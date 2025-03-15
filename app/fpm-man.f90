@@ -8,6 +8,7 @@ use M_match,      only : YES, ERR
 use M_strings,    only : lower, indent, atleast, str
 use M_attr,       only : attr, attr_update
 use M_io,         only : filewrite, fileread, get_env
+use M_vendor,     only : system_isatty
 implicit none
 type(regex_pattern)            :: p, start_p, end_p
 character(len=*),parameter     :: gen='(*(g0:))'
@@ -20,6 +21,7 @@ character(len=:),allocatable   :: filename
 character(len=:),allocatable   :: templine
 character(len=:),allocatable   :: last
 character(len=:),allocatable   :: editor
+character(len=:),allocatable   :: cmd
 real                           :: rm
 integer                        :: i, j, k, m
 integer                        :: ilines
@@ -42,7 +44,7 @@ character(len=20) ::  &
 &  bg=       '<E>                ',  &  ! initial background color
 &  fg=       '<w>                ',  &  ! text color
 &  prg=      '<c>                ',  &  ! demo program text color
-&  head=     '<y></bo>           ',  &  ! header line
+&  head=     '<y><bo>            ',  &  ! header line
 &  head_=    '</bo>              ',  &
 &  fixed=    '<w>                ',  &  ! color of leading > in demo program output
 &  output=   '<y>                ',  &  ! demo program output
@@ -50,17 +52,18 @@ character(len=20) ::  &
 namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
    ! process command line
    number=.false.
-   remember=''
+   remember='f'
    cmdmode=.false.
    iinf=0
    last='^NAME$'
    call setup()
    call set_mode('auto_response_file',.true.)
    call set_mode('lastonly')
-   call set_args(' --regex:e " " --ignorecase:i F --topic_only:t F --demo:d F --color:c F --query:Q " " &
-   & -start:S " " --end:E "^[A-Z][A-Z_ ]*$" --filename:f " " &
-   & --prefixoff:O F --lines:l '//get_env('LINES','0')//'',&
-   & help_text,version_text)
+   cmd=' --regex:e " " --ignorecase:i F --topic_only:t F --demo:d F &
+   & --color:c F --query:Q " " --start:S " " --end:E "^[A-Z][A-Z_ ]*$" &
+   & --filename:f " " --prefixoff:O F --lines:l '//get_env('LINES','0')
+   !write(*,*)'<DEBUG>',cmd
+   call set_args( cmd, help_text, version_text )
    regex=sget('regex')
    start=sget('start')
    end=sget('end')
@@ -68,8 +71,12 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
    ignorecase=lget('ignorecase')
    demo=lget('demo')
    color=lget('color')
+   if(.not.specified('color'))then
+      color=merge(.false.,.true.,get_env('FMAN_COLORS').eq.'')
+   endif
    query=sget('query')
    lines=iget('lines')
+   if(.not.system_isatty(stdout))lines=0
    filename=sget('filename')
    if(filename.ne.'')then
       call fileread(FILENAME,doc)
@@ -82,7 +89,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
          if(allocated(doc))deallocate(doc)
       endif
       if(size(topics).eq.0)then
-         topics=['manual']
+         topics=['']
       endif
    elseif(topic)then
       ! if -t then just show topic names and exit
@@ -107,7 +114,10 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
    ! normalize the topics list
    ! ensure there is at least one topic by applying a default
    if(size(topics).eq.0)then
-      topics=['toc']
+      topics=['manual']
+      topics=['']
+      call shorttopics()
+      if(color)manual=crayons(manual)
    endif
 
    if( ( size(topics).eq.1 .and. topics(1).eq.'toc') )then
@@ -144,10 +154,11 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
       write(stdout,gen)attr(str('<INFO>START.......',start))
       write(stdout,gen)attr(str('<INFO>END.........',end))
       write(stdout,gen)attr(str('<INFO>LINES.......',lines))
+      write(stdout,gen)attr(str('<INFO>ISATTY......',system_isatty(stdout)))
       write(stdout,gen)attr(str('<INFO>COLOR.......',color))
       write(stdout,gen)attr(str('<INFO>FILENAME....',filename))
       write(stdout,gen,advance='no')'Continue...'
-      read(stdin,'(a)',iostat=iostat)paws
+      if(system_isatty(stdout)) read(stdin,'(a)',iostat=iostat)paws
    endif
    ! build text to display or search
    if(filename.eq.'')then
@@ -179,13 +190,15 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                else
                     write(stdout,'(g0)')trim(manual(i))
                endif
+               ilines=ilines+1
             endif
-         else
+         elseif(i.gt.0)then
             if(number)then
                write(stdout,'(i0.6,1x,g0)')i,trim(manual(i))
             else
                write(stdout,'(g0)')trim(manual(i))
             endif
+            ilines=ilines+1
          endif
          if(lines.gt.0)then
             if(ilines.eq.lines-1)then
@@ -195,7 +208,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                   if(iostat.ne.0)exit INFINITE
                   if(paws.eq.'')paws=remember
                   select case(paws(1:1))
-                  case('b');
+                  case('b','p');
                              if(i.ge.size(manual))then
                                 i=max(0,i-1*lines) ! back
                              else
@@ -480,7 +493,6 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                   exit ANOTHER
                enddo ANOTHER
             endif
-            ilines=ilines+1
          endif
       i=i+1
       if(i.gt.size(manual))then
@@ -496,6 +508,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
       enddo INFINITE
    endif
 contains
+
 subroutine cribsheet()
    ! '123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 '
    write(stdout,'(a)')[character(len=80) :: &
@@ -537,6 +550,7 @@ subroutine cribsheet()
    write(stdout,gen,advance='no')'[',i,']Continue...'
    read(stdin,'(a)',iostat=iostat)paws
 end subroutine cribsheet
+
 subroutine load_manual()
 ! use topics list to load the manual variable
 integer :: i
@@ -635,7 +649,11 @@ integer                        :: start_keep, end_keep
       enddo
     endif
     if(size(newsection).eq.0)then
-       write(stdout,*)'!<ERROR> *fman* standard demo code format not found for ',trim(topics(i))
+       if(size(topics).lt.1.or.i.lt.1)then
+          write(stdout,*)'!<ERROR> *fman* missing topics. standard demo code format not found.'
+       else
+          write(stdout,*)'!<ERROR> *fman* standard demo code format not found for ',trim(topics(i))
+       endif
        section=['']
     else
        section=newsection
@@ -783,11 +801,11 @@ elemental impure function run(command)
 use, intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT, stdout=>OUTPUT_UNIT
 implicit none
 character(len=*),intent(in) :: command
-integer                    :: run
-logical                    :: wait
-integer                    :: exitstat
-integer                    :: cmdstat
-character(len=256)         :: cmdmsg
+integer                     :: run
+logical                     :: wait
+integer                     :: exitstat
+integer                     :: cmdstat
+character(len=256)          :: cmdmsg
    wait=.false.
    exitstat=0
    cmdstat=0
@@ -844,48 +862,51 @@ help_text=[ CHARACTER(LEN=128) :: &
 '  --version         Output version information and exit                        ',&
 '                                                                               ',&
 'ENVIRONMENT                                                                    ',&
-'   Allows specifying the strings used by the M_attr module to select colors.   ',&
-'   FMAN_COLORS="bg=''<E>'',fg=''<w>'',prg=''<c>'',                             ',&
-'      head=''<y></bo>'',head_=''</bo>'',fixed=''<w>'',                         ',&
-'      output=''<y>'',output_=''</bo>''"                                        ',&
-'   LINES                                                                       ',&
-'      use "export LINES" from the bash shell to use the automatically generated',&
-'      value. Set to a numeric value it activates paging of the output.         ',&
+'   FMAN_COLORS  Allows specifying the strings used by the M_attr module        ',&
+'                to select colors. If set, fman(1) defaults to color mode.      ',&
+'                Default is                                                     ',&
+'                                                                               ',&
+'                    FMAN_COLORS="bg=''<E>'',fg=''<w>'',prg=''<c>'',            ',&
+'                    head=''<y><bo>'',head_=''</bo>'',fixed=''<w>'',            ',&
+'                    output=''<y>'',output_=''</bo>''"                          ',&
+'                                                                               ',&
+'   LINES   use "export LINES" from the bash shell to use the automatically     ',&
+'           generated value. Set to a numeric value it activates paging         ',&
+'           of the output.                                                      ',&
 'EXAMPLES                                                                       ',&
 '  Sample commands                                                              ',&
 '                                                                               ',&
-'   fman tan|less            # display a description of tan(3f)                 ',&
-'   fman                     # list table of contents                           ',&
-'   fman manual>fortran.txt  # create a copy of all descriptions                ',&
-'   fman -e character        # check TOC for string. try "trigo","size","complex"',&
-'                                                                                ',&
-'   fman --regex ''character''   # look for string in the TOC ignoring case      ',&
-'                                                                                ',&
-'   # list the topic "scan" if found and lines containing "scan" from the entire ',&
-'   # manual, prefixing the lines with the section name, while ignoring case.    ',&
-'   fman -e scan -i manual                                                       ',&
-'                                                                                ',&
-'   fman -d verify >demo_verify.f90 # get demo program to try VERIFY(3f).        ',&
-'                                                                                ',&
-'   # change background to blue, page every 30 lines                             ',&
-'   env FMAN_COLORS="bg=''<B>''" fman --color --lines 30 abs                     ',&
-'                                                                                ',&
-'   # Interactive mode                                                           ',&
-'   export LINES # in bash(1) sense terminal size                                ',&
-'   fman --color # bring up Table of Contents                                    ',&
-'   t cos        # load description of intrinsic "cos"                           ',&
-'   t verify     # load description of intrinsic "verify"                        ',&
-'   T            # reload TOC (Table of Contents)                                ',&
-'   /trig        # move forward to a line with "trig" in it                      ',&
-'   #            # toggle on line numbers                                        ',&
-'   h            # display crib sheet of commands                                ',&
+'   fman tan|less                   # display a description of tan(3f)          ',&
+'   fman -d verify >demo_verify.f90 # get demo program to try VERIFY(3f).       ',&
+'   fman                            # list table of contents                    ',&
+'   fman toc                        # annotated table of contents               ',&
+'   fman manual>fortran.txt         # create a copy of all descriptions         ',&
+'   fman -i --regex ''character''  # look for string in the TOC ignoring case   ',&
+'                                # for string. try "trigo","size","complex"     ',&
+'                                                                               ',&
+'   # list the topic "scan" if found and lines containing "scan" from the entire',&
+'   # manual, prefixing the lines with the section name, while ignoring case.   ',&
+'   fman -e scan -i manual                                                      ',&
+'                                                                               ',&
+'   # change background to blue, page every 30 lines                            ',&
+'   env FMAN_COLORS="bg=''<B>''" fman --color --lines 30 abs                    ',&
+'                                                                               ',&
+'   # Interactive session is tripped when LINES is set                          ',&
+'   export LINES # in bash(1) sense terminal size                               ',&
+'   fman --color # bring up Table of Contents                                   ',&
+'   t verify     # load description of intrinsic topic "verify"                 ',&
+'   t            # load short TOC (Table of Contents)                           ',&
+'   T            # load annotated TOC (Table of Contents)                       ',&
+'   /trig        # move forward to a line with "trig" in it                     ',&
+'   #            # toggle on line numbers                                       ',&
+'   h            # display crib sheet of commands                               ',&
 '']
 
 version_text=[ CHARACTER(LEN=128) :: &
 '@(#) PRODUCT:         GPF (General Purpose Fortran) utilities and examples     >',&
 '@(#) PROGRAM:         fman(1)                                                  >',&
 '@(#) DESCRIPTION:     output Fortran intrinsic descriptions                    >',&
-'@(#) VERSION:         2.0.0, 2024-10-25                                        >',&
+'@(#) VERSION:         3.0.0, 2025-03-14                                        >',&
 '@(#) AUTHOR:          John S. Urban                                            >',&
 '@(#) HOME PAGE:       http://www.urbanjost.altervista.org/index.html           >',&
 '@(#) LICENSE:         MIT License                                              >',&

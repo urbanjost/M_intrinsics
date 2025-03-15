@@ -97,13 +97,13 @@
 
    A USE statement with the ONLY option provides access only to
    those entities that appear as generic-specs, use-names, or
-   use-deﬁned-operators in the only-list.
+   use-defined-operators in the only-list.
 
-   There is no prohibition against a use-name or use-deﬁned-operator
+   There is no prohibition against a use-name or use-defined-operator
    appearing multiple times in one USE state- ment or in multiple USE
    statements involving the same module. As a result, it is possible
    for one use-associated entity to be accessible by more than one
-   local identiﬁer.
+   local identifier.
 
    An entity in a scoping unit that is accessed by use association
    through more than one use path, has the ASYN- CHRONOUS or VOLATILE

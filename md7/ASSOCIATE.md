@@ -11,7 +11,7 @@ Syntax:
 ```fortran
   [ construct-name : ] ASSOCIATE ( associate-name => selector ...)
     :
-    : the associate-block; a sequence of zero or more statements or constructs
+    : the associate-block; zero or more statements or constructs
     :
   END ASSOCIATE [ construct-name ]
 ```
@@ -55,8 +55,8 @@ For example:
 ```fortran
         MYNAME: associate
          :
-	if(something_is_true) exit MYNAME
-	 :
+        if(something_is_true) exit MYNAME
+         :
         end associate MYNAME
 ```
  sample program:
@@ -98,8 +98,8 @@ lasts for the duration of the block.
 
 Each ASSOCIATE statement must be followed by a matching END ASSOCIATE
 
-The variable will have most, but not all of the attributes
-of the variable.
+The variable will have most, but not all of the attributes of the
+variable.
 
 More specifically an ASSOCIATE statement either
 
@@ -210,11 +210,11 @@ Results:
       bounds of normal=>(1:11,1:11)
 ```
    The cobounds of each codimension of the associating entity are the same
-   as those of the selector. 
+   as those of the selector.
 
    The associating entity has the ASYNCHRONOUS
    or VOLATILE attribute if and only if the selector is a variable and
-   has the attribute. 
+   has the attribute.
 
    The associating entity has the TARGET attribute if
    and only if the selector is a variable and has either the TARGET or
@@ -253,7 +253,7 @@ Results:
    same as those of the selector.
 
    The associating entity itself is a variable, but if the selector is
-   not a deﬁnable variable, the associating entity is not definable
+   not a definable variable, the associating entity is not definable
    and shall not be defined or become undefined.
 
    If a selector is not permitted to appear in a variable definition
@@ -304,7 +304,9 @@ previously appeared in an ASSOCIATE statement that has not been terminated.
 ```
   The next example illustrates multiple associations.
 ```fortran
-       associate ( w => result(i,j)%w, zx => ax%b(i,j)%d, zy => ay%b(i,j)%d )
+       associate ( w => result(i,j)%w, &
+       & zx => ax%b(i,j)%d, &
+       & zy => ay%b(i,j)%d )
          w = zx*x + zy*y
        end associate
 ```
@@ -316,7 +318,7 @@ do i=1,3
    end associate ! the end must appear before the end of the DO loop
 enddo
 ```
-## **Examples**
+### **Examples**
 Sample program:
 
 ```fortran
@@ -325,41 +327,40 @@ Sample program:
    character(len=*),parameter :: g='(*(g0,1x))'
    character :: array(-5:5,-5:5)      ! custom non-normal bounds
    ! note the different between queries of ARRAY versus ARRAY(:,:)
-      write(*,g)'array:     ',  'lbound=',lbound(array), &
-                                'ubound=',ubound(array)
-      write(*,g)'array(:,:): ', 'lbound=',lbound(array(:,:)), &
-                                'ubound=',ubound(array(:,:))
+     write(*,g)'array:     ',  'lbound=',lbound(array), &
+                               'ubound=',ubound(array)
+     write(*,g)'array(:,:): ', 'lbound=',lbound(array(:,:)), &
+                               'ubound=',ubound(array(:,:))
    ! the bounds assigned to the identifiers are what UBOUND(3f)
    ! and LBOUND(3f) return given the selector as an argument
-      associate ( &
-         alias=>   array,              & ! keeps the custom bounds
-         normal=>  array(:,:),         & ! gets normal bounds
-         quadI=>   array(+1:+5,-5:-1), & ! quad* will have normal bounds
-         quadII=>  array(-5:-1,-5:-1), & !
-         quadIII=> array(-5:-1,+1:+5), & !
-         quadIV=>  array(+1:+5,+1:+5), & !
-         xaxis=>array(:,0), &
-         yaxis=>array(0,:) &
-         )
-         array='.' ! selector name is still valid in the block
-         xaxis='-'
-         yaxis='|'
-         alias(0,0)='+' ! uses non-normal bounds, equivalent to array(0,0)='+'
-         write(*,'(11(g0,1x))') alias
-         ! the quads have normalized dimension bounds (1:5,1:5):
-         quadI    =  '1';  quadI(1,1)    =  'a';  quadI(5,5)    =  'A'
-         quadII   =  '2';  quadII(1,1)   =  'b';  quadII(5,5)   =  'B'
-         quadIII  =  '3';  quadIII(1,1)  =  'c';  quadIII(5,5)  =  'C'
-         quadIV   =  '4';  quadIV(1,1)   =  'd';  quadIV(5,5)   =  'D'
-         write(*,'(11(g0,1x))') alias
-
-         write(*,g)'array:   lbound=',lbound(array),  'ubound=',ubound(array)
-         write(*,g)'alias:   lbound=',lbound(alias),  'ubound=',ubound(alias)
-         write(*,g)'normal:  lbound=',lbound(normal), 'ubound=',ubound(normal)
-         write(*,g)'quadI:   lbound=',lbound(quadI),  'ubound=',ubound(quadI)
-         write(*,g)'quadII:  lbound=',lbound(quadII), 'ubound=',ubound(quadII)
-         write(*,g)'quadIV:  lbound=',lbound(quadIV), 'ubound=',ubound(quadIV)
-      end associate
+     associate ( &
+      alias=>   array,              & ! keeps the custom bounds
+      normal=>  array(:,:),         & ! gets normal bounds
+      quadI=>   array(+1:+5,-5:-1), & ! quad* will have normal bounds
+      quadII=>  array(-5:-1,-5:-1), & !
+      quadIII=> array(-5:-1,+1:+5), & !
+      quadIV=>  array(+1:+5,+1:+5), & !
+      xaxis=>array(:,0), &
+      yaxis=>array(0,:) &
+      )
+      array='.' ! selector name is still valid in the block
+      xaxis='-'
+      yaxis='|'
+      alias(0,0)='+' ! uses non-normal bounds, equivalent to array(0,0)='+'
+      write(*,'(11(g0,1x))') alias
+      ! the quads have normalized dimension bounds (1:5,1:5):
+      quadI    =  '1';  quadI(1,1)    =  'a';  quadI(5,5)    =  'A'
+      quadII   =  '2';  quadII(1,1)   =  'b';  quadII(5,5)   =  'B'
+      quadIII  =  '3';  quadIII(1,1)  =  'c';  quadIII(5,5)  =  'C'
+      quadIV   =  '4';  quadIV(1,1)   =  'd';  quadIV(5,5)   =  'D'
+      write(*,'(11(g0,1x))') alias
+      write(*,g)'array:  lbound=',lbound(array), 'ubound=',ubound(array)
+      write(*,g)'alias:  lbound=',lbound(alias), 'ubound=',ubound(alias)
+      write(*,g)'normal: lbound=',lbound(normal),'ubound=',ubound(normal)
+      write(*,g)'quadI:  lbound=',lbound(quadI), 'ubound=',ubound(quadI)
+      write(*,g)'quadII: lbound=',lbound(quadII),'ubound=',ubound(quadII)
+      write(*,g)'quadIV: lbound=',lbound(quadIV),'ubound=',ubound(quadIV)
+     end associate
    end program demo_associate
 ```
 Results:
@@ -398,20 +399,21 @@ Results:
 ```
 ### Dusty Corners
 
-If the expressions have side-effects are they executed only when the block
-is entered?
+If the expressions have side-effects are they executed only when the
+block is entered?
 
 Selected variable names are still accessible in the ASSOCIATE block. This
-is confusing and should be avoided, particular if the selectors are
-allocatable or pointers. This is similiar to variables passed as arguments to
-contained procedures but referenced via the argument name and the name in the
-surrounding scope. The behavior is ill-defined. Does a change to the argument
-take affect immediately or upon return from the procedure? If the argument is
-not declared allocatable or is a pointer does the argument name value get
-changed by deallocation or disassociation or changes to the original names?
+is confusing and should be avoided, particular if the selectors
+are allocatable or pointers. This is similiar to variables passed as
+arguments to contained procedures but referenced via the argument name
+and the name in the surrounding scope. The behavior is ill-defined. Does
+a change to the argument take affect immediately or upon return from the
+procedure? If the argument is not declared allocatable or is a pointer
+does the argument name value get changed by deallocation or disassociation
+or changes to the original names?
 
-are you allowed to allocate v to a different size before the
-ASSOCIATE is terminated? If so, what happens to c ?
+are you allowed to allocate v to a different size before the ASSOCIATE
+is terminated? If so, what happens to c ?
 
 Does that mean it is invalid to resize v within the ASSOCIATE block? Or
 is it only invalid to resize v and then refer to c? Or only invalid to
@@ -430,29 +432,30 @@ longer exist?
 ```
 are you allowed to allocate v to a different size before the ASSOCIATE
 is terminated? If so, what happens to c?
-         ```fortran
-         program demonstrate_associate
-         implicit none
-         integer, allocatable :: v(:)
-         v = [3,4]
+```fortran
+     program demonstrate_associate
+     implicit none
+     integer, allocatable :: v(:)
+     v = [3,4]
 
-         associate (c => v) ; call disp("1",v,c)
-         c = c*10           ; call disp("2",v,c)
-         v = [2,4,6]        ; call disp("3",v,c)
-         c = c*10           ; call disp("4",v,c)
-         v = [2]            ; call disp("5",v,c)
-         end associate
+     associate (c => v) ; call disp("1",v,c)
+     c = c*10           ; call disp("2",v,c)
+     v = [2,4,6]        ; call disp("3",v,c)
+     c = c*10           ; call disp("4",v,c)
+     v = [2]            ; call disp("5",v,c)
+     end associate
 
-         contains
+     contains
 
-         subroutine disp(label,v,c)
-         character (len=*), intent(in) :: label
-         integer, intent(in) :: v(:),c(:)
-            write (*,"(a,' v = ',*(1x,i0))",advance="no") label,v
-            write (*,"(3x,'c = ',*(1x,i0))") c
-         end subroutine disp
+     subroutine disp(label,v,c)
+     character (len=*), intent(in) :: label
+     integer, intent(in) :: v(:),c(:)
+        write (*,"(a,' v = ',*(1x,i0))",advance="no") label,v
+        write (*,"(3x,'c = ',*(1x,i0))") c
+     end subroutine disp
 
-         end program demonstrate_associate
+     end program demonstrate_associate
+```
 ### **Comparisons to other constructs**
 
 When is it not true that
@@ -468,14 +471,13 @@ is equivalent to
    type(type(a)),intent(in) :: a(..) ! if a in an expression
    type(type(a))            :: a(..) ! if a in a variable
    end subroutine assoc
+   ! somewhat like the parameters being class(*) but without all the
+   ! SELECT statements like type(type(a)) worked.
 
-   ! somewhat like the parameters being class(*) but without all the SELECT statements
-   ! like type(type(a)) worked.
-
-   ! so "a" in the subroutine does not have the allocatable, optional, or pointer
-   ! attributes even if AA did, and it is up to the programmer to make sure AA is allocated
-   ! or assigned a target or present if optional when making the call if it has those
-   ! attributes.
+   ! so "a" in the subroutine does not have the allocatable, optional,
+   ! or pointer attributes even if AA did, and it is up to the programmer
+   ! to make sure AA is allocated or assigned a target or present if
+   ! optional when making the call if it has those attributes.
 
    ! but it can have the target attribute.
 ```

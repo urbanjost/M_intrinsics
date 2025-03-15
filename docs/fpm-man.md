@@ -70,45 +70,49 @@ OPTIONS
 ENVIRONMENT
 ===========
 
-Allows specifying the strings used by the M\_attr module to select
-colors. FMAN\_COLORS="bg='\<E\>',fg='\<w\>',prg='\<c\>',
-head='\<y\>\</bo\>',head\_='\</bo\>',fixed='\<w\>',
-output='\<y\>',output\_='\</bo\>'"
+**FMAN\_COLORS**
 
-LINES
------
+:   Allows specifying the strings used by the M\_attr module to select
+    colors. If set, fman(1) defaults to color mode. Default is
 
-use "export LINES" from the bash shell to use the automatically
-generated value. Set to a numeric value it activates paging of the
-output.
+<!-- -->
+
+                        FMAN_COLORS="bg='<E>',fg='<w>',prg='<c>',
+                        head='<y><bo>',head_='</bo>',fixed='<w>',
+                        output='<y>',output_='</bo>'"
+
+**LINES**
+
+:   use "export LINES" from the bash shell to use the automatically
+    generated value. Set to a numeric value it activates paging of the
+    output.
 
 EXAMPLES
 ========
 
 Sample commands
 
-       fman tan|less            # display a description of tan(3f)
-       fman                     # list table of contents
-       fman manual>fortran.txt  # create a copy of all descriptions
-       fman -e character        # check TOC for string. try "trigo","size","complex"
-
-       fman --regex 'character'   # look for string in the TOC ignoring case
+       fman tan|less                   # display a description of tan(3f)
+       fman -d verify >demo_verify.f90 # get demo program to try VERIFY(3f).
+       fman                            # list table of contents
+       fman toc                        # annotated table of contents
+       fman manual>fortran.txt         # create a copy of all descriptions
+       fman -i --regex 'character'  # look for string in the TOC ignoring case
+                                    # for string. try "trigo","size","complex"
 
        # list the topic "scan" if found and lines containing "scan" from the entire
        # manual, prefixing the lines with the section name, while ignoring case.
        fman -e scan -i manual
 
-       fman -d verify >demo_verify.f90 # get demo program to try VERIFY(3f).
-
        # change background to blue, page every 30 lines
        env FMAN_COLORS="bg='<B>'" fman --color --lines 30 abs
 
-       # Interactive mode
+       # Interactive session is tripped when LINES is set
        export LINES # in bash(1) sense terminal size
        fman --color # bring up Table of Contents
-       t cos        # load description of intrinsic "cos"
-       t verify     # load description of intrinsic "verify"
-       T            # reload TOC (Table of Contents)
+       t verify     # load description of intrinsic topic "verify"
+       t            # load short TOC (Table of Contents)
+       T            # load annotated TOC (Table of Contents)
        /trig        # move forward to a line with "trig" in it
        #            # toggle on line numbers
        h            # display crib sheet of commands

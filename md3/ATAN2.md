@@ -121,8 +121,8 @@ complex :: c
      call cartesian_to_polar(vals(i), radius,ang)
      write(*,101)vals(i),ang,r2d(ang),radius
   enddo
-  101 format( 'X= ',f5.2,' Y= ',f5.2,' ANGLE= ',g0, &
-  & T38,'DEGREES= ',g0.4, T54,'DISTANCE=',g0)
+  101 format( 'X=',f5.2,' Y=',f5.2,' ANGLE=',g0, &
+  & T38,'DEGREES=',g0.4, T54,'DISTANCE=',g0)
  endblock COMPLEX_VALS
 !
 contains
@@ -154,13 +154,13 @@ Results:
  >  elemental  0.321750551      0.463647604    
  >  elemental  0.197395563      0.380506366    
  >  complex             (0.00000000,1.00000000)   1.57079637    
- > X=  1.00 Y=  0.00 ANGLE= 0.00000000  DEGREES= 0.000  DISTANCE=1.00000000
- > X=  1.00 Y=  1.00 ANGLE= 0.785398185 DEGREES= 45.00  DISTANCE=1.41421354
- > X=  0.00 Y=  1.00 ANGLE= 1.57079637  DEGREES= 90.00  DISTANCE=1.00000000
- > X= -1.00 Y=  1.00 ANGLE= 2.35619450  DEGREES= 135.0  DISTANCE=1.41421354
- > X= -1.00 Y=  0.00 ANGLE= 3.14159274  DEGREES= 180.0  DISTANCE=1.00000000
- > X= -1.00 Y= -1.00 ANGLE= 3.92699075  DEGREES= 225.0  DISTANCE=1.41421354
- > X=  0.00 Y= -1.00 ANGLE= 4.71238899  DEGREES= 270.0  DISTANCE=1.00000000
+ > X= 1.00 Y= 0.00 ANGLE= 0.00000000  DEGREES= 0.000 DISTANCE=1.00000000
+ > X= 1.00 Y= 1.00 ANGLE= 0.785398185 DEGREES= 45.00 DISTANCE=1.41421354
+ > X= 0.00 Y= 1.00 ANGLE= 1.57079637  DEGREES= 90.00 DISTANCE=1.00000000
+ > X=-1.00 Y= 1.00 ANGLE= 2.35619450  DEGREES= 135.0 DISTANCE=1.41421354
+ > X=-1.00 Y= 0.00 ANGLE= 3.14159274  DEGREES= 180.0 DISTANCE=1.00000000
+ > X=-1.00 Y=-1.00 ANGLE= 3.92699075  DEGREES= 225.0 DISTANCE=1.41421354
+ > X= 0.00 Y=-1.00 ANGLE= 4.71238899  DEGREES= 270.0 DISTANCE=1.00000000
 
 ### **Standard**
 
@@ -174,5 +174,6 @@ FORTRAN 77
 
 ### **Resources**
 
-- [arctan:wikipedia](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
+- [arctan:wikipedia]
+  (https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
