@@ -5,7 +5,7 @@ use M_CLI2,       only : set_args, sget, iget, lget, specified, topics=>unnamed
 use M_CLI2,       only : set_mode
 use M_match,      only : getpat, match, regex_pattern
 use M_match,      only : YES, ERR
-use M_strings,    only : lower, indent, atleast, str
+use M_strings,    only : lower, indent, atleast, str, replace
 use M_attr,       only : attr, attr_update
 use M_io,         only : filewrite, fileread, get_env
 use M_vendor,     only : system_isatty
@@ -42,12 +42,12 @@ logical                        :: prefix, ignorecase, demo, color
 character(len=512)             :: paws, remember
 character(len=20) ::  &
 &  bg=       '<E>                ',  &  ! initial background color
-&  fg=       '<w>                ',  &  ! text color
-&  prg=      '<c>                ',  &  ! demo program text color
+&  fg=       '<w><bo>            ',  &  ! text color
+&  prg=      '<c><bo>            ',  &  ! demo program text color
 &  head=     '<y><bo>            ',  &  ! header line
 &  head_=    '</bo>              ',  &
 &  fixed=    '<w>                ',  &  ! color of leading > in demo program output
-&  output=   '<y>                ',  &  ! demo program output
+&  output=   '<y><bo>            ',  &  ! demo program output
 &  output_=  '</bo>              '
 namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
    ! process command line
@@ -70,9 +70,13 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
    topic=lget('topic_only')
    ignorecase=lget('ignorecase')
    demo=lget('demo')
-   color=lget('color')
-   if(.not.specified('color'))then
-      color=merge(.false.,.true.,get_env('FMAN_COLORS').eq.'')
+   if(.not.demo) then
+      color=lget('color')
+      if(.not.specified('color'))then
+         color=merge(.false.,.true.,get_env('FMAN_COLORS').eq.'')
+      endif
+   else
+      color=.false.
    endif
    query=sget('query')
    lines=iget('lines')
@@ -599,8 +603,8 @@ integer :: m
 end subroutine shorttopics
 
 subroutine go_to(direction)
-integer,intent(in) :: direction
-integer :: plusminus
+integer,intent(in) :: direction 
+integer            :: plusminus 
    paws=adjustl(paws)
    read(paws,'(i80)',iostat=iostat)m
    select case(paws(1:1))
@@ -709,11 +713,11 @@ end subroutine find_start
 function crayons(oldblock) result(newblock)
 ! just playing. There is a lot of stuff not done robustly here
 character(len=256),intent(in),allocatable :: oldblock(:)
-character(len=256),allocatable :: newblock(:)
-integer :: ilen, gt, ipad
-integer :: lead
-integer :: width
-logical :: program_text, after_demo
+character(len=256),allocatable            :: newblock(:)
+integer                                   :: ilen, gt, ipad
+integer                                   :: lead
+integer                                   :: width
+logical                                   :: program_text, after_demo
    width=max(80,maxval(len_trim(oldblock)))
    line=get_env('FMAN_COLORS')
    if(line.eq.'?')then
@@ -767,11 +771,27 @@ logical :: program_text, after_demo
          newblock(j)=attr('<bg><fixed>'//oldblock(j)(:gt)//&
          & '<bg><output>'//trim(than(oldblock(j)(gt+1:)))//'</output>'//repeat(' ',max(0,width-ilen))//'<reset>')
        ! not header or demo program or demo program results
-       else
+      elseif(topics(1)(1:3).eq.'toc')then
+      ! table of contents header
+         if(oldblock(j)(1:1)=='[')then
+            ilen=len_trim(oldblock(j))
+            newblock(j)=attr('<bg><head>'//trim(oldblock(j))//'</head>'//repeat(' ',max(0,width-ilen))//'<reset>')
+	 else
+            ipad=len_trim(oldblock(j))
+            ipad=len_trim(than(oldblock(j)))-ipad
+	    if(index(oldblock(j),'(').ne.0)then
+	       newblock(j)=replace(than(oldblock(j)),'(','<fg>(',occurrence=1,repeat=1)
+	       ipad=ipad+4
+               newblock(j)=attr('<bg><prg>'//atleast(trim(newblock(j)),width+ipad)//'<reset>')
+	    else
+               newblock(j)=attr('<bg><fg>'//atleast(than(oldblock(j)),width+ipad)//'<reset>')
+	    endif
+         endif
+      else
          ipad=len_trim(oldblock(j))
          ipad=len_trim(than(oldblock(j)))-ipad
-          newblock(j)=attr('<bg><fg>'//atleast(than(oldblock(j)),width+ipad)//'<reset>')
-       endif
+         newblock(j)=attr('<bg><fg>'//atleast(than(oldblock(j)),width+ipad)//'<reset>')
+      endif
       if( index(oldblock(j),'end program demo_') .ne.0)then
          program_text=.false.
          after_demo=.true.
@@ -923,6 +943,7 @@ $!@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 end subroutine setup
 
 end program fman
+
 ! kludge1: older versions of gfortran do not handle character arrays with both line and size allocatable
 ! always make non-color and color and toggle between the two
 ! a search that shows topic prefix and line number in original file
