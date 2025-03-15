@@ -115,12 +115,12 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
    ! ensure there is at least one topic by applying a default
    if(size(topics).eq.0)then
       topics=['manual']
-      topics=['']
+      topics=['toc3']
       call shorttopics()
       if(color)manual=crayons(manual)
    endif
 
-   if( ( size(topics).eq.1 .and. topics(1).eq.'toc') )then
+   if( ( size(topics).eq.1 .and. topics(1)(1:3).eq.'toc') )then
       prefix=.false.
       ignorecase=.true.
    endif
@@ -464,13 +464,12 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                   case('t','T')
                      i=0  ! developer: load a topic
                      if(paws.eq.'T')paws(2:)='toc'
-                        topics=[adjustl(paws(2:))]
+                     topics=[adjustl(paws(2:))]
                      if(paws.eq.'t')then
                         call shorttopics()
                         if(color)manual=crayons(manual)
                         topics=['']
                      else
-                        topics=[adjustl(paws(2:))]
                         call load_manual()
                         if(color)manual=crayons(manual)
                      endif
@@ -579,6 +578,7 @@ integer :: i
       clone_no_color=manual
    enddo
 end subroutine load_manual
+
 subroutine shorttopics()
 ! get list of topics, write 3 per line onto an internal character page
 integer :: m

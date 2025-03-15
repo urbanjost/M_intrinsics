@@ -19,12 +19,14 @@ logical,intent(in),optional                       :: prefix
 logical,intent(in),optional                       :: topic
 logical,intent(in),optional                       :: m_help
 character(len=256),allocatable                    :: textblock(:)
+character(len=256),allocatable                    :: narrow(:)
+character(len=256)                                :: header
 character(len=:),allocatable                      :: a, b, c
-integer                                           :: i, p, pg
+integer                                           :: i, j, k, p, pg
    select case(name)
    case('','manual','intrinsics','fortranmanual','fortran_manual')
       textblock=help_intrinsics_all(prefix,topic,m_help)
-   case('fortran','toc')
+   case('fortran','toc','toc3','toc5','toc7')
       textblock=help_intrinsics_section()
       do i=1,size(textblock)
          p = index(textblock(i), '[')
@@ -37,10 +39,147 @@ integer                                           :: i, p, pg
          endif
       enddo
       call sort_name(textblock)
+      allocate(narrow(0))
+      header=''
+      do i=1,size(textblock)
+       j=index(textblock(i),']')       
+       select case(name)
+       case('toc3')
+          if(index(textblock(i),'(3)').eq.0)cycle
+       case('toc5')
+          if(index(textblock(i),'(5)').eq.0)cycle
+       case('toc7')
+          k=0
+          k=max(k,index(textblock(i),'(7)'))
+          k=max(k,index(textblock(i),'(7f)'))
+	  if(k==0)cycle
+       end select
+       if (textblock(i)(:j).ne.header)then
+          header=textblock(i)(:j)
+          narrow=[character(len=256) :: narrow,header]
+       endif
+       textblock(i)=textblock(i)(j+1:)
+       narrow=[character(len=256) :: narrow,'     '//paragraph(textblock(i),70)]
+      enddo
+      textblock=narrow
    case default
       textblock=help_intrinsics_one(name,prefix,topic,m_help)
    end select
 end function help_intrinsics
+!===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
+!===================================================================================================================================
+function paragraph(source_string,length)
+
+!$@(#) M_strings::paragraph(3f): wrap a long string into a paragraph
+
+character(len=*),intent(in)       :: source_string
+integer,intent(in)                :: length
+integer                           :: itoken
+integer                           :: ibegin
+integer                           :: iend
+character(len=*),parameter        :: delimiters=' '
+character(len=:),allocatable      :: paragraph(:)
+integer                           :: ilines
+integer                           :: ilength
+integer                           :: iword, iword_max
+integer                           :: i
+!-----------------------------------------------------------------------------------------------------------------------------------
+!  parse string once to find out how big to make the returned array, then redo everything but store the data
+!  could store array of endpoints and leave original whitespace alone or many other options
+   do i=1,2
+      iword_max=0                                  ! length of longest token
+      ilines=1                                     ! number of output line output will go on
+      ilength=0                                    ! length of output line so far
+      itoken=0                                     ! must set ITOKEN=0 before looping on strtok(3f) on a new string.
+      do while ( strtok(source_string,itoken,ibegin,iend,delimiters) )
+         iword=iend-ibegin+1
+         iword_max=max(iword_max,iword)
+         if(iword > length)then                   ! this token is longer than the desired line length so put it on a line by itself
+            if(ilength /= 0)then
+               ilines=ilines+1
+            endif
+            if(i == 2)then     ! if paragraph has been allocated store data, else just gathering data to determine size of paragraph
+               paragraph(ilines)=source_string(ibegin:iend)//' '
+            endif
+            ilength=iword+1
+         elseif(ilength+iword <= length)then       ! this word will fit on current line
+            if(i == 2)then
+               paragraph(ilines)=paragraph(ilines)(:ilength)//source_string(ibegin:iend)
+            endif
+            ilength=ilength+iword+1
+         else                                      ! adding this word would make line too long so start new line
+            ilines=ilines+1
+            ilength=0
+            if(i == 2)then
+               paragraph(ilines)=paragraph(ilines)(:ilength)//source_string(ibegin:iend)
+            endif
+            ilength=iword+1
+         endif
+      enddo
+      if(i==1)then                                 ! determined number of lines needed so allocate output array
+         allocate(character(len=max(length,iword_max)) :: paragraph(ilines))
+         paragraph=' '
+      endif
+   enddo
+   paragraph=paragraph(:ilines)
+end function paragraph
+!===================================================================================================================================
+!()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
+!===================================================================================================================================
+FUNCTION strtok(source_string,itoken,token_start,token_end,delimiters) result(strtok_status)
+! JSU- 20151030
+
+!$@(#) M_strings::strtok(3f): Tokenize a string
+
+character(len=*),intent(in)  :: source_string    ! Source string to tokenize.
+character(len=*),intent(in)  :: delimiters       ! list of separator characters. May change between calls
+integer,intent(inout)        :: itoken           ! token count since started
+logical                      :: strtok_status    ! returned value
+integer,intent(out)          :: token_start      ! beginning of token found if function result is .true.
+integer,intent(inout)        :: token_end        ! end of token found if function result is .true.
+integer,save                 :: isource_len
+!----------------------------------------------------------------------------------------------------------------------------
+!  calculate where token_start should start for this pass
+   if(itoken <= 0)then                           ! this is assumed to be the first call
+      token_start=1
+   else                                          ! increment start to previous end + 1
+      token_start=token_end+1
+   endif
+!----------------------------------------------------------------------------------------------------------------------------
+   isource_len=len(source_string)                ! length of input string
+!----------------------------------------------------------------------------------------------------------------------------
+   if(token_start > isource_len)then            ! user input error or at end of string
+      token_end=isource_len                      ! assume end of token is end of string until proven otherwise so it is set
+      strtok_status=.false.
+      return
+   endif
+!----------------------------------------------------------------------------------------------------------------------------
+   ! find beginning of token
+   do while (token_start  <=  isource_len)       ! step thru each character to find next delimiter, if any
+      if(index(delimiters,source_string(token_start:token_start))  /=  0) then
+         token_start = token_start + 1
+      else
+         exit
+      endif
+   enddo
+!----------------------------------------------------------------------------------------------------------------------------
+   token_end=token_start
+   do while (token_end  <=  isource_len-1)       ! step thru each character to find next delimiter, if any
+      if(index(delimiters,source_string(token_end+1:token_end+1))  /=  0) then  ! found a delimiter in next character
+         exit
+      endif
+      token_end = token_end + 1
+   enddo
+!----------------------------------------------------------------------------------------------------------------------------
+   if (token_start  >  isource_len) then        ! determine if finished
+      strtok_status=.false.                      ! flag that input string has been completely processed
+   else
+      itoken=itoken+1                            ! increment count of tokens found
+      strtok_status=.true.                       ! flag more tokens may remain
+   endif
+!----------------------------------------------------------------------------------------------------------------------------
+end function strtok
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
