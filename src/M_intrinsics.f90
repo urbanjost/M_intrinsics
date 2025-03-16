@@ -24162,9 +24162,9 @@ textblock=[character(len=256) :: &
 '', &
 '  o  NCOPIES is a scalar integer.', &
 '', &
-'  o  the result is a new scalar of type character of the same kind as', &
+'  o  the result is a new scalar of type character of the same kind as the', &
+'     variable STRING.', &
 '', &
-'   STRING', &
 'DESCRIPTION', &
 '  REPEAT(3) concatenates copies of a string.', &
 '', &
