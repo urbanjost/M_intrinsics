@@ -57957,7 +57957,6 @@ end module m_io
 !===================================================================================================================================
 
 !>>>>> app/fpm-man.f90
-
 program fman
 use, intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT, stdout=>OUTPUT_UNIT, stdin=>INPUT_UNIT
 use M_intrinsics, only : help_intrinsics
@@ -58198,6 +58197,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                              iinf=0
                               remember=paws
                              iinf=0
+                             i=min(size(manual)-1*lines+1,i) ! if too far
                              remember=paws
                   case('/','n','N','\')
                              i=i-1
@@ -58365,6 +58365,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                   case('f')
                              i=i+(len_trim(paws)-1)*lines ! forward number of characters
                              iinf=0
+                             i=min(size(manual)-1*lines+1,i) ! if too far
                              remember='f'
 !+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                   case('S'); paws=adjustl(paws(2:)) ! save to file with color sequences if present
