@@ -20023,7 +20023,7 @@ Results:
 
 ### **Name**
 
-**repeat**(3) - \[CHARACTER\] Repeated string concatenation
+**repeat**(3) - \[CHARACTER:PAD\] Repeated string concatenation
 
 ### **Synopsis**
 ```fortran
@@ -22608,7 +22608,7 @@ Fortran 95
 
 ### **Name**
 
-**split**(3) - \[CHARACTER:SPLIT\] Parse a string into tokens, one at a time
+**split**(3) - \[CHARACTER:PARSE\] Parse a string into tokens, one at a time
 
 ### **Synopsis**
 ```fortran

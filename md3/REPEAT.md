@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**repeat**(3) - \[CHARACTER\] Repeated string concatenation
+**repeat**(3) - \[CHARACTER:PAD\] Repeated string concatenation
 
 ### **Synopsis**
 ```fortran

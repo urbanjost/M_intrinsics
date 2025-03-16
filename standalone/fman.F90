@@ -24149,7 +24149,7 @@ textblock=[character(len=256) :: &
 'repeat(3fortran)                                             repeat(3fortran)', &
 '', &
 'NAME', &
-'  REPEAT(3) - [CHARACTER] Repeated string concatenation', &
+'  REPEAT(3) - [CHARACTER:PAD] Repeated string concatenation', &
 '', &
 'SYNOPSIS', &
 '  result = repeat(string, ncopies)', &
@@ -27006,7 +27006,7 @@ textblock=[character(len=256) :: &
 'split(3fortran)                                               split(3fortran)', &
 '', &
 'NAME', &
-'  SPLIT(3) - [CHARACTER:SPLIT] Parse a string into tokens, one at a time', &
+'  SPLIT(3) - [CHARACTER:PARSE] Parse a string into tokens, one at a time', &
 '', &
 'SYNOPSIS', &
 '  call split (string, set, pos [, back])', &

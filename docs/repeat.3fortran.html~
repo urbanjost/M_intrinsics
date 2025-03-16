@@ -48,7 +48,7 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 <div id="Container">
 <div id="Content">
 <CENTER>
-<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>cosh (3fortran)</NOBR><HR></H1>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>repeat (3fortran)</NOBR><HR></H1>
 </CENTER>
 <P>
 <A name=0>
@@ -58,24 +58,25 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-COSH(3) - [MATHEMATICS:TRIGONOMETRIC] Hyperbolic cosine function
+REPEAT(3) - [CHARACTER:PAD] Repeated string concatenation
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=10>
+<A name=9>
 
      <H3>SYNOPSIS</H3>
 
 </A>
 <BLOCKQUOTE>
 <P>
-result = cosh(x)
+result = repeat(string, ncopies)
 <P>
 <PRE>
-         elemental TYPE(kind=KIND) function cosh(x)
+         character(len=len(string)*ncopies) function repeat(string, ncopies)
 <P>
-          TYPE(kind=KIND),intent(in) :: x
+          character(len=*),intent(in)   :: string
+          integer(kind=**),intent(in)   :: ncopies
 <P>
 </PRE>
 </BLOCKQUOTE>
@@ -90,15 +91,31 @@ result = cosh(x)
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-TYPE may be real or complex of any kind.
+a kind designated as ** may be any supported kind for the type
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-The returned value will be of the same type and kind as the
-argument.
+STRING is a scalar character type.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+NCOPIES is a scalar integer.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+the result is a new scalar of type character of the same kind as
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
+<A name=>
+
+    <H4>&nbsp; &nbsp; STRING</H4>
+</A>
+<BLOCKQUOTE>
+<P>
+</BLOCKQUOTE>
 <A name=3>
 
      <H3>DESCRIPTION</H3>
@@ -106,10 +123,7 @@ argument.
 </A>
 <BLOCKQUOTE>
 <P>
-COSH(3) computes the hyperbolic cosine of X.
-<P>
-If X is of type complex its imaginary part is regarded as a value in
-radians.
+REPEAT(3) concatenates copies of a string.
 </BLOCKQUOTE>
 <A name=4>
 
@@ -122,7 +136,13 @@ radians.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-X : the value to compute the hyperbolic cosine of
+STRING : The input string to repeat
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+NCOPIES : Number of copies to make of STRING, greater than or equal
+to zero (0).
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
 <A name=5>
@@ -132,9 +152,7 @@ X : the value to compute the hyperbolic cosine of
 </A>
 <BLOCKQUOTE>
 <P>
-If X is complex, the imaginary part of the result is in radians.
-<P>
-If X is real, the return value has a lower bound of one, COSH(X) &gt;= 1.
+A new string built up from NCOPIES copies of STRING.
 </BLOCKQUOTE>
 <A name=6>
 
@@ -146,18 +164,22 @@ If X is real, the return value has a lower bound of one, COSH(X) &gt;= 1.
 Sample program:
 <P>
 <PRE>
-    program demo_cosh
-    use, intrinsic :: iso_fortran_env, only : real32, real64, real128
+    program demo_repeat
     implicit none
-    real(kind=real64) :: x = 1.0_real64
-        write(*,*)&#146;X=&#146;,x,&#146;COSH(X=)&#146;,cosh(x)
-    end program demo_cosh
+        write(*,&#146;(a)&#146;) repeat("^v", 35)         ! line break
+        write(*,&#146;(a)&#146;) repeat("_", 70)          ! line break
+        write(*,&#146;(a)&#146;) repeat("1234567890", 7)  ! number line
+        write(*,&#146;(a)&#146;) repeat("         |", 7)  !
+    end program demo_repeat
 <P>
 </PRE>
 Results:
 <P>
 <PRE>
-     &gt;  X=   1.00000000000000      COSH(X=)   1.54308063481524
+     &gt; ^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v
+     &gt; ______________________________________________________________________
+     &gt; 1234567890123456789012345678901234567890123456789012345678901234567890
+     &gt;          |         |         |         |         |         |         |
 <P>
 </PRE>
 </BLOCKQUOTE>
@@ -168,7 +190,7 @@ Results:
 </A>
 <BLOCKQUOTE>
 <P>
-FORTRAN 77 , for a complex argument - Fortran 2008
+Fortran 95
 </BLOCKQUOTE>
 <A name=8>
 
@@ -177,25 +199,24 @@ FORTRAN 77 , for a complex argument - Fortran 2008
 </A>
 <BLOCKQUOTE>
 <P>
-Inverse function: ACOSH(3)
-</BLOCKQUOTE>
-<A name=9>
-
-     <H3>RESOURCES</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-<TABLE cellpadding=3>
+Functions that perform operations on character strings:
+<TABLE cellpadding=3><!-- tsb: Functions that perform operations on character strings:
+ -->
+<TR></TR><TR></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-Wikipedia:hyperbolic functions
+ELEMENTAL: ADJUSTL(3), ADJUSTR(3), INDEX(3), SCAN(3), VERIFY(3)
 </TD></TR>
-<TR></TR></TABLE>Fortran intrinsic descriptions
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+NON-ELEMENTAL: LEN_TRIM(3), LEN(3), REPEAT(3), TRIM(3)
+</TD></TR>
+<TR></TR></TABLE>Fortran intrinsic descriptions (license: MIT) @urbanjost
 </BLOCKQUOTE>
 <P><HR>
-<br><br><center><img src="images/cosh.3fortran.gif"></center>
+<br><br><center><img src="images/repeat.3fortran.gif"></center>
 </div>
 </div>
 </body>

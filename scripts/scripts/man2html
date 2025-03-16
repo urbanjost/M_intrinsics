@@ -89,7 +89,8 @@ i\
 }' -e '/<\/BODY>/{
 i\
 </body>
-}' -e 's/<\/BODY>//'|sed -e "s/z-q-j-z-q-j/images\/$(basename ${IMG_FILENAME} .man).gif/"
+}' -e 's/<\/BODY>//'|sed -e "s/z-q-j-z-q-j/images\/$(basename ${IMG_FILENAME} .man).gif/"|
+sed -e '{/Nemo Release/d}'
 }
 ################################################################################
 export FILENAME
