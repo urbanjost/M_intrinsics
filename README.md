@@ -214,6 +214,69 @@ machines with the man(1) command) so it will continue to be maintained,
 but the differences between these and the on-line fortran-lang.org pages
 may become more extensive as time goes on.
 
+To ensure color and the interactive mode are used bash(1) users can create
+the script "fpm-docs" 
+```bash
+#!/bin/bash
+################################################################################
+# @(#) fpm-docs(1) - run fpm-man ensuring color interactive mode 
+################################################################################
+trap "/bin/rm -f ${SCRATCH:-_NOTTHERE_}" EXIT
+SCRATCH=/tmp/scratch_$(uuidgen).txt
+fpm manual > $SCRATCH
+################################################################################
+# use default colors
+unset FMAN_COLORS 
+################################################################################
+# set custom colors
+export FMAN_COLORS=\
+"bg='<EBONY>',fg='<white><bo>',\
+prg='<cyan><bo>',\
+head='<yellow><bo>',head_='</bo>',\
+fixed='<white>',\
+output='<yellow><bo>',output_='</bo>'"
+################################################################################
+(
+set -v -x
+if [ "$*" = '' ]
+then
+   fpm man -f $SCRATCH --color --lines=$LINES $*
+else
+   fpm man  --color --lines=$LINES $*
+fi
+)
+################################################################################
+exit
+################################################################################
+```
+and then just enter "fpm docs" to extract and load the fpm(1) command help or
+"fpm docs INTRINSIC_NAME".  A session might look like:
+```text
+fpm docs
+: step through fpm docs one topic at a time
+n
+n
+n
+: load Table of Contents for intrinsics
+T
+f
+f
+: load description of sin intrinsic
+t sin
+: load all intrinsic descriptions
+t manual
+f
+n
+n
+nnnnnnnn
+N
+N
+: show interactive command descriptions
+h
+: quit fpm-man
+q
+```
+
 ## Todo
 
 Additional descriptions of procedures from the standard modules

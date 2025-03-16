@@ -35,6 +35,7 @@ integer                        :: ierr
 integer                        :: direction
 integer                        :: irestore
 integer                        :: search_end
+logical                        :: showblanks
 logical                        :: number
 logical                        :: topic
 logical                        :: cmdmode
@@ -54,6 +55,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
    number=.false.
    remember='f'
    cmdmode=.false.
+   showblanks=.true.
    iinf=0
    last='^NAME$'
    call setup()
@@ -93,7 +95,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
          if(allocated(doc))deallocate(doc)
       endif
       if(size(topics).eq.0)then
-         topics=['']
+         topics=['    ']
       endif
    elseif(topic)then
       ! if -t then just show topic names and exit
@@ -124,6 +126,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
       if(color)manual=crayons(manual)
    endif
 
+   if(len(topics).lt.5)topics=topics//'     '
    if( ( size(topics).eq.1 .and. topics(1)(1:3).eq.'toc') )then
       prefix=.false.
       ignorecase=.true.
@@ -293,6 +296,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                              iinf=0
                              remember=paws
                   case('L')
+			     topics=['']
                              filename=adjustl(trim(paws(2:)))
                               if(filename.ne.'')then
                                  call fileread(FILENAME,doc)
@@ -358,7 +362,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                              iinf=0
                              remember='f'
                              cycle ANOTHER
-                  case('.','x',' '); i=max(0,i-1)  ! execute command
+                  case('.','x',' ','!'); i=max(0,i-1)  ! execute command
                              if(paws.eq.'x')then
                                 cmdmode=.not.cmdmode
                              elseif(paws(2:).ne.'')then
@@ -367,7 +371,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                              iinf=0
                              remember='f'
                              cycle ANOTHER
-                  case('!',':'); i=max(0,i-1)  ! comment
+                  case(':'); i=max(0,i-1)  ! comment
                              iinf=0
                              remember='f'
                              cycle ANOTHER
@@ -411,6 +415,12 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                              remember='f'
                   case('D'); i=0                       ! developer: toggle demo mode
                              demo=.not.demo
+                             call load_manual()
+                             if(color)manual=crayons(manual)
+                             iinf=0
+                             remember='f'
+                  case('B'); i=0                       ! developer: toggle showblanks mode
+                             showblanks=.not.showblanks
                              call load_manual()
                              if(color)manual=crayons(manual)
                              iinf=0
@@ -465,9 +475,10 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                      i=max(0,i-2*lines+2) ! back
                      remember='f'
 !+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                  case('t','T')
+                  case('t','T','m')
                      i=0  ! developer: load a topic
                      if(paws.eq.'T')paws(2:)='toc'
+		     if(paws(1:4).eq.'man')paws(2:)=paws(5:)
                      topics=[adjustl(paws(2:))]
                      if(paws.eq.'t')then
                         call shorttopics()
@@ -524,7 +535,7 @@ subroutine cribsheet()
    & ' |SEARCH:     | /RE | search for expression| \RE  | backward search           | ', &
    & ' |            | n   | repeat last search   | N    | repeat last search upward | ', &
    & ' +------------+-----+----------------------+------+---------------------------+ ', &
-   & ' |SYSTEM:     | s F | save to filename     | xcmd | execute system_command    | ', &
+   & ' |SYSTEM:     | s F | save to filename     | !cmd | execute system_command    | ', &
    & ' +------------+-----+----------------------+------+---------------------------+ ', &
    & ' |OPTIONS:    | #   | toggle line numbers  | lNNN | change lines per page     | ', &
    & ' |            | i   | toggle search by case| c    | toggle color mode         | ', &
@@ -541,11 +552,11 @@ subroutine cribsheet()
    if(paws(1:1).eq.'X')then
    write(stdout,'(a)')[character(len=80) :: &
    & ' +------------+-----+----------------------+------+---------------------------+ ', &
-   & ' |DEVELOPER:  | C   | toggle color mode    | D    | toggle demo mode          | ', &
+   & ' |DEVELOPER:  | C   | toggle color mode    | D    | toggle demo program mode  | ', &
    & ' |            | Cstr| change colors        | P    | toggle prefix mode        | ', &
    & ' |            | C?  | show current colors  | X    | show developer help       | ', &
    & ' |            | H   | command help         | L    | load file                 | ', &
-   & ' |            | V   | version information  |      |                           | ', &
+   & ' |            | V   | version information  | B    | toggle showblanks         | ', &
    & ' +------------+-----+----------------------+------+---------------------------+ ', &
    & ' a loaded file cannot display a prefix string accept for the filename currently.']
    endif
@@ -579,6 +590,9 @@ integer :: i
       endif
 
       manual = [character(len=max(len(manual),len(section))) :: manual,section,'']
+      if(.not.showblanks)then
+         manual=pack(manual,mask=manual.ne.'')
+      endif
       clone_no_color=manual
    enddo
 end subroutine load_manual
@@ -747,6 +761,7 @@ logical                                   :: program_text, after_demo
    after_demo=.false.
    newblock= oldblock
    lead=0
+   if(len(topics).lt.5)topics=topics//'     '
    do j=1,size(oldblock)
       ! test if entering demo program text
       if( index(oldblock(j),'end program demo_') .eq. 0 .and. index(oldblock(j),'program demo_') .ne. 0)then

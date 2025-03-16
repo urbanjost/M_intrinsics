@@ -11276,39 +11276,11 @@ Fortran 2008
 
 ### **See also**
 
- - [acos(3)](#acos)   - Arccosine (inverse cosine) function
- - [acosh(3)](#acosh) - Inverse hyperbolic cosine function
- - [asin(3)](#asin)   - Arcsine function
- - [asinh(3)](#asinh) - Inverse hyperbolic sine function
- - [atan(3)](#atan)   - Arctangent AKA inverse tangent function
- - [atan2(3)](#atan2) - Arctangent (inverse tangent) function
- - [atanh(3)](#atanh) - Inverse hyperbolic tangent function
- - [cos(3)](#cos)     - Cosine function
- - [cosh(3)](#cosh)   - Hyperbolic cosine function
- - [sin(3)](#sin)     - Sine function
- - [sinh(3)](#sinh)   - Hyperbolic sine function
- - [tan(3)](#tan)     - Tangent function
- - [tanh(3)](#tanh)   - Hyperbolic tangent function
- - [bessel_j0(3)](#bessel_j0) -  Bessel function of the first kind of order 0
- - [bessel_j1(3)](#bessel_j1) -  Bessel function of the first kind of order 1
- - [bessel_jn(3)](#bessel_jn) -  Bessel function of the first kind
- - [bessel_y0(3)](#bessel_y0) -  Bessel function of the second kind of order 0
- - [bessel_y1(3)](#bessel_y1) -  Bessel function of the second kind of order 1
- - [bessel_yn(3)](#bessel_y2) -  Bessel function of the second kind
- - [erf(3)](#erf)     -  Error function
- - [erfc(3)](#erfc)   -  Complementary error function
- - [erfc_scaled(3)](#erfc_scaled) -  Scaled complementary error function
  - [exp(3)](#exp)     -  Base-e exponential function
  - [gamma(3)](#gamma) -  Gamma function, which yields factorials for positive whole numbers
- - [hypot(3)](#hypot) -  Returns the Euclidean distance - the distance between a point and the origin.
  - [log(3)](#log)     -  Natural logarithm
  - [log10(3)](#log10) -  Base 10 or common logarithm
  - [log_gamma(3)](#log_gamma) -  Logarithm of the absolute value of the Gamma function
- - [norm2(3)](#norm2) -  Euclidean vector norm
- - [sqrt(3)](#sqrt)   -  Square-root function
- - [random_init(3)](#random_init) - Initializes the state of the pseudorandom number generator
- - [random_number(3)](#random_number) - Pseudo-random number
- - [random_seed(3)](#random_seed) - Initialize a pseudo-random number sequence
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -14595,39 +14567,11 @@ FORTRAN 77
 
 ### **See also**
 
- - [acos(3)](#acos)   - Arccosine (inverse cosine) function
- - [acosh(3)](#acosh) - Inverse hyperbolic cosine function
- - [asin(3)](#asin)   - Arcsine function
- - [asinh(3)](#asinh) - Inverse hyperbolic sine function
- - [atan(3)](#atan)   - Arctangent AKA inverse tangent function
- - [atan2(3)](#atan2) - Arctangent (inverse tangent) function
- - [atanh(3)](#atanh) - Inverse hyperbolic tangent function
- - [cos(3)](#cos)     - Cosine function
- - [cosh(3)](#cosh)   - Hyperbolic cosine function
- - [sin(3)](#sin)     - Sine function
- - [sinh(3)](#sinh)   - Hyperbolic sine function
- - [tan(3)](#tan)     - Tangent function
- - [tanh(3)](#tanh)   - Hyperbolic tangent function
- - [bessel_j0(3)](#bessel_j0) -  Bessel function of the first kind of order 0
- - [bessel_j1(3)](#bessel_j1) -  Bessel function of the first kind of order 1
- - [bessel_jn(3)](#bessel_jn) -  Bessel function of the first kind
- - [bessel_y0(3)](#bessel_y0) -  Bessel function of the second kind of order 0
- - [bessel_y1(3)](#bessel_y1) -  Bessel function of the second kind of order 1
- - [bessel_yn(3)](#bessel_y2) -  Bessel function of the second kind
- - [erf(3)](#erf)     -  Error function
- - [erfc(3)](#erfc)   -  Complementary error function
- - [erfc_scaled(3)](#erfc_scaled) -  Scaled complementary error function
  - [exp(3)](#exp)     -  Base-e exponential function
  - [gamma(3)](#gamma) -  Gamma function, which yields factorials for positive whole numbers
  - [hypot(3)](#hypot) -  Returns the Euclidean distance - the distance between a point and the origin.
  - [log(3)](#log)     -  Natural logarithm
- - [log10(3)](#log10) -  Base 10 or common logarithm
  - [log_gamma(3)](#log_gamma) -  Logarithm of the absolute value of the Gamma function
- - [norm2(3)](#norm2) -  Euclidean vector norm
- - [sqrt(3)](#sqrt)   -  Square-root function
- - [random_init(3)](#random_init) - Initializes the state of the pseudorandom number generator
- - [random_number(3)](#random_number) - Pseudo-random number
- - [random_seed(3)](#random_seed) - Initialize a pseudo-random number sequence
 
  _Fortran intrinsic descriptions_
 
@@ -14698,7 +14642,7 @@ Gamma function: [**gamma**(3)](#gamma)
 
 ### **Name**
 
-**logical**(3) - \[TYPE:LOGICAL\] Conversion between kinds of logical values
+**logical**(3) - \[TYPE:CONVERSION\] Conversion between kinds of logical values
 
 ### **Synopsis**
 ```fortran
@@ -14743,19 +14687,89 @@ is not given.
 Sample program:
 ```fortran
 program demo_logical
-! Access array containing the kind type parameter values supported by this
-! compiler for entities of logical type
 use iso_fortran_env, only : logical_kinds
+use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+use,intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
-integer :: i
-
-   ! list kind values supported on this platform, which generally vary
-   ! in storage size as alias declarations
+character(len=*),parameter :: g='(*(g0))'
+integer :: i, i1, i2
+logical :: l1, l2
+  !
+  ! list kind values supported on this platform
+  !
    do i =1, size(logical_kinds)
       write(*,'(*(g0))')'integer,parameter :: boolean', &
       & logical_kinds(i),'=', logical_kinds(i)
    enddo
+  ! for performance and storage purposes you generally want
+  ! to use the smallest storage size supported when using
+  ! large arrays, but some existing routines may require
+  ! the default kind. LOGICAL(3f) can change the kind of
+  ! the variables.
+  !
+  ! But converting a logical to an integer is not done
+  ! with LOGICAL(3f); but can be down with MERGE(3f).
+  !
+   l1=.true.
+   l2=.false.
+   i1=merge(0,1,l1)
+   i2=merge(0,1,l2)
+   write(*,g)'L1=',l1,' L2=',l2,' I1=',i1,' I2=',i2
+  !
+  ! show type and kind of default logicals
+   call showme(.true.)
+   call showme(l1)
+  ! show logical() changing type and kind
+   call showme(logical(l1))
+  ! you may have to delete unsupported kinds from this example
 
+  ! this is probably the default
+   call showme(logical(l1,kind=4))
+  ! note how showme shows different kinds are being passed to it
+   call showme(logical(l1,kind=8))
+   call showme(logical(l1,kind=2))
+  ! this is probably the smallest storage size supported
+  ! on this platform; but kind values are platform-specific
+   call showme(logical(l1,kind=1))
+contains
+subroutine showme(val)
+! @(#) showme(3f) - display type and kind of intrinsic value
+class(*),intent(in) :: val
+   select type(val)
+      type is (integer(kind=int8))
+        write(*,'("integer(kind=int8) ",i0)') val
+      type is (integer(kind=int16))
+         write(*,'("integer(kind=int16) ",i0)') val
+      type is (integer(kind=int32))
+         write(*,'("integer(kind=int32) ",i0)') val
+      type is (integer(kind=int64))
+         write(*,'("integer(kind=int64) ",i0)') val
+      type is (real(kind=real32))
+         write(*,'("real(kind=real32) ",1pg0)') val
+      type is (real(kind=real64))
+         write(*,'("real(kind=real64) ",1pg0)') val
+      type is (real(kind=real128))
+        write(*,'("real(kind=real128) ",1pg0)') val
+      type is (logical(kind=1))
+            write(*,'("logical(kind=1) ",l1,a,i0)') val, &
+            & 'storage=',storage_size(val)
+      type is (logical(kind=2))
+            write(*,'("logical(kind=2) ",l1,a,i0)') val, &
+            & 'storage=',storage_size(val)
+      type is (logical(kind=4))
+            write(*,'("logical(kind=4) ",l1,a,i0)') val, &
+            & 'storage=',storage_size(val)
+      type is (logical(kind=8))
+            write(*,'("logical(kind=8) ",l1,a,i0)') val, &
+            & 'storage=',storage_size(val)
+      type is (character(len=*))
+          write(*,'("character ",a)') trim(val)
+      type is (complex)
+                   write(*,'("","(",1pg0,",",1pg0,")")') val
+      class default
+      stop 'crud. showme() does not know about this type'
+   end select
+end subroutine showme
 end program demo_logical
 ```
 Results:
@@ -14765,18 +14779,31 @@ Results:
  > integer,parameter :: boolean4=4
  > integer,parameter :: boolean8=8
  > integer,parameter :: boolean16=16
+ > L1=T L2=F I1=0 I2=1
+ > logical(kind=4) Tstorage=32
+ > logical(kind=4) Tstorage=32
+ > logical(kind=4) Tstorage=32
+ > logical(kind=1) Tstorage=8
+ > logical(kind=2) Tstorage=16
+ > logical(kind=4) Tstorage=32
 ```
 ### **Standard**
 
 Fortran 95 , related ISO_FORTRAN_ENV module - fortran 2009
 
 ### **See Also**
-
-[**int**(3)](#int),
-[**real**(3)](#real),
-[**cmplx**(3)](#cmplx)
++ [**aimag**(3)](#aimag) - Imaginary part of complex number
++ [**cmplx**(3)](#cmplx) - Conversion to a complex type
++ [**dble**(3)](#dble) - Converstion to double precision real
++ [**int**(3)](#int) - Truncate towards zero and convert to integer
++ [**nint**(3)](#nint) - Nearest whole number
++ [**real**(3)](#real) - Convert to real type
++ [**out_of_range**(3)](#out_of_range) - Whether a numeric value can be
+  converted safely to another type
++ [**transfer**(3)](#transfer) - Transfer bit patterns
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
+
 
 ## log
 
@@ -14847,39 +14874,11 @@ FORTRAN 77
 
 ### **See also**
 
- - [acos(3)](#acos)   - Arccosine (inverse cosine) function
- - [acosh(3)](#acosh) - Inverse hyperbolic cosine function
- - [asin(3)](#asin)   - Arcsine function
- - [asinh(3)](#asinh) - Inverse hyperbolic sine function
- - [atan(3)](#atan)   - Arctangent AKA inverse tangent function
- - [atan2(3)](#atan2) - Arctangent (inverse tangent) function
- - [atanh(3)](#atanh) - Inverse hyperbolic tangent function
- - [cos(3)](#cos)     - Cosine function
- - [cosh(3)](#cosh)   - Hyperbolic cosine function
- - [sin(3)](#sin)     - Sine function
- - [sinh(3)](#sinh)   - Hyperbolic sine function
- - [tan(3)](#tan)     - Tangent function
- - [tanh(3)](#tanh)   - Hyperbolic tangent function
- - [bessel_j0(3)](#bessel_j0) -  Bessel function of the first kind of order 0
- - [bessel_j1(3)](#bessel_j1) -  Bessel function of the first kind of order 1
- - [bessel_jn(3)](#bessel_jn) -  Bessel function of the first kind
- - [bessel_y0(3)](#bessel_y0) -  Bessel function of the second kind of order 0
- - [bessel_y1(3)](#bessel_y1) -  Bessel function of the second kind of order 1
- - [bessel_yn(3)](#bessel_y2) -  Bessel function of the second kind
- - [erf(3)](#erf)     -  Error function
- - [erfc(3)](#erfc)   -  Complementary error function
- - [erfc_scaled(3)](#erfc_scaled) -  Scaled complementary error function
- - [exp(3)](#exp)     -  Base-e exponential function
- - [gamma(3)](#gamma) -  Gamma function, which yields factorials for positive whole numbers
- - [hypot(3)](#hypot) -  Returns the Euclidean distance - the distance between a point and the origin.
- - [log(3)](#log)     -  Natural logarithm
  - [log10(3)](#log10) -  Base 10 or common logarithm
+ - [exp(3)](#exp)     -  Base-e exponential function
+ - [hypot(3)](#hypot) -  Returns the Euclidean distance - the distance between a point and the origin.
+ - [gamma(3)](#gamma) -  Gamma function, which yields factorials for positive whole numbers
  - [log_gamma(3)](#log_gamma) -  Logarithm of the absolute value of the Gamma function
- - [norm2(3)](#norm2) -  Euclidean vector norm
- - [sqrt(3)](#sqrt)   -  Square-root function
- - [random_init(3)](#random_init) - Initializes the state of the pseudorandom number generator
- - [random_number(3)](#random_number) - Pseudo-random number
- - [random_seed(3)](#random_seed) - Initialize a pseudo-random number sequence
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 

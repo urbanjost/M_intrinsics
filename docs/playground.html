@@ -5448,7 +5448,7 @@
       end program demo_log_gamma
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Flogical%0D%0A%20%20%20%20%20%20%21%20Access%20array%20containing%20the%20kind%20type%20parameter%20values%20supported%20by%20this%0D%0A%20%20%20%20%20%20%21%20compiler%20for%20entities%20of%20logical%20type%0D%0A%20%20%20%20%20%20use%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20logical%5Fkinds%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20list%20kind%20values%20supported%20on%20this%20platform%2C%20which%20generally%20vary%0D%0A%20%20%20%20%20%20%20%20%20%21%20in%20storage%20size%20as%20alias%20declarations%0D%0A%20%20%20%20%20%20%20%20%20do%20i%20%3D1%2C%20size%28logical%5Fkinds%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%2A%28g0%29%29%27%29%27integer%2Cparameter%20%3A%3A%20boolean%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%26%20logical%5Fkinds%28i%29%2C%27%3D%27%2C%20logical%5Fkinds%28i%29%0D%0A%20%20%20%20%20%20%20%20%20enddo%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Flogical%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Flogical%0D%0A%20%20%20%20%20%20use%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20logical%5Fkinds%0D%0A%20%20%20%20%20%20use%2Cintrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20int8%2C%20int16%2C%20int32%2C%20int64%0D%0A%20%20%20%20%20%20use%2Cintrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20real32%2C%20real64%2C%20real128%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%20g%3D%27%28%2A%28g0%29%29%27%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%2C%20i1%2C%20i2%0D%0A%20%20%20%20%20%20logical%20%3A%3A%20l1%2C%20l2%0D%0A%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%21%20list%20kind%20values%20supported%20on%20this%20platform%0D%0A%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20do%20i%20%3D1%2C%20size%28logical%5Fkinds%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%2A%28g0%29%29%27%29%27integer%2Cparameter%20%3A%3A%20boolean%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%26%20logical%5Fkinds%28i%29%2C%27%3D%27%2C%20logical%5Fkinds%28i%29%0D%0A%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20%21%20for%20performance%20and%20storage%20purposes%20you%20generally%20want%0D%0A%20%20%20%20%20%20%20%20%21%20to%20use%20the%20smallest%20storage%20size%20supported%20when%20using%0D%0A%20%20%20%20%20%20%20%20%21%20large%20arrays%2C%20but%20some%20existing%20routines%20may%20require%0D%0A%20%20%20%20%20%20%20%20%21%20the%20default%20kind%2E%20LOGICAL%283f%29%20can%20change%20the%20kind%20of%0D%0A%20%20%20%20%20%20%20%20%21%20the%20variables%2E%0D%0A%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%21%20But%20converting%20a%20logical%20to%20an%20integer%20is%20not%20done%0D%0A%20%20%20%20%20%20%20%20%21%20with%20LOGICAL%283f%29%3B%20but%20can%20be%20down%20with%20MERGE%283f%29%2E%0D%0A%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20l1%3D%2Etrue%2E%0D%0A%20%20%20%20%20%20%20%20%20l2%3D%2Efalse%2E%0D%0A%20%20%20%20%20%20%20%20%20i1%3Dmerge%280%2C1%2Cl1%29%0D%0A%20%20%20%20%20%20%20%20%20i2%3Dmerge%280%2C1%2Cl2%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%27L1%3D%27%2Cl1%2C%27%20L2%3D%27%2Cl2%2C%27%20I1%3D%27%2Ci1%2C%27%20I2%3D%27%2Ci2%0D%0A%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%21%20show%20type%20and%20kind%20of%20default%20logicals%0D%0A%20%20%20%20%20%20%20%20%20call%20showme%28%2Etrue%2E%29%0D%0A%20%20%20%20%20%20%20%20%20call%20showme%28l1%29%0D%0A%20%20%20%20%20%20%20%20%21%20show%20logical%28%29%20changing%20type%20and%20kind%0D%0A%20%20%20%20%20%20%20%20%20call%20showme%28logical%28l1%29%29%0D%0A%20%20%20%20%20%20%20%20%21%20you%20may%20have%20to%20delete%20unsupported%20kinds%20from%20this%20example%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20this%20is%20probably%20the%20default%0D%0A%20%20%20%20%20%20%20%20%20call%20showme%28logical%28l1%2Ckind%3D4%29%29%0D%0A%20%20%20%20%20%20%20%20%21%20note%20how%20showme%20shows%20different%20kinds%20are%20being%20passed%20to%20it%0D%0A%20%20%20%20%20%20%20%20%20call%20showme%28logical%28l1%2Ckind%3D8%29%29%0D%0A%20%20%20%20%20%20%20%20%20call%20showme%28logical%28l1%2Ckind%3D2%29%29%0D%0A%20%20%20%20%20%20%20%20%21%20this%20is%20probably%20the%20smallest%20storage%20size%20supported%0D%0A%20%20%20%20%20%20%20%20%21%20on%20this%20platform%3B%20but%20kind%20values%20are%20platform%2Dspecific%0D%0A%20%20%20%20%20%20%20%20%20call%20showme%28logical%28l1%2Ckind%3D1%29%29%0D%0A%20%20%20%20%20%20contains%0D%0A%20%20%20%20%20%20subroutine%20showme%28val%29%0D%0A%20%20%20%20%20%20%21%20%40%28%23%29%20showme%283f%29%20%2D%20display%20type%20and%20kind%20of%20intrinsic%20value%0D%0A%20%20%20%20%20%20class%28%2A%29%2Cintent%28in%29%20%3A%3A%20val%0D%0A%20%20%20%20%20%20%20%20%20select%20type%28val%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20type%20is%20%28integer%28kind%3Dint8%29%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22integer%28kind%3Dint8%29%20%22%2Ci0%29%27%29%20val%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20type%20is%20%28integer%28kind%3Dint16%29%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22integer%28kind%3Dint16%29%20%22%2Ci0%29%27%29%20val%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20type%20is%20%28integer%28kind%3Dint32%29%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22integer%28kind%3Dint32%29%20%22%2Ci0%29%27%29%20val%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20type%20is%20%28integer%28kind%3Dint64%29%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22integer%28kind%3Dint64%29%20%22%2Ci0%29%27%29%20val%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20type%20is%20%28real%28kind%3Dreal32%29%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22real%28kind%3Dreal32%29%20%22%2C1pg0%29%27%29%20val%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20type%20is%20%28real%28kind%3Dreal64%29%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22real%28kind%3Dreal64%29%20%22%2C1pg0%29%27%29%20val%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20type%20is%20%28real%28kind%3Dreal128%29%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22real%28kind%3Dreal128%29%20%22%2C1pg0%29%27%29%20val%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20type%20is%20%28logical%28kind%3D1%29%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22logical%28kind%3D1%29%20%22%2Cl1%2Ca%2Ci0%29%27%29%20val%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%20%27storage%3D%27%2Cstorage%5Fsize%28val%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20type%20is%20%28logical%28kind%3D2%29%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22logical%28kind%3D2%29%20%22%2Cl1%2Ca%2Ci0%29%27%29%20val%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%20%27storage%3D%27%2Cstorage%5Fsize%28val%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20type%20is%20%28logical%28kind%3D4%29%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22logical%28kind%3D4%29%20%22%2Cl1%2Ca%2Ci0%29%27%29%20val%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%20%27storage%3D%27%2Cstorage%5Fsize%28val%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20type%20is%20%28logical%28kind%3D8%29%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22logical%28kind%3D8%29%20%22%2Cl1%2Ca%2Ci0%29%27%29%20val%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%20%27storage%3D%27%2Cstorage%5Fsize%28val%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20type%20is%20%28character%28len%3D%2A%29%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22character%20%22%2Ca%29%27%29%20trim%28val%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20type%20is%20%28complex%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22%22%2C%22%28%22%2C1pg0%2C%22%2C%22%2C1pg0%2C%22%29%22%29%27%29%20val%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20class%20default%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20stop%20%27crud%2E%20showme%28%29%20does%20not%20know%20about%20this%20type%27%0D%0A%20%20%20%20%20%20%20%20%20end%20select%0D%0A%20%20%20%20%20%20end%20subroutine%20showme%0D%0A%20%20%20%20%20%20end%20program%20demo%5Flogical%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> logical
@@ -5457,19 +5457,89 @@
     <summary>Source</summary>
   <xmp>
       program demo_logical
-      ! Access array containing the kind type parameter values supported by this
-      ! compiler for entities of logical type
       use iso_fortran_env, only : logical_kinds
+      use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+      use,intrinsic :: iso_fortran_env, only : real32, real64, real128
       implicit none
-      integer :: i
-
-         ! list kind values supported on this platform, which generally vary
-         ! in storage size as alias declarations
+      character(len=*),parameter :: g='(*(g0))'
+      integer :: i, i1, i2
+      logical :: l1, l2
+        !
+        ! list kind values supported on this platform
+        !
          do i =1, size(logical_kinds)
             write(*,'(*(g0))')'integer,parameter :: boolean', &
             & logical_kinds(i),'=', logical_kinds(i)
          enddo
+        ! for performance and storage purposes you generally want
+        ! to use the smallest storage size supported when using
+        ! large arrays, but some existing routines may require
+        ! the default kind. LOGICAL(3f) can change the kind of
+        ! the variables.
+        !
+        ! But converting a logical to an integer is not done
+        ! with LOGICAL(3f); but can be down with MERGE(3f).
+        !
+         l1=.true.
+         l2=.false.
+         i1=merge(0,1,l1)
+         i2=merge(0,1,l2)
+         write(*,g)'L1=',l1,' L2=',l2,' I1=',i1,' I2=',i2
+        !
+        ! show type and kind of default logicals
+         call showme(.true.)
+         call showme(l1)
+        ! show logical() changing type and kind
+         call showme(logical(l1))
+        ! you may have to delete unsupported kinds from this example
 
+        ! this is probably the default
+         call showme(logical(l1,kind=4))
+        ! note how showme shows different kinds are being passed to it
+         call showme(logical(l1,kind=8))
+         call showme(logical(l1,kind=2))
+        ! this is probably the smallest storage size supported
+        ! on this platform; but kind values are platform-specific
+         call showme(logical(l1,kind=1))
+      contains
+      subroutine showme(val)
+      ! @(#) showme(3f) - display type and kind of intrinsic value
+      class(*),intent(in) :: val
+         select type(val)
+            type is (integer(kind=int8))
+              write(*,'("integer(kind=int8) ",i0)') val
+            type is (integer(kind=int16))
+               write(*,'("integer(kind=int16) ",i0)') val
+            type is (integer(kind=int32))
+               write(*,'("integer(kind=int32) ",i0)') val
+            type is (integer(kind=int64))
+               write(*,'("integer(kind=int64) ",i0)') val
+            type is (real(kind=real32))
+               write(*,'("real(kind=real32) ",1pg0)') val
+            type is (real(kind=real64))
+               write(*,'("real(kind=real64) ",1pg0)') val
+            type is (real(kind=real128))
+              write(*,'("real(kind=real128) ",1pg0)') val
+            type is (logical(kind=1))
+                  write(*,'("logical(kind=1) ",l1,a,i0)') val, &
+              & 'storage=',storage_size(val)
+            type is (logical(kind=2))
+                  write(*,'("logical(kind=2) ",l1,a,i0)') val, &
+              & 'storage=',storage_size(val)
+            type is (logical(kind=4))
+                  write(*,'("logical(kind=4) ",l1,a,i0)') val, &
+              & 'storage=',storage_size(val)
+            type is (logical(kind=8))
+                  write(*,'("logical(kind=8) ",l1,a,i0)') val, &
+              & 'storage=',storage_size(val)
+            type is (character(len=*))
+                write(*,'("character ",a)') trim(val)
+            type is (complex)
+                         write(*,'("","(",1pg0,",",1pg0,")")') val
+            class default
+            stop 'crud. showme() does not know about this type'
+         end select
+      end subroutine showme
       end program demo_logical
   </xmp>
   </details>
