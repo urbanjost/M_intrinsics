@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**adjustl**(3) - \[CHARACTER:WHITESPACE\] Left-justified a string
+**adjustl**(3) - \[CHARACTER:WHITESPACE\] Left-justify a string
 
 ### **Synopsis**
 ```fortran

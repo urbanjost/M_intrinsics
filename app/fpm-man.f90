@@ -238,6 +238,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                              iinf=0
                               remember=paws
                              iinf=0
+                             i=min(size(manual)-1*lines+1,i) ! if too far
                              remember=paws
                   case('/','n','N','\')
                              i=i-1
@@ -322,7 +323,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                                 i=max(0,i-2*lines+2) ! back
                              endif
                              if(paws(2:).eq.'')then
-                                !lines=get_env('LINES',lines) ! adjust for screen size change if set
+                                lines=get_env('LINES',lines) ! adjust for screen size change if set
                              else
                                 read(paws(2:),'(g80.0)',iostat=iostat)rm
                                 if(iostat.eq.0)then
@@ -405,6 +406,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                   case('f')
                              i=i+(len_trim(paws)-1)*lines ! forward number of characters
                              iinf=0
+                             i=min(size(manual)-1*lines+1,i) ! if too far
                              remember='f'
 !+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                   case('S'); paws=adjustl(paws(2:)) ! save to file with color sequences if present

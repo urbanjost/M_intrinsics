@@ -1051,7 +1051,7 @@ textblock=[character(len=256) :: &
 'adjustl(3fortran)                                           adjustl(3fortran)', &
 '', &
 'NAME', &
-'  ADJUSTL(3) - [CHARACTER:WHITESPACE] Left-justified a string', &
+'  ADJUSTL(3) - [CHARACTER:WHITESPACE] Left-justify a string', &
 '', &
 'SYNOPSIS', &
 '  result = adjustl(string)', &
@@ -16953,7 +16953,7 @@ textblock=[character(len=256) :: &
 'len(3fortran)                                                   len(3fortran)', &
 '', &
 'NAME', &
-'  LEN(3) - [CHARACTER] Length of a character entity', &
+'  LEN(3) - [CHARACTER:INQUIRY] Length of a character entity', &
 '', &
 'SYNOPSIS', &
 '  result = len(string [,kind])', &
@@ -17095,7 +17095,7 @@ textblock=[character(len=256) :: &
 'len_trim(3fortran)                                         len_trim(3fortran)', &
 '', &
 'NAME', &
-'  LEN_TRIM(3) - [CHARACTER:WHITESPACE] Character length without trailing blank', &
+'  LEN_TRIM(3) - [CHARACTER:INQUIRY] Character length without trailing blank', &
 '  characters', &
 '', &
 'SYNOPSIS', &
@@ -27002,7 +27002,7 @@ textblock=[character(len=256) :: &
 'split(3fortran)                                               split(3fortran)', &
 '', &
 'NAME', &
-'  SPLIT(3) - [CHARACTER:SPLIT] Parse a string into tokens, one at a time.', &
+'  SPLIT(3) - [CHARACTER:SPLIT] Parse a string into tokens, one at a time', &
 '', &
 'SYNOPSIS', &
 '  call split (string, set, pos [, back])', &
@@ -28449,7 +28449,7 @@ textblock=[character(len=256) :: &
 'tokenize(3fortran)                                         tokenize(3fortran)', &
 '', &
 'NAME', &
-'  TOKENIZE(3) - [CHARACTER:PARSE] Parse a string into tokens.', &
+'  TOKENIZE(3) - [CHARACTER:PARSE] Parse a string into tokens', &
 '', &
 'SYNOPSIS', &
 '  TOKEN form (returns array of strings)', &
@@ -28739,7 +28739,7 @@ textblock=[character(len=256) :: &
 'transfer(3fortran)                                         transfer(3fortran)', &
 '', &
 'NAME', &
-'  TRANSFER(3) - [TYPE:MOLD] Transfer bit patterns', &
+'  TRANSFER(3) - [TYPE:CONVERSION] Transfer data as bit patterns using mold', &
 '', &
 'SYNOPSIS', &
 '  result = transfer(source, mold [,size] )', &
@@ -29725,7 +29725,7 @@ textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '  VERIFY(3) - [CHARACTER:SEARCH] Position of a character in a string of', &
-'  characters that does not appear in a given set of characters.', &
+'  characters that does not appear in a given set of characters', &
 '', &
 'SYNOPSIS', &
 '  result = verify(string, set [,back] [,kind] )', &

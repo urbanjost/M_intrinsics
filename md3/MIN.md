@@ -80,8 +80,8 @@ end program demo_min
 Results:
 ```text
  >  basics
- >   -100.000000    
- >   -200.000000    
+ >   -100.000000
+ >   -200.000000
  >  elemental
  >            1           1           1
  >            2           3           4

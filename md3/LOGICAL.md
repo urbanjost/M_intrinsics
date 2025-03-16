@@ -48,8 +48,8 @@ Sample program:
 ```fortran
 program demo_logical
 use iso_fortran_env, only : logical_kinds
-use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64       
-use,intrinsic :: iso_fortran_env, only : real32, real64, real128         
+use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+use,intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
 character(len=*),parameter :: g='(*(g0))'
 integer :: i, i1, i2
@@ -61,9 +61,9 @@ logical :: l1, l2
       write(*,'(*(g0))')'integer,parameter :: boolean', &
       & logical_kinds(i),'=', logical_kinds(i)
    enddo
-  ! for performance and storage purposes you generally want 
+  ! for performance and storage purposes you generally want
   ! to use the smallest storage size supported when using
-  ! large arrays, but some existing routines may require 
+  ! large arrays, but some existing routines may require
   ! the default kind. LOGICAL(3f) can change the kind of
   ! the variables.
   !
@@ -84,7 +84,7 @@ logical :: l1, l2
   ! you may have to delete unsupported kinds from this example
 
   ! this is probably the default
-   call showme(logical(l1,kind=4)) 
+   call showme(logical(l1,kind=4))
   ! note how showme shows different kinds are being passed to it
    call showme(logical(l1,kind=8))
    call showme(logical(l1,kind=2))

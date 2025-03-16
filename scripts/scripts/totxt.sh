@@ -34,6 +34,7 @@ do
    tail -n +3 $NAME|
    sed -e 's/^### \*\*\(.*\)\*\*$/# \U\1/'|
    pandoc --eol=lf -f $MD -t html -i - -o ../docs/$SHORTNAME.${NUM}fortran.html
+   sed -i -e '{/Nemo Release/d}'          ../docs/$SHORTNAME.${NUM}fortran.html
 done
 )
 done

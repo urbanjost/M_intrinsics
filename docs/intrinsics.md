@@ -711,7 +711,7 @@ Fortran 2023
 
 ### **Name**
 
-**adjustl**(3) - \[CHARACTER:WHITESPACE\] Left-justified a string
+**adjustl**(3) - \[CHARACTER:WHITESPACE\] Left-justify a string
 
 ### **Synopsis**
 ```fortran
@@ -13731,7 +13731,7 @@ Fortran 2008
 
 ### **Name**
 
-**len**(3) - \[CHARACTER\] Length of a character entity
+**len**(3) - \[CHARACTER:INQUIRY\] Length of a character entity
 
 ### **Synopsis**
 ```fortran
@@ -13882,7 +13882,7 @@ of arguments, and search for certain arguments:
 
 ### **Name**
 
-**len_trim**(3) - \[CHARACTER:WHITESPACE\] Character length without trailing blank characters
+**len_trim**(3) - \[CHARACTER:INQUIRY\] Character length without trailing blank characters
 
 ### **Synopsis**
 ```fortran
@@ -22608,7 +22608,7 @@ Fortran 95
 
 ### **Name**
 
-**split**(3) - \[CHARACTER:SPLIT] Parse a string into tokens, one at a time.
+**split**(3) - \[CHARACTER:SPLIT\] Parse a string into tokens, one at a time
 
 ### **Synopsis**
 ```fortran
@@ -23970,7 +23970,7 @@ Fortran 95
 
 ### **Name**
 
-**tokenize**(3) - \[CHARACTER:PARSE] Parse a string into tokens.
+**tokenize**(3) - \[CHARACTER:PARSE\] Parse a string into tokens
 
 ### **Synopsis**
   TOKEN form (returns array of strings)
@@ -24261,7 +24261,7 @@ Results:
 
 ### **Name**
 
-**transfer**(3) - \[TYPE:MOLD\] Transfer bit patterns
+**transfer**(3) - \[TYPE:CONVERSION\] Transfer data as bit patterns using mold
 
 ### **Synopsis**
 ```fortran
@@ -25002,7 +25002,7 @@ Fortran 95
 ### **Name**
 
 **verify**(3) - \[CHARACTER:SEARCH\] Position of a character in a string
-of characters that does not appear in a given set of characters.
+of characters that does not appear in a given set of characters
 
 ### **Synopsis**
 ```fortran

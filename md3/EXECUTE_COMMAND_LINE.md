@@ -20,7 +20,7 @@
 ```
 ### **Characteristics**
  - **command** is a default _character_ scalar
- - **wait** is a default _logical_ scalar. 
+ - **wait** is a default _logical_ scalar.
  - **exitstat** is an _integer_ of the default kind.
    It must be of a kind with at least a decimal exponent range of 9.
  - **cmdstat** is an _integer_ of default kind. The kind of the variable
@@ -111,10 +111,10 @@ integer :: exitstat, cmdstat
 character(len=256) :: cmdmsg
 
    call execute_command_line( &
-   &  command  = "external_prog.exe", &  
+   &  command  = "external_prog.exe", &
    &  exitstat = exitstat,            &
    &  cmdstat  = cmdstat,             &
-   &  cmdmsg   = cmdmsg)                
+   &  cmdmsg   = cmdmsg)
    print *, "Exit status of external_prog.exe was ", exitstat
    if(cmdstat.ne.0)then
       print *, '<ERROR>'//trim(cmdmsg)

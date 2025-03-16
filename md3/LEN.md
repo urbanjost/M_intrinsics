@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**len**(3) - \[CHARACTER\] Length of a character entity
+**len**(3) - \[CHARACTER:INQUIRY\] Length of a character entity
 
 ### **Synopsis**
 ```fortran

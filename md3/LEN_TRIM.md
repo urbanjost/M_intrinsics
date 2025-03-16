@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**len_trim**(3) - \[CHARACTER:WHITESPACE\] Character length without trailing blank characters
+**len_trim**(3) - \[CHARACTER:INQUIRY\] Character length without trailing blank characters
 
 ### **Synopsis**
 ```fortran

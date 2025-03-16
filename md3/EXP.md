@@ -86,12 +86,12 @@ end program demo_exp
 ```
 Results:
 ```text
- >  Euler's constant is approximately   2.71828175    
+ >  Euler's constant is approximately   2.71828175
  >  given the complex value              (3.00000000,4.00000000)
  >  exp(x) is           (-13.1287832,-15.2007847)
  >  is the same as           (-13.1287832,-15.2007847)
- >  maximum real component   88.7228394    
- >  maximum doubleprecision component   709.78271289338397     
+ >  maximum real component   88.7228394
+ >  maximum doubleprecision component   709.78271289338397
 ```
 ### **Standard**
 

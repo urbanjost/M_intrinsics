@@ -691,7 +691,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="adjustl" class="title-slide slide section level2"><h1>adjustl</h1></div><div id="name-6" class="slide section level3">
 <h1><strong>Name</strong></h1>
-<p><strong>adjustl</strong>(3) - [CHARACTER:WHITESPACE] Left-justified a string</p>
+<p><strong>adjustl</strong>(3) - [CHARACTER:WHITESPACE] Left-justify a string</p>
 </div><div id="synopsis-6" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb31"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb31-1" title="1">  <span class="kw">result</span> <span class="kw">=</span> <span class="bu">adjustl</span>(string)</a></code></pre></div>
@@ -10917,7 +10917,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 </div>
 <div id="len" class="title-slide slide section level2"><h1>len</h1></div><div id="name-124" class="slide section level3">
 <h1><strong>Name</strong></h1>
-<p><strong>len</strong>(3) - [CHARACTER] Length of a character entity</p>
+<p><strong>len</strong>(3) - [CHARACTER:INQUIRY] Length of a character entity</p>
 </div><div id="synopsis-124" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb539"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb539-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">len</span>(string <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
@@ -11040,7 +11040,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 </div>
 <div id="len_trim" class="title-slide slide section level2"><h1>len_trim</h1></div><div id="name-125" class="slide section level3">
 <h1><strong>Name</strong></h1>
-<p><strong>len_trim</strong>(3) - [CHARACTER:WHITESPACE] Character length without trailing blank characters</p>
+<p><strong>len_trim</strong>(3) - [CHARACTER:INQUIRY] Character length without trailing blank characters</p>
 </div><div id="synopsis-125" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb543"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb543-1" title="1">  <span class="kw">result</span> <span class="kw">=</span> <span class="bu">len_trim</span>(string <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
@@ -17978,7 +17978,7 @@ If <strong>array</strong> is a pointer it must be associated and allocatable arr
 </div>
 <div id="split" class="title-slide slide section level2"><h1>split</h1></div><div id="name-195" class="slide section level3">
 <h1><strong>Name</strong></h1>
-<p><strong>split</strong>(3) - [CHARACTER:SPLIT] Parse a string into tokens, one at a time.</p>
+<p><strong>split</strong>(3) - [CHARACTER:SPLIT] Parse a string into tokens, one at a time</p>
 </div><div id="synopsis-195" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb865"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb865-1" title="1">     <span class="kw">call</span> split (string, set, pos <span class="kw">[</span>, back<span class="kw">]</span>)</a>
@@ -19062,7 +19062,7 @@ need an illustration of what happens with higher dimension array
 </div>
 <div id="tokenize" class="title-slide slide section level2"><h1>tokenize</h1></div><div id="name-207" class="slide section level3">
 <h1><strong>Name</strong></h1>
-<p><strong>tokenize</strong>(3) - [CHARACTER:PARSE] Parse a string into tokens.</p>
+<p><strong>tokenize</strong>(3) - [CHARACTER:PARSE] Parse a string into tokens</p>
 </div><div id="synopsis-207" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <p>TOKEN form (returns array of strings)</p>
@@ -19293,7 +19293,7 @@ need an illustration of what happens with higher dimension array
 </div>
 <div id="transfer" class="title-slide slide section level2"><h1>transfer</h1></div><div id="name-209" class="slide section level3">
 <h1><strong>Name</strong></h1>
-<p><strong>transfer</strong>(3) - [TYPE:MOLD] Transfer bit patterns</p>
+<p><strong>transfer</strong>(3) - [TYPE:CONVERSION] Transfer data as bit patterns using mold</p>
 </div><div id="synopsis-209" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb925"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb925-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">transfer</span>(source, mold <span class="kw">[</span>,<span class="fu">size</span><span class="kw">]</span> )</a></code></pre></div>
@@ -19884,7 +19884,7 @@ need an illustration of what happens with higher dimension array
 </div>
 <div id="verify" class="title-slide slide section level2"><h1>verify</h1></div><div id="name-215" class="slide section level3">
 <h1><strong>Name</strong></h1>
-<p><strong>verify</strong>(3) - [CHARACTER:SEARCH] Position of a character in a string of characters that does not appear in a given set of characters.</p>
+<p><strong>verify</strong>(3) - [CHARACTER:SEARCH] Position of a character in a string of characters that does not appear in a given set of characters</p>
 </div><div id="synopsis-215" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb948"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb948-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">verify</span>(string, set <span class="kw">[</span>,back<span class="kw">]</span> <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> )</a></code></pre></div>
