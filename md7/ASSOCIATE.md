@@ -253,7 +253,7 @@ Results:
    same as those of the selector.
 
    The associating entity itself is a variable, but if the selector is
-   not a deﬁnable variable, the associating entity is not definable
+   not a definable variable, the associating entity is not definable
    and shall not be defined or become undefined.
 
    If a selector is not permitted to appear in a variable definition

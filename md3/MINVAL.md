@@ -6,18 +6,18 @@
 of ARRAY along dimension DIM corresponding to true elements of MASK.
 
 ### **Synopsis**
-forms
+forms:
 ```fortran
-    result = minval(array, [mask]) 
+    result = minval(array [,mask])
 ```
-or
+   or
 ```fortran
-    result = minval(array [,dim] [,mask])
+    result = minval(array ,dim [,mask])
 ```
 ```fortran
      type(TYPE(kind=**)) function minval(array, dim, mask)
 
-      NUMERIC,intent(in) :: array(..)
+      type(TYPE(kind=**)),intent(in) :: array(..)
       integer(kind=**),intent(in),optional :: dim
       logical(kind=**),intent(in),optional :: mask(..)
 ```
@@ -195,10 +195,10 @@ Fortran 95
 
 ### **See Also**
 
+[**maxval**(3)](#maxval),
 [**min**(3)](#min),
+[**max**(3)](#max)
 [**minloc**(3)](#minloc)
 [**maxloc**(3)](#maxloc),
-[**maxval**(3)](#maxval),
-[**min**(3)](#min)
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

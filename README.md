@@ -1,4 +1,4 @@
-The short version is to take the standalone/fman.f90 file, compile it
+The short version is to take the standalone/fman.F90 file, compile it
 and you have a CLI (Command Line Interface) to descriptions of the
 Fortran intrinsics; with instructions available via "fman --help".
 
@@ -49,10 +49,10 @@ The man-pages are available as archive files:
    - [manpages7.zip](https://urbanjost.github.io/M_intrinsics/manpages7.zip)
 
 A single-file version of the CLI program fpm-man(1) is in
-[fman.f90](https://raw.githubusercontent.com/urbanjost/M_intrinsics/master/standalone/fman.f90).
+[fman.f90](https://raw.githubusercontent.com/urbanjost/M_intrinsics/master/standalone/fman.F90).
 
-   - builds with `gfortran  fman.f90`
-   - builds with `ifort -O1 fman.f90`
+   - builds with `gfortran  -static fman.F90`
+   - builds with `ifort -O1 fman.F90`
 
 ## Project Information
 
@@ -68,13 +68,13 @@ and place the man-pages there and add $HOME/man to your $MANPATH you
 should be able to use the man-pages. For example:
 ```bash
         for NUM in 3 5 7
-	do
-	(
+        do
+        (
            mkdir -p $HOME/man/man${NUM}
            cd $HOME/man/man${NUM}
            tar xvfz $WHERE_YOU_PUT_TARFILE/manpages${NUM}.tgz
-	)
-	done
+        )
+        done
         cd ..
         mandb -c .
         export MANPATH=$HOME/man:$MANPATH
@@ -213,6 +213,69 @@ an archive file with the intrinsic manpages on *nix machines (ie. on
 machines with the man(1) command) so it will continue to be maintained,
 but the differences between these and the on-line fortran-lang.org pages
 may become more extensive as time goes on.
+
+To ensure color and the interactive mode are used bash(1) users can create
+the script "fpm-docs" 
+```bash
+#!/bin/bash
+################################################################################
+# @(#) fpm-docs(1) - run fpm-man ensuring color interactive mode 
+################################################################################
+trap "/bin/rm -f ${SCRATCH:-_NOTTHERE_}" EXIT
+SCRATCH=/tmp/scratch_$(uuidgen).txt
+fpm manual > $SCRATCH
+################################################################################
+# use default colors
+unset FMAN_COLORS 
+################################################################################
+# set custom colors
+export FMAN_COLORS=\
+"bg='<EBONY>',fg='<white><bo>',\
+prg='<cyan><bo>',\
+head='<yellow><bo>',head_='</bo>',\
+fixed='<white>',\
+output='<yellow><bo>',output_='</bo>'"
+################################################################################
+(
+set -v -x
+if [ "$*" = '' ]
+then
+   fpm man -f $SCRATCH --color --lines=$LINES $*
+else
+   fpm man  --color --lines=$LINES $*
+fi
+)
+################################################################################
+exit
+################################################################################
+```
+and then just enter "fpm docs" to extract and load the fpm(1) command help or
+"fpm docs INTRINSIC_NAME".  A session might look like:
+```text
+fpm docs
+: step through fpm docs one topic at a time
+n
+n
+n
+: load Table of Contents for intrinsics
+T
+f
+f
+: load description of sin intrinsic
+t sin
+: load all intrinsic descriptions
+t manual
+f
+n
+n
+nnnnnnnn
+N
+N
+: show interactive command descriptions
+h
+: quit fpm-man
+q
+```
 
 ## Todo
 

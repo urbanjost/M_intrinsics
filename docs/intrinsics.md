@@ -106,62 +106,62 @@ program demo_abs
 contains
 
    subroutine DUSTY_CORNERS_1(message)
-      character(len=*),intent(in) :: message
+   character(len=*),intent(in) :: message
 
-      ! A dusty corner is that abs(-huge(0)-1) of an integer would be
-      ! a representable negative value on most machines but result in a
-      ! positive value out of range.
+     ! A dusty corner is that abs(-huge(0)-1) of an integer would be
+     ! a representable negative value on most machines but result in a
+     ! positive value out of range.
 
-      print gen,  message
-      ! By definition:
-      !   You can take the absolute value of any value whose POSITIVE value
-      !   is representable with the same type and kind.
+     print gen,  message
+     ! By definition:
+     !   You can take the absolute value of any value whose POSITIVE value
+     !   is representable with the same type and kind.
 
-      print gen, 'abs range test : ', abs(huge(0)), abs(-huge(0))
-      print gen, 'abs range test : ', abs(huge(0.0)), abs(-huge(0.0))
-      print gen, 'abs range test : ', abs(tiny(0.0)), abs(-tiny(0.0))
+     print gen, 'abs range test : ', abs(huge(0)), abs(-huge(0))
+     print gen, 'abs range test : ', abs(huge(0.0)), abs(-huge(0.0))
+     print gen, 'abs range test : ', abs(tiny(0.0)), abs(-tiny(0.0))
 
    end subroutine DUSTY_CORNERS_1
 
    subroutine DUSTY_CORNERS_2(message)
-      character(len=*),intent(in) :: message
+   character(len=*),intent(in) :: message
 
-      ! dusty corner: "kind=dp" is required or the value returned by
-      ! CMPLX() is a default real instead of double precision.
+     ! dusty corner: "kind=dp" is required or the value returned by
+     ! CMPLX() is a default real instead of double precision.
 
-      ! Working with complex values you often encounter the CMPLX(3)
-      ! function. CMPLX(3) defaults to returning a default REAL regardless
-      ! of input type. Not really a direct problem with ABS(2f) per-se,
-      ! but a common error when working with doubleprecision complex values
+     ! Working with complex values you often encounter the CMPLX(3)
+     ! function. CMPLX(3) defaults to returning a default REAL regardless
+     ! of input type. Not really a direct problem with ABS(2f) per-se,
+     ! but a common error when working with doubleprecision complex values
 
-      print gen,  message
-      print gen, 'real result versus doubleprecision result', &
-      & abs(cmplx(30.0_dp,40.0_dp)), &
-      & abs(cmplx(30.0_dp,40.0_dp,kind=dp))
+     print gen,  message
+     print gen, 'real result versus doubleprecision result', &
+     & abs(cmplx(30.0_dp,40.0_dp)), &
+     & abs(cmplx(30.0_dp,40.0_dp,kind=dp))
 
    end subroutine DUSTY_CORNERS_2
 
    subroutine DUSTY_CORNERS_3(message)
-      character(len=*),intent(in) :: message
-      print gen, message
+   character(len=*),intent(in) :: message
+     print gen, message
 
-      ! this will probably cause an overflow error, or
-      !print gen,  abs(cmplx( huge(0.0), huge(0.0) ))
+     ! this will probably cause an overflow error, or
+     !print gen,  abs(cmplx( huge(0.0), huge(0.0) ))
 
-      print gen, 'because the biggest default real is',huge(0.0)
-      print gen, 'because returning magnitude of sqrt(x%re**2,x%im**2)'
+     print gen, 'because the biggest default real is',huge(0.0)
+     print gen, 'because returning magnitude of sqrt(x%re**2,x%im**2)'
 
    end subroutine DUSTY_CORNERS_3
 
    subroutine DUSTY_CORNERS_4(message)
-      character(len=*),intent(in) :: message
-      print gen, message
+   character(len=*),intent(in) :: message
+     print gen, message
 
-      ! if you do not want the distance for a complex value you
-      ! might want something like returning a complex value with
-      ! both the imaginary and real parts. One way to do that is
+     ! if you do not want the distance for a complex value you
+     ! might want something like returning a complex value with
+     ! both the imaginary and real parts. One way to do that is
 
-      print gen, cmplx(abs(z%re),abs(z%im),kind=kind(z))
+     print gen, cmplx(abs(z%re),abs(z%im),kind=kind(z))
 
    end subroutine DUSTY_CORNERS_4
 
@@ -171,7 +171,7 @@ Results:
 ```text
  >  integer          In: -1                        Out: 1
  >  real             In: -1.00000000               Out: 1.00000000
- >  doubleprecision  In: -45.780000000000001       Out: 45.780000000000001
+ >  doubleprecision  In: -45.78000000000000        Out: 45.78000000000000
  >  complex          In: (-3.00000000,-4.00000000) Out: 5.00000000
  > abs is elemental: 20 0 1 3 100
  > distance of ( -3.00000000 -4.00000000 ) from zero is 5.00000000
@@ -180,7 +180,7 @@ Results:
  > abs range test :  0.340282347E+39 0.340282347E+39
  > abs range test :  0.117549435E-37 0.117549435E-37
  > beware of losing precision using CMPLX(3)
- > real result versus doubleprecision result 50.0000000 50.000000000000000
+ > real result versus doubleprecision result 50.0000000 50.00000000000000
  > beware of overflow of complex values
  > because the biggest default real is 0.340282347E+39
  > because returning magnitude of sqrt(x%re**2,x%im**2)
@@ -895,25 +895,29 @@ Fortran 95
     result = aimag(z)
 ```
 ```fortran
-     elemental complex(kind=KIND) function aimag(z)
+     elemental function aimag(z)
 
+      complex(kind=KIND) aimag
       complex(kind=KIND),intent(in) :: z
 ```
 ### **Characteristics**
 
-- The type of the argument **z** shall be _complex_ and any supported
-  _complex_ kind
+- The type of the argument **z** is _complex_. It may be of any
+  supported _complex_ kind
 
 - The return value is of type _real_ with the kind type parameter of
-  the argument.
+  the argument **z**.
 
 ### **Description**
 
   **aimag**(3) yields the imaginary part of the complex argument **z**.
 
   This is similar to the modern complex-part-designator **%IM** which also
-  designates the imaginary part of a value, accept a designator can appear
-  on the left-hand side of an assignment as well, as in **val%im=10.0**.
+  designates the imaginary part of a value, accept a designator is treated
+  as a variable. This means it may appear
+  on the left-hand side of an assignment as well, as in **val%im=10.0** or
+  as an argument in a procedure call that will act as a typical variable
+  passed by reference.
 
 ### **Options**
 
@@ -936,28 +940,31 @@ Sample program:
 program demo_aimag
 use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
-character(len=*),parameter :: g='(*(1x,g0))'
+character(len=*),parameter :: it='(*(1x,g0))'
 integer              :: i
 complex              :: z4
 complex              :: arr(3)
 complex(kind=real64) :: z8
 
-    print g, 'basics:'
+    print it, 'basics:'
+
     z4 = cmplx(1.e0, 2.e0)
-    print *, 'value=',z4
-    print g, 'imaginary part=',aimag(z4),'or', z4%im
+    print *,  'value=',z4
+    print it, 'imaginary part=',aimag(z4),'or', z4%im
 
-    print g, 'kinds other than the default may be supported'
+    print it, 'kinds other than the default may be supported'
+
     z8 = cmplx(3.e0_real64, 4.e0_real64,kind=real64)
-    print *, 'value=',z8
-    print g, 'imaginary part=',aimag(z8),'or', z8%im
+    print *,  'value=',z8
+    print it, 'imaginary part=',aimag(z8),'or', z8%im
 
-    print g, 'an elemental function can be passed an array'
-    print g,'given a complex array:'
+    print it, 'an elemental function can be passed an array'
+    print it, 'given a complex array:'
+
     arr=[z4,z4/2.0,z4+z4]
-    print *, (arr(i),new_line('a'),i=1,size(arr))
-    print g,'the imaginary component is:'
-    print g, aimag( arr )
+    print *,  (arr(i),new_line('a'),i=1,size(arr))
+    print it, 'the imaginary component is:'
+    print it, aimag( arr )
 
 end program demo_aimag
 ```
@@ -2130,10 +2137,10 @@ There are several cases:
 
     As in case 2, the result is _.false._, if **pointer** is disassociated.
 
-4.  If **target** is present and an scalar pointer, the result is _.true._ if
-    **target** is associated with **pointer**, the target associated with **target**
-    are not zero-sized storage sequences and occupy the same storage
-    units.
+4.  If **target** is present and an scalar pointer, the result is
+    _.true._ if **target** is associated with **pointer**, the target
+    associated with **target** are not zero-sized storage sequences and
+    occupy the same storage units.
 
     The result is _.false._, if either **target** or **pointer** is disassociated.
 
@@ -2371,7 +2378,7 @@ function
 ```fortran
      elemental real(kind=KIND) function atan2(y, x)
 
-      real,kind=KIND) :: atan2
+      real,kind=KIND)            :: atan2
       real,kind=KIND),intent(in) :: y, x
 ```
 ### **Characteristics**
@@ -2382,14 +2389,18 @@ function
 ### **Description**
 
   **atan2**(3) computes in radians a processor-dependent approximation of
-  the arctangent of the complex number ( **x**, **y** ) or equivalently the
-  principal value of the arctangent of the value **y/x** (which determines
-  a unique angle).
+  the arctangent of the complex number ( **x**, **y** ) or equivalently
+  the principal value of the arctangent of the value **y/x** (which
+  determines a unique angle).
 
   If **y** has the value zero, **x** shall not have the value zero.
 
-  The resulting phase lies in the range -PI <= ATAN2 (Y,X) <= PI and is equal to a
-  processor-dependent approximation to a value of arctan(Y/X).
+  The resulting phase lies in the range
+
+      -PI <= ATAN2 (Y,X) <= PI
+
+  and is equal to a processor-dependent approximation to a value of
+  arctan(Y/X).
 
 ### **Options**
 
@@ -2404,7 +2415,7 @@ function
 ### **Result**
 
 The value returned is by definition the principal value of the complex
-number **(x, y)**, or in other terms, the phase of the phasor x+i*y.
+number **(x, y)**, or in other terms, the phase of the phasor x+i\*y.
 
 The principal value is simply what we get when we adjust a radian value
 to lie between **-PI** and **PI** inclusive,
@@ -2431,18 +2442,18 @@ Range of returned values by quadrant:
 >                     |
 >                   -PI/2
 >
-     NOTES:
+   NOTES:
 
-     If the processor distinguishes -0 and +0 then the sign of the
-     returned value is that of Y when Y is zero, else when Y is zero
-     the returned value is always positive.
+   If the processor distinguishes -0 and +0 then the sign of the
+   returned value is that of Y when Y is zero, else when Y is zero
+   the returned value is always positive.
 ```
 ### **Examples**
 
 Sample program:
 ```fortran
 program demo_atan2
-real :: z
+real    :: z
 complex :: c
  !
  ! basic usage
@@ -2450,10 +2461,10 @@ complex :: c
   z=atan2(1.5574077, 1.0)
   write(*,*) 'radians=',z,'degrees=',r2d(z)
  !
- ! elemental arrays
+ ! elemental : arrays
   write(*,*)'elemental',atan2( [10.0, 20.0], [30.0,40.0] )
  !
- ! elemental arrays and scalars
+ ! elemental : arrays and scalars
   write(*,*)'elemental',atan2( [10.0, 20.0], 50.0 )
  !
  ! break complex values into real and imaginary components
@@ -2468,23 +2479,16 @@ complex :: c
   integer             :: i
  !
   vals=[ &
-    ( 1.0, 0.0 ), & ! 0
-    ( 1.0, 1.0 ), & ! 45
-    ( 0.0, 1.0 ), & ! 90
-    (-1.0, 1.0 ), & ! 135
-    (-1.0, 0.0 ), & ! 180
-    (-1.0,-1.0 ), & ! 225
-    ( 0.0,-1.0 )]   ! 270
+    !     0            45            90           135
+    ( 1.0, 0.0 ), ( 1.0, 1.0 ), ( 0.0, 1.0 ), (-1.0, 1.0 ), &
+    !    180           225          270
+    (-1.0, 0.0 ), (-1.0,-1.0 ), ( 0.0,-1.0 ) ]
   do i=1,size(vals)
-     call cartesian_to_polar(vals(i)%re, vals(i)%im, radius,ang)
+     call cartesian_to_polar(vals(i), radius,ang)
      write(*,101)vals(i),ang,r2d(ang),radius
   enddo
-  101 format(             &
-  & 'X= ',f5.2,           &
-  & ' Y= ',f5.2,          &
-  & ' ANGLE= ',g0,        &
-  & T38,'DEGREES= ',g0.4, &
-  & T54,'DISTANCE=',g0)
+  101 format( 'X=',f5.2,' Y=',f5.2,' ANGLE=',g0, &
+  & T38,'DEGREES=',g0.4, T54,'DISTANCE=',g0)
  endblock COMPLEX_VALS
 !
 contains
@@ -2496,36 +2500,34 @@ real,intent(in)           :: radians
    r2d=radians / DEGREE ! do the conversion
 end function r2d
 !
-subroutine cartesian_to_polar(x,y,radius,inclination)
+subroutine cartesian_to_polar(xy,radius,inclination)
 ! return angle in radians in range 0 to 2*PI
 implicit none
-real,intent(in)  :: x,y
+complex,intent(in)  :: xy
 real,intent(out) :: radius,inclination
-   radius=sqrt(x**2+y**2)
-   if(radius.eq.0)then
-      inclination=0.0
-   else
-      inclination=atan2(y,x)
-      if(inclination < 0.0)inclination=inclination+2*atan2(0.0d0,-1.0d0)
-   endif
+   radius=abs( xy )
+   ! arbitrarily set angle to zero when radius is zero
+   inclination=merge(0.0,atan2(x=xy%re, y=xy%im),radius==0.0)
+   ! bring into range 0 <= inclination < 2*PI
+   if(inclination < 0.0)inclination=inclination+2*atan2(0.0d0,-1.0d0)
 end subroutine cartesian_to_polar
 !
 end program demo_atan2
-```
+
 Results:
-```text
- >  radians=   1.000000     degrees=   57.29578
- >  elemental  0.3217506      0.4636476
- >  elemental  0.1973956      0.3805064
- >  complex (0.0000000E+00,1.000000)   1.570796
- > X=  1.00 Y=  0.00 ANGLE= .000000     DEGREES= .000   DISTANCE=1.000000
- > X=  1.00 Y=  1.00 ANGLE= .7853982    DEGREES= 45.00  DISTANCE=1.414214
- > X=  0.00 Y=  1.00 ANGLE= 1.570796    DEGREES= 90.00  DISTANCE=1.000000
- > X= -1.00 Y=  1.00 ANGLE= 2.356194    DEGREES= 135.0  DISTANCE=1.414214
- > X= -1.00 Y=  0.00 ANGLE= 3.141593    DEGREES= 180.0  DISTANCE=1.000000
- > X= -1.00 Y= -1.00 ANGLE= 3.926991    DEGREES= 225.0  DISTANCE=1.414214
- > X=  0.00 Y= -1.00 ANGLE= 4.712389    DEGREES= 270.0  DISTANCE=1.000000
-```
+
+ >  radians=   1.00000000     degrees=   57.2957802
+ >  elemental  0.321750551      0.463647604
+ >  elemental  0.197395563      0.380506366
+ >  complex             (0.00000000,1.00000000)   1.57079637
+ > X= 1.00 Y= 0.00 ANGLE= 0.00000000  DEGREES= 0.000 DISTANCE=1.00000000
+ > X= 1.00 Y= 1.00 ANGLE= 0.785398185 DEGREES= 45.00 DISTANCE=1.41421354
+ > X= 0.00 Y= 1.00 ANGLE= 1.57079637  DEGREES= 90.00 DISTANCE=1.00000000
+ > X=-1.00 Y= 1.00 ANGLE= 2.35619450  DEGREES= 135.0 DISTANCE=1.41421354
+ > X=-1.00 Y= 0.00 ANGLE= 3.14159274  DEGREES= 180.0 DISTANCE=1.00000000
+ > X=-1.00 Y=-1.00 ANGLE= 3.92699075  DEGREES= 225.0 DISTANCE=1.41421354
+ > X= 0.00 Y=-1.00 ANGLE= 4.71238899  DEGREES= 270.0 DISTANCE=1.00000000
+
 ### **Standard**
 
 FORTRAN 77
@@ -2533,10 +2535,13 @@ FORTRAN 77
 ### **See Also**
 
 - [**atan**(3)](#atan)
+- [**tan**(3)](#tan)
+- [**tan2**(3)](#tan2)
 
 ### **Resources**
 
-- [arctan:wikipedia](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
+- [arctan:wikipedia]
+  (https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
 ## atan2pi
@@ -5182,12 +5187,11 @@ implicit none
 character(len=*),parameter :: gen='(1x,*(g0:,1x))'
 real              :: x
 real              :: y
+integer           :: ierr
 real,parameter    :: arr(*)=[ &
    &  -2.7,  -2.5, -2.2, -2.0, -1.5, &
    &  -1.0,  -0.5,  0.0, +0.5, +1.0, &
    &  +1.5,  +2.0, +2.2, +2.5, +2.7  ]
-integer           :: i
-integer           :: ierr
 character(len=80) :: message
    print *, 'Basic Usage'
    x = 63.29
@@ -6486,10 +6490,13 @@ Sample program:
 ```fortran
 program demo_compiler_version
 use, intrinsic :: iso_fortran_env, only : compiler_version
+use, intrinsic :: iso_fortran_env, only : compiler_options
 implicit none
-   print '(2a)', &
+   print '(4a)', &
       'This file was compiled by ', &
-      compiler_version()
+      compiler_version(),           &
+      ' using the options ',        &
+      compiler_options()
 end program demo_compiler_version
 ```
 Results:
@@ -6810,7 +6817,7 @@ TS 18508
 
   The return value is an approximation of the cosine of **x**.
 
-  The return value is in degrees and lies in the range
+  The return value lies in the range
 ```code
   -1 \<= cosd(x) \<= 1
 ```
@@ -6945,7 +6952,6 @@ Inverse function: [**acosh**(3)](#acosh)
 ### **Characteristics**
 
  - **x** is of type _real_ or _complex_ of any valid kind.
- - **KIND** may be any kind supported by the associated type of **x**.
  - The returned value will be of the same type and kind as the argument
    **x**.
 
@@ -6960,17 +6966,16 @@ Inverse function: [**acosh**(3)](#acosh)
 ### **Options**
 
 - **x**
-  : The angle in radians to compute the cosine of.
+  : The angle in radians when **x** is of type _real_.
+  If **x** is of type _complex_, its real part is regarded as a value
+  in radians, often called the phase.
 
 ### **Result**
 
-  The return value is the tangent of **x**.
+  The return value is the cosine of **x**.
 
-  If **x** is of the type _real_, the return value is in radians and lies in
+  If **x** is type _real_, the return value lies in
   the range **-1 \<= cos(x) \<= 1** .
-
-  If **x** is of type complex, its real part is regarded as a value in
-  radians, often called the phase.
 
 ### **Examples**
 
@@ -6978,27 +6983,150 @@ Sample program:
 ```fortran
 program demo_cos
 implicit none
-character(len=*),parameter :: g2='(a,t20,g0)'
-doubleprecision,parameter :: PI=atan(1.0d0)*4.0d0
-   write(*,g2)'COS(0.0)=',cos(0.0)
-   write(*,g2)'COS(PI)=',cos(PI)
-   write(*,g2)'COS(PI/2.0d0)=',cos(PI/2.0d0),'EPSILON=',epsilon(PI)
-   write(*,g2)'COS(2*PI)=',cos(2*PI)
-   write(*,g2)'COS(-2*PI)=',cos(-2*PI)
-   write(*,g2)'COS(-2000*PI)=',cos(-2000*PI)
-   write(*,g2)'COS(3000*PI)=',cos(3000*PI)
+real,parameter       :: PI=atan(1.0d0)*4.0d0
+real                 :: val
+character,parameter  :: nl=NEW_LINE('A')
+   write(*,'(*(g0))',advance='no') &
+
+'basics:',                                             nl, &
+' COS(0.0) =         ', cos(0.0),                      nl, &
+' COS(PI) =          ', cos(PI),                       nl, &
+' ',                                                   nl, &
+'X may be any real value',                             nl, &
+' COS(222*PI) =      ', cos(222*PI),                   nl, &
+' COS(-333*PI) =     ', cos(-333*PI),                  nl, &
+' ',                                                   nl, &
+'note: probably not exactly zero ....',                nl, &
+' COS(PI/2.0)=       ', cos(PI/2.0),                   nl, &
+' EPSILON=           ', epsilon(PI),                   nl, &
+' ',                                                   nl, &
+'COS() is elemental',                                  nl, &
+' COS([0.0,PI/4,PI/2,PI*3/4,PI]) = ',                  nl
+   write(*,'(*(1x,g0,1x))') COS([0.0,PI/4,PI/2,PI*3/4,PI])
+
+   write(*,'(*(g0))',advance='no') &
+' ',                                                   nl, &
+'Law of Cosines:',                                     nl, &
+' ',                                                   nl, &
+'right triangle',                                      nl, &
+two_sides_and_degrees_between(3.0,4.0,90.0),           nl, &
+'equilateral',                                         nl, &
+two_sides_and_degrees_between(3.3,3.3,60.0),           nl, &
+' ',                                                   nl, &
+'Dusty Corners:',                                      nl, &
+' ',                                                   nl, &
+'If very large, representable numbers are far apart',  nl, &
+'so adding or subtracting a few radians can not even', nl, &
+'change the value! Note the expected values here:',    nl
+   val=0.0
+   call delta( val-2.0, val-1.0 )
+
+   write(*,'(a)') 'but look at the same call when the values are huge;'
+   val=huge(0.0)/1000
+   call delta( val-2.0, val-1.0 )
+
+contains
+
+subroutine delta(A,B)
+real(kind=kind(0.0)),intent(in) :: a,b
+print '(a,t30,g0)' , &
+' A=                     ', A, &
+' B=                     ', B, &
+' B-A=                   ', B-A, &
+' COS(A*PI)=             ', cos(A*PI), &
+' COS(B*PI)=             ', cos(B*PI), &
+' spacing(A)=            ', spacing(A), &
+' COS((B-A)*PI)=         ', cos((B-A)*PI), &
+' COS(B*PI)-COS(A*PI)=   ', cos(B*PI)-cos(A*PI), &
+repeat('=',40)
+end subroutine delta
+
+function two_sides_and_degrees_between(a,b,X) result(str)
+real,intent(in)              :: a,b,X
+real                         :: c
+real,parameter               :: PI = atan(1.0d0) * 4.0d0
+real,parameter               :: degrees_to_radians = PI / 180.0
+character,parameter          :: nl=NEW_LINE('A')
+character(len=:),allocatable :: str
+! The law of cosines states that for a
+! triangle with sides of length a, b, and c
+! that if the angle X is formed by sides a and
+! b that the length of the third side c is
+!
+   c = sqrt( a**2 + b**2 - 2*a*b*cos(degrees_to_radians*X) )
+   allocate( character(len=132) :: str )
+   write(str,'(*(g0))')&
+   'For sides A=',a,', B=',b,' and X=',x,' degrees,',nl,'side C=',c
+   str=trim(str)
+!
+!                        \
+!                       / \
+!                      / Y \
+!                     /     \
+!                    /       \
+!                   /         \
+!                b /           \ c
+!                 /             \
+!                /               \
+!               /                 \
+!              /                   \
+!             / X                 Z \
+!            -------------------------
+!                        a
+end function two_sides_and_degrees_between
 end program demo_cos
 ```
 Results:
 ```text
- > COS(0.0)=          1.000000
- > COS(PI)=           -1.000000000000000
- > COS(PI/2.0d0)=     .6123233995736766E-16
- > EPSILON=           .2220446049250313E-15
- > COS(2*PI)=         1.000000000000000
- > COS(-2*PI)=        1.000000000000000
- > COS(-2000*PI)=     1.000000000000000
- > COS(3000*PI)=      1.000000000000000
+ > basics:
+ >  COS(0.0) =         1.00000000
+ >  COS(PI) =          -1.00000000
+ >
+ > X may be any real value
+ >  COS(222*PI) =      1.00000000
+ >  COS(-333*PI) =     -1.00000000
+ >
+ > note: probably not exactly zero ....
+ >  COS(PI/2.0)=       -0.437113883E-7
+ >  EPSILON=           0.119209290E-6
+ >
+ > COS() is elemental
+ >  COS([0.0,PI/4,PI/2,PI*3/4,PI]) =
+ >  1.00000000  0.707106769  -0.437113883E-7  -0.707106769  -1.00000000
+ >
+ > Law of Cosines:
+ >
+ > right triangle
+ > For sides A=3.00000000, B=4.00000000 and X=90.0000000 degrees,
+ > side C=5.00000000
+ > equilateral
+ > For sides A=3.29999995, B=3.29999995 and X=60.0000000 degrees,
+ > side C=3.29999995
+ >
+ > Dusty Corners:
+ >
+ > If very large, representable numbers are far apart
+ > so adding or subtracting a few radians can not even
+ > change the value! Note the expected values here:
+ >  A=                          -2.00000000
+ >  B=                          -1.00000000
+ >  B-A=                        1.00000000
+ >  COS(A*PI)=                  1.00000000
+ >  COS(B*PI)=                  -1.00000000
+ >  spacing(A)=                 0.238418579E-6
+ >  COS((B-A)*PI)=              -1.00000000
+ >  COS(B*PI)-COS(A*PI)=        -2.00000000
+ > ========================================
+ > but look at the same call when the values are huge;
+ >  A=                          0.340282343E+36
+ >  B=                          0.340282343E+36
+ >  B-A=                        0.00000000
+ >  COS(A*PI)=                  0.766595423
+ >  COS(B*PI)=                  0.766595423
+ >  spacing(A)=                 0.396140813E+29
+ >  COS((B-A)*PI)=              1.00000000
+ >  COS(B*PI)-COS(A*PI)=        0.00000000
+ > ========================================
 ```
 ### **Standard**
 
@@ -7215,9 +7343,10 @@ TS 18508
   - **mask** is a _logical_ array of any shape and kind.
   - If **dim** is present, the result is an array with the specified rank
     removed.
-  - **KIND** is a scalar integer constant expression valid as an _integer_ kind
-  - The return value is of default _integer_ type unless **kind** is specified
-    to declare the kind of the result.
+  - **KIND** is a scalar integer constant expression valid as an
+    _integer_ kind
+  - The return value is of default _integer_ type unless **kind**
+    is specified to declare the kind of the result.
 
 ### **Description**
 
@@ -7235,9 +7364,9 @@ TS 18508
 - **dim**
   : specifies to remove this dimension from the result and produce an
     array of counts of _.true._ values along the removed dimension.
-    If not present, the result is a scalar count of the true elements in **mask**
-    the value must be in the range 1 <= dim <= n, where n is the
-    rank(number of dimensions) of **mask**.
+    If not present, the result is a scalar count of the true elements
+    in **mask** the value must be in the range 1 <= dim <= n, where n
+    is the rank(number of dimensions) of **mask**.
 
     The corresponding actual argument shall not be an optional dummy
     argument, a disassociated pointer, or an unallocated allocatable.
@@ -7252,10 +7381,10 @@ TS 18508
   is not present.
 
   If **dim** is present, the result is an array with a rank one less
-  than the rank of the input array **mask**, and a size corresponding
-  to the shape of **array** with the **dim** dimension removed, with the
-  remaining elements containing the number of _.true._ elements along the
-  removed dimension.
+  than the rank of the input array **mask**, and a size corresponding to
+  the shape of **array** with the **dim** dimension removed, with the
+  remaining elements containing the number of _.true._ elements along
+  the removed dimension.
 
 ### **Examples**
 
@@ -7609,7 +7738,7 @@ Sample program:
 ```fortran
 program demo_cshift
 implicit none
-integer, dimension(5)   :: i1,i2,i3
+integer, dimension(5)   :: i1
 integer, dimension(3,4) :: a, b
    !basics
     i1=[10,20,30,40,50]
@@ -7738,23 +7867,20 @@ Fortran 2008
 
 ### **Name**
 
-**date_and_time**(3) - \[SYSTEM:TIME\] Gets current date time
+**date_and_time**(3) - \[SYSTEM:TIME\] Gets current date and time
 
 ### **Synopsis**
 ```fortran
-    call date_and_time( [date] [,time] [,zone] [,values] )
-```
-```fortran
-     subroutine date_and_time(date, time, zone, values)
+    subroutine date_and_time(date, time, zone, values)
 
-      character(len=8),intent(out),optional :: date
-      character(len=10),intent(out),optional :: time
-      character(len=5),intent(out),optional :: zone
-      integer,intent(out),optional :: values(8)
+     character(len=8),intent(out),optional :: date
+     character(len=10),intent(out),optional :: time
+     character(len=5),intent(out),optional :: zone
+     integer,intent(out),optional :: values(8)
 ```
 ### **Characteristics**
 
- - **date**, - **time**, and **zone** are default _character_ scalar types
+ - **date**, **time**, and **zone** are default _character_ scalar types
  - **values** is a rank-one array of type integer with a decimal
  exponent range of at least four.
 
@@ -7767,49 +7893,45 @@ Fortran 2008
 
   Unavailable numeric parameters return **-huge(value)**.
 
-  These forms are compatible with the representations defined in ISO
-  8601:2004. UTC is established by the International Bureau of Weights
-  and Measures (BIPM, i.e. Bureau International des Poids et Mesures)
-  and the International Earth Rotation Service (IERS).
-
 ### **Options**
 
 - **date**
-  : A character string of default kind of the form CCYYMMDD, of length
+  : A character string of default kind of the form **CCYYMMDD**, of length
     8 or larger, where
 
-     + CCYY is the year in the Gregorian calendar
-     + MM is the month within the year
-     + DD is the day within the month.
+     + **CCYY** is the year in the Gregorian calendar
+     + **MM** is the month within the year
+     + **DD** is the day within the month.
 
     The characters of this value are all decimal digits.
 
-    If there is no date available, DATE is assigned all blanks.
+    If there is no date available, **date** is assigned all blanks.
 
 - **time**
-  : A character string of default kind of the form HHMMSS.SSS, of length
-    10 or larger, where
+  : A character string of default kind of the form **HHMMSS.SSS**,
+    of length 10 or larger, where
 
-     + hh is the hour of the day,
-     + mm is the minutes of the hour,
-     + and ss.sss is the seconds and milliseconds of the minute.
+     + **HH** is the hour of the day,
+     + **MM** is the minutes of the hour,
+     + and **SS.SSS** is the seconds and milliseconds of the minute.
 
     Except for the decimal point, the characters of this value shall
     all be decimal digits.
 
-    If there is no clock available, TIME is assigned all blanks.
+    If there is no clock available, **time** is assigned all blanks.
 
 - **zone**
-  : A string of the form (+-)HHMM, of length 5 or larger, representing
+  : A string of the form (+-)**HHMM**, of length 5 or larger, representing
     the difference with respect to Coordinated Universal Time (UTC), where
 
-     + hh and mm are the time difference with respect to Coordinated
-       Universal Time (UTC) in hours and minutes, respectively.
+     + **HH** and **MM** are the time difference with respect to
+       Coordinated Universal Time (UTC) in hours and minutes,
+       respectively.
 
-   The characters of this value following the sign character are
-   all decimal digits.
+   The characters of this value following the sign character are all
+   decimal digits.
 
-   If this information is not available, ZONE is assigned all blanks.
+   If this information is not available, **zone** is assigned all blanks.
 
 - **values**
   : An array of at least eight elements. If there is no data
@@ -7895,8 +8017,15 @@ Fortran 95
 
 ### **See Also**
 
-[**cpu_time**(3)](#cpu_time),
-[**system_clock**(3)](#system_clock)
+  These forms are compatible with the representations defined in ISO
+  8601:2004.
+
+  UTC is established by the International Bureau of Weights
+  and Measures (BIPM, i.e. Bureau International des Poids et Mesures)
+  and the International Earth Rotation Service (IERS).
+
+  [**cpu_time**(3)](#cpu_time),
+  [**system_clock**(3)](#system_clock)
 
 ### **Resources**
 
@@ -8210,13 +8339,14 @@ If the vectors are _integer_ or _real_, the result is
 ```
 If the vectors are _complex_, the result is
 ```fortran
-     sum(conjg(vector_a)*vector_b)**
+     sum(conjg(vector_a)*vector_b)
 ```
+If the vectors have size zero, the result has the value zero.
+
 If the vectors are _logical_, the result is
 ```fortran
      any(vector_a .and. vector_b)
 ```
-
 ### **Examples**
 
 Sample program:
@@ -8763,27 +8893,78 @@ implicit none
 integer, dimension(3,3) :: a
 integer :: i
 
-    a = reshape( [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], [ 3, 3 ])
-    print '(3i3)', (a(i,:),i=1,3)
+   write(*,*)'original'
+   a = reshape( [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], [ 3, 3 ])
+   call printi(a)
 
-    print *
+   write(*,*)'shift each row differently'
+   a = eoshift(a, SHIFT=[1, 2, -2], BOUNDARY=-5, DIM=2)
+   call printi(a)
 
-    ! shift it
-    a = eoshift(a, SHIFT=[1, 2, 1], BOUNDARY=-5, DIM=2)
-    print '(3i3)', (a(i,:),i=1,3)
+   write(*,*)'shift each column differently'
+   a = eoshift(a, SHIFT=[1, 2, -2], BOUNDARY=-5, DIM=1)
+   call printi(a)
+
+   write(*,*)'original'
+   call printi(reshape([(i,i=1,12)],[3,4]))
+   write(*,'(*(g0))')'shift=+2,dim=1'
+   call printi(eoshift(reshape([(i,i=1,12)],[3,4]),+2,dim=1))
+   write(*,'(*(g0))')'shift=+2,dim=2'
+   call printi(eoshift(reshape([(i,i=1,12)],[3,4]),+2,dim=2))
+   write(*,'(*(g0))')'shift=-2,dim=1'
+   call printi(eoshift(reshape([(i,i=1,12)],[3,4]),-2,dim=1))
+   write(*,'(*(g0))')'shift=-2,dim=2'
+   call printi(eoshift(reshape([(i,i=1,12)],[3,4]),-2,dim=2))
+contains
+subroutine printi(arr)
+!@(#) print small 2d integer arrays in row-column format
+integer,intent(in) :: arr(:,:)
+integer            :: i
+character(len=40)  :: biggest
+   write(biggest,'(*(g0))')'(1x,*(i',                   &
+   & ceiling(log10(max(1.0,real(maxval(abs(arr))))))+2, &
+   & ':,","))'
+   do i=1,size(arr,dim=1)
+      write(*,fmt=biggest)arr(i,:)
+   enddo
+end subroutine printi
 
 end program demo_eoshift
 ```
 Results:
-
 ```text
-  >  1  4  7
-  >  2  5  8
-  >  3  6  9
-  >
-  >  4  7 -5
-  >  8 -5 -5
-  >  6  9 -5
+ >  original
+ >    1,  4,  7
+ >    2,  5,  8
+ >    3,  6,  9
+ >  shift each row differently
+ >    4,  7, -5
+ >    8, -5, -5
+ >   -5, -5,  3
+ >  shift each column differently
+ >    8, -5, -5
+ >   -5, -5, -5
+ >   -5, -5, -5
+ >  original
+ >     1,   4,   7,  10
+ >     2,   5,   8,  11
+ >     3,   6,   9,  12
+ > shift=+2,dim=1
+ >     3,   6,   9,  12
+ >     0,   0,   0,   0
+ >     0,   0,   0,   0
+ > shift=+2,dim=2
+ >     7,  10,   0,   0
+ >     8,  11,   0,   0
+ >     9,  12,   0,   0
+ > shift=-2,dim=1
+ >    0,  0,  0,  0
+ >    0,  0,  0,  0
+ >    1,  4,  7, 10
+ > shift=-2,dim=2
+ >    0,  0,  1,  4
+ >    0,  0,  2,  5
+ >    0,  0,  3,  6
 ```
 ### **Standard**
 
@@ -9802,9 +9983,11 @@ Results:
 identified by MASK along dimension DIM matching a target value
 
 ### **Synopsis**
+Syntax:
 ```fortran
-    result = findloc (array, value, dim [,mask] [,kind] [,back]) |
-             findloc (array, value [,mask] [,kind] [,back])
+    result = findloc (array, value, dim [,mask] [,kind] [,back])
+      or
+    result = findloc (array, value [,mask] [,kind] [,back])
 ```
 ```fortran
      function findloc (array, value, dim, mask, kind, back)
@@ -10246,7 +10429,7 @@ end function floor
 The fractional part of the model representation of **x** is returned;
 it is
 ```fortran
-    x * radix(x)**(-exponent(x))
+    x * real(radix(x))**(-exponent(x))
 ```
 If **x** has the value zero, the result is zero.
 
@@ -10263,12 +10446,17 @@ program demo_fraction
 implicit none
 real :: x
    x = 178.1387e-4
-   print *, fraction(x), x * radix(x)**(-exponent(x))
+   print *, fraction(x), x * real(radix(x))**(-exponent(x))
+   x = 10.0
+   print *, fraction(x)
+   print *, fraction(x) * 2**4
 end program demo_fraction
 ```
 Results:
 ```text
-  >  0.5700439      0.5700439
+ >   0.570043862      0.570043862
+ >   0.625000000
+ >    10.0000000
 ```
 ### **Standard**
 
@@ -11009,30 +11197,25 @@ Fortran 95
 
 ### **Description**
 
-**hypot**(3) is referred to as the Euclidean distance function. It is
-equal to
+In mathematics, the _Euclidean distance_ between two points in Euclidean
+space is the length of a line segment between two points.
+
+**hypot(x,y)** returns the special case of the Euclidean distance between
+the point **<x,y>** and the origin. It is equal to
 ```fortran
 sqrt(x**2+y**2)
 ```
 without undue underflow or overflow.
 
-In mathematics, the _Euclidean distance_ between two points in Euclidean
-space is the length of a line segment between two points.
-
-**hypot(x,y)** returns the distance between the point **<x,y>** and
-the origin.
-
 ### **Options**
 
 - **x**
-: The type shall be _real_.
+: the x value of the point of interest
 
 - **y**
-  : The type and kind type parameter shall be the same as **x**.
+: the y value of the point of interest
 
 ### **Result**
-
-The return value has the same type and kind type parameter as **x**.
 
 The result is the positive magnitude of the distance of the point
 **<x,y>** from the origin **<0.0,0.0>** .
@@ -11093,39 +11276,11 @@ Fortran 2008
 
 ### **See also**
 
- - [acos(3)](#acos)   - Arccosine (inverse cosine) function
- - [acosh(3)](#acosh) - Inverse hyperbolic cosine function
- - [asin(3)](#asin)   - Arcsine function
- - [asinh(3)](#asinh) - Inverse hyperbolic sine function
- - [atan(3)](#atan)   - Arctangent AKA inverse tangent function
- - [atan2(3)](#atan2) - Arctangent (inverse tangent) function
- - [atanh(3)](#atanh) - Inverse hyperbolic tangent function
- - [cos(3)](#cos)     - Cosine function
- - [cosh(3)](#cosh)   - Hyperbolic cosine function
- - [sin(3)](#sin)     - Sine function
- - [sinh(3)](#sinh)   - Hyperbolic sine function
- - [tan(3)](#tan)     - Tangent function
- - [tanh(3)](#tanh)   - Hyperbolic tangent function
- - [bessel_j0(3)](#bessel_j0) -  Bessel function of the first kind of order 0
- - [bessel_j1(3)](#bessel_j1) -  Bessel function of the first kind of order 1
- - [bessel_jn(3)](#bessel_jn) -  Bessel function of the first kind
- - [bessel_y0(3)](#bessel_y0) -  Bessel function of the second kind of order 0
- - [bessel_y1(3)](#bessel_y1) -  Bessel function of the second kind of order 1
- - [bessel_yn(3)](#bessel_y2) -  Bessel function of the second kind
- - [erf(3)](#erf)     -  Error function
- - [erfc(3)](#erfc)   -  Complementary error function
- - [erfc_scaled(3)](#erfc_scaled) -  Scaled complementary error function
  - [exp(3)](#exp)     -  Base-e exponential function
  - [gamma(3)](#gamma) -  Gamma function, which yields factorials for positive whole numbers
- - [hypot(3)](#hypot) -  Returns the Euclidean distance - the distance between a point and the origin.
  - [log(3)](#log)     -  Natural logarithm
  - [log10(3)](#log10) -  Base 10 or common logarithm
  - [log_gamma(3)](#log_gamma) -  Logarithm of the absolute value of the Gamma function
- - [norm2(3)](#norm2) -  Euclidean vector norm
- - [sqrt(3)](#sqrt)   -  Square-root function
- - [random_init(3)](#random_init) - Initializes the state of the pseudorandom number generator
- - [random_number(3)](#random_number) - Pseudo-random number
- - [random_seed(3)](#random_seed) - Initialize a pseudo-random number sequence
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -13005,20 +13160,20 @@ program demo_iostat
 implicit none
 integer,parameter  :: wp=kind(0.0d0)
 real(kind=wp)      :: value
-integer            :: ios
+integer            :: iostat
 integer            :: lun
 character(len=256) :: message
    ! make a scratch input file for demonstration purposes
    call makefile(lun)
    write(*,*)'Begin entering numeric values, one per line'
    do
-      read(lun,*,iostat=ios,iomsg=message)value
-      if(ios.eq.0)then
+      read(lun,*,iostat=iostat,iomsg=message)value
+      if(iostat.eq.0)then
          write(*,*)'VALUE=',value
-      elseif( is_iostat_end(ios) ) then
+      elseif( is_iostat_end(iostat) ) then
          stop 'end of file. Goodbye!'
       else
-         write(*,*)'ERROR:',ios,trim(message)
+         write(*,*)'ERROR:',iostat,trim(message)
          exit
       endif
       !
@@ -13026,7 +13181,7 @@ character(len=256) :: message
 contains
 subroutine makefile(lun)
 ! make a scratch file just for demonstration purposes
-integer :: iostat,lun
+integer :: lun
 integer :: i
 character(len=255),parameter  :: fakefile(*)=[character(len=255) :: &
 
@@ -13854,7 +14009,7 @@ of arguments, and search for certain arguments:
 ```
 ### **Characteristics**
 
- - **string_a** is default _character_ or an ASCII character.
+ - **string_a** is default _character_ or an ASCII character string
  - **string_b** is the same type and kind as **string\_a**
  - the result is a default logical
 
@@ -13975,7 +14130,7 @@ of arguments, and search for certain arguments:
 ```
 ### **Characteristics**
 
- - **string_a** is default _character_ or an ASCII character.
+ - **string_a** is default _character_ or an ASCII character string
  - **string_b** is the same type and kind as **string_a**
  - the result is a default logical
 
@@ -14097,7 +14252,7 @@ FORTRAN 77
 ```
 ### **Characteristics**
 
- - **string_a** is default _character_ or an ASCII character.
+ - **string_a** is default _character_ or an ASCII character string
  - **string_b** is the same type and kind as **string_a**
  - the result is a default logical
 
@@ -14244,7 +14399,7 @@ of arguments, and search for certain arguments:
 ```
 ### **Characteristics**
 
- - **string_a** is default _character_ or an ASCII character.
+ - **string_a** is default _character_ or an ASCII character string
  - **string_b** is the same type and kind as **string_a**
  - the result is a default logical
 
@@ -14412,39 +14567,11 @@ FORTRAN 77
 
 ### **See also**
 
- - [acos(3)](#acos)   - Arccosine (inverse cosine) function
- - [acosh(3)](#acosh) - Inverse hyperbolic cosine function
- - [asin(3)](#asin)   - Arcsine function
- - [asinh(3)](#asinh) - Inverse hyperbolic sine function
- - [atan(3)](#atan)   - Arctangent AKA inverse tangent function
- - [atan2(3)](#atan2) - Arctangent (inverse tangent) function
- - [atanh(3)](#atanh) - Inverse hyperbolic tangent function
- - [cos(3)](#cos)     - Cosine function
- - [cosh(3)](#cosh)   - Hyperbolic cosine function
- - [sin(3)](#sin)     - Sine function
- - [sinh(3)](#sinh)   - Hyperbolic sine function
- - [tan(3)](#tan)     - Tangent function
- - [tanh(3)](#tanh)   - Hyperbolic tangent function
- - [bessel_j0(3)](#bessel_j0) -  Bessel function of the first kind of order 0
- - [bessel_j1(3)](#bessel_j1) -  Bessel function of the first kind of order 1
- - [bessel_jn(3)](#bessel_jn) -  Bessel function of the first kind
- - [bessel_y0(3)](#bessel_y0) -  Bessel function of the second kind of order 0
- - [bessel_y1(3)](#bessel_y1) -  Bessel function of the second kind of order 1
- - [bessel_yn(3)](#bessel_y2) -  Bessel function of the second kind
- - [erf(3)](#erf)     -  Error function
- - [erfc(3)](#erfc)   -  Complementary error function
- - [erfc_scaled(3)](#erfc_scaled) -  Scaled complementary error function
  - [exp(3)](#exp)     -  Base-e exponential function
  - [gamma(3)](#gamma) -  Gamma function, which yields factorials for positive whole numbers
  - [hypot(3)](#hypot) -  Returns the Euclidean distance - the distance between a point and the origin.
  - [log(3)](#log)     -  Natural logarithm
- - [log10(3)](#log10) -  Base 10 or common logarithm
  - [log_gamma(3)](#log_gamma) -  Logarithm of the absolute value of the Gamma function
- - [norm2(3)](#norm2) -  Euclidean vector norm
- - [sqrt(3)](#sqrt)   -  Square-root function
- - [random_init(3)](#random_init) - Initializes the state of the pseudorandom number generator
- - [random_number(3)](#random_number) - Pseudo-random number
- - [random_seed(3)](#random_seed) - Initialize a pseudo-random number sequence
 
  _Fortran intrinsic descriptions_
 
@@ -14515,7 +14642,7 @@ Gamma function: [**gamma**(3)](#gamma)
 
 ### **Name**
 
-**logical**(3) - \[TYPE:LOGICAL\] Conversion between kinds of logical values
+**logical**(3) - \[TYPE:CONVERSION\] Conversion between kinds of logical values
 
 ### **Synopsis**
 ```fortran
@@ -14560,19 +14687,89 @@ is not given.
 Sample program:
 ```fortran
 program demo_logical
-! Access array containing the kind type parameter values supported by this
-! compiler for entities of logical type
 use iso_fortran_env, only : logical_kinds
+use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+use,intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
-integer :: i
-
-   ! list kind values supported on this platform, which generally vary
-   ! in storage size as alias declarations
+character(len=*),parameter :: g='(*(g0))'
+integer :: i, i1, i2
+logical :: l1, l2
+  !
+  ! list kind values supported on this platform
+  !
    do i =1, size(logical_kinds)
       write(*,'(*(g0))')'integer,parameter :: boolean', &
       & logical_kinds(i),'=', logical_kinds(i)
    enddo
+  ! for performance and storage purposes you generally want
+  ! to use the smallest storage size supported when using
+  ! large arrays, but some existing routines may require
+  ! the default kind. LOGICAL(3f) can change the kind of
+  ! the variables.
+  !
+  ! But converting a logical to an integer is not done
+  ! with LOGICAL(3f); but can be down with MERGE(3f).
+  !
+   l1=.true.
+   l2=.false.
+   i1=merge(0,1,l1)
+   i2=merge(0,1,l2)
+   write(*,g)'L1=',l1,' L2=',l2,' I1=',i1,' I2=',i2
+  !
+  ! show type and kind of default logicals
+   call showme(.true.)
+   call showme(l1)
+  ! show logical() changing type and kind
+   call showme(logical(l1))
+  ! you may have to delete unsupported kinds from this example
 
+  ! this is probably the default
+   call showme(logical(l1,kind=4))
+  ! note how showme shows different kinds are being passed to it
+   call showme(logical(l1,kind=8))
+   call showme(logical(l1,kind=2))
+  ! this is probably the smallest storage size supported
+  ! on this platform; but kind values are platform-specific
+   call showme(logical(l1,kind=1))
+contains
+subroutine showme(val)
+! @(#) showme(3f) - display type and kind of intrinsic value
+class(*),intent(in) :: val
+   select type(val)
+      type is (integer(kind=int8))
+        write(*,'("integer(kind=int8) ",i0)') val
+      type is (integer(kind=int16))
+         write(*,'("integer(kind=int16) ",i0)') val
+      type is (integer(kind=int32))
+         write(*,'("integer(kind=int32) ",i0)') val
+      type is (integer(kind=int64))
+         write(*,'("integer(kind=int64) ",i0)') val
+      type is (real(kind=real32))
+         write(*,'("real(kind=real32) ",1pg0)') val
+      type is (real(kind=real64))
+         write(*,'("real(kind=real64) ",1pg0)') val
+      type is (real(kind=real128))
+        write(*,'("real(kind=real128) ",1pg0)') val
+      type is (logical(kind=1))
+            write(*,'("logical(kind=1) ",l1,a,i0)') val, &
+            & 'storage=',storage_size(val)
+      type is (logical(kind=2))
+            write(*,'("logical(kind=2) ",l1,a,i0)') val, &
+            & 'storage=',storage_size(val)
+      type is (logical(kind=4))
+            write(*,'("logical(kind=4) ",l1,a,i0)') val, &
+            & 'storage=',storage_size(val)
+      type is (logical(kind=8))
+            write(*,'("logical(kind=8) ",l1,a,i0)') val, &
+            & 'storage=',storage_size(val)
+      type is (character(len=*))
+          write(*,'("character ",a)') trim(val)
+      type is (complex)
+                   write(*,'("","(",1pg0,",",1pg0,")")') val
+      class default
+      stop 'crud. showme() does not know about this type'
+   end select
+end subroutine showme
 end program demo_logical
 ```
 Results:
@@ -14582,18 +14779,31 @@ Results:
  > integer,parameter :: boolean4=4
  > integer,parameter :: boolean8=8
  > integer,parameter :: boolean16=16
+ > L1=T L2=F I1=0 I2=1
+ > logical(kind=4) Tstorage=32
+ > logical(kind=4) Tstorage=32
+ > logical(kind=4) Tstorage=32
+ > logical(kind=1) Tstorage=8
+ > logical(kind=2) Tstorage=16
+ > logical(kind=4) Tstorage=32
 ```
 ### **Standard**
 
 Fortran 95 , related ISO_FORTRAN_ENV module - fortran 2009
 
 ### **See Also**
-
-[**int**(3)](#int),
-[**real**(3)](#real),
-[**cmplx**(3)](#cmplx)
++ [**aimag**(3)](#aimag) - Imaginary part of complex number
++ [**cmplx**(3)](#cmplx) - Conversion to a complex type
++ [**dble**(3)](#dble) - Converstion to double precision real
++ [**int**(3)](#int) - Truncate towards zero and convert to integer
++ [**nint**(3)](#nint) - Nearest whole number
++ [**real**(3)](#real) - Convert to real type
++ [**out_of_range**(3)](#out_of_range) - Whether a numeric value can be
+  converted safely to another type
++ [**transfer**(3)](#transfer) - Transfer bit patterns
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
+
 
 ## log
 
@@ -14664,39 +14874,11 @@ FORTRAN 77
 
 ### **See also**
 
- - [acos(3)](#acos)   - Arccosine (inverse cosine) function
- - [acosh(3)](#acosh) - Inverse hyperbolic cosine function
- - [asin(3)](#asin)   - Arcsine function
- - [asinh(3)](#asinh) - Inverse hyperbolic sine function
- - [atan(3)](#atan)   - Arctangent AKA inverse tangent function
- - [atan2(3)](#atan2) - Arctangent (inverse tangent) function
- - [atanh(3)](#atanh) - Inverse hyperbolic tangent function
- - [cos(3)](#cos)     - Cosine function
- - [cosh(3)](#cosh)   - Hyperbolic cosine function
- - [sin(3)](#sin)     - Sine function
- - [sinh(3)](#sinh)   - Hyperbolic sine function
- - [tan(3)](#tan)     - Tangent function
- - [tanh(3)](#tanh)   - Hyperbolic tangent function
- - [bessel_j0(3)](#bessel_j0) -  Bessel function of the first kind of order 0
- - [bessel_j1(3)](#bessel_j1) -  Bessel function of the first kind of order 1
- - [bessel_jn(3)](#bessel_jn) -  Bessel function of the first kind
- - [bessel_y0(3)](#bessel_y0) -  Bessel function of the second kind of order 0
- - [bessel_y1(3)](#bessel_y1) -  Bessel function of the second kind of order 1
- - [bessel_yn(3)](#bessel_y2) -  Bessel function of the second kind
- - [erf(3)](#erf)     -  Error function
- - [erfc(3)](#erfc)   -  Complementary error function
- - [erfc_scaled(3)](#erfc_scaled) -  Scaled complementary error function
- - [exp(3)](#exp)     -  Base-e exponential function
- - [gamma(3)](#gamma) -  Gamma function, which yields factorials for positive whole numbers
- - [hypot(3)](#hypot) -  Returns the Euclidean distance - the distance between a point and the origin.
- - [log(3)](#log)     -  Natural logarithm
  - [log10(3)](#log10) -  Base 10 or common logarithm
+ - [exp(3)](#exp)     -  Base-e exponential function
+ - [hypot(3)](#hypot) -  Returns the Euclidean distance - the distance between a point and the origin.
+ - [gamma(3)](#gamma) -  Gamma function, which yields factorials for positive whole numbers
  - [log_gamma(3)](#log_gamma) -  Logarithm of the absolute value of the Gamma function
- - [norm2(3)](#norm2) -  Euclidean vector norm
- - [sqrt(3)](#sqrt)   -  Square-root function
- - [random_init(3)](#random_init) - Initializes the state of the pseudorandom number generator
- - [random_number(3)](#random_number) - Pseudo-random number
- - [random_seed(3)](#random_seed) - Initialize a pseudo-random number sequence
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -16255,18 +16437,18 @@ FORTRAN 77
 of ARRAY along dimension DIM corresponding to true elements of MASK.
 
 ### **Synopsis**
-forms
+forms:
 ```fortran
-    result = minval(array, [mask])
+    result = minval(array [,mask])
 ```
-or
+   or
 ```fortran
-    result = minval(array [,dim] [,mask])
+    result = minval(array ,dim [,mask])
 ```
 ```fortran
      type(TYPE(kind=**)) function minval(array, dim, mask)
 
-      NUMERIC,intent(in) :: array(..)
+      type(TYPE(kind=**)),intent(in) :: array(..)
       integer(kind=**),intent(in),optional :: dim
       logical(kind=**),intent(in),optional :: mask(..)
 ```
@@ -16444,11 +16626,11 @@ Fortran 95
 
 ### **See Also**
 
+[**maxval**(3)](#maxval),
 [**min**(3)](#min),
+[**max**(3)](#max)
 [**minloc**(3)](#minloc)
 [**maxloc**(3)](#maxloc),
-[**maxval**(3)](#maxval),
-[**min**(3)](#min)
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -21025,7 +21207,7 @@ Fortran 95 ; with RADIX - Fortran 2008
 
   The return value is of the same type and kind as **x**. The real number
   whose fractional part is that of **x** and whose exponent part
-  if **i** is returned; it is **fraction(x) \* radix(x)\*\*i**.
+  if **i** is returned; it is **fraction(x) \* real(radix(x))\*\*i**.
 
   If **x** has the value zero, the result has the same value as **x**.
 
@@ -21042,7 +21224,7 @@ program demo_setexp
 implicit none
 real :: x = 178.1387e-4
 integer :: i = 17
-   print *, set_exponent(x, i), fraction(x) * radix(x)**i
+   print *, set_exponent(x, i), fraction(x) * real(radix(x))**i
 end program demo_setexp
 ```
 Results:
@@ -22009,7 +22191,7 @@ program demo_sin
 implicit none
 real :: d
     d = haversine(36.12,-86.67, 33.94,-118.40) ! BNA to LAX
-    print '(A,F9.4,A)', 'distance: ',d,' km'
+    print '(*(A,1x,F9.4,1x))','distance:',d,'km, or',d*0.62137119,'miles'
 contains
 function haversine(latA,lonA,latB,lonB) result (dist)
 !
@@ -22017,8 +22199,8 @@ function haversine(latA,lonA,latB,lonB) result (dist)
 ! given latitude and longitude in degrees
 !
 real,intent(in) :: latA,lonA,latB,lonB
-real :: a,c,dist,delta_lat,delta_lon,lat1,lat2
-real,parameter :: radius = 6371 ! mean earth radius in kilometers,
+real            :: a,c,dist,delta_lat,delta_lon,lat1,lat2
+real,parameter  :: radius = 6371 ! mean earth radius in kilometers,
 ! recommended by the International Union of Geodesy and Geophysics
 
 ! generate constant pi/180
@@ -22036,7 +22218,7 @@ end program demo_sin
 ```
 Results:
 ```text
- > distance: 2886.4446 km
+ > distance: 2886.4446 km, or 1793.5536 miles
 ```
 ### **Standard**
 
@@ -23273,7 +23455,6 @@ integer(kind=int64) :: count64, count_rate64, count_max64
 integer(kind=int64) :: start64, finish64
 
 integer(kind=int32) :: count32, count_rate32, count_max32
-integer(kind=int32) :: start32, finish32
 
 real(kind=wp)       :: time_read
 real(kind=wp)       :: sum
@@ -23501,9 +23682,9 @@ result = tan(x)
 ### **Options**
 
 - **x**
-  : The angle in radians to compute the tangent of for _real_ input.
-    If **x** is of type _complex_, its real part is regarded as a value
-    in radians.
+  : The angle in radians to compute the tangent of when the input
+    is  _real_. If **x** is of type _complex_, its real part is regarded
+    as a value in radians.
 
 ### **Result**
 
@@ -24249,14 +24430,19 @@ Sample program:
 ```fortran
 program demo_transpose
 implicit none
-integer,save :: xx(3,5)= reshape([&
+integer,allocatable :: array(:,:)
+integer,parameter   :: values(3,5)= reshape([&
     1,  2,  3,  4,  5,    &
    10, 20, 30, 40, 50,    &
    11, 22, 33, 44, -1055  &
- ],shape(xx),order=[2,1])
+ ],shape(values),order=[2,1])
 
-call print_matrix_int('xx array:',xx)
-call print_matrix_int('xx array transposed:',transpose(xx))
+   array=values
+   call print_matrix_int('array:',array)
+   array=transpose(array)
+   call print_matrix_int('array transposed:',array)
+   array=transpose(array)
+   call print_matrix_int('transposed transpose:',array)
 
 contains
 
@@ -24267,12 +24453,13 @@ character(len=*),intent(in)  :: title
 integer,intent(in)           :: arr(:,:)
 integer                      :: i
 character(len=:),allocatable :: biggest
-   write(*,*)trim(title)  ! print title
+   ! print title
+   write(*,'(a," shape(",i0,",",i0,")")')trim(title),shape(arr)
    biggest='           '  ! make buffer to write integer into
    ! find how many characters to use for integers
    write(biggest,'(i0)')ceiling(log10(max(1.0,real(maxval(abs(arr))))))+2
    ! use this format to write a row
-   biggest='(" > [",*(i'//trim(biggest)//':,","))'
+   biggest='("   [",*(i'//trim(biggest)//':,","))'
    ! print one row of array at a time
    do i=1,size(arr,dim=1)
       write(*,fmt=biggest,advance='no')arr(i,:)
@@ -24283,17 +24470,21 @@ end subroutine print_matrix_int
 end program demo_transpose
 ```
 Results:
-```
-    xx array:
-    > [     1,     2,     3,     4,     5 ]
-    > [    10,    20,    30,    40,    50 ]
-    > [    11,    22,    33,    44, -1055 ]
-    xx array transposed:
-    > [     1,    10,    11 ]
-    > [     2,    20,    22 ]
-    > [     3,    30,    33 ]
-    > [     4,    40,    44 ]
-    > [     5,    50, -1055 ]
+```text
+ > array: shape(3,5)
+ >    [     1,     2,     3,     4,     5 ]
+ >    [    10,    20,    30,    40,    50 ]
+ >    [    11,    22,    33,    44, -1055 ]
+ > array transposed: shape(5,3)
+ >    [     1,    10,    11 ]
+ >    [     2,    20,    22 ]
+ >    [     3,    30,    33 ]
+ >    [     4,    40,    44 ]
+ >    [     5,    50, -1055 ]
+ > transposed transpose: shape(3,5)
+ >    [     1,     2,     3,     4,     5 ]
+ >    [    10,    20,    30,    40,    50 ]
+ >    [    11,    22,    33,    44, -1055 ]
 ```
 ### **Standard**
 

@@ -99,38 +99,10 @@ Fortran 2008
 
 ### **See also**
 
- - [acos(3)](#acos)   - Arccosine (inverse cosine) function
- - [acosh(3)](#acosh) - Inverse hyperbolic cosine function
- - [asin(3)](#asin)   - Arcsine function
- - [asinh(3)](#asinh) - Inverse hyperbolic sine function
- - [atan(3)](#atan)   - Arctangent AKA inverse tangent function
- - [atan2(3)](#atan2) - Arctangent (inverse tangent) function
- - [atanh(3)](#atanh) - Inverse hyperbolic tangent function
- - [cos(3)](#cos)     - Cosine function
- - [cosh(3)](#cosh)   - Hyperbolic cosine function
- - [sin(3)](#sin)     - Sine function
- - [sinh(3)](#sinh)   - Hyperbolic sine function
- - [tan(3)](#tan)     - Tangent function
- - [tanh(3)](#tanh)   - Hyperbolic tangent function
- - [bessel_j0(3)](#bessel_j0) -  Bessel function of the first kind of order 0
- - [bessel_j1(3)](#bessel_j1) -  Bessel function of the first kind of order 1
- - [bessel_jn(3)](#bessel_jn) -  Bessel function of the first kind
- - [bessel_y0(3)](#bessel_y0) -  Bessel function of the second kind of order 0
- - [bessel_y1(3)](#bessel_y1) -  Bessel function of the second kind of order 1
- - [bessel_yn(3)](#bessel_y2) -  Bessel function of the second kind
- - [erf(3)](#erf)     -  Error function
- - [erfc(3)](#erfc)   -  Complementary error function
- - [erfc_scaled(3)](#erfc_scaled) -  Scaled complementary error function
  - [exp(3)](#exp)     -  Base-e exponential function
  - [gamma(3)](#gamma) -  Gamma function, which yields factorials for positive whole numbers
- - [hypot(3)](#hypot) -  Returns the Euclidean distance - the distance between a point and the origin.
  - [log(3)](#log)     -  Natural logarithm
  - [log10(3)](#log10) -  Base 10 or common logarithm
  - [log_gamma(3)](#log_gamma) -  Logarithm of the absolute value of the Gamma function
- - [norm2(3)](#norm2) -  Euclidean vector norm
- - [sqrt(3)](#sqrt)   -  Square-root function
- - [random_init(3)](#random_init) - Initializes the state of the pseudorandom number generator
- - [random_number(3)](#random_number) - Pseudo-random number
- - [random_seed(3)](#random_seed) - Initialize a pseudo-random number sequence
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

@@ -11,34 +11,34 @@ keywords = ["fortran", "manpages", "intrinsics"]
 homepage = "https://github.com/urbanjost/M_intrinsics.git"
 
 [build]
-auto-executables = true
-auto-tests = true
-auto-examples = false
-#module-naming = true
+   auto-executables = true
+   auto-tests = true
+   auto-examples = false
+   #module-naming = true
 
 [[executable]]
-name="fpm-man"
-source-dir="app"
-main="fpm-man.f90"
+   name="fpm-man"
+   source-dir="app"
+   main="fpm-man.f90"
+
 [dependencies]
-
-#M_CLI2        =  {  git  =  "https://github.com/urbanjost/M_CLI2.git"        }
-#M_match       =  {  git  =  "https://github.com/urbanjost/M_match.git"       }
-#M_strings     =  {  git  =  "https://github.com/urbanjost/M_strings.git"     }
-#M_attr        =  {  git  =  "https://github.com/urbanjost/M_attr.git"        }
-#M_framework   =  {  git  =  "https://github.com/urbanjost/M_framework.git"   }
-#M_io          =  {  git  =  "https://github.com/urbanjost/M_io.git"          }
-
-#M_CLI2        =  {  namespace = "GPF"  }
-#M_match       =  {  namespace = "GPF"  }
-#M_strings     =  {  namespace = "GPF"  }
-#M_attr        =  {  namespace = "GPF"  }
-#M_framework   =  {  namespace = "GPF"  }
-#M_io          =  {  namespace = "GPF"  }
-
-M_CLI2        =  {  path="../GLINKS/M_CLI2"       }
-M_match       =  {  path="../GLINKS/M_match"      }
-M_strings     =  {  path="../GLINKS/M_strings"    }
-M_attr        =  {  path="../GLINKS/M_attr"       }
-M_framework   =  {  path="../GLINKS/M_framework"  }
-M_io          =  {  path="../GLINKS/M_io"         }
+   #M_CLI2        =  {  git  =  "https://github.com/urbanjost/M_CLI2.git"        }
+   #M_match       =  {  git  =  "https://github.com/urbanjost/M_match.git"       }
+   #M_strings     =  {  git  =  "https://github.com/urbanjost/M_strings.git"     }
+   #M_attr        =  {  git  =  "https://github.com/urbanjost/M_attr.git"        }
+   #M_framework   =  {  git  =  "https://github.com/urbanjost/M_framework.git"   }
+   #M_io          =  {  git  =  "https://github.com/urbanjost/M_io.git"          }
+   
+   #M_CLI2        =  {  namespace = "GPF"  }
+   #M_match       =  {  namespace = "GPF"  }
+   #M_strings     =  {  namespace = "GPF"  }
+   #M_attr        =  {  namespace = "GPF"  }
+   #M_framework   =  {  namespace = "GPF"  }
+   #M_io          =  {  namespace = "GPF"  }
+   
+   M_CLI2        =  {  path="../GLINKS/M_CLI2"       }
+   M_match       =  {  path="../GLINKS/M_match"      }
+   M_strings     =  {  path="../GLINKS/M_strings"    }
+   M_attr        =  {  path="../GLINKS/M_attr"       }
+   M_framework   =  {  path="../GLINKS/M_framework"  }
+   M_io          =  {  path="../GLINKS/M_io"         }

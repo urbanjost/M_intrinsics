@@ -62,10 +62,10 @@ There are several cases:
 
     As in case 2, the result is _.false._, if **pointer** is disassociated.
 
-4.  If **target** is present and an scalar pointer, the result is _.true._ if
-    **target** is associated with **pointer**, the target associated with **target**
-    are not zero-sized storage sequences and occupy the same storage
-    units.
+4.  If **target** is present and an scalar pointer, the result is
+    _.true._ if **target** is associated with **pointer**, the target
+    associated with **target** are not zero-sized storage sequences and
+    occupy the same storage units.
 
     The result is _.false._, if either **target** or **pointer** is disassociated.
 
