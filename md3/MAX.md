@@ -110,9 +110,9 @@ integer :: box(3,4)= reshape([-6,-5,-4,-3,-2,-1,1,2,3,4,5,6],shape(box))
    ! Remember if any argument is an array by the definition of an
    ! elemental function all the array arguments must be the same shape.
 
-   ! to find the single largest value of multiple arrays you could 
-   ! use something like 
-   !    MAXVAL([arr1, arr2]) 
+   ! to find the single largest value of multiple arrays you could
+   ! use something like
+   !    MAXVAL([arr1, arr2])
    ! or probably better (more likely to avoid creating a large temp array)
    !    max(maxval(arr1),maxval(arr2))
    ! instead

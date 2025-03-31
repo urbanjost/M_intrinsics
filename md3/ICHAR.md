@@ -86,8 +86,8 @@ end program demo_ichar
 Results:
 ```text
     >          97         122          65          90
-    > DO UNTO OTHERS                                                                  
-    > do unto others                                                                  
+    > DO UNTO OTHERS
+    > do unto others
 ```
 ### **Standard**
 

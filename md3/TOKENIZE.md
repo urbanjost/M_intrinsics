@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**tokenize**(3) - \[CHARACTER:PARSE] Parse a string into tokens.
+**tokenize**(3) - \[CHARACTER:PARSE\] Parse a string into tokens
 
 ### **Synopsis**
   TOKEN form (returns array of strings)
@@ -89,7 +89,7 @@
     It is allocated with the lower bound equal to one and the
     upper bound equal to the number of tokens in **string**. Each element
     is assigned, in array element order, the starting position of each
-    token in **string**, in the order found. 
+    token in **string**, in the order found.
 
     If a token has zero length, the starting position is equal to one
     if the token is at the beginning of **string**, and one greater than
@@ -99,7 +99,7 @@
   : It is allocated with the lower bound equal to one and the
     upper bound equal to the number of tokens in **string**. Each element
     is assigned, in array element order, the ending position of each
-    token in **string**, in the order found. 
+    token in **string**, in the order found.
 
     If a token has zero length, the ending position is one less than
     the starting position.

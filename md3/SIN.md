@@ -102,13 +102,13 @@ function haversine(latA,lonA,latB,lonB) result (dist)
 ! calculate great circle distance in kilometers
 ! given latitude and longitude in degrees
 !
-real,intent(in) :: latA,lonA,latB,lonB 
-real            :: a,c,dist,delta_lat,delta_lon,lat1,lat2 
-real,parameter  :: radius = 6371 ! mean earth radius in kilometers, 
+real,intent(in) :: latA,lonA,latB,lonB
+real            :: a,c,dist,delta_lat,delta_lon,lat1,lat2
+real,parameter  :: radius = 6371 ! mean earth radius in kilometers,
 ! recommended by the International Union of Geodesy and Geophysics
 
 ! generate constant pi/180
-real, parameter :: deg_to_rad = atan(1.0)/45.0 
+real, parameter :: deg_to_rad = atan(1.0)/45.0
    delta_lat = deg_to_rad*(latB-latA)
    delta_lon = deg_to_rad*(lonB-lonA)
    lat1 = deg_to_rad*(latA)

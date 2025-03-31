@@ -122,9 +122,9 @@ integer :: i
 contains
 subroutine printi(arr)
 !@(#) print small 2d integer arrays in row-column format
-integer,intent(in) :: arr(:,:) 
-integer            :: i 
-character(len=40)  :: biggest 
+integer,intent(in) :: arr(:,:)
+integer            :: i
+character(len=40)  :: biggest
    write(biggest,'(*(g0))')'(1x,*(i',                   &
    & ceiling(log10(max(1.0,real(maxval(abs(arr))))))+2, &
    & ':,","))'

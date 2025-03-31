@@ -30,8 +30,8 @@ or
  - **array** is an array of any type
  - **operation** is a pure function with exactly two arguments
    + each argument is scalar, non-allocatable, a nonpointer,
-     nonpolymorphic and nonoptional with the same type and kind as array.
-   + if one argument has the asynchronous, target, or value attribute so
+     nonpolymorphic and nonoptional with the same type and kind as **array**.
+   + if one argument has the _asynchronous_, _target_, or _value_ attribute so
      shall the other.
  - **dim** is an _integer_ scalar
  - **mask** is a logical conformable with **array**
@@ -64,40 +64,39 @@ or
   : An array of any type and allowed rank to select values from.
 
 - **operation**
-  : shall be a pure function with exactly two arguments;
-  each argument shall be a scalar, nonallocatable,
-  nonpointer, nonpolymorphic, nonoptional dummy data object
-  with the same type and type parameters as **array**. If
-  one argument has the ASYNCHRONOUS, TARGET, or VALUE
-  attribute, the other shall have that attribute. Its result
-  shall be a nonpolymorphic scalar and have the same type
-  and type parameters as **array**. **operation** should
-  implement a mathematically associative operation. It
-  need not be commutative.
+  : shall be a pure function with exactly two arguments. **operation**
+  should implement a mathematically associative operation. It need not
+  be commutative.
+
+  The function result shall be a nonpolymorphic scalar and have the same
+  type and type parameters as **array**.
 
   NOTE
 
-  If **operation** is not computationally associative, REDUCE
-  without ORDERED=.TRUE. with the same argument values
-  might not always produce the same result, as the processor
-  can apply the associative law to the evaluation.
+  If **operation** is not computationally associative, REDUCE without
+  ORDERED=.TRUE. with the same argument values might not always produce
+  the same result, as the processor can apply the associative law to
+  the evaluation.
 
-  Many operations that mathematically are associative are
-  not when applied to floating-point numbers. The order
-  you sum values in may affect the result, for example.
+  Many operations that mathematically are associative are not when applied
+  to floating-point numbers. The order you sum values in may affect the
+  result, for example.
 
 - **dim**
-  : An integer scalar with a value in the range
-  1<= **dim** <= n, where n is the rank of **array**.
+  : An integer scalar with a value in the range 1<= **dim** <= n,
+  where n is the rank of **array**.
+
+  If **dim** is present, it indicates the one dimension along which to
+  perform the reduction, and the resultant array has a rank reduced by
+  one relative to the input array.
 
 - **mask**
-  : (optional) shall be of type logical and shall be
-  conformable with **array**.
+  : (optional) shall be of type logical and shall be conformable with
+  **array**.
 
-  When present only those elements of **array** are passed
-  to **operation** for which the corresponding elements
-  of **mask** are true, as if **array** was filtered with
-  **pack(3)**.
+  When present only those elements of **array** are passed to
+  **operation** for which the corresponding elements of **mask** are true,
+  as if **array** was filtered with **pack(3)**.
 
 - **identity**
   : shall be scalar with the same type and type parameters as **array**.
@@ -115,8 +114,9 @@ or
 
 ### **Result**
 
-The result is of the same type and type parameters as **array**. It is
-scalar if **dim** does not appear.
+The result is of the same type and type parameters as **array**.
+
+It is scalar if **dim** does not appear.
 
 If **dim** is present, it indicates the one dimension along which to
 perform the reduction, and the resultant array has a rank reduced by

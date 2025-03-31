@@ -28,7 +28,7 @@
    If **y** appears, the result is the same as the result of
    **atan2pi(y,x)**. If **y** does not appear, the result has a value
    equal to a processor-dependent approximation to the arc tangent of
-   **x**; it is expressed in half-revolutions and lies in the range 
+   **x**; it is expressed in half-revolutions and lies in the range
    **-0.5 <= atanpi(x) <= 0.5**.
 
    Example. **atanpi(1.0)** has the value 0.25 (approximately).

@@ -1048,7 +1048,7 @@ textblock=[character(len=256) :: &
 'adjustl(3fortran)                                           adjustl(3fortran)', &
 '', &
 'NAME', &
-'  ADJUSTL(3) - [CHARACTER:WHITESPACE] Left-justified a string', &
+'  ADJUSTL(3) - [CHARACTER:WHITESPACE] Left-justify a string', &
 '', &
 'SYNOPSIS', &
 '  result = adjustl(string)', &
@@ -16815,7 +16815,7 @@ textblock=[character(len=256) :: &
 'len(3fortran)                                                   len(3fortran)', &
 '', &
 'NAME', &
-'  LEN(3) - [CHARACTER] Length of a character entity', &
+'  LEN(3) - [CHARACTER:INQUIRY] Length of a character entity', &
 '', &
 'SYNOPSIS', &
 '  result = len(string [,kind])', &
@@ -16956,7 +16956,7 @@ textblock=[character(len=256) :: &
 'len_trim(3fortran)                                         len_trim(3fortran)', &
 '', &
 'NAME', &
-'  LEN_TRIM(3) - [CHARACTER:WHITESPACE] Character length without trailing blank', &
+'  LEN_TRIM(3) - [CHARACTER:INQUIRY] Character length without trailing blank', &
 '  characters', &
 '', &
 'SYNOPSIS', &
@@ -23952,7 +23952,7 @@ textblock=[character(len=256) :: &
 'repeat(3fortran)                                             repeat(3fortran)', &
 '', &
 'NAME', &
-'  REPEAT(3) - [CHARACTER] Repeated string concatenation', &
+'  REPEAT(3) - [CHARACTER:PAD] Repeated string concatenation', &
 '', &
 'SYNOPSIS', &
 '  result = repeat(string, ncopies)', &
@@ -23969,9 +23969,9 @@ textblock=[character(len=256) :: &
 '', &
 '  o  NCOPIES is a scalar integer.', &
 '', &
-'  o  the result is a new scalar of type character of the same kind as', &
+'  o  the result is a new scalar of type character of the same kind as the', &
+'     variable STRING.', &
 '', &
-'   STRING', &
 'DESCRIPTION', &
 '  REPEAT(3) concatenates copies of a string.', &
 '', &
@@ -26785,7 +26785,7 @@ textblock=[character(len=256) :: &
 'split(3fortran)                                               split(3fortran)', &
 '', &
 'NAME', &
-'  SPLIT(3) - [CHARACTER:SPLIT] Parse a string into tokens, one at a time.', &
+'  SPLIT(3) - [CHARACTER:PARSE] Parse a string into tokens, one at a time', &
 '', &
 'SYNOPSIS', &
 '  call split (string, set, pos [, back])', &
@@ -28219,7 +28219,7 @@ textblock=[character(len=256) :: &
 'tokenize(3fortran)                                         tokenize(3fortran)', &
 '', &
 'NAME', &
-'  TOKENIZE(3) - [CHARACTER:PARSE] Parse a string into tokens.', &
+'  TOKENIZE(3) - [CHARACTER:PARSE] Parse a string into tokens', &
 '', &
 'SYNOPSIS', &
 '  TOKEN form (returns array of strings)', &
@@ -28507,7 +28507,7 @@ textblock=[character(len=256) :: &
 'transfer(3fortran)                                         transfer(3fortran)', &
 '', &
 'NAME', &
-'  TRANSFER(3) - [TYPE:MOLD] Transfer bit patterns', &
+'  TRANSFER(3) - [TYPE:CONVERSION] Transfer data as bit patterns using mold', &
 '', &
 'SYNOPSIS', &
 '  result = transfer(source, mold [,size] )', &
@@ -29486,7 +29486,7 @@ textblock=[character(len=256) :: &
 '', &
 'NAME', &
 '  VERIFY(3) - [CHARACTER:SEARCH] Position of a character in a string of', &
-'  characters that does not appear in a given set of characters.', &
+'  characters that does not appear in a given set of characters', &
 '', &
 'SYNOPSIS', &
 '  result = verify(string, set [,back] [,kind] )', &
@@ -30255,8 +30255,8 @@ end module M_intrinsics
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
 
-!>>>>> ././src/M_vendor.F90
 
+!>>>>> ././src/M_vendor.F90
 module M_vendor
 private
 public system_isatty
@@ -36198,6 +36198,7 @@ end module M_CLI2
 !===================================================================================================================================
 !===================================================================================================================================
 
+
 !>>>>> ./././/../GLINKS/M_match/src/M_match.f90
 
 !09/22/1980  15:38:34
@@ -37365,6 +37366,7 @@ end module M_match
 !==================================================================================================================================!
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !==================================================================================================================================!
+
 
 !>>>>> ./././/../GLINKS/M_strings/src/M_strings.F90
 
@@ -50946,6 +50948,7 @@ end function atoi_int64
 !===================================================================================================================================
 end module M_strings
 
+
 !>>>>> ./././/../GLINKS/M_attr/src/M_attr.f90
 
 !>
@@ -52455,6 +52458,7 @@ end subroutine print_generic
 
 end function msg_one
 end module M_attr
+
 
 !>>>>> ./././/../GLINKS/M_io/src/M_io.F90
 
@@ -57956,7 +57960,9 @@ end module m_io
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
 
+
 !>>>>> app/fpm-man.f90
+
 program fman
 use, intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT, stdout=>OUTPUT_UNIT, stdin=>INPUT_UNIT
 use M_intrinsics, only : help_intrinsics
@@ -58282,7 +58288,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                                 i=max(0,i-2*lines+2) ! back
                              endif
                              if(paws(2:).eq.'')then
-                                !lines=get_env('LINES',lines) ! adjust for screen size change if set
+                                lines=get_env('LINES',lines) ! adjust for screen size change if set
                              else
                                 read(paws(2:),'(g80.0)',iostat=iostat)rm
                                 if(iostat.eq.0)then

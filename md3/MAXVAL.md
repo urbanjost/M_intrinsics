@@ -26,8 +26,7 @@
   array value, or, if the **dim** argument is supplied, determines the
   maximum value along each row of the array in the **dim** direction. If
   **mask** is present, only the elements for which **mask** is _.true._
-  are considered. 
-
+  are considered.
 
 ### **Options**
 

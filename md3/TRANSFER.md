@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**transfer**(3) - \[TYPE:MOLD\] Transfer bit patterns
+**transfer**(3) - \[TYPE:CONVERSION\] Transfer data as bit patterns using mold
 
 ### **Synopsis**
 ```fortran

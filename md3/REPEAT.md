@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**repeat**(3) - \[CHARACTER\] Repeated string concatenation
+**repeat**(3) - \[CHARACTER:PAD\] Repeated string concatenation
 
 ### **Synopsis**
 ```fortran
@@ -20,7 +20,7 @@
  - **string** is a scalar _character_ type.
  - **ncopies** is a scalar integer.
  - the result is a new scalar of type _character_ of the same kind as
-   **string**
+   the variable **string**.
 
 ### **Description**
 

@@ -644,7 +644,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="adjustl" class="slide section level2">
 <h1>adjustl</h1>
 <h3 id="name-6"><strong>Name</strong></h3>
-<p><strong>adjustl</strong>(3) - [CHARACTER:WHITESPACE] Left-justified a string</p>
+<p><strong>adjustl</strong>(3) - [CHARACTER:WHITESPACE] Left-justify a string</p>
 <h3 id="synopsis-6"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb31"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb31-1" title="1">  <span class="kw">result</span> <span class="kw">=</span> <span class="bu">adjustl</span>(string)</a></code></pre></div>
 <div class="sourceCode" id="cb32"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb32-1" title="1">   <span class="kw">elemental</span> <span class="dt">character(len=len(string),kind=KIND)</span> <span class="kw">function</span> <span class="bu">adjustl</span>(string)</a>
@@ -10051,7 +10051,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <div id="len" class="slide section level2">
 <h1>len</h1>
 <h3 id="name-124"><strong>Name</strong></h3>
-<p><strong>len</strong>(3) - [CHARACTER] Length of a character entity</p>
+<p><strong>len</strong>(3) - [CHARACTER:INQUIRY] Length of a character entity</p>
 <h3 id="synopsis-124"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb539"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb539-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">len</span>(string <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb540"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb540-1" title="1">     <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="fu">len</span>(string,<span class="fu">KIND</span>)</a>
@@ -10167,7 +10167,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <div id="len_trim" class="slide section level2">
 <h1>len_trim</h1>
 <h3 id="name-125"><strong>Name</strong></h3>
-<p><strong>len_trim</strong>(3) - [CHARACTER:WHITESPACE] Character length without trailing blank characters</p>
+<p><strong>len_trim</strong>(3) - [CHARACTER:INQUIRY] Character length without trailing blank characters</p>
 <h3 id="synopsis-125"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb543"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb543-1" title="1">  <span class="kw">result</span> <span class="kw">=</span> <span class="bu">len_trim</span>(string <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb544"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb544-1" title="1">   <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">len_trim</span>(string,<span class="fu">KIND</span>)</a>
@@ -14717,7 +14717,7 @@ Case (iii)
 <div id="repeat" class="slide section level2">
 <h1>repeat</h1>
 <h3 id="name-174"><strong>Name</strong></h3>
-<p><strong>repeat</strong>(3) - [CHARACTER] Repeated string concatenation</p>
+<p><strong>repeat</strong>(3) - [CHARACTER:PAD] Repeated string concatenation</p>
 <h3 id="synopsis-174"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb766"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb766-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">repeat</span>(string, ncopies)</a></code></pre></div>
 <div class="sourceCode" id="cb767"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb767-1" title="1">     <span class="dt">character(len=len(string)*ncopies)</span> <span class="kw">function</span> <span class="fu">repeat</span>(string, ncopies)</a>
@@ -14729,7 +14729,7 @@ Case (iii)
 <li>a kind designated as ** may be any supported kind for the type</li>
 <li><strong>string</strong> is a scalar character type.</li>
 <li><strong>ncopies</strong> is a scalar integer.</li>
-<li>the result is a new scalar of type character of the same kind as <strong>string</strong></li>
+<li>the result is a new scalar of type character of the same kind as the variable <strong>string</strong>.</li>
 </ul>
 <h3 id="description-174"><strong>Description</strong></h3>
 <p><strong>repeat</strong>(3) concatenates copies of a string.</p>
@@ -16617,7 +16617,7 @@ If <strong>array</strong> is a pointer it must be associated and allocatable arr
 <div id="split" class="slide section level2">
 <h1>split</h1>
 <h3 id="name-195"><strong>Name</strong></h3>
-<p><strong>split</strong>(3) - [CHARACTER:SPLIT] Parse a string into tokens, one at a time.</p>
+<p><strong>split</strong>(3) - [CHARACTER:PARSE] Parse a string into tokens, one at a time</p>
 <h3 id="synopsis-195"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb865"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb865-1" title="1">     <span class="kw">call</span> split (string, set, pos <span class="kw">[</span>, back<span class="kw">]</span>)</a>
 <a class="sourceLine" id="cb865-2" title="2"></a>
@@ -17618,7 +17618,7 @@ need an illustration of what happens with higher dimension array
 <div id="tokenize" class="slide section level2">
 <h1>tokenize</h1>
 <h3 id="name-207"><strong>Name</strong></h3>
-<p><strong>tokenize</strong>(3) - [CHARACTER:PARSE] Parse a string into tokens.</p>
+<p><strong>tokenize</strong>(3) - [CHARACTER:PARSE] Parse a string into tokens</p>
 <h3 id="synopsis-207"><strong>Synopsis</strong></h3>
 <p>TOKEN form (returns array of strings)</p>
 <div class="sourceCode" id="cb916"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb916-1" title="1">    <span class="kw">subroutine</span> tokenize(string, set, tokens <span class="kw">[</span>, separator<span class="kw">]</span>)</a>
@@ -17836,7 +17836,7 @@ need an illustration of what happens with higher dimension array
 <div id="transfer" class="slide section level2">
 <h1>transfer</h1>
 <h3 id="name-209"><strong>Name</strong></h3>
-<p><strong>transfer</strong>(3) - [TYPE:MOLD] Transfer bit patterns</p>
+<p><strong>transfer</strong>(3) - [TYPE:CONVERSION] Transfer data as bit patterns using mold</p>
 <h3 id="synopsis-209"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb925"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb925-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="fu">transfer</span>(source, mold <span class="kw">[</span>,<span class="fu">size</span><span class="kw">]</span> )</a></code></pre></div>
 <div class="sourceCode" id="cb926"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb926-1" title="1">     <span class="dt">type(TYPE(kind=KIND))</span> <span class="kw">function</span> <span class="fu">transfer</span>(source,mold,<span class="fu">size</span>)</a>
@@ -18385,7 +18385,7 @@ need an illustration of what happens with higher dimension array
 <div id="verify" class="slide section level2">
 <h1>verify</h1>
 <h3 id="name-215"><strong>Name</strong></h3>
-<p><strong>verify</strong>(3) - [CHARACTER:SEARCH] Position of a character in a string of characters that does not appear in a given set of characters.</p>
+<p><strong>verify</strong>(3) - [CHARACTER:SEARCH] Position of a character in a string of characters that does not appear in a given set of characters</p>
 <h3 id="synopsis-215"><strong>Synopsis</strong></h3>
 <div class="sourceCode" id="cb948"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb948-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">verify</span>(string, set <span class="kw">[</span>,back<span class="kw">]</span> <span class="kw">[</span>,<span class="fu">kind</span><span class="kw">]</span> )</a></code></pre></div>
 <div class="sourceCode" id="cb949"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb949-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer(kind=KIND)</span> <span class="kw">function</span> <span class="bu">verify</span>(string,set,back,<span class="fu">KIND</span>)</a>

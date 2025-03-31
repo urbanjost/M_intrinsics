@@ -3,7 +3,7 @@
 ### **Name**
 
 **verify**(3) - \[CHARACTER:SEARCH\] Position of a character in a string
-of characters that does not appear in a given set of characters.
+of characters that does not appear in a given set of characters
 
 ### **Synopsis**
 ```fortran

@@ -60,7 +60,7 @@ statements, particularly when the replacements are conditional.
 
   The element of the result that corresponds to the ith true element of
   **mask**, in array element order, has the value **vector(i)** for i =
-  1, 2, .., N, where N is the number of true values in **mask**. Each
+  1, 2, . . ., t, where t is the number of true values in **mask**. Each
   other element has a value equal to **field** if **field** is scalar
   or to the corresponding element of **field** if it is an array.
 

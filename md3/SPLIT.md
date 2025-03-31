@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**split**(3) - \[CHARACTER:SPLIT] Parse a string into tokens, one at a time.
+**split**(3) - \[CHARACTER:PARSE\] Parse a string into tokens, one at a time
 
 ### **Synopsis**
 ```fortran

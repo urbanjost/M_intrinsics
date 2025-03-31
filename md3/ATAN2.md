@@ -12,8 +12,8 @@ function
 ```fortran
      elemental real(kind=KIND) function atan2(y, x)
 
-      real,kind=KIND)            :: atan2 
-      real,kind=KIND),intent(in) :: y, x 
+      real,kind=KIND)            :: atan2
+      real,kind=KIND),intent(in) :: y, x
 ```
 ### **Characteristics**
 
@@ -29,10 +29,10 @@ function
 
   If **y** has the value zero, **x** shall not have the value zero.
 
-  The resulting phase lies in the range 
+  The resulting phase lies in the range
 
-      -PI <= ATAN2 (Y,X) <= PI 
- 
+      -PI <= ATAN2 (Y,X) <= PI
+
   and is equal to a processor-dependent approximation to a value of
   arctan(Y/X).
 
@@ -87,8 +87,8 @@ Range of returned values by quadrant:
 Sample program:
 ```fortran
 program demo_atan2
-real    :: z 
-complex :: c 
+real    :: z
+complex :: c
  !
  ! basic usage
   ! ATAN2 (1.5574077, 1.0) has the value 1.0 (approximately).
@@ -114,9 +114,9 @@ complex :: c
  !
   vals=[ &
     !     0            45            90           135
-    ( 1.0, 0.0 ), ( 1.0, 1.0 ), ( 0.0, 1.0 ), (-1.0, 1.0 ), & 
+    ( 1.0, 0.0 ), ( 1.0, 1.0 ), ( 0.0, 1.0 ), (-1.0, 1.0 ), &
     !    180           225          270
-    (-1.0, 0.0 ), (-1.0,-1.0 ), ( 0.0,-1.0 ) ]   
+    (-1.0, 0.0 ), (-1.0,-1.0 ), ( 0.0,-1.0 ) ]
   do i=1,size(vals)
      call cartesian_to_polar(vals(i), radius,ang)
      write(*,101)vals(i),ang,r2d(ang),radius
@@ -150,10 +150,10 @@ end program demo_atan2
 
 Results:
 
- >  radians=   1.00000000     degrees=   57.2957802    
- >  elemental  0.321750551      0.463647604    
- >  elemental  0.197395563      0.380506366    
- >  complex             (0.00000000,1.00000000)   1.57079637    
+ >  radians=   1.00000000     degrees=   57.2957802
+ >  elemental  0.321750551      0.463647604
+ >  elemental  0.197395563      0.380506366
+ >  complex             (0.00000000,1.00000000)   1.57079637
  > X= 1.00 Y= 0.00 ANGLE= 0.00000000  DEGREES= 0.000 DISTANCE=1.00000000
  > X= 1.00 Y= 1.00 ANGLE= 0.785398185 DEGREES= 45.00 DISTANCE=1.41421354
  > X= 0.00 Y= 1.00 ANGLE= 1.57079637  DEGREES= 90.00 DISTANCE=1.00000000

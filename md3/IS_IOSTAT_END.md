@@ -50,7 +50,7 @@ integer            :: iostat
 integer            :: lun
 character(len=256) :: message
    ! make a scratch input file for demonstration purposes
-   call makefile(lun) 
+   call makefile(lun)
    write(*,*)'Begin entering numeric values, one per line'
    do
       read(lun,*,iostat=iostat,iomsg=message)value
@@ -86,7 +86,7 @@ character(len=255),parameter  :: fakefile(*)=[character(len=255) :: &
  &/ Golden_Ratio', &
 
 '1 / unity', &
-''] 
+'']
 !'/ end of data']
 
    open(newunit=lun,status='replace',file='data.txt',action='readwrite')
@@ -98,11 +98,11 @@ end program demo_iostat
 Results:
 ```text
  >  Begin entering numeric values, one per line
- >  VALUE=   3.1415926535897931     
- >  VALUE=  0.57721566490153287     
- >  VALUE=   2.7182818284590451     
- >  VALUE=   1.6180339887498949     
- >  VALUE=   1.0000000000000000     
+ >  VALUE=   3.1415926535897931
+ >  VALUE=  0.57721566490153287
+ >  VALUE=   2.7182818284590451
+ >  VALUE=   1.6180339887498949
+ >  VALUE=   1.0000000000000000
  >  STOP end of file. Goodbye!
 ```
 ### **Standard**

@@ -323,7 +323,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                                 i=max(0,i-2*lines+2) ! back
                              endif
                              if(paws(2:).eq.'')then
-                                !lines=get_env('LINES',lines) ! adjust for screen size change if set
+                                lines=get_env('LINES',lines) ! adjust for screen size change if set
                              else
                                 read(paws(2:),'(g80.0)',iostat=iostat)rm
                                 if(iostat.eq.0)then

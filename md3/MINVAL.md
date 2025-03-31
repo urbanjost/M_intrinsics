@@ -36,15 +36,15 @@ forms:
   or, if the **dim** argument is supplied, determines the minimum value
   in the subarrays indicated by stepping along the **dim**th dimension.
 
-  Note that the result of 
+  Note that the result of
 ```fortran
-  MINVAL(ARRAY, MASK = MASK) 
+  MINVAL(ARRAY, MASK = MASK)
 ```
-  has a value equal to that of 
+  has a value equal to that of
 ```fortran
   MINVAL (PACK (ARRAY, MASK)).
 ```
-  and The result of 
+  and The result of
 ```fortran
   MINVAL (ARRAY, DIM = DIM [, MASK = MASK])
 ```
@@ -160,10 +160,10 @@ end program demo_minval
 Result:
 ```text
  >  Given the array
- >     1   -2    3    4    5    
- >    10   20  -30   40   50    
- >    11   22   33  -44   55    
- > 
+ >     1   -2    3    4    5
+ >    10   20  -30   40   50
+ >    11   22   33  -44   55
+ >
  >  What is the smallest element in the array?
  >    -44 at < 3 4 >
  >  What is the smallest element in each column?
@@ -182,7 +182,7 @@ Result:
  >    2147483647
  >    2147483647
  >  if zero-size character array all dels if ASCII
- > 
+ >
  >  some calls with three dimensions
  >    -55
  >    1 -2 -30 -44 5 -11 -22 -33 -40 -55
