@@ -30,8 +30,15 @@ into an array using a mask
 array **field** of any rank using _.true._ values from **mask** in array
 element order to specify placement of the **vector** values.
 
-So a copy of **field** is generated with select elements replaced with
-values from **vector**. This allows for complex replacement patterns
+The result is a copy of **field** generated with select elements
+replaced with values from **vector**.
+
+That is, **field** and **mask** are of the same shape. A copy of
+**field** is made except that where any element of **mask** is .true. the
+corresponding element in **field** is replaced with the next value
+in **vector**.
+
+This allows for complex replacement patterns
 that would be difficult when using array syntax or multiple assignment
 statements, particularly when the replacements are conditional.
 
@@ -47,13 +54,13 @@ statements, particularly when the replacements are conditional.
   in **field** are to be replaced with values from **vector**.
 
 - **field**
-  : The input array to be altered.
+  : The input array to be altered, or a scalar.
 
 ### **Result**
 
   The element of the result that corresponds to the ith true element of
   **mask**, in array element order, has the value **vector(i)** for i =
-  1, 2, . . ., t, where t is the number of true values in **mask**. Each
+  1, 2, .., N, where N is the number of true values in **mask**. Each
   other element has a value equal to **field** if **field** is scalar
   or to the corresponding element of **field** if it is an array.
 
@@ -61,62 +68,52 @@ statements, particularly when the replacements are conditional.
   of **mask** replaced by values from **vector** in array element order.
 
 ### **Examples**
-Particular values may be "scattered" to particular positions in an array
-by using
-```text
-                       1 0 0
-    If M is the array  0 1 0
-                       0 0 1
 
-    V is the array [1, 2, 3],
-                               . T .
-    and Q is the logical mask  T . .
-                               . . T
-    where "T" represents true and "." represents false, then the result of
-
-    UNPACK (V, MASK = Q, FIELD = M) has the value
-
-      1 2 0
-      1 1 0
-      0 0 3
-
-    and the result of UNPACK (V, MASK = Q, FIELD = 0) has the value
-
-      0 2 0
-      1 0 0
-      0 0 3
-```
 Sample program:
-
 ```fortran
 program demo_unpack
 implicit none
 logical,parameter :: T=.true., F=.false.
+integer,parameter :: rows=3, cols=3
+integer           :: i
+logical           :: mask(rows,cols) = reshape([ &
+   T, F, F, &
+   F, T, F, &
+   F, F, T  &
+],[3,3])
+integer :: field(rows,cols) = reshape([ &
+   1, 2, 3, &
+   4, 5, 6, &
+   7, 8, 9  &
+],[3,3])
+integer :: result(rows,cols)
 
-integer :: vector(2)  = [1,1]
+  ! mask and field must conform or field must be a scalar
+   write(*,*) 'if the logical mask is'
+   do i=1,size(mask,dim=1)
+      write(*,*)mask(i,:)
+   enddo
+   write(*,*) 'and field is a scalar (in this case, 0)'
+   write(*,*) 'the result is the shape of the mask'
+   write(*,*) 'with all values set to the scalar value'
+   write(*,*) 'except the true elements of the mask are'
+   write(*,*) 'filled in row-column order with values'
+   write(*,*) 'from the vector of values [11,22,33]'
+   result = unpack( [11,22,33], mask, field=0 )
+   call print_matrix_int('result=', result)
 
-! mask and field must conform
-integer,parameter :: r=2, c=2
-logical :: mask(r,c)  = reshape([ T,F,F,T ],[2,2])
-integer :: field(r,c) = 0, unity(2,2)
-
-   ! basic usage
-   unity = unpack( vector, mask, field )
-   call print_matrix_int('unity=', unity)
-
-   ! if FIELD is a scalar it is used to fill all the elements
-   ! not assigned to by the vector and mask.
-   call print_matrix_int('scalar field',         &
-   & unpack(                                     &
-   & vector=[ 1, 2, 3, 4 ],                      &
-   & mask=reshape([ T,F,T,F,F,F,T,F,T ], [3,3]), &
-   & field=0) )
+   write(*,*) 'if field is an array it must conform'
+   write(*,*) 'to the shape of the mask'
+   call print_matrix_int('field=',field)
+   write(*,*) 'and the combination results in'
+   result = unpack( [11,22,33], mask, field )
+   call print_matrix_int('result=', result)
 
 contains
 
 subroutine print_matrix_int(title,arr)
-! convenience routine:
-! just prints small integer arrays in row-column format
+! @(#) convenience routine:
+!      prints small integer arrays in row-column format
 implicit none
 character(len=*),intent(in)  :: title
 integer,intent(in)           :: arr(:,:)
@@ -140,15 +137,32 @@ end subroutine print_matrix_int
 end program demo_unpack
 ```
 Results:
-
 ```text
-   > unity=
-   >  [ 1, 0 ]
-   >  [ 0, 1 ]
-   > scalar field
-   >  [  1,  0,  3 ]
-   >  [  0,  0,  0 ]
-   >  [  2,  0,  4 ]
+ >  if the logical mask is
+ >  T F F
+ >  F T F
+ >  F F T
+ >  and field is a scalar (in this case, 0)
+ >  the result is the shape of the mask
+ >  with all values set to the scalar value
+ >  except the true elements of the mask are
+ >  filled in row-column order with values
+ >  from the vector of values [11,22,33]
+ >  result=
+ >   [  11,   0,   0 ]
+ >   [   0,  22,   0 ]
+ >   [   0,   0,  33 ]
+ >  if field is an array it must conform
+ >  to the shape of the mask
+ >  field=
+ >   [  1,  4,  7 ]
+ >   [  2,  5,  8 ]
+ >   [  3,  6,  9 ]
+ >  and the combination results in
+ >  result=
+ >   [  11,   4,   7 ]
+ >   [   2,  22,   8 ]
+ >   [   3,   6,  33 ]
 ```
 ### **Standard**
 
