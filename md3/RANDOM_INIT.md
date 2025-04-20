@@ -75,7 +75,7 @@ Fortran 2018
 
 ### **See also**
 
-[random_number](#random_number),
-[random_seed](#random_seed)
+[**random_number**(3)](#random_number),
+[**random_seed**(3)](#random_seed)
 
  _Fortran intrinsic descriptions
