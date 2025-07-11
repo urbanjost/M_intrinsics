@@ -1,0 +1,31 @@
+sz 550 550
+makeobj 1234  # URBAN ART
+   page -50 50 -50 50
+   circleprecision 60
+   linewidth 200
+   color 7
+   circle 0 0 45
+   color 4
+   polyfill TRUE
+   circle 0 0 45
+   polyfill FALSE
+   color 7
+   linewidth 300
+
+   circle X=0 Y=0 R=18
+
+   linewidth 350
+   arc 0 -60 80 90-25 90+25
+   arc 0  60 80 90-25+180 90+25+180
+   polyfill TRUE
+   circle X=0 Y=0 R=8
+   polyfill FALSE
+   X=0 Y=-60 R=80
+   move2 X+cosd(225)*R*1.0 Y+sind(225)*R*1.0
+   draw2 X+cosd(225)*R*1.2 Y+sind(225)*R*1.2
+
+closeobj
+rm -f eye.p6
+hcopy p6 -obj 1234 -f eye.p6 -sz 550 550
+page
+callobj 1234

@@ -1,0 +1,465 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="M_intrinsics module">
+    <meta name="author" content="John S. Urban" >
+    <link rel="icon" href="./favicon.png">
+
+    <title> M_intrinsics </title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- Font Awesome -->
+    <link href="./css/fontawesome.min.css" rel="stylesheet">
+    <link href="./css/brands.min.css" rel="stylesheet">
+    <link href="./css/regular.min.css" rel="stylesheet">
+    <link href="./css/solid.min.css" rel="stylesheet">
+    <link href="./css/v4-font-face.min.css" rel="stylesheet">
+    <link href="./css/v4-shims.min.css" rel="stylesheet">
+    <!-- MathJax -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        TeX: { equationNumbers: { autoNumber: "AMS" } }
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js?config=TeX-AMS-MML_HTMLorMML" async
+            integrity="sha256-DViIOMYdwlM/axqoGDPeUyf0urLoHMN4QACBKyB58Uw=" crossorigin="anonymous"></script>
+    <!-- Other scripts and stylesheets -->
+    <link href="./css/local.css" rel="stylesheet">
+    <link href="./css/pygments.css" rel="stylesheet">
+    <script src="./js/svg-pan-zoom.min.js"></script>
+  </head>
+
+  <body>
+
+    <!-- Fixed navbar -->
+    <div class="container-fluid mb-sm-4 mb-xl-2">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="./index.html">M_intrinsics </a>
+          <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar"
+                  aria-expanded="false" aria-controls="navbar" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon">
+          </button>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="./lists/files.html">Source Files</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./lists/modules.html">Modules</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./lists/procedures.html">Procedures</a>
+                </li>
+            </ul>
+              <div class="d-flex align-items-end flex-grow-1">
+                <form action="./search.html" role="search" class="ms-auto">
+                  <input type="text" class="form-control" aria-label="Search" placeholder="Search" name="q" id="tipue_search_input" autocomplete="off" required>
+                </form>
+              </div>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+    </div>
+
+    <div class="container">
+  <!-- Main component for a primary marketing message or call to action -->
+    <div class="p-5 mb-4 bg-light border rounded-3" id="jumbotron">
+      <p>M_intrinsics module</p>
+        <p> Find us on&hellip;</p>
+      <p>
+        <a class="btn btn-lg btn-primary" href="https://github.com/urbanjost/M_intrinsics" role="button">GitHub</a>
+        
+        
+        
+        
+        <a class="btn btn-lg btn-danger" style="float:right" href="https://github.com/urbanjost/M_intrinsics/archive/refs/heads/master.zip" role="button">Download the Source</a>
+      </p>
+    </div>
+
+      <div class="row" id='text'>
+        <div class=col-md-8>
+          <h1>M_intrinsics</h1>
+          <!--
+author_pic:
+twitter:
+website:
+-->
+<p>The short version is to take the standalone/fman.F90 file, compile it
+and you have a CLI (Command Line Interface) to descriptions of the
+Fortran intrinsics; with instructions available via &ldquo;fman &ndash;help&rdquo;.</p>
+<p>The descriptions can be previewed as
+<a href="https://urbanjost.github.io/M_intrinsics/index3.html">HTML</a></p>
+<p>If you want man-pages, HTML, or markdown descriptions; a Fortran module
+you can call with your own programs to display the descriptions, or to
+integrate the descriptions into fpm(1) as a plugin, read on.</p>
+<h2 id="name">Name</h2>
+<p># M_intrinsics(7f) - [FORTRAN] intrinsic man-pages</p>
+<h2 id="description">Description</h2>
+<p>Unlike many parts of the Fortran language, intrinsics can naturally be
+described in discrete units using man-page-like descriptions.</p>
+<p>This is a project to</p>
+<ul>
+<li>provide standard Fortran intrinsic markdown descriptions for the fortran-lang.org site</li>
+<li>generate a set of man-page and HTML Fortran intrinsic documents</li>
+<li>extract <a href="https://urbanjost.github.io/M_intrinsics/playground.html">demo programs</a>
+  from each document into an fpm(1) package for easy verification</li>
+<li>generate a platform-independent Fortran program for displaying the documents</li>
+</ul>
+<h2 id="man-pages-and-standalone-source">Man-pages and Standalone Source</h2>
+<p>The man-pages can be used on *nix systems and Cygwin as well as other
+platforms; providing a convenient CLI (Command Line Interface).</p>
+<p>The man-pages are available as archive files:</p>
+<!--
+   - [manpages3.tgz](docs/manpages3.zip)
+   - [manpages3.zip](docs/manpages3.tgz)
+   - [manpages5.tgz](docs/manpages5.zip)
+   - [manpages5.zip](docs/manpages5.tgz)
+   - [manpages7.tgz](docs/manpages7.zip)
+   - [manpages7.zip](docs/manpages7.tgz)
+   -->
+<ul>
+<li><a href="https://urbanjost.github.io/M_intrinsics/manpages3.tgz">manpages3.tgz</a></li>
+<li><a href="https://urbanjost.github.io/M_intrinsics/manpages3.zip">manpages3.zip</a></li>
+<li><a href="https://urbanjost.github.io/M_intrinsics/manpages5.tgz">manpages5.tgz</a></li>
+<li><a href="https://urbanjost.github.io/M_intrinsics/manpages5.zip">manpages5.zip</a></li>
+<li><a href="https://urbanjost.github.io/M_intrinsics/manpages7.tgz">manpages7.tgz</a></li>
+<li><a href="https://urbanjost.github.io/M_intrinsics/manpages7.zip">manpages7.zip</a></li>
+</ul>
+<p>A single-file version of the CLI program fpm-man(1) is in
+<a href="https://raw.githubusercontent.com/urbanjost/M_intrinsics/master/standalone/fman.F90">fman.f90</a>.</p>
+<ul>
+<li>builds with <code>gfortran  -static fman.F90</code></li>
+<li>builds with <code>ifort -O1 fman.F90</code></li>
+</ul>
+<h2 id="project-information">Project Information</h2>
+<h3 id="use-and-installation">Use and Installation</h3>
+<p>The man-pages can often be integrated with editors or IDEs. This is a
+powerful reference when inspecting code that uses unfamiliar procedures
+and to verify correct usage when creating code in a CLI environment.</p>
+<p>The process of installing man-pages can vary. Check your system
+documentation, but at a minimum if you create the directory $HOME/man/man3
+and place the man-pages there and add $HOME/man to your $MANPATH you
+should be able to use the man-pages. For example:</p>
+<div class="codehilite"><pre><span></span><code>        <span class="k">for</span> NUM <span class="k">in</span> <span class="m">3</span> <span class="m">5</span> <span class="m">7</span>
+        <span class="k">do</span>
+        <span class="o">(</span>
+           mkdir -p <span class="nv">$HOME</span>/man/man<span class="si">${</span><span class="nv">NUM</span><span class="si">}</span>
+           <span class="nb">cd</span> <span class="nv">$HOME</span>/man/man<span class="si">${</span><span class="nv">NUM</span><span class="si">}</span>
+           tar xvfz <span class="nv">$WHERE_YOU_PUT_TARFILE</span>/manpages<span class="si">${</span><span class="nv">NUM</span><span class="si">}</span>.tgz
+        <span class="o">)</span>
+        <span class="k">done</span>
+        <span class="nb">cd</span> ..
+        mandb -c .
+        <span class="nb">export</span> <span class="nv">MANPATH</span><span class="o">=</span><span class="nv">$HOME</span>/man:<span class="nv">$MANPATH</span>
+        <span class="nb">export</span> <span class="nv">MANWIDTH</span><span class="o">=</span><span class="m">80</span>   <span class="c1"># optional, displays manpages in columns 1 to 80</span>
+        man -s 3fortran,5fortran,7fortran -k . <span class="c1"># list topic line for all Fortran man-pages</span>
+</code></pre></div>
+
+<p>Typical installation on a Linux platform as an administrator ( but it varies) :</p>
+<div class="codehilite"><pre><span></span><code>     <span class="c1"># as the administrator</span>
+     <span class="k">for</span> NUM <span class="k">in</span> <span class="m">3</span> <span class="m">5</span> <span class="m">7</span>
+     <span class="k">do</span>
+     <span class="o">(</span>
+        <span class="nb">cd</span> /usr/share/man/man<span class="si">${</span><span class="nv">NUM</span><span class="si">}</span>
+        tar xvfz /<span class="nv">$WHERE_YOU_PUT_TARFILE</span>/manpages<span class="si">${</span><span class="nv">NUM</span><span class="si">}</span>.tgz
+     <span class="o">)</span>
+     <span class="k">done</span>
+     <span class="nb">cd</span> /usr/share/man
+     mandb -c .
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code> <span class="k">then</span> <span class="nv">anyone</span> <span class="nv">on</span> <span class="nv">that</span> <span class="nv">platform</span> <span class="nv">can</span> <span class="nv">enter</span> <span class="nv">commands</span> <span class="nv">like</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code>     man sinh.3fortran     <span class="c1"># specifically show Fortran sinh(3) documentation</span>
+     man sinh.3f           <span class="c1"># section abbreviations are often supported for this format</span>
+     man -k . -s 3fortran  <span class="c1"># list all fortran pages</span>
+     man -s 3fortran --regex <span class="s1">&#39;.*&#39;</span> <span class="p">|</span>col -b <span class="c1"># show all Fortran intrinsics</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="nv">See</span> <span class="nv">man</span><span class="ss">(</span><span class="mi">1</span><span class="ss">)</span> <span class="ss">(</span><span class="nv">ie</span>. <span class="nv">enter</span> <span class="s2">&quot;</span><span class="s">man man</span><span class="s2">&quot;</span><span class="ss">)</span> <span class="k">for</span> <span class="nv">more</span> <span class="nv">information</span>.
+</code></pre></div>
+
+<h2 id="documentation-formats">Documentation Formats  <img alt="docs" src="docs/images/docs.gif"></h2>
+<p>The documents are maintained as Myst markdown files to be compatible
+with the fortran-lang.org site.</p>
+<p>Using pandoc(1) they are then converted to flat-text files which are</p>
+<ul>
+<li>run thru txt2man(1) to create the *roff file as a manpage</li>
+<li>and then thru manserver(1) or groff (typically) to create an additional
+  HTML file as collected in</li>
+<li>a simple <a href="https://urbanjost.github.io/M_intrinsics/index3.html">index of intrinsics</a>
+     and <a href="https://urbanjost.github.io/M_intrinsics/index7.html">index of statements</a></li>
+<li>These are collected into a single document using javascript:
+     <a href="https://urbanjost.github.io/M_intrinsics/BOOK_FORTRAN.html">BOOK_FORTRAN</a>.</li>
+<li>All pages in a single <a href="https://urbanjost.github.io/M_intrinsics/intrinsics_slidy.html">slidy HTML file</a></li>
+<li>
+<p><a href="https://urbanjost.github.io/M_intrinsics">documentation shortcuts</a></p>
+</li>
+<li>
+<p>the example programs are extracted into the <a href="example/">example/</a> directory.</p>
+</li>
+</ul>
+<h2 id="basic-vim-usage">Basic VIM Usage</h2>
+<p>The vim(1) editor will call up a man(1) page for a word
+if the letter &ldquo;K&rdquo; is pressed over the word and the manpage directory
+is in the searchpath (among other ways, append the man/ pathname to
+the environment variable MANPATH -see man(1) for more information).</p>
+<p>Because there are name collisions with the Fortran procedures and
+other languages you may want to customize your .vimrc file to use
+a custom script or command when editing Fortran files. Just as
+an example, create a little Fortran file called &ldquo;test.f90&rdquo; and try:</p>
+<div class="codehilite"><pre><span></span><code>   vim -c <span class="s1">&#39;set keywordprg=env\ MANPATH=$HOME/man\ man\ -s\ 3fortran\ -a&#39;</span> test.f90
+</code></pre></div>
+
+<h2 id="contributing">Contributing</h2>
+<p><em>Collaborators are welcome</em>. This is a public github repository. Anyone
+can contribute, and is encouraged to do so. First, create a fork of this
+site from github. obtain a copy of the repository:</p>
+<div class="codehilite"><pre><span></span><code>    git clone https://github.com/YOUR_SITE/M_intrinsics.git
+</code></pre></div>
+
+<h3 id="minimal-changes">Minimal Changes</h3>
+<p>At a minimum, you can cd(1) into the md/ directory and change the files
+there. Then push the git repository back to your fork and make a pull
+request.</p>
+<p>If you are not familiar with this method, you can just post your changes
+on this site as an &ldquo;Issue&rdquo;.</p>
+<p>A moderator can periodically then accept your change and rebuild
+the distribution files and HTML documents.</p>
+<p>The repository is set up as public, so I believe anyone with a github ID
+can change these files but it is unclear to me exactly how this should
+work, or whether a branch is required. Looking for more information &hellip;</p>
+<h3 id="using-the-make-file">Using the Make File</h3>
+<p>You have to have a Fortran compiler, fpm(1) and pandoc(1) installed to
+use the method used here to convert the markdown files to man-pages,
+a Fortran utility program, and HTML. For reference</p>
+<div class="codehilite"><pre><span></span><code># use pandoc to convert the markdown files to text
+scripts/scripts/totxt.sh
+# run make(1) to generate all the other files
+cd scripts
+make
+make ship
+</code></pre></div>
+
+<p>and check out the HTML page generated in docs/, the manpages in man/man3/
+and the demo programs in example</p>
+<h2 id="references">References</h2>
+<ul>
+<li>
+<p>The <a href="https://j3-fortran.org/doc/year/18/18-007r1.pdf">Fortran 2018 Standard</a>
+   as described at https://j3-fortran.org/doc/year/18/18-007r1.pdf</p>
+</li>
+<li>
+<p>Intrinsic descriptions from Jason Blevins at the
+   <a href="http://fortranwiki.org">Fortran Wiki</a> http://fortranwiki.org</p>
+</li>
+<li>
+<p><a href="https://gcc.gnu.org/onlinedocs/gfortran/Intrinsic-Procedures.html">GNU gfortran intrinsic descriptions</a>
+   at https://gcc.gnu.org/onlinedocs/gfortran/Intrinsic-Procedures.html</p>
+</li>
+<li>
+<p><a href="https://myst-parser.readthedocs.io/en/latest/">Myst-Markdown</a></p>
+</li>
+<li><a href="https://kramdown.gettalong.org/syntax.html">Kramdown markup</a></li>
+<li><a href="https://pandoc.org/">pandoc</a></li>
+<li><a href="https://github.com/mvertes/txt2man">txt2man</a></li>
+</ul>
+<h2 id="footnotes">Footnotes</h2>
+<p><a href="https://fortran-lang.org">https://fortran-lang.org/en/learn/intrinsics</a>
+now includes an earlier version of these documents. They
+may be changed using the instructions found in the github
+<a href="https://github.com/fortran-lang/webpage">webpage</a> repository.</p>
+<p>Keeping these original documents synced with those may be complicated by
+the fact that graphics, Unicode  and math expressions may be included
+in the descriptions in the future, so further development there might
+create documentation difficult to maintain as man-pages that display
+well with man(1) (as the current translator does not handle the *roff
+syntax for tables, graphics, and formulas); and those features do not
+typically display well if at all with the man(1) command.</p>
+<p>This page allows you to generate the CLI (Command Line Interface)
+command fpm-man (which is often renamed to fman(1)) that allows the
+fpm command to display the documents with &ldquo;fpm man TOPIC&rdquo; and provides
+an archive file with the intrinsic manpages on *nix machines (ie. on
+machines with the man(1) command) so it will continue to be maintained,
+but the differences between these and the on-line fortran-lang.org pages
+may become more extensive as time goes on.</p>
+<p>To ensure color and the interactive mode are used bash(1) users can create
+the script &ldquo;fpm-docs&rdquo; </p>
+<div class="codehilite"><pre><span></span><code><span class="ch">#!/bin/bash</span>
+<span class="c1">################################################################################</span>
+<span class="c1"># @(#) fpm-docs(1) - run fpm-man ensuring color interactive mode </span>
+<span class="c1">################################################################################</span>
+<span class="nb">trap</span> <span class="s2">&quot;/bin/rm -f </span><span class="si">${</span><span class="nv">SCRATCH</span><span class="k">:-</span><span class="nv">_NOTTHERE_</span><span class="si">}</span><span class="s2">&quot;</span> EXIT
+<span class="nv">SCRATCH</span><span class="o">=</span>/tmp/scratch_<span class="k">$(</span>uuidgen<span class="k">)</span>.txt
+fpm manual &gt; <span class="nv">$SCRATCH</span>
+<span class="c1">################################################################################</span>
+<span class="c1"># use default colors</span>
+<span class="nb">unset</span> FMAN_COLORS 
+<span class="c1">################################################################################</span>
+<span class="c1"># set custom colors</span>
+<span class="nb">export</span> <span class="nv">FMAN_COLORS</span><span class="o">=</span><span class="se">\</span>
+<span class="s2">&quot;bg=&#39;&lt;EBONY&gt;&#39;,fg=&#39;&lt;white&gt;&lt;bo&gt;&#39;,\</span>
+<span class="s2">prg=&#39;&lt;cyan&gt;&lt;bo&gt;&#39;,\</span>
+<span class="s2">head=&#39;&lt;yellow&gt;&lt;bo&gt;&#39;,head_=&#39;&lt;/bo&gt;&#39;,\</span>
+<span class="s2">fixed=&#39;&lt;white&gt;&#39;,\</span>
+<span class="s2">output=&#39;&lt;yellow&gt;&lt;bo&gt;&#39;,output_=&#39;&lt;/bo&gt;&#39;&quot;</span>
+<span class="c1">################################################################################</span>
+<span class="o">(</span>
+<span class="nb">set</span> -v -x
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$*</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="o">]</span>
+<span class="k">then</span>
+   fpm man -f <span class="nv">$SCRATCH</span> --color --lines<span class="o">=</span><span class="nv">$LINES</span> <span class="nv">$*</span>
+<span class="k">else</span>
+   fpm man  --color --lines<span class="o">=</span><span class="nv">$LINES</span> <span class="nv">$*</span>
+<span class="k">fi</span>
+<span class="o">)</span>
+<span class="c1">################################################################################</span>
+<span class="nb">exit</span>
+<span class="c1">################################################################################</span>
+</code></pre></div>
+
+<p>and then just enter &ldquo;fpm docs&rdquo; to extract and load the fpm(1) command help or
+&ldquo;fpm docs INTRINSIC_NAME&rdquo;.  A session might look like:</p>
+<div class="codehilite"><pre><span></span><code>fpm docs
+: step through fpm docs one topic at a time
+n
+n
+n
+: load Table of Contents for intrinsics
+T
+f
+f
+: load description of sin intrinsic
+t sin
+: load all intrinsic descriptions
+t manual
+f
+n
+n
+nnnnnnnn
+N
+N
+: show interactive command descriptions
+h
+: quit fpm-man
+q
+</code></pre></div>
+
+<h2 id="todo">Todo</h2>
+<p>Additional descriptions of procedures from the standard modules</p>
+<p>Descriptions of most statements (READ, WRITE, EXIT, &hellip;) in addition to
+the intrinsics.</p>
+<!--
+Converting from the primary source in txt/ in txt2man(1) format and
+generating the markdown to the Myst markdown in md/ being used to
+generate the txt/ directory with pandoc made sense as the primary
+target became fortran-lang.org documents instead of man-pages but the
+pandoc(1) conversion to /txt and then manpages leaves the plain text
+without proper indentation. Other conversion paths like going straight
+to manpages and generating text from them for the CLI interface are
+being explored to provide better formatting.
+-->
+
+<p>Add</p>
+<ul>
+<li>RANDOM_INIT</li>
+<li>COSHAPE</li>
+<li>FAILED_IMAGES</li>
+<li>GET_TEAM</li>
+<li>IMAGE_STATUS</li>
+<li>LCOBOUND</li>
+<li>STOPPED_IMAGES</li>
+<li>TEAM_NUMBER</li>
+<li>UCOBOUND</li>
+</ul>
+<hr>
+        </div>
+          <div class="col-md-4">
+            <div class="card card-body bg-light">
+              <h2 class="card-title">Developer Info</h2>
+              <h4 class="card-text">John S. Urban</h4>
+              <p class="card-text"></p>
+                <div class="text-center"><div class="btn-group" role="group">
+                    
+                    <a class="btn btn-lg btn-primary" href="https://github.com/urbanjost/M_intrinsics"><i class="fa fa-github fa-lg"></i></a>
+                    
+                    
+                    
+                    
+                    
+                    
+                </div></div>
+            </div>
+          </div>
+      </div>
+        <div class="row">
+          <hr>
+          <div class="col-xs-6 col-sm-4">
+            <div>
+              <h3>Source Files</h3>
+              <ul><li><a href='sourcefile/m_intrinsics.f90.html'>M_intrinsics.f90</a></li><li><a href='sourcefile/m_vendor.f90.html'>M_vendor.F90</a></li></ul>
+            </div>
+            <div>
+              <ul>
+                <li><a href="./lists/files.html"><em>All source files&hellip;</em></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-4">
+            <div>
+              <h3>Modules</h3>
+              <ul><li><a href='module/m_intrinsics.html'>M_intrinsics</a></li><li><a href='module/m_vendor.html'>M_vendor</a></li></ul>
+            </div>
+            <div>
+              <ul>
+                <li><a href="./lists/modules.html"><em>All modules&hellip;</em></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-4">
+            <div>
+              <h3>Procedures</h3>
+              <ul><li><a href='proc/help_intrinsics.html'>help_intrinsics</a></li><li><a href='proc/system_isatty.html'>system_isatty</a></li></ul>
+            </div>
+            <div>
+              <ul>
+                <li><a href="./lists/procedures.html"><em>All procedures&hellip;</em></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      <hr>
+    </div> <!-- /container -->
+    <footer>
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col">
+            <p>
+              M_intrinsics
+ was developed by John S. Urban<br>              &copy; 2025 
+</p>
+          </div>
+          <div class="col">
+            <p class="text-end">
+              Documentation generated by
+              <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
+ on 2025-07-11 00:35 +0000             </p>
+          </div>
+        </div>
+        <br>
+      </div> <!-- /container -->
+    </footer>
+  </body>
+</html>
