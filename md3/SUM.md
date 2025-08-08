@@ -2,7 +2,8 @@
 
 ### **Name**
 
-**sum**(3) - \[ARRAY:REDUCTION\] Sum the elements of an array
+**sum**(3) - \[ARRAY:REDUCTION\] Sum all elements of an array, optionally
+along a dimension or with a mask
 
 ### **Synopsis**
 ```fortran
@@ -26,7 +27,10 @@
 
 ### **Description**
 
-  **sum**(3) adds the elements of **array**.
+  **sum(array, dim, mask)** computes the sum of all elements in **array**,
+  optionally along a specified dimension **dim** or for elements where
+  **mask** is **.true.**. The result is a scalar (if **dim** is absent)
+  or an array of rank reduced by one (if **dim** is present).
 
   When only **array** is specified all elements are summed, but groups
   of sums may be returned along the dimension specified by **dim**

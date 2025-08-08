@@ -127,7 +127,7 @@ That is basically it for the general rule, but there are a few variants
 and details to cover.
 <P>
 When a line is split using the general rule any trailing spaces before
-the amersand at the end of the line are included in the equivalent
+the ampersand at the end of the line are included in the equivalent
 single-line statement.
 <P>
 However, spaces before the ampersand beginning the second line are
@@ -194,7 +194,7 @@ comment lines and blank lines are always allowed.
 Note no line shall contain a single "&" as the only nonblank character
 or as the only nonblank character before an ! that initiates a comment.
 <P>
-you have to have the leading amersand on continued lines when splitting
+you have to have the leading ampersand on continued lines when splitting
 quoted strings or lexical words or constant values.
 <P>
 But try to never split constants or lexical words!
@@ -214,9 +214,9 @@ could be written as
 <P>
 </PRE>
 where things were split in two in a haphazard way as long as no spaces
-are introduced before the ending amersand and after the leading amersand
-that would make the statement illegal if all appearing on one line
-(ignoring length for the moment).
+are introduced before the ending ampersand and after the leading
+ampersand that would make the statement illegal if all appearing on one
+line (ignoring length for the moment).
 <P>
 This is a more realistic example (a very long string):
 <P>
@@ -260,9 +260,9 @@ and all continuations have a non-space non-zero character that is part
 of the Fortran character set in column six. If a quoted string is broken
 the first line acts as if padded with spaces out to column 72.
 <P>
-Even though the rules for continueing statements on multiple lines are
-so different, source code can be formatted in a format that works in
-both free and fixed-format files.
+Even though the rules for continuing statements on multiple lines are so
+different, source code can be formatted in a format that works in both
+free and fixed-format files.
 <P>
 Other than being just a curiosity, this is useful if an INCLUDE file is
 needed by both free and fixed-format files. (Note that INCLUDE

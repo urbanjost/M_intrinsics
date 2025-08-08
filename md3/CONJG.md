@@ -26,8 +26,8 @@ That is, If **z** is the _complex_ value **(x, y)** then the result is
 **(x, -y)**.
 
 In mathematics, the complex conjugate of a complex number is a value
-whose real and imaginary part are equal parts are equal in magnitude to
-each other but the **y** value has opposite sign.
+whose real and imaginary part are equal in magnitude to each other but
+the **y** value has opposite sign.
 
 For matrices of complex numbers, **conjg(array)** represents the
 element-by-element conjugation of **array**; not the conjugate transpose

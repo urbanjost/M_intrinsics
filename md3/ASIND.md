@@ -84,7 +84,7 @@ character(len=*),parameter :: all='(*(g0,1x))'
   print all, 'percent grade=',rise/run*100.0_dp
 contains
 subroutine sub1()
-! notice the (incidently empty) type is defined below
+! notice the (incidentally empty) type is defined below
 ! the implicit statement
 implicit type(nil) (a)
 type nil

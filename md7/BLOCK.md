@@ -17,7 +17,7 @@ The **block(7f)** construct is an executable construct which may contain
 declarations, and may be exited using the **exit(7f)** statement.
 
 Aside from the following restrictions a block construct is in many
-ways similiar to a contained procedure without parameters accept it is
+ways similar to a contained procedure without parameters accept it is
 constructed in-line instead of after the body of the current procedure.
 
 So if you are thinking about making a contained procedure that will be
@@ -70,7 +70,7 @@ Sample programs:
       TESTFORZERO: block
          integer :: I      ! local block variable
          intrinsic :: tan  ! can use the TAN intrinsic in the block now
-                           ! as this definition supercedes the one in the
+                           ! as this definition supersedes the one in the
                            ! parent body
          do i=1,size(a)
             if(a(i).eq.0) then

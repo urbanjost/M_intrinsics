@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**atomic_define**(3) - \[ATOMIC\] Setting a variable atomically
+**atomic_define**(3) - \[ATOMIC\] Atomically define the value of a variable
 
 ### **Synopsis**
 ```fortran
@@ -17,9 +17,10 @@
 ```
 ### **Characteristics**
 
+
 - **atom**
   : Scalar coarray or coindexed variable of either integer type with
-  atomic_int_kind kind or logical type with atomic_logical_kind
+  **atomic_int_kind** kind or logical type with **atomic_logical_kind**
   kind.
 
 - **value**
@@ -31,8 +32,15 @@
 
 ### **Description**
 
-**atomic_define**(3) defines the variable **atom** with the value
-**value** atomically.
+**atomic_define(atom, value, stat)** atomically sets the value of
+**atom** to **value**. This ensures thread-safe assignment in parallel
+environments.
+
+Use for simple atomic assignments, unlike **atomic_cas(3)** which
+involves comparison.
+
+Only one image should call **atomic_define(3)** to avoid undefined
+behavior in this context.
 
 ### **Options**
 
@@ -43,6 +51,7 @@
 
 - **value**
   : value to assign to **atom**
+
 
 - **stat**
   : When **stat** is present and the invocation was
@@ -58,13 +67,27 @@ Sample program:
 
 ```fortran
 program demo_atomic_define
-use iso_fortran_env
-implicit none
-integer(atomic_int_kind) :: atom[*]
-    call atomic_define(atom[1], this_image())
+  use iso_fortran_env
+  implicit none
+  integer(atomic_int_kind) :: counter[*]
+  integer :: stat, me
+
+  if (this_image() == 1) counter = 0
+  sync all
+
+  me = this_image()
+  if (me == 2) call atomic_define(counter[1], 42, stat)
+
+  if (stat /= 0) print *, "Image", me, ": Failed with STAT =", stat
+  sync all
+
+  if (this_image() == 1) print *, "Final counter:", counter
 end program demo_atomic_define
 ```
-
+Expected Output (4 images)
+```text
+    > Final counter: 42
+```
 ### **Standard**
 
 Fortran 2008 ; with **stat**, TS 18508
@@ -78,5 +101,8 @@ Fortran 2008 ; with **stat**, TS 18508
 [**atomic_and**(3)](#atomic_and),
 [**atomic_or**(3)](#atomic_or),
 [**atomic_xor**(3)](#atomic_xor)
+
+See **iso_fortran_env** for constants like **atomic_int_kind**,
+**stat_stopped_image**, and **stat_failed_image**.
 
  _Fortran intrinsic descriptions_

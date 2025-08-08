@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**dble**(3) - \[TYPE:CONVERSION\] Converstion to double precision real
+**dble**(3) - \[TYPE:CONVERSION\] Conversion to double precision real
 
 ### **Synopsis**
 ```fortran

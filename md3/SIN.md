@@ -22,12 +22,27 @@
 
 ### **Description**
 
-  **sin**(3) computes the sine of an angle given the size of the angle
-  in radians.
+  **sin(X)** computes the sine of X, where X is an angle in radians. The
+  result is a scalar or array of the same type and kind as **x**. For
+  real inputs, the result is in the range [-1, 1]. For complex inputs,
+  the sine is computed using the complex trigonometric definition. That
+  is, for complex inputs,
+
+      SIN(X) = (EXP(i*X) - EXP(-i*X)) / (2*i)
 
   The sine of an angle in a right-angled triangle is the ratio of the
   length of the side opposite the given angle divided by the length of
   the hypotenuse.
+
+  For real inputs, ensure X is in radians, not degrees. Use
+
+      RADIAN = DEGREE * 3.14159265359 / 180.0
+
+  for conversion.
+
+
+  where i is the imaginary unit. The result’s kind matches the
+  input’s kind.
 
 ### **Options**
 

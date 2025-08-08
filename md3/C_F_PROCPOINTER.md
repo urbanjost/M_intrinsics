@@ -11,7 +11,7 @@
 ```fortran
      subroutine c_f_procpointer(cptr, fptr )
 
-      type(c_funptr),intent(in) :: cprt
+      type(c_funptr),intent(in) :: cptr
       type(TYPE),pointer,intent(out) :: fprt
 ```
 ### **Characteristics**

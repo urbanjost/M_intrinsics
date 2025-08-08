@@ -47,7 +47,7 @@ That is basically it for the general rule, but there are a few variants
 and details to cover.
 
 When a line is split using the general rule any trailing spaces before
-the amersand at the end of the line are included in the
+the ampersand at the end of the line are included in the
 equivalent single-line statement.
 
 However, spaces before the ampersand beginning the second line are
@@ -101,7 +101,7 @@ comment lines and blank lines are always allowed.
 Note no line shall contain a single "&" as the only nonblank character
 or as the only nonblank character before an ! that initiates a comment.
 
-you have to have the leading amersand on continued lines when splitting
+you have to have the leading ampersand on continued lines when splitting
 quoted strings or lexical words or constant values.
 
 But try to never split constants or lexical words!
@@ -118,7 +118,7 @@ could be written as
     &cond str'
 ```
 where things were split in two in a haphazard way as long as no spaces
-are introduced before the ending amersand and after the leading amersand
+are introduced before the ending ampersand and after the leading ampersand
 that would make the statement illegal if all appearing on one line
 (ignoring length for the moment).
 
@@ -152,7 +152,7 @@ six and all continuations have a non-space non-zero character that is
 part of the Fortran character set in column six. If a quoted string is
 broken the first line acts as if padded with spaces out to column 72.
 
-Even though the rules for continueing statements on multiple lines are
+Even though the rules for continuing statements on multiple lines are
 so different, source code can be formatted in a format that works in
 both free and fixed-format files.
 

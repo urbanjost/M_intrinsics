@@ -181,6 +181,7 @@ append("rrspacing.3fortran.html");
 append("same_type_as.3fortran.html");
 append("scale.3fortran.html");
 append("scan.3fortran.html");
+append("select_case.3fortran.html");
 append("selected_char_kind.3fortran.html");
 append("selected_int_kind.3fortran.html");
 append("selected_real_kind.3fortran.html");

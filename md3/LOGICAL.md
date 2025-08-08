@@ -154,7 +154,7 @@ Fortran 95 , related ISO_FORTRAN_ENV module - fortran 2009
 ### **See Also**
 + [**aimag**(3)](#aimag) - Imaginary part of complex number
 + [**cmplx**(3)](#cmplx) - Conversion to a complex type
-+ [**dble**(3)](#dble) - Converstion to double precision real
++ [**dble**(3)](#dble) - Conversion to double precision real
 + [**int**(3)](#int) - Truncate towards zero and convert to integer
 + [**nint**(3)](#nint) - Nearest whole number
 + [**real**(3)](#real) - Convert to real type

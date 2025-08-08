@@ -50,21 +50,58 @@ Sample program:
 
 ```fortran
 program demo_selected_int_kind
+use,intrinsic :: iso_fortran_env, only : integer_kinds
+use,intrinsic :: iso_fortran_env, only : compiler_version
 implicit none
+character(len=*),parameter :: all='(*(g0))'
 integer,parameter :: k5 = selected_int_kind(5)
 integer,parameter :: k15 = selected_int_kind(15)
-integer(kind=k5) :: i5
+integer           :: i, ii
+integer(kind=k5)  :: i5
 integer(kind=k15) :: i15
+   print all,'program kinds'
+   print all, &
+      '! This file was compiled by ', compiler_version()
+   do i=1,size(INTEGER_KINDS)
+      ii=integer_kinds(i)
+      print all,'integer(kind=',ii,') :: i',ii
+   enddo
+   do i=1,size(INTEGER_KINDS)
+      ii=integer_kinds(i) 
+      print all, &
+      'write(*,*)"huge(i', &
+      ii, &
+      ')=",huge(i', &
+      ii, &
+      ')'
 
-    print *, huge(i5), huge(i15)
+   enddo
+   print all,'end program kinds'
 
-    ! the following inequalities are always true
-    print *, huge(i5) >= 10_k5**5-1
-    print *, huge(i15) >= 10_k15**15-1
+   print *
+   print *, huge(i5), huge(i15)
+   ! the following inequalities are always true
+   print *, huge(i5) >= 10_k5**5-1
+   print *, huge(i15) >= 10_k15**15-1
+
 end program demo_selected_int_kind
 ```
 Results:
 ```text
+  > program kinds
+  > ! This file was compiled by GCC version 15.0.0 20241103 (experimental)
+  > integer(kind=1) :: i1
+  > integer(kind=2) :: i2
+  > integer(kind=4) :: i4
+  > integer(kind=8) :: i8
+  > integer(kind=16) :: i16
+  > write(*,*)"huge(i1)=",huge(i1)
+  > write(*,*)"huge(i2)=",huge(i2)
+  > write(*,*)"huge(i4)=",huge(i4)
+  > write(*,*)"huge(i8)=",huge(i8)
+  > write(*,*)"huge(i16)=",huge(i16)
+  > end program kinds
+  >
   >   2147483647  9223372036854775807
   >  T
   >  T

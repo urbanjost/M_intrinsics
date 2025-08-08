@@ -48,7 +48,7 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 <div id="Container">
 <div id="Content">
 <CENTER>
-<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>c_f_procpointer (3fortran)</NOBR><HR></H1>
+<H1><HR><I>Manual Reference Pages &nbsp;-&nbsp;</I><NOBR>select (7fortran)</NOBR><HR></H1>
 </CENTER>
 <P>
 <A name=0>
@@ -58,122 +58,42 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-C_F_PROCPOINTER(3) - [ISO_C_BINDING] Convert C into Fortran procedure
-pointer
+select(7f) - [EXECUTION CONTROL] select a block based on a value, type,
+or rank
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=8>
+<A name=3>
 
      <H3>SYNOPSIS</H3>
 
 </A>
 <BLOCKQUOTE>
 <P>
-call c_f_procpointer(cptr, fptr)
-<P>
-<PRE>
-         subroutine c_f_procpointer(cptr, fptr )
-<P>
-          type(c_funptr),intent(in) :: cptr
-          type(TYPE),pointer,intent(out) :: fprt
-<P>
-</PRE>
+See SELECT_CASE, SELECT_RANK, or SELECT_TYPE
 </BLOCKQUOTE>
 <A name=2>
-
-     <H3>CHARACTERISTICS</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-</BLOCKQUOTE>
-<A name=3>
 
      <H3>DESCRIPTION</H3>
 
 </A>
 <BLOCKQUOTE>
 <P>
-C_F_PROCPOINTER(3) assigns the target of the C function pointer CPTR to
-the Fortran procedure pointer FPTR.
-</BLOCKQUOTE>
-<A name=4>
-
-     <H3>OPTIONS</H3>
-
-</A>
-<BLOCKQUOTE>
+A SELECT CASE may be used to select and execute a block of statements
+based on a value somewhat like a special case of IF/ELSEIF/ELSE/ENDIF.
 <P>
-<TABLE cellpadding=3>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-CPTR : scalar of the type c_funptr. It is INTENT(IN).
-</TD></TR>
-<TR valign=top><TD width=3%>
-o
-</TD><TD>
-FPTR : procedure pointer interoperable with CPTR. It is INTENT(OUT).
-</TD></TR>
-<TR></TR></TABLE></BLOCKQUOTE>
-<A name=5>
-
-     <H3>EXAMPLES</H3>
-
-</A>
-<BLOCKQUOTE>
+A SELECT RANK selects code to execute conditionally based on the RANK of
+a array in a polymorphic procedure.
 <P>
-Sample program:
+Similarly a A SELECT TYPE selects code to execute conditionally based on
+the TYPE of a value passed to a procedure.
 <P>
-<PRE>
-    program demo_c_f_procpointer
-    use iso_c_binding
-    implicit none
-    abstract interface
-       function func(a)
-       import :: c_float
-       real(c_float), intent(in) :: a
-       real(c_float) :: func
-       end function
-    end interface
-    interface
-       function getIterFunc() bind(c,name="getIterFunc")
-       import :: c_funptr
-       type(c_funptr) :: getIterFunc
-       end function
-    end interface
-    type(c_funptr) :: cfunptr
-    procedure(func), pointer :: myFunc
-       cfunptr = getIterFunc()
-       call c_f_procpointer(cfunptr, myFunc)
-    end program demo_c_f_procpointer
-<P>
-</PRE>
-</BLOCKQUOTE>
-<A name=6>
-
-     <H3>STANDARD</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-Fortran 2003
-</BLOCKQUOTE>
-<A name=7>
-
-     <H3>SEE ALSO</H3>
-
-</A>
-<BLOCKQUOTE>
-<P>
-C_LOC(3), C_F_POINTER(3), ISO_C_BINDING(3)
-<P>
-Fortran intrinsic descriptions
+For further details see the specific documentation in the topics
+SELECT_CASE, SELECT_RANK, and SELECT_TYPE.
 </BLOCKQUOTE>
 <P><HR>
-<br><br><center><img src="images/c_f_procpointer.3fortran.gif"></center>
+<br><br><center><img src="images/select.7fortran.gif"></center>
 </div>
 </div>
 </body>

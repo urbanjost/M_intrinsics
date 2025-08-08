@@ -404,7 +404,7 @@ block is entered?
 
 Selected variable names are still accessible in the ASSOCIATE block. This
 is confusing and should be avoided, particular if the selectors
-are allocatable or pointers. This is similiar to variables passed as
+are allocatable or pointers. This is similar to variables passed as
 arguments to contained procedures but referenced via the argument name
 and the name in the surrounding scope. The behavior is ill-defined. Does
 a change to the argument take affect immediately or upon return from the

@@ -940,7 +940,11 @@ Sample program:
        else
           filename_ =&#146;&#146;
        endif
-       lun=merge(lun_in,-1,present(lun_in))
+       if(present(lun_in))then
+          lun=lun_in
+       else
+          lun=-1
+       endif
        ! exist, opened, and named always become defined
        ! unless an error condition occurs.
        if(filename_  == &#146;&#146;.and.lun /= -1)then

@@ -1715,7 +1715,7 @@ character(len=*),parameter :: all='(*(g0,1x))'
   print all, 'percent grade=',rise/run*100.0_dp
 contains
 subroutine sub1()
-! notice the (incidently empty) type is defined below
+! notice the (incidentally empty) type is defined below
 ! the implicit statement
 implicit type(nil) (a)
 type nil
@@ -2887,7 +2887,23 @@ Inverse function: [**tanh**(3)](#tanh)
 
 ### **Description**
 
-**atan**(3) computes the arctangent of **x**.
+**atan(x)**(3) returns the inverse tangent (ie. arctangent) of the
+elements of **x** in radians. The function accepts both real and complex
+inputs, specified as a scalar, vector, matrix. The atan operation is
+element-wise when X is nonscalar.
+
+  * For real values of X, atan(X) returns values in the interval
+    [-PI/2, PI/2].
+  * For complex values of X, atan(X) returns complex values.
+
+When Y is not supplied the inverse tangent is defined as
+
+    i=sqrt(-1)
+    atan(z)=>(i/2)*log(i+z/i-z).
+
+This definition of the atan function returns angles in radians within
+the interval [-PI/2, PI/2]. To find the four-quadrant inverse tangent,
+where the returned angles are in the interval [-PI, PI], use atan2.
 
 ### **Options**
 
@@ -3064,53 +3080,82 @@ Fortran 2023
       integer(atomic_int_kind),intent(in) :: value
       integer,intent(out),intent(out)     :: stat
 ```
+
 ### **Characteristics**
 
-- **atom** is a scalar coarray or coindexed variable of integer type with
-  atomic_int_kind kind.
+  +  **atom** is a scalar coarray or coindexed variable of integer type with
+     atomic_int_kind kind.
 
-- **value** is a scalar of the same type as **atom**. If the kind is different, the value
-  is converted to the kind of **atom**.
+  +  **value** is a ,scalar of the same type as **ATOM**. If the kind
+     is different, the value is converted to the kind of **ATOM**.
 
-- **stat** is a Scalar default-kind integer variable.
+  +  **stat** is a scalar default-kind integer variable.
 
 ### **Description**
 
-**atomic_add**(3) atomically adds the value of VAR to the
-variable **atom**. When **stat** is present and the invocation was successful,
-it is assigned the value 0. If it is present and the invocation has
-failed, it is assigned a positive value; in particular, for a coindexed
-ATOM, if the remote image has stopped, it is assigned the value of
-iso_fortran_env's STAT_STOPPED_IMAGE and if the remote image has
-failed, the value STAT_FAILED_IMAGE.
+**atomic_add(atom, value, stat)** atomically adds the value of **value**
+to the variable **atom**. This operation ensures thread safety in
+parallel environments, such as when using coarrays. It is part of the
+atomic operations in Fortran 2008 and later, typically used with the
+**iso_fortran_env** module.
+
+Unlike **atomic_fetch_add**(3), this procedure does not return the
+previous value of **atom**.
+
+Use sync all to ensure consistent coarray state across images.
+
+When **stat** is present and the invocation was successful, it is
+assigned the value 0. If it is present and the invocation has failed,
+it is assigned a positive value; in particular, for a coindexed
+**atom**, if the remote image has stopped, it is assigned the value of
+iso_fortran_env's **stat_stopped_image** and if the remote image has
+failed, the value **stat_failed_image**.
 
 ### **Options**
 
 - **atom**
   : Scalar coarray or coindexed variable of integer type with
-  atomic_int_kind kind.
+    kind **atomic_int_kind**.(from **iso_fortran_env**).
 
 - **value**
-  : Scalar of the same type as **atom**. If the kind is different, the value
-  is converted to the kind of **atom**.
+  : Scalar of the same type as **atom**. If the kind is different,
+    the value is converted to the kind of **atom**.
 
 - **stat**
   : (optional) Scalar default-kind integer variable.
+    Set to 0 on success, or a positive value
+    (e.g., **STAT_STOPPED_IMAGE** or **STAT_FAILED_IMAGE**
+    from **ISO_FORTRAN_ENV**) on failure.
 
 ### **Examples**
 
 Sample program:
 ```fortran
 program demo_atomic_add
-use iso_fortran_env
-implicit none
-integer(atomic_int_kind) :: atom[*]
-   call atomic_add (atom[1], this_image())
+  use iso_fortran_env
+  implicit none
+  integer(atomic_int_kind) :: counter[*]
+  integer :: stat, me
+
+  if (this_image() == 1) counter = 0
+  sync all
+
+  me = this_image()
+  call atomic_add(counter[1], me, stat)
+
+  if (stat /= 0) print *, "Image", me, ": Failed with STAT =", stat
+  sync all
+
+  if (this_image() == 1) print *, "Final counter:", counter
 end program demo_atomic_add
+```
+Expected Output (4 images)
+```text
+    > Final counter: 10
 ```
 ### **Standard**
 
-TS 18508
+Fortran 2008 and later, per TS 18508
 
 ### **See Also**
 
@@ -3120,6 +3165,9 @@ TS 18508
 [**atomic_or**(3)](#atomic_or),
 [**atomic_xor**(3)](#atomic_xor)
 **iso_fortran_env**(3),
+
+See **iso_fortran_env** for constants like **atomic_int_kind**,
+**stat_stopped_image**, and **stat_failed_image**.
 
  _Fortran intrinsic descriptions_
 
@@ -3145,33 +3193,47 @@ TS 18508
 - **atom** is a scalar coarray or coindexed variable of integer type with
   atomic_int_kind kind.
 
-- **value** is a scalar of the same type as **atom**. If the kind is different, the value
-  is converted to the kind of **atom**.
+- **value** is a scalar of the same type as **atom**. If the kind is
+  different, the value is converted to the kind of **atom**.
 
 - **stat** is a Scalar default-kind integer variable.
 
 ### **Description**
 
-**atomic_and**(3) atomically defines **atom** with the bitwise
-**and** between the values of **atom** and **value**. When **stat** is present and the
-invocation was successful, it is assigned the value 0. If it is present
-and the invocation has failed, it is assigned a positive value; in
-particular, for a coindexed **atom**, if the remote image has stopped, it is
-assigned the value of iso_fortran_env's stat_stopped_image and if
-the remote image has failed, the value stat_failed_image.
+**atomic_and(atom, value, stat)** atomically performs a bitwise **and**
+operation between the value of **atom** and **value**, storing the result
+in **atom**. This ensures thread-safe updates in parallel contexts.
+
+Unlike **atomic_fetch_add**, this procedure does not return the previous
+value of **atom**.
+
+The result is the bitwise **and** of **atom** and **value**
+(e.g., 1111 AND 1010 = 1010).
+
+Useful for manipulating bit flags atomically.
+
+Use sync all to ensure consistent coarray state across images.
+
+When **stat** is present and the invocation was successful, it is
+assigned the value 0. If it is present and the invocation has failed,
+it is assigned a positive value; in particular, for a coindexed
+**atom**, if the remote image has stopped, it is assigned the value of
+**iso_fortran_env**'s **stat_stopped_image** and if the remote image
+has failed, the value **stat_failed_image**.
 
 ### **Options**
 
 - **atom**
   : Scalar coarray or coindexed variable of integer type with
-  atomic_int_kind kind.
+  kind **atomic_int_kind** .
 
 - **value**
-  : Scalar of the same type as **atom**. If the kind is different, the value
-  is converted to the kind of **atom**.
+  : Scalar of the same type as **atom**. If the kind is different,
+  the value is converted to the kind of **atom**.
 
 - **stat**
   : (optional) Scalar default-kind integer variable.
+    Set to 0 on success, or a positive value on failure.
 
 ### **Examples**
 
@@ -3181,14 +3243,28 @@ Sample program:
 program demo_atomic_and
 use iso_fortran_env
 implicit none
-integer(atomic_int_kind) :: atom[*]
-   call atomic_and(atom[1], int(b'10100011101'))
+integer(atomic_int_kind) :: counter[*]
+integer :: stat, me
+
+  if (this_image() == 1) counter = 0
+  sync all
+
+  me = this_image()
+  call atomic_add(counter[1], me, stat)
+
+  if (stat /= 0) print *, "Image", me, ": Failed with STAT =", stat
+  sync all
+
+  if (this_image() == 1) print *, "Final counter:", counter
 end program demo_atomic_and
 ```
-
+Expected Output (4 images)
+```text
+    > Final counter: 10
+```
 ### **Standard**
 
-TS 18508
+Fortran 2008 and later, per TS 18508
 
 ### **See Also**
 
@@ -3201,13 +3277,16 @@ TS 18508
 [**atomic_or**(3)](#atomic_or),
 [**atomic_xor**(3)](#atomic_xor)
 
+See **iso_fortran_env** for constants like **atomic_int_kind**,
+**stat_stopped_image**, and **stat_failed_image**.
+
  _Fortran intrinsic descriptions_
 
 ## atomic_cas
 
 ### **Name**
 
-**atomic_cas**(3) - \[ATOMIC\] Atomic compare and swap
+**atomic_cas**(3) - \[ATOMIC\] Atomically compare and swap a set of values
 
 ### **Synopsis**
 ```fortran
@@ -3220,32 +3299,44 @@ TS 18508
 
 ### **Description**
 
-**atomic_cas**(3) compares the variable **atom** with the value of
-**compare**; if the value is the same, **atom** is set to the value of
-**new**. Additionally, **old** is set to the value of **atom** that was
-used for the comparison. When **stat** is present and the invocation
+**atomic_cas(atom, old, compare, new, stat)** atomically compares the
+value of **atom** with **compare**. If they are equal, **atom** is set
+to **new**, and **old** receives the previous value of **atom**. If not
+equal, **atom** is unchanged, and **old** still receives the current
+value of **atom**.
+
+**atomic_cas** is useful for implementing locks or conditional updates.
+
+Only one image’s **new** value is set if multiple images attempt the
+operation simultaneously.
+
+When **stat** is present and the invocation
 was successful, it is assigned the value 0. If it is present and the
 invocation has failed, it is assigned a positive value; in particular,
 for a coindexed **atom**, if the remote image has stopped, it is assigned
-the value of iso_fortran_env's stat_stopped_image and if the remote
-image has failed, the value stat_failed_image.
+the value of **iso_fortran_env**'s **stat_stopped_image** and if the remote
+image has failed, the value **stat_failed_image**.
 
 ### **Options**
 
+    STAT (optional): A scalar default-kind integer. Set to 0 on success,
+    or a positive value on failure.
 - **atom**
   : Scalar coarray or coindexed variable of either integer type with
-  atomic_int_kind kind or logical type with atomic_logical_kind
-  kind.
+  **atomic_int_kind** kind or logical type with kind **atomic_logical_kind**.
 
 - **old**
   : Scalar of the same type and kind as **atom**.
+    It receives the value of **atom** before the operation.
 
 - **compare**
   : Scalar variable of the same type and kind as **atom**.
+    Used for comparison.
 
 - **new**
   : Scalar variable of the same type as **atom**. If kind is different, the
   value is converted to the kind of **atom**.
+    It is given the new value from **atom** if the comparison succeeds.
 
 - **stat**
   : (optional) Scalar default-kind integer variable.
@@ -3255,17 +3346,42 @@ image has failed, the value stat_failed_image.
 Sample program:
 
 ```fortran
-program demo_atomic_cas
+program demo_atomic_cas_example
 use iso_fortran_env
 implicit none
-logical(atomic_logical_kind) :: atom[*], prev
-   call atomic_cas(atom[1], prev, .false., .true.)
-end program demo_atomic_cas
+integer(atomic_int_kind) :: lock[*]
+integer(atomic_int_kind) :: old
+integer :: stat, me
+
+  if (this_image() == 1) lock = 0
+  sync all
+
+  me = this_image()
+  call atomic_cas(lock[1], old, 0, me, stat)
+
+  if (stat /= 0) then
+    print *, "Image", me, ": Failed with STAT =", stat
+  else
+    print *, "Image", me, ": Old =", old, ", New =", lock[1]
+  end if
+  sync all
+
+  if (this_image() == 1) print *, "Final lock:", lock
+end program demo_atomic_cas_example
 ```
 
+Expected Output (4 images, order varies)
+
+```text
+    > Image 1: Old = 0, New = 1
+    > Image 2: Old = 1, New = 1
+    > Image 3: Old = 1, New = 1
+    > Image 4: Old = 1, New = 1
+    > Final lock: 1
+```
 ### **Standard**
 
-TS 18508
+Fortran 2008 and later, per TS 18508
 
 ### **See Also**
 
@@ -3273,13 +3389,16 @@ TS 18508
 [**atomic_ref**(3)](#atomic_ref),
 [**iso_fortran_env**(3)](#)
 
+See **iso_fortran_env** for constants like **atomic_int_kind**,
+**stat_stopped_image**, and **stat_failed_image**.
+
  _Fortran intrinsic descriptions_
 
 ## atomic_define
 
 ### **Name**
 
-**atomic_define**(3) - \[ATOMIC\] Setting a variable atomically
+**atomic_define**(3) - \[ATOMIC\] Atomically define the value of a variable
 
 ### **Synopsis**
 ```fortran
@@ -3296,7 +3415,7 @@ TS 18508
 
 - **atom**
   : Scalar coarray or coindexed variable of either integer type with
-  atomic_int_kind kind or logical type with atomic_logical_kind
+  **atomic_int_kind** kind or logical type with **atomic_logical_kind**
   kind.
 
 - **value**
@@ -3308,8 +3427,15 @@ TS 18508
 
 ### **Description**
 
-**atomic_define**(3) defines the variable **atom** with the value
-**value** atomically.
+**atomic_define(atom, value, stat)** atomically sets the value of
+**atom** to **value**. This ensures thread-safe assignment in parallel
+environments.
+
+Use for simple atomic assignments, unlike **atomic_cas(3)** which
+involves comparison.
+
+Only one image should call **atomic_define(3)** to avoid undefined
+behavior in this context.
 
 ### **Options**
 
@@ -3335,13 +3461,27 @@ Sample program:
 
 ```fortran
 program demo_atomic_define
-use iso_fortran_env
-implicit none
-integer(atomic_int_kind) :: atom[*]
-    call atomic_define(atom[1], this_image())
+  use iso_fortran_env
+  implicit none
+  integer(atomic_int_kind) :: counter[*]
+  integer :: stat, me
+
+  if (this_image() == 1) counter = 0
+  sync all
+
+  me = this_image()
+  if (me == 2) call atomic_define(counter[1], 42, stat)
+
+  if (stat /= 0) print *, "Image", me, ": Failed with STAT =", stat
+  sync all
+
+  if (this_image() == 1) print *, "Final counter:", counter
 end program demo_atomic_define
 ```
-
+Expected Output (4 images)
+```text
+    > Final counter: 42
+```
 ### **Standard**
 
 Fortran 2008 ; with **stat**, TS 18508
@@ -3356,13 +3496,16 @@ Fortran 2008 ; with **stat**, TS 18508
 [**atomic_or**(3)](#atomic_or),
 [**atomic_xor**(3)](#atomic_xor)
 
+See **iso_fortran_env** for constants like **atomic_int_kind**,
+**stat_stopped_image**, and **stat_failed_image**.
+
  _Fortran intrinsic descriptions_
 
 ## atomic_fetch_add
 
 ### **Name**
 
-**atomic_fetch_add**(3) - \[ATOMIC\] Atomic ADD operation with prior fetch
+**atomic_fetch_add**(3) - \[ATOMIC\] Atomic fetch and add operation
 
 ### **Synopsis**
 ```fortran
@@ -3376,18 +3519,39 @@ Fortran 2008 ; with **stat**, TS 18508
 ### **Description**
 
 **atomic_fetch_add**(3) atomically stores the value of **atom** in **old**
-and adds the value of **var** to the variable **atom**. When **stat** is
-present and the invocation was successful, it is assigned the value **0**.
-If it is present and the invocation has failed, it is assigned a positive
-value; in particular, for a coindexed **atom**, if the remote image has
-stopped, it is assigned the value of iso_fortran_env's stat_stopped_image
-and if the remote image has failed, the value stat_failed_image.
+and adds the value of **var** to the variable **atom**.
+
+This operation is performed atomically, ensuring thread safety in parallel
+environments, such as when using coarrays in Fortran for parallel
+programming. It is part of the atomic operations defined in the Fortran
+2008 standard and later, typically used with the **iso_fortran_env** module.
+
+**atomic_fetch_add(3)** is useful in parallel programming to avoid race
+conditions when multiple images update a shared variable.
+
+The operation is only guaranteed to be atomic for variables of kind
+**atomic_int_kind**.
+
+For coindexed variables (e.g., counter[1]), the operation targets
+the specified image’s coarray.
+
+Always use synchronization (e.g., sync all) to ensure consistent
+state across images before and after atomic operations.
+
+When **stat** is present and the invocation was successful, it is
+assigned the value **0**. If it is present and the invocation has
+failed, it is assigned a positive value; in particular, for a coindexed
+**atom**, if the remote image has stopped, it is assigned the value of
+**iso_fortran_env**'s **stat_stopped_image** and if the remote image
+has failed, the value **stat_failed_image**.
 
 ### **Options**
 
 - **atom**
   : Scalar coarray or coindexed variable of integer type with
-  atomic_int_kind kind. atomic_logical_kind kind.
+    kind **atomic_int_kind** (from **iso_fortran_env**).
+
+    Must be accessible across images in a parallel execution context.
 
 - **value**
   : Scalar of the same type as **atom**. If the kind is different, the value
@@ -3396,21 +3560,96 @@ and if the remote image has failed, the value stat_failed_image.
 - **old**
   : Scalar of the same type and kind as **atom**.
 
+    On return, it contains the value of ATOM before the addition.
+
 - **stat**
-  : (optional) Scalar default-kind integer variable.
+  : (optional) Scalar default-kind integer variable. If present:
+
+        Set to 0 if the operation is successful.
+        Set to a positive value if the operation fails (e.g.,
+        STAT_STOPPED_IMAGE if the remote image has stopped, or
+        STAT_FAILED_IMAGE if the remote image has failed, as defined
+        in ISO_FORTRAN_ENV).
 
 ### **Examples**
+
+The following program demonstrates the use of ATOMIC_FETCH_ADD in
+a parallel context using coarrays. It increments a shared counter
+atomically across multiple images and retrieves the original value before
+the addition.
 
 Sample program:
 
 ```fortran
 program demo_atomic_fetch_add
-use iso_fortran_env
-implicit none
-integer(atomic_int_kind) :: atom[*], old
-   call atomic_add(atom[1], this_image(), old)
+  use iso_fortran_env
+  implicit none
+  integer(atomic_int_kind) :: counter[*]  ! Coarray for shared counter
+  integer(atomic_int_kind) :: old_value   ! Stores value before addition
+  integer :: stat, me, i
+
+  ! Initialize counter on image 1
+  if (this_image() == 1) counter = 0
+  sync all  ! Ensure all images see initialized counter
+
+  me = this_image()  ! Get current image number
+
+  ! Each image atomically adds its image number to the counter
+  call atomic_fetch_add(counter[1], me, old_value, stat)
+
+  ! Check for errors
+  if (stat /= 0) then
+    print *, "Image", me, ": Operation failed with STAT =", stat
+  else
+    print *, "Image", me, ": Old value =", old_value, ", Added", me
+  end if
+
+  ! Synchronize all images before printing final result
+  sync all
+
+  ! Image 1 prints the final counter value
+  if (this_image() == 1) then
+    print *, "Final counter value:", counter
+  end if
 end program demo_atomic_fetch_add
 ```
+### Explanation of Example
+
+    Setup: The program uses the ISO_FORTRAN_ENV module to access
+    ATOMIC_INT_KIND for the correct integer kind for atomic operations.
+
+    Coarray: counter[*] is a coarray, allowing shared access across images
+    (parallel processes).
+
+    Initialization: Image 1 sets counter to 0, and sync all ensures all
+    images see this initial value.
+
+    Atomic Operation: Each image calls ATOMIC_FETCH_ADD to add its
+    image number (me) to counter[1] (the counter on image 1), storing
+    the value of counter[1] before the addition in old_value.
+
+    Error Handling: The stat argument checks for operation success or failure.
+
+    Output: Each image prints the value of counter[1] before its addition
+    and the value added. Image 1 prints the final counter value after
+    all operations.
+
+### Expected Output
+
+When run with 4 images (e.g., using cafrun -np 4 with a Fortran compiler
+supporting coarrays, like gfortran), the output might look like (order
+of image prints may vary due to parallelism):
+
+```text
+    > Image 1: Old value = 0, Added 1
+    > Image 2: Old value = 1, Added 2
+    > Image 3: Old value = 3, Added 3
+    > Image 4: Old value = 6, Added 4
+    > Final counter value: 10
+```
+
+The final counter value is the sum of image numbers (1 + 2 + 3 + 4 =
+10), confirming atomic updates.
 
 ### **Standard**
 
@@ -3427,13 +3666,17 @@ TS 18508
 
 [**atomic_fetch_xor**(3)](#atomic_fetch_xor)
 
+See **iso_fortran_env** for constants like **atomic_int_kind**,
+**stat_stopped_image**, and **stat_failed_image**.
+
  _Fortran intrinsic descriptions_
 
 ## atomic_fetch_and
 
 ### **Name**
 
-**atomic_fetch_and**(3) - \[ATOMIC:BIT MANIPULATION\] Atomic bitwise AND operation with prior fetch
+**atomic_fetch_and**(3) - \[ATOMIC:BIT MANIPULATION\] Atomic bitwise
+AND operation with prior fetch
 
 ### **Synopsis**
 ```fortran
@@ -3446,20 +3689,28 @@ TS 18508
 
 ### **Description**
 
-**atomic_fetch_and**(3) atomically stores the value of
-**atom** in **old** and defines **atom** with the bitwise AND between the values of
-**atom** and **value**. When **stat** is present and the invocation was successful,
-it is assigned the value **0**. If it is present and the invocation has
-failed, it is assigned a positive value; in particular, for a coindexed
-**atom**, if the remote image has stopped, it is assigned the value of
-iso_fortran_env's stat_stopped_image and if the remote image has
-failed, the value stat_failed_image.
+**atomic_fetch_and**(3) atomically fetches and performs a bitwise AND
+operation.
+
+It is similar to **atomic_and(3)**, but returns the previous value of
+**atom**.  That is, it atomically stores the value of **atom** in **old**
+and performs a bitwise **and** operation between **atom** and **value**,
+storing the result in **atom**.
+
+Useful for bit flag manipulation with feedback.
+
+When **stat** is present and the invocation was successful, it is assigned
+the value **0**. If it is present and the invocation has failed, it is
+assigned a positive value; in particular, for a coindexed **atom**, if the
+remote image has stopped, it is assigned the value of iso_fortran_env's
+__stat_stopped_image__ and if the remote image has failed, the value
+__stat_failed_image__.
 
 ### **Options**
 
 - **atom**
   : Scalar coarray or coindexed variable of integer type with
-  atomic_int_kind kind.
+  __atomic_int_kind__ kind.
 
 - **value**
   : Scalar of the same type as **atom**. If the kind is different, the value
@@ -3467,9 +3718,11 @@ failed, the value stat_failed_image.
 
 - **old**
   : Scalar of the same type and kind as **atom**.
+    Receives the value of ATOM before the operation.
 
 - **stat**
   : (optional) Scalar default-kind integer variable.
+    Set to 0 on success, or a positive value on failure.
 
 ### **Examples**
 
@@ -3477,16 +3730,39 @@ Sample program:
 
 ```fortran
 program demo_atomic_fetch_and
-use iso_fortran_env
-implicit none
-integer(atomic_int_kind) :: atom[*], old
-   call atomic_fetch_and (atom[1], int(b'10100011101'), old)
+
+  use iso_fortran_env
+  implicit none
+  integer(atomic_int_kind) :: flags[*], old
+  integer :: stat, me
+
+  if (this_image() == 1) flags = int(b'1111', atomic_int_kind)
+  sync all
+
+  me = this_image()
+  call atomic_fetch_and(flags[1], int(b'1010', atomic_int_kind), old, stat)
+
+  if (stat /= 0) print *, "Image", me, ": Failed with STAT =", stat
+  print *, "Image", me, ": Old =", old
+  sync all
+
+  if (this_image() == 1) print *, "Final flags:", flags
 end program demo_atomic_fetch_and
 ```
-
+Expected Output (4 images, order varies)
+```text
+    > Image 1: Old = 15
+    > Image 2: Old = 10
+    > Image 3: Old = 10
+    > Image 4: Old = 10
+    > Final flags: 10
+```
 ### **Standard**
 
-TS 18508
+Fortran 2008 and later, TS 18508
+
+See **iso_fortran_env** for constants like **atomic_int_kind**,
+**stat_stopped_image**, and **stat_failed_image**.
 
 ### **See Also**
 
@@ -3499,13 +3775,17 @@ TS 18508
 
 [**atomic_fetch_xor**(3)](#atomic_fetch_xor)
 
+See **iso_fortran_env** for constants like **atomic_int_kind**,
+**stat_stopped_image**, and **stat_failed_image**.
+
  _Fortran intrinsic descriptions_
 
 ## atomic_fetch_or
 
 ### **Name**
 
-**atomic_fetch_or**(3) - \[ATOMIC:BIT MANIPULATION\] Atomic bitwise OR operation with prior fetch
+**atomic_fetch_or**(3) - \[ATOMIC:BIT MANIPULATION\] Atomically fetch
+and perform a bitwise OR operation
 
 ### **Synopsis**
 ```fortran
@@ -3518,30 +3798,38 @@ TS 18508
 
 ### **Description**
 
-**atomic_fetch_or**(3) atomically stores the value of
-**atom** in **old** and defines **atom** with the bitwise OR between the values of
-**atom** and **value**. When **stat** is present and the invocation was successful,
+**atomic_fetch_or(atom, value, old, stat)** atomically stores the value
+of **atom** in **old** and performs a bitwise **or** operation between
+**atom** and **value**, storing the result in **atom**.
+
+When **stat** is present and the invocation was successful,
 it is assigned the value **0**. If it is present and the invocation has
 failed, it is assigned a positive value; in particular, for a coindexed
 **atom**, if the remote image has stopped, it is assigned the value of
-iso_fortran_env's stat_stopped_image and if the remote image has
-failed, the value stat_failed_image.
+iso_fortran_env's stat_stopped_image and if the remote image has failed,
+the value stat_failed_image.
+
+The result is the bitwise **or** (e.g., 1000 OR 0011 = 1011).
+
+It is useful for setting bit flags atomically.
 
 ### **Options**
 
 - **atom**
   : Scalar coarray or coindexed variable of integer type with
-  atomic_int_kind kind.
+  **atomic_int_kind** kind.
 
 - **value**
-  : Scalar of the same type as **atom**. If the kind is different, the value
-  is converted to the kind of **atom**.
+  : Scalar of the same type as **atom**. If the kind is different,
+  the value is converted to the kind of **atom**.
 
 - **old**
   : Scalar of the same type and kind as **atom**.
+  Receives the value of **atom** before the operation.
 
 - **stat**
   : (optional) Scalar default-kind integer variable.
+  Set to 0 on success, or a positive value on failure.
 
 ### **Examples**
 
@@ -3551,9 +3839,30 @@ Sample program:
 program demo_atomic_fetch_or
 use iso_fortran_env
 implicit none
-integer(atomic_int_kind) :: atom[*], old
-   call atomic_fetch_or(atom[1], int(b'10100011101'), old)
+integer(atomic_int_kind) :: flags[*], old
+integer :: stat, me
+
+  if (this_image() == 1) flags = int(b'1000', atomic_int_kind)
+  sync all
+
+  me = this_image()
+  call atomic_fetch_or(flags[1], int(b'0011', atomic_int_kind), old, stat)
+
+  if (stat /= 0) print *, "Image", me, ": Failed with STAT =", stat
+  print *, "Image", me, ": Old =", old
+  sync all
+
+  if (this_image() == 1) print *, "Final flags:", flags
+
 end program demo_atomic_fetch_or
+```
+Expected Output (4 images, order varies)
+```text
+    > Image 1: Old = 8
+    > Image 2: Old = 11
+    > Image 3: Old = 11
+    > Image 4: Old = 11
+    > Final flags: 11
 ```
 
 ### **Standard**
@@ -3571,13 +3880,17 @@ TS 18508
 
 [**atomic_fetch_xor**(3)](#atomic_fetch_xor)
 
+See **iso_fortran_env** for constants like **atomic_int_kind**,
+**stat_stopped_image**, and **stat_failed_image**.
+
  _Fortran intrinsic descriptions_
 
 ## atomic_fetch_xor
 
 ### **Name**
 
-**atomic_fetch_xor**(3) - \[ATOMIC:BIT MANIPULATION\] Atomic bitwise XOR operation with prior fetch
+**atomic_fetch_xor**(3) - \[ATOMIC:BIT MANIPULATION\] Atomically fetch
+and perform a bitwise XOR operation
 
 ### **Synopsis**
 ```fortran
@@ -3588,16 +3901,31 @@ TS 18508
 ```
 ### **Characteristics**
 
+  + **atom**: A scalar coarray or coindexed variable of integer type with
+    kind **atomic_int_kind**.
+
+  + **value**: A scalar of the same type as **atom**.
+
+  + **old**: A scalar of the same type and kind as **atom**.
+
+  + **stat** (optional): A scalar default-kind integer.
+
 ### **Description**
 
-**atomic_fetch_xor**(3) atomically stores the value of
-**atom** in **old** and defines **atom** with the bitwise **xor** between the values of
-**atom** and **value**. When **stat** is present and the invocation was successful,
-it is assigned the value **0**. If it is present and the invocation has
+**atomic_fetch_xor(atom, value, old, stat)** atomically stores the value
+of **atom** in **old** and performs a bitwise **xor** operation between
+**atom** and **value**, storing the result in **atom**.
+
+When **stat** is present and the invocation was successful, it is
+assigned the value **0**. If it is present and the invocation has
 failed, it is assigned a positive value; in particular, for a coindexed
 **atom**, if the remote image has stopped, it is assigned the value of
-iso_fortran_env's stat_stopped_image and if the remote image has
-failed, the value stat_failed_image.
+**iso_fortran_env**'s **stat_stopped_image** and if the remote image
+has failed, the value **stat_failed_image**.
+
+The result is the bitwise **xor** (e.g., 1100 XOR 1010 = 0110).
+
+It is useful for toggling bits atomically.
 
 ### **Options**
 
@@ -3621,13 +3949,33 @@ Sample program:
 
 ```fortran
 program demo_atomic_fetch_xor
-use iso_fortran_env
-implicit none
-integer(atomic_int_kind) :: atom[*], old
-   call atomic_fetch_xor (atom[1], int(b'10100011101'), old)
+
+  use iso_fortran_env
+  implicit none
+  integer(atomic_int_kind) :: flags[*], old
+  integer :: stat, me
+
+  if (this_image() == 1) flags = int(b'1100', atomic_int_kind)
+  sync all
+
+  me = this_image()
+  call atomic_fetch_xor(flags[1], int(b'1010', atomic_int_kind), old, stat)
+
+  if (stat /= 0) print *, "Image", me, ": Failed with STAT =", stat
+  print *, "Image", me, ": Old =", old
+  sync all
+
+  if (this_image() == 1) print *, "Final flags:", flags
 end program demo_atomic_fetch_xor
 ```
-
+Expected Output (4 images, order varies)
+```text
+    > Image 1: Old = 12
+    > Image 2: Old = 6
+    > Image 3: Old = 6
+    > Image 4: Old = 6
+    > Final flags: 6
+```
 ### **Standard**
 
 TS 18508
@@ -3643,13 +3991,17 @@ TS 18508
 
 [**atomic_fetch_or**(3)](#atomic_fetch_or)
 
+See **iso_fortran_env** for constants like **atomic_int_kind**,
+**stat_stopped_image**, and **stat_failed_image**.
+
  _Fortran intrinsic descriptions_
 
 ## atomic_or
 
 ### **Name**
 
-**atomic_or**(3) - \[ATOMIC:BIT MANIPULATION\] Atomic bitwise OR operation
+**atomic_or**(3) - \[ATOMIC:BIT MANIPULATION\] Atomically perform a
+bitwise OR operation
 
 ### **Synopsis**
 ```fortran
@@ -3674,13 +4026,20 @@ TS 18508
 
 ### **Description**
 
-**atomic_or**(3) atomically defines **atom** with the bitwise **or**
-between the values of **atom** and **value**. When **stat** is present and the
-invocation was successful, it is assigned the value **0**. If it is present
-and the invocation has failed, it is assigned a positive value; in
-particular, for a coindexed **atom**, if the remote image has stopped, it is
-assigned the value of iso_fortran_env's stat_stopped_image and if
-the remote image has failed, the value stat_failed_image.
+**atomic_or(atom, value, stat)** atomically performs a bitwise **or**
+operation between the value of **atom** and **value**, storing the result
+in **atom**.
+
+When **stat** is present and the invocation was successful, it is
+assigned the value **0**. If it is present and the invocation has
+failed, it is assigned a positive value; in particular, for a coindexed
+**atom**, if the remote image has stopped, it is assigned the value of
+**iso_fortran_env**'s **stat_stopped_image** and if the remote image has failed,
+the value **stat_failed_image**.
+
+Unlike **atomic_fetch_or**, this does not return the previous value.
+
+Use for setting bits without needing the prior state.
 
 ### **Options**
 
@@ -3694,6 +4053,7 @@ the remote image has failed, the value stat_failed_image.
 
 - **stat**
   : (optional) Scalar default-kind integer variable.
+  Set to 0 on success, or a positive value on failure.
 
 ### **Examples**
 
@@ -3701,13 +4061,27 @@ Sample program:
 
 ```fortran
 program demo_atomic_or
-use iso_fortran_env
-implicit none
-integer(atomic_int_kind) :: atom[*]
-   call atomic_or(atom[1], int(b'10100011101'))
+  use iso_fortran_env
+  implicit none
+  integer(atomic_int_kind) :: flags[*]
+  integer :: stat, me
+
+  if (this_image() == 1) flags = int(b'1000', atomic_int_kind)
+  sync all
+
+  me = this_image()
+  call atomic_or(flags[1], int(b'0011', atomic_int_kind), stat)
+
+  if (stat /= 0) print *, "Image", me, ": Failed with STAT =", stat
+  sync all
+
+  if (this_image() == 1) print *, "Final flags:", flags
 end program demo_atomic_or
 ```
-
+Expected Output (4 images)
+```text
+    > Final flags: 11
+```
 ### **Standard**
 
 TS 18508
@@ -3723,13 +4097,16 @@ TS 18508
 
 [**atomic_xor**(3)](#atomic_xor)
 
+See **iso_fortran_env** for constants like **atomic_int_kind**,
+**stat_stopped_image**, and **stat_failed_image**.
+
  _Fortran intrinsic descriptions_
 
 ## atomic_ref
 
 ### **Name**
 
-**atomic_ref**(3) - \[ATOMIC\] Obtaining the value of a variable atomically
+**atomic_ref**(3) - \[ATOMIC\] Atomically retrieve the value in a variable
 
 ### **Synopsis**
 ```fortran
@@ -3755,27 +4132,35 @@ TS 18508
 
 ### **Description**
 
-**atomic_ref**(3) atomically assigns the value of the
-variable **atom** to **value**. When **stat** is present and the invocation was
-successful, it is assigned the value **0**. If it is present and the
-invocation has failed, it is assigned a positive value; in particular,
-for a coindexed **atom**, if the remote image has stopped, it is assigned
-the value of iso_fortran_env's **stat_stopped_image** and if the remote
-image has failed, the value **stat_failed_image**.
+**atomic_ref(value, atom, stat)** atomically retrieves the value of **atom**
+and stores it in **value**. This ensures a thread-safe read operation.
+
+When **stat** is present and the invocation was successful, it is assigned
+the value **0**. If it is present and the invocation has failed, it is
+assigned a positive value; in particular, for a coindexed **atom**, if the
+remote image has stopped, it is assigned the value of iso_fortran_env's
+**stat_stopped_image** and if the remote image has failed, the value
+**stat_failed_image**.
+
+Use for safe reading of shared variables in parallel contexts.
+
+It complements **atomic_define** for read-write operations.
 
 ### **Options**
 
 - **value**
+  : Receives the value of **atom**.
   : Scalar of the same type as **atom**. If the kind is different, the value
   is converted to the kind of **atom**.
 
 - **atom**
   : Scalar coarray or coindexed variable of either integer type with
-  atomic_int_kind kind or logical type with atomic_logical_kind
+  **atomic_int_kind** kind or logical type with **atomic_logical_kind**
   kind.
 
 - **stat**
   : (optional) Scalar default-kind integer variable.
+  Set to 0 on success, or a positive value on failure.
 
 ### **Examples**
 
@@ -3783,17 +4168,31 @@ Sample program:
 
 ```fortran
 program demo_atomic_ref
-use iso_fortran_env
-implicit none
-logical(atomic_logical_kind) :: atom[*]
-logical :: val
-   call atomic_ref( val, atom[1] )
-   if (val) then
-      print *, "Obtained"
-   endif
+  use iso_fortran_env
+  implicit none
+  integer(atomic_int_kind) :: counter[*], value
+  integer :: stat, me
+
+  if (this_image() == 1) counter = 42
+  sync all
+
+  me = this_image()
+  call atomic_ref(value, counter[1], stat)
+
+  if (stat /= 0) then
+    print *, "Image", me, ": Failed with STAT =", stat
+  else
+    print *, "Image", me, ": Retrieved value =", value
+  end if
 end program demo_atomic_ref
 ```
-
+Expected Output (4 images, order varies)
+```text
+    > Image 1: Retrieved value = 42
+    > Image 2: Retrieved value = 42
+    > Image 3: Retrieved value = 42
+    > Image 4: Retrieved value = 42
+```
 ### **Standard**
 
 Fortran 2008 ; with STAT, TS 18508
@@ -3810,13 +4209,17 @@ Fortran 2008 ; with STAT, TS 18508
 [**atomic_fetch_or**(3)](#atomic_or),
 [**atomic_fetch_xor**(3)](#atomic_xor)
 
+See **iso_fortran_env** for constants like **atomic_int_kind**,
+**stat_stopped_image**, and **stat_failed_image**.
+
  _Fortran intrinsic descriptions_
 
 ## atomic_xor
 
 ### **Name**
 
-**atomic_xor**(3) - \[ATOMIC:BIT MANIPULATION\] Atomic bitwise OR operation
+**atomic_xor**(3) - \[ATOMIC:BIT MANIPULATION\] Atomically perform a
+bitwise XOR operation
 
 ### **Synopsis**
 ```fortran
@@ -3834,22 +4237,28 @@ Fortran 2008 ; with STAT, TS 18508
 - **atom** is a scalar coarray or coindexed variable of integer type with
   atomic_int_kind kind.
 
-- **value** is a scalar of the same type as **atom**. If the kind is different, the value
-  is converted to the kind of **atom**.
+- **value** is a scalar of the same type as **atom**. If the kind is
+  different, the value is converted to the kind of **atom**.
 
 - **stat** is a Scalar default-kind integer variable.
 
 ### **Characteristics**
 
 ### **Description**
+**atomic_xor(atom, value, stat)** atomically performs a bitwise **xor**
+operation between the value of **atom** and **value**, storing the result
+in **atom**.
 
-**atomic_xor**(3) atomically defines **atom** with the bitwise
-**xor** between the values of **atom** and **value**. When **stat** is present and the
-invocation was successful, it is assigned the value **0**. If it is present
-and the invocation has failed, it is assigned a positive value; in
-particular, for a coindexed **atom**, if the remote image has stopped, it is
-assigned the value of iso_fortran_env's stat_stopped_image and if
-the remote image has failed, the value stat_failed_image.
+When **stat** is present and the invocation was successful, it is
+assigned the value **0**. If it is present and the invocation has
+failed, it is assigned a positive value; in particular, for a coindexed
+**atom**, if the remote image has stopped, it is assigned the value of
+**iso_fortran_env**'s **stat_stopped_image** and if the remote image
+has failed, the value **stat_failed_image**.
+
+Unlike **atomic_fetch_xor**, this does not return the previous value.
+
+Use for toggling bits atomically.
 
 ### **Options**
 
@@ -3863,6 +4272,7 @@ the remote image has failed, the value stat_failed_image.
 
 - **stat**
   : (optional) Scalar default-kind integer variable.
+  Set to 0 on success, or a positive value on failure.
 
 ### **Examples**
 
@@ -3870,13 +4280,27 @@ Sample program:
 
 ```fortran
 program demo_atomic_xor
-use iso_fortran_env
-implicit none
-integer(atomic_int_kind) :: atom[*]
-   call atomic_xor(atom[1], int(b'10100011101'))
+  use iso_fortran_env
+  implicit none
+  integer(atomic_int_kind) :: flags[*]
+  integer :: stat, me
+
+  if (this_image() == 1) flags = int(b'1100', atomic_int_kind)
+  sync all
+
+  me = this_image()
+  call atomic_xor(flags[1], int(b'1010', atomic_int_kind), stat)
+
+  if (stat /= 0) print *, "Image", me, ": Failed with STAT =", stat
+  sync all
+
+  if (this_image() == 1) print *, "Final flags:", flags
 end program demo_atomic_xor
 ```
-
+Expected Output (4 images)
+```text
+    > Final flags: 6
+```
 ### **Standard**
 
 TS 18508
@@ -3889,6 +4313,9 @@ TS 18508
 [**atomic_add**(3)](#atomic_add),
 [**atomic_or**(3)](#atomic_or),
 [**atomic_xor**(3)](#atomic_xor)
+
+See **iso_fortran_env** for constants like **atomic_int_kind**,
+**stat_stopped_image**, and **stat_failed_image**.
 
  _Fortran intrinsic descriptions_
 
@@ -5377,7 +5804,7 @@ Fortran 95
 ```fortran
      subroutine c_f_pointer(cptr, fptr ,shape )
 
-      type(c_ptr),intent(in) :: cprt
+      type(c_ptr),intent(in) :: cptr
       type(TYPE),pointer,intent(out) :: fprt
       integer,intent(in),optional :: shape(:)
 ```
@@ -5452,7 +5879,7 @@ Fortran 2003
 ```fortran
      subroutine c_f_procpointer(cptr, fptr )
 
-      type(c_funptr),intent(in) :: cprt
+      type(c_funptr),intent(in) :: cptr
       type(TYPE),pointer,intent(out) :: fprt
 ```
 ### **Characteristics**
@@ -6548,8 +6975,8 @@ That is, If **z** is the _complex_ value **(x, y)** then the result is
 **(x, -y)**.
 
 In mathematics, the complex conjugate of a complex number is a value
-whose real and imaginary part are equal parts are equal in magnitude to
-each other but the **y** value has opposite sign.
+whose real and imaginary part are equal in magnitude to each other but
+the **y** value has opposite sign.
 
 For matrices of complex numbers, **conjg(array)** represents the
 element-by-element conjugation of **array**; not the conjugate transpose
@@ -8041,7 +8468,7 @@ date and time conversion, formatting and computation
 
 ### **Name**
 
-**dble**(3) - \[TYPE:CONVERSION\] Converstion to double precision real
+**dble**(3) - \[TYPE:CONVERSION\] Conversion to double precision real
 
 ### **Synopsis**
 ```fortran
@@ -8866,7 +9293,7 @@ Fortran 2008
     Character(len)|  LEN blanks
 ```
   These are the only types for which **boundary** may not be present.
-  For these types the kind is converted as neccessary to the kind of
+  For these types the kind is converted as necessary to the kind of
   **array**.
 - **dim**
   :  **dim** is in the range of
@@ -9632,17 +10059,29 @@ raised to the power of **x**.
 
 "_e_" is also known as _Euler's constant_.
 
+So for either a real or complex scalar X, it returns eˆX , where e is
+the base of the natural logarithm (approximately 2.718281828459045).
+
+For real inputs, EXP returns a real result.
+
 If **x** is of type _complex_, its imaginary part is regarded as a value
-in radians such that if (see _Euler's formula_):
+in radians such that (see _Euler's formula_):
 ```fortran
-    cx=(re,im)
-```
-then
-```fortran
-    exp(cx) = exp(re) * cmplx(cos(im),sin(im),kind=kind(cx))
+    exp((re,im)) = exp(re) * cmplx(cos(im),sin(im),kind=kind(cx))
 ```
 Since **exp**(3) is the inverse function of **log**(3) the maximum valid magnitude
 of the _real_ component of **x** is **log(huge(x))**.
+
+**exp** being elemental, when X is an array (real or complex), the
+function is applied element‐wise, returning an array of the same shape.
+
+    Numerical Considerations
+
+     For very large real X, the result may overflow to infinity in
+     finite‐precision arithmetic. For very small (negative) real X ,
+     the result approaches zero. Complex inputs with large imaginary
+     parts may produce results with significant numerical errors due
+     to the trigonometric functions involved.
 
 ### **Options**
 
@@ -9663,8 +10102,12 @@ Sample program:
 ```fortran
 program demo_exp
 implicit none
-real :: x, re, im
-complex :: cx
+integer,parameter :: dp=kind(0.0d0)
+real              :: x, re, im
+complex           :: cx
+real              :: r_array(3), r_array_result(3)
+complex           :: c_array(2), c_array_result(2)
+integer           :: i
 
    x = 1.0
    write(*,*)"Euler's constant is approximately",exp(x)
@@ -9689,6 +10132,20 @@ complex :: cx
    ! but since the imaginary component is passed to the cos(3) and sin(3)
    ! functions the imaginary component can be any real value
 
+   ! Real array example
+   r_array = [0.0, 1.0, -1.0]
+   r_array_result = exp(r_array)
+   do i = 1, size(r_array)
+     write(*, '(A, I0, A, F15.10)') "exp(r_array(", i, ")) = ", r_array_result(i)
+   enddo
+
+   ! Complex array example
+   c_array = [cmplx(0.0, 0.0, kind=dp), cmplx(1.0, 1.0, kind=dp)]
+   c_array_result = exp(c_array)
+   do i = 1, size(c_array)
+     write(*, '(A, I0, A, F15.10, A, F15.10, A)') "exp(c_array(", i, ")) = (", &
+     real(c_array_result(i)), ", ", aimag(c_array_result(i)), ")"
+   enddo
 end program demo_exp
 ```
 Results:
@@ -9699,6 +10156,11 @@ Results:
  >  is the same as           (-13.1287832,-15.2007847)
  >  maximum real component   88.7228394
  >  maximum doubleprecision component   709.78271289338397
+ > exp(r_array(1)) =    1.0000000000
+ > exp(r_array(2)) =    2.7182817459
+ > exp(r_array(3)) =    0.3678794503
+ > exp(c_array(1)) = (   1.0000000000,    0.0000000000)
+ > exp(c_array(2)) = (   1.4686938524,    2.2873551846)
 ```
 ### **Standard**
 
@@ -9715,6 +10177,7 @@ FORTRAN 77
 - Wikipedia:[Euler's formula](https://en.wikipedia.org/wiki/Euler%27s_formula)
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
+
 
 ## exponent
 
@@ -10673,20 +11136,23 @@ arguments are quoted. IFS values (Internal Field Separators) used by
 common shells are typically ignored and unquoted whitespace is almost
 always the separator.
 
-Shells have often expanded command arguments and spell characters before
-passing them to the program, so the strings read are often not exactly
-what the user typed on the command line.
+Shells have often expanded command arguments before passing them to the
+program, so the strings read are often not exactly what the user typed
+on the command line.
 
 ### **Options**
 
 - **number**
   : is a non-negative number indicating which argument of the current
   program command line is to be retrieved or queried.
-  : If **number = 0**, the argument pointed to is set to the name of the
+
+  If **number = 0**, the argument pointed to is set to the name of the
   program (on systems that support this feature).
-  : if the processor does not have such a concept as a command name the
+
+  if the processor does not have such a concept as a command name the
   value of command argument 0 is processor dependent.
-  : For values from 1 to the number of arguments passed to the program a
+
+  For values from 1 to the number of arguments passed to the program a
   value is returned in an order determined by the processor. Conventionally
   they are returned consecutively as they appear on the command line from
   left to right.
@@ -10697,7 +11163,7 @@ what the user typed on the command line.
   : The **value** argument holds the command line argument.
   If **value** can not hold the argument, it is truncated to fit the
   length of **value**.
-  : If there are less than **number** arguments specified at the command
+  If there are less than **number** arguments specified at the command
   line or if the argument specified does not exist for other reasons,
   **value** will be filled with blanks.
 
@@ -10718,35 +11184,45 @@ Sample program:
 ```fortran
 program demo_get_command_argument
 implicit none
-character(len=255)           :: progname
-integer                      :: count, i, argument_length, istat
+integer                      :: count, i, istat
 character(len=:),allocatable :: arg
 
- ! command name assuming it is less than 255 characters in length
-  call get_command_argument (0, progname, status=istat)
+ ! command name
+  arg=get_arg(0,istat)
   if (istat == 0) then
-     print *, "The program's name is " // trim (progname)
+     print *, "The program's name is " // trim (arg)
   else
-     print *, "Could not get the program's name " // trim (progname)
+     print *, "Could not get the program's name " // trim (arg)
   endif
 
  ! get number of arguments
   count = command_argument_count()
   write(*,*)'The number of arguments is ',count
 
-  !
-  ! allocate string array big enough to hold command line
-  ! argument strings and related information
-  !
+ ! show argument values
   do i=1,count
-     call get_command_argument(number=i,length=argument_length)
-     if(allocated(arg))deallocate(arg)
-     allocate(character(len=argument_length) :: arg)
-     call get_command_argument(i, arg,status=istat)
+     arg=get_arg(i,istat)
      ! show the results
      write (*,'(i3.3,1x,i0.5,1x,i0.5,1x,"[",a,"]")') &
-     & i,istat,argument_length,arg
+     & i,istat,len(arg),arg
   enddo
+
+contains
+
+function get_arg(n,status) result(arg)
+integer,intent(in)           :: n
+integer,intent(out),optional :: status
+integer                      :: argument_length, istat
+character(len=:),allocatable :: arg
+  !
+  ! allocate string big enough to hold command line argument
+  !
+   call get_command_argument( number=n, length=argument_length )
+   if(allocated(arg))deallocate( arg )
+   allocate(character(len=argument_length) :: arg )
+   call get_command_argument(n, arg, status=istat )
+   if(present(status)) status=istat
+end function get_arg
 
 end program demo_get_command_argument
 ```
@@ -14794,7 +15270,7 @@ Fortran 95 , related ISO_FORTRAN_ENV module - fortran 2009
 ### **See Also**
 + [**aimag**(3)](#aimag) - Imaginary part of complex number
 + [**cmplx**(3)](#cmplx) - Conversion to a complex type
-+ [**dble**(3)](#dble) - Converstion to double precision real
++ [**dble**(3)](#dble) - Conversion to double precision real
 + [**int**(3)](#int) - Truncate towards zero and convert to integer
 + [**nint**(3)](#nint) - Nearest whole number
 + [**real**(3)](#real) - Convert to real type
@@ -17639,7 +18115,7 @@ FORTRAN 77 , with KIND argument - Fortran 90
   : The result of NORM2 (X, DIM=DIM) has a value equal
     to that of NORM2 (X) if X has rank one. Otherwise,
     the resulting array is reduced in rank with dimension
-    **dim** removed, and each remaining elment is the
+    **dim** removed, and each remaining element is the
     result of NORM2(X) for the values along dimension
     **dim**.
 
@@ -19251,8 +19727,8 @@ Fortran 2018
 
 ### **See also**
 
-[random_number](#random_number),
-[random_seed](#random_seed)
+[**random_number**(3)](#random_number),
+[**random_seed**(3)](#random_seed)
 
  _Fortran intrinsic descriptions
 
@@ -19351,7 +19827,8 @@ Fortran 95
 
 ### **See Also**
 
-[**random_seed**(3)](#random_seed)
+[**random_seed**(3)](#random_seed),
+[**random_init**(3)](#random_init)
 
  _Fortran intrinsic descriptions_
 
@@ -19428,7 +19905,8 @@ Fortran 95
 
 ### **See Also**
 
-[**random_number**(3)](#random_number)
+[**random_number**(3)](#random_number),
+[**random_init**(3)](#random_init)
 
  _Fortran intrinsic descriptions_
 
@@ -19847,8 +20325,8 @@ or
  - **array** is an array of any type
  - **operation** is a pure function with exactly two arguments
    + each argument is scalar, non-allocatable, a nonpointer,
-     nonpolymorphic and nonoptional with the same type and kind as array.
-   + if one argument has the asynchronous, target, or value attribute so
+     nonpolymorphic and nonoptional with the same type and kind as **array**.
+   + if one argument has the _asynchronous_, _target_, or _value_ attribute so
      shall the other.
  - **dim** is an _integer_ scalar
  - **mask** is a logical conformable with **array**
@@ -19881,40 +20359,39 @@ or
   : An array of any type and allowed rank to select values from.
 
 - **operation**
-  : shall be a pure function with exactly two arguments;
-  each argument shall be a scalar, nonallocatable,
-  nonpointer, nonpolymorphic, nonoptional dummy data object
-  with the same type and type parameters as **array**. If
-  one argument has the ASYNCHRONOUS, TARGET, or VALUE
-  attribute, the other shall have that attribute. Its result
-  shall be a nonpolymorphic scalar and have the same type
-  and type parameters as **array**. **operation** should
-  implement a mathematically associative operation. It
-  need not be commutative.
+  : shall be a pure function with exactly two arguments. **operation**
+  should implement a mathematically associative operation. It need not
+  be commutative.
+
+  The function result shall be a nonpolymorphic scalar and have the same
+  type and type parameters as **array**.
 
   NOTE
 
-  If **operation** is not computationally associative, REDUCE
-  without ORDERED=.TRUE. with the same argument values
-  might not always produce the same result, as the processor
-  can apply the associative law to the evaluation.
+  If **operation** is not computationally associative, REDUCE without
+  ORDERED=.TRUE. with the same argument values might not always produce
+  the same result, as the processor can apply the associative law to
+  the evaluation.
 
-  Many operations that mathematically are associative are
-  not when applied to floating-point numbers. The order
-  you sum values in may affect the result, for example.
+  Many operations that mathematically are associative are not when applied
+  to floating-point numbers. The order you sum values in may affect the
+  result, for example.
 
 - **dim**
-  : An integer scalar with a value in the range
-  1<= **dim** <= n, where n is the rank of **array**.
+  : An integer scalar with a value in the range 1<= **dim** <= n,
+  where n is the rank of **array**.
+
+  If **dim** is present, it indicates the one dimension along which to
+  perform the reduction, and the resultant array has a rank reduced by
+  one relative to the input array.
 
 - **mask**
-  : (optional) shall be of type logical and shall be
-  conformable with **array**.
+  : (optional) shall be of type logical and shall be conformable with
+  **array**.
 
-  When present only those elements of **array** are passed
-  to **operation** for which the corresponding elements
-  of **mask** are true, as if **array** was filtered with
-  **pack(3)**.
+  When present only those elements of **array** are passed to
+  **operation** for which the corresponding elements of **mask** are true,
+  as if **array** was filtered with **pack(3)**.
 
 - **identity**
   : shall be scalar with the same type and type parameters as **array**.
@@ -19932,8 +20409,9 @@ or
 
 ### **Result**
 
-The result is of the same type and type parameters as **array**. It is
-scalar if **dim** does not appear.
+The result is of the same type and type parameters as **array**.
+
+It is scalar if **dim** does not appear.
 
 If **dim** is present, it indicates the one dimension along which to
 perform the reduction, and the resultant array has a rank reduced by
@@ -20786,6 +21264,157 @@ of arguments, and search for certain arguments:
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
+## select_case
+
+### **Name**
+   select_case(7f) - [EXECUTION CONTROL] select a block based on the
+   value of an expression (a case)
+
+### **Synopsis**
+The CASE construct selects for execution at most one of its constituent
+blocks. The selection is based on the value of an expression.
+```fortran
+  [ case-construct-name : ] SELECT CASE (case-expr)
+  CASE (value) [case-construct-name]
+     [selected code]
+  CASE ([lower_value]:[upper_value]) [case-construct-name]
+     [selected code]
+  CASE (range_or_value,range_or_value,...) [case-construct-name]
+     [selected code]
+  CASE default
+  END SELECT [ case-construct-name ]
+```
+  The expression may be _integer_,_character_,or _logical_. In particular
+  it cannot be _real_.
+
+  For a given case-construct, there shall be no possible
+  value of the case-expr that matches more
+  than one case-value-range.
+
+  If the select-case-stmt of a case-construct specifies a
+  case-construct-name, the corresponding end-select-stmt shall specify
+  the same case-construct-name.
+
+  If the select-case-stmt of a case-construct does not specify a
+  case-construct-name, the corresponding end-select-stmt shall not
+  specify a case-construct-name.
+
+  If a case-stmt specifies a case-construct-name, the corresponding
+  select-case-stmt shall specify the same case-construct-name.
+
+  No more than one of the selectors of one of the CASE statements shall
+  be DEFAULT.
+
+  - For a given case-construct, each case-value shall be
+    of the same type as case-expr
+  - For character type, the kind type parameters shall be the same
+  - character length differences are allowed.
+  - A case-value-range using a colon shall not be used if case-expr is
+    of type logical.
+
+### **Description**
+
+   The execution of the SELECT CASE statement causes the case expression
+   to be evaluated. The resulting value is called the case index. For a
+   case value range list, a match occurs if the case index matches any
+   of the case value ranges in the list. For a case index with a value
+   of c, a match is determined as follows.
+
+     1. If the case value range contains a single value v without a
+        colon, a match occurs for type logical if the expression
+        c .EQV. v is true, and a match occurs for type integer or
+        character if the expression c == v is true.
+     2. If the case value range is of the form low : high, a match
+        occurs if the expression low <= c .AND. c <= high is true.
+     3. If the case value range is of the form low :, a match occurs
+        if the expression low <= c is true.
+     4. If the case value range is of the form : high, a match occurs
+        if the expression c <= high is true.
+     5. If no other selector matches and a DEFAULT selector appears,
+        it matches the case index.
+     6. If no other selector matches and the DEFAULT selector does
+        not appear, there is no match.
+
+   The block following the CASE statement containing the matching
+   selector, if any, is executed. This completes execution of the
+   construct.
+
+   It is permissible to branch to an end-select-stmt only from within
+   its CASE construct.
+
+### **Examples**
+
+An integer signum function:
+```fortran
+integer function signum (n)
+   select case (n)
+   case (:-1)
+      signum = -1  ! if <= -1 set to negative 1
+   case (0)
+      signum = 0
+   case (1:)
+      signum = 1   ! anything >= 1 set to positive 1
+   end select
+end function signum
+```
+A code fragment to check for balanced parentheses:
+```fortran
+       character (80) :: line
+          ...
+       level = 0
+       scan_line: do i = 1, 80
+          check_parens: select case (line (i:i))
+          case ('(')
+             level = level + 1
+          case (')')
+             level = level - 1
+             if (level < 0) then
+                print *, 'unexpected right parenthesis'
+                exit scan_line
+             end if
+          case default
+             ! ignore all other characters
+           end select check_parens
+        end do scan_line
+        if (level > 0) then
+           print *, 'missing right parenthesis'
+        end if
+```
+
+        the following three fragments are equivalent:
+
+```fortran
+        if (silly == 1) then
+           call this
+        else
+           call that
+        end if
+
+        select case (silly == 1)
+        case (.true.)
+           call this
+        case (.false.)
+           call that
+        end select
+
+        select case (silly)
+        case default
+           call that
+        case (1)
+           call this
+        end select
+```
+A code fragment showing several selections of one block:
+
+```fortran
+   select case (n)
+      case (1, 3:5, 8)        ! selects 1, 3, 4, 5, 8
+         call sub()
+      case default
+         call other()
+   end select
+```
+
 ## selected_char_kind
 
 ### **Name**
@@ -21003,21 +21632,58 @@ Sample program:
 
 ```fortran
 program demo_selected_int_kind
+use,intrinsic :: iso_fortran_env, only : integer_kinds
+use,intrinsic :: iso_fortran_env, only : compiler_version
 implicit none
+character(len=*),parameter :: all='(*(g0))'
 integer,parameter :: k5 = selected_int_kind(5)
 integer,parameter :: k15 = selected_int_kind(15)
-integer(kind=k5) :: i5
+integer           :: i, ii
+integer(kind=k5)  :: i5
 integer(kind=k15) :: i15
+   print all,'program kinds'
+   print all, &
+      '! This file was compiled by ', compiler_version()
+   do i=1,size(INTEGER_KINDS)
+      ii=integer_kinds(i)
+      print all,'integer(kind=',ii,') :: i',ii
+   enddo
+   do i=1,size(INTEGER_KINDS)
+      ii=integer_kinds(i)
+      print all, &
+      'write(*,*)"huge(i', &
+      ii, &
+      ')=",huge(i', &
+      ii, &
+      ')'
 
-    print *, huge(i5), huge(i15)
+   enddo
+   print all,'end program kinds'
 
-    ! the following inequalities are always true
-    print *, huge(i5) >= 10_k5**5-1
-    print *, huge(i15) >= 10_k15**15-1
+   print *
+   print *, huge(i5), huge(i15)
+   ! the following inequalities are always true
+   print *, huge(i5) >= 10_k5**5-1
+   print *, huge(i15) >= 10_k15**15-1
+
 end program demo_selected_int_kind
 ```
 Results:
 ```text
+  > program kinds
+  > ! This file was compiled by GCC version 15.0.0 20241103 (experimental)
+  > integer(kind=1) :: i1
+  > integer(kind=2) :: i2
+  > integer(kind=4) :: i4
+  > integer(kind=8) :: i8
+  > integer(kind=16) :: i16
+  > write(*,*)"huge(i1)=",huge(i1)
+  > write(*,*)"huge(i2)=",huge(i2)
+  > write(*,*)"huge(i4)=",huge(i4)
+  > write(*,*)"huge(i8)=",huge(i8)
+  > write(*,*)"huge(i16)=",huge(i16)
+  > end program kinds
+  >
   >   2147483647  9223372036854775807
   >  T
   >  T
@@ -22118,12 +22784,26 @@ Fortran 95 , for a complex argument Fortran 2008
 
 ### **Description**
 
-  **sin**(3) computes the sine of an angle given the size of the angle
-  in radians.
+  **sin(X)** computes the sine of X, where X is an angle in radians. The
+  result is a scalar or array of the same type and kind as **x**. For
+  real inputs, the result is in the range [-1, 1]. For complex inputs,
+  the sine is computed using the complex trigonometric definition. That
+  is, for complex inputs,
+
+      SIN(X) = (EXP(i*X) - EXP(-i*X)) / (2*i)
 
   The sine of an angle in a right-angled triangle is the ratio of the
   length of the side opposite the given angle divided by the length of
   the hypotenuse.
+
+  For real inputs, ensure X is in radians, not degrees. Use
+
+      RADIAN = DEGREE * 3.14159265359 / 180.0
+
+  for conversion.
+
+  where i is the imaginary unit. The result’s kind matches the
+  input’s kind.
 
 ### **Options**
 
@@ -23147,7 +23827,8 @@ Fortran 2008
 
 ### **Name**
 
-**sum**(3) - \[ARRAY:REDUCTION\] Sum the elements of an array
+**sum**(3) - \[ARRAY:REDUCTION\] Sum all elements of an array, optionally
+along a dimension or with a mask
 
 ### **Synopsis**
 ```fortran
@@ -23171,7 +23852,10 @@ Fortran 2008
 
 ### **Description**
 
-  **sum**(3) adds the elements of **array**.
+  **sum(array, dim, mask)** computes the sum of all elements in **array**,
+  optionally along a specified dimension **dim** or for elements where
+  **mask** is **.true.**. The result is a scalar (if **dim** is absent)
+  or an array of rank reduced by one (if **dim** is present).
 
   When only **array** is specified all elements are summed, but groups
   of sums may be returned along the dimension specified by **dim**
@@ -24865,8 +25549,15 @@ into an array using a mask
 array **field** of any rank using _.true._ values from **mask** in array
 element order to specify placement of the **vector** values.
 
-So a copy of **field** is generated with select elements replaced with
-values from **vector**. This allows for complex replacement patterns
+The result is a copy of **field** generated with select elements
+replaced with values from **vector**.
+
+That is, **field** and **mask** are of the same shape. A copy of
+**field** is made except that where any element of **mask** is .true. the
+corresponding element in **field** is replaced with the next value
+in **vector**.
+
+This allows for complex replacement patterns
 that would be difficult when using array syntax or multiple assignment
 statements, particularly when the replacements are conditional.
 
@@ -24882,13 +25573,13 @@ statements, particularly when the replacements are conditional.
   in **field** are to be replaced with values from **vector**.
 
 - **field**
-  : The input array to be altered.
+  : The input array to be altered, or a scalar.
 
 ### **Result**
 
   The element of the result that corresponds to the ith true element of
   **mask**, in array element order, has the value **vector(i)** for i =
-  1, 2, . . ., t, where t is the number of true values in **mask**. Each
+  1, 2, .., N, where N is the number of true values in **mask**. Each
   other element has a value equal to **field** if **field** is scalar
   or to the corresponding element of **field** if it is an array.
 
@@ -24896,62 +25587,52 @@ statements, particularly when the replacements are conditional.
   of **mask** replaced by values from **vector** in array element order.
 
 ### **Examples**
-Particular values may be "scattered" to particular positions in an array
-by using
-```text
-                       1 0 0
-    If M is the array  0 1 0
-                       0 0 1
 
-    V is the array [1, 2, 3],
-                               . T .
-    and Q is the logical mask  T . .
-                               . . T
-    where "T" represents true and "." represents false, then the result of
-
-    UNPACK (V, MASK = Q, FIELD = M) has the value
-
-      1 2 0
-      1 1 0
-      0 0 3
-
-    and the result of UNPACK (V, MASK = Q, FIELD = 0) has the value
-
-      0 2 0
-      1 0 0
-      0 0 3
-```
 Sample program:
-
 ```fortran
 program demo_unpack
 implicit none
 logical,parameter :: T=.true., F=.false.
+integer,parameter :: rows=3, cols=3
+integer           :: i
+logical           :: mask(rows,cols) = reshape([ &
+   T, F, F, &
+   F, T, F, &
+   F, F, T  &
+],[3,3])
+integer :: field(rows,cols) = reshape([ &
+   1, 2, 3, &
+   4, 5, 6, &
+   7, 8, 9  &
+],[3,3])
+integer :: result(rows,cols)
 
-integer :: vector(2)  = [1,1]
+  ! mask and field must conform or field must be a scalar
+   write(*,*) 'if the logical mask is'
+   do i=1,size(mask,dim=1)
+      write(*,*)mask(i,:)
+   enddo
+   write(*,*) 'and field is a scalar (in this case, 0)'
+   write(*,*) 'the result is the shape of the mask'
+   write(*,*) 'with all values set to the scalar value'
+   write(*,*) 'except the true elements of the mask are'
+   write(*,*) 'filled in row-column order with values'
+   write(*,*) 'from the vector of values [11,22,33]'
+   result = unpack( [11,22,33], mask, field=0 )
+   call print_matrix_int('result=', result)
 
-! mask and field must conform
-integer,parameter :: r=2, c=2
-logical :: mask(r,c)  = reshape([ T,F,F,T ],[2,2])
-integer :: field(r,c) = 0, unity(2,2)
-
-   ! basic usage
-   unity = unpack( vector, mask, field )
-   call print_matrix_int('unity=', unity)
-
-   ! if FIELD is a scalar it is used to fill all the elements
-   ! not assigned to by the vector and mask.
-   call print_matrix_int('scalar field',         &
-   & unpack(                                     &
-   & vector=[ 1, 2, 3, 4 ],                      &
-   & mask=reshape([ T,F,T,F,F,F,T,F,T ], [3,3]), &
-   & field=0) )
+   write(*,*) 'if field is an array it must conform'
+   write(*,*) 'to the shape of the mask'
+   call print_matrix_int('field=',field)
+   write(*,*) 'and the combination results in'
+   result = unpack( [11,22,33], mask, field )
+   call print_matrix_int('result=', result)
 
 contains
 
 subroutine print_matrix_int(title,arr)
-! convenience routine:
-! just prints small integer arrays in row-column format
+! @(#) convenience routine:
+!      prints small integer arrays in row-column format
 implicit none
 character(len=*),intent(in)  :: title
 integer,intent(in)           :: arr(:,:)
@@ -24975,15 +25656,32 @@ end subroutine print_matrix_int
 end program demo_unpack
 ```
 Results:
-
 ```text
-   > unity=
-   >  [ 1, 0 ]
-   >  [ 0, 1 ]
-   > scalar field
-   >  [  1,  0,  3 ]
-   >  [  0,  0,  0 ]
-   >  [  2,  0,  4 ]
+ >  if the logical mask is
+ >  T F F
+ >  F T F
+ >  F F T
+ >  and field is a scalar (in this case, 0)
+ >  the result is the shape of the mask
+ >  with all values set to the scalar value
+ >  except the true elements of the mask are
+ >  filled in row-column order with values
+ >  from the vector of values [11,22,33]
+ >  result=
+ >   [  11,   0,   0 ]
+ >   [   0,  22,   0 ]
+ >   [   0,   0,  33 ]
+ >  if field is an array it must conform
+ >  to the shape of the mask
+ >  field=
+ >   [  1,  4,  7 ]
+ >   [  2,  5,  8 ]
+ >   [  3,  6,  9 ]
+ >  and the combination results in
+ >  result=
+ >   [  11,   4,   7 ]
+ >   [   2,  22,   8 ]
+ >   [   3,   6,  33 ]
 ```
 ### **Standard**
 
