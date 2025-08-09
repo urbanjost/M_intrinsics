@@ -58,7 +58,8 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-SUM(3) - [ARRAY:REDUCTION] Sum the elements of an array
+SUM(3) - [ARRAY:REDUCTION] Sum all elements of an array, optionally
+along a dimension or with a mask
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
@@ -123,7 +124,10 @@ DIM is not present or ARRAY is a vector, else it is an array.
 </A>
 <BLOCKQUOTE>
 <P>
-SUM(3) adds the elements of ARRAY.
+SUM(ARRAY, DIM, MASK) computes the sum of all elements in ARRAY,
+optionally along a specified dimension DIM or for elements where MASK is
+[char46]TRUE.. The result is a scalar (if DIM is absent) or an array of rank
+reduced by one (if DIM is present).
 <P>
 When only ARRAY is specified all elements are summed, but groups of sums
 may be returned along the dimension specified by DIM and/or elements to

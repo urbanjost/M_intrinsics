@@ -1,6 +1,6 @@
 # TOML file for fpm as described at https://fpm.fortran-lang.org/en/spec/manifest.html
 name = "M_intrinsics"
-version = "0.1.0"
+version = "3.0.1"
 license = "CC0-1.0"
 author = "John S. Urban"
 maintainer = "urbanjost@comcast.net"

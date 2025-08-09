@@ -113,7 +113,34 @@ The returned value is of the same type and kind as X.
 </A>
 <BLOCKQUOTE>
 <P>
-ATAN(3) computes the arctangent of X.
+ATAN(X)(3) returns the inverse tangent (ie. arctangent) of the elements
+of X in radians. The function accepts both real and complex inputs,
+specified as a scalar, vector, matrix. The atan operation is
+element-wise when X is nonscalar.
+<TABLE cellpadding=3><!-- tsb: ATAN(X)(3) returns the inverse tangent (ie. arctangent) of the elements
+ -->
+<TR></TR><TR></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+For real values of X, atan(X) returns values in the interval [-PI/2,
+PI/2].
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+For complex values of X, atan(X) returns complex values.
+</TD></TR>
+<TR></TR></TABLE>When Y is not supplied the inverse tangent is defined as
+<P>
+<PRE>
+    i=sqrt(-1)
+    atan(z)=&gt;(i/2)*log(i+z/i-z).
+<P>
+</PRE>
+This definition of the atan function returns angles in radians within
+the interval [-PI/2, PI/2]. To find the four-quadrant inverse tangent,
+where the returned angles are in the interval [-PI, PI], use atan2.
 </BLOCKQUOTE>
 <A name=4>
 
