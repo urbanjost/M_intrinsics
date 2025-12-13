@@ -29,7 +29,7 @@
             TESTFORZERO: block
                integer :: I      ! local block variable
                intrinsic :: tan  ! can use the TAN intrinsic in the block now
-                                 ! as this definition supercedes the one in the
+                                 ! as this definition supersedes the one in the
                                  ! parent body
                do i=1,size(a)
                   if(a(i).eq.0) then

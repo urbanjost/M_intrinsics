@@ -66,6 +66,5 @@ Fortran 95
 - [**ubound**(3)](#ubound) - Upper dimension bounds of an array
 - [**bit_size**(3)](#bit_size) - Bit size inquiry function
 - [**storage_size**(3)](#storage_size) - Storage size in bits
-- [**kind**(3)](#kind) - Kind of an entity
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_

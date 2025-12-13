@@ -27,6 +27,13 @@
 
   **logical**(3) converts one kind of _logical_ variable to another.
 
+  For performance and storage purposes you generally want to use the
+  smallest storage size supported when using large logical arrays, but
+  some existing routines may require a specific kind. LOGICAL(3f) can
+  change the kind of logical variables or expressions; but if converting
+  is required frequently you might evaluate whether another kind is
+  called for.
+
 ### **Options**
 
 - **l**
@@ -50,82 +57,102 @@ program demo_logical
 use iso_fortran_env, only : logical_kinds
 use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
 use,intrinsic :: iso_fortran_env, only : real32, real64, real128
+!
+! The standard only requires one default logical kind to be supported
+! of the same storage size as a default INTEGER and REAL but the
+! following kind names are standard. The kind may not be 
+! supported (in which case the value of the kind name will be a 
+! negative integer value) and additional kinds may be available as well.
+use,intrinsic :: iso_fortran_env, only : &
+ & LOGICAL8, LOGICAL16, LOGICAL32, LOGICAL64
+!
+! C_BOOL is a kind compatible with C interfaces
+use,intrinsic :: iso_c_binding,   only : C_BOOL
+!
 implicit none
-character(len=*),parameter :: g='(*(g0))'
-integer :: i, i1, i2
-logical :: l1, l2
+character(len=*),parameter            :: all='(*(g0))'
+integer                               :: i, i1, i2
+! make T and F abbreviations for .TRUE. and .FALSE.
+logical,parameter                     :: T=.true., F=.false.
+logical                               :: l1, l2
+! potentially save space and improve performance by using the
+! smallest available kind
+logical(kind=selected_logical_kind(1)) :: smallest_storage(10,20)
+logical(kind=c_bool)                   :: boolean=.TRUE.
   !
-  ! list kind values supported on this platform
-  !
+  print all, 'list LOGICAL kind values available on this platform'
    do i =1, size(logical_kinds)
-      write(*,'(*(g0))')'integer,parameter :: boolean', &
+      write(*,all)'   integer,parameter :: boolean', &
       & logical_kinds(i),'=', logical_kinds(i)
    enddo
-  ! for performance and storage purposes you generally want
-  ! to use the smallest storage size supported when using
-  ! large arrays, but some existing routines may require
-  ! the default kind. LOGICAL(3f) can change the kind of
-  ! the variables.
+
+  print all, '   LOGICAL8  ==> KIND=',LOGICAL8
+  print all, '   LOGICAL16 ==> KIND=',LOGICAL16
+  print all, '   LOGICAL32 ==> KIND=',LOGICAL32
+  print all, '   LOGICAL64 ==> KIND=',LOGICAL64
+  print all, '   C_BOOL    ==> KIND=',C_BOOL
+
+  print all, 'MERGE() is one method for transposing logical and integer'
+  ! converting a logical to an integer is not done
+  ! with LOGICAL(3f) and INT(3f) or promotion by assignment;
+  ! but can be done with MERGE(3f) with scalars or arrays.
+   i1=merge(0,1,T)
+   i2=merge(0,1,F)
+   write(*,all)'   T-->',i1,' F-->',I2
+   l1=merge(T,F,i1.eq.0)
+   l2=merge(T,F,i2.eq.0)
+   write(*,all)'   0-->',l1,' 1-->',l2
+
   !
-  ! But converting a logical to an integer is not done
-  ! with LOGICAL(3f); but can be down with MERGE(3f).
+  ! Note the standard specifies the default INTEGER, REAL, and LOGICAL
+  ! types have the same storage size, but compiler options often allow
+  ! changing that. STORAGE_SIZE() can be used to confirm that.
   !
-   l1=.true.
-   l2=.false.
-   i1=merge(0,1,l1)
-   i2=merge(0,1,l2)
-   write(*,g)'L1=',l1,' L2=',l2,' I1=',i1,' I2=',i2
-  !
-  ! show type and kind of default logicals
+  print all, 'show kind and storage size of default logical'
    call showme(.true.)
    call showme(l1)
-  ! show logical() changing type and kind
-   call showme(logical(l1))
-  ! you may have to delete unsupported kinds from this example
+  ! A method to portably request the smallest storage size is
+  !    logical(kind=selected_logical_kind(1) :: array(1000,1000)
+  print all, 'storage size of smallest logical kind'
+   call showme(logical(l1,kind=selected_logical_kind(1)))
 
-  ! this is probably the default
-   call showme(logical(l1,kind=4))
-  ! note how showme shows different kinds are being passed to it
-   call showme(logical(l1,kind=8))
-   call showme(logical(l1,kind=2))
-  ! this is probably the smallest storage size supported
-  ! on this platform; but kind values are platform-specific
+  ! you may have to delete unsupported kinds from this example
+  print all, 'different kinds are being passed because of LOGICAL() call'
+  print all,'KIND values are platform-specific'
    call showme(logical(l1,kind=1))
+   call showme(logical(l1,kind=2))
+   call showme(logical(l1,kind=4))
+   call showme(logical(l1,kind=8))
+  print all,'kind=C_BOOL'
+   call showme(logical(l1,kind=c_bool))
+  print all,'SELECTED_LOGICAL_KIND() is more portable than KIND values'
+  ! you might want to check the resulting kind
+   call showme(logical(l1,kind=selected_logical_kind(1))) ! smallest
+   call showme(logical(l1,kind=kind(.true.)))             ! default
+   call showme(logical(l1,kind=selected_logical_kind(8)))
+   call showme(logical(l1,kind=selected_logical_kind(16)))
+   call showme(logical(l1,kind=selected_logical_kind(32)))
+   call showme(logical(l1,kind=selected_logical_kind(64)))
+
 contains
 subroutine showme(val)
 ! @(#) showme(3f) - display type and kind of intrinsic value
+! this is an example of how to accept any logical kind as a parameter,
+! but this is often done with a generic procedure.
 class(*),intent(in) :: val
    select type(val)
-      type is (integer(kind=int8))
-        write(*,'("integer(kind=int8) ",i0)') val
-      type is (integer(kind=int16))
-         write(*,'("integer(kind=int16) ",i0)') val
-      type is (integer(kind=int32))
-         write(*,'("integer(kind=int32) ",i0)') val
-      type is (integer(kind=int64))
-         write(*,'("integer(kind=int64) ",i0)') val
-      type is (real(kind=real32))
-         write(*,'("real(kind=real32) ",1pg0)') val
-      type is (real(kind=real64))
-         write(*,'("real(kind=real64) ",1pg0)') val
-      type is (real(kind=real128))
-        write(*,'("real(kind=real128) ",1pg0)') val
-      type is (logical(kind=1))
-            write(*,'("logical(kind=1) ",l1,a,i0)') val, &
-	    & 'storage=',storage_size(val)
-      type is (logical(kind=2))
-            write(*,'("logical(kind=2) ",l1,a,i0)') val, &
-	    & 'storage=',storage_size(val)
-      type is (logical(kind=4))
-            write(*,'("logical(kind=4) ",l1,a,i0)') val, &
-	    & 'storage=',storage_size(val)
-      type is (logical(kind=8))
-            write(*,'("logical(kind=8) ",l1,a,i0)') val, &
-	    & 'storage=',storage_size(val)
-      type is (character(len=*))
-          write(*,'("character ",a)') trim(val)
-      type is (complex)
-                   write(*,'("","(",1pg0,",",1pg0,")")') val
+      type is (logical(kind=logical8))
+            write(*,'("   logical(kind=1) ",l1,a,i0)') val, &
+            & ' storage=',storage_size(val)
+      type is (logical(kind=logical16))
+            write(*,'("   logical(kind=2) ",l1,a,i0)') val, &
+            & ' storage=',storage_size(val)
+      type is (logical(kind=logical32))
+            write(*,'("   logical(kind=4) ",l1,a,i0)') val, &
+            & ' storage=',storage_size(val)
+      type is (logical(kind=logical64))
+            write(*,'("   logical(kind=8) ",l1,a,i0)') val, &
+            & ' storage=',storage_size(val)
       class default
       stop 'crud. showme() does not know about this type'
    end select
@@ -133,19 +160,42 @@ end subroutine showme
 end program demo_logical
 ```
 Results:
+
 ```text
- > integer,parameter :: boolean1=1
- > integer,parameter :: boolean2=2
- > integer,parameter :: boolean4=4
- > integer,parameter :: boolean8=8
- > integer,parameter :: boolean16=16
- > L1=T L2=F I1=0 I2=1
- > logical(kind=4) Tstorage=32
- > logical(kind=4) Tstorage=32
- > logical(kind=4) Tstorage=32
- > logical(kind=1) Tstorage=8
- > logical(kind=2) Tstorage=16
- > logical(kind=4) Tstorage=32
+    > list LOGICAL kind values available on this platform
+    >    integer,parameter :: boolean1=1
+    >    integer,parameter :: boolean2=2
+    >    integer,parameter :: boolean4=4
+    >    integer,parameter :: boolean8=8
+    >    integer,parameter :: boolean16=16
+    >    LOGICAL8  ==> KIND=1
+    >    LOGICAL16 ==> KIND=2
+    >    LOGICAL32 ==> KIND=4
+    >    LOGICAL64 ==> KIND=8
+    >    C_BOOL    ==> KIND=1
+    > MERGE() is one method for transposing logical and integer
+    >    T-->0 F-->1
+    >    0-->T 1-->F
+    > show kind and storage size of default logical
+    >    logical(kind=4) T storage=32
+    >    logical(kind=4) T storage=32
+    > storage size of smallest logical kind
+    >    logical(kind=1) T storage=8
+    > different kinds are being passed because of LOGICAL() call
+    > KIND values are platform-specific
+    >    logical(kind=1) T storage=8
+    >    logical(kind=2) T storage=16
+    >    logical(kind=4) T storage=32
+    >    logical(kind=8) T storage=64
+    > kind=C_BOOL
+    >    logical(kind=1) T storage=8
+    > SELECTED_LOGICAL_KIND() is more portable than KIND values
+    >    logical(kind=1) T storage=8
+    >    logical(kind=4) T storage=32
+    >    logical(kind=1) T storage=8
+    >    logical(kind=2) T storage=16
+    >    logical(kind=4) T storage=32
+    >    logical(kind=8) T storage=64
 ```
 ### **Standard**
 
@@ -154,7 +204,7 @@ Fortran 95 , related ISO_FORTRAN_ENV module - fortran 2009
 ### **See Also**
 + [**aimag**(3)](#aimag) - Imaginary part of complex number
 + [**cmplx**(3)](#cmplx) - Conversion to a complex type
-+ [**dble**(3)](#dble) - Converstion to double precision real
++ [**dble**(3)](#dble) - Conversion to double precision real
 + [**int**(3)](#int) - Truncate towards zero and convert to integer
 + [**nint**(3)](#nint) - Nearest whole number
 + [**real**(3)](#real) - Convert to real type
@@ -163,4 +213,3 @@ Fortran 95 , related ISO_FORTRAN_ENV module - fortran 2009
 + [**transfer**(3)](#transfer) - Transfer bit patterns
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
-

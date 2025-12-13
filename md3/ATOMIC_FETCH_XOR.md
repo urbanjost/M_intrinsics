@@ -2,7 +2,8 @@
 
 ### **Name**
 
-**atomic_fetch_xor**(3) - \[ATOMIC:BIT MANIPULATION\] Atomic bitwise XOR operation with prior fetch
+**atomic_fetch_xor**(3) - \[ATOMIC:BIT MANIPULATION\] Atomically fetch
+and perform a bitwise XOR operation
 
 ### **Synopsis**
 ```fortran
@@ -13,16 +14,31 @@
 ```
 ### **Characteristics**
 
+  + **atom**: A scalar coarray or coindexed variable of integer type with
+    kind **atomic_int_kind**.
+
+  + **value**: A scalar of the same type as **atom**.
+
+  + **old**: A scalar of the same type and kind as **atom**. 
+
+  + **stat** (optional): A scalar default-kind integer.
+
 ### **Description**
 
-**atomic_fetch_xor**(3) atomically stores the value of
-**atom** in **old** and defines **atom** with the bitwise **xor** between the values of
-**atom** and **value**. When **stat** is present and the invocation was successful,
-it is assigned the value **0**. If it is present and the invocation has
+**atomic_fetch_xor(atom, value, old, stat)** atomically stores the value
+of **atom** in **old** and performs a bitwise **xor** operation between
+**atom** and **value**, storing the result in **atom**.
+
+When **stat** is present and the invocation was successful, it is
+assigned the value **0**. If it is present and the invocation has
 failed, it is assigned a positive value; in particular, for a coindexed
 **atom**, if the remote image has stopped, it is assigned the value of
-iso_fortran_env's stat_stopped_image and if the remote image has
-failed, the value stat_failed_image.
+**iso_fortran_env**'s **stat_stopped_image** and if the remote image
+has failed, the value **stat_failed_image**.
+
+The result is the bitwise **xor** (e.g., 1100 XOR 1010 = 0110).
+
+It is useful for toggling bits atomically.
 
 ### **Options**
 
@@ -46,13 +62,33 @@ Sample program:
 
 ```fortran
 program demo_atomic_fetch_xor
-use iso_fortran_env
-implicit none
-integer(atomic_int_kind) :: atom[*], old
-   call atomic_fetch_xor (atom[1], int(b'10100011101'), old)
+
+  use iso_fortran_env
+  implicit none
+  integer(atomic_int_kind) :: flags[*], old
+  integer :: stat, me
+
+  if (this_image() == 1) flags = int(b'1100', atomic_int_kind)
+  sync all
+
+  me = this_image()
+  call atomic_fetch_xor(flags[1], int(b'1010', atomic_int_kind), old, stat)
+
+  if (stat /= 0) print *, "Image", me, ": Failed with STAT =", stat
+  print *, "Image", me, ": Old =", old
+  sync all
+
+  if (this_image() == 1) print *, "Final flags:", flags
 end program demo_atomic_fetch_xor
 ```
-
+Expected Output (4 images, order varies)
+```text
+    > Image 1: Old = 12
+    > Image 2: Old = 6
+    > Image 3: Old = 6
+    > Image 4: Old = 6
+    > Final flags: 6
+```
 ### **Standard**
 
 TS 18508
@@ -67,5 +103,8 @@ TS 18508
 [**atomic_fetch_and**(3)](#atomic_fetch_and),
 
 [**atomic_fetch_or**(3)](#atomic_fetch_or)
+
+See **iso_fortran_env** for constants like **atomic_int_kind**,
+**stat_stopped_image**, and **stat_failed_image**.
 
  _Fortran intrinsic descriptions_

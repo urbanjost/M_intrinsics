@@ -11,7 +11,7 @@
   **where** construct without ELSEWHERE:
 ```fortran
      [where-construct-name:] WHERE ( mask-expr )
-     ELSEWHERE (mask-expr ) [where-construct-name]
+     ENDWHERE (mask-expr ) [where-construct-name]
 ```
   **where** construct with ELSEWHEREs:
 ```fortran
@@ -24,7 +24,7 @@
      [ELSEWHERE
         elemental-statements
      ]
-     END WHERE [where-construct-name]
+     ENDWHERE [where-construct-name]
 ```
 ### **Description**
    A masked array assignment is either a **where** statement or a **where**
@@ -97,7 +97,7 @@
             . . .
             elsewhere                ! Statement 3
             . . .
-            end where
+            endwhere
 ```
 
    Following execution of statement 1, the control mask has the value
@@ -159,7 +159,7 @@
        A = LOG (A)           ! LOG is invoked only for positive elements.
        A = A / SUM (LOG (A)) ! LOG is invoked for all elements
                              ! because SUM is transformational.
-    end where
+    endwhere
 ```
 
 ### **Example**
@@ -168,7 +168,7 @@
 
 ```fortran
    program demo_where
-   !  Example of WHERE, ELSE WHERE, END WHERE
+   !  Example of WHERE, ELSEWHERE, ENDWHERE
    integer,parameter :: nd=10, ndh=nd/2, nduh=nd-ndh-1
    integer :: j
    real, dimension(nd):: a=[ (2*j,j=1,nd) ]
@@ -188,10 +188,10 @@
    where (b(1:nd).ne.0.0)
       c=a/b
       iflag=0
-   else where
+   elsewhere
       c=0.0
       iflag=1
-   end where
+   endwhere
 
    write (*,2000) c(1:nd)
    write (*,1000) iflag(1:nd)

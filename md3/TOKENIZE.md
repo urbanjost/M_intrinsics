@@ -52,7 +52,7 @@
      beginning position of the tokens and the other the end positions.
 
    Since the token form pads all the tokens to the same length the
-   original number of trailing spaces of each token accept for the
+   original number of trailing spaces of each token except for the
    longest is lost.
 
    The array bounds form retains information regarding the exact token
@@ -80,6 +80,10 @@
     The tokens in **string** are assigned in the order found, as if
     by intrinsic assignment, to the elements of **tokens**, in array
     element order.
+
+- **separator**
+  : separator(i) is equal to the ith token delimiter in string. There
+    is no element in separator that indicates beginning or end of string.
 
 - **first**
   : shall be an allocatable array of type integer and rank one. It is

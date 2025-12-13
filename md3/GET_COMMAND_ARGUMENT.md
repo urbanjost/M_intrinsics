@@ -39,20 +39,23 @@ arguments are quoted. IFS values (Internal Field Separators) used by
 common shells are typically ignored and unquoted whitespace is almost
 always the separator.
 
-Shells have often expanded command arguments and spell characters before
-passing them to the program, so the strings read are often not exactly
-what the user typed on the command line.
+Shells have often expanded command arguments before passing them to the
+program, so the strings read are often not exactly what the user typed
+on the command line.
 
 ### **Options**
 
 - **number**
   : is a non-negative number indicating which argument of the current
   program command line is to be retrieved or queried.
-  : If **number = 0**, the argument pointed to is set to the name of the
+
+  If **number = 0**, the argument pointed to is set to the name of the
   program (on systems that support this feature).
-  : if the processor does not have such a concept as a command name the
+
+  if the processor does not have such a concept as a command name the
   value of command argument 0 is processor dependent.
-  : For values from 1 to the number of arguments passed to the program a
+
+  For values from 1 to the number of arguments passed to the program a
   value is returned in an order determined by the processor. Conventionally
   they are returned consecutively as they appear on the command line from
   left to right.
@@ -63,7 +66,7 @@ what the user typed on the command line.
   : The **value** argument holds the command line argument.
   If **value** can not hold the argument, it is truncated to fit the
   length of **value**.
-  : If there are less than **number** arguments specified at the command
+  If there are less than **number** arguments specified at the command
   line or if the argument specified does not exist for other reasons,
   **value** will be filled with blanks.
 
@@ -84,35 +87,45 @@ Sample program:
 ```fortran
 program demo_get_command_argument
 implicit none
-character(len=255)           :: progname
-integer                      :: count, i, argument_length, istat
+integer                      :: count, i, istat
 character(len=:),allocatable :: arg
 
- ! command name assuming it is less than 255 characters in length
-  call get_command_argument (0, progname, status=istat)
+ ! command name
+  arg=get_arg(0,istat)
   if (istat == 0) then
-     print *, "The program's name is " // trim (progname)
+     print *, "The program's name is " // trim (arg)
   else
-     print *, "Could not get the program's name " // trim (progname)
+     print *, "Could not get the program's name " // trim (arg)
   endif
 
  ! get number of arguments
   count = command_argument_count()
   write(*,*)'The number of arguments is ',count
 
-  !
-  ! allocate string array big enough to hold command line
-  ! argument strings and related information
-  !
+ ! show argument values
   do i=1,count
-     call get_command_argument(number=i,length=argument_length)
-     if(allocated(arg))deallocate(arg)
-     allocate(character(len=argument_length) :: arg)
-     call get_command_argument(i, arg,status=istat)
+     arg=get_arg(i,istat)
      ! show the results
      write (*,'(i3.3,1x,i0.5,1x,i0.5,1x,"[",a,"]")') &
-     & i,istat,argument_length,arg
+     & i,istat,len(arg),arg
   enddo
+
+contains
+
+function get_arg(n,status) result(arg)
+integer,intent(in)           :: n
+integer,intent(out),optional :: status
+integer                      :: argument_length, istat
+character(len=:),allocatable :: arg
+  !
+  ! allocate string big enough to hold command line argument
+  !
+   call get_command_argument( number=n, length=argument_length )
+   if(allocated(arg))deallocate( arg )
+   allocate(character(len=argument_length) :: arg )
+   call get_command_argument(n, arg, status=istat )
+   if(present(status)) status=istat
+end function get_arg
 
 end program demo_get_command_argument
 ```

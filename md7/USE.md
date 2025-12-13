@@ -100,13 +100,13 @@
    use-defined-operators in the only-list.
 
    There is no prohibition against a use-name or use-defined-operator
-   appearing multiple times in one USE state- ment or in multiple USE
+   appearing multiple times in one USE statement or in multiple USE
    statements involving the same module. As a result, it is possible
    for one use-associated entity to be accessible by more than one
    local identifier.
 
    An entity in a scoping unit that is accessed by use association
-   through more than one use path, has the ASYN- CHRONOUS or VOLATILE
+   through more than one use path, has the ASYNCHRONOUS or VOLATILE
    attribute in any of those use paths, and is not given that attribute
    in that scoping unit, shall have that attribute in all use paths.
 

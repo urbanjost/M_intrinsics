@@ -1,8 +1,8 @@
 program fman
 use, intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT, stdout=>OUTPUT_UNIT, stdin=>INPUT_UNIT
 use M_intrinsics, only : help_intrinsics
-use M_CLI2,       only : set_args, sget, iget, lget, specified, topics=>unnamed
-use M_CLI2,       only : set_mode
+use M_CLI2,       only : set_args, sget, iget, lget, specified
+use M_CLI2,       only : set_mode, topics=>unnamed
 use M_match,      only : getpat, match, regex_pattern
 use M_match,      only : YES, ERR
 use M_strings,    only : lower, indent, atleast, str, replace
@@ -238,7 +238,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                              iinf=0
                               remember=paws
                              iinf=0
-                             i=min(size(manual)-1*lines+1,i) ! if too far 
+                             i=min(size(manual)-1*lines+1,i) ! if too far
                              remember=paws
                   case('/','n','N','\')
                              i=i-1
@@ -297,7 +297,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                              iinf=0
                              remember=paws
                   case('L')
-			     topics=['']
+                             topics=['']
                              filename=adjustl(trim(paws(2:)))
                               if(filename.ne.'')then
                                  call fileread(FILENAME,doc)
@@ -406,7 +406,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                   case('f')
                              i=i+(len_trim(paws)-1)*lines ! forward number of characters
                              iinf=0
-                             i=min(size(manual)-1*lines+1,i) ! if too far 
+                             i=min(size(manual)-1*lines+1,i) ! if too far
                              remember='f'
 !+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
                   case('S'); paws=adjustl(paws(2:)) ! save to file with color sequences if present
@@ -480,7 +480,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                   case('t','T','m')
                      i=0  ! developer: load a topic
                      if(paws.eq.'T')paws(2:)='toc'
-		     if(paws(1:4).eq.'man')paws(2:)=paws(5:)
+                     if(paws(1:4).eq.'man')paws(2:)=paws(5:)
                      topics=[adjustl(paws(2:))]
                      if(paws.eq.'t')then
                         call shorttopics()
@@ -492,7 +492,25 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                      endif
                      remember='f'
                   case('h','?')
-                     call cribsheet()
+                     if(paws.eq.'h')then
+                        call cribsheet()
+			if(paws.ne.'')then ! entered value at continue ...
+                           topics=[adjustl(paws)]
+                           call load_manual()
+                           if(color)manual=crayons(manual)
+			endif
+                     else
+                        ! if just h show cribsheet but if
+                        ! characters after h assume could
+                        ! be h topic or help topic so
+                        ! treat it like t command
+			if(paws.eq.'help')paws='help manual'
+                        m=index(paws(:len_trim(paws)),' ')
+                        if(m.eq.0)m=2
+                        topics=[adjustl(paws(m:))]
+                        call load_manual()
+                        if(color)manual=crayons(manual)
+                     endif
                      i=max(0,i-2*lines+2) ! back
                      remember='f'
                   case default
@@ -500,6 +518,11 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                         ierr=run(paws)
                      else
                         call cribsheet()
+			if(paws.ne.'')then ! entered value at continue ...
+                           topics=[adjustl(paws)]
+                           call load_manual()
+                           if(color)manual=crayons(manual)
+			endif
                         i=max(0,i-2*lines+2) ! back
                         remember='f'
                      endif
@@ -528,34 +551,33 @@ contains
 subroutine cribsheet()
    ! '123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 '
    write(stdout,'(a)')[character(len=80) :: &
-   & ' +------------+-----+----------------------+------+---------------------------+ ', &
-   & ' |POSITIONING:| b   | back one page        | f    | forward one page(default) | ', &
-   & ' |            | u   | up 1/2 page          | d    | down 1/2 page             | ', &
-   & ' |            | e   | up 1 line, eeeeee... | y    | down 1 line, yyyyyy...    | ', &
-   & ' |            | gN  | goto Nth line        | [+-]N| [relative] moveto Nth line| ', &
-   & ' +------------+-----+----------------------+------+---------------------------+ ', &
-   & ' |SEARCH:     | /RE | search for expression| \RE  | backward search           | ', &
-   & ' |            | n   | repeat last search   | N    | repeat last search upward | ', &
-   & ' +------------+-----+----------------------+------+---------------------------+ ', &
-   & ' |SYSTEM:     | s F | save to filename     | !cmd | execute system_command    | ', &
-   & ' +------------+-----+----------------------+------+---------------------------+ ', &
-   & ' |OPTIONS:    | #   | toggle line numbers  | lNNN | change lines per page     | ', &
-   & ' |            | i   | toggle search by case| c    | toggle color mode         | ', &
-   & ' +------------+-----+----------------------+------+---------------------------+ ', &
-   & ' |GENERAL:    | q   | quit                 | r    | refresh                   | ', &
-   & ' |            | h   | display help         | T    | reload Table Of Contents  | ', &
-   & ' |            | tstr| load specified topic |      |                           | ', &
-   & ' +------------+-----+----------------------+------+---------------------------+ ', &
+   & ' +---------+--------+----------------------+------+---------------------------+ ', &
+   & ' |POSITION:| b      | back one page        | f    | forward one page(default) | ', &
+   & ' |         | u      | up 1/2 page          | d    | down 1/2 page             | ', &
+   & ' |         | e      | up 1 line, eeeeee... | y    | down 1 line, yyyyyy...    | ', &
+   & ' |         | gN     | goto Nth line        | [+-]N| [relative] moveto Nth line| ', &
+   & ' +---------+--------+----------------------+------+---------------------------+ ', &
+   & ' |SEARCH:  | /RE    | search for expression| \RE  | backward search           | ', &
+   & ' |         | n      | repeat last search   | N    | repeat last search upward | ', &
+   & ' +---------+--------+----------------------+------+---------------------------+ ', &
+   & ' |SYSTEM:  | s file | save to filename     | !cmd | execute system_command    | ', &
+   & ' +---------+--------+----------------------+------+---------------------------+ ', &
+   & ' |DISPLAY  | #      | toggle line numbers  | lNNN | change lines per page     | ', &
+   & ' |OPTIONS  | i      | toggle search by case| c    | toggle color mode         | ', &
+   & ' |& MODES: | D      | toggle demo only mode| P    | toggle prefix mode        | ', &
+   & ' +---------+--------+----------------------+------+---------------------------+ ', &
+   & ' |GENERAL: | q      | quit                 | r    | refresh                   | ', &
+   & ' |         | h      | display this help    | T    | reload Table Of Contents  | ', &
+   & ' |         | h topic| load specified topic | t    | short table of contents   | ', &
+   & ' +---------+--------+----------------------+------+---------------------------+ ', &
    & ' | An empty string repeats the last positioning or toggle command. So if you  | ', &
    & ' | searched for a string or did an "e" or "y" and then just hit return the    | ', &
    & ' | previous command is repeated until a non-blank command like "r" is entered.| ', &
-   & ' |                                                                            | ', &
    & ' +----------------------------------------------------------------------------+ ']
    if(paws(1:1).eq.'X')then
    write(stdout,'(a)')[character(len=80) :: &
    & ' +------------+-----+----------------------+------+---------------------------+ ', &
-   & ' |DEVELOPER:  | C   | toggle color mode    | D    | toggle demo program mode  | ', &
-   & ' |            | Cstr| change colors        | P    | toggle prefix mode        | ', &
+   & ' |DEVELOPER:  | C   | toggle color mode    | Cstr | change colors             | ', &
    & ' |            | C?  | show current colors  | X    | show developer help       | ', &
    & ' |            | H   | command help         | L    | load file                 | ', &
    & ' |            | V   | version information  | B    | toggle showblanks         | ', &
@@ -619,8 +641,8 @@ integer :: m
 end subroutine shorttopics
 
 subroutine go_to(direction)
-integer,intent(in) :: direction 
-integer            :: plusminus 
+integer,intent(in) :: direction
+integer            :: plusminus
    paws=adjustl(paws)
    read(paws,'(i80)',iostat=iostat)m
    select case(paws(1:1))
@@ -672,7 +694,7 @@ integer                        :: start_keep, end_keep
        if(size(topics).lt.1.or.i.lt.1)then
           write(stdout,*)'!<ERROR> *fman* missing topics. standard demo code format not found.'
        else
-          write(stdout,*)'!<ERROR> *fman* standard demo code format not found for ',trim(topics(i))
+          write(stdout,*)'!<ERROR> *fman* standard demo code format not found'
        endif
        section=['']
     else
@@ -793,16 +815,16 @@ logical                                   :: program_text, after_demo
          if(oldblock(j)(1:1)=='[')then
             ilen=len_trim(oldblock(j))
             newblock(j)=attr('<bg><head>'//trim(oldblock(j))//'</head>'//repeat(' ',max(0,width-ilen))//'<reset>')
-	 else
+         else
             ipad=len_trim(oldblock(j))
             ipad=len_trim(than(oldblock(j)))-ipad
-	    if(index(oldblock(j),'(').ne.0)then
-	       newblock(j)=replace(than(oldblock(j)),'(','<fg>(',occurrence=1,repeat=1)
-	       ipad=ipad+4
+            if(index(oldblock(j),'(').ne.0)then
+               newblock(j)=replace(than(oldblock(j)),'(','<fg>(',occurrence=1,repeat=1)
+               ipad=ipad+4
                newblock(j)=attr('<bg><prg>'//atleast(trim(newblock(j)),width+ipad)//'<reset>')
-	    else
+            else
                newblock(j)=attr('<bg><fg>'//atleast(than(oldblock(j)),width+ipad)//'<reset>')
-	    endif
+            endif
          endif
       else
          ipad=len_trim(oldblock(j))
@@ -950,7 +972,8 @@ $!@(#) VERSION:         1.0.0, 2020-12-15                                       
 $!@(#) VERSION:         1.0.1, 2020-12-17                                        >
 $!@(#) VERSION:         1.0.2, 2021-01-08                                        >
 $!@(#) VERSION:         2.0.0, 2024-10-25                                        >
-@(#) VERSION:         3.0.0, 2025-03-14                                        >
+$!@(#) VERSION:         3.0.0, 2025-03-14                                        >
+@(#) VERSION:         3.0.1, 2025-08-08                                        >
 @(#) AUTHOR:          John S. Urban                                            >
 @(#) HOME PAGE:       http://www.urbanjost.altervista.org/index.html           >
 @(#) LICENSE:         MIT License                                              >

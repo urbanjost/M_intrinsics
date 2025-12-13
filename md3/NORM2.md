@@ -53,7 +53,7 @@
   : The result of NORM2 (X, DIM=DIM) has a value equal
     to that of NORM2 (X) if X has rank one. Otherwise,
     the resulting array is reduced in rank with dimension
-    **dim** removed, and each remaining elment is the
+    **dim** removed, and each remaining element is the
     result of NORM2(X) for the values along dimension
     **dim**.
 

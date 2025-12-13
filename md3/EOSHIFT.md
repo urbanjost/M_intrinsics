@@ -70,7 +70,7 @@
     Character(len)|  LEN blanks
 ```
   These are the only types for which **boundary** may not be present.
-  For these types the kind is converted as neccessary to the kind of
+  For these types the kind is converted as necessary to the kind of
   **array**.
 - **dim**
   :  **dim** is in the range of

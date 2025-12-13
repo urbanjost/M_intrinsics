@@ -93,6 +93,7 @@ Fortran 95
 
 ### **See Also**
 
-[**random_seed**(3)](#random_seed)
+[**random_seed**(3)](#random_seed),
+[**random_init**(3)](#random_init)
 
  _Fortran intrinsic descriptions_

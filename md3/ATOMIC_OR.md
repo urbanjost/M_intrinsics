@@ -2,7 +2,8 @@
 
 ### **Name**
 
-**atomic_or**(3) - \[ATOMIC:BIT MANIPULATION\] Atomic bitwise OR operation
+**atomic_or**(3) - \[ATOMIC:BIT MANIPULATION\] Atomically perform a
+bitwise OR operation
 
 ### **Synopsis**
 ```fortran
@@ -27,13 +28,20 @@
 
 ### **Description**
 
-**atomic_or**(3) atomically defines **atom** with the bitwise **or**
-between the values of **atom** and **value**. When **stat** is present and the
-invocation was successful, it is assigned the value **0**. If it is present
-and the invocation has failed, it is assigned a positive value; in
-particular, for a coindexed **atom**, if the remote image has stopped, it is
-assigned the value of iso_fortran_env's stat_stopped_image and if
-the remote image has failed, the value stat_failed_image.
+**atomic_or(atom, value, stat)** atomically performs a bitwise **or**
+operation between the value of **atom** and **value**, storing the result
+in **atom**.
+
+When **stat** is present and the invocation was successful, it is
+assigned the value **0**. If it is present and the invocation has
+failed, it is assigned a positive value; in particular, for a coindexed
+**atom**, if the remote image has stopped, it is assigned the value of
+**iso_fortran_env**'s **stat_stopped_image** and if the remote image has failed,
+the value **stat_failed_image**.
+
+Unlike **atomic_fetch_or**, this does not return the previous value.
+
+Use for setting bits without needing the prior state.
 
 ### **Options**
 
@@ -47,6 +55,7 @@ the remote image has failed, the value stat_failed_image.
 
 - **stat**
   : (optional) Scalar default-kind integer variable.
+  Set to 0 on success, or a positive value on failure.
 
 ### **Examples**
 
@@ -54,13 +63,27 @@ Sample program:
 
 ```fortran
 program demo_atomic_or
-use iso_fortran_env
-implicit none
-integer(atomic_int_kind) :: atom[*]
-   call atomic_or(atom[1], int(b'10100011101'))
+  use iso_fortran_env
+  implicit none
+  integer(atomic_int_kind) :: flags[*]
+  integer :: stat, me
+
+  if (this_image() == 1) flags = int(b'1000', atomic_int_kind)
+  sync all
+
+  me = this_image()
+  call atomic_or(flags[1], int(b'0011', atomic_int_kind), stat)
+
+  if (stat /= 0) print *, "Image", me, ": Failed with STAT =", stat
+  sync all
+
+  if (this_image() == 1) print *, "Final flags:", flags
 end program demo_atomic_or
 ```
-
+Expected Output (4 images)
+```text
+    > Final flags: 11
+```
 ### **Standard**
 
 TS 18508
@@ -75,5 +98,8 @@ TS 18508
 [**atomic_or**(3)](#atomic_or),
 
 [**atomic_xor**(3)](#atomic_xor)
+
+See **iso_fortran_env** for constants like **atomic_int_kind**,
+**stat_stopped_image**, and **stat_failed_image**.
 
  _Fortran intrinsic descriptions_

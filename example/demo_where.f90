@@ -1,5 +1,5 @@
          program demo_where
-         !  Example of WHERE, ELSE WHERE, END WHERE
+         !  Example of WHERE, ELSEWHERE, ENDWHERE
          integer,parameter :: nd=10, ndh=nd/2, nduh=nd-ndh-1
          integer :: j
          real, dimension(nd):: a=[ (2*j,j=1,nd) ]
@@ -19,10 +19,10 @@
          where (b(1:nd).ne.0.0)
             c=a/b
             iflag=0
-         else where
+         elsewhere
             c=0.0
             iflag=1
-         end where
+         endwhere
 
          write (*,2000) c(1:nd)
          write (*,1000) iflag(1:nd)

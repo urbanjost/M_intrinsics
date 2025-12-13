@@ -71,6 +71,7 @@ Fortran 95
 
 ### **See Also**
 
-[**random_number**(3)](#random_number)
+[**random_number**(3)](#random_number),
+[**random_init**(3)](#random_init)
 
  _Fortran intrinsic descriptions_

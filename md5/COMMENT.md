@@ -73,7 +73,7 @@ Fixed and Free comments
 
    A particularly irksome form of over-commenting explains exactly
    what each statement does, even when it is obvious to any reasonably
-   competant programmer.
+   competent programmer.
 
 ### **Examples**
 

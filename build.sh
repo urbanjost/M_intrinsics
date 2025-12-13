@@ -67,6 +67,8 @@ cp txt/* $HOME/LIBRARY/libGPF/download/doc/
 # build and install fpm-man
 bash scripts/rebuild.sh
 )
+cp `which fpm-man` `which fman`
+fpm manual >docs/manual.txt
 ######################################
 exit
 ######################################

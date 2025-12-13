@@ -102,7 +102,7 @@
       ! and a type is required so
       ! implicit (a-h)  ! NOTE: NOT ALLOWED. TYPE IS REQUIRE0
       ! but you can make the default an user-defined type ...
-      ! notice the (incidently empty) type is defined below
+      ! notice the (incidentally empty) type is defined below
       ! the implicit statement
       implicit nil(a-h) ! or implicit type(nil) (a)
       !
@@ -116,7 +116,7 @@
   top section of a module makes the default be "IMPLICIT NONE" in any
   contained procedure.
 
-  Explicitly setting a variable type always overides the default so
+  Explicitly setting a variable type always overrides the default so
   any data entity that is not explicitly declared by a type declaration
   statement, is not an intrinsic function, and is not accessed by use or
   host association is declared implicitly to be of the type (and type
