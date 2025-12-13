@@ -151,44 +151,44 @@ and to verify correct usage when creating code in a CLI environment.</p>
 documentation, but at a minimum if you create the directory $HOME/man/man3
 and place the man-pages there and add $HOME/man to your $MANPATH you
 should be able to use the man-pages. For example:</p>
-<div class="codehilite"><pre><span></span><code>        <span class="k">for</span> NUM <span class="k">in</span> <span class="m">3</span> <span class="m">5</span> <span class="m">7</span>
-        <span class="k">do</span>
-        <span class="o">(</span>
-           mkdir -p <span class="nv">$HOME</span>/man/man<span class="si">${</span><span class="nv">NUM</span><span class="si">}</span>
-           <span class="nb">cd</span> <span class="nv">$HOME</span>/man/man<span class="si">${</span><span class="nv">NUM</span><span class="si">}</span>
-           tar xvfz <span class="nv">$WHERE_YOU_PUT_TARFILE</span>/manpages<span class="si">${</span><span class="nv">NUM</span><span class="si">}</span>.tgz
-        <span class="o">)</span>
-        <span class="k">done</span>
-        <span class="nb">cd</span> ..
-        mandb -c .
-        <span class="nb">export</span> <span class="nv">MANPATH</span><span class="o">=</span><span class="nv">$HOME</span>/man:<span class="nv">$MANPATH</span>
-        <span class="nb">export</span> <span class="nv">MANWIDTH</span><span class="o">=</span><span class="m">80</span>   <span class="c1"># optional, displays manpages in columns 1 to 80</span>
-        man -s 3fortran,5fortran,7fortran -k . <span class="c1"># list topic line for all Fortran man-pages</span>
+<div class="codehilite"><pre><span></span><code><span class="w">        </span><span class="k">for</span><span class="w"> </span>NUM<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">7</span>
+<span class="w">        </span><span class="k">do</span>
+<span class="w">        </span><span class="o">(</span>
+<span class="w">           </span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$HOME</span>/man/man<span class="si">${</span><span class="nv">NUM</span><span class="si">}</span>
+<span class="w">           </span><span class="nb">cd</span><span class="w"> </span><span class="nv">$HOME</span>/man/man<span class="si">${</span><span class="nv">NUM</span><span class="si">}</span>
+<span class="w">           </span>tar<span class="w"> </span>xvfz<span class="w"> </span><span class="nv">$WHERE_YOU_PUT_TARFILE</span>/manpages<span class="si">${</span><span class="nv">NUM</span><span class="si">}</span>.tgz
+<span class="w">        </span><span class="o">)</span>
+<span class="w">        </span><span class="k">done</span>
+<span class="w">        </span><span class="nb">cd</span><span class="w"> </span>..
+<span class="w">        </span>mandb<span class="w"> </span>-c<span class="w"> </span>.
+<span class="w">        </span><span class="nb">export</span><span class="w"> </span><span class="nv">MANPATH</span><span class="o">=</span><span class="nv">$HOME</span>/man:<span class="nv">$MANPATH</span>
+<span class="w">        </span><span class="nb">export</span><span class="w"> </span><span class="nv">MANWIDTH</span><span class="o">=</span><span class="m">80</span><span class="w">   </span><span class="c1"># optional, displays manpages in columns 1 to 80</span>
+<span class="w">        </span>man<span class="w"> </span>-s<span class="w"> </span>3fortran,5fortran,7fortran<span class="w"> </span>-k<span class="w"> </span>.<span class="w"> </span><span class="c1"># list topic line for all Fortran man-pages</span>
 </code></pre></div>
 
 <p>Typical installation on a Linux platform as an administrator ( but it varies) :</p>
-<div class="codehilite"><pre><span></span><code>     <span class="c1"># as the administrator</span>
-     <span class="k">for</span> NUM <span class="k">in</span> <span class="m">3</span> <span class="m">5</span> <span class="m">7</span>
-     <span class="k">do</span>
-     <span class="o">(</span>
-        <span class="nb">cd</span> /usr/share/man/man<span class="si">${</span><span class="nv">NUM</span><span class="si">}</span>
-        tar xvfz /<span class="nv">$WHERE_YOU_PUT_TARFILE</span>/manpages<span class="si">${</span><span class="nv">NUM</span><span class="si">}</span>.tgz
-     <span class="o">)</span>
-     <span class="k">done</span>
-     <span class="nb">cd</span> /usr/share/man
-     mandb -c .
+<div class="codehilite"><pre><span></span><code><span class="w">     </span><span class="c1"># as the administrator</span>
+<span class="w">     </span><span class="k">for</span><span class="w"> </span>NUM<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="m">7</span>
+<span class="w">     </span><span class="k">do</span>
+<span class="w">     </span><span class="o">(</span>
+<span class="w">        </span><span class="nb">cd</span><span class="w"> </span>/usr/share/man/man<span class="si">${</span><span class="nv">NUM</span><span class="si">}</span>
+<span class="w">        </span>tar<span class="w"> </span>xvfz<span class="w"> </span>/<span class="nv">$WHERE_YOU_PUT_TARFILE</span>/manpages<span class="si">${</span><span class="nv">NUM</span><span class="si">}</span>.tgz
+<span class="w">     </span><span class="o">)</span>
+<span class="w">     </span><span class="k">done</span>
+<span class="w">     </span><span class="nb">cd</span><span class="w"> </span>/usr/share/man
+<span class="w">     </span>mandb<span class="w"> </span>-c<span class="w"> </span>.
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code> <span class="k">then</span> <span class="nv">anyone</span> <span class="nv">on</span> <span class="nv">that</span> <span class="nv">platform</span> <span class="nv">can</span> <span class="nv">enter</span> <span class="nv">commands</span> <span class="nv">like</span>
+<div class="codehilite"><pre><span></span><code><span class="w"> </span><span class="k">then</span><span class="w"> </span><span class="nv">anyone</span><span class="w"> </span><span class="nv">on</span><span class="w"> </span><span class="nv">that</span><span class="w"> </span><span class="nv">platform</span><span class="w"> </span><span class="nv">can</span><span class="w"> </span><span class="nv">enter</span><span class="w"> </span><span class="nv">commands</span><span class="w"> </span><span class="nv">like</span>
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code>     man sinh.3fortran     <span class="c1"># specifically show Fortran sinh(3) documentation</span>
-     man sinh.3f           <span class="c1"># section abbreviations are often supported for this format</span>
-     man -k . -s 3fortran  <span class="c1"># list all fortran pages</span>
-     man -s 3fortran --regex <span class="s1">&#39;.*&#39;</span> <span class="p">|</span>col -b <span class="c1"># show all Fortran intrinsics</span>
+<div class="codehilite"><pre><span></span><code><span class="w">     </span>man<span class="w"> </span>sinh.3fortran<span class="w">     </span><span class="c1"># specifically show Fortran sinh(3) documentation</span>
+<span class="w">     </span>man<span class="w"> </span>sinh.3f<span class="w">           </span><span class="c1"># section abbreviations are often supported for this format</span>
+<span class="w">     </span>man<span class="w"> </span>-k<span class="w"> </span>.<span class="w"> </span>-s<span class="w"> </span>3fortran<span class="w">  </span><span class="c1"># list all fortran pages</span>
+<span class="w">     </span>man<span class="w"> </span>-s<span class="w"> </span>3fortran<span class="w"> </span>--regex<span class="w"> </span><span class="s1">&#39;.*&#39;</span><span class="w"> </span><span class="p">|</span>col<span class="w"> </span>-b<span class="w"> </span><span class="c1"># show all Fortran intrinsics</span>
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code><span class="nv">See</span> <span class="nv">man</span><span class="ss">(</span><span class="mi">1</span><span class="ss">)</span> <span class="ss">(</span><span class="nv">ie</span>. <span class="nv">enter</span> <span class="s2">&quot;</span><span class="s">man man</span><span class="s2">&quot;</span><span class="ss">)</span> <span class="k">for</span> <span class="nv">more</span> <span class="nv">information</span>.
+<div class="codehilite"><pre><span></span><code><span class="nv">See</span><span class="w"> </span><span class="nv">man</span><span class="ss">(</span><span class="mi">1</span><span class="ss">)</span><span class="w"> </span><span class="ss">(</span><span class="nv">ie</span>.<span class="w"> </span><span class="nv">enter</span><span class="w"> </span><span class="s2">&quot;man man&quot;</span><span class="ss">)</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="nv">more</span><span class="w"> </span><span class="nv">information</span>.
 </code></pre></div>
 
 <h2 id="documentation-formats">Documentation Formats  <img alt="docs" src="docs/images/docs.gif"></h2>
@@ -220,14 +220,14 @@ the environment variable MANPATH -see man(1) for more information).</p>
 other languages you may want to customize your .vimrc file to use
 a custom script or command when editing Fortran files. Just as
 an example, create a little Fortran file called &ldquo;test.f90&rdquo; and try:</p>
-<div class="codehilite"><pre><span></span><code>   vim -c <span class="s1">&#39;set keywordprg=env\ MANPATH=$HOME/man\ man\ -s\ 3fortran\ -a&#39;</span> test.f90
+<div class="codehilite"><pre><span></span><code><span class="w">   </span>vim<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;set keywordprg=env\ MANPATH=$HOME/man\ man\ -s\ 3fortran\ -a&#39;</span><span class="w"> </span>test.f90
 </code></pre></div>
 
 <h2 id="contributing">Contributing</h2>
 <p><em>Collaborators are welcome</em>. This is a public github repository. Anyone
 can contribute, and is encouraged to do so. First, create a fork of this
 site from github. obtain a copy of the repository:</p>
-<div class="codehilite"><pre><span></span><code>    git clone https://github.com/YOUR_SITE/M_intrinsics.git
+<div class="codehilite"><pre><span></span><code><span class="w">    </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/YOUR_SITE/M_intrinsics.git
 </code></pre></div>
 
 <h3 id="minimal-changes">Minimal Changes</h3>
@@ -301,15 +301,15 @@ the script &ldquo;fpm-docs&rdquo; </p>
 <span class="c1">################################################################################</span>
 <span class="c1"># @(#) fpm-docs(1) - run fpm-man ensuring color interactive mode </span>
 <span class="c1">################################################################################</span>
-<span class="nb">trap</span> <span class="s2">&quot;/bin/rm -f </span><span class="si">${</span><span class="nv">SCRATCH</span><span class="k">:-</span><span class="nv">_NOTTHERE_</span><span class="si">}</span><span class="s2">&quot;</span> EXIT
+<span class="nb">trap</span><span class="w"> </span><span class="s2">&quot;/bin/rm -f </span><span class="si">${</span><span class="nv">SCRATCH</span><span class="k">:-</span><span class="nv">_NOTTHERE_</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span>EXIT
 <span class="nv">SCRATCH</span><span class="o">=</span>/tmp/scratch_<span class="k">$(</span>uuidgen<span class="k">)</span>.txt
-fpm manual &gt; <span class="nv">$SCRATCH</span>
+fpm<span class="w"> </span>manual<span class="w"> </span>&gt;<span class="w"> </span><span class="nv">$SCRATCH</span>
 <span class="c1">################################################################################</span>
 <span class="c1"># use default colors</span>
-<span class="nb">unset</span> FMAN_COLORS 
+<span class="nb">unset</span><span class="w"> </span>FMAN_COLORS<span class="w"> </span>
 <span class="c1">################################################################################</span>
 <span class="c1"># set custom colors</span>
-<span class="nb">export</span> <span class="nv">FMAN_COLORS</span><span class="o">=</span><span class="se">\</span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">FMAN_COLORS</span><span class="o">=</span><span class="se">\</span>
 <span class="s2">&quot;bg=&#39;&lt;EBONY&gt;&#39;,fg=&#39;&lt;white&gt;&lt;bo&gt;&#39;,\</span>
 <span class="s2">prg=&#39;&lt;cyan&gt;&lt;bo&gt;&#39;,\</span>
 <span class="s2">head=&#39;&lt;yellow&gt;&lt;bo&gt;&#39;,head_=&#39;&lt;/bo&gt;&#39;,\</span>
@@ -317,12 +317,12 @@ fpm manual &gt; <span class="nv">$SCRATCH</span>
 <span class="s2">output=&#39;&lt;yellow&gt;&lt;bo&gt;&#39;,output_=&#39;&lt;/bo&gt;&#39;&quot;</span>
 <span class="c1">################################################################################</span>
 <span class="o">(</span>
-<span class="nb">set</span> -v -x
-<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;</span><span class="nv">$*</span><span class="s2">&quot;</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span> <span class="o">]</span>
+<span class="nb">set</span><span class="w"> </span>-v<span class="w"> </span>-x
+<span class="k">if</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$*</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="w"> </span><span class="o">]</span>
 <span class="k">then</span>
-   fpm man -f <span class="nv">$SCRATCH</span> --color --lines<span class="o">=</span><span class="nv">$LINES</span> <span class="nv">$*</span>
+<span class="w">   </span>fpm<span class="w"> </span>man<span class="w"> </span>-f<span class="w"> </span><span class="nv">$SCRATCH</span><span class="w"> </span>--color<span class="w"> </span>--lines<span class="o">=</span><span class="nv">$LINES</span><span class="w"> </span><span class="nv">$*</span>
 <span class="k">else</span>
-   fpm man  --color --lines<span class="o">=</span><span class="nv">$LINES</span> <span class="nv">$*</span>
+<span class="w">   </span>fpm<span class="w"> </span>man<span class="w">  </span>--color<span class="w"> </span>--lines<span class="o">=</span><span class="nv">$LINES</span><span class="w"> </span><span class="nv">$*</span>
 <span class="k">fi</span>
 <span class="o">)</span>
 <span class="c1">################################################################################</span>
@@ -455,7 +455,7 @@ being explored to provide better formatting.
             <p class="text-end">
               Documentation generated by
               <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2025-08-09 00:24 +0000             </p>
+ on 2025-12-13 03:34 +0000             </p>
           </div>
         </div>
         <br>
