@@ -573,7 +573,6 @@ subroutine cribsheet()
    & ' | An empty string repeats the last positioning or toggle command. So if you  | ', &
    & ' | searched for a string or did an "e" or "y" and then just hit return the    | ', &
    & ' | previous command is repeated until a non-blank command like "r" is entered.| ', &
-   & ' |                                                                            | ', &
    & ' +----------------------------------------------------------------------------+ ']
    if(paws(1:1).eq.'X')then
    write(stdout,'(a)')[character(len=80) :: &

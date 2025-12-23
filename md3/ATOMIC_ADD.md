@@ -34,10 +34,29 @@ parallel environments, such as when using coarrays. It is part of the
 atomic operations in Fortran 2008 and later, typically used with the
 **iso_fortran_env** module.
 
+The purpose of **atomic_add** in Fortran is to perform an atomic addition
+operation on a variable. This means that the addition of **value** to
+**atom** is guaranteed to be an indivisible operation, ensuring that no
+other thread or process can access or modify **atom** during the addition.
+
+Specifically, **call atomic_add (atom, value [, stat])** adds the value
+of **value** to the variable **atom** atomically. This is crucial in
+parallel programming environments where multiple threads or processes
+might attempt to modify the same shared variable concurrently. Without
+atomic operations, race conditions can occur, leading to incorrect or
+unpredictable results.
+
+**atomic_add**(3) helps maintain data integrity in concurrent scenarios by
+ensuring that the operation completes without interruption, providing a
+reliable way to update shared variables in a thread-safe manner. It is
+part of the intrinsic procedures available in Fortran for handling atomic
+operations, particularly useful with coarrays or coindexed variables in
+parallel Fortran programs.
+
 Unlike **atomic_fetch_add**(3), this procedure does not return the
 previous value of **atom**.
 
-Use sync all to ensure consistent coarray state across images.
+Use "sync all" to ensure consistent coarray state across images.
 
 When **stat** is present and the invocation was successful, it is
 assigned the value 0. If it is present and the invocation has failed,

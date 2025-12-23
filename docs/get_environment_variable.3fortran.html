@@ -71,11 +71,13 @@ an environment variable
 </A>
 <BLOCKQUOTE>
 <P>
-call get_environment_variable(name [,value] [,length] &
-& [,status] [,trim_name] [,errmsg] )
+Syntax:
 <P>
 <PRE>
-         subroutine character(len=*) get_environment_variable( &
+        call get_environment_variable(name [,value] [,length] &
+        & [,status] [,trim_name] [,errmsg] )
+<P>
+         subroutine get_environment_variable( &
          & name, value, length, status, trim_name, errmsg )
 <P>
           character(len=*),intent(in) :: name

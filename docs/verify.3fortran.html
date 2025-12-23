@@ -156,7 +156,7 @@ o
 </TD><TD>
 BACK : The direction to look for an unmatched character. The
 left-most unmatched character position is returned unless BACK is
-present and .false., which causes the position of the right-most
+present and .true., which causes the position of the right-most
 unmatched character to be returned instead of the left-most
 unmatched character.
 </TD></TR>
@@ -179,7 +179,7 @@ If all characters of STRING are found in SET, the result is zero.
 If STRING is of zero length a zero (0) is always returned.
 <P>
 Otherwise, if an unmatched character is found The position of the first
-or last (if BACK is .false.) unmatched character in STRING is returned,
+or last (if BACK is .true.) unmatched character in STRING is returned,
 starting with position one on the left end of the string.
 </BLOCKQUOTE>
 <A name=6>
@@ -476,8 +476,8 @@ exploring uses of elemental functionality and dusty corners
        write(*,*)&#146;last non-letter&#146;,verify(strings,upp//low//blank,back=.true.)
 <P>
        ! even BACK can be an array
-       ! find last non-uppercase character in "Howdy "
-       ! and first non-lowercase in "there "
+       ! find last non-uppercase character in "Go    "
+       ! and first non-lowercase in "right "
        write(*,*) verify(strings(1:2),[upp,low],back=[.true.,.false.])
 <P>
        ! using a null string for a set is not well defined. Avoid it
@@ -497,7 +497,7 @@ Results:
 <P>
 <PRE>
         &gt; last non-letter 0 0 5
-        &gt; 6 6
+        &gt; 2 6
         &gt; null 9
         &gt; blank 8
         &gt; 1 2 1

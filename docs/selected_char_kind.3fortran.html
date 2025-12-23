@@ -184,12 +184,11 @@ processor dependent.
 Sample program:
 <P>
 <PRE>
-    Linux
     program demo_selected_char_kind
-    use iso_fortran_env
+    use iso_fortran_env, only: output_unit, CHARACTER_KINDS
     implicit none
 <P>
-    intrinsic date_and_time,selected_char_kind
+    intrinsic date_and_time, selected_char_kind
 <P>
     ! set some aliases for common character kinds
     ! as the numbers can vary from platform to platform
@@ -204,6 +203,8 @@ Sample program:
     character(len=26, kind=ascii ) :: alphabet
     character(len=30, kind=ucs4  ) :: hello_world
     character(len=30, kind=ucs4  ) :: string
+<P>
+       write(*,&#146;(*(g0,1x))&#146;)&#146;Available CHARACTER kind values:&#146;,CHARACTER_KINDS
 <P>
        write(*,*)&#146;ASCII     &#146;,&
         & merge(&#146;Supported    &#146;,&#146;Not Supported&#146;,ascii /= -1)
@@ -261,13 +262,14 @@ Results:
 The results are very processor-dependent
 <P>
 <PRE>
-     &gt;  ASCII     Supported
-     &gt;  ISO_10646 Supported
+     &gt; Available CHARACTER kind values: 1 4
+     &gt;  ASCII     Supported   
+     &gt;  ISO_10646 Supported   
      &gt;  UTF-8     Not Supported
      &gt;  ASCII is the default on this processor
      &gt;  abcdefghijklmnopqrstuvwxyz
      &gt;  Hello World and Ni Hao -- 你好
-     &gt;  2022年10月15日
+     &gt;  2025年8月14日
 <P>
 </PRE>
 </BLOCKQUOTE>

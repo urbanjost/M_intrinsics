@@ -50,7 +50,7 @@ Sample program:
 
 ```fortran
 program demo_selected_int_kind
-use,intrinsic :: iso_fortran_env, only : integer_kinds
+use iso_fortran_env, only: output_unit, INTEGER_KINDS
 use,intrinsic :: iso_fortran_env, only : compiler_version
 implicit none
 character(len=*),parameter :: all='(*(g0))'
@@ -59,22 +59,22 @@ integer,parameter :: k15 = selected_int_kind(15)
 integer           :: i, ii
 integer(kind=k5)  :: i5
 integer(kind=k15) :: i15
+   ! write a program that can print attributes about each available kind
    print all,'program kinds'
    print all, &
-      '! This file was compiled by ', compiler_version()
+      '! This file was written by ', compiler_version()
    do i=1,size(INTEGER_KINDS)
       ii=integer_kinds(i)
-      print all,'integer(kind=',ii,') :: i',ii
+      print all,'integer,parameter :: i',ii,'=',ii
    enddo
    do i=1,size(INTEGER_KINDS)
       ii=integer_kinds(i) 
       print all, &
-      'write(*,*)"huge(i', &
+      'write(*,*)"huge(0_i', &
       ii, &
-      ')=",huge(i', &
+      ')=",huge(0_i', &
       ii, &
       ')'
-
    enddo
    print all,'end program kinds'
 
@@ -88,23 +88,23 @@ end program demo_selected_int_kind
 ```
 Results:
 ```text
-  > program kinds
-  > ! This file was compiled by GCC version 15.0.0 20241103 (experimental)
-  > integer(kind=1) :: i1
-  > integer(kind=2) :: i2
-  > integer(kind=4) :: i4
-  > integer(kind=8) :: i8
-  > integer(kind=16) :: i16
-  > write(*,*)"huge(i1)=",huge(i1)
-  > write(*,*)"huge(i2)=",huge(i2)
-  > write(*,*)"huge(i4)=",huge(i4)
-  > write(*,*)"huge(i8)=",huge(i8)
-  > write(*,*)"huge(i16)=",huge(i16)
-  > end program kinds
-  >
-  >   2147483647  9223372036854775807
-  >  T
-  >  T
+ > program kinds
+ > ! This file was written by GCC version 13.1.0
+ > integer,parameter :: i1=1
+ > integer,parameter :: i2=2
+ > integer,parameter :: i4=4
+ > integer,parameter :: i8=8
+ > integer,parameter :: i16=16
+ > write(*,*)"huge(0_i1)=",huge(0_i1)
+ > write(*,*)"huge(0_i2)=",huge(0_i2)
+ > write(*,*)"huge(0_i4)=",huge(0_i4)
+ > write(*,*)"huge(0_i8)=",huge(0_i8)
+ > write(*,*)"huge(0_i16)=",huge(0_i16)
+ > end program kinds
+ > 
+ >   2147483647  9223372036854775807
+ >  T
+ >  T
 ```
 ### **Standard**
 

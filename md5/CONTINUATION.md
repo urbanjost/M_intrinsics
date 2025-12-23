@@ -181,7 +181,7 @@ Combined with the second ampersand always present and in column six
 for all but the first line both rules for free and fixed source files
 are satisfied.
 
-Fixed-format can use most printable characters in column 6 to indication
+Fixed-format can use most printable characters in column 6 to indicate
 continuation. One of the allowed characters is "&", which is the one and
 only character used by free-format. So using it obeys both rules.
 
@@ -235,7 +235,7 @@ integer,save :: xx(3,5)= reshape([& ! define in row-column order
 !   & This&      ! first word
 !   & is&        ! second word
 !   & sentence&  ! third word
-!   & a'         ! forth word (a comment here is OK)
+!   & a'         ! fourth word (a comment here is OK)
 !Because when continuing a string you cannot have a comment after the "&".
 !
 ! This is OK:
@@ -247,7 +247,7 @@ integer,save :: xx(3,5)= reshape([& ! define in row-column order
    ! second word
    & sentence&
    ! third word
-   & a'        ! forth word (a comment here is OK)
+   & a'        ! fourth word (a comment here is OK)
 ! because comment LINES can go anywhere in Fortran source files
 
 ! Dusty corners
@@ -269,7 +269,7 @@ write(*,*)napier_constant
 write(*,*)napier_&
 &constant
 
-! the left-hand ampersand is required when splitting constants to,
+! the left-hand ampersand is required when splitting constants too,
 ! including characters strings
 write(*,*)'Expecting &
           &the value',2.71828182&

@@ -161,7 +161,7 @@ The array bounds form returns two integer arrays. One contains the
 beginning position of the tokens and the other the end positions.
 </TD></TR>
 <TR></TR></TABLE>Since the token form pads all the tokens to the same length the original
-number of trailing spaces of each token accept for the longest is lost.
+number of trailing spaces of each token except for the longest is lost.
 <P>
 The array bounds form retains information regarding the exact token
 length even when padded by spaces.
@@ -200,6 +200,13 @@ character length equal to the length of the longest token.
 The tokens in STRING are assigned in the order found, as if by
 intrinsic assignment, to the elements of TOKENS, in array element
 order.
+</TD></TR>
+<TR valign=top><TD width=3%>
+o
+</TD><TD>
+SEPARATOR : separator(i) is equal to the ith token delimiter in
+string. There is no element in separator that indicates beginning or
+end of string.
 </TD></TR>
 <TR valign=top><TD width=3%>
 o

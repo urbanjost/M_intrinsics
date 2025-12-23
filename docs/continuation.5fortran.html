@@ -308,7 +308,7 @@ Combined with the second ampersand always present and in column six for
 all but the first line both rules for free and fixed source files are
 satisfied.
 <P>
-Fixed-format can use most printable characters in column 6 to indication
+Fixed-format can use most printable characters in column 6 to indicate
 continuation. One of the allowed characters is "&", which is the one and
 only character used by free-format. So using it obeys both rules.
 <P>
@@ -371,7 +371,7 @@ Example program
     !   & This&      ! first word
     !   & is&        ! second word
     !   & sentence&  ! third word
-    !   & a&#146;         ! forth word (a comment here is OK)
+    !   & a&#146;         ! fourth word (a comment here is OK)
     !Because when continuing a string you cannot have a comment after the "&".
     !
     ! This is OK:
@@ -383,7 +383,7 @@ Example program
        ! second word
        & sentence&
        ! third word
-       & a&#146;        ! forth word (a comment here is OK)
+       & a&#146;        ! fourth word (a comment here is OK)
     ! because comment LINES can go anywhere in Fortran source files
 <P>
     ! Dusty corners
@@ -405,7 +405,7 @@ Example program
     write(*,*)napier_&
     &constant
 <P>
-    ! the left-hand ampersand is required when splitting constants to,
+    ! the left-hand ampersand is required when splitting constants too,
     ! including characters strings
     write(*,*)&#146;Expecting &
               &the value&#146;,2.71828182&

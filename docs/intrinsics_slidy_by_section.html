@@ -724,40 +724,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Sample program:</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb33-1" title="1"><span class="kw">program</span> demo_adjustl</a>
 <a class="sourceLine" id="cb33-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb33-3" title="3"><span class="dt">character(len=20)</span> <span class="dt">::</span> str <span class="kw">=</span> <span class="st">&#39;   sample string&#39;</span></a>
+<a class="sourceLine" id="cb33-3" title="3"><span class="dt">character(len=20)</span>            <span class="dt">::</span> str</a>
 <a class="sourceLine" id="cb33-4" title="4"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> astr</a>
-<a class="sourceLine" id="cb33-5" title="5"><span class="dt">integer</span> <span class="dt">::</span> length</a>
-<a class="sourceLine" id="cb33-6" title="6"></a>
-<a class="sourceLine" id="cb33-7" title="7">   <span class="co">! basic use</span></a>
-<a class="sourceLine" id="cb33-8" title="8">    <span class="fu">write(*</span>,<span class="st">&#39;(a,&quot;[&quot;,a,&quot;]&quot;)&#39;</span><span class="fu">)</span> <span class="st">&#39;original: &#39;</span>,str</a>
-<a class="sourceLine" id="cb33-9" title="9">    str<span class="kw">=</span><span class="bu">adjustl</span>(str)</a>
-<a class="sourceLine" id="cb33-10" title="10">    <span class="fu">write(*</span>,<span class="st">&#39;(a,&quot;[&quot;,a,&quot;]&quot;)&#39;</span><span class="fu">)</span> <span class="st">&#39;adjusted: &#39;</span>,str</a>
+<a class="sourceLine" id="cb33-5" title="5"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span>   <span class="dt">::</span> au<span class="kw">=</span> <span class="st">&#39;(a,&quot;[&quot;,a,&quot;]&quot;)&#39;</span></a>
+<a class="sourceLine" id="cb33-6" title="6"><span class="dt">integer</span> <span class="dt">::</span> istart, iend</a>
+<a class="sourceLine" id="cb33-7" title="7"></a>
+<a class="sourceLine" id="cb33-8" title="8">  <span class="co">! basic use</span></a>
+<a class="sourceLine" id="cb33-9" title="9">    str<span class="kw">=</span><span class="st">&#39;   sample string  &#39;</span></a>
+<a class="sourceLine" id="cb33-10" title="10">    <span class="fu">write(*</span>,au<span class="fu">)</span> <span class="st">&#39;original: &#39;</span>,str</a>
 <a class="sourceLine" id="cb33-11" title="11"></a>
-<a class="sourceLine" id="cb33-12" title="12">    <span class="co">! a fixed-length string can be printed</span></a>
-<a class="sourceLine" id="cb33-13" title="13">    <span class="co">! trimmed using trim(3) or len_trim(3)</span></a>
-<a class="sourceLine" id="cb33-14" title="14">    <span class="fu">write(*</span>,<span class="st">&#39;(a,&quot;[&quot;,a,&quot;]&quot;)&#39;</span><span class="fu">)</span> <span class="st">&#39;trimmed:  &#39;</span>,<span class="fu">trim</span>(str)</a>
-<a class="sourceLine" id="cb33-15" title="15">    length<span class="kw">=</span><span class="bu">len_trim</span>(str)</a>
-<a class="sourceLine" id="cb33-16" title="16">    <span class="fu">write(*</span>,<span class="st">&#39;(a,&quot;[&quot;,a,&quot;]&quot;)&#39;</span><span class="fu">)</span> <span class="st">&#39;substring:&#39;</span>,str(:length)</a>
-<a class="sourceLine" id="cb33-17" title="17"></a>
-<a class="sourceLine" id="cb33-18" title="18">    <span class="co">! note an allocatable string stays the same length too</span></a>
-<a class="sourceLine" id="cb33-19" title="19">    <span class="co">! and is not trimmed by just an adjustl(3) call.</span></a>
-<a class="sourceLine" id="cb33-20" title="20">    astr<span class="kw">=</span><span class="st">&#39;    allocatable string   &#39;</span></a>
-<a class="sourceLine" id="cb33-21" title="21">    <span class="fu">write(*</span>,<span class="st">&#39;(a,&quot;[&quot;,a,&quot;]&quot;)&#39;</span><span class="fu">)</span> <span class="st">&#39;original:&#39;</span>,astr</a>
-<a class="sourceLine" id="cb33-22" title="22">    astr <span class="kw">=</span> <span class="bu">adjustl</span>(astr)</a>
-<a class="sourceLine" id="cb33-23" title="23">    <span class="fu">write(*</span>,<span class="st">&#39;(a,&quot;[&quot;,a,&quot;]&quot;)&#39;</span><span class="fu">)</span> <span class="st">&#39;adjusted:&#39;</span>,astr</a>
-<a class="sourceLine" id="cb33-24" title="24">    <span class="co">! trim(3) can be used to change the length</span></a>
-<a class="sourceLine" id="cb33-25" title="25">    astr <span class="kw">=</span> <span class="fu">trim</span>(astr)</a>
-<a class="sourceLine" id="cb33-26" title="26">    <span class="fu">write(*</span>,<span class="st">&#39;(a,&quot;[&quot;,a,&quot;]&quot;)&#39;</span><span class="fu">)</span> <span class="st">&#39;trimmed: &#39;</span>,astr</a>
-<a class="sourceLine" id="cb33-27" title="27"></a>
-<a class="sourceLine" id="cb33-28" title="28"><span class="kw">end program</span> demo_adjustl</a></code></pre></div>
+<a class="sourceLine" id="cb33-12" title="12">  <span class="co">! note the allocated string stays the same length</span></a>
+<a class="sourceLine" id="cb33-13" title="13">  <span class="co">! and is not trimmed by just an adjustl(3) call.</span></a>
+<a class="sourceLine" id="cb33-14" title="14">    astr<span class="kw">=</span><span class="bu">adjustl</span>(str)</a>
+<a class="sourceLine" id="cb33-15" title="15">    <span class="fu">write(*</span>,au<span class="fu">)</span> <span class="st">&#39;adjusted: &#39;</span>,astr</a>
+<a class="sourceLine" id="cb33-16" title="16"></a>
+<a class="sourceLine" id="cb33-17" title="17">  <span class="co">! a fixed-length string can be printed cropped</span></a>
+<a class="sourceLine" id="cb33-18" title="18">  <span class="co">! combining adjustl(3) with trim(3)</span></a>
+<a class="sourceLine" id="cb33-19" title="19">    <span class="fu">write(*</span>,au<span class="fu">)</span> <span class="st">&#39;trimmed:  &#39;</span>,<span class="fu">trim</span>(<span class="bu">adjustl</span>(str))</a>
+<a class="sourceLine" id="cb33-20" title="20"></a>
+<a class="sourceLine" id="cb33-21" title="21">  <span class="co">! or even printed without adjusting the string a</span></a>
+<a class="sourceLine" id="cb33-22" title="22">  <span class="co">! cropped substring can be printed</span></a>
+<a class="sourceLine" id="cb33-23" title="23">    iend<span class="kw">=</span><span class="bu">len_trim</span>(str)</a>
+<a class="sourceLine" id="cb33-24" title="24">    istart<span class="kw">=</span> <span class="bu">verify</span>(str, <span class="st">&#39; &#39;</span>) <span class="co">! first non‐blank character</span></a>
+<a class="sourceLine" id="cb33-25" title="25">    <span class="fu">write(*</span>,au<span class="fu">)</span> <span class="st">&#39;substring:&#39;</span>,str(istart:iend)</a>
+<a class="sourceLine" id="cb33-26" title="26"></a>
+<a class="sourceLine" id="cb33-27" title="27">  <span class="co">! to generate an actually trimmed allocated variable</span></a>
+<a class="sourceLine" id="cb33-28" title="28">    astr <span class="kw">=</span> <span class="fu">trim</span>(<span class="bu">adjustl</span>(str))</a>
+<a class="sourceLine" id="cb33-29" title="29">    <span class="fu">write(*</span>,au<span class="fu">)</span> <span class="st">&#39;trimmed:  &#39;</span>,astr</a>
+<a class="sourceLine" id="cb33-30" title="30"></a>
+<a class="sourceLine" id="cb33-31" title="31"><span class="kw">end program</span> demo_adjustl</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code>   &gt; original: [   sample string    ]
    &gt; adjusted: [sample string       ]
    &gt; trimmed:  [sample string]
    &gt; substring:[sample string]
-   &gt; original:[    allocatable string   ]
-   &gt; adjusted:[allocatable string       ]
-   &gt; trimmed: [allocatable string]</code></pre>
+   &gt; trimmed:  [sample string]</code></pre>
 </div><div id="standard-6" class="slide section level3">
 <h1><strong>Standard</strong></h1>
 <p>Fortran 95</p>
@@ -2509,8 +2510,11 @@ atan(z)=&gt;(i/2)*log(i+z/i-z).</code></pre>
 </div><div id="description-26" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p><strong>atomic_add(atom, value, stat)</strong> atomically adds the value of <strong>value</strong> to the variable <strong>atom</strong>. This operation ensures thread safety in parallel environments, such as when using coarrays. It is part of the atomic operations in Fortran 2008 and later, typically used with the <strong>iso_fortran_env</strong> module.</p>
+<p>The purpose of <strong>atomic_add</strong> in Fortran is to perform an atomic addition operation on a variable. This means that the addition of <strong>value</strong> to <strong>atom</strong> is guaranteed to be an indivisible operation, ensuring that no other thread or process can access or modify <strong>atom</strong> during the addition.</p>
+<p>Specifically, <strong>call atomic_add (atom, value [, stat])</strong> adds the value of <strong>value</strong> to the variable <strong>atom</strong> atomically. This is crucial in parallel programming environments where multiple threads or processes might attempt to modify the same shared variable concurrently. Without atomic operations, race conditions can occur, leading to incorrect or unpredictable results.</p>
+<p><strong>atomic_add</strong>(3) helps maintain data integrity in concurrent scenarios by ensuring that the operation completes without interruption, providing a reliable way to update shared variables in a thread-safe manner. It is part of the intrinsic procedures available in Fortran for handling atomic operations, particularly useful with coarrays or coindexed variables in parallel Fortran programs.</p>
 <p>Unlike <strong>atomic_fetch_add</strong>(3), this procedure does not return the previous value of <strong>atom</strong>.</p>
-<p>Use sync all to ensure consistent coarray state across images.</p>
+<p>Use “sync all” to ensure consistent coarray state across images.</p>
 <p>When <strong>stat</strong> is present and the invocation was successful, it is assigned the value 0. If it is present and the invocation has failed, it is assigned a positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned the value of iso_fortran_env’s <strong>stat_stopped_image</strong> and if the remote image has failed, the value <strong>stat_failed_image</strong>.</p>
 </div><div id="options-26" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -8953,9 +8957,10 @@ $$</span><br /></p>
 <p><strong>get_environment_variable</strong>(3) - [SYSTEM:ENVIRONMENT] Retrieve the value of an environment variable</p>
 </div><div id="synopsis-98" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
+<p>Syntax:</p>
 <div class="sourceCode" id="cb446"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb446-1" title="1">    <span class="kw">call</span> get_environment_variable(name <span class="kw">[</span>,value<span class="kw">]</span> <span class="kw">[</span>,length<span class="kw">]</span> <span class="kw">&amp;</span></a>
 <a class="sourceLine" id="cb446-2" title="2">    <span class="kw">&amp;</span> <span class="kw">[</span>,status<span class="kw">]</span> <span class="kw">[</span>,trim_name<span class="kw">]</span> <span class="kw">[</span>,errmsg<span class="kw">]</span> )</a></code></pre></div>
-<div class="sourceCode" id="cb447"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb447-1" title="1">     <span class="kw">subroutine</span> <span class="dt">character(len=*)</span> get_environment_variable( <span class="kw">&amp;</span></a>
+<div class="sourceCode" id="cb447"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb447-1" title="1">     <span class="kw">subroutine</span> get_environment_variable( <span class="kw">&amp;</span></a>
 <a class="sourceLine" id="cb447-2" title="2">     <span class="kw">&amp;</span> name, value, length, status, trim_name, errmsg )</a>
 <a class="sourceLine" id="cb447-3" title="3"></a>
 <a class="sourceLine" id="cb447-4" title="4">      <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> name</a>
@@ -10981,7 +10986,6 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <li><a href="#ubound"><strong>ubound</strong>(3)</a> - Upper dimension bounds of an array</li>
 <li><a href="#bit_size"><strong>bit_size</strong>(3)</a> - Bit size inquiry function</li>
 <li><a href="#storage_size"><strong>storage_size</strong>(3)</a> - Storage size in bits</li>
-<li><a href="#kind"><strong>kind</strong>(3)</a> - Kind of an entity</li>
 </ul>
 <p>Fortran intrinsic descriptions (license: MIT) @urbanjost</p>
 </div>
@@ -11968,6 +11972,7 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 </div><div id="description-132" class="slide section level3">
 <h1><strong>Description</strong></h1>
 <p><strong>logical</strong>(3) converts one kind of logical variable to another.</p>
+<p>For performance and storage purposes you generally want to use the smallest storage size supported when using large logical arrays, but some existing routines may require a specific kind. LOGICAL(3f) can change the kind of logical variables or expressions; but if converting is required frequently you might evaluate whether another kind is called for.</p>
 </div><div id="options-130" class="slide section level3">
 <h1><strong>Options</strong></h1>
 <ul>
@@ -11992,100 +11997,142 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <a class="sourceLine" id="cb587-2" title="2"><span class="kw">use</span> iso_fortran_env, <span class="kw">only</span> : logical_kinds</a>
 <a class="sourceLine" id="cb587-3" title="3"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : int8, int16, int32, int64</a>
 <a class="sourceLine" id="cb587-4" title="4"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : real32, real64, real128</a>
-<a class="sourceLine" id="cb587-5" title="5"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb587-6" title="6"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> g<span class="kw">=</span><span class="st">&#39;(*(g0))&#39;</span></a>
-<a class="sourceLine" id="cb587-7" title="7"><span class="dt">integer</span> <span class="dt">::</span> i, i1, i2</a>
-<a class="sourceLine" id="cb587-8" title="8"><span class="dt">logical</span> <span class="dt">::</span> l1, l2</a>
-<a class="sourceLine" id="cb587-9" title="9">  <span class="co">!</span></a>
-<a class="sourceLine" id="cb587-10" title="10">  <span class="co">! list kind values supported on this platform</span></a>
-<a class="sourceLine" id="cb587-11" title="11">  <span class="co">!</span></a>
-<a class="sourceLine" id="cb587-12" title="12">   <span class="kw">do</span> i <span class="kw">=</span><span class="dv">1</span>, <span class="fu">size</span>(logical_kinds)</a>
-<a class="sourceLine" id="cb587-13" title="13">      <span class="fu">write(*</span>,<span class="st">&#39;(*(g0))&#39;</span><span class="fu">)</span><span class="st">&#39;integer,parameter :: boolean&#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb587-14" title="14">      <span class="kw">&amp;</span> logical_kinds(i),<span class="st">&#39;=&#39;</span>, logical_kinds(i)</a>
-<a class="sourceLine" id="cb587-15" title="15">   <span class="kw">enddo</span></a>
-<a class="sourceLine" id="cb587-16" title="16">  <span class="co">! for performance and storage purposes you generally want</span></a>
-<a class="sourceLine" id="cb587-17" title="17">  <span class="co">! to use the smallest storage size supported when using</span></a>
-<a class="sourceLine" id="cb587-18" title="18">  <span class="co">! large arrays, but some existing routines may require</span></a>
-<a class="sourceLine" id="cb587-19" title="19">  <span class="co">! the default kind. LOGICAL(3f) can change the kind of</span></a>
-<a class="sourceLine" id="cb587-20" title="20">  <span class="co">! the variables.</span></a>
-<a class="sourceLine" id="cb587-21" title="21">  <span class="co">!</span></a>
-<a class="sourceLine" id="cb587-22" title="22">  <span class="co">! But converting a logical to an integer is not done</span></a>
-<a class="sourceLine" id="cb587-23" title="23">  <span class="co">! with LOGICAL(3f); but can be down with MERGE(3f).</span></a>
-<a class="sourceLine" id="cb587-24" title="24">  <span class="co">!</span></a>
-<a class="sourceLine" id="cb587-25" title="25">   l1<span class="kw">=</span><span class="cn">.true.</span></a>
-<a class="sourceLine" id="cb587-26" title="26">   l2<span class="kw">=</span><span class="cn">.false.</span></a>
-<a class="sourceLine" id="cb587-27" title="27">   i1<span class="kw">=</span><span class="bu">merge</span>(<span class="dv">0</span>,<span class="dv">1</span>,l1)</a>
-<a class="sourceLine" id="cb587-28" title="28">   i2<span class="kw">=</span><span class="bu">merge</span>(<span class="dv">0</span>,<span class="dv">1</span>,l2)</a>
-<a class="sourceLine" id="cb587-29" title="29">   <span class="fu">write(*</span>,g<span class="fu">)</span><span class="st">&#39;L1=&#39;</span>,l1,<span class="st">&#39; L2=&#39;</span>,l2,<span class="st">&#39; I1=&#39;</span>,i1,<span class="st">&#39; I2=&#39;</span>,i2</a>
-<a class="sourceLine" id="cb587-30" title="30">  <span class="co">!</span></a>
-<a class="sourceLine" id="cb587-31" title="31">  <span class="co">! show type and kind of default logicals</span></a>
-<a class="sourceLine" id="cb587-32" title="32">   <span class="kw">call</span> showme(<span class="cn">.true.</span>)</a>
-<a class="sourceLine" id="cb587-33" title="33">   <span class="kw">call</span> showme(l1)</a>
-<a class="sourceLine" id="cb587-34" title="34">  <span class="co">! show logical() changing type and kind</span></a>
-<a class="sourceLine" id="cb587-35" title="35">   <span class="kw">call</span> showme(<span class="dt">logical(l1)</span>)</a>
-<a class="sourceLine" id="cb587-36" title="36">  <span class="co">! you may have to delete unsupported kinds from this example</span></a>
-<a class="sourceLine" id="cb587-37" title="37"></a>
-<a class="sourceLine" id="cb587-38" title="38">  <span class="co">! this is probably the default</span></a>
-<a class="sourceLine" id="cb587-39" title="39">   <span class="kw">call</span> showme(<span class="dt">logical(l1,kind=4)</span>)</a>
-<a class="sourceLine" id="cb587-40" title="40">  <span class="co">! note how showme shows different kinds are being passed to it</span></a>
-<a class="sourceLine" id="cb587-41" title="41">   <span class="kw">call</span> showme(<span class="dt">logical(l1,kind=8)</span>)</a>
-<a class="sourceLine" id="cb587-42" title="42">   <span class="kw">call</span> showme(<span class="dt">logical(l1,kind=2)</span>)</a>
-<a class="sourceLine" id="cb587-43" title="43">  <span class="co">! this is probably the smallest storage size supported</span></a>
-<a class="sourceLine" id="cb587-44" title="44">  <span class="co">! on this platform; but kind values are platform-specific</span></a>
-<a class="sourceLine" id="cb587-45" title="45">   <span class="kw">call</span> showme(<span class="dt">logical(l1,kind=1)</span>)</a>
-<a class="sourceLine" id="cb587-46" title="46"><span class="co">contains</span></a>
-<a class="sourceLine" id="cb587-47" title="47"><span class="kw">subroutine</span> showme(val)</a>
-<a class="sourceLine" id="cb587-48" title="48"><span class="co">! @(#) showme(3f) - display type and kind of intrinsic value</span></a>
-<a class="sourceLine" id="cb587-49" title="49"><span class="co">class(*),intent(in) :: val</span></a>
-<a class="sourceLine" id="cb587-50" title="50">   <span class="kw">select</span> <span class="dt">type(val)</span></a>
-<a class="sourceLine" id="cb587-51" title="51">      <span class="dt">type</span> is (<span class="dt">integer(kind=int8)</span>)</a>
-<a class="sourceLine" id="cb587-52" title="52">        <span class="fu">write(*</span>,<span class="st">&#39;(&quot;integer(kind=int8) &quot;,i0)&#39;</span><span class="fu">)</span> val</a>
-<a class="sourceLine" id="cb587-53" title="53">      <span class="dt">type</span> is (<span class="dt">integer(kind=int16)</span>)</a>
-<a class="sourceLine" id="cb587-54" title="54">         <span class="fu">write(*</span>,<span class="st">&#39;(&quot;integer(kind=int16) &quot;,i0)&#39;</span><span class="fu">)</span> val</a>
-<a class="sourceLine" id="cb587-55" title="55">      <span class="dt">type</span> is (<span class="dt">integer(kind=int32)</span>)</a>
-<a class="sourceLine" id="cb587-56" title="56">         <span class="fu">write(*</span>,<span class="st">&#39;(&quot;integer(kind=int32) &quot;,i0)&#39;</span><span class="fu">)</span> val</a>
-<a class="sourceLine" id="cb587-57" title="57">      <span class="dt">type</span> is (<span class="dt">integer(kind=int64)</span>)</a>
-<a class="sourceLine" id="cb587-58" title="58">         <span class="fu">write(*</span>,<span class="st">&#39;(&quot;integer(kind=int64) &quot;,i0)&#39;</span><span class="fu">)</span> val</a>
-<a class="sourceLine" id="cb587-59" title="59">      <span class="dt">type</span> is (<span class="bu">real</span>(<span class="fu">kind</span><span class="kw">=</span>real32))</a>
-<a class="sourceLine" id="cb587-60" title="60">         <span class="fu">write(*</span>,<span class="st">&#39;(&quot;real(kind=real32) &quot;,1pg0)&#39;</span><span class="fu">)</span> val</a>
-<a class="sourceLine" id="cb587-61" title="61">      <span class="dt">type</span> is (<span class="bu">real</span>(<span class="fu">kind</span><span class="kw">=</span>real64))</a>
-<a class="sourceLine" id="cb587-62" title="62">         <span class="fu">write(*</span>,<span class="st">&#39;(&quot;real(kind=real64) &quot;,1pg0)&#39;</span><span class="fu">)</span> val</a>
-<a class="sourceLine" id="cb587-63" title="63">      <span class="dt">type</span> is (<span class="bu">real</span>(<span class="fu">kind</span><span class="kw">=</span>real128))</a>
-<a class="sourceLine" id="cb587-64" title="64">        <span class="fu">write(*</span>,<span class="st">&#39;(&quot;real(kind=real128) &quot;,1pg0)&#39;</span><span class="fu">)</span> val</a>
-<a class="sourceLine" id="cb587-65" title="65">      <span class="dt">type</span> is (<span class="dt">logical(kind=1)</span>)</a>
-<a class="sourceLine" id="cb587-66" title="66">            <span class="fu">write(*</span>,<span class="st">&#39;(&quot;logical(kind=1) &quot;,l1,a,i0)&#39;</span><span class="fu">)</span> val, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb587-67" title="67">            <span class="kw">&amp;</span> <span class="st">&#39;storage=&#39;</span>,storage_size(val)</a>
-<a class="sourceLine" id="cb587-68" title="68">      <span class="dt">type</span> is (<span class="dt">logical(kind=2)</span>)</a>
-<a class="sourceLine" id="cb587-69" title="69">            <span class="fu">write(*</span>,<span class="st">&#39;(&quot;logical(kind=2) &quot;,l1,a,i0)&#39;</span><span class="fu">)</span> val, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb587-70" title="70">            <span class="kw">&amp;</span> <span class="st">&#39;storage=&#39;</span>,storage_size(val)</a>
-<a class="sourceLine" id="cb587-71" title="71">      <span class="dt">type</span> is (<span class="dt">logical(kind=4)</span>)</a>
-<a class="sourceLine" id="cb587-72" title="72">            <span class="fu">write(*</span>,<span class="st">&#39;(&quot;logical(kind=4) &quot;,l1,a,i0)&#39;</span><span class="fu">)</span> val, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb587-73" title="73">            <span class="kw">&amp;</span> <span class="st">&#39;storage=&#39;</span>,storage_size(val)</a>
-<a class="sourceLine" id="cb587-74" title="74">      <span class="dt">type</span> is (<span class="dt">logical(kind=8)</span>)</a>
-<a class="sourceLine" id="cb587-75" title="75">            <span class="fu">write(*</span>,<span class="st">&#39;(&quot;logical(kind=8) &quot;,l1,a,i0)&#39;</span><span class="fu">)</span> val, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb587-76" title="76">            <span class="kw">&amp;</span> <span class="st">&#39;storage=&#39;</span>,storage_size(val)</a>
-<a class="sourceLine" id="cb587-77" title="77">      <span class="dt">type</span> is (<span class="dt">character(len=*)</span>)</a>
-<a class="sourceLine" id="cb587-78" title="78">          <span class="fu">write(*</span>,<span class="st">&#39;(&quot;character &quot;,a)&#39;</span><span class="fu">)</span> <span class="fu">trim</span>(val)</a>
-<a class="sourceLine" id="cb587-79" title="79">      <span class="dt">type</span> is (<span class="dt">complex</span>)</a>
-<a class="sourceLine" id="cb587-80" title="80">                   <span class="fu">write(*</span>,<span class="st">&#39;(&quot;&quot;,&quot;(&quot;,1pg0,&quot;,&quot;,1pg0,&quot;)&quot;)&#39;</span><span class="fu">)</span> val</a>
-<a class="sourceLine" id="cb587-81" title="81">      class <span class="kw">default</span></a>
-<a class="sourceLine" id="cb587-82" title="82">      <span class="kw">stop</span> <span class="st">&#39;crud. showme() does not know about this type&#39;</span></a>
-<a class="sourceLine" id="cb587-83" title="83">   <span class="kw">end select</span></a>
-<a class="sourceLine" id="cb587-84" title="84"><span class="kw">end subroutine</span> showme</a>
-<a class="sourceLine" id="cb587-85" title="85"><span class="kw">end program</span> demo_<span class="dt">logical</span></a></code></pre></div>
+<a class="sourceLine" id="cb587-5" title="5"><span class="co">!</span></a>
+<a class="sourceLine" id="cb587-6" title="6"><span class="co">! The standard only requires one default logical kind to be supported</span></a>
+<a class="sourceLine" id="cb587-7" title="7"><span class="co">! of the same storage size as a default INTEGER and REAL but the</span></a>
+<a class="sourceLine" id="cb587-8" title="8"><span class="co">! following kind names are standard. The kind may not be</span></a>
+<a class="sourceLine" id="cb587-9" title="9"><span class="co">! supported (in which case the value of the kind name will be a</span></a>
+<a class="sourceLine" id="cb587-10" title="10"><span class="co">! negative integer value) and additional kinds may be available as well.</span></a>
+<a class="sourceLine" id="cb587-11" title="11"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb587-12" title="12"> <span class="kw">&amp;</span> LOGICAL8, LOGICAL16, LOGICAL32, LOGICAL64</a>
+<a class="sourceLine" id="cb587-13" title="13"><span class="co">!</span></a>
+<a class="sourceLine" id="cb587-14" title="14"><span class="co">! C_BOOL is a kind compatible with C interfaces</span></a>
+<a class="sourceLine" id="cb587-15" title="15"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_c_binding,   <span class="kw">only</span> : C_BOOL</a>
+<a class="sourceLine" id="cb587-16" title="16"><span class="co">!</span></a>
+<a class="sourceLine" id="cb587-17" title="17"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb587-18" title="18"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span>            <span class="dt">::</span> <span class="fu">all</span><span class="kw">=</span><span class="st">&#39;(*(g0))&#39;</span></a>
+<a class="sourceLine" id="cb587-19" title="19"><span class="dt">integer</span>                               <span class="dt">::</span> i, i1, i2</a>
+<a class="sourceLine" id="cb587-20" title="20"><span class="co">! make T and F abbreviations for .TRUE. and .FALSE.</span></a>
+<a class="sourceLine" id="cb587-21" title="21"><span class="dt">logical</span>,<span class="dt">parameter</span>                     <span class="dt">::</span> T<span class="kw">=</span><span class="cn">.true.</span>, F<span class="kw">=</span><span class="cn">.false.</span></a>
+<a class="sourceLine" id="cb587-22" title="22"><span class="dt">logical</span>                               <span class="dt">::</span> l1, l2</a>
+<a class="sourceLine" id="cb587-23" title="23"><span class="co">! potentially save space and improve performance by using the</span></a>
+<a class="sourceLine" id="cb587-24" title="24"><span class="co">! smallest available kind</span></a>
+<a class="sourceLine" id="cb587-25" title="25"><span class="dt">logical(kind=selected_logical_kind(1))</span> <span class="dt">::</span> smallest_storage(<span class="dv">10</span>,<span class="dv">20</span>)</a>
+<a class="sourceLine" id="cb587-26" title="26"><span class="dt">logical(kind=c_bool)</span>                   <span class="dt">::</span> boolean<span class="kw">=</span><span class="cn">.TRUE.</span></a>
+<a class="sourceLine" id="cb587-27" title="27">  <span class="co">!</span></a>
+<a class="sourceLine" id="cb587-28" title="28">  <span class="fu">print</span> <span class="fu">all</span>, <span class="st">&#39;list LOGICAL kind values available on this platform&#39;</span></a>
+<a class="sourceLine" id="cb587-29" title="29">   <span class="kw">do</span> i <span class="kw">=</span><span class="dv">1</span>, <span class="fu">size</span>(logical_kinds)</a>
+<a class="sourceLine" id="cb587-30" title="30">      <span class="fu">write(*</span>,<span class="fu">all)</span><span class="st">&#39;   integer,parameter :: boolean&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb587-31" title="31">      <span class="kw">&amp;</span> logical_kinds(i),<span class="st">&#39;=&#39;</span>, logical_kinds(i)</a>
+<a class="sourceLine" id="cb587-32" title="32">   <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb587-33" title="33"></a>
+<a class="sourceLine" id="cb587-34" title="34">  <span class="fu">print</span> <span class="fu">all</span>, <span class="st">&#39;   LOGICAL8  ==&gt; KIND=&#39;</span>,LOGICAL8</a>
+<a class="sourceLine" id="cb587-35" title="35">  <span class="fu">print</span> <span class="fu">all</span>, <span class="st">&#39;   LOGICAL16 ==&gt; KIND=&#39;</span>,LOGICAL16</a>
+<a class="sourceLine" id="cb587-36" title="36">  <span class="fu">print</span> <span class="fu">all</span>, <span class="st">&#39;   LOGICAL32 ==&gt; KIND=&#39;</span>,LOGICAL32</a>
+<a class="sourceLine" id="cb587-37" title="37">  <span class="fu">print</span> <span class="fu">all</span>, <span class="st">&#39;   LOGICAL64 ==&gt; KIND=&#39;</span>,LOGICAL64</a>
+<a class="sourceLine" id="cb587-38" title="38">  <span class="fu">print</span> <span class="fu">all</span>, <span class="st">&#39;   C_BOOL    ==&gt; KIND=&#39;</span>,C_BOOL</a>
+<a class="sourceLine" id="cb587-39" title="39"></a>
+<a class="sourceLine" id="cb587-40" title="40">  <span class="fu">print</span> <span class="fu">all</span>, <span class="st">&#39;MERGE() is one method for transposing logical and integer&#39;</span></a>
+<a class="sourceLine" id="cb587-41" title="41">  <span class="co">! converting a logical to an integer is not done</span></a>
+<a class="sourceLine" id="cb587-42" title="42">  <span class="co">! with LOGICAL(3f) and INT(3f) or promotion by assignment;</span></a>
+<a class="sourceLine" id="cb587-43" title="43">  <span class="co">! but can be done with MERGE(3f) with scalars or arrays.</span></a>
+<a class="sourceLine" id="cb587-44" title="44">   i1<span class="kw">=</span><span class="bu">merge</span>(<span class="dv">0</span>,<span class="dv">1</span>,T)</a>
+<a class="sourceLine" id="cb587-45" title="45">   i2<span class="kw">=</span><span class="bu">merge</span>(<span class="dv">0</span>,<span class="dv">1</span>,F)</a>
+<a class="sourceLine" id="cb587-46" title="46">   <span class="fu">write(*</span>,<span class="fu">all)</span><span class="st">&#39;   T--&gt;&#39;</span>,i1,<span class="st">&#39; F--&gt;&#39;</span>,I2</a>
+<a class="sourceLine" id="cb587-47" title="47">   l1<span class="kw">=</span><span class="bu">merge</span>(T,F,i1<span class="op">.eq.</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb587-48" title="48">   l2<span class="kw">=</span><span class="bu">merge</span>(T,F,i2<span class="op">.eq.</span><span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb587-49" title="49">   <span class="fu">write(*</span>,<span class="fu">all)</span><span class="st">&#39;   0--&gt;&#39;</span>,l1,<span class="st">&#39; 1--&gt;&#39;</span>,l2</a>
+<a class="sourceLine" id="cb587-50" title="50"></a>
+<a class="sourceLine" id="cb587-51" title="51">  <span class="co">!</span></a>
+<a class="sourceLine" id="cb587-52" title="52">  <span class="co">! Note the standard specifies the default INTEGER, REAL, and LOGICAL</span></a>
+<a class="sourceLine" id="cb587-53" title="53">  <span class="co">! types have the same storage size, but compiler options often allow</span></a>
+<a class="sourceLine" id="cb587-54" title="54">  <span class="co">! changing that. STORAGE_SIZE() can be used to confirm that.</span></a>
+<a class="sourceLine" id="cb587-55" title="55">  <span class="co">!</span></a>
+<a class="sourceLine" id="cb587-56" title="56">  <span class="fu">print</span> <span class="fu">all</span>, <span class="st">&#39;show kind and storage size of default logical&#39;</span></a>
+<a class="sourceLine" id="cb587-57" title="57">   <span class="kw">call</span> showme(<span class="cn">.true.</span>)</a>
+<a class="sourceLine" id="cb587-58" title="58">   <span class="kw">call</span> showme(l1)</a>
+<a class="sourceLine" id="cb587-59" title="59">  <span class="co">! A method to portably request the smallest storage size is</span></a>
+<a class="sourceLine" id="cb587-60" title="60">  <span class="co">!    logical(kind=selected_logical_kind(1) :: array(1000,1000)</span></a>
+<a class="sourceLine" id="cb587-61" title="61">  <span class="fu">print</span> <span class="fu">all</span>, <span class="st">&#39;storage size of smallest logical kind&#39;</span></a>
+<a class="sourceLine" id="cb587-62" title="62">   <span class="kw">call</span> showme(<span class="dt">logical(l1,kind=selected_logical_kind(1))</span>)</a>
+<a class="sourceLine" id="cb587-63" title="63"></a>
+<a class="sourceLine" id="cb587-64" title="64">  <span class="co">! you may have to delete unsupported kinds from this example</span></a>
+<a class="sourceLine" id="cb587-65" title="65">  <span class="fu">print</span> <span class="fu">all</span>, <span class="st">&#39;different kinds are being passed because of LOGICAL() call&#39;</span></a>
+<a class="sourceLine" id="cb587-66" title="66">  <span class="fu">print</span> <span class="fu">all</span>,<span class="st">&#39;KIND values are platform-specific&#39;</span></a>
+<a class="sourceLine" id="cb587-67" title="67">   <span class="kw">call</span> showme(<span class="dt">logical(l1,kind=1)</span>)</a>
+<a class="sourceLine" id="cb587-68" title="68">   <span class="kw">call</span> showme(<span class="dt">logical(l1,kind=2)</span>)</a>
+<a class="sourceLine" id="cb587-69" title="69">   <span class="kw">call</span> showme(<span class="dt">logical(l1,kind=4)</span>)</a>
+<a class="sourceLine" id="cb587-70" title="70">   <span class="kw">call</span> showme(<span class="dt">logical(l1,kind=8)</span>)</a>
+<a class="sourceLine" id="cb587-71" title="71">  <span class="fu">print</span> <span class="fu">all</span>,<span class="st">&#39;kind=C_BOOL&#39;</span></a>
+<a class="sourceLine" id="cb587-72" title="72">   <span class="kw">call</span> showme(<span class="dt">logical(l1,kind=c_bool)</span>)</a>
+<a class="sourceLine" id="cb587-73" title="73">  <span class="fu">print</span> <span class="fu">all</span>,<span class="st">&#39;SELECTED_LOGICAL_KIND() is more portable than KIND values&#39;</span></a>
+<a class="sourceLine" id="cb587-74" title="74">  <span class="co">! you might want to check the resulting kind</span></a>
+<a class="sourceLine" id="cb587-75" title="75">   <span class="kw">call</span> showme(<span class="dt">logical(l1,kind=selected_logical_kind(1))</span>) <span class="co">! smallest</span></a>
+<a class="sourceLine" id="cb587-76" title="76">   <span class="kw">call</span> showme(<span class="dt">logical(l1,kind=kind(.true.))</span>)             <span class="co">! default</span></a>
+<a class="sourceLine" id="cb587-77" title="77">   <span class="kw">call</span> showme(<span class="dt">logical(l1,kind=selected_logical_kind(8))</span>)</a>
+<a class="sourceLine" id="cb587-78" title="78">   <span class="kw">call</span> showme(<span class="dt">logical(l1,kind=selected_logical_kind(16))</span>)</a>
+<a class="sourceLine" id="cb587-79" title="79">   <span class="kw">call</span> showme(<span class="dt">logical(l1,kind=selected_logical_kind(32))</span>)</a>
+<a class="sourceLine" id="cb587-80" title="80">   <span class="kw">call</span> showme(<span class="dt">logical(l1,kind=selected_logical_kind(64))</span>)</a>
+<a class="sourceLine" id="cb587-81" title="81"></a>
+<a class="sourceLine" id="cb587-82" title="82"><span class="co">contains</span></a>
+<a class="sourceLine" id="cb587-83" title="83"><span class="kw">subroutine</span> showme(val)</a>
+<a class="sourceLine" id="cb587-84" title="84"><span class="co">! @(#) showme(3f) - display type and kind of intrinsic value</span></a>
+<a class="sourceLine" id="cb587-85" title="85"><span class="co">! this is an example of how to accept any logical kind as a parameter,</span></a>
+<a class="sourceLine" id="cb587-86" title="86"><span class="co">! but this is often done with a generic procedure.</span></a>
+<a class="sourceLine" id="cb587-87" title="87"><span class="co">class(*),intent(in) :: val</span></a>
+<a class="sourceLine" id="cb587-88" title="88">   <span class="kw">select</span> <span class="dt">type(val)</span></a>
+<a class="sourceLine" id="cb587-89" title="89">      <span class="dt">type</span> is (<span class="dt">logical(kind=logical8)</span>)</a>
+<a class="sourceLine" id="cb587-90" title="90">            <span class="fu">write(*</span>,<span class="st">&#39;(&quot;   logical(kind=1) &quot;,l1,a,i0)&#39;</span><span class="fu">)</span> val, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb587-91" title="91">            <span class="kw">&amp;</span> <span class="st">&#39; storage=&#39;</span>,storage_size(val)</a>
+<a class="sourceLine" id="cb587-92" title="92">      <span class="dt">type</span> is (<span class="dt">logical(kind=logical16)</span>)</a>
+<a class="sourceLine" id="cb587-93" title="93">            <span class="fu">write(*</span>,<span class="st">&#39;(&quot;   logical(kind=2) &quot;,l1,a,i0)&#39;</span><span class="fu">)</span> val, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb587-94" title="94">            <span class="kw">&amp;</span> <span class="st">&#39; storage=&#39;</span>,storage_size(val)</a>
+<a class="sourceLine" id="cb587-95" title="95">      <span class="dt">type</span> is (<span class="dt">logical(kind=logical32)</span>)</a>
+<a class="sourceLine" id="cb587-96" title="96">            <span class="fu">write(*</span>,<span class="st">&#39;(&quot;   logical(kind=4) &quot;,l1,a,i0)&#39;</span><span class="fu">)</span> val, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb587-97" title="97">            <span class="kw">&amp;</span> <span class="st">&#39; storage=&#39;</span>,storage_size(val)</a>
+<a class="sourceLine" id="cb587-98" title="98">      <span class="dt">type</span> is (<span class="dt">logical(kind=logical64)</span>)</a>
+<a class="sourceLine" id="cb587-99" title="99">            <span class="fu">write(*</span>,<span class="st">&#39;(&quot;   logical(kind=8) &quot;,l1,a,i0)&#39;</span><span class="fu">)</span> val, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb587-100" title="100">            <span class="kw">&amp;</span> <span class="st">&#39; storage=&#39;</span>,storage_size(val)</a>
+<a class="sourceLine" id="cb587-101" title="101">      class <span class="kw">default</span></a>
+<a class="sourceLine" id="cb587-102" title="102">      <span class="kw">stop</span> <span class="st">&#39;crud. showme() does not know about this type&#39;</span></a>
+<a class="sourceLine" id="cb587-103" title="103">   <span class="kw">end select</span></a>
+<a class="sourceLine" id="cb587-104" title="104"><span class="kw">end subroutine</span> showme</a>
+<a class="sourceLine" id="cb587-105" title="105"><span class="kw">end program</span> demo_<span class="dt">logical</span></a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code> &gt; integer,parameter :: boolean1=1
- &gt; integer,parameter :: boolean2=2
- &gt; integer,parameter :: boolean4=4
- &gt; integer,parameter :: boolean8=8
- &gt; integer,parameter :: boolean16=16
- &gt; L1=T L2=F I1=0 I2=1
- &gt; logical(kind=4) Tstorage=32
- &gt; logical(kind=4) Tstorage=32
- &gt; logical(kind=4) Tstorage=32
- &gt; logical(kind=1) Tstorage=8
- &gt; logical(kind=2) Tstorage=16
- &gt; logical(kind=4) Tstorage=32</code></pre>
+<pre class="text"><code>    &gt; list LOGICAL kind values available on this platform
+    &gt;    integer,parameter :: boolean1=1
+    &gt;    integer,parameter :: boolean2=2
+    &gt;    integer,parameter :: boolean4=4
+    &gt;    integer,parameter :: boolean8=8
+    &gt;    integer,parameter :: boolean16=16
+    &gt;    LOGICAL8  ==&gt; KIND=1
+    &gt;    LOGICAL16 ==&gt; KIND=2
+    &gt;    LOGICAL32 ==&gt; KIND=4
+    &gt;    LOGICAL64 ==&gt; KIND=8
+    &gt;    C_BOOL    ==&gt; KIND=1
+    &gt; MERGE() is one method for transposing logical and integer
+    &gt;    T--&gt;0 F--&gt;1
+    &gt;    0--&gt;T 1--&gt;F
+    &gt; show kind and storage size of default logical
+    &gt;    logical(kind=4) T storage=32
+    &gt;    logical(kind=4) T storage=32
+    &gt; storage size of smallest logical kind
+    &gt;    logical(kind=1) T storage=8
+    &gt; different kinds are being passed because of LOGICAL() call
+    &gt; KIND values are platform-specific
+    &gt;    logical(kind=1) T storage=8
+    &gt;    logical(kind=2) T storage=16
+    &gt;    logical(kind=4) T storage=32
+    &gt;    logical(kind=8) T storage=64
+    &gt; kind=C_BOOL
+    &gt;    logical(kind=1) T storage=8
+    &gt; SELECTED_LOGICAL_KIND() is more portable than KIND values
+    &gt;    logical(kind=1) T storage=8
+    &gt;    logical(kind=4) T storage=32
+    &gt;    logical(kind=1) T storage=8
+    &gt;    logical(kind=2) T storage=16
+    &gt;    logical(kind=4) T storage=32
+    &gt;    logical(kind=8) T storage=64</code></pre>
 </div><div id="standard-131" class="slide section level3">
 <h1><strong>Standard</strong></h1>
 <p>Fortran 95 , related ISO_FORTRAN_ENV module - fortran 2009</p>
@@ -13098,55 +13145,67 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb636-5" title="5"><span class="dt">integer</span> <span class="dt">::</span> i</a>
 <a class="sourceLine" id="cb636-6" title="6"><span class="dt">integer</span> <span class="dt">::</span> k</a>
 <a class="sourceLine" id="cb636-7" title="7"><span class="dt">logical</span> <span class="dt">::</span> chooseleft</a>
-<a class="sourceLine" id="cb636-8" title="8"></a>
-<a class="sourceLine" id="cb636-9" title="9">   <span class="co">! Works with scalars</span></a>
-<a class="sourceLine" id="cb636-10" title="10">   k<span class="kw">=</span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb636-11" title="11">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="bu">merge</span> (<span class="fl">1.0</span>, <span class="fl">0.0</span>, k <span class="op">&gt;</span> <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb636-12" title="12">   k<span class="kw">=-</span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb636-13" title="13">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="bu">merge</span> (<span class="fl">1.0</span>, <span class="fl">0.0</span>, k <span class="op">&gt;</span> <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb636-14" title="14"></a>
-<a class="sourceLine" id="cb636-15" title="15">   <span class="co">! set up some simple arrays that all conform to the</span></a>
-<a class="sourceLine" id="cb636-16" title="16">   <span class="co">! same shape</span></a>
-<a class="sourceLine" id="cb636-17" title="17">   tvals(<span class="dv">1</span>,:)<span class="kw">=[</span>  <span class="dv">10</span>, <span class="kw">-</span><span class="dv">60</span>,  <span class="dv">50</span> <span class="kw">]</span></a>
-<a class="sourceLine" id="cb636-18" title="18">   tvals(<span class="dv">2</span>,:)<span class="kw">=[</span> <span class="kw">-</span><span class="dv">20</span>,  <span class="dv">40</span>, <span class="kw">-</span><span class="dv">60</span> <span class="kw">]</span></a>
-<a class="sourceLine" id="cb636-19" title="19"></a>
-<a class="sourceLine" id="cb636-20" title="20">   fvals(<span class="dv">1</span>,:)<span class="kw">=[</span> <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">2</span> <span class="kw">]</span></a>
-<a class="sourceLine" id="cb636-21" title="21">   fvals(<span class="dv">2</span>,:)<span class="kw">=[</span> <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">8</span> <span class="kw">]</span></a>
-<a class="sourceLine" id="cb636-22" title="22"></a>
-<a class="sourceLine" id="cb636-23" title="23">   mask(<span class="dv">1</span>,:)<span class="kw">=[</span> <span class="cn">.true.</span>,  <span class="cn">.false.</span>, <span class="cn">.true.</span> <span class="kw">]</span></a>
-<a class="sourceLine" id="cb636-24" title="24">   mask(<span class="dv">2</span>,:)<span class="kw">=[</span> <span class="cn">.false.</span>, <span class="cn">.false.</span>, <span class="cn">.true.</span> <span class="kw">]</span></a>
-<a class="sourceLine" id="cb636-25" title="25"></a>
-<a class="sourceLine" id="cb636-26" title="26">   <span class="co">! lets use the mask of specific values</span></a>
-<a class="sourceLine" id="cb636-27" title="27">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;mask of logicals&#39;</span></a>
-<a class="sourceLine" id="cb636-28" title="28">   answer<span class="kw">=</span><span class="bu">merge</span>( tvals, fvals, mask )</a>
-<a class="sourceLine" id="cb636-29" title="29">   <span class="kw">call</span> printme()</a>
-<a class="sourceLine" id="cb636-30" title="30"></a>
-<a class="sourceLine" id="cb636-31" title="31">   <span class="co">! more typically the mask is an expression</span></a>
-<a class="sourceLine" id="cb636-32" title="32">   <span class="fu">write(*</span>, <span class="fu">*)</span><span class="st">&#39;highest values&#39;</span></a>
-<a class="sourceLine" id="cb636-33" title="33">   answer<span class="kw">=</span><span class="bu">merge</span>( tvals, fvals, tvals <span class="op">&gt;</span> fvals )</a>
-<a class="sourceLine" id="cb636-34" title="34">   <span class="kw">call</span> printme()</a>
-<a class="sourceLine" id="cb636-35" title="35"></a>
-<a class="sourceLine" id="cb636-36" title="36">   <span class="fu">write(*</span>, <span class="fu">*)</span><span class="st">&#39;lowest values&#39;</span></a>
-<a class="sourceLine" id="cb636-37" title="37">   answer<span class="kw">=</span><span class="bu">merge</span>( tvals, fvals, tvals <span class="op">&lt;</span> fvals )</a>
-<a class="sourceLine" id="cb636-38" title="38">   <span class="kw">call</span> printme()</a>
-<a class="sourceLine" id="cb636-39" title="39"></a>
-<a class="sourceLine" id="cb636-40" title="40">   <span class="fu">write(*</span>, <span class="fu">*)</span><span class="st">&#39;zero out negative values&#39;</span></a>
-<a class="sourceLine" id="cb636-41" title="41">   answer<span class="kw">=</span><span class="bu">merge</span>( <span class="dv">0</span>, tvals, tvals <span class="op">&lt;</span> <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb636-42" title="42">   <span class="kw">call</span> printme()</a>
-<a class="sourceLine" id="cb636-43" title="43"></a>
-<a class="sourceLine" id="cb636-44" title="44">   <span class="fu">write(*</span>, <span class="fu">*)</span><span class="st">&#39;binary choice&#39;</span></a>
-<a class="sourceLine" id="cb636-45" title="45">   chooseleft<span class="kw">=</span><span class="cn">.false.</span></a>
-<a class="sourceLine" id="cb636-46" title="46">   <span class="fu">write(*</span>, <span class="st">&#39;(3i4)&#39;</span><span class="fu">)</span><span class="bu">merge</span>(<span class="kw">[</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span><span class="kw">]</span>,<span class="kw">[</span><span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span><span class="kw">]</span>,chooseleft)</a>
-<a class="sourceLine" id="cb636-47" title="47">   chooseleft<span class="kw">=</span><span class="cn">.true.</span></a>
-<a class="sourceLine" id="cb636-48" title="48">   <span class="fu">write(*</span>, <span class="st">&#39;(3i4)&#39;</span><span class="fu">)</span><span class="bu">merge</span>(<span class="kw">[</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span><span class="kw">]</span>,<span class="kw">[</span><span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span><span class="kw">]</span>,chooseleft)</a>
-<a class="sourceLine" id="cb636-49" title="49"></a>
-<a class="sourceLine" id="cb636-50" title="50"><span class="co">contains</span></a>
+<a class="sourceLine" id="cb636-8" title="8"><span class="dt">logical</span> <span class="dt">::</span> maybe</a>
+<a class="sourceLine" id="cb636-9" title="9"></a>
+<a class="sourceLine" id="cb636-10" title="10">   <span class="co">! Works with scalars</span></a>
+<a class="sourceLine" id="cb636-11" title="11">   k<span class="kw">=</span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb636-12" title="12">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="bu">merge</span> (<span class="fl">1.0</span>, <span class="fl">0.0</span>, k <span class="op">&gt;</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb636-13" title="13">   k<span class="kw">=-</span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb636-14" title="14">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="bu">merge</span> (<span class="fl">1.0</span>, <span class="fl">0.0</span>, k <span class="op">&gt;</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb636-15" title="15"></a>
+<a class="sourceLine" id="cb636-16" title="16">   <span class="co">! note for scalar logicals calls such as</span></a>
+<a class="sourceLine" id="cb636-17" title="17">   maybe <span class="kw">=</span> <span class="bu">merge</span> (<span class="cn">.true.</span>,<span class="cn">.false.</span>, k <span class="op">&gt;</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb636-18" title="18">   <span class="co">! are simply the same as</span></a>
+<a class="sourceLine" id="cb636-19" title="19">   <span class="kw">if</span> (k <span class="op">&gt;</span> <span class="dv">0</span>)<span class="kw">then</span></a>
+<a class="sourceLine" id="cb636-20" title="20">      maybe<span class="kw">=</span><span class="cn">.true.</span></a>
+<a class="sourceLine" id="cb636-21" title="21">   <span class="kw">else</span></a>
+<a class="sourceLine" id="cb636-22" title="22">      maybe<span class="kw">=</span><span class="cn">.false.</span></a>
+<a class="sourceLine" id="cb636-23" title="23">   <span class="kw">endif</span></a>
+<a class="sourceLine" id="cb636-24" title="24">   <span class="co">! but even more succinctly, and array-compatible, is</span></a>
+<a class="sourceLine" id="cb636-25" title="25">   maybe <span class="kw">=</span> k <span class="op">&gt;</span> <span class="dv">0</span></a>
+<a class="sourceLine" id="cb636-26" title="26"></a>
+<a class="sourceLine" id="cb636-27" title="27">   <span class="co">! set up some simple arrays that all conform to the</span></a>
+<a class="sourceLine" id="cb636-28" title="28">   <span class="co">! same shape</span></a>
+<a class="sourceLine" id="cb636-29" title="29">   tvals(<span class="dv">1</span>,:)<span class="kw">=[</span>  <span class="dv">10</span>, <span class="kw">-</span><span class="dv">60</span>,  <span class="dv">50</span> <span class="kw">]</span></a>
+<a class="sourceLine" id="cb636-30" title="30">   tvals(<span class="dv">2</span>,:)<span class="kw">=[</span> <span class="kw">-</span><span class="dv">20</span>,  <span class="dv">40</span>, <span class="kw">-</span><span class="dv">60</span> <span class="kw">]</span></a>
+<a class="sourceLine" id="cb636-31" title="31"></a>
+<a class="sourceLine" id="cb636-32" title="32">   fvals(<span class="dv">1</span>,:)<span class="kw">=[</span> <span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">2</span> <span class="kw">]</span></a>
+<a class="sourceLine" id="cb636-33" title="33">   fvals(<span class="dv">2</span>,:)<span class="kw">=[</span> <span class="dv">7</span>, <span class="dv">4</span>, <span class="dv">8</span> <span class="kw">]</span></a>
+<a class="sourceLine" id="cb636-34" title="34"></a>
+<a class="sourceLine" id="cb636-35" title="35">   mask(<span class="dv">1</span>,:)<span class="kw">=[</span> <span class="cn">.true.</span>,  <span class="cn">.false.</span>, <span class="cn">.true.</span> <span class="kw">]</span></a>
+<a class="sourceLine" id="cb636-36" title="36">   mask(<span class="dv">2</span>,:)<span class="kw">=[</span> <span class="cn">.false.</span>, <span class="cn">.false.</span>, <span class="cn">.true.</span> <span class="kw">]</span></a>
+<a class="sourceLine" id="cb636-37" title="37"></a>
+<a class="sourceLine" id="cb636-38" title="38">   <span class="co">! lets use the mask of specific values</span></a>
+<a class="sourceLine" id="cb636-39" title="39">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;mask of logicals&#39;</span></a>
+<a class="sourceLine" id="cb636-40" title="40">   answer<span class="kw">=</span><span class="bu">merge</span>( tvals, fvals, mask )</a>
+<a class="sourceLine" id="cb636-41" title="41">   <span class="kw">call</span> printme()</a>
+<a class="sourceLine" id="cb636-42" title="42"></a>
+<a class="sourceLine" id="cb636-43" title="43">   <span class="co">! more typically the mask is an expression</span></a>
+<a class="sourceLine" id="cb636-44" title="44">   <span class="fu">write(*</span>, <span class="fu">*)</span><span class="st">&#39;highest values&#39;</span></a>
+<a class="sourceLine" id="cb636-45" title="45">   answer<span class="kw">=</span><span class="bu">merge</span>( tvals, fvals, tvals <span class="op">&gt;</span> fvals )</a>
+<a class="sourceLine" id="cb636-46" title="46">   <span class="kw">call</span> printme()</a>
+<a class="sourceLine" id="cb636-47" title="47"></a>
+<a class="sourceLine" id="cb636-48" title="48">   <span class="fu">write(*</span>, <span class="fu">*)</span><span class="st">&#39;lowest values&#39;</span></a>
+<a class="sourceLine" id="cb636-49" title="49">   answer<span class="kw">=</span><span class="bu">merge</span>( tvals, fvals, tvals <span class="op">&lt;</span> fvals )</a>
+<a class="sourceLine" id="cb636-50" title="50">   <span class="kw">call</span> printme()</a>
 <a class="sourceLine" id="cb636-51" title="51"></a>
-<a class="sourceLine" id="cb636-52" title="52"><span class="kw">subroutine</span> printme()</a>
-<a class="sourceLine" id="cb636-53" title="53">      <span class="fu">write(*</span>, <span class="st">&#39;(3i4)&#39;</span><span class="fu">)</span>(answer(i, :), i<span class="kw">=</span><span class="dv">1</span>, <span class="fu">size</span>(answer, <span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb636-54" title="54"><span class="kw">end subroutine</span> printme</a>
+<a class="sourceLine" id="cb636-52" title="52">   <span class="fu">write(*</span>, <span class="fu">*)</span><span class="st">&#39;zero out negative values&#39;</span></a>
+<a class="sourceLine" id="cb636-53" title="53">   answer<span class="kw">=</span><span class="bu">merge</span>( <span class="dv">0</span>, tvals, tvals <span class="op">&lt;</span> <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb636-54" title="54">   <span class="kw">call</span> printme()</a>
 <a class="sourceLine" id="cb636-55" title="55"></a>
-<a class="sourceLine" id="cb636-56" title="56"><span class="kw">end program</span> demo_merge</a></code></pre></div>
+<a class="sourceLine" id="cb636-56" title="56">   <span class="fu">write(*</span>, <span class="fu">*)</span><span class="st">&#39;binary choice&#39;</span></a>
+<a class="sourceLine" id="cb636-57" title="57">   chooseleft<span class="kw">=</span><span class="cn">.false.</span></a>
+<a class="sourceLine" id="cb636-58" title="58">   <span class="fu">write(*</span>, <span class="st">&#39;(3i4)&#39;</span><span class="fu">)</span><span class="bu">merge</span>(<span class="kw">[</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span><span class="kw">]</span>,<span class="kw">[</span><span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span><span class="kw">]</span>,chooseleft)</a>
+<a class="sourceLine" id="cb636-59" title="59">   chooseleft<span class="kw">=</span><span class="cn">.true.</span></a>
+<a class="sourceLine" id="cb636-60" title="60">   <span class="fu">write(*</span>, <span class="st">&#39;(3i4)&#39;</span><span class="fu">)</span><span class="bu">merge</span>(<span class="kw">[</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span><span class="kw">]</span>,<span class="kw">[</span><span class="dv">10</span>,<span class="dv">20</span>,<span class="dv">30</span><span class="kw">]</span>,chooseleft)</a>
+<a class="sourceLine" id="cb636-61" title="61"></a>
+<a class="sourceLine" id="cb636-62" title="62"><span class="co">contains</span></a>
+<a class="sourceLine" id="cb636-63" title="63"></a>
+<a class="sourceLine" id="cb636-64" title="64"><span class="kw">subroutine</span> printme()</a>
+<a class="sourceLine" id="cb636-65" title="65">      <span class="fu">write(*</span>, <span class="st">&#39;(3i4)&#39;</span><span class="fu">)</span>(answer(i, :), i<span class="kw">=</span><span class="dv">1</span>, <span class="fu">size</span>(answer, <span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>))</a>
+<a class="sourceLine" id="cb636-66" title="66"><span class="kw">end subroutine</span> printme</a>
+<a class="sourceLine" id="cb636-67" title="67"></a>
+<a class="sourceLine" id="cb636-68" title="68"><span class="kw">end program</span> demo_merge</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code> &gt;    1.00000000
  &gt;    0.00000000
@@ -17014,85 +17073,87 @@ Currently, supported character sets include “ASCII” and “DEFAULT” and �
 </div><div id="examples-176" class="slide section level3">
 <h1><strong>Examples</strong></h1>
 <p>Sample program:</p>
-<div class="sourceCode" id="cb816"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb816-1" title="1">Linux</a>
-<a class="sourceLine" id="cb816-2" title="2"><span class="kw">program</span> demo_selected_char_kind</a>
-<a class="sourceLine" id="cb816-3" title="3"><span class="kw">use</span> iso_fortran_env</a>
-<a class="sourceLine" id="cb816-4" title="4"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb816-5" title="5"></a>
-<a class="sourceLine" id="cb816-6" title="6"><span class="kw">intrinsic</span> <span class="fu">date_and_time</span>,selected_char_kind</a>
-<a class="sourceLine" id="cb816-7" title="7"></a>
-<a class="sourceLine" id="cb816-8" title="8"><span class="co">! set some aliases for common character kinds</span></a>
-<a class="sourceLine" id="cb816-9" title="9"><span class="co">! as the numbers can vary from platform to platform</span></a>
-<a class="sourceLine" id="cb816-10" title="10"></a>
-<a class="sourceLine" id="cb816-11" title="11"><span class="dt">integer</span>, <span class="dt">parameter</span> <span class="dt">::</span> <span class="kw">default</span> <span class="kw">=</span> selected_char_kind (<span class="st">&quot;default&quot;</span>)</a>
-<a class="sourceLine" id="cb816-12" title="12"><span class="dt">integer</span>, <span class="dt">parameter</span> <span class="dt">::</span> ascii <span class="kw">=</span>   selected_char_kind (<span class="st">&quot;ascii&quot;</span>)</a>
-<a class="sourceLine" id="cb816-13" title="13"><span class="dt">integer</span>, <span class="dt">parameter</span> <span class="dt">::</span> ucs4  <span class="kw">=</span>   selected_char_kind (<span class="st">&#39;ISO_10646&#39;</span>)</a>
-<a class="sourceLine" id="cb816-14" title="14"><span class="dt">integer</span>, <span class="dt">parameter</span> <span class="dt">::</span> utf8  <span class="kw">=</span>   selected_char_kind (<span class="st">&#39;utf-8&#39;</span>)</a>
-<a class="sourceLine" id="cb816-15" title="15"></a>
-<a class="sourceLine" id="cb816-16" title="16"><span class="co">! assuming ASCII and UCS4 are supported (ie. not equal to -1)</span></a>
-<a class="sourceLine" id="cb816-17" title="17"><span class="co">! define some string variables</span></a>
-<a class="sourceLine" id="cb816-18" title="18"><span class="dt">character(len=26, kind=ascii )</span> <span class="dt">::</span> alphabet</a>
-<a class="sourceLine" id="cb816-19" title="19"><span class="dt">character(len=30, kind=ucs4  )</span> <span class="dt">::</span> hello_world</a>
-<a class="sourceLine" id="cb816-20" title="20"><span class="dt">character(len=30, kind=ucs4  )</span> <span class="dt">::</span> string</a>
-<a class="sourceLine" id="cb816-21" title="21"></a>
-<a class="sourceLine" id="cb816-22" title="22">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;ASCII     &#39;</span>,<span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb816-23" title="23">    <span class="kw">&amp;</span> <span class="bu">merge</span>(<span class="st">&#39;Supported    &#39;</span>,<span class="st">&#39;Not Supported&#39;</span>,ascii <span class="op">/=</span> <span class="kw">-</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb816-24" title="24">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;ISO_10646 &#39;</span>,<span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb816-25" title="25">    <span class="kw">&amp;</span> <span class="bu">merge</span>(<span class="st">&#39;Supported    &#39;</span>,<span class="st">&#39;Not Supported&#39;</span>,ucs4 <span class="op">/=</span> <span class="kw">-</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb816-26" title="26">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;UTF-8     &#39;</span>,<span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb816-27" title="27">    <span class="kw">&amp;</span> <span class="bu">merge</span>(<span class="st">&#39;Supported    &#39;</span>,<span class="st">&#39;Not Supported&#39;</span>,utf8 <span class="op">/=</span> <span class="kw">-</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb816-28" title="28"></a>
-<a class="sourceLine" id="cb816-29" title="29">   <span class="kw">if</span>(<span class="kw">default</span><span class="op">.eq.</span>ascii)<span class="kw">then</span></a>
-<a class="sourceLine" id="cb816-30" title="30">       <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;ASCII is the default on this processor&#39;</span></a>
-<a class="sourceLine" id="cb816-31" title="31">   <span class="kw">endif</span></a>
-<a class="sourceLine" id="cb816-32" title="32"></a>
-<a class="sourceLine" id="cb816-33" title="33">  <span class="co">! for constants the kind precedes the value, somewhat like a</span></a>
-<a class="sourceLine" id="cb816-34" title="34">  <span class="co">! BOZ constant</span></a>
-<a class="sourceLine" id="cb816-35" title="35">   alphabet <span class="kw">=</span> ascii_<span class="st">&quot;abcdefghijklmnopqrstuvwxyz&quot;</span></a>
-<a class="sourceLine" id="cb816-36" title="36">   <span class="fu">write (*</span>,<span class="fu">*)</span> alphabet</a>
-<a class="sourceLine" id="cb816-37" title="37"></a>
-<a class="sourceLine" id="cb816-38" title="38">   hello_world <span class="kw">=</span> ucs4_<span class="st">&#39;Hello World and Ni Hao -- &#39;</span> <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb816-39" title="39">                 <span class="kw">//</span> <span class="bu">char</span> (<span class="bu">int</span> (<span class="dv">z&#39;4F60&#39;</span>), ucs4)     <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb816-40" title="40">                 <span class="kw">//</span> <span class="bu">char</span> (<span class="bu">int</span> (<span class="dv">z&#39;597D&#39;</span>), ucs4)</a>
-<a class="sourceLine" id="cb816-41" title="41"></a>
-<a class="sourceLine" id="cb816-42" title="42">  <span class="co">! an encoding option is required on OPEN for non-default I/O</span></a>
-<a class="sourceLine" id="cb816-43" title="43">   <span class="kw">if</span>(ucs4 <span class="op">/=</span> <span class="kw">-</span><span class="dv">1</span> )<span class="kw">then</span></a>
-<a class="sourceLine" id="cb816-44" title="44">      <span class="fu">open (</span>output_unit, encoding<span class="kw">=</span><span class="st">&#39;UTF-8&#39;</span><span class="fu">)</span></a>
-<a class="sourceLine" id="cb816-45" title="45">      <span class="fu">write (*</span>,<span class="fu">*)</span> <span class="fu">trim</span> (hello_world)</a>
-<a class="sourceLine" id="cb816-46" title="46">   <span class="kw">else</span></a>
-<a class="sourceLine" id="cb816-47" title="47">      <span class="fu">write (*</span>,<span class="fu">*)</span> <span class="st">&#39;cannot use utf-8&#39;</span></a>
-<a class="sourceLine" id="cb816-48" title="48">   <span class="kw">endif</span></a>
-<a class="sourceLine" id="cb816-49" title="49"></a>
-<a class="sourceLine" id="cb816-50" title="50">   <span class="kw">call</span> create_date_string(string)</a>
-<a class="sourceLine" id="cb816-51" title="51">   <span class="fu">write (*</span>,<span class="fu">*)</span> <span class="fu">trim</span> (string)</a>
-<a class="sourceLine" id="cb816-52" title="52"></a>
-<a class="sourceLine" id="cb816-53" title="53"><span class="co">contains</span></a>
-<a class="sourceLine" id="cb816-54" title="54"></a>
-<a class="sourceLine" id="cb816-55" title="55"><span class="co">! The following produces a Japanese date stamp.</span></a>
-<a class="sourceLine" id="cb816-56" title="56"><span class="kw">subroutine</span> create_date_string(string)</a>
-<a class="sourceLine" id="cb816-57" title="57"><span class="kw">intrinsic</span> <span class="fu">date_and_time</span>,selected_char_kind</a>
-<a class="sourceLine" id="cb816-58" title="58"><span class="dt">integer</span>,<span class="dt">parameter</span> <span class="dt">::</span> ucs4 <span class="kw">=</span> selected_char_kind(<span class="st">&quot;ISO_10646&quot;</span>)</a>
-<a class="sourceLine" id="cb816-59" title="59"><span class="dt">character(len=1,kind=ucs4)</span>,<span class="dt">parameter</span> <span class="dt">::</span> <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb816-60" title="60">       nen <span class="kw">=</span>   <span class="bu">char</span>(<span class="bu">int</span>( <span class="dv">z&#39;5e74&#39;</span> ),ucs4), <span class="kw">&amp;</span> <span class="co">! year</span></a>
-<a class="sourceLine" id="cb816-61" title="61">       gatsu <span class="kw">=</span> <span class="bu">char</span>(<span class="bu">int</span>( <span class="dv">z&#39;6708&#39;</span> ),ucs4), <span class="kw">&amp;</span> <span class="co">! month</span></a>
-<a class="sourceLine" id="cb816-62" title="62">       nichi <span class="kw">=</span> <span class="bu">char</span>(<span class="bu">int</span>( <span class="dv">z&#39;65e5&#39;</span> ),ucs4)    <span class="co">! day</span></a>
-<a class="sourceLine" id="cb816-63" title="63"><span class="dt">character(len= *, kind= ucs4)</span> string</a>
-<a class="sourceLine" id="cb816-64" title="64"><span class="dt">integer</span> values(<span class="dv">8</span>)</a>
-<a class="sourceLine" id="cb816-65" title="65">   <span class="kw">call</span> <span class="fu">date_and_time</span>(values<span class="kw">=</span>values)</a>
-<a class="sourceLine" id="cb816-66" title="66">   <span class="fu">write(</span>string,<span class="dv">101</span><span class="fu">)</span> values(<span class="dv">1</span>),nen,values(<span class="dv">2</span>),gatsu,values(<span class="dv">3</span>),nichi</a>
-<a class="sourceLine" id="cb816-67" title="67"> <span class="dv">101</span> <span class="fu">format(</span><span class="kw">*</span><span class="fu">(</span>i0,a<span class="fu">))</span></a>
-<a class="sourceLine" id="cb816-68" title="68"><span class="kw">end subroutine</span> create_date_string</a>
-<a class="sourceLine" id="cb816-69" title="69"></a>
-<a class="sourceLine" id="cb816-70" title="70"><span class="kw">end program</span> demo_selected_char_kind</a></code></pre></div>
+<div class="sourceCode" id="cb816"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb816-1" title="1"><span class="kw">program</span> demo_selected_char_kind</a>
+<a class="sourceLine" id="cb816-2" title="2"><span class="kw">use</span> iso_fortran_env, <span class="kw">only</span>: output_unit, CHARACTER_KINDS</a>
+<a class="sourceLine" id="cb816-3" title="3"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb816-4" title="4"></a>
+<a class="sourceLine" id="cb816-5" title="5"><span class="kw">intrinsic</span> <span class="fu">date_and_time</span>, selected_char_kind</a>
+<a class="sourceLine" id="cb816-6" title="6"></a>
+<a class="sourceLine" id="cb816-7" title="7"><span class="co">! set some aliases for common character kinds</span></a>
+<a class="sourceLine" id="cb816-8" title="8"><span class="co">! as the numbers can vary from platform to platform</span></a>
+<a class="sourceLine" id="cb816-9" title="9"></a>
+<a class="sourceLine" id="cb816-10" title="10"><span class="dt">integer</span>, <span class="dt">parameter</span> <span class="dt">::</span> <span class="kw">default</span> <span class="kw">=</span> selected_char_kind (<span class="st">&quot;default&quot;</span>)</a>
+<a class="sourceLine" id="cb816-11" title="11"><span class="dt">integer</span>, <span class="dt">parameter</span> <span class="dt">::</span> ascii <span class="kw">=</span>   selected_char_kind (<span class="st">&quot;ascii&quot;</span>)</a>
+<a class="sourceLine" id="cb816-12" title="12"><span class="dt">integer</span>, <span class="dt">parameter</span> <span class="dt">::</span> ucs4  <span class="kw">=</span>   selected_char_kind (<span class="st">&#39;ISO_10646&#39;</span>)</a>
+<a class="sourceLine" id="cb816-13" title="13"><span class="dt">integer</span>, <span class="dt">parameter</span> <span class="dt">::</span> utf8  <span class="kw">=</span>   selected_char_kind (<span class="st">&#39;utf-8&#39;</span>)</a>
+<a class="sourceLine" id="cb816-14" title="14"></a>
+<a class="sourceLine" id="cb816-15" title="15"><span class="co">! assuming ASCII and UCS4 are supported (ie. not equal to -1)</span></a>
+<a class="sourceLine" id="cb816-16" title="16"><span class="co">! define some string variables</span></a>
+<a class="sourceLine" id="cb816-17" title="17"><span class="dt">character(len=26, kind=ascii )</span> <span class="dt">::</span> alphabet</a>
+<a class="sourceLine" id="cb816-18" title="18"><span class="dt">character(len=30, kind=ucs4  )</span> <span class="dt">::</span> hello_world</a>
+<a class="sourceLine" id="cb816-19" title="19"><span class="dt">character(len=30, kind=ucs4  )</span> <span class="dt">::</span> string</a>
+<a class="sourceLine" id="cb816-20" title="20"></a>
+<a class="sourceLine" id="cb816-21" title="21">   <span class="fu">write(*</span>,<span class="st">&#39;(*(g0,1x))&#39;</span><span class="fu">)</span><span class="st">&#39;Available CHARACTER kind values:&#39;</span>,CHARACTER_KINDS</a>
+<a class="sourceLine" id="cb816-22" title="22"></a>
+<a class="sourceLine" id="cb816-23" title="23">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;ASCII     &#39;</span>,<span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb816-24" title="24">    <span class="kw">&amp;</span> <span class="bu">merge</span>(<span class="st">&#39;Supported    &#39;</span>,<span class="st">&#39;Not Supported&#39;</span>,ascii <span class="op">/=</span> <span class="kw">-</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb816-25" title="25">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;ISO_10646 &#39;</span>,<span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb816-26" title="26">    <span class="kw">&amp;</span> <span class="bu">merge</span>(<span class="st">&#39;Supported    &#39;</span>,<span class="st">&#39;Not Supported&#39;</span>,ucs4 <span class="op">/=</span> <span class="kw">-</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb816-27" title="27">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;UTF-8     &#39;</span>,<span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb816-28" title="28">    <span class="kw">&amp;</span> <span class="bu">merge</span>(<span class="st">&#39;Supported    &#39;</span>,<span class="st">&#39;Not Supported&#39;</span>,utf8 <span class="op">/=</span> <span class="kw">-</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb816-29" title="29"></a>
+<a class="sourceLine" id="cb816-30" title="30">   <span class="kw">if</span>(<span class="kw">default</span><span class="op">.eq.</span>ascii)<span class="kw">then</span></a>
+<a class="sourceLine" id="cb816-31" title="31">       <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;ASCII is the default on this processor&#39;</span></a>
+<a class="sourceLine" id="cb816-32" title="32">   <span class="kw">endif</span></a>
+<a class="sourceLine" id="cb816-33" title="33"></a>
+<a class="sourceLine" id="cb816-34" title="34">  <span class="co">! for constants the kind precedes the value, somewhat like a</span></a>
+<a class="sourceLine" id="cb816-35" title="35">  <span class="co">! BOZ constant</span></a>
+<a class="sourceLine" id="cb816-36" title="36">   alphabet <span class="kw">=</span> ascii_<span class="st">&quot;abcdefghijklmnopqrstuvwxyz&quot;</span></a>
+<a class="sourceLine" id="cb816-37" title="37">   <span class="fu">write (*</span>,<span class="fu">*)</span> alphabet</a>
+<a class="sourceLine" id="cb816-38" title="38"></a>
+<a class="sourceLine" id="cb816-39" title="39">   hello_world <span class="kw">=</span> ucs4_<span class="st">&#39;Hello World and Ni Hao -- &#39;</span> <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb816-40" title="40">                 <span class="kw">//</span> <span class="bu">char</span> (<span class="bu">int</span> (<span class="dv">z&#39;4F60&#39;</span>), ucs4)     <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb816-41" title="41">                 <span class="kw">//</span> <span class="bu">char</span> (<span class="bu">int</span> (<span class="dv">z&#39;597D&#39;</span>), ucs4)</a>
+<a class="sourceLine" id="cb816-42" title="42"></a>
+<a class="sourceLine" id="cb816-43" title="43">  <span class="co">! an encoding option is required on OPEN for non-default I/O</span></a>
+<a class="sourceLine" id="cb816-44" title="44">   <span class="kw">if</span>(ucs4 <span class="op">/=</span> <span class="kw">-</span><span class="dv">1</span> )<span class="kw">then</span></a>
+<a class="sourceLine" id="cb816-45" title="45">      <span class="fu">open (</span>output_unit, encoding<span class="kw">=</span><span class="st">&#39;UTF-8&#39;</span><span class="fu">)</span></a>
+<a class="sourceLine" id="cb816-46" title="46">      <span class="fu">write (*</span>,<span class="fu">*)</span> <span class="fu">trim</span> (hello_world)</a>
+<a class="sourceLine" id="cb816-47" title="47">   <span class="kw">else</span></a>
+<a class="sourceLine" id="cb816-48" title="48">      <span class="fu">write (*</span>,<span class="fu">*)</span> <span class="st">&#39;cannot use utf-8&#39;</span></a>
+<a class="sourceLine" id="cb816-49" title="49">   <span class="kw">endif</span></a>
+<a class="sourceLine" id="cb816-50" title="50"></a>
+<a class="sourceLine" id="cb816-51" title="51">   <span class="kw">call</span> create_date_string(string)</a>
+<a class="sourceLine" id="cb816-52" title="52">   <span class="fu">write (*</span>,<span class="fu">*)</span> <span class="fu">trim</span> (string)</a>
+<a class="sourceLine" id="cb816-53" title="53"></a>
+<a class="sourceLine" id="cb816-54" title="54"><span class="co">contains</span></a>
+<a class="sourceLine" id="cb816-55" title="55"></a>
+<a class="sourceLine" id="cb816-56" title="56"><span class="co">! The following produces a Japanese date stamp.</span></a>
+<a class="sourceLine" id="cb816-57" title="57"><span class="kw">subroutine</span> create_date_string(string)</a>
+<a class="sourceLine" id="cb816-58" title="58"><span class="kw">intrinsic</span> <span class="fu">date_and_time</span>,selected_char_kind</a>
+<a class="sourceLine" id="cb816-59" title="59"><span class="dt">integer</span>,<span class="dt">parameter</span> <span class="dt">::</span> ucs4 <span class="kw">=</span> selected_char_kind(<span class="st">&quot;ISO_10646&quot;</span>)</a>
+<a class="sourceLine" id="cb816-60" title="60"><span class="dt">character(len=1,kind=ucs4)</span>,<span class="dt">parameter</span> <span class="dt">::</span> <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb816-61" title="61">       nen <span class="kw">=</span>   <span class="bu">char</span>(<span class="bu">int</span>( <span class="dv">z&#39;5e74&#39;</span> ),ucs4), <span class="kw">&amp;</span> <span class="co">! year</span></a>
+<a class="sourceLine" id="cb816-62" title="62">       gatsu <span class="kw">=</span> <span class="bu">char</span>(<span class="bu">int</span>( <span class="dv">z&#39;6708&#39;</span> ),ucs4), <span class="kw">&amp;</span> <span class="co">! month</span></a>
+<a class="sourceLine" id="cb816-63" title="63">       nichi <span class="kw">=</span> <span class="bu">char</span>(<span class="bu">int</span>( <span class="dv">z&#39;65e5&#39;</span> ),ucs4)    <span class="co">! day</span></a>
+<a class="sourceLine" id="cb816-64" title="64"><span class="dt">character(len= *, kind= ucs4)</span> string</a>
+<a class="sourceLine" id="cb816-65" title="65"><span class="dt">integer</span> values(<span class="dv">8</span>)</a>
+<a class="sourceLine" id="cb816-66" title="66">   <span class="kw">call</span> <span class="fu">date_and_time</span>(values<span class="kw">=</span>values)</a>
+<a class="sourceLine" id="cb816-67" title="67">   <span class="fu">write(</span>string,<span class="dv">101</span><span class="fu">)</span> values(<span class="dv">1</span>),nen,values(<span class="dv">2</span>),gatsu,values(<span class="dv">3</span>),nichi</a>
+<a class="sourceLine" id="cb816-68" title="68"> <span class="dv">101</span> <span class="fu">format(</span><span class="kw">*</span><span class="fu">(</span>i0,a<span class="fu">))</span></a>
+<a class="sourceLine" id="cb816-69" title="69"><span class="kw">end subroutine</span> create_date_string</a>
+<a class="sourceLine" id="cb816-70" title="70"></a>
+<a class="sourceLine" id="cb816-71" title="71"><span class="kw">end program</span> demo_selected_char_kind</a></code></pre></div>
 <p>Results:</p>
 <p>The results are very processor-dependent</p>
-<pre class="text"><code> &gt;  ASCII     Supported
+<pre class="text"><code> &gt; Available CHARACTER kind values: 1 4
+ &gt;  ASCII     Supported
  &gt;  ISO_10646 Supported
  &gt;  UTF-8     Not Supported
  &gt;  ASCII is the default on this processor
  &gt;  abcdefghijklmnopqrstuvwxyz
  &gt;  Hello World and Ni Hao -- 你好
- &gt;  2022年10月15日</code></pre>
+ &gt;  2025年8月14日</code></pre>
 </div><div id="standard-179" class="slide section level3">
 <h1><strong>Standard</strong></h1>
 <p>Fortran 2003</p>
@@ -17138,7 +17199,7 @@ Currently, supported character sets include “ASCII” and “DEFAULT” and �
 <h1><strong>Examples</strong></h1>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb820"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb820-1" title="1"><span class="kw">program</span> demo_selected_int_kind</a>
-<a class="sourceLine" id="cb820-2" title="2"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : integer_kinds</a>
+<a class="sourceLine" id="cb820-2" title="2"><span class="kw">use</span> iso_fortran_env, <span class="kw">only</span>: output_unit, INTEGER_KINDS</a>
 <a class="sourceLine" id="cb820-3" title="3"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : compiler_version</a>
 <a class="sourceLine" id="cb820-4" title="4"><span class="kw">implicit</span> <span class="kw">none</span></a>
 <a class="sourceLine" id="cb820-5" title="5"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> <span class="fu">all</span><span class="kw">=</span><span class="st">&#39;(*(g0))&#39;</span></a>
@@ -17147,22 +17208,22 @@ Currently, supported character sets include “ASCII” and “DEFAULT” and �
 <a class="sourceLine" id="cb820-8" title="8"><span class="dt">integer</span>           <span class="dt">::</span> i, ii</a>
 <a class="sourceLine" id="cb820-9" title="9"><span class="dt">integer(kind=k5)</span>  <span class="dt">::</span> i5</a>
 <a class="sourceLine" id="cb820-10" title="10"><span class="dt">integer(kind=k15)</span> <span class="dt">::</span> i15</a>
-<a class="sourceLine" id="cb820-11" title="11">   <span class="fu">print</span> <span class="fu">all</span>,<span class="st">&#39;program kinds&#39;</span></a>
-<a class="sourceLine" id="cb820-12" title="12">   <span class="fu">print</span> <span class="fu">all</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb820-13" title="13">      <span class="st">&#39;! This file was compiled by &#39;</span>, compiler_version()</a>
-<a class="sourceLine" id="cb820-14" title="14">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(INTEGER_KINDS)</a>
-<a class="sourceLine" id="cb820-15" title="15">      ii<span class="kw">=</span>integer_kinds(i)</a>
-<a class="sourceLine" id="cb820-16" title="16">      <span class="fu">print</span> <span class="fu">all</span>,<span class="st">&#39;integer(kind=&#39;</span>,ii,<span class="st">&#39;) :: i&#39;</span>,ii</a>
-<a class="sourceLine" id="cb820-17" title="17">   <span class="kw">enddo</span></a>
-<a class="sourceLine" id="cb820-18" title="18">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(INTEGER_KINDS)</a>
-<a class="sourceLine" id="cb820-19" title="19">      ii<span class="kw">=</span>integer_kinds(i)</a>
-<a class="sourceLine" id="cb820-20" title="20">      <span class="fu">print</span> <span class="fu">all</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb820-21" title="21">      <span class="st">&#39;write(*,*)&quot;huge(i&#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb820-22" title="22">      ii, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb820-23" title="23">      <span class="st">&#39;)=&quot;,huge(i&#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb820-24" title="24">      ii, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb820-25" title="25">      <span class="st">&#39;)&#39;</span></a>
-<a class="sourceLine" id="cb820-26" title="26"></a>
+<a class="sourceLine" id="cb820-11" title="11">   <span class="co">! write a program that can print attributes about each available kind</span></a>
+<a class="sourceLine" id="cb820-12" title="12">   <span class="fu">print</span> <span class="fu">all</span>,<span class="st">&#39;program kinds&#39;</span></a>
+<a class="sourceLine" id="cb820-13" title="13">   <span class="fu">print</span> <span class="fu">all</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb820-14" title="14">      <span class="st">&#39;! This file was written by &#39;</span>, compiler_version()</a>
+<a class="sourceLine" id="cb820-15" title="15">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(INTEGER_KINDS)</a>
+<a class="sourceLine" id="cb820-16" title="16">      ii<span class="kw">=</span>integer_kinds(i)</a>
+<a class="sourceLine" id="cb820-17" title="17">      <span class="fu">print</span> <span class="fu">all</span>,<span class="st">&#39;integer,parameter :: i&#39;</span>,ii,<span class="st">&#39;=&#39;</span>,ii</a>
+<a class="sourceLine" id="cb820-18" title="18">   <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb820-19" title="19">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(INTEGER_KINDS)</a>
+<a class="sourceLine" id="cb820-20" title="20">      ii<span class="kw">=</span>integer_kinds(i)</a>
+<a class="sourceLine" id="cb820-21" title="21">      <span class="fu">print</span> <span class="fu">all</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb820-22" title="22">      <span class="st">&#39;write(*,*)&quot;huge(0_i&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb820-23" title="23">      ii, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb820-24" title="24">      <span class="st">&#39;)=&quot;,huge(0_i&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb820-25" title="25">      ii, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb820-26" title="26">      <span class="st">&#39;)&#39;</span></a>
 <a class="sourceLine" id="cb820-27" title="27">   <span class="kw">enddo</span></a>
 <a class="sourceLine" id="cb820-28" title="28">   <span class="fu">print</span> <span class="fu">all</span>,<span class="st">&#39;end program kinds&#39;</span></a>
 <a class="sourceLine" id="cb820-29" title="29"></a>
@@ -17174,23 +17235,23 @@ Currently, supported character sets include “ASCII” and “DEFAULT” and �
 <a class="sourceLine" id="cb820-35" title="35"></a>
 <a class="sourceLine" id="cb820-36" title="36"><span class="kw">end program</span> demo_selected_int_kind</a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code>  &gt; program kinds
-  &gt; ! This file was compiled by GCC version 15.0.0 20241103 (experimental)
-  &gt; integer(kind=1) :: i1
-  &gt; integer(kind=2) :: i2
-  &gt; integer(kind=4) :: i4
-  &gt; integer(kind=8) :: i8
-  &gt; integer(kind=16) :: i16
-  &gt; write(*,*)&quot;huge(i1)=&quot;,huge(i1)
-  &gt; write(*,*)&quot;huge(i2)=&quot;,huge(i2)
-  &gt; write(*,*)&quot;huge(i4)=&quot;,huge(i4)
-  &gt; write(*,*)&quot;huge(i8)=&quot;,huge(i8)
-  &gt; write(*,*)&quot;huge(i16)=&quot;,huge(i16)
-  &gt; end program kinds
-  &gt;
-  &gt;   2147483647  9223372036854775807
-  &gt;  T
-  &gt;  T</code></pre>
+<pre class="text"><code> &gt; program kinds
+ &gt; ! This file was written by GCC version 13.1.0
+ &gt; integer,parameter :: i1=1
+ &gt; integer,parameter :: i2=2
+ &gt; integer,parameter :: i4=4
+ &gt; integer,parameter :: i8=8
+ &gt; integer,parameter :: i16=16
+ &gt; write(*,*)&quot;huge(0_i1)=&quot;,huge(0_i1)
+ &gt; write(*,*)&quot;huge(0_i2)=&quot;,huge(0_i2)
+ &gt; write(*,*)&quot;huge(0_i4)=&quot;,huge(0_i4)
+ &gt; write(*,*)&quot;huge(0_i8)=&quot;,huge(0_i8)
+ &gt; write(*,*)&quot;huge(0_i16)=&quot;,huge(0_i16)
+ &gt; end program kinds
+ &gt;
+ &gt;   2147483647  9223372036854775807
+ &gt;  T
+ &gt;  T</code></pre>
 </div><div id="standard-180" class="slide section level3">
 <h1><strong>Standard</strong></h1>
 <p>Fortran 95</p>
@@ -17284,19 +17345,26 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 </div><div id="examples-178" class="slide section level3">
 <h1><strong>Examples</strong></h1>
 <p>Sample program:</p>
-<div class="sourceCode" id="cb824"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb824-1" title="1"><span class="kw">program</span> demo_selected_real_kind</a>
-<a class="sourceLine" id="cb824-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb824-3" title="3"><span class="dt">integer</span>,<span class="dt">parameter</span> <span class="dt">::</span> p6 <span class="kw">=</span> <span class="fu">selected_real_kind</span>(<span class="dv">6</span>)</a>
-<a class="sourceLine" id="cb824-4" title="4"><span class="dt">integer</span>,<span class="dt">parameter</span> <span class="dt">::</span> p10r100 <span class="kw">=</span> <span class="fu">selected_real_kind</span>(<span class="dv">10</span>,<span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb824-5" title="5"><span class="dt">integer</span>,<span class="dt">parameter</span> <span class="dt">::</span> r400 <span class="kw">=</span> <span class="fu">selected_real_kind</span>(r<span class="kw">=</span><span class="dv">400</span>)</a>
-<a class="sourceLine" id="cb824-6" title="6"><span class="dt">real(kind=p6)</span> <span class="dt">::</span> x</a>
-<a class="sourceLine" id="cb824-7" title="7"><span class="dt">real(kind=p10r100)</span> <span class="dt">::</span> y</a>
-<a class="sourceLine" id="cb824-8" title="8"><span class="dt">real(kind=r400)</span> <span class="dt">::</span> z</a>
-<a class="sourceLine" id="cb824-9" title="9"></a>
-<a class="sourceLine" id="cb824-10" title="10">   <span class="fu">print</span> <span class="kw">*</span>, <span class="dt">precision</span>(x), <span class="fu">range</span>(x)</a>
-<a class="sourceLine" id="cb824-11" title="11">   <span class="fu">print</span> <span class="kw">*</span>, <span class="dt">precision</span>(y), <span class="fu">range</span>(y)</a>
-<a class="sourceLine" id="cb824-12" title="12">   <span class="fu">print</span> <span class="kw">*</span>, <span class="dt">precision</span>(z), <span class="fu">range</span>(z)</a>
-<a class="sourceLine" id="cb824-13" title="13"><span class="kw">end program</span> demo_selected_real_kind</a></code></pre></div>
+<div class="sourceCode" id="cb824"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb824-1" title="1"></a>
+<a class="sourceLine" id="cb824-2" title="2"><span class="kw">program</span> demo_selected_real_kind</a>
+<a class="sourceLine" id="cb824-3" title="3"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env</a>
+<a class="sourceLine" id="cb824-4" title="4"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb824-5" title="5"><span class="dt">integer</span>,<span class="dt">parameter</span> <span class="dt">::</span> p6 <span class="kw">=</span> <span class="fu">selected_real_kind</span>(<span class="dv">6</span>)</a>
+<a class="sourceLine" id="cb824-6" title="6"><span class="dt">integer</span>,<span class="dt">parameter</span> <span class="dt">::</span> p10r100 <span class="kw">=</span> <span class="fu">selected_real_kind</span>(<span class="dv">10</span>,<span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb824-7" title="7"><span class="dt">integer</span>,<span class="dt">parameter</span> <span class="dt">::</span> r400 <span class="kw">=</span> <span class="fu">selected_real_kind</span>(r<span class="kw">=</span><span class="dv">400</span>)</a>
+<a class="sourceLine" id="cb824-8" title="8"><span class="dt">real(kind=p6)</span> <span class="dt">::</span> x</a>
+<a class="sourceLine" id="cb824-9" title="9"><span class="dt">real(kind=p10r100)</span> <span class="dt">::</span> y</a>
+<a class="sourceLine" id="cb824-10" title="10"><span class="dt">real(kind=r400)</span> <span class="dt">::</span> z</a>
+<a class="sourceLine" id="cb824-11" title="11"></a>
+<a class="sourceLine" id="cb824-12" title="12">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;real_kinds    =&#39;</span>, real_kinds(:)</a>
+<a class="sourceLine" id="cb824-13" title="13">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;real constants=&#39;</span>, real16, real32, real64, real128 <span class="co">!, bfloat16</span></a>
+<a class="sourceLine" id="cb824-14" title="14">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;integer_kinds=&#39;</span>, integer_kinds(:)</a>
+<a class="sourceLine" id="cb824-15" title="15">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;int constants=&#39;</span>, int8, int16, int32, int64  <span class="co">!, int128</span></a>
+<a class="sourceLine" id="cb824-16" title="16"></a>
+<a class="sourceLine" id="cb824-17" title="17">   <span class="fu">print</span> <span class="kw">*</span>, <span class="dt">precision</span>(x), <span class="fu">range</span>(x)</a>
+<a class="sourceLine" id="cb824-18" title="18">   <span class="fu">print</span> <span class="kw">*</span>, <span class="dt">precision</span>(y), <span class="fu">range</span>(y)</a>
+<a class="sourceLine" id="cb824-19" title="19">   <span class="fu">print</span> <span class="kw">*</span>, <span class="dt">precision</span>(z), <span class="fu">range</span>(z)</a>
+<a class="sourceLine" id="cb824-20" title="20"><span class="kw">end program</span> demo_selected_real_kind</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code>  &gt;            6          37
   &gt;           15         307
@@ -19567,7 +19635,7 @@ need an illustration of what happens with higher dimension array
 <li>The token form returns an array with one token per element, all of the same length as the longest token.</li>
 <li>The array bounds form returns two integer arrays. One contains the beginning position of the tokens and the other the end positions.</li>
 </ul>
-<p>Since the token form pads all the tokens to the same length the original number of trailing spaces of each token accept for the longest is lost.</p>
+<p>Since the token form pads all the tokens to the same length the original number of trailing spaces of each token except for the longest is lost.</p>
 <p>The array bounds form retains information regarding the exact token length even when padded by spaces.</p>
 </div><div id="options-205" class="slide section level3">
 <h1><strong>Options</strong></h1>
@@ -19588,6 +19656,11 @@ need an illustration of what happens with higher dimension array
 </dd>
 </dl>
 <p>The tokens in <strong>string</strong> are assigned in the order found, as if by intrinsic assignment, to the elements of <strong>tokens</strong>, in array element order.</p></li>
+<li><dl>
+<dt><strong>separator</strong></dt>
+<dd>separator(i) is equal to the ith token delimiter in string. There is no element in separator that indicates beginning or end of string.
+</dd>
+</dl></li>
 <li><dl>
 <dt><strong>first</strong></dt>
 <dd>shall be an allocatable array of type integer and rank one. It is an INTENT(OUT) argument. It shall not be a coarray or a coindexed object.
@@ -20405,7 +20478,7 @@ need an illustration of what happens with higher dimension array
 </dl></li>
 <li><dl>
 <dt><strong>back</strong></dt>
-<dd>The direction to look for an unmatched character. The left-most unmatched character position is returned unless <strong>back</strong> is present and .false., which causes the position of the right-most unmatched character to be returned instead of the left-most unmatched character.
+<dd>The direction to look for an unmatched character. The left-most unmatched character position is returned unless <strong>back</strong> is present and .true., which causes the position of the right-most unmatched character to be returned instead of the left-most unmatched character.
 </dd>
 </dl></li>
 <li><dl>
@@ -20418,7 +20491,7 @@ need an illustration of what happens with higher dimension array
 <h1><strong>Result</strong></h1>
 <p>If all characters of <strong>string</strong> are found in <strong>set</strong>, the result is zero.</p>
 <p>If <strong>string</strong> is of zero length a zero (0) is always returned.</p>
-<p>Otherwise, if an unmatched character is found The position of the first or last (if <strong>back</strong> is .false.) unmatched character in <strong>string</strong> is returned, starting with position one on the left end of the string.</p>
+<p>Otherwise, if an unmatched character is found The position of the first or last (if <strong>back</strong> is .true.) unmatched character in <strong>string</strong> is returned, starting with position one on the left end of the string.</p>
 </div><div id="examples-209" class="slide section level3">
 <h1><strong>Examples</strong></h1>
 <h4 id="sample-program-i">Sample program I:</h4>
@@ -20670,8 +20743,8 @@ need an illustration of what happens with higher dimension array
 <a class="sourceLine" id="cb980-15" title="15">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;last non-letter&#39;</span>,<span class="bu">verify</span>(strings,upp<span class="kw">//</span>low<span class="kw">//</span>blank,back<span class="kw">=</span><span class="cn">.true.</span>)</a>
 <a class="sourceLine" id="cb980-16" title="16"></a>
 <a class="sourceLine" id="cb980-17" title="17">   <span class="co">! even BACK can be an array</span></a>
-<a class="sourceLine" id="cb980-18" title="18">   <span class="co">! find last non-uppercase character in &quot;Howdy &quot;</span></a>
-<a class="sourceLine" id="cb980-19" title="19">   <span class="co">! and first non-lowercase in &quot;there &quot;</span></a>
+<a class="sourceLine" id="cb980-18" title="18">   <span class="co">! find last non-uppercase character in &quot;Go    &quot;</span></a>
+<a class="sourceLine" id="cb980-19" title="19">   <span class="co">! and first non-lowercase in &quot;right &quot;</span></a>
 <a class="sourceLine" id="cb980-20" title="20">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="bu">verify</span>(strings(<span class="dv">1</span>:<span class="dv">2</span>),<span class="kw">[</span>upp,low<span class="kw">]</span>,back<span class="kw">=[</span><span class="cn">.true.</span>,<span class="cn">.false.</span><span class="kw">]</span>)</a>
 <a class="sourceLine" id="cb980-21" title="21"></a>
 <a class="sourceLine" id="cb980-22" title="22">   <span class="co">! using a null string for a set is not well defined. Avoid it</span></a>
@@ -20687,7 +20760,7 @@ need an illustration of what happens with higher dimension array
 <a class="sourceLine" id="cb980-32" title="32"><span class="kw">end program</span> more_verify</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code>    &gt; last non-letter 0 0 5
-    &gt; 6 6
+    &gt; 2 6
     &gt; null 9
     &gt; blank 8
     &gt; 1 2 1</code></pre>

@@ -52,7 +52,7 @@ of characters that does not appear in a given set of characters
 - **back**
   : The direction to look for an unmatched character. The left-most
   unmatched character position is returned unless **back** is present
-  and _.false._, which causes the position of the right-most unmatched
+  and _.true._, which causes the position of the right-most unmatched
   character to be returned instead of the left-most unmatched character.
 
 - **kind**
@@ -66,7 +66,7 @@ If all characters of **string** are found in **set**, the result is zero.
 If **string** is of zero length a zero (0) is always returned.
 
 Otherwise, if an unmatched character is found
-The position of the first or last (if **back** is _.false._) unmatched
+The position of the first or last (if **back** is _.true._) unmatched
 character in **string** is returned, starting with position one on the
 left end of the string.
 
@@ -346,8 +346,8 @@ character(len=2) :: sets(3)=["do","re","me"]
    write(*,*)'last non-letter',verify(strings,upp//low//blank,back=.true.)
 
    ! even BACK can be an array
-   ! find last non-uppercase character in "Howdy "
-   ! and first non-lowercase in "there "
+   ! find last non-uppercase character in "Go    "
+   ! and first non-lowercase in "right "
    write(*,*) verify(strings(1:2),[upp,low],back=[.true.,.false.])
 
    ! using a null string for a set is not well defined. Avoid it
@@ -365,7 +365,7 @@ end program more_verify
 Results:
 ```text
     > last non-letter 0 0 5
-    > 6 6
+    > 2 6
     > null 9
     > blank 8
     > 1 2 1

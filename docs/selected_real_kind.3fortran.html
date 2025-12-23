@@ -237,6 +237,7 @@ Sample program:
 <P>
 <PRE>
     program demo_selected_real_kind
+    use, intrinsic :: iso_fortran_env
     implicit none
     integer,parameter :: p6 = selected_real_kind(6)
     integer,parameter :: p10r100 = selected_real_kind(10,100)
@@ -244,6 +245,11 @@ Sample program:
     real(kind=p6) :: x
     real(kind=p10r100) :: y
     real(kind=r400) :: z
+<P>
+       write(*,*) &#146;real_kinds    =&#146;, real_kinds(:)
+       write(*,*) &#146;real constants=&#146;, real16, real32, real64, real128 !, bfloat16
+       write(*,*) &#146;integer_kinds=&#146;, integer_kinds(:)
+       write(*,*) &#146;int constants=&#146;, int8, int16, int32, int64  !, int128
 <P>
        print *, precision(x), range(x)
        print *, precision(y), range(y)

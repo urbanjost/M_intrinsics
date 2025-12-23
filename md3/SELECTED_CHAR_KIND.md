@@ -65,12 +65,11 @@
 Sample program:
 
 ```fortran
-Linux
 program demo_selected_char_kind
-use iso_fortran_env
+use iso_fortran_env, only: output_unit, CHARACTER_KINDS
 implicit none
 
-intrinsic date_and_time,selected_char_kind
+intrinsic date_and_time, selected_char_kind
 
 ! set some aliases for common character kinds
 ! as the numbers can vary from platform to platform
@@ -85,6 +84,8 @@ integer, parameter :: utf8  =   selected_char_kind ('utf-8')
 character(len=26, kind=ascii ) :: alphabet
 character(len=30, kind=ucs4  ) :: hello_world
 character(len=30, kind=ucs4  ) :: string
+
+   write(*,'(*(g0,1x))')'Available CHARACTER kind values:',CHARACTER_KINDS
 
    write(*,*)'ASCII     ',&
     & merge('Supported    ','Not Supported',ascii /= -1)
@@ -138,15 +139,16 @@ end program demo_selected_char_kind
 ```
 Results:
 
-The results are very processor-dependent
+ The results are very processor-dependent
 ```text
- >  ASCII     Supported
- >  ISO_10646 Supported
+ > Available CHARACTER kind values: 1 4
+ >  ASCII     Supported    
+ >  ISO_10646 Supported    
  >  UTF-8     Not Supported
  >  ASCII is the default on this processor
  >  abcdefghijklmnopqrstuvwxyz
  >  Hello World and Ni Hao -- 你好
- >  2022年10月15日
+ >  2025年8月14日
 ```
 ### **Standard**
 

@@ -748,30 +748,33 @@ Sample program:
 ```fortran
 program demo_adjustl
 implicit none
-character(len=20) :: str = '   sample string'
+character(len=20)            :: str
 character(len=:),allocatable :: astr
-integer :: length
+character(len=*),parameter   :: au= '(a,"[",a,"]")'
+integer :: istart, iend
 
-   ! basic use
-    write(*,'(a,"[",a,"]")') 'original: ',str
-    str=adjustl(str)
-    write(*,'(a,"[",a,"]")') 'adjusted: ',str
+  ! basic use
+    str='   sample string  '
+    write(*,au) 'original: ',str
 
-    ! a fixed-length string can be printed
-    ! trimmed using trim(3) or len_trim(3)
-    write(*,'(a,"[",a,"]")') 'trimmed:  ',trim(str)
-    length=len_trim(str)
-    write(*,'(a,"[",a,"]")') 'substring:',str(:length)
+  ! note the allocated string stays the same length
+  ! and is not trimmed by just an adjustl(3) call.
+    astr=adjustl(str)
+    write(*,au) 'adjusted: ',astr
 
-    ! note an allocatable string stays the same length too
-    ! and is not trimmed by just an adjustl(3) call.
-    astr='    allocatable string   '
-    write(*,'(a,"[",a,"]")') 'original:',astr
-    astr = adjustl(astr)
-    write(*,'(a,"[",a,"]")') 'adjusted:',astr
-    ! trim(3) can be used to change the length
-    astr = trim(astr)
-    write(*,'(a,"[",a,"]")') 'trimmed: ',astr
+  ! a fixed-length string can be printed cropped
+  ! combining adjustl(3) with trim(3)
+    write(*,au) 'trimmed:  ',trim(adjustl(str))
+
+  ! or even printed without adjusting the string a
+  ! cropped substring can be printed
+    iend=len_trim(str)
+    istart= verify(str, ' ') ! first non‐blank character
+    write(*,au) 'substring:',str(istart:iend)
+
+  ! to generate an actually trimmed allocated variable
+    astr = trim(adjustl(str))
+    write(*,au) 'trimmed:  ',astr
 
 end program demo_adjustl
 ```
@@ -781,9 +784,7 @@ Results:
    > adjusted: [sample string       ]
    > trimmed:  [sample string]
    > substring:[sample string]
-   > original:[    allocatable string   ]
-   > adjusted:[allocatable string       ]
-   > trimmed: [allocatable string]
+   > trimmed:  [sample string]
 ```
 ### **Standard**
 
@@ -3099,10 +3100,29 @@ parallel environments, such as when using coarrays. It is part of the
 atomic operations in Fortran 2008 and later, typically used with the
 **iso_fortran_env** module.
 
+The purpose of **atomic_add** in Fortran is to perform an atomic addition
+operation on a variable. This means that the addition of **value** to
+**atom** is guaranteed to be an indivisible operation, ensuring that no
+other thread or process can access or modify **atom** during the addition.
+
+Specifically, **call atomic_add (atom, value [, stat])** adds the value
+of **value** to the variable **atom** atomically. This is crucial in
+parallel programming environments where multiple threads or processes
+might attempt to modify the same shared variable concurrently. Without
+atomic operations, race conditions can occur, leading to incorrect or
+unpredictable results.
+
+**atomic_add**(3) helps maintain data integrity in concurrent scenarios by
+ensuring that the operation completes without interruption, providing a
+reliable way to update shared variables in a thread-safe manner. It is
+part of the intrinsic procedures available in Fortran for handling atomic
+operations, particularly useful with coarrays or coindexed variables in
+parallel Fortran programs.
+
 Unlike **atomic_fetch_add**(3), this procedure does not return the
 previous value of **atom**.
 
-Use sync all to ensure consistent coarray state across images.
+Use "sync all" to ensure consistent coarray state across images.
 
 When **stat** is present and the invocation was successful, it is
 assigned the value 0. If it is present and the invocation has failed,
@@ -11360,12 +11380,13 @@ Fortran 2003
    Retrieve the value of an environment variable
 
 ### **Synopsis**
+ Syntax:
 ```fortran
     call get_environment_variable(name [,value] [,length] &
     & [,status] [,trim_name] [,errmsg] )
 ```
 ```fortran
-     subroutine character(len=*) get_environment_variable( &
+     subroutine get_environment_variable( &
      & name, value, length, status, trim_name, errmsg )
 
       character(len=*),intent(in) :: name
@@ -13892,7 +13913,6 @@ Fortran 95
 - [**ubound**(3)](#ubound) - Upper dimension bounds of an array
 - [**bit_size**(3)](#bit_size) - Bit size inquiry function
 - [**storage_size**(3)](#storage_size) - Storage size in bits
-- [**kind**(3)](#kind) - Kind of an entity
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
@@ -15143,6 +15163,13 @@ Gamma function: [**gamma**(3)](#gamma)
 
   **logical**(3) converts one kind of _logical_ variable to another.
 
+  For performance and storage purposes you generally want to use the
+  smallest storage size supported when using large logical arrays, but
+  some existing routines may require a specific kind. LOGICAL(3f) can
+  change the kind of logical variables or expressions; but if converting
+  is required frequently you might evaluate whether another kind is
+  called for.
+
 ### **Options**
 
 - **l**
@@ -15166,82 +15193,102 @@ program demo_logical
 use iso_fortran_env, only : logical_kinds
 use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
 use,intrinsic :: iso_fortran_env, only : real32, real64, real128
+!
+! The standard only requires one default logical kind to be supported
+! of the same storage size as a default INTEGER and REAL but the
+! following kind names are standard. The kind may not be
+! supported (in which case the value of the kind name will be a
+! negative integer value) and additional kinds may be available as well.
+use,intrinsic :: iso_fortran_env, only : &
+ & LOGICAL8, LOGICAL16, LOGICAL32, LOGICAL64
+!
+! C_BOOL is a kind compatible with C interfaces
+use,intrinsic :: iso_c_binding,   only : C_BOOL
+!
 implicit none
-character(len=*),parameter :: g='(*(g0))'
-integer :: i, i1, i2
-logical :: l1, l2
+character(len=*),parameter            :: all='(*(g0))'
+integer                               :: i, i1, i2
+! make T and F abbreviations for .TRUE. and .FALSE.
+logical,parameter                     :: T=.true., F=.false.
+logical                               :: l1, l2
+! potentially save space and improve performance by using the
+! smallest available kind
+logical(kind=selected_logical_kind(1)) :: smallest_storage(10,20)
+logical(kind=c_bool)                   :: boolean=.TRUE.
   !
-  ! list kind values supported on this platform
-  !
+  print all, 'list LOGICAL kind values available on this platform'
    do i =1, size(logical_kinds)
-      write(*,'(*(g0))')'integer,parameter :: boolean', &
+      write(*,all)'   integer,parameter :: boolean', &
       & logical_kinds(i),'=', logical_kinds(i)
    enddo
-  ! for performance and storage purposes you generally want
-  ! to use the smallest storage size supported when using
-  ! large arrays, but some existing routines may require
-  ! the default kind. LOGICAL(3f) can change the kind of
-  ! the variables.
+
+  print all, '   LOGICAL8  ==> KIND=',LOGICAL8
+  print all, '   LOGICAL16 ==> KIND=',LOGICAL16
+  print all, '   LOGICAL32 ==> KIND=',LOGICAL32
+  print all, '   LOGICAL64 ==> KIND=',LOGICAL64
+  print all, '   C_BOOL    ==> KIND=',C_BOOL
+
+  print all, 'MERGE() is one method for transposing logical and integer'
+  ! converting a logical to an integer is not done
+  ! with LOGICAL(3f) and INT(3f) or promotion by assignment;
+  ! but can be done with MERGE(3f) with scalars or arrays.
+   i1=merge(0,1,T)
+   i2=merge(0,1,F)
+   write(*,all)'   T-->',i1,' F-->',I2
+   l1=merge(T,F,i1.eq.0)
+   l2=merge(T,F,i2.eq.0)
+   write(*,all)'   0-->',l1,' 1-->',l2
+
   !
-  ! But converting a logical to an integer is not done
-  ! with LOGICAL(3f); but can be down with MERGE(3f).
+  ! Note the standard specifies the default INTEGER, REAL, and LOGICAL
+  ! types have the same storage size, but compiler options often allow
+  ! changing that. STORAGE_SIZE() can be used to confirm that.
   !
-   l1=.true.
-   l2=.false.
-   i1=merge(0,1,l1)
-   i2=merge(0,1,l2)
-   write(*,g)'L1=',l1,' L2=',l2,' I1=',i1,' I2=',i2
-  !
-  ! show type and kind of default logicals
+  print all, 'show kind and storage size of default logical'
    call showme(.true.)
    call showme(l1)
-  ! show logical() changing type and kind
-   call showme(logical(l1))
-  ! you may have to delete unsupported kinds from this example
+  ! A method to portably request the smallest storage size is
+  !    logical(kind=selected_logical_kind(1) :: array(1000,1000)
+  print all, 'storage size of smallest logical kind'
+   call showme(logical(l1,kind=selected_logical_kind(1)))
 
-  ! this is probably the default
-   call showme(logical(l1,kind=4))
-  ! note how showme shows different kinds are being passed to it
-   call showme(logical(l1,kind=8))
-   call showme(logical(l1,kind=2))
-  ! this is probably the smallest storage size supported
-  ! on this platform; but kind values are platform-specific
+  ! you may have to delete unsupported kinds from this example
+  print all, 'different kinds are being passed because of LOGICAL() call'
+  print all,'KIND values are platform-specific'
    call showme(logical(l1,kind=1))
+   call showme(logical(l1,kind=2))
+   call showme(logical(l1,kind=4))
+   call showme(logical(l1,kind=8))
+  print all,'kind=C_BOOL'
+   call showme(logical(l1,kind=c_bool))
+  print all,'SELECTED_LOGICAL_KIND() is more portable than KIND values'
+  ! you might want to check the resulting kind
+   call showme(logical(l1,kind=selected_logical_kind(1))) ! smallest
+   call showme(logical(l1,kind=kind(.true.)))             ! default
+   call showme(logical(l1,kind=selected_logical_kind(8)))
+   call showme(logical(l1,kind=selected_logical_kind(16)))
+   call showme(logical(l1,kind=selected_logical_kind(32)))
+   call showme(logical(l1,kind=selected_logical_kind(64)))
+
 contains
 subroutine showme(val)
 ! @(#) showme(3f) - display type and kind of intrinsic value
+! this is an example of how to accept any logical kind as a parameter,
+! but this is often done with a generic procedure.
 class(*),intent(in) :: val
    select type(val)
-      type is (integer(kind=int8))
-        write(*,'("integer(kind=int8) ",i0)') val
-      type is (integer(kind=int16))
-         write(*,'("integer(kind=int16) ",i0)') val
-      type is (integer(kind=int32))
-         write(*,'("integer(kind=int32) ",i0)') val
-      type is (integer(kind=int64))
-         write(*,'("integer(kind=int64) ",i0)') val
-      type is (real(kind=real32))
-         write(*,'("real(kind=real32) ",1pg0)') val
-      type is (real(kind=real64))
-         write(*,'("real(kind=real64) ",1pg0)') val
-      type is (real(kind=real128))
-        write(*,'("real(kind=real128) ",1pg0)') val
-      type is (logical(kind=1))
-            write(*,'("logical(kind=1) ",l1,a,i0)') val, &
-            & 'storage=',storage_size(val)
-      type is (logical(kind=2))
-            write(*,'("logical(kind=2) ",l1,a,i0)') val, &
-            & 'storage=',storage_size(val)
-      type is (logical(kind=4))
-            write(*,'("logical(kind=4) ",l1,a,i0)') val, &
-            & 'storage=',storage_size(val)
-      type is (logical(kind=8))
-            write(*,'("logical(kind=8) ",l1,a,i0)') val, &
-            & 'storage=',storage_size(val)
-      type is (character(len=*))
-          write(*,'("character ",a)') trim(val)
-      type is (complex)
-                   write(*,'("","(",1pg0,",",1pg0,")")') val
+      type is (logical(kind=logical8))
+            write(*,'("   logical(kind=1) ",l1,a,i0)') val, &
+            & ' storage=',storage_size(val)
+      type is (logical(kind=logical16))
+            write(*,'("   logical(kind=2) ",l1,a,i0)') val, &
+            & ' storage=',storage_size(val)
+      type is (logical(kind=logical32))
+            write(*,'("   logical(kind=4) ",l1,a,i0)') val, &
+            & ' storage=',storage_size(val)
+      type is (logical(kind=logical64))
+            write(*,'("   logical(kind=8) ",l1,a,i0)') val, &
+            & ' storage=',storage_size(val)
       class default
       stop 'crud. showme() does not know about this type'
    end select
@@ -15249,19 +15296,42 @@ end subroutine showme
 end program demo_logical
 ```
 Results:
+
 ```text
- > integer,parameter :: boolean1=1
- > integer,parameter :: boolean2=2
- > integer,parameter :: boolean4=4
- > integer,parameter :: boolean8=8
- > integer,parameter :: boolean16=16
- > L1=T L2=F I1=0 I2=1
- > logical(kind=4) Tstorage=32
- > logical(kind=4) Tstorage=32
- > logical(kind=4) Tstorage=32
- > logical(kind=1) Tstorage=8
- > logical(kind=2) Tstorage=16
- > logical(kind=4) Tstorage=32
+    > list LOGICAL kind values available on this platform
+    >    integer,parameter :: boolean1=1
+    >    integer,parameter :: boolean2=2
+    >    integer,parameter :: boolean4=4
+    >    integer,parameter :: boolean8=8
+    >    integer,parameter :: boolean16=16
+    >    LOGICAL8  ==> KIND=1
+    >    LOGICAL16 ==> KIND=2
+    >    LOGICAL32 ==> KIND=4
+    >    LOGICAL64 ==> KIND=8
+    >    C_BOOL    ==> KIND=1
+    > MERGE() is one method for transposing logical and integer
+    >    T-->0 F-->1
+    >    0-->T 1-->F
+    > show kind and storage size of default logical
+    >    logical(kind=4) T storage=32
+    >    logical(kind=4) T storage=32
+    > storage size of smallest logical kind
+    >    logical(kind=1) T storage=8
+    > different kinds are being passed because of LOGICAL() call
+    > KIND values are platform-specific
+    >    logical(kind=1) T storage=8
+    >    logical(kind=2) T storage=16
+    >    logical(kind=4) T storage=32
+    >    logical(kind=8) T storage=64
+    > kind=C_BOOL
+    >    logical(kind=1) T storage=8
+    > SELECTED_LOGICAL_KIND() is more portable than KIND values
+    >    logical(kind=1) T storage=8
+    >    logical(kind=4) T storage=32
+    >    logical(kind=1) T storage=8
+    >    logical(kind=2) T storage=16
+    >    logical(kind=4) T storage=32
+    >    logical(kind=8) T storage=64
 ```
 ### **Standard**
 
@@ -15279,7 +15349,6 @@ Fortran 95 , related ISO_FORTRAN_ENV module - fortran 2009
 + [**transfer**(3)](#transfer) - Transfer bit patterns
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
-
 
 ## log
 
@@ -16525,12 +16594,24 @@ logical :: mask(2,3)
 integer :: i
 integer :: k
 logical :: chooseleft
+logical :: maybe
 
    ! Works with scalars
    k=5
    write(*,*)merge (1.0, 0.0, k > 0)
    k=-2
    write(*,*)merge (1.0, 0.0, k > 0)
+
+   ! note for scalar logicals calls such as
+   maybe = merge (.true.,.false., k > 0)
+   ! are simply the same as
+   if (k > 0)then
+      maybe=.true.
+   else
+      maybe=.false.
+   endif
+   ! but even more succinctly, and array-compatible, is
+   maybe = k > 0
 
    ! set up some simple arrays that all conform to the
    ! same shape
@@ -21481,12 +21562,11 @@ A code fragment showing several selections of one block:
 Sample program:
 
 ```fortran
-Linux
 program demo_selected_char_kind
-use iso_fortran_env
+use iso_fortran_env, only: output_unit, CHARACTER_KINDS
 implicit none
 
-intrinsic date_and_time,selected_char_kind
+intrinsic date_and_time, selected_char_kind
 
 ! set some aliases for common character kinds
 ! as the numbers can vary from platform to platform
@@ -21501,6 +21581,8 @@ integer, parameter :: utf8  =   selected_char_kind ('utf-8')
 character(len=26, kind=ascii ) :: alphabet
 character(len=30, kind=ucs4  ) :: hello_world
 character(len=30, kind=ucs4  ) :: string
+
+   write(*,'(*(g0,1x))')'Available CHARACTER kind values:',CHARACTER_KINDS
 
    write(*,*)'ASCII     ',&
     & merge('Supported    ','Not Supported',ascii /= -1)
@@ -21554,15 +21636,16 @@ end program demo_selected_char_kind
 ```
 Results:
 
-The results are very processor-dependent
+ The results are very processor-dependent
 ```text
+ > Available CHARACTER kind values: 1 4
  >  ASCII     Supported
  >  ISO_10646 Supported
  >  UTF-8     Not Supported
  >  ASCII is the default on this processor
  >  abcdefghijklmnopqrstuvwxyz
  >  Hello World and Ni Hao -- 你好
- >  2022年10月15日
+ >  2025年8月14日
 ```
 ### **Standard**
 
@@ -21632,7 +21715,7 @@ Sample program:
 
 ```fortran
 program demo_selected_int_kind
-use,intrinsic :: iso_fortran_env, only : integer_kinds
+use iso_fortran_env, only: output_unit, INTEGER_KINDS
 use,intrinsic :: iso_fortran_env, only : compiler_version
 implicit none
 character(len=*),parameter :: all='(*(g0))'
@@ -21641,22 +21724,22 @@ integer,parameter :: k15 = selected_int_kind(15)
 integer           :: i, ii
 integer(kind=k5)  :: i5
 integer(kind=k15) :: i15
+   ! write a program that can print attributes about each available kind
    print all,'program kinds'
    print all, &
-      '! This file was compiled by ', compiler_version()
+      '! This file was written by ', compiler_version()
    do i=1,size(INTEGER_KINDS)
       ii=integer_kinds(i)
-      print all,'integer(kind=',ii,') :: i',ii
+      print all,'integer,parameter :: i',ii,'=',ii
    enddo
    do i=1,size(INTEGER_KINDS)
       ii=integer_kinds(i)
       print all, &
-      'write(*,*)"huge(i', &
+      'write(*,*)"huge(0_i', &
       ii, &
-      ')=",huge(i', &
+      ')=",huge(0_i', &
       ii, &
       ')'
-
    enddo
    print all,'end program kinds'
 
@@ -21670,23 +21753,23 @@ end program demo_selected_int_kind
 ```
 Results:
 ```text
-  > program kinds
-  > ! This file was compiled by GCC version 15.0.0 20241103 (experimental)
-  > integer(kind=1) :: i1
-  > integer(kind=2) :: i2
-  > integer(kind=4) :: i4
-  > integer(kind=8) :: i8
-  > integer(kind=16) :: i16
-  > write(*,*)"huge(i1)=",huge(i1)
-  > write(*,*)"huge(i2)=",huge(i2)
-  > write(*,*)"huge(i4)=",huge(i4)
-  > write(*,*)"huge(i8)=",huge(i8)
-  > write(*,*)"huge(i16)=",huge(i16)
-  > end program kinds
-  >
-  >   2147483647  9223372036854775807
-  >  T
-  >  T
+ > program kinds
+ > ! This file was written by GCC version 13.1.0
+ > integer,parameter :: i1=1
+ > integer,parameter :: i2=2
+ > integer,parameter :: i4=4
+ > integer,parameter :: i8=8
+ > integer,parameter :: i16=16
+ > write(*,*)"huge(0_i1)=",huge(0_i1)
+ > write(*,*)"huge(0_i2)=",huge(0_i2)
+ > write(*,*)"huge(0_i4)=",huge(0_i4)
+ > write(*,*)"huge(0_i8)=",huge(0_i8)
+ > write(*,*)"huge(0_i16)=",huge(0_i16)
+ > end program kinds
+ >
+ >   2147483647  9223372036854775807
+ >  T
+ >  T
 ```
 ### **Standard**
 
@@ -21800,7 +21883,9 @@ Fortran 95
 Sample program:
 
 ```fortran
+
 program demo_selected_real_kind
+use, intrinsic :: iso_fortran_env
 implicit none
 integer,parameter :: p6 = selected_real_kind(6)
 integer,parameter :: p10r100 = selected_real_kind(10,100)
@@ -21808,6 +21893,11 @@ integer,parameter :: r400 = selected_real_kind(r=400)
 real(kind=p6) :: x
 real(kind=p10r100) :: y
 real(kind=r400) :: z
+
+   write(*,*) 'real_kinds    =', real_kinds(:)
+   write(*,*) 'real constants=', real16, real32, real64, real128 !, bfloat16
+   write(*,*) 'integer_kinds=', integer_kinds(:)
+   write(*,*) 'int constants=', int8, int16, int32, int64  !, int128
 
    print *, precision(x), range(x)
    print *, precision(y), range(y)
@@ -24704,7 +24794,7 @@ Fortran 95
      beginning position of the tokens and the other the end positions.
 
    Since the token form pads all the tokens to the same length the
-   original number of trailing spaces of each token accept for the
+   original number of trailing spaces of each token except for the
    longest is lost.
 
    The array bounds form retains information regarding the exact token
@@ -24731,6 +24821,10 @@ Fortran 95
     The tokens in **string** are assigned in the order found, as if
     by intrinsic assignment, to the elements of **tokens**, in array
     element order.
+
+- **separator**
+  : separator(i) is equal to the ith token delimiter in string. There
+    is no element in separator that indicates beginning or end of string.
 
 - **first**
   : shall be an allocatable array of type integer and rank one. It is
@@ -25749,7 +25843,7 @@ of characters that does not appear in a given set of characters
 - **back**
   : The direction to look for an unmatched character. The left-most
   unmatched character position is returned unless **back** is present
-  and _.false._, which causes the position of the right-most unmatched
+  and _.true._, which causes the position of the right-most unmatched
   character to be returned instead of the left-most unmatched character.
 
 - **kind**
@@ -25763,7 +25857,7 @@ If all characters of **string** are found in **set**, the result is zero.
 If **string** is of zero length a zero (0) is always returned.
 
 Otherwise, if an unmatched character is found
-The position of the first or last (if **back** is _.false._) unmatched
+The position of the first or last (if **back** is _.true._) unmatched
 character in **string** is returned, starting with position one on the
 left end of the string.
 
@@ -26043,8 +26137,8 @@ character(len=2) :: sets(3)=["do","re","me"]
    write(*,*)'last non-letter',verify(strings,upp//low//blank,back=.true.)
 
    ! even BACK can be an array
-   ! find last non-uppercase character in "Howdy "
-   ! and first non-lowercase in "there "
+   ! find last non-uppercase character in "Go    "
+   ! and first non-lowercase in "right "
    write(*,*) verify(strings(1:2),[upp,low],back=[.true.,.false.])
 
    ! using a null string for a set is not well defined. Avoid it
@@ -26062,7 +26156,7 @@ end program more_verify
 Results:
 ```text
     > last non-letter 0 0 5
-    > 6 6
+    > 2 6
     > null 9
     > blank 8
     > 1 2 1
