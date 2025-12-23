@@ -1,6 +1,4 @@
-
 !>>>>> ././src/M_intrinsics.f90
-
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
@@ -527,7 +525,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   abs(3fortran)', &
+'                              December 23, 2025                 abs(3fortran)', &
 '']
 
 shortname="abs"
@@ -684,7 +682,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 achar(3fortran)', &
+'                              December 23, 2025               achar(3fortran)', &
 '']
 
 shortname="achar"
@@ -777,7 +775,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  acos(3fortran)', &
+'                              December 23, 2025                acos(3fortran)', &
 '']
 
 shortname="acos"
@@ -862,7 +860,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 acosd(3fortran)', &
+'                              December 23, 2025               acosd(3fortran)', &
 '']
 
 shortname="acosd"
@@ -935,7 +933,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 acosh(3fortran)', &
+'                              December 23, 2025               acosh(3fortran)', &
 '']
 
 shortname="acosh"
@@ -1035,7 +1033,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                acospi(3fortran)', &
+'                              December 23, 2025              acospi(3fortran)', &
 '']
 
 shortname="acospi"
@@ -1079,30 +1077,33 @@ textblock=[character(len=256) :: &
 '', &
 '      program demo_adjustl', &
 '      implicit none', &
-'      character(len=20) :: str = ''   sample string''', &
+'      character(len=20)           :: str', &
 '      character(len=:),allocatable :: astr', &
-'      integer :: length', &
+'      character(len=*),parameter   :: au= ''(a,"[",a,"]")''', &
+'      integer :: istart, iend', &
 '', &
-'        ! basic use', &
-'         write(*,''(a,"[",a,"]")'') ''original: '',str', &
-'         str=adjustl(str)', &
-'         write(*,''(a,"[",a,"]")'') ''adjusted: '',str', &
+'       ! basic use', &
+'         str=''   sample string  ''', &
+'         write(*,au) ''original: '',str', &
 '', &
-'         ! a fixed-length string can be printed', &
-'         ! trimmed using trim(3) or len_trim(3)', &
-'         write(*,''(a,"[",a,"]")'') ''trimmed:  '',trim(str)', &
-'         length=len_trim(str)', &
-'         write(*,''(a,"[",a,"]")'') ''substring:'',str(:length)', &
+'       ! note the allocated string stays the same length', &
+'       ! and is not trimmed by just an adjustl(3) call.', &
+'         astr=adjustl(str)', &
+'         write(*,au) ''adjusted: '',astr', &
 '', &
-'         ! note an allocatable string stays the same length too', &
-'         ! and is not trimmed by just an adjustl(3) call.', &
-'         astr=''    allocatable string  ''', &
-'         write(*,''(a,"[",a,"]")'') ''original:'',astr', &
-'         astr = adjustl(astr)', &
-'         write(*,''(a,"[",a,"]")'') ''adjusted:'',astr', &
-'         ! trim(3) can be used to change the length', &
-'         astr = trim(astr)', &
-'         write(*,''(a,"[",a,"]")'') ''trimmed: '',astr', &
+'       ! a fixed-length string can be printed cropped', &
+'       ! combining adjustl(3) with trim(3)', &
+'         write(*,au) ''trimmed:  '',trim(adjustl(str))', &
+'', &
+'       ! or even printed without adjusting the string a', &
+'       ! cropped substring can be printed', &
+'         iend=len_trim(str)', &
+'         istart= verify(str, '' '') ! first non-blank character', &
+'         write(*,au) ''substring:'',str(istart:iend)', &
+'', &
+'       ! to generate an actually trimmed allocated variable', &
+'         astr = trim(adjustl(str))', &
+'         write(*,au) ''trimmed:  '',astr', &
 '', &
 '      end program demo_adjustl', &
 '', &
@@ -1112,9 +1113,7 @@ textblock=[character(len=256) :: &
 '        > adjusted: [sample string       ]', &
 '        > trimmed:  [sample string]', &
 '        > substring:[sample string]', &
-'        > original:[    allocatable string   ]', &
-'        > adjusted:[allocatable string       ]', &
-'        > trimmed: [allocatable string]', &
+'        > trimmed:  [sample string]', &
 '', &
 'STANDARD', &
 '  Fortran 95', &
@@ -1124,7 +1123,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025               adjustl(3fortran)', &
+'                              December 23, 2025             adjustl(3fortran)', &
 '']
 
 shortname="adjustl"
@@ -1209,7 +1208,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025               adjustr(3fortran)', &
+'                              December 23, 2025             adjustr(3fortran)', &
 '']
 
 shortname="adjustr"
@@ -1330,7 +1329,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 aimag(3fortran)', &
+'                              December 23, 2025               aimag(3fortran)', &
 '']
 
 shortname="aimag"
@@ -1422,7 +1421,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  aint(3fortran)', &
+'                              December 23, 2025                aint(3fortran)', &
 '']
 
 shortname="aint"
@@ -1534,7 +1533,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   all(3fortran)', &
+'                              December 23, 2025                 all(3fortran)', &
 '']
 
 shortname="all"
@@ -1633,7 +1632,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025             allocated(3fortran)', &
+'                              December 23, 2025           allocated(3fortran)', &
 '']
 
 shortname="allocated"
@@ -1751,7 +1750,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 anint(3fortran)', &
+'                              December 23, 2025               anint(3fortran)', &
 '']
 
 shortname="anint"
@@ -1909,7 +1908,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   any(3fortran)', &
+'                              December 23, 2025                 any(3fortran)', &
 '']
 
 shortname="any"
@@ -2023,7 +2022,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  asin(3fortran)', &
+'                              December 23, 2025                asin(3fortran)', &
 '']
 
 shortname="asin"
@@ -2110,7 +2109,7 @@ textblock=[character(len=256) :: &
 '       print all, ''percent grade='',rise/run*100.0_dp', &
 '      contains', &
 '      subroutine sub1()', &
-'      ! notice the (incidently empty) type is defined below', &
+'      ! notice the (incidentally empty) type is defined below', &
 '      ! the implicit statement', &
 '      implicit type(nil) (a)', &
 '      type nil', &
@@ -2147,7 +2146,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 asind(3fortran)', &
+'                              December 23, 2025               asind(3fortran)', &
 '']
 
 shortname="asind"
@@ -2220,7 +2219,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 asinh(3fortran)', &
+'                              December 23, 2025               asinh(3fortran)', &
 '']
 
 shortname="asinh"
@@ -2351,7 +2350,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                asinpi(3fortran)', &
+'                              December 23, 2025              asinpi(3fortran)', &
 '']
 
 shortname="asinpi"
@@ -2752,8 +2751,8 @@ textblock=[character(len=256) :: &
 '', &
 '  Selected variable names are still accessible in the ASSOCIATE block. This', &
 '  is confusing and should be avoided, particular if the selectors are', &
-'  allocatable or pointers. This is similiar to variables passed as arguments', &
-'  to contained procedures but referenced via the argument name and the name in', &
+'  allocatable or pointers. This is similar to variables passed as arguments to', &
+'  contained procedures but referenced via the argument name and the name in', &
 '  the surrounding scope. The behavior is ill-defined. Does a change to the', &
 '  argument take affect immediately or upon return from the procedure? If the', &
 '  argument is not declared allocatable or is a pointer does the argument name', &
@@ -2851,7 +2850,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025             associate(7fortran)', &
+'                              December 23, 2025           associate(7fortran)', &
 '']
 
 shortname="associate"
@@ -2970,7 +2969,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025            associated(3fortran)', &
+'                              December 23, 2025          associated(3fortran)', &
 '']
 
 shortname="associated"
@@ -3149,7 +3148,7 @@ textblock=[character(len=256) :: &
 '       (https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)', &
 '       _Fortran intrinsic descriptions (license: MIT) \@urbanjost_', &
 '', &
-'                               March 16, 2025                 atan2(3fortran)', &
+'                              December 23, 2025               atan2(3fortran)', &
 '']
 
 shortname="atan2"
@@ -3320,7 +3319,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                atan2d(3fortran)', &
+'                              December 23, 2025              atan2d(3fortran)', &
 '']
 
 shortname="atan2d"
@@ -3477,7 +3476,7 @@ textblock=[character(len=256) :: &
 'RESOURCES', &
 '  o  arctan:wikipedia Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025               atan2pi(3fortran)', &
+'                              December 23, 2025             atan2pi(3fortran)', &
 '']
 
 shortname="atan2pi"
@@ -3509,7 +3508,24 @@ textblock=[character(len=256) :: &
 '  o  The returned value is of the same type and kind as X.', &
 '', &
 'DESCRIPTION', &
-'  ATAN(3) computes the arctangent of X.', &
+'  ATAN(X)(3) returns the inverse tangent (ie. arctangent) of the elements of X', &
+'  in radians. The function accepts both real and complex inputs, specified as', &
+'  a scalar, vector, matrix. The atan operation is element-wise when X is', &
+'  nonscalar.', &
+'', &
+'  o  For real values of X, atan(X) returns values in the interval [-PI/2,', &
+'     PI/2].', &
+'', &
+'  o  For complex values of X, atan(X) returns complex values.', &
+'', &
+'  When Y is not supplied the inverse tangent is defined as', &
+'', &
+'      i=sqrt(-1)', &
+'      atan(z)=>(i/2)*log(i+z/i-z).', &
+'', &
+'  This definition of the atan function returns angles in radians within the', &
+'  interval [-PI/2, PI/2]. To find the four-quadrant inverse tangent, where the', &
+'  returned angles are in the interval [-PI, PI], use atan2.', &
 '', &
 'OPTIONS', &
 '  o  X : The value to compute the arctangent of. if Y is present, X shall be', &
@@ -3562,7 +3578,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  atan(3fortran)', &
+'                              December 23, 2025                atan(3fortran)', &
 '']
 
 shortname="atan"
@@ -3648,7 +3664,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 atand(3fortran)', &
+'                              December 23, 2025               atand(3fortran)', &
 '']
 
 shortname="atand"
@@ -3713,7 +3729,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 atanh(3fortran)', &
+'                              December 23, 2025               atanh(3fortran)', &
 '']
 
 shortname="atanh"
@@ -3800,7 +3816,7 @@ textblock=[character(len=256) :: &
 'RESOURCES', &
 '  o  wikipedia: inverse trigonometric functions', &
 '', &
-'                               March 16, 2025                atanpi(3fortran)', &
+'                              December 23, 2025              atanpi(3fortran)', &
 '']
 
 shortname="atanpi"
@@ -3828,48 +3844,96 @@ textblock=[character(len=256) :: &
 '  o  ATOM is a scalar coarray or coindexed variable of integer type with', &
 '     atomic_int_kind kind.', &
 '', &
-'  o  VALUE is a scalar of the same type as ATOM. If the kind is different, the', &
-'     value is converted to the kind of ATOM.', &
+'  o  VALUE is a ,scalar of the same type as ATOM. If the kind is different,', &
+'     the value is converted to the kind of ATOM.', &
 '', &
-'  o  STAT is a Scalar default-kind integer variable.', &
+'  o  STAT is a scalar default-kind integer variable.', &
 '', &
 'DESCRIPTION', &
-'  ATOMIC_ADD(3) atomically adds the value of VAR to the variable ATOM. When', &
-'  STAT is present and the invocation was successful, it is assigned the value', &
-'  0. If it is present and the invocation has failed, it is assigned a positive', &
-'  value; in particular, for a coindexed ATOM, if the remote image has stopped,', &
-'  it is assigned the value of iso_fortran_env''s STAT_STOPPED_IMAGE and if the', &
-'  remote image has failed, the value STAT_FAILED_IMAGE.', &
+'  ATOMIC_ADD(ATOM, VALUE, STAT) atomically adds the value of VALUE to the', &
+'  variable ATOM. This operation ensures thread safety in parallel', &
+'  environments, such as when using coarrays. It is part of the atomic', &
+'  operations in Fortran 2008 and later, typically used with the', &
+'  ISO_FORTRAN_ENV module.', &
+'', &
+'  The purpose of ATOMIC_ADD in Fortran is to perform an atomic addition', &
+'  operation on a variable. This means that the addition of VALUE to ATOM is', &
+'  guaranteed to be an indivisible operation, ensuring that no other thread or', &
+'  process can access or modify ATOM during the addition.', &
+'', &
+'  Specifically, CALL ATOMIC_ADD (ATOM, VALUE [, STAT]) adds the value of VALUE', &
+'  to the variable ATOM atomically. This is crucial in parallel programming', &
+'  environments where multiple threads or processes might attempt to modify the', &
+'  same shared variable concurrently. Without atomic operations, race', &
+'  conditions can occur, leading to incorrect or unpredictable results.', &
+'', &
+'  ATOMIC_ADD(3) helps maintain data integrity in concurrent scenarios by', &
+'  ensuring that the operation completes without interruption, providing a', &
+'  reliable way to update shared variables in a thread-safe manner. It is part', &
+'  of the intrinsic procedures available in Fortran for handling atomic', &
+'  operations, particularly useful with coarrays or coindexed variables in', &
+'  parallel Fortran programs.', &
+'', &
+'  Unlike ATOMIC_FETCH_ADD(3), this procedure does not return the previous', &
+'  value of ATOM.', &
+'', &
+'  Use "sync all" to ensure consistent coarray state across images.', &
+'', &
+'  When STAT is present and the invocation was successful, it is assigned the', &
+'  value 0. If it is present and the invocation has failed, it is assigned a', &
+'  positive value; in particular, for a coindexed ATOM, if the remote image has', &
+'  stopped, it is assigned the value of iso_fortran_env''s STAT_STOPPED_IMAGE', &
+'  and if the remote image has failed, the value STAT_FAILED_IMAGE.', &
 '', &
 'OPTIONS', &
-'  o  ATOM : Scalar coarray or coindexed variable of integer type with', &
-'     atomic_int_kind kind.', &
+'  o  ATOM : Scalar coarray or coindexed variable of integer type with kind', &
+'     ATOMIC_INT_KIND.(from ISO_FORTRAN_ENV).', &
 '', &
 '  o  VALUE : Scalar of the same type as ATOM. If the kind is different, the', &
 '     value is converted to the kind of ATOM.', &
 '', &
-'  o  STAT : (optional) Scalar default-kind integer variable.', &
+'  o  STAT : (optional) Scalar default-kind integer variable. Set to 0 on', &
+'     success, or a positive value (e.g., STAT_STOPPED_IMAGE or', &
+'     STAT_FAILED_IMAGE from ISO_FORTRAN_ENV) on failure.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
 '', &
 '      program demo_atomic_add', &
-'      use iso_fortran_env', &
-'      implicit none', &
-'      integer(atomic_int_kind) :: atom[*]', &
-'        call atomic_add (atom[1], this_image())', &
+'       use iso_fortran_env', &
+'       implicit none', &
+'       integer(atomic_int_kind) :: counter[*]', &
+'       integer :: stat, me', &
+'', &
+'       if (this_image() == 1) counter = 0', &
+'       sync all', &
+'', &
+'       me = this_image()', &
+'       call atomic_add(counter[1], me, stat)', &
+'', &
+'       if (stat /= 0) print *, "Image", me, ": Failed with STAT =", stat', &
+'       sync all', &
+'', &
+'       if (this_image() == 1) print *, "Final counter:", counter', &
 '      end program demo_atomic_add', &
 '', &
+'  Expected Output (4 images)', &
+'', &
+'         > Final counter: 10', &
+'', &
 'STANDARD', &
-'  TS 18508', &
+'  Fortran 2008 and later, per TS 18508', &
 '', &
 'SEE ALSO', &
 '  ATOMIC_DEFINE(3), ATOMIC_FETCH_ADD(3), ATOMIC_AND(3), ATOMIC_OR(3),', &
 '  ATOMIC_XOR(3) ISO_FORTRAN_ENV(3),', &
 '', &
+'  See ISO_FORTRAN_ENV for constants like ATOMIC_INT_KIND, STAT_STOPPED_IMAGE,', &
+'  and STAT_FAILED_IMAGE.', &
+'', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025            atomic_add(3fortran)', &
+'                              December 23, 2025          atomic_add(3fortran)', &
 '']
 
 shortname="atomic_add"
@@ -3903,22 +3967,35 @@ textblock=[character(len=256) :: &
 '  o  STAT is a Scalar default-kind integer variable.', &
 '', &
 'DESCRIPTION', &
-'  ATOMIC_AND(3) atomically defines ATOM with the bitwise AND between the', &
-'  values of ATOM and VALUE. When STAT is present and the invocation was', &
-'  successful, it is assigned the value 0. If it is present and the invocation', &
-'  has failed, it is assigned a positive value; in particular, for a coindexed', &
-'  ATOM, if the remote image has stopped, it is assigned the value of', &
-'  iso_fortran_env''s stat_stopped_image and if the remote image has failed, the', &
-'  value stat_failed_image.', &
+'  ATOMIC_AND(ATOM, VALUE, STAT) atomically performs a bitwise AND operation', &
+'  between the value of ATOM and VALUE, storing the result in ATOM. This', &
+'  ensures thread-safe updates in parallel contexts.', &
+'', &
+'  Unlike ATOMIC_FETCH_ADD, this procedure does not return the previous value', &
+'  of ATOM.', &
+'', &
+'  The result is the bitwise AND of ATOM and VALUE (e.g., 1111 AND 1010 =', &
+'  1010).', &
+'', &
+'  Useful for manipulating bit flags atomically.', &
+'', &
+'  Use sync all to ensure consistent coarray state across images.', &
+'', &
+'  When STAT is present and the invocation was successful, it is assigned the', &
+'  value 0. If it is present and the invocation has failed, it is assigned a', &
+'  positive value; in particular, for a coindexed ATOM, if the remote image has', &
+'  stopped, it is assigned the value of ISO_FORTRAN_ENV''s STAT_STOPPED_IMAGE', &
+'  and if the remote image has failed, the value STAT_FAILED_IMAGE.', &
 '', &
 'OPTIONS', &
-'  o  ATOM : Scalar coarray or coindexed variable of integer type with', &
-'     atomic_int_kind kind.', &
+'  o  ATOM : Scalar coarray or coindexed variable of integer type with kind', &
+'     ATOMIC_INT_KIND .', &
 '', &
 '  o  VALUE : Scalar of the same type as ATOM. If the kind is different, the', &
 '     value is converted to the kind of ATOM.', &
 '', &
-'  o  STAT : (optional) Scalar default-kind integer variable.', &
+'  o  STAT : (optional) Scalar default-kind integer variable. Set to 0 on', &
+'     success, or a positive value on failure.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -3926,20 +4003,38 @@ textblock=[character(len=256) :: &
 '      program demo_atomic_and', &
 '      use iso_fortran_env', &
 '      implicit none', &
-'      integer(atomic_int_kind) :: atom[*]', &
-'        call atomic_and(atom[1], int(b''10100011101''))', &
+'      integer(atomic_int_kind) :: counter[*]', &
+'      integer :: stat, me', &
+'', &
+'       if (this_image() == 1) counter = 0', &
+'       sync all', &
+'', &
+'       me = this_image()', &
+'       call atomic_add(counter[1], me, stat)', &
+'', &
+'       if (stat /= 0) print *, "Image", me, ": Failed with STAT =", stat', &
+'       sync all', &
+'', &
+'       if (this_image() == 1) print *, "Final counter:", counter', &
 '      end program demo_atomic_and', &
 '', &
+'  Expected Output (4 images)', &
+'', &
+'         > Final counter: 10', &
+'', &
 'STANDARD', &
-'  TS 18508', &
+'  Fortran 2008 and later, per TS 18508', &
 '', &
 'SEE ALSO', &
 '  ATOMIC_FETCH_AND(3), ATOMIC_DEFINE(3), ATOMIC_REF(3), ATOMIC_CAS(3),', &
 '  ISO_FORTRAN_ENV(3), ATOMIC_ADD(3), ATOMIC_OR(3), ATOMIC_XOR(3)', &
 '', &
+'  See ISO_FORTRAN_ENV for constants like ATOMIC_INT_KIND, STAT_STOPPED_IMAGE,', &
+'  and STAT_FAILED_IMAGE.', &
+'', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025            atomic_and(3fortran)', &
+'                              December 23, 2025          atomic_and(3fortran)', &
 '']
 
 shortname="atomic_and"
@@ -3952,7 +4047,7 @@ textblock=[character(len=256) :: &
 'atomic_cas(3fortran)                                     atomic_cas(3fortran)', &
 '', &
 'NAME', &
-'  ATOMIC_CAS(3) - [ATOMIC] Atomic compare and swap', &
+'  ATOMIC_CAS(3) - [ATOMIC] Atomically compare and swap a set of values', &
 '', &
 'SYNOPSIS', &
 '  call atomic_cas (atom, old, compare, new [,stat] )', &
@@ -3961,47 +4056,87 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  ATOMIC_CAS(3) compares the variable ATOM with the value of COMPARE; if the', &
-'  value is the same, ATOM is set to the value of NEW. Additionally, OLD is set', &
-'  to the value of ATOM that was used for the comparison. When STAT is present', &
-'  and the invocation was successful, it is assigned the value 0. If it is', &
-'  present and the invocation has failed, it is assigned a positive value; in', &
-'  particular, for a coindexed ATOM, if the remote image has stopped, it is', &
-'  assigned the value of iso_fortran_env''s stat_stopped_image and if the remote', &
-'  image has failed, the value stat_failed_image.', &
+'  ATOMIC_CAS(ATOM, OLD, COMPARE, NEW, STAT) atomically compares the value of', &
+'  ATOM with COMPARE. If they are equal, ATOM is set to NEW, and OLD receives', &
+'  the previous value of ATOM. If not equal, ATOM is unchanged, and OLD still', &
+'  receives the current value of ATOM.', &
+'', &
+'  ATOMIC_CAS is useful for implementing locks or conditional updates.', &
+'', &
+'  Only one image''s NEW value is set if multiple images attempt the operation', &
+'  simultaneously.', &
+'', &
+'  When STAT is present and the invocation was successful, it is assigned the', &
+'  value 0. If it is present and the invocation has failed, it is assigned a', &
+'  positive value; in particular, for a coindexed ATOM, if the remote image has', &
+'  stopped, it is assigned the value of ISO_FORTRAN_ENV''s STAT_STOPPED_IMAGE', &
+'  and if the remote image has failed, the value STAT_FAILED_IMAGE.', &
 '', &
 'OPTIONS', &
+'  STAT (optional): A scalar default-kind integer. Set to 0 on success, or a', &
+'  positive value on failure.', &
+'', &
 '  o  ATOM : Scalar coarray or coindexed variable of either integer type with', &
-'     atomic_int_kind kind or logical type with atomic_logical_kind kind.', &
+'     ATOMIC_INT_KIND kind or logical type with kind ATOMIC_LOGICAL_KIND.', &
 '', &
-'  o  OLD : Scalar of the same type and kind as ATOM.', &
+'     o OLD : Scalar of the same type and kind as ATOM. It receives the value', &
+'       of ATOM before the operation.', &
 '', &
-'  o  COMPARE : Scalar variable of the same type and kind as ATOM.', &
+'     o COMPARE : Scalar variable of the same type and kind as ATOM. Used for', &
+'       comparison.', &
 '', &
-'  o  NEW : Scalar variable of the same type as ATOM. If kind is different, the', &
-'     value is converted to the kind of ATOM.', &
+'     o NEW : Scalar variable of the same type as ATOM. If kind is different,', &
+'       the value is converted to the kind of ATOM. It is given the new value', &
+'       from ATOM if the comparison succeeds.', &
 '', &
-'  o  STAT : (optional) Scalar default-kind integer variable.', &
+'     o STAT : (optional) Scalar default-kind integer variable.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
 '', &
-'      program demo_atomic_cas', &
+'      program demo_atomic_cas_example', &
 '      use iso_fortran_env', &
 '      implicit none', &
-'      logical(atomic_logical_kind) :: atom[*], prev', &
-'        call atomic_cas(atom[1], prev, .false., .true.)', &
-'      end program demo_atomic_cas', &
+'      integer(atomic_int_kind) :: lock[*]', &
+'      integer(atomic_int_kind) :: old', &
+'      integer :: stat, me', &
+'', &
+'       if (this_image() == 1) lock = 0', &
+'       sync all', &
+'', &
+'       me = this_image()', &
+'       call atomic_cas(lock[1], old, 0, me, stat)', &
+'', &
+'       if (stat /= 0) then', &
+'         print *, "Image", me, ": Failed with STAT =", stat', &
+'       else', &
+'         print *, "Image", me, ": Old =", old, ", New =", lock[1]', &
+'       end if', &
+'       sync all', &
+'', &
+'       if (this_image() == 1) print *, "Final lock:", lock', &
+'      end program demo_atomic_cas_example', &
+'', &
+'  Expected Output (4 images, order varies)', &
+'', &
+'         > Image 1: Old = 0, New = 1', &
+'         > Image 2: Old = 1, New = 1', &
+'         > Image 3: Old = 1, New = 1', &
+'         > Image 4: Old = 1, New = 1', &
+'         > Final lock: 1', &
 '', &
 'STANDARD', &
-'  TS 18508', &
+'  Fortran 2008 and later, per TS 18508', &
 '', &
 'SEE ALSO', &
 '  ATOMIC_DEFINE(3), ATOMIC_REF(3), ISO_FORTRAN_ENV(3)', &
 '', &
+'  See ISO_FORTRAN_ENV for constants like ATOMIC_INT_KIND, STAT_STOPPED_IMAGE,', &
+'  and STAT_FAILED_IMAGE.', &
+'', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025            atomic_cas(3fortran)', &
+'                              December 23, 2025          atomic_cas(3fortran)', &
 '']
 
 shortname="atomic_cas"
@@ -4014,7 +4149,7 @@ textblock=[character(len=256) :: &
 'atomic_define(3fortran)                               atomic_define(3fortran)', &
 '', &
 'NAME', &
-'  ATOMIC_DEFINE(3) - [ATOMIC] Setting a variable atomically', &
+'  ATOMIC_DEFINE(3) - [ATOMIC] Atomically define the value of a variable', &
 '', &
 'SYNOPSIS', &
 '  call atomic_define (atom, value [,stat] )', &
@@ -4027,7 +4162,7 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 '  o  ATOM : Scalar coarray or coindexed variable of either integer type with', &
-'     atomic_int_kind kind or logical type with atomic_logical_kind kind.', &
+'     ATOMIC_INT_KIND kind or logical type with ATOMIC_LOGICAL_KIND kind.', &
 '', &
 '  o  VALUE : Scalar of the same type as ATOM. If the kind is different, the', &
 '     value is converted to the kind of ATOM.', &
@@ -4035,7 +4170,14 @@ textblock=[character(len=256) :: &
 '  o  STAT : (optional) Scalar default-kind integer variable.', &
 '', &
 'DESCRIPTION', &
-'  ATOMIC_DEFINE(3) defines the variable ATOM with the value VALUE atomically.', &
+'  ATOMIC_DEFINE(ATOM, VALUE, STAT) atomically sets the value of ATOM to VALUE.', &
+'  This ensures thread-safe assignment in parallel environments.', &
+'', &
+'  Use for simple atomic assignments, unlike ATOMIC_CAS(3) which involves', &
+'  comparison.', &
+'', &
+'  Only one image should call ATOMIC_DEFINE(3) to avoid undefined behavior in', &
+'  this context.', &
 '', &
 'OPTIONS', &
 '  o  ATOM : Scalar coarray or coindexed variable to atomically assign the', &
@@ -4054,11 +4196,26 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_atomic_define', &
-'      use iso_fortran_env', &
-'      implicit none', &
-'      integer(atomic_int_kind) :: atom[*]', &
-'         call atomic_define(atom[1], this_image())', &
+'       use iso_fortran_env', &
+'       implicit none', &
+'       integer(atomic_int_kind) :: counter[*]', &
+'       integer :: stat, me', &
+'', &
+'       if (this_image() == 1) counter = 0', &
+'       sync all', &
+'', &
+'       me = this_image()', &
+'       if (me == 2) call atomic_define(counter[1], 42, stat)', &
+'', &
+'       if (stat /= 0) print *, "Image", me, ": Failed with STAT =", stat', &
+'       sync all', &
+'', &
+'       if (this_image() == 1) print *, "Final counter:", counter', &
 '      end program demo_atomic_define', &
+'', &
+'  Expected Output (4 images)', &
+'', &
+'         > Final counter: 42', &
 '', &
 'STANDARD', &
 '  Fortran 2008 ; with STAT, TS 18508', &
@@ -4067,9 +4224,12 @@ textblock=[character(len=256) :: &
 '  ATOMIC_REF(3), ATOMIC_CAS(3), ISO_FORTRAN_ENV(3), ATOMIC_ADD(3),', &
 '  ATOMIC_AND(3), ATOMIC_OR(3), ATOMIC_XOR(3)', &
 '', &
+'  See ISO_FORTRAN_ENV for constants like ATOMIC_INT_KIND, STAT_STOPPED_IMAGE,', &
+'  and STAT_FAILED_IMAGE.', &
+'', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025         atomic_define(3fortran)', &
+'                              December 23, 2025       atomic_define(3fortran)', &
 '']
 
 shortname="atomic_define"
@@ -4082,7 +4242,7 @@ textblock=[character(len=256) :: &
 'atomic_fetch_add(3fortran)                         atomic_fetch_add(3fortran)', &
 '', &
 'NAME', &
-'  ATOMIC_FETCH_ADD(3) - [ATOMIC] Atomic ADD operation with prior fetch', &
+'  ATOMIC_FETCH_ADD(3) - [ATOMIC] Atomic fetch and add operation', &
 '', &
 'SYNOPSIS', &
 '  call atomic_fetch_add(atom, value, old [,stat] )', &
@@ -4092,33 +4252,126 @@ textblock=[character(len=256) :: &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
 '  ATOMIC_FETCH_ADD(3) atomically stores the value of ATOM in OLD and adds the', &
-'  value of VAR to the variable ATOM. When STAT is present and the invocation', &
-'  was successful, it is assigned the value 0. If it is present and the', &
-'  invocation has failed, it is assigned a positive value; in particular, for a', &
-'  coindexed ATOM, if the remote image has stopped, it is assigned the value of', &
-'  iso_fortran_env''s stat_stopped_image and if the remote image has failed, the', &
-'  value stat_failed_image.', &
+'  value of VAR to the variable ATOM.', &
+'', &
+'  This operation is performed atomically, ensuring thread safety in parallel', &
+'  environments, such as when using coarrays in Fortran for parallel', &
+'  programming. It is part of the atomic operations defined in the Fortran 2008', &
+'  standard and later, typically used with the ISO_FORTRAN_ENV module.', &
+'', &
+'  ATOMIC_FETCH_ADD(3) is useful in parallel programming to avoid race', &
+'  conditions when multiple images update a shared variable.', &
+'', &
+'  The operation is only guaranteed to be atomic for variables of kind', &
+'  ATOMIC_INT_KIND.', &
+'', &
+'  For coindexed variables (e.g., counter[1]), the operation targets the', &
+'  specified image''s coarray.', &
+'', &
+'  Always use synchronization (e.g., sync all) to ensure consistent state', &
+'  across images before and after atomic operations.', &
+'', &
+'  When STAT is present and the invocation was successful, it is assigned the', &
+'  value 0. If it is present and the invocation has failed, it is assigned a', &
+'  positive value; in particular, for a coindexed ATOM, if the remote image has', &
+'  stopped, it is assigned the value of ISO_FORTRAN_ENV''s STAT_STOPPED_IMAGE', &
+'  and if the remote image has failed, the value STAT_FAILED_IMAGE.', &
 '', &
 'OPTIONS', &
-'  o  ATOM : Scalar coarray or coindexed variable of integer type with', &
-'     atomic_int_kind kind. atomic_logical_kind kind.', &
+'  o  ATOM : Scalar coarray or coindexed variable of integer type with kind', &
+'     ATOMIC_INT_KIND (from ISO_FORTRAN_ENV).', &
+'', &
+'     Must be accessible across images in a parallel execution context.', &
 '', &
 '  o  VALUE : Scalar of the same type as ATOM. If the kind is different, the', &
 '     value is converted to the kind of ATOM.', &
 '', &
 '  o  OLD : Scalar of the same type and kind as ATOM.', &
 '', &
-'  o  STAT : (optional) Scalar default-kind integer variable.', &
+'      On return, it contains the value of ATOM before the addition.', &
+'', &
+'  o  STAT : (optional) Scalar default-kind integer variable. If present:', &
+'', &
+'           Set to 0 if the operation is successful.', &
+'           Set to a positive value if the operation fails (e.g.,', &
+'           STAT_STOPPED_IMAGE if the remote image has stopped, or', &
+'           STAT_FAILED_IMAGE if the remote image has failed, as defined', &
+'           in ISO_FORTRAN_ENV).', &
 '', &
 'EXAMPLES', &
+'  The following program demonstrates the use of ATOMIC_FETCH_ADD in a parallel', &
+'  context using coarrays. It increments a shared counter atomically across', &
+'  multiple images and retrieves the original value before the addition.', &
+'', &
 '  Sample program:', &
 '', &
 '      program demo_atomic_fetch_add', &
-'      use iso_fortran_env', &
-'      implicit none', &
-'      integer(atomic_int_kind) :: atom[*], old', &
-'        call atomic_add(atom[1], this_image(), old)', &
+'       use iso_fortran_env', &
+'       implicit none', &
+'       integer(atomic_int_kind) :: counter[*]  ! Coarray for shared counter', &
+'       integer(atomic_int_kind) :: old_value   ! Stores value before addition', &
+'       integer :: stat, me, i', &
+'', &
+'       ! Initialize counter on image 1', &
+'       if (this_image() == 1) counter = 0', &
+'       sync all  ! Ensure all images see initialized counter', &
+'', &
+'       me = this_image()  ! Get current image number', &
+'', &
+'       ! Each image atomically adds its image number to the counter', &
+'       call atomic_fetch_add(counter[1], me, old_value, stat)', &
+'', &
+'       ! Check for errors', &
+'       if (stat /= 0) then', &
+'         print *, "Image", me, ": Operation failed with STAT =", stat', &
+'       else', &
+'         print *, "Image", me, ": Old value =", old_value, ", Added", me', &
+'       end if', &
+'', &
+'       ! Synchronize all images before printing final result', &
+'       sync all', &
+'', &
+'       ! Image 1 prints the final counter value', &
+'       if (this_image() == 1) then', &
+'         print *, "Final counter value:", counter', &
+'       end if', &
 '      end program demo_atomic_fetch_add', &
+'', &
+'  Explanation of Example', &
+'', &
+'      Setup: The program uses the ISO_FORTRAN_ENV module to access', &
+'      ATOMIC_INT_KIND for the correct integer kind for atomic operations.', &
+'', &
+'      Coarray: counter[*] is a coarray, allowing shared access across images', &
+'      (parallel processes).', &
+'', &
+'      Initialization: Image 1 sets counter to 0, and sync all ensures all', &
+'      images see this initial value.', &
+'', &
+'      Atomic Operation: Each image calls ATOMIC_FETCH_ADD to add its', &
+'      image number (me) to counter[1] (the counter on image 1), storing', &
+'      the value of counter[1] before the addition in old_value.', &
+'', &
+'      Error Handling: The stat argument checks for operation success or failure.', &
+'', &
+'      Output: Each image prints the value of counter[1] before its addition', &
+'      and the value added. Image 1 prints the final counter value after', &
+'      all operations.', &
+'', &
+'  Expected Output', &
+'', &
+'  When run with 4 images (e.g., using cafrun -np 4 with a Fortran compiler', &
+'  supporting coarrays, like gfortran), the output might look like (order of', &
+'  image prints may vary due to parallelism):', &
+'', &
+'         > Image 1: Old value = 0, Added 1', &
+'         > Image 2: Old value = 1, Added 2', &
+'         > Image 3: Old value = 3, Added 3', &
+'         > Image 4: Old value = 6, Added 4', &
+'         > Final counter value: 10', &
+'', &
+'  The final counter value is the sum of image numbers (1 + 2 + 3 + 4 = 10),', &
+'  confirming atomic updates.', &
 '', &
 'STANDARD', &
 '  TS 18508', &
@@ -4130,9 +4383,12 @@ textblock=[character(len=256) :: &
 '', &
 '  ATOMIC_FETCH_XOR(3)', &
 '', &
+'  See ISO_FORTRAN_ENV for constants like ATOMIC_INT_KIND, STAT_STOPPED_IMAGE,', &
+'  and STAT_FAILED_IMAGE.', &
+'', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025      atomic_fetch_add(3fortran)', &
+'                              December 23, 2025    atomic_fetch_add(3fortran)', &
 '']
 
 shortname="atomic_fetch_add"
@@ -4155,37 +4411,69 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  ATOMIC_FETCH_AND(3) atomically stores the value of ATOM in OLD and defines', &
-'  ATOM with the bitwise AND between the values of ATOM and VALUE.  When STAT', &
-'  is present and the invocation was successful, it is assigned the value 0. If', &
-'  it is present and the invocation has failed, it is assigned a positive', &
-'  value; in particular, for a coindexed ATOM, if the remote image has stopped,', &
-'  it is assigned the value of iso_fortran_env''s stat_stopped_image and if the', &
-'  remote image has failed, the value stat_failed_image.', &
+'  ATOMIC_FETCH_AND(3) atomically fetches and performs a bitwise AND operation.', &
+'', &
+'  It is similar to ATOMIC_AND(3), but returns the previous value of ATOM.', &
+'  That is, it atomically stores the value of ATOM in OLD and performs a', &
+'  bitwise AND operation between ATOM and VALUE, storing the result in ATOM.', &
+'', &
+'  Useful for bit flag manipulation with feedback.', &
+'', &
+'  When STAT is present and the invocation was successful, it is assigned the', &
+'  value 0. If it is present and the invocation has failed, it is assigned a', &
+'  positive value; in particular, for a coindexed ATOM, if the remote image has', &
+'  stopped, it is assigned the value of iso_fortran_env''s STAT_STOPPED_IMAGE', &
+'  and if the remote image has failed, the value STAT_FAILED_IMAGE.', &
 '', &
 'OPTIONS', &
 '  o  ATOM : Scalar coarray or coindexed variable of integer type with', &
-'     atomic_int_kind kind.', &
+'     ATOMIC_INT_KIND kind.', &
 '', &
 '  o  VALUE : Scalar of the same type as ATOM. If the kind is different, the', &
 '     value is converted to the kind of ATOM.', &
 '', &
-'  o  OLD : Scalar of the same type and kind as ATOM.', &
+'  o  OLD : Scalar of the same type and kind as ATOM. Receives the value of', &
+'     ATOM before the operation.', &
 '', &
-'  o  STAT : (optional) Scalar default-kind integer variable.', &
+'  o  STAT : (optional) Scalar default-kind integer variable. Set to 0 on', &
+'     success, or a positive value on failure.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
 '', &
 '      program demo_atomic_fetch_and', &
-'      use iso_fortran_env', &
-'      implicit none', &
-'      integer(atomic_int_kind) :: atom[*], old', &
-'        call atomic_fetch_and (atom[1], int(b''10100011101''), old)', &
+'', &
+'       use iso_fortran_env', &
+'       implicit none', &
+'       integer(atomic_int_kind) :: flags[*], old', &
+'       integer :: stat, me', &
+'', &
+'       if (this_image() == 1) flags = int(b''1111'', atomic_int_kind)', &
+'       sync all', &
+'', &
+'       me = this_image()', &
+'       call atomic_fetch_and(flags[1], int(b''1010'', atomic_int_kind), old, stat)', &
+'', &
+'       if (stat /= 0) print *, "Image", me, ": Failed with STAT =", stat', &
+'       print *, "Image", me, ": Old =", old', &
+'       sync all', &
+'', &
+'       if (this_image() == 1) print *, "Final flags:", flags', &
 '      end program demo_atomic_fetch_and', &
 '', &
+'  Expected Output (4 images, order varies)', &
+'', &
+'         > Image 1: Old = 15', &
+'         > Image 2: Old = 10', &
+'         > Image 3: Old = 10', &
+'         > Image 4: Old = 10', &
+'         > Final flags: 10', &
+'', &
 'STANDARD', &
-'  TS 18508', &
+'  Fortran 2008 and later, TS 18508', &
+'', &
+'  See ISO_FORTRAN_ENV for constants like ATOMIC_INT_KIND, STAT_STOPPED_IMAGE,', &
+'  and STAT_FAILED_IMAGE.', &
 '', &
 'SEE ALSO', &
 '  ATOMIC_DEFINE(3), ATOMIC_AND(3), ISO_FORTRAN_ENV(3),', &
@@ -4194,9 +4482,12 @@ textblock=[character(len=256) :: &
 '', &
 '  ATOMIC_FETCH_XOR(3)', &
 '', &
+'  See ISO_FORTRAN_ENV for constants like ATOMIC_INT_KIND, STAT_STOPPED_IMAGE,', &
+'  and STAT_FAILED_IMAGE.', &
+'', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025      atomic_fetch_and(3fortran)', &
+'                              December 23, 2025    atomic_fetch_and(3fortran)', &
 '']
 
 shortname="atomic_fetch_and"
@@ -4209,8 +4500,8 @@ textblock=[character(len=256) :: &
 'atomic_fetch_or(3fortran)                           atomic_fetch_or(3fortran)', &
 '', &
 'NAME', &
-'  ATOMIC_FETCH_OR(3) - [ATOMIC:BIT MANIPULATION] Atomic bitwise OR operation', &
-'  with prior fetch', &
+'  ATOMIC_FETCH_OR(3) - [ATOMIC:BIT MANIPULATION] Atomically fetch and perform', &
+'  a bitwise OR operation', &
 '', &
 'SYNOPSIS', &
 '  call atomic_fetch_or(atom, value, old [,stat] )', &
@@ -4219,24 +4510,32 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  ATOMIC_FETCH_OR(3) atomically stores the value of ATOM in OLD and defines', &
-'  ATOM with the bitwise OR between the values of ATOM and VALUE.  When STAT is', &
-'  present and the invocation was successful, it is assigned the value 0. If it', &
-'  is present and the invocation has failed, it is assigned a positive value;', &
-'  in particular, for a coindexed ATOM, if the remote image has stopped, it is', &
-'  assigned the value of iso_fortran_env''s stat_stopped_image and if the remote', &
-'  image has failed, the value stat_failed_image.', &
+'  ATOMIC_FETCH_OR(ATOM, VALUE, OLD, STAT) atomically stores the value of ATOM', &
+'  in OLD and performs a bitwise OR operation between ATOM and VALUE, storing', &
+'  the result in ATOM.', &
+'', &
+'  When STAT is present and the invocation was successful, it is assigned the', &
+'  value 0. If it is present and the invocation has failed, it is assigned a', &
+'  positive value; in particular, for a coindexed ATOM, if the remote image has', &
+'  stopped, it is assigned the value of iso_fortran_env''s stat_stopped_image', &
+'  and if the remote image has failed, the value stat_failed_image.', &
+'', &
+'  The result is the bitwise OR (e.g., 1000 OR 0011 = 1011).', &
+'', &
+'  It is useful for setting bit flags atomically.', &
 '', &
 'OPTIONS', &
 '  o  ATOM : Scalar coarray or coindexed variable of integer type with', &
-'     atomic_int_kind kind.', &
+'     ATOMIC_INT_KIND kind.', &
 '', &
 '  o  VALUE : Scalar of the same type as ATOM. If the kind is different, the', &
 '     value is converted to the kind of ATOM.', &
 '', &
-'  o  OLD : Scalar of the same type and kind as ATOM.', &
+'  o  OLD : Scalar of the same type and kind as ATOM. Receives the value of', &
+'     ATOM before the operation.', &
 '', &
-'  o  STAT : (optional) Scalar default-kind integer variable.', &
+'  o  STAT : (optional) Scalar default-kind integer variable. Set to 0 on', &
+'     success, or a positive value on failure.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
@@ -4244,9 +4543,30 @@ textblock=[character(len=256) :: &
 '      program demo_atomic_fetch_or', &
 '      use iso_fortran_env', &
 '      implicit none', &
-'      integer(atomic_int_kind) :: atom[*], old', &
-'        call atomic_fetch_or(atom[1], int(b''10100011101''), old)', &
+'      integer(atomic_int_kind) :: flags[*], old', &
+'      integer :: stat, me', &
+'', &
+'       if (this_image() == 1) flags = int(b''1000'', atomic_int_kind)', &
+'       sync all', &
+'', &
+'       me = this_image()', &
+'       call atomic_fetch_or(flags[1], int(b''0011'', atomic_int_kind), old, stat)', &
+'', &
+'       if (stat /= 0) print *, "Image", me, ": Failed with STAT =", stat', &
+'       print *, "Image", me, ": Old =", old', &
+'       sync all', &
+'', &
+'       if (this_image() == 1) print *, "Final flags:", flags', &
+'', &
 '      end program demo_atomic_fetch_or', &
+'', &
+'  Expected Output (4 images, order varies)', &
+'', &
+'         > Image 1: Old = 8', &
+'         > Image 2: Old = 11', &
+'         > Image 3: Old = 11', &
+'         > Image 4: Old = 11', &
+'         > Final flags: 11', &
 '', &
 'STANDARD', &
 '  TS 18508', &
@@ -4258,9 +4578,12 @@ textblock=[character(len=256) :: &
 '', &
 '  ATOMIC_FETCH_XOR(3)', &
 '', &
+'  See ISO_FORTRAN_ENV for constants like ATOMIC_INT_KIND, STAT_STOPPED_IMAGE,', &
+'  and STAT_FAILED_IMAGE.', &
+'', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025       atomic_fetch_or(3fortran)', &
+'                              December 23, 2025     atomic_fetch_or(3fortran)', &
 '']
 
 shortname="atomic_fetch_or"
@@ -4273,8 +4596,8 @@ textblock=[character(len=256) :: &
 'atomic_fetch_xor(3fortran)                         atomic_fetch_xor(3fortran)', &
 '', &
 'NAME', &
-'  ATOMIC_FETCH_XOR(3) - [ATOMIC:BIT MANIPULATION] Atomic bitwise XOR operation', &
-'  with prior fetch', &
+'  ATOMIC_FETCH_XOR(3) - [ATOMIC:BIT MANIPULATION] Atomically fetch and perform', &
+'  a bitwise XOR operation', &
 '', &
 'SYNOPSIS', &
 '  call atomic_fetch_xor (atom, value, old [,stat] )', &
@@ -4282,14 +4605,29 @@ textblock=[character(len=256) :: &
 '          subroutine atomic_fetch_xor (atom, value, old, stat)', &
 '', &
 'CHARACTERISTICS', &
+'  o  ATOM: A scalar coarray or coindexed variable of integer type with kind', &
+'     ATOMIC_INT_KIND.', &
+'', &
+'  o  VALUE: A scalar of the same type as ATOM.', &
+'', &
+'  o  OLD: A scalar of the same type and kind as ATOM.', &
+'', &
+'  o  STAT (optional): A scalar default-kind integer.', &
+'', &
 'DESCRIPTION', &
-'  ATOMIC_FETCH_XOR(3) atomically stores the value of ATOM in OLD and defines', &
-'  ATOM with the bitwise XOR between the values of ATOM and VALUE.  When STAT', &
-'  is present and the invocation was successful, it is assigned the value 0. If', &
-'  it is present and the invocation has failed, it is assigned a positive', &
-'  value; in particular, for a coindexed ATOM, if the remote image has stopped,', &
-'  it is assigned the value of iso_fortran_env''s stat_stopped_image and if the', &
-'  remote image has failed, the value stat_failed_image.', &
+'  ATOMIC_FETCH_XOR(ATOM, VALUE, OLD, STAT) atomically stores the value of ATOM', &
+'  in OLD and performs a bitwise XOR operation between ATOM and VALUE, storing', &
+'  the result in ATOM.', &
+'', &
+'  When STAT is present and the invocation was successful, it is assigned the', &
+'  value 0. If it is present and the invocation has failed, it is assigned a', &
+'  positive value; in particular, for a coindexed ATOM, if the remote image has', &
+'  stopped, it is assigned the value of ISO_FORTRAN_ENV''s STAT_STOPPED_IMAGE', &
+'  and if the remote image has failed, the value STAT_FAILED_IMAGE.', &
+'', &
+'  The result is the bitwise XOR (e.g., 1100 XOR 1010 = 0110).', &
+'', &
+'  It is useful for toggling bits atomically.', &
 '', &
 'OPTIONS', &
 '  o  ATOM : Scalar coarray or coindexed variable of integer type with', &
@@ -4306,11 +4644,32 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_atomic_fetch_xor', &
-'      use iso_fortran_env', &
-'      implicit none', &
-'      integer(atomic_int_kind) :: atom[*], old', &
-'        call atomic_fetch_xor (atom[1], int(b''10100011101''), old)', &
+'', &
+'       use iso_fortran_env', &
+'       implicit none', &
+'       integer(atomic_int_kind) :: flags[*], old', &
+'       integer :: stat, me', &
+'', &
+'       if (this_image() == 1) flags = int(b''1100'', atomic_int_kind)', &
+'       sync all', &
+'', &
+'       me = this_image()', &
+'       call atomic_fetch_xor(flags[1], int(b''1010'', atomic_int_kind), old, stat)', &
+'', &
+'       if (stat /= 0) print *, "Image", me, ": Failed with STAT =", stat', &
+'       print *, "Image", me, ": Old =", old', &
+'       sync all', &
+'', &
+'       if (this_image() == 1) print *, "Final flags:", flags', &
 '      end program demo_atomic_fetch_xor', &
+'', &
+'  Expected Output (4 images, order varies)', &
+'', &
+'         > Image 1: Old = 12', &
+'         > Image 2: Old = 6', &
+'         > Image 3: Old = 6', &
+'         > Image 4: Old = 6', &
+'         > Final flags: 6', &
 '', &
 'STANDARD', &
 '  TS 18508', &
@@ -4322,9 +4681,12 @@ textblock=[character(len=256) :: &
 '', &
 '  ATOMIC_FETCH_OR(3)', &
 '', &
+'  See ISO_FORTRAN_ENV for constants like ATOMIC_INT_KIND, STAT_STOPPED_IMAGE,', &
+'  and STAT_FAILED_IMAGE.', &
+'', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025      atomic_fetch_xor(3fortran)', &
+'                              December 23, 2025    atomic_fetch_xor(3fortran)', &
 '']
 
 shortname="atomic_fetch_xor"
@@ -4337,7 +4699,8 @@ textblock=[character(len=256) :: &
 'atomic_or(3fortran)                                       atomic_or(3fortran)', &
 '', &
 'NAME', &
-'  ATOMIC_OR(3) - [ATOMIC:BIT MANIPULATION] Atomic bitwise OR operation', &
+'  ATOMIC_OR(3) - [ATOMIC:BIT MANIPULATION] Atomically perform a bitwise OR', &
+'  operation', &
 '', &
 'SYNOPSIS', &
 '  call atomic_or(atom, value [,stat] )', &
@@ -4358,13 +4721,18 @@ textblock=[character(len=256) :: &
 '  o  STAT is a Scalar default-kind integer variable.', &
 '', &
 'DESCRIPTION', &
-'  ATOMIC_OR(3) atomically defines ATOM with the bitwise OR between the values', &
-'  of ATOM and VALUE. When STAT is present and the invocation was successful,', &
-'  it is assigned the value 0. If it is present and the invocation has failed,', &
-'  it is assigned a positive value; in particular, for a coindexed ATOM, if the', &
-'  remote image has stopped, it is assigned the value of iso_fortran_env''s', &
-'  stat_stopped_image and if the remote image has failed, the value', &
-'  stat_failed_image.', &
+'  ATOMIC_OR(ATOM, VALUE, STAT) atomically performs a bitwise OR operation', &
+'  between the value of ATOM and VALUE, storing the result in ATOM.', &
+'', &
+'  When STAT is present and the invocation was successful, it is assigned the', &
+'  value 0. If it is present and the invocation has failed, it is assigned a', &
+'  positive value; in particular, for a coindexed ATOM, if the remote image has', &
+'  stopped, it is assigned the value of ISO_FORTRAN_ENV''s STAT_STOPPED_IMAGE', &
+'  and if the remote image has failed, the value STAT_FAILED_IMAGE.', &
+'', &
+'  Unlike ATOMIC_FETCH_OR, this does not return the previous value.', &
+'', &
+'  Use for setting bits without needing the prior state.', &
 '', &
 'OPTIONS', &
 '  o  ATOM : Scalar coarray or coindexed variable of integer type with', &
@@ -4373,17 +4741,33 @@ textblock=[character(len=256) :: &
 '  o  VALUE : Scalar of the same type as ATOM. If the kind is different, the', &
 '     value is converted to the kind of ATOM.', &
 '', &
-'  o  STAT : (optional) Scalar default-kind integer variable.', &
+'  o  STAT : (optional) Scalar default-kind integer variable. Set to 0 on', &
+'     success, or a positive value on failure.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
 '', &
 '      program demo_atomic_or', &
-'      use iso_fortran_env', &
-'      implicit none', &
-'      integer(atomic_int_kind) :: atom[*]', &
-'        call atomic_or(atom[1], int(b''10100011101''))', &
+'       use iso_fortran_env', &
+'       implicit none', &
+'       integer(atomic_int_kind) :: flags[*]', &
+'       integer :: stat, me', &
+'', &
+'       if (this_image() == 1) flags = int(b''1000'', atomic_int_kind)', &
+'       sync all', &
+'', &
+'       me = this_image()', &
+'       call atomic_or(flags[1], int(b''0011'', atomic_int_kind), stat)', &
+'', &
+'       if (stat /= 0) print *, "Image", me, ": Failed with STAT =", stat', &
+'       sync all', &
+'', &
+'       if (this_image() == 1) print *, "Final flags:", flags', &
 '      end program demo_atomic_or', &
+'', &
+'  Expected Output (4 images)', &
+'', &
+'         > Final flags: 11', &
 '', &
 'STANDARD', &
 '  TS 18508', &
@@ -4395,9 +4779,12 @@ textblock=[character(len=256) :: &
 '', &
 '  ATOMIC_XOR(3)', &
 '', &
+'  See ISO_FORTRAN_ENV for constants like ATOMIC_INT_KIND, STAT_STOPPED_IMAGE,', &
+'  and STAT_FAILED_IMAGE.', &
+'', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025             atomic_or(3fortran)', &
+'                              December 23, 2025           atomic_or(3fortran)', &
 '']
 
 shortname="atomic_or"
@@ -4410,7 +4797,7 @@ textblock=[character(len=256) :: &
 'atomic_ref(3fortran)                                     atomic_ref(3fortran)', &
 '', &
 'NAME', &
-'  ATOMIC_REF(3) - [ATOMIC] Obtaining the value of a variable atomically', &
+'  ATOMIC_REF(3) - [ATOMIC] Atomically retrieve the value in a variable', &
 '', &
 'SYNOPSIS', &
 '  call atomic_ref(value, atom [,stat] )', &
@@ -4431,35 +4818,57 @@ textblock=[character(len=256) :: &
 '  o  STAT is a Scalar default-kind integer variable.', &
 '', &
 'DESCRIPTION', &
-'  ATOMIC_REF(3) atomically assigns the value of the variable ATOM to VALUE.', &
+'  ATOMIC_REF(VALUE, ATOM, STAT) atomically retrieves the value of ATOM and', &
+'  stores it in VALUE. This ensures a thread-safe read operation.', &
+'', &
 '  When STAT is present and the invocation was successful, it is assigned the', &
 '  value 0. If it is present and the invocation has failed, it is assigned a', &
 '  positive value; in particular, for a coindexed ATOM, if the remote image has', &
 '  stopped, it is assigned the value of iso_fortran_env''s STAT_STOPPED_IMAGE', &
 '  and if the remote image has failed, the value STAT_FAILED_IMAGE.', &
 '', &
+'  Use for safe reading of shared variables in parallel contexts.', &
+'', &
+'  It complements ATOMIC_DEFINE for read-write operations.', &
+'', &
 'OPTIONS', &
-'  o  VALUE : Scalar of the same type as ATOM. If the kind is different, the', &
-'     value is converted to the kind of ATOM.', &
+'  o  VALUE : Receives the value of ATOM. : Scalar of the same type as ATOM. If', &
+'     the kind is different, the value is converted to the kind of ATOM.', &
 '', &
 '  o  ATOM : Scalar coarray or coindexed variable of either integer type with', &
-'     atomic_int_kind kind or logical type with atomic_logical_kind kind.', &
+'     ATOMIC_INT_KIND kind or logical type with ATOMIC_LOGICAL_KIND kind.', &
 '', &
-'  o  STAT : (optional) Scalar default-kind integer variable.', &
+'  o  STAT : (optional) Scalar default-kind integer variable. Set to 0 on', &
+'     success, or a positive value on failure.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
 '', &
 '      program demo_atomic_ref', &
-'      use iso_fortran_env', &
-'      implicit none', &
-'      logical(atomic_logical_kind) :: atom[*]', &
-'      logical :: val', &
-'        call atomic_ref( val, atom[1] )', &
-'        if (val) then', &
-'           print *, "Obtained"', &
-'        endif', &
+'       use iso_fortran_env', &
+'       implicit none', &
+'       integer(atomic_int_kind) :: counter[*], value', &
+'       integer :: stat, me', &
+'', &
+'       if (this_image() == 1) counter = 42', &
+'       sync all', &
+'', &
+'       me = this_image()', &
+'       call atomic_ref(value, counter[1], stat)', &
+'', &
+'       if (stat /= 0) then', &
+'         print *, "Image", me, ": Failed with STAT =", stat', &
+'       else', &
+'         print *, "Image", me, ": Retrieved value =", value', &
+'       end if', &
 '      end program demo_atomic_ref', &
+'', &
+'  Expected Output (4 images, order varies)', &
+'', &
+'         > Image 1: Retrieved value = 42', &
+'         > Image 2: Retrieved value = 42', &
+'         > Image 3: Retrieved value = 42', &
+'         > Image 4: Retrieved value = 42', &
 '', &
 'STANDARD', &
 '  Fortran 2008 ; with STAT, TS 18508', &
@@ -4471,9 +4880,12 @@ textblock=[character(len=256) :: &
 '', &
 '  ATOMIC_FETCH_OR(3), ATOMIC_FETCH_XOR(3)', &
 '', &
+'  See ISO_FORTRAN_ENV for constants like ATOMIC_INT_KIND, STAT_STOPPED_IMAGE,', &
+'  and STAT_FAILED_IMAGE.', &
+'', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025            atomic_ref(3fortran)', &
+'                              December 23, 2025          atomic_ref(3fortran)', &
 '']
 
 shortname="atomic_ref"
@@ -4486,7 +4898,8 @@ textblock=[character(len=256) :: &
 'atomic_xor(3fortran)                                     atomic_xor(3fortran)', &
 '', &
 'NAME', &
-'  ATOMIC_XOR(3) - [ATOMIC:BIT MANIPULATION] Atomic bitwise OR operation', &
+'  ATOMIC_XOR(3) - [ATOMIC:BIT MANIPULATION] Atomically perform a bitwise XOR', &
+'  operation', &
 '', &
 'SYNOPSIS', &
 '  call atomic_xor(atom, value [,stat] )', &
@@ -4508,13 +4921,18 @@ textblock=[character(len=256) :: &
 '', &
 'CHARACTERISTICS', &
 'DESCRIPTION', &
-'  ATOMIC_XOR(3) atomically defines ATOM with the bitwise XOR between the', &
-'  values of ATOM and VALUE. When STAT is present and the invocation was', &
-'  successful, it is assigned the value 0. If it is present and the invocation', &
-'  has failed, it is assigned a positive value; in particular, for a coindexed', &
-'  ATOM, if the remote image has stopped, it is assigned the value of', &
-'  iso_fortran_env''s stat_stopped_image and if the remote image has failed, the', &
-'  value stat_failed_image.', &
+'  ATOMIC_XOR(ATOM, VALUE, STAT) atomically performs a bitwise XOR operation', &
+'  between the value of ATOM and VALUE, storing the result in ATOM.', &
+'', &
+'  When STAT is present and the invocation was successful, it is assigned the', &
+'  value 0. If it is present and the invocation has failed, it is assigned a', &
+'  positive value; in particular, for a coindexed ATOM, if the remote image has', &
+'  stopped, it is assigned the value of ISO_FORTRAN_ENV''s STAT_STOPPED_IMAGE', &
+'  and if the remote image has failed, the value STAT_FAILED_IMAGE.', &
+'', &
+'  Unlike ATOMIC_FETCH_XOR, this does not return the previous value.', &
+'', &
+'  Use for toggling bits atomically.', &
 '', &
 'OPTIONS', &
 '  o  ATOM : Scalar coarray or coindexed variable of integer type with', &
@@ -4523,17 +4941,33 @@ textblock=[character(len=256) :: &
 '  o  VALUE : Scalar of the same type as ATOM. If the kind is different, the', &
 '     value is converted to the kind of ATOM.', &
 '', &
-'  o  STAT : (optional) Scalar default-kind integer variable.', &
+'  o  STAT : (optional) Scalar default-kind integer variable. Set to 0 on', &
+'     success, or a positive value on failure.', &
 '', &
 'EXAMPLES', &
 '  Sample program:', &
 '', &
 '      program demo_atomic_xor', &
-'      use iso_fortran_env', &
-'      implicit none', &
-'      integer(atomic_int_kind) :: atom[*]', &
-'        call atomic_xor(atom[1], int(b''10100011101''))', &
+'       use iso_fortran_env', &
+'       implicit none', &
+'       integer(atomic_int_kind) :: flags[*]', &
+'       integer :: stat, me', &
+'', &
+'       if (this_image() == 1) flags = int(b''1100'', atomic_int_kind)', &
+'       sync all', &
+'', &
+'       me = this_image()', &
+'       call atomic_xor(flags[1], int(b''1010'', atomic_int_kind), stat)', &
+'', &
+'       if (stat /= 0) print *, "Image", me, ": Failed with STAT =", stat', &
+'       sync all', &
+'', &
+'       if (this_image() == 1) print *, "Final flags:", flags', &
 '      end program demo_atomic_xor', &
+'', &
+'  Expected Output (4 images)', &
+'', &
+'         > Final flags: 6', &
 '', &
 'STANDARD', &
 '  TS 18508', &
@@ -4542,9 +4976,12 @@ textblock=[character(len=256) :: &
 '  ATOMIC_DEFINE(3), ATOMIC_FETCH_XOR(3), ISO_FORTRAN_ENV(3), ATOMIC_ADD(3),', &
 '  ATOMIC_OR(3), ATOMIC_XOR(3)', &
 '', &
+'  See ISO_FORTRAN_ENV for constants like ATOMIC_INT_KIND, STAT_STOPPED_IMAGE,', &
+'  and STAT_FAILED_IMAGE.', &
+'', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025            atomic_xor(3fortran)', &
+'                              December 23, 2025          atomic_xor(3fortran)', &
 '']
 
 shortname="atomic_xor"
@@ -4672,7 +5109,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025             backspace(7fortran)', &
+'                              December 23, 2025           backspace(7fortran)', &
 '']
 
 shortname="backspace"
@@ -4733,7 +5170,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025             bessel_j0(3fortran)', &
+'                              December 23, 2025           bessel_j0(3fortran)', &
 '']
 
 shortname="bessel_j0"
@@ -4793,7 +5230,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025             bessel_j1(3fortran)', &
+'                              December 23, 2025           bessel_j1(3fortran)', &
 '']
 
 shortname="bessel_j1"
@@ -4887,7 +5324,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025             bessel_jn(3fortran)', &
+'                              December 23, 2025           bessel_jn(3fortran)', &
 '']
 
 shortname="bessel_jn"
@@ -4947,7 +5384,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025             bessel_y0(3fortran)', &
+'                              December 23, 2025           bessel_y0(3fortran)', &
 '']
 
 shortname="bessel_y0"
@@ -5006,7 +5443,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025             bessel_y1(3fortran)', &
+'                              December 23, 2025           bessel_y1(3fortran)', &
 '']
 
 shortname="bessel_y1"
@@ -5100,7 +5537,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025             bessel_yn(3fortran)', &
+'                              December 23, 2025           bessel_yn(3fortran)', &
 '']
 
 shortname="bessel_yn"
@@ -5257,7 +5694,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   bge(3fortran)', &
+'                              December 23, 2025                 bge(3fortran)', &
 '']
 
 shortname="bge"
@@ -5361,7 +5798,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   bgt(3fortran)', &
+'                              December 23, 2025                 bgt(3fortran)', &
 '']
 
 shortname="bgt"
@@ -5446,7 +5883,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025              bit_size(3fortran)', &
+'                              December 23, 2025            bit_size(3fortran)', &
 '']
 
 shortname="bit_size"
@@ -5539,7 +5976,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   ble(3fortran)', &
+'                              December 23, 2025                 ble(3fortran)', &
 '']
 
 shortname="ble"
@@ -5566,8 +6003,8 @@ textblock=[character(len=256) :: &
 '  declarations, and may be exited using the EXIT(7F) statement.', &
 '', &
 '  Aside from the following restrictions a block construct is in many ways', &
-'  similiar to a contained procedure without parameters accept it is', &
-'  constructed in-line instead of after the body of the current procedure.', &
+'  similar to a contained procedure without parameters accept it is constructed', &
+'  in-line instead of after the body of the current procedure.', &
 '', &
 '  So if you are thinking about making a contained procedure that will be', &
 '  called once it will probably be clearer inlined using a block construct.', &
@@ -5615,7 +6052,7 @@ textblock=[character(len=256) :: &
 '           TESTFORZERO: block', &
 '              integer :: I      ! local block variable', &
 '              intrinsic :: tan  ! can use the TAN intrinsic in the block now', &
-'                                ! as this definition supercedes the one in the', &
+'                                ! as this definition supersedes the one in the', &
 '                                ! parent body', &
 '              do i=1,size(a)', &
 '                 if(a(i).eq.0) then', &
@@ -5662,7 +6099,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 block(7fortran)', &
+'                              December 23, 2025               block(7fortran)', &
 '']
 
 shortname="block"
@@ -5749,7 +6186,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   blt(3fortran)', &
+'                              December 23, 2025                 blt(3fortran)', &
 '']
 
 shortname="blt"
@@ -5879,7 +6316,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 btest(3fortran)', &
+'                              December 23, 2025               btest(3fortran)', &
 '']
 
 shortname="btest"
@@ -5949,7 +6386,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025          c_associated(3fortran)', &
+'                              December 23, 2025        c_associated(3fortran)', &
 '']
 
 shortname="c_associated"
@@ -6184,7 +6621,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025               ceiling(3fortran)', &
+'                              December 23, 2025             ceiling(3fortran)', &
 '']
 
 shortname="ceiling"
@@ -6204,7 +6641,7 @@ textblock=[character(len=256) :: &
 '', &
 '          subroutine c_f_pointer(cptr, fptr ,shape )', &
 '', &
-'           type(c_ptr),intent(in) :: cprt', &
+'           type(c_ptr),intent(in) :: cptr', &
 '           type(TYPE),pointer,intent(out) :: fprt', &
 '           integer,intent(in),optional :: shape(:)', &
 '', &
@@ -6252,7 +6689,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025           c_f_pointer(3fortran)', &
+'                              December 23, 2025         c_f_pointer(3fortran)', &
 '']
 
 shortname="c_f_pointer"
@@ -6273,7 +6710,7 @@ textblock=[character(len=256) :: &
 '', &
 '          subroutine c_f_procpointer(cptr, fptr )', &
 '', &
-'           type(c_funptr),intent(in) :: cprt', &
+'           type(c_funptr),intent(in) :: cptr', &
 '           type(TYPE),pointer,intent(out) :: fprt', &
 '', &
 'CHARACTERISTICS', &
@@ -6319,7 +6756,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025       c_f_procpointer(3fortran)', &
+'                              December 23, 2025     c_f_procpointer(3fortran)', &
 '']
 
 shortname="c_f_procpointer"
@@ -6386,7 +6823,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025              c_funloc(3fortran)', &
+'                              December 23, 2025            c_funloc(3fortran)', &
 '']
 
 shortname="c_funloc"
@@ -6514,7 +6951,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  char(3fortran)', &
+'                              December 23, 2025                char(3fortran)', &
 '']
 
 shortname="char"
@@ -6568,7 +7005,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025                 c_loc(3fortran)', &
+'                              December 23, 2025               c_loc(3fortran)', &
 '']
 
 shortname="c_loc"
@@ -6698,7 +7135,7 @@ textblock=[character(len=256) :: &
 '  BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),', &
 '  READ(7), REWIND(7), WAIT(7), WRITE(7)', &
 '', &
-'                               March 16, 2025                 close(7fortran)', &
+'                              December 23, 2025               close(7fortran)', &
 '']
 
 shortname="close"
@@ -6962,7 +7399,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 cmplx(3fortran)', &
+'                              December 23, 2025               cmplx(3fortran)', &
 '']
 
 shortname="cmplx"
@@ -7023,7 +7460,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025          co_broadcast(3fortran)', &
+'                              December 23, 2025        co_broadcast(3fortran)', &
 '']
 
 shortname="co_broadcast"
@@ -7135,7 +7572,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025                co_max(3fortran)', &
+'                              December 23, 2025              co_max(3fortran)', &
 '']
 
 shortname="co_max"
@@ -7197,7 +7634,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025                co_min(3fortran)', &
+'                              December 23, 2025              co_min(3fortran)', &
 '']
 
 shortname="co_min"
@@ -7267,7 +7704,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025command_argument_count(3fortran)', &
+'                              December 23, 20command_argument_count(3fortran)', &
 '']
 
 shortname="command_argument_count"
@@ -7345,7 +7782,7 @@ textblock=[character(len=256) :: &
 '  environment are useful.', &
 '', &
 '  A particularly irksome form of over-commenting explains exactly what each', &
-'  statement does, even when it is obvious to any reasonably competant', &
+'  statement does, even when it is obvious to any reasonably competent', &
 '  programmer.', &
 '', &
 'EXAMPLES', &
@@ -7395,7 +7832,7 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '  CONTINUATION(5),', &
 '', &
-'                               March 16, 2025               comment(5fortran)', &
+'                              December 23, 2025             comment(5fortran)', &
 '']
 
 shortname="comment"
@@ -7475,7 +7912,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025      compiler_options(3fortran)', &
+'                              December 23, 2025    compiler_options(3fortran)', &
 '']
 
 shortname="compiler_options"
@@ -7542,7 +7979,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025      compiler_version(3fortran)', &
+'                              December 23, 2025    compiler_version(3fortran)', &
 '']
 
 shortname="compiler_version"
@@ -7575,8 +8012,8 @@ textblock=[character(len=256) :: &
 '  That is, If Z is the complex value (X, Y) then the result is (X, -Y).', &
 '', &
 '  In mathematics, the complex conjugate of a complex number is a value whose', &
-'  real and imaginary part are equal parts are equal in magnitude to each other', &
-'  but the Y value has opposite sign.', &
+'  real and imaginary part are equal in magnitude to each other but the Y value', &
+'  has opposite sign.', &
 '', &
 '  For matrices of complex numbers, CONJG(ARRAY) represents the element-by-', &
 '  element conjugation of ARRAY; not the conjugate transpose of the ARRAY .', &
@@ -7664,7 +8101,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 conjg(3fortran)', &
+'                              December 23, 2025               conjg(3fortran)', &
 '']
 
 shortname="conjg"
@@ -7721,7 +8158,7 @@ textblock=[character(len=256) :: &
 '  details to cover.', &
 '', &
 '  When a line is split using the general rule any trailing spaces before the', &
-'  amersand at the end of the line are included in the equivalent single-line', &
+'  ampersand at the end of the line are included in the equivalent single-line', &
 '  statement.', &
 '', &
 '  However, spaces before the ampersand beginning the second line are ignored.', &
@@ -7773,7 +8210,7 @@ textblock=[character(len=256) :: &
 '  Note no line shall contain a single "&" as the only nonblank character or as', &
 '  the only nonblank character before an ! that initiates a comment.', &
 '', &
-'  you have to have the leading amersand on continued lines when splitting', &
+'  you have to have the leading ampersand on continued lines when splitting', &
 '  quoted strings or lexical words or constant values.', &
 '', &
 '  But try to never split constants or lexical words!', &
@@ -7789,7 +8226,7 @@ textblock=[character(len=256) :: &
 '         &cond str''', &
 '', &
 '  where things were split in two in a haphazard way as long as no spaces are', &
-'  introduced before the ending amersand and after the leading amersand that', &
+'  introduced before the ending ampersand and after the leading ampersand that', &
 '  would make the statement illegal if all appearing on one line (ignoring', &
 '  length for the moment).', &
 '', &
@@ -7820,7 +8257,7 @@ textblock=[character(len=256) :: &
 '  Fortran character set in column six. If a quoted string is broken the first', &
 '  line acts as if padded with spaces out to column 72.', &
 '', &
-'  Even though the rules for continueing statements on multiple lines are so', &
+'  Even though the rules for continuing statements on multiple lines are so', &
 '  different, source code can be formatted in a format that works in both free', &
 '  and fixed-format files.', &
 '', &
@@ -7851,7 +8288,7 @@ textblock=[character(len=256) :: &
 '  Combined with the second ampersand always present and in column six for all', &
 '  but the first line both rules for free and fixed source files are satisfied.', &
 '', &
-'  Fixed-format can use most printable characters in column 6 to indication', &
+'  Fixed-format can use most printable characters in column 6 to indicate', &
 '  continuation. One of the allowed characters is "&", which is the one and', &
 '  only character used by free-format. So using it obeys both rules.', &
 '', &
@@ -7905,7 +8342,7 @@ textblock=[character(len=256) :: &
 '      !   & This&      ! first word', &
 '      !   & is&        ! second word', &
 '      !   & sentence&  ! third word', &
-'      !   & a''               ! forth word (a comment here is OK)', &
+'      !   & a''               ! fourth word (a comment here is OK)', &
 '      !Because when continuing a string you cannot have a comment after the "&".', &
 '      !', &
 '      ! This is OK:', &
@@ -7917,7 +8354,7 @@ textblock=[character(len=256) :: &
 '        ! second word', &
 '        & sentence&', &
 '        ! third word', &
-'        & a''       ! forth word (a comment here is OK)', &
+'        & a''       ! fourth word (a comment here is OK)', &
 '      ! because comment LINES can go anywhere in Fortran source files', &
 '', &
 '      ! Dusty corners', &
@@ -7939,7 +8376,7 @@ textblock=[character(len=256) :: &
 '      write(*,*)napier_&', &
 '      &constant', &
 '', &
-'      ! the left-hand ampersand is required when splitting constants to,', &
+'      ! the left-hand ampersand is required when splitting constants too,', &
 '      ! including characters strings', &
 '      write(*,*)''Expecting &', &
 '               &the value'',2.71828182&', &
@@ -8039,7 +8476,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025          continuation(5fortran)', &
+'                              December 23, 2025        continuation(5fortran)', &
 '']
 
 shortname="continuation"
@@ -8115,7 +8552,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran statement descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025              continue(7fortran)', &
+'                              December 23, 2025            continue(7fortran)', &
 '']
 
 shortname="continue"
@@ -8213,7 +8650,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025             co_reduce(3fortran)', &
+'                              December 23, 2025           co_reduce(3fortran)', &
 '']
 
 shortname="co_reduce"
@@ -8417,7 +8854,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025                   cos(3fortran)', &
+'                              December 23, 2025                 cos(3fortran)', &
 '']
 
 shortname="cos"
@@ -8501,7 +8938,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025                  cosd(3fortran)', &
+'                              December 23, 2025                cosd(3fortran)', &
 '']
 
 shortname="cosd"
@@ -8567,7 +9004,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025                  cosh(3fortran)', &
+'                              December 23, 2025                cosh(3fortran)', &
 '']
 
 shortname="cosh"
@@ -8657,7 +9094,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025                 cospi(3fortran)', &
+'                              December 23, 2025               cospi(3fortran)', &
 '']
 
 shortname="cospi"
@@ -8727,7 +9164,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025                co_sum(3fortran)', &
+'                              December 23, 2025              co_sum(3fortran)', &
 '']
 
 shortname="co_sum"
@@ -9009,7 +9446,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 count(3fortran)', &
+'                              December 23, 2025               count(3fortran)', &
 '']
 
 shortname="count"
@@ -9114,7 +9551,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025              cpu_time(3fortran)', &
+'                              December 23, 2025            cpu_time(3fortran)', &
 '']
 
 shortname="cpu_time"
@@ -9244,7 +9681,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025                cshift(3fortran)', &
+'                              December 23, 2025              cshift(3fortran)', &
 '']
 
 shortname="cshift"
@@ -9303,7 +9740,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025              c_sizeof(3fortran)', &
+'                              December 23, 2025            c_sizeof(3fortran)', &
 '']
 
 shortname="c_sizeof"
@@ -9484,7 +9921,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025         date_and_time(3fortran)', &
+'                              December 23, 2025       date_and_time(3fortran)', &
 '']
 
 shortname="date_and_time"
@@ -9497,7 +9934,7 @@ textblock=[character(len=256) :: &
 'dble(3fortran)                                                 dble(3fortran)', &
 '', &
 'NAME', &
-'  DBLE(3) - [TYPE:CONVERSION] Converstion to double precision real', &
+'  DBLE(3) - [TYPE:CONVERSION] Conversion to double precision real', &
 '', &
 'SYNOPSIS', &
 '  result = dble(a)', &
@@ -9555,7 +9992,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  dble(3fortran)', &
+'                              December 23, 2025                dble(3fortran)', &
 '']
 
 shortname="dble"
@@ -9723,7 +10160,7 @@ textblock=[character(len=256) :: &
 '     shall retain its previous allocation status or pointer association', &
 '     status.', &
 '', &
-'                               March 16, 2025            deallocate(7fortran)', &
+'                              December 23, 2025          deallocate(7fortran)', &
 '']
 
 shortname="deallocate"
@@ -9791,7 +10228,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                digits(3fortran)', &
+'                              December 23, 2025              digits(3fortran)', &
 '']
 
 shortname="digits"
@@ -9893,7 +10330,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   dim(3fortran)', &
+'                              December 23, 2025                 dim(3fortran)', &
 '']
 
 shortname="dim"
@@ -9989,7 +10426,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025           dot_product(3fortran)', &
+'                              December 23, 2025         dot_product(3fortran)', &
 '']
 
 shortname="dot_product"
@@ -10095,7 +10532,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 dprod(3fortran)', &
+'                              December 23, 2025               dprod(3fortran)', &
 '']
 
 shortname="dprod"
@@ -10237,7 +10674,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025               dshiftl(3fortran)', &
+'                              December 23, 2025             dshiftl(3fortran)', &
 '']
 
 shortname="dshiftl"
@@ -10382,7 +10819,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025               dshiftr(3fortran)', &
+'                              December 23, 2025             dshiftr(3fortran)', &
 '']
 
 shortname="dshiftr"
@@ -10473,7 +10910,7 @@ textblock=[character(len=256) :: &
 '  BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),', &
 '  READ(7), REWIND(7), WAIT(7), WRITE(7)', &
 '', &
-'                               March 16, 2025               endfile(7fortran)', &
+'                              December 23, 2025             endfile(7fortran)', &
 '']
 
 shortname="endfile"
@@ -10547,7 +10984,7 @@ textblock=[character(len=256) :: &
 '         Character(len)|  LEN blanks', &
 '', &
 '  These are the only types for which BOUNDARY may not be present. For these', &
-'  types the kind is converted as neccessary to the kind of ARRAY.', &
+'  types the kind is converted as necessary to the kind of ARRAY.', &
 '', &
 '  o  DIM : DIM is in the range of', &
 '', &
@@ -10650,7 +11087,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025               eoshift(3fortran)', &
+'                              December 23, 2025             eoshift(3fortran)', &
 '']
 
 shortname="eoshift"
@@ -10774,7 +11211,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025               epsilon(3fortran)', &
+'                              December 23, 2025             epsilon(3fortran)', &
 '']
 
 shortname="epsilon"
@@ -10838,7 +11275,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025                   erf(3fortran)', &
+'                              December 23, 2025                 erf(3fortran)', &
 '']
 
 shortname="erf"
@@ -10917,7 +11354,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  erfc(3fortran)', &
+'                              December 23, 2025                erfc(3fortran)', &
 '']
 
 shortname="erfc"
@@ -10991,7 +11428,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025           erfc_scaled(3fortran)', &
+'                              December 23, 2025         erfc_scaled(3fortran)', &
 '']
 
 shortname="erfc_scaled"
@@ -11074,7 +11511,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025           event_query(3fortran)', &
+'                              December 23, 2025         event_query(3fortran)', &
 '']
 
 shortname="event_query"
@@ -11254,7 +11691,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025  execute_command_line(3fortran)', &
+'                              December 23, 2025execute_command_line(3fortran)', &
 '']
 
 shortname="execute_command_line"
@@ -11402,7 +11839,7 @@ textblock=[character(len=256) :: &
 '        ! This technique can let your code gracefully handle being used with', &
 '        ! problems bigger than it was intended for, or not loop infinitely', &
 '        ! if some unexpected or incorrect input or condition is encountered.', &
-'        ! It might make it stop unitentionally as well.', &
+'        ! It might make it stop unintentionally as well.', &
 '          !', &
 '           ! run a loop but quit as soon as 200 random integers are odd', &
 '           j=0', &
@@ -11448,7 +11885,7 @@ textblock=[character(len=256) :: &
 '        ! It is simple to EXIT nested loops from an inner loop.', &
 '        ! Just use a construct name. Lets start with the nested loop above', &
 '        ! that only repeatedly exited the inner loop and label the outer', &
-'        ! loop "OUTER". Now our exit can explicity name what loop it wants', &
+'        ! loop "OUTER". Now our exit can explicitly name what loop it wants', &
 '        ! to exit ...', &
 '', &
 '           k=0', &
@@ -11515,7 +11952,7 @@ textblock=[character(len=256) :: &
 '        !x!LOOP_2 : DO I = 1, 15', &
 '        !x!  CRITICAL', &
 '        !x!    N = N + 1', &
-'        !x!    IF (N > I) EXIT LOOP_2 ! cannott EXIT outer construct from inside', &
+'        !x!    IF (N > I) EXIT LOOP_2 ! cannot EXIT outer construct from inside', &
 '        !x!  END CRITICAL             ! CHANGE TEAM, DO CONCURRENT, or CRITICAL', &
 '        !x!END DO LOOP_2', &
 '', &
@@ -11562,7 +11999,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  exit(7fortran)', &
+'                              December 23, 2025                exit(7fortran)', &
 '']
 
 shortname="exit"
@@ -11595,17 +12032,29 @@ textblock=[character(len=256) :: &
 '', &
 '  "e" is also known as Euler''s constant.', &
 '', &
+'  So for either a real or complex scalar X, it returns eX , where e is the', &
+'  base of the natural logarithm (approximately 2.718281828459045).', &
+'', &
+'  For real inputs, EXP returns a real result.', &
+'', &
 '  If X is of type complex, its imaginary part is regarded as a value in', &
-'  radians such that if (see Euler''s formula):', &
+'  radians such that (see Euler''s formula):', &
 '', &
-'         cx=(re,im)', &
-'', &
-'  then', &
-'', &
-'         exp(cx) = exp(re) * cmplx(cos(im),sin(im),kind=kind(cx))', &
+'         exp((re,im)) = exp(re) * cmplx(cos(im),sin(im),kind=kind(cx))', &
 '', &
 '  Since EXP(3) is the inverse function of LOG(3) the maximum valid magnitude', &
 '  of the real component of X is LOG(HUGE(X)).', &
+'', &
+'  EXP being elemental, when X is an array (real or complex), the function is', &
+'  applied element-wise, returning an array of the same shape.', &
+'', &
+'      Numerical Considerations', &
+'', &
+'       For very large real X, the result may overflow to infinity in', &
+'       finite-precision arithmetic. For very small (negative) real X ,', &
+'       the result approaches zero. Complex inputs with large imaginary', &
+'       parts may produce results with significant numerical errors due', &
+'       to the trigonometric functions involved.', &
 '', &
 'OPTIONS', &
 '  o  X : The type shall be real or complex.', &
@@ -11621,8 +12070,12 @@ textblock=[character(len=256) :: &
 '', &
 '      program demo_exp', &
 '      implicit none', &
-'      real :: x, re, im', &
-'      complex :: cx', &
+'      integer,parameter :: dp=kind(0.0d0)', &
+'      real             :: x, re, im', &
+'      complex          :: cx', &
+'      real             :: r_array(3), r_array_result(3)', &
+'      complex          :: c_array(2), c_array_result(2)', &
+'      integer          :: i', &
 '', &
 '        x = 1.0', &
 '        write(*,*)"Euler''s constant is approximately",exp(x)', &
@@ -11647,6 +12100,20 @@ textblock=[character(len=256) :: &
 '        ! but since the imaginary component is passed to the cos(3) and sin(3)', &
 '        ! functions the imaginary component can be any real value', &
 '', &
+'        ! Real array example', &
+'        r_array = [0.0, 1.0, -1.0]', &
+'        r_array_result = exp(r_array)', &
+'        do i = 1, size(r_array)', &
+'          write(*, ''(A, I0, A, F15.10)'') "exp(r_array(", i, ")) = ", r_array_result(i)', &
+'        enddo', &
+'', &
+'        ! Complex array example', &
+'        c_array = [cmplx(0.0, 0.0, kind=dp), cmplx(1.0, 1.0, kind=dp)]', &
+'        c_array_result = exp(c_array)', &
+'        do i = 1, size(c_array)', &
+'          write(*, ''(A, I0, A, F15.10, A, F15.10, A)'') "exp(c_array(", i, ")) = (", &', &
+'          real(c_array_result(i)), ", ", aimag(c_array_result(i)), ")"', &
+'        enddo', &
 '      end program demo_exp', &
 '', &
 '  Results:', &
@@ -11657,6 +12124,11 @@ textblock=[character(len=256) :: &
 '       >  is the same as          (-13.1287832,-15.2007847)', &
 '       >  maximum real component   88.7228394', &
 '       >  maximum doubleprecision component   709.78271289338397', &
+'       > exp(r_array(1)) =    1.0000000000', &
+'       > exp(r_array(2)) =    2.7182817459', &
+'       > exp(r_array(3)) =    0.3678794503', &
+'       > exp(c_array(1)) = (   1.0000000000,   0.0000000000)', &
+'       > exp(c_array(2)) = (   1.4686938524,   2.2873551846)', &
 '', &
 'STANDARD', &
 '  FORTRAN 77', &
@@ -11671,7 +12143,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   exp(3fortran)', &
+'                              December 23, 2025                 exp(3fortran)', &
 '']
 
 shortname="exp"
@@ -11745,7 +12217,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025              exponent(3fortran)', &
+'                              December 23, 2025            exponent(3fortran)', &
 '']
 
 shortname="exponent"
@@ -11918,7 +12390,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025       extends_type_of(3fortran)', &
+'                              December 23, 2025     extends_type_of(3fortran)', &
 '']
 
 shortname="extends_type_of"
@@ -12206,7 +12678,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025               findloc(3fortran)', &
+'                              December 23, 2025             findloc(3fortran)', &
 '']
 
 shortname="findloc"
@@ -12312,7 +12784,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 floor(3fortran)', &
+'                              December 23, 2025               floor(3fortran)', &
 '']
 
 shortname="floor"
@@ -12403,7 +12875,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 flush(7fortran)', &
+'                              December 23, 2025               flush(7fortran)', &
 '']
 
 shortname="flush"
@@ -12476,7 +12948,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025              fraction(3fortran)', &
+'                              December 23, 2025            fraction(3fortran)', &
 '']
 
 shortname="fraction"
@@ -12621,7 +13093,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025                 gamma(3fortran)', &
+'                              December 23, 2025               gamma(3fortran)', &
 '']
 
 shortname="gamma"
@@ -12722,7 +13194,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025           get_command(3fortran)', &
+'                              December 23, 2025         get_command(3fortran)', &
 '']
 
 shortname="get_command"
@@ -12767,24 +13239,28 @@ textblock=[character(len=256) :: &
 '  are quoted. IFS values (Internal Field Separators) used by common shells are', &
 '  typically ignored and unquoted whitespace is almost always the separator.', &
 '', &
-'  Shells have often expanded command arguments and spell characters before', &
-'  passing them to the program, so the strings read are often not exactly what', &
-'  the user typed on the command line.', &
+'  Shells have often expanded command arguments before passing them to the', &
+'  program, so the strings read are often not exactly what the user typed on', &
+'  the command line.', &
 '', &
 'OPTIONS', &
 '  o  NUMBER : is a non-negative number indicating which argument of the', &
-'     current program command line is to be retrieved or queried. : If NUMBER =', &
-'     0, the argument pointed to is set to the name of the program (on systems', &
-'     that support this feature). : if the processor does not have such a', &
-'     concept as a command name the value of command argument 0 is processor', &
-'     dependent. : For values from 1 to the number of arguments passed to the', &
-'     program a value is returned in an order determined by the processor.', &
+'     current program command line is to be retrieved or queried.', &
+'', &
+'     If NUMBER = 0, the argument pointed to is set to the name of the program', &
+'     (on systems that support this feature).', &
+'', &
+'     if the processor does not have such a concept as a command name the value', &
+'     of command argument 0 is processor dependent.', &
+'', &
+'     For values from 1 to the number of arguments passed to the program a', &
+'     value is returned in an order determined by the processor.', &
 '     Conventionally they are returned consecutively as they appear on the', &
 '     command line from left to right.', &
 '', &
 'RESULT', &
 '  o  VALUE : The VALUE argument holds the command line argument. If VALUE can', &
-'     not hold the argument, it is truncated to fit the length of VALUE. : If', &
+'     not hold the argument, it is truncated to fit the length of VALUE. If', &
 '     there are less than NUMBER arguments specified at the command line or if', &
 '     the argument specified does not exist for other reasons, VALUE will be', &
 '     filled with blanks.', &
@@ -12803,35 +13279,45 @@ textblock=[character(len=256) :: &
 '', &
 '      program demo_get_command_argument', &
 '      implicit none', &
-'      character(len=255)          :: progname', &
-'      integer                     :: count, i, argument_length, istat', &
+'      integer                     :: count, i, istat', &
 '      character(len=:),allocatable :: arg', &
 '', &
-'       ! command name assuming it is less than 255 characters in length', &
-'       call get_command_argument (0, progname, status=istat)', &
+'       ! command name', &
+'       arg=get_arg(0,istat)', &
 '       if (istat == 0) then', &
-'          print *, "The program''s name is " // trim (progname)', &
+'          print *, "The program''s name is " // trim (arg)', &
 '       else', &
-'          print *, "Could not get the program''s name " // trim (progname)', &
+'          print *, "Could not get the program''s name " // trim (arg)', &
 '       endif', &
 '', &
 '       ! get number of arguments', &
 '       count = command_argument_count()', &
 '       write(*,*)''The number of arguments is '',count', &
 '', &
-'       !', &
-'       ! allocate string array big enough to hold command line', &
-'       ! argument strings and related information', &
-'       !', &
+'       ! show argument values', &
 '       do i=1,count', &
-'          call get_command_argument(number=i,length=argument_length)', &
-'          if(allocated(arg))deallocate(arg)', &
-'          allocate(character(len=argument_length) :: arg)', &
-'          call get_command_argument(i, arg,status=istat)', &
+'          arg=get_arg(i,istat)', &
 '          ! show the results', &
 '          write (*,''(i3.3,1x,i0.5,1x,i0.5,1x,"[",a,"]")'') &', &
-'          & i,istat,argument_length,arg', &
+'          & i,istat,len(arg),arg', &
 '       enddo', &
+'', &
+'      contains', &
+'', &
+'      function get_arg(n,status) result(arg)', &
+'      integer,intent(in)          :: n', &
+'      integer,intent(out),optional :: status', &
+'      integer                     :: argument_length, istat', &
+'      character(len=:),allocatable :: arg', &
+'       !', &
+'       ! allocate string big enough to hold command line argument', &
+'       !', &
+'        call get_command_argument( number=n, length=argument_length )', &
+'        if(allocated(arg))deallocate( arg )', &
+'        allocate(character(len=argument_length) :: arg )', &
+'        call get_command_argument(n, arg, status=istat )', &
+'        if(present(status)) status=istat', &
+'      end function get_arg', &
 '', &
 '      end program demo_get_command_argument', &
 '', &
@@ -12854,7 +13340,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025  get_command_argument(3fortran)', &
+'                              December 23, 2025get_command_argument(3fortran)', &
 '']
 
 shortname="get_command_argument"
@@ -12871,10 +13357,12 @@ textblock=[character(len=256) :: &
 '  environment variable', &
 '', &
 'SYNOPSIS', &
-'  call get_environment_variable(name [,value] [,length] & & [,status]', &
-'  [,trim_name] [,errmsg] )', &
+'  Syntax:', &
 '', &
-'          subroutine character(len=*) get_environment_variable( &', &
+'         call get_environment_variable(name [,value] [,length] &', &
+'         & [,status] [,trim_name] [,errmsg] )', &
+'', &
+'          subroutine get_environment_variable( &', &
 '          & name, value, length, status, trim_name, errmsg )', &
 '', &
 '           character(len=*),intent(in) :: name', &
@@ -13005,7 +13493,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 20get_environment_variable(3fortran)', &
+'                              December 23, get_environment_variable(3fortran)', &
 '']
 
 shortname="get_environment_variable"
@@ -13142,7 +13630,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  huge(3fortran)', &
+'                              December 23, 2025                huge(3fortran)', &
 '']
 
 shortname="huge"
@@ -13254,7 +13742,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 hypot(3fortran)', &
+'                              December 23, 2025               hypot(3fortran)', &
 '']
 
 shortname="hypot"
@@ -13368,7 +13856,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                iachar(3fortran)', &
+'                              December 23, 2025              iachar(3fortran)', &
 '']
 
 shortname="iachar"
@@ -13451,7 +13939,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  iall(3fortran)', &
+'                              December 23, 2025                iall(3fortran)', &
 '']
 
 shortname="iall"
@@ -13536,7 +14024,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  iand(3fortran)', &
+'                              December 23, 2025                iand(3fortran)', &
 '']
 
 shortname="iand"
@@ -13646,7 +14134,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  iany(3fortran)', &
+'                              December 23, 2025                iany(3fortran)', &
 '']
 
 shortname="iany"
@@ -13744,7 +14232,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 ibclr(3fortran)', &
+'                              December 23, 2025               ibclr(3fortran)', &
 '']
 
 shortname="ibclr"
@@ -13845,7 +14333,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 ibits(3fortran)', &
+'                              December 23, 2025               ibits(3fortran)', &
 '']
 
 shortname="ibits"
@@ -13942,7 +14430,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 ibset(3fortran)', &
+'                              December 23, 2025               ibset(3fortran)', &
 '']
 
 shortname="ibset"
@@ -14052,7 +14540,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 ichar(3fortran)', &
+'                              December 23, 2025               ichar(3fortran)', &
 '']
 
 shortname="ichar"
@@ -14157,7 +14645,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  ieor(3fortran)', &
+'                              December 23, 2025                ieor(3fortran)', &
 '']
 
 shortname="ieor"
@@ -14337,7 +14825,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                    if(7fortran)', &
+'                              December 23, 2025                  if(7fortran)', &
 '']
 
 shortname="if"
@@ -14387,7 +14875,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025           image_index(3fortran)', &
+'                              December 23, 2025         image_index(3fortran)', &
 '']
 
 shortname="image_index"
@@ -14492,7 +14980,7 @@ textblock=[character(len=256) :: &
 '           ! and a type is required so', &
 '           ! implicit (a-h)  ! NOTE: NOT ALLOWED. TYPE IS REQUIRE0', &
 '           ! but you can make the default an user-defined type ...', &
-'           ! notice the (incidently empty) type is defined below', &
+'           ! notice the (incidentally empty) type is defined below', &
 '           ! the implicit statement', &
 '           implicit nil(a-h) ! or implicit type(nil) (a)', &
 '           !', &
@@ -14505,7 +14993,7 @@ textblock=[character(len=256) :: &
 '  scoping unit. That is, a single "IMPLICIT NONE" in the global top section of', &
 '  a module makes the default be "IMPLICIT NONE" in any contained procedure.', &
 '', &
-'  Explicitly setting a variable type always overides the default so any data', &
+'  Explicitly setting a variable type always overrides the default so any data', &
 '  entity that is not explicitly declared by a type declaration statement, is', &
 '  not an intrinsic function, and is not accessed by use or host association is', &
 '  declared implicitly to be of the type (and type parameters) mapped from the', &
@@ -14664,7 +15152,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025              implicit(7fortran)', &
+'                              December 23, 2025            implicit(7fortran)', &
 '']
 
 shortname="implicit"
@@ -14847,7 +15335,7 @@ textblock=[character(len=256) :: &
 '      include "somemorecode.inc"', &
 '      end program show_include', &
 '', &
-'                               March 16, 2025               include(7fortran)', &
+'                              December 23, 2025             include(7fortran)', &
 '']
 
 shortname="include"
@@ -14948,7 +15436,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025                 index(3fortran)', &
+'                              December 23, 2025               index(3fortran)', &
 '']
 
 shortname="index"
@@ -15472,7 +15960,11 @@ textblock=[character(len=256) :: &
 '        else', &
 '           filename_ =''''', &
 '        endif', &
-'        lun=merge(lun_in,-1,present(lun_in))', &
+'        if(present(lun_in))then', &
+'           lun=lun_in', &
+'        else', &
+'           lun=-1', &
+'        endif', &
 '        ! exist, opened, and named always become defined', &
 '        ! unless an error condition occurs.', &
 '        if(filename_  == ''''.and.lun /= -1)then', &
@@ -15518,7 +16010,7 @@ textblock=[character(len=256) :: &
 '  BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),', &
 '  READ(7), REWIND(7), WAIT(7), WRITE(7)', &
 '', &
-'                               March 16, 2025               inquire(7fortran)', &
+'                              December 23, 2025             inquire(7fortran)', &
 '']
 
 shortname="inquire"
@@ -15646,7 +16138,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   int(3fortran)', &
+'                              December 23, 2025                 int(3fortran)', &
 '']
 
 shortname="int"
@@ -15727,7 +16219,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   ior(3fortran)', &
+'                              December 23, 2025                 ior(3fortran)', &
 '']
 
 shortname="ior"
@@ -15814,7 +16306,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025               iparity(3fortran)', &
+'                              December 23, 2025             iparity(3fortran)', &
 '']
 
 shortname="iparity"
@@ -15943,7 +16435,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025         is_contiguous(3fortran)', &
+'                              December 23, 2025       is_contiguous(3fortran)', &
 '']
 
 shortname="is_contiguous"
@@ -16038,7 +16530,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 ishft(3fortran)', &
+'                              December 23, 2025               ishft(3fortran)', &
 '']
 
 shortname="ishft"
@@ -16179,7 +16671,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                ishftc(3fortran)', &
+'                              December 23, 2025              ishftc(3fortran)', &
 '']
 
 shortname="ishftc"
@@ -16305,7 +16797,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025         is_iostat_end(3fortran)', &
+'                              December 23, 2025       is_iostat_end(3fortran)', &
 '']
 
 shortname="is_iostat_end"
@@ -16421,7 +16913,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025         is_iostat_eor(3fortran)', &
+'                              December 23, 2025       is_iostat_eor(3fortran)', &
 '']
 
 shortname="is_iostat_eor"
@@ -16499,11 +16991,9 @@ textblock=[character(len=256) :: &
 '', &
 '  o  STORAGE_SIZE(3) - Storage size in bits', &
 '', &
-'  o  KIND(3) - Kind of an entity', &
-'', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  kind(3fortran)', &
+'                              December 23, 2025                kind(3fortran)', &
 '']
 
 shortname="kind"
@@ -16671,7 +17161,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                lbound(3fortran)', &
+'                              December 23, 2025              lbound(3fortran)', &
 '']
 
 shortname="lbound"
@@ -16717,7 +17207,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025              lcobound(3fortran)', &
+'                              December 23, 2025            lcobound(3fortran)', &
 '']
 
 shortname="lcobound"
@@ -16802,7 +17292,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 leadz(3fortran)', &
+'                              December 23, 2025               leadz(3fortran)', &
 '']
 
 shortname="leadz"
@@ -16943,7 +17433,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   len(3fortran)', &
+'                              December 23, 2025                 len(3fortran)', &
 '']
 
 shortname="len"
@@ -17048,7 +17538,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025              len_trim(3fortran)', &
+'                              December 23, 2025            len_trim(3fortran)', &
 '']
 
 shortname="len_trim"
@@ -17158,7 +17648,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   lge(3fortran)', &
+'                              December 23, 2025                 lge(3fortran)', &
 '']
 
 shortname="lge"
@@ -17269,7 +17759,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   lgt(3fortran)', &
+'                              December 23, 2025                 lgt(3fortran)', &
 '']
 
 shortname="lgt"
@@ -17404,7 +17894,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   lle(3fortran)', &
+'                              December 23, 2025                 lle(3fortran)', &
 '']
 
 shortname="lle"
@@ -17518,7 +18008,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   llt(3fortran)', &
+'                              December 23, 2025                 llt(3fortran)', &
 '']
 
 shortname="llt"
@@ -17596,7 +18086,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025                 log10(3fortran)', &
+'                              December 23, 2025               log10(3fortran)', &
 '']
 
 shortname="log10"
@@ -17677,7 +18167,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   log(3fortran)', &
+'                              December 23, 2025                 log(3fortran)', &
 '']
 
 shortname="log"
@@ -17739,7 +18229,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025             log_gamma(3fortran)', &
+'                              December 23, 2025           log_gamma(3fortran)', &
 '']
 
 shortname="log_gamma"
@@ -17774,6 +18264,12 @@ textblock=[character(len=256) :: &
 'DESCRIPTION', &
 '  LOGICAL(3) converts one kind of logical variable to another.', &
 '', &
+'  For performance and storage purposes you generally want to use the smallest', &
+'  storage size supported when using large logical arrays, but some existing', &
+'  routines may require a specific kind. LOGICAL(3f) can change the kind of', &
+'  logical variables or expressions; but if converting is required frequently', &
+'  you might evaluate whether another kind is called for.', &
+'', &
 'OPTIONS', &
 '  o  L : The logical value to produce a copy of with kind KIND', &
 '', &
@@ -17791,82 +18287,102 @@ textblock=[character(len=256) :: &
 '      use iso_fortran_env, only : logical_kinds', &
 '      use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64', &
 '      use,intrinsic :: iso_fortran_env, only : real32, real64, real128', &
+'      !', &
+'      ! The standard only requires one default logical kind to be supported', &
+'      ! of the same storage size as a default INTEGER and REAL but the', &
+'      ! following kind names are standard. The kind may not be', &
+'      ! supported (in which case the value of the kind name will be a', &
+'      ! negative integer value) and additional kinds may be available as well.', &
+'      use,intrinsic :: iso_fortran_env, only : &', &
+'       & LOGICAL8, LOGICAL16, LOGICAL32, LOGICAL64', &
+'      !', &
+'      ! C_BOOL is a kind compatible with C interfaces', &
+'      use,intrinsic :: iso_c_binding,  only : C_BOOL', &
+'      !', &
 '      implicit none', &
-'      character(len=*),parameter :: g=''(*(g0))''', &
-'      integer :: i, i1, i2', &
-'      logical :: l1, l2', &
+'      character(len=*),parameter           :: all=''(*(g0))''', &
+'      integer                              :: i, i1, i2', &
+'      ! make T and F abbreviations for .TRUE. and .FALSE.', &
+'      logical,parameter                    :: T=.true., F=.false.', &
+'      logical                              :: l1, l2', &
+'      ! potentially save space and improve performance by using the', &
+'      ! smallest available kind', &
+'      logical(kind=selected_logical_kind(1)) :: smallest_storage(10,20)', &
+'      logical(kind=c_bool)                  :: boolean=.TRUE.', &
 '       !', &
-'       ! list kind values supported on this platform', &
-'       !', &
+'       print all, ''list LOGICAL kind values available on this platform''', &
 '        do i =1, size(logical_kinds)', &
-'           write(*,''(*(g0))'')''integer,parameter :: boolean'', &', &
+'           write(*,all)''   integer,parameter :: boolean'', &', &
 '           & logical_kinds(i),''='', logical_kinds(i)', &
 '        enddo', &
-'       ! for performance and storage purposes you generally want', &
-'       ! to use the smallest storage size supported when using', &
-'       ! large arrays, but some existing routines may require', &
-'       ! the default kind. LOGICAL(3f) can change the kind of', &
-'       ! the variables.', &
+'', &
+'       print all, ''   LOGICAL8  ==> KIND='',LOGICAL8', &
+'       print all, ''   LOGICAL16 ==> KIND='',LOGICAL16', &
+'       print all, ''   LOGICAL32 ==> KIND='',LOGICAL32', &
+'       print all, ''   LOGICAL64 ==> KIND='',LOGICAL64', &
+'       print all, ''   C_BOOL   ==> KIND='',C_BOOL', &
+'', &
+'       print all, ''MERGE() is one method for transposing logical and integer''', &
+'       ! converting a logical to an integer is not done', &
+'       ! with LOGICAL(3f) and INT(3f) or promotion by assignment;', &
+'       ! but can be done with MERGE(3f) with scalars or arrays.', &
+'        i1=merge(0,1,T)', &
+'        i2=merge(0,1,F)', &
+'        write(*,all)''  T-->'',i1,'' F-->'',I2', &
+'        l1=merge(T,F,i1.eq.0)', &
+'        l2=merge(T,F,i2.eq.0)', &
+'        write(*,all)''  0-->'',l1,'' 1-->'',l2', &
+'', &
 '       !', &
-'       ! But converting a logical to an integer is not done', &
-'       ! with LOGICAL(3f); but can be down with MERGE(3f).', &
+'       ! Note the standard specifies the default INTEGER, REAL, and LOGICAL', &
+'       ! types have the same storage size, but compiler options often allow', &
+'       ! changing that. STORAGE_SIZE() can be used to confirm that.', &
 '       !', &
-'        l1=.true.', &
-'        l2=.false.', &
-'        i1=merge(0,1,l1)', &
-'        i2=merge(0,1,l2)', &
-'        write(*,g)''L1='',l1,'' L2='',l2,'' I1='',i1,'' I2='',i2', &
-'       !', &
-'       ! show type and kind of default logicals', &
+'       print all, ''show kind and storage size of default logical''', &
 '        call showme(.true.)', &
 '        call showme(l1)', &
-'       ! show logical() changing type and kind', &
-'        call showme(logical(l1))', &
-'       ! you may have to delete unsupported kinds from this example', &
+'       ! A method to portably request the smallest storage size is', &
+'       !    logical(kind=selected_logical_kind(1) :: array(1000,1000)', &
+'       print all, ''storage size of smallest logical kind''', &
+'        call showme(logical(l1,kind=selected_logical_kind(1)))', &
 '', &
-'       ! this is probably the default', &
-'        call showme(logical(l1,kind=4))', &
-'       ! note how showme shows different kinds are being passed to it', &
-'        call showme(logical(l1,kind=8))', &
-'        call showme(logical(l1,kind=2))', &
-'       ! this is probably the smallest storage size supported', &
-'       ! on this platform; but kind values are platform-specific', &
+'       ! you may have to delete unsupported kinds from this example', &
+'       print all, ''different kinds are being passed because of LOGICAL() call''', &
+'       print all,''KIND values are platform-specific''', &
 '        call showme(logical(l1,kind=1))', &
+'        call showme(logical(l1,kind=2))', &
+'        call showme(logical(l1,kind=4))', &
+'        call showme(logical(l1,kind=8))', &
+'       print all,''kind=C_BOOL''', &
+'        call showme(logical(l1,kind=c_bool))', &
+'       print all,''SELECTED_LOGICAL_KIND() is more portable than KIND values''', &
+'       ! you might want to check the resulting kind', &
+'        call showme(logical(l1,kind=selected_logical_kind(1))) ! smallest', &
+'        call showme(logical(l1,kind=kind(.true.)))             ! default', &
+'        call showme(logical(l1,kind=selected_logical_kind(8)))', &
+'        call showme(logical(l1,kind=selected_logical_kind(16)))', &
+'        call showme(logical(l1,kind=selected_logical_kind(32)))', &
+'        call showme(logical(l1,kind=selected_logical_kind(64)))', &
+'', &
 '      contains', &
 '      subroutine showme(val)', &
 '      ! @(#) showme(3f) - display type and kind of intrinsic value', &
+'      ! this is an example of how to accept any logical kind as a parameter,', &
+'      ! but this is often done with a generic procedure.', &
 '      class(*),intent(in) :: val', &
 '        select type(val)', &
-'           type is (integer(kind=int8))', &
-'             write(*,''("integer(kind=int8) ",i0)'') val', &
-'           type is (integer(kind=int16))', &
-'              write(*,''("integer(kind=int16) ",i0)'') val', &
-'           type is (integer(kind=int32))', &
-'              write(*,''("integer(kind=int32) ",i0)'') val', &
-'           type is (integer(kind=int64))', &
-'              write(*,''("integer(kind=int64) ",i0)'') val', &
-'           type is (real(kind=real32))', &
-'              write(*,''("real(kind=real32) ",1pg0)'') val', &
-'           type is (real(kind=real64))', &
-'              write(*,''("real(kind=real64) ",1pg0)'') val', &
-'           type is (real(kind=real128))', &
-'             write(*,''("real(kind=real128) ",1pg0)'') val', &
-'           type is (logical(kind=1))', &
-'                 write(*,''("logical(kind=1) ",l1,a,i0)'') val, &', &
-'             & ''storage='',storage_size(val)', &
-'           type is (logical(kind=2))', &
-'                 write(*,''("logical(kind=2) ",l1,a,i0)'') val, &', &
-'             & ''storage='',storage_size(val)', &
-'           type is (logical(kind=4))', &
-'                 write(*,''("logical(kind=4) ",l1,a,i0)'') val, &', &
-'             & ''storage='',storage_size(val)', &
-'           type is (logical(kind=8))', &
-'                 write(*,''("logical(kind=8) ",l1,a,i0)'') val, &', &
-'             & ''storage='',storage_size(val)', &
-'           type is (character(len=*))', &
-'               write(*,''("character ",a)'') trim(val)', &
-'           type is (complex)', &
-'                        write(*,''("","(",1pg0,",",1pg0,")")'') val', &
+'           type is (logical(kind=logical8))', &
+'                 write(*,''("  logical(kind=1) ",l1,a,i0)'') val, &', &
+'                 & '' storage='',storage_size(val)', &
+'           type is (logical(kind=logical16))', &
+'                 write(*,''("  logical(kind=2) ",l1,a,i0)'') val, &', &
+'                 & '' storage='',storage_size(val)', &
+'           type is (logical(kind=logical32))', &
+'                 write(*,''("  logical(kind=4) ",l1,a,i0)'') val, &', &
+'                 & '' storage='',storage_size(val)', &
+'           type is (logical(kind=logical64))', &
+'                 write(*,''("  logical(kind=8) ",l1,a,i0)'') val, &', &
+'                 & '' storage='',storage_size(val)', &
 '           class default', &
 '           stop ''crud. showme() does not know about this type''', &
 '        end select', &
@@ -17875,18 +18391,40 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'       > integer,parameter :: boolean1=1', &
-'       > integer,parameter :: boolean2=2', &
-'       > integer,parameter :: boolean4=4', &
-'       > integer,parameter :: boolean8=8', &
-'       > integer,parameter :: boolean16=16', &
-'       > L1=T L2=F I1=0 I2=1', &
-'       > logical(kind=4) Tstorage=32', &
-'       > logical(kind=4) Tstorage=32', &
-'       > logical(kind=4) Tstorage=32', &
-'       > logical(kind=1) Tstorage=8', &
-'       > logical(kind=2) Tstorage=16', &
-'       > logical(kind=4) Tstorage=32', &
+'         > list LOGICAL kind values available on this platform', &
+'         >    integer,parameter :: boolean1=1', &
+'         >    integer,parameter :: boolean2=2', &
+'         >    integer,parameter :: boolean4=4', &
+'         >    integer,parameter :: boolean8=8', &
+'         >    integer,parameter :: boolean16=16', &
+'         >    LOGICAL8  ==> KIND=1', &
+'         >    LOGICAL16 ==> KIND=2', &
+'         >    LOGICAL32 ==> KIND=4', &
+'         >    LOGICAL64 ==> KIND=8', &
+'         >    C_BOOL    ==> KIND=1', &
+'         > MERGE() is one method for transposing logical and integer', &
+'         >    T-->0 F-->1', &
+'         >    0-->T 1-->F', &
+'         > show kind and storage size of default logical', &
+'         >    logical(kind=4) T storage=32', &
+'         >    logical(kind=4) T storage=32', &
+'         > storage size of smallest logical kind', &
+'         >    logical(kind=1) T storage=8', &
+'         > different kinds are being passed because of LOGICAL() call', &
+'         > KIND values are platform-specific', &
+'         >    logical(kind=1) T storage=8', &
+'         >    logical(kind=2) T storage=16', &
+'         >    logical(kind=4) T storage=32', &
+'         >    logical(kind=8) T storage=64', &
+'         > kind=C_BOOL', &
+'         >    logical(kind=1) T storage=8', &
+'         > SELECTED_LOGICAL_KIND() is more portable than KIND values', &
+'         >    logical(kind=1) T storage=8', &
+'         >    logical(kind=4) T storage=32', &
+'         >    logical(kind=1) T storage=8', &
+'         >    logical(kind=2) T storage=16', &
+'         >    logical(kind=4) T storage=32', &
+'         >    logical(kind=8) T storage=64', &
 '', &
 'STANDARD', &
 '  Fortran 95 , related ISO_FORTRAN_ENV module - fortran 2009', &
@@ -17896,7 +18434,7 @@ textblock=[character(len=256) :: &
 '', &
 '  o  CMPLX(3) - Conversion to a complex type', &
 '', &
-'  o  DBLE(3) - Converstion to double precision real', &
+'  o  DBLE(3) - Conversion to double precision real', &
 '', &
 '  o  INT(3) - Truncate towards zero and convert to integer', &
 '', &
@@ -17911,13 +18449,576 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025               logical(3fortran)', &
+'                              December 23, 2025             logical(3fortran)', &
 '']
 
 shortname="logical"
 call process()
 
-case('152','maskl')
+case('152','logicals')
+
+textblock=[character(len=256) :: &
+'', &
+'logicals(7fortran)                                         logicals(7fortran)', &
+'', &
+'NAME', &
+'  LOGICALS - [SUMMARY] logical expressions and variables', &
+'', &
+'SYNOPSIS', &
+'  Logical expressions and operators:', &
+'', &
+'            ! comparisons', &
+'            .LT., .LE., .EQ., .GE., .GT., .NE.', &
+'            <, <=, ==, >=, >, /=', &
+'            ! operators', &
+'            .AND., .OR., .NOT., .EQV., .NEQV.', &
+'', &
+'SUMMARY', &
+'  Information regarding Boolean variables, operators and expressions tends to', &
+'  be dispersed partly because it impinges on so many aspects of Fortran', &
+'  programming -- e.g., flow control, masking, comparison, and selection.  This', &
+'  summary provides an abridged version of those many uses.', &
+'', &
+'DESCRIPTION', &
+'  In Fortran, logicals are an intrinsic data type used to represent Boolean', &
+'  values - which can only be either the value .TRUE. or .FALSE..  Logical', &
+'  values (expressions or variables) are primarily used to control program flow', &
+'  through conditional statements like IF and DO WHILE loops, but have other', &
+'  valuable uses such as masking.', &
+'', &
+'LOGICAL OPERATORS', &
+'  Logical expressions can be formed using relational operators (for', &
+'  comparisons) and logical operators (for combining logical values in complex', &
+'  expressions).', &
+'', &
+'  RELATIONAL OPERATORS (FOR COMPARISONS)', &
+'', &
+'  These relational operators compare arithmetic or character expressions and', &
+'  return a logical value (.TRUE. or .FALSE.).', &
+'', &
+'           Meaning                   Syntax        Example', &
+'           Equal to                 .EQ. or  ==   x .EQ. y', &
+'           Not equal to             .NE. or  /=   x .NE. y', &
+'           Less than                .LT. or  <    x .LT. y', &
+'           Less than or equal to    .LE. or  <=   x .LE. y', &
+'           Greater than             .GT. or  >    x .GT. y', &
+'           Greater than or equal to .GE. or  >=   x .GE. y', &
+'', &
+'  Note that for string comparisons trailing spaces are not significant but', &
+'  leading blanks are, and that comparing floating point values should often be', &
+'  done within a tolerance as rounding can easily cause values intended to be', &
+'  equal to test as not equal, for example.', &
+'', &
+'  BOOLEAN OPERATORS (FOR LOGICAL DATA)', &
+'', &
+'  These operators combine one or more logical expressions.', &
+'', &
+'         Operator Description                                  Example', &
+'         .AND.    True if both operands are true.              P .AND. Q', &
+'         .OR.     True if either or both operands are true.    P .OR. Q', &
+'         .NOT.    Reverses the logical state of the operand.   .NOT. P', &
+'         .EQV.    True if both operands are the same', &
+'                  (both true or both false).                   P .EQV. Q', &
+'         .NEQV.   True if operands are different', &
+'                  (one true, one false).                       P .NEQV. Q', &
+'', &
+'  It is a common extension to allow the expressions P==Q and P/=Q where P and', &
+'  Q are logical, but the standard requires P.EQV.Q AND P.NEQV.Q. It is', &
+'  possible to overload == and /= to work with logicals instead of changing the', &
+'  statements if porting from a compiler supporting the extension to one that', &
+'  does not, but changing the statements to conform to the standard is', &
+'  preferred.', &
+'', &
+'OPERATOR PRECEDENCE', &
+'  The order of operations is important in complex expressions:', &
+'', &
+'  o  Arithmetic expressions are evaluated first.', &
+'', &
+'  o  Relational operators are applied next.', &
+'', &
+'  o  Logical operators are applied last, in the order: .NOT., then .AND., then', &
+'     .OR., and finally .EQV. and .NEQV..', &
+'', &
+'  Parentheses () can be used to explicitly control the order of evaluation.', &
+'', &
+'DECLARING LOGICAL VARIABLES', &
+'  Variables are declared using the LOGICAL keyword:', &
+'', &
+'         LOGICAL             :: is_active', &
+'         LOGICAL             :: file_exists, data_valid(100)', &
+'         LOGICAL,parameter   :: T=.TRUE., F=.FALSE.', &
+'         LOGICAL,allocatable :: mask(:,:)', &
+'', &
+'  You can assign the "truth" literals to these variables:', &
+'', &
+'           is_active = .TRUE.', &
+'           file_exists = .FALSE.', &
+'', &
+'  Note: The periods (.) surrounding the truth values are mandatory in standard', &
+'  Fortran.', &
+'', &
+'  DIFFERENT KINDS (SIZES)', &
+'', &
+'  Many programs use nothing but the default logical kind. Many make extensive', &
+'  use of logical expressions but use no LOGICAL variables explicitly at all!', &
+'', &
+'  Most platforms however support multiple LOGICAL kinds that typically vary', &
+'  only in storage size.', &
+'', &
+'  The standard requires one default logical kind to be supported of the same', &
+'  storage size as a default INTEGER and REAL and one of kind C_BOOL compatible', &
+'  with the C compiler partner to the Fortran compiler (if that size is', &
+'  different from the default); but the following kind names are standard:', &
+'', &
+'         use,intrinsic :: iso_fortran_env, only : &', &
+'         LOGICAL8, LOGICAL16, LOGICAL32, LOGICAL64', &
+'', &
+'  and if supported will be the kind value with the indicated size in bits.', &
+'', &
+'  These named constant kinds may not be supported by a particular platform (in', &
+'  which case the value of the kind name will be a negative integer value) and', &
+'  additional kinds may be available as well.', &
+'', &
+'  The most common reason for using non-default kinds is when large logical', &
+'  arrays are being declared. Using the smallest available kind is warranted', &
+'  when large masks or arrays are required and can improve performance as well', &
+'  as decrease memory requirements.', &
+'', &
+'  The next most common reason to not use default logicals is when the values', &
+'  are being passed to and from C. In this case KIND=C_BOOL is almost always', &
+'  the kind to choose. Conveniently C_BOOL is often also the smallest kind', &
+'  available.', &
+'', &
+'  It might be surprising, but the smallest available storage size of a LOGICAL', &
+'  variable is almost always one byte, not one bit. Fortran does include bit-', &
+'  level procedures, but they are not typically used in regard to LOGICAL', &
+'  values, but to manipulate data at the bit level. This is done much more', &
+'  rarely than is using logicals for conditionally selecting code or', &
+'  conditionally selecting values via masking which is the primary interest', &
+'  here.', &
+'', &
+'  The following example program illustrates Fortran features related to the', &
+'  kind and size of LOGICAL variables. It demonstrates ...', &
+'', &
+'  o  selected_logical_kind() ! return a kind value based on a minimum size', &
+'', &
+'  o  logical(val,kind) ! return different logical kinds', &
+'', &
+'  o  logical_kinds() ! list of supported kinds', &
+'', &
+'  o  kind(val) ! return integer value of kind of a value', &
+'', &
+'      program demo_different_logical_kinds', &
+'      use iso_fortran_env, only : logical_kinds', &
+'      use,intrinsic :: iso_fortran_env, only : &', &
+'       & LOGICAL8, LOGICAL16, LOGICAL32, LOGICAL64', &
+'      use,intrinsic :: iso_c_binding,  only : C_BOOL', &
+'      implicit none', &
+'      character(len=*),parameter            :: all=''(*(g0))''', &
+'      ! potentially save space and improve performance by using the', &
+'      ! smallest available kind', &
+'      integer,parameter                     :: lk=selected_logical_kind(1)', &
+'      logical(lk)                           :: smallest_storage(10,20)', &
+'', &
+'      ! C_BOOL is a kind compatible with C interfaces', &
+'      logical(kind=c_bool)                  :: boolean=.TRUE.', &
+'', &
+'      integer                               :: i', &
+'       ! The integer array constant LOGICAL_KINDS() contains the kind', &
+'       ! values for supported logical kinds for the current processor', &
+'       print all, ''list LOGICAL kind values available on this platform''', &
+'        do i =1, size(logical_kinds)', &
+'           print all, ''   integer,parameter :: boolean'', &', &
+'           & logical_kinds(i),''='', logical_kinds(i)', &
+'        enddo', &
+'', &
+'       print all, ''   LOGICAL8  ==> KIND='',LOGICAL8', &
+'       print all, ''   LOGICAL16 ==> KIND='',LOGICAL16', &
+'       print all, ''   LOGICAL32 ==> KIND='',LOGICAL32', &
+'       print all, ''   LOGICAL64 ==> KIND='',LOGICAL64', &
+'       print all, ''   C_BOOL   ==> KIND='',C_BOOL', &
+'', &
+'       print all, ''storage size of default logical = '', storage_size(.true.)', &
+'       print all, ''storage size of smallest logical kind = '', &', &
+'        storage_size(smallest_storage)', &
+'       print all, ''storage size of C_BOOL= '', storage_size(boolean)', &
+'', &
+'       print all, ''kind of default logical = '', kind(.true.)', &
+'       print all, ''kind of smallest logical kind = '', kind(smallest_storage)', &
+'       print all, ''kind of C_BOOL= '', kind(.true._c_bool)', &
+'', &
+'      end program demo_different_logical_kinds', &
+'', &
+'  Typical (platform-specific) output:', &
+'', &
+'       > list LOGICAL kind values available on this platform', &
+'       >    integer,parameter :: boolean1=1', &
+'       >    integer,parameter :: boolean2=2', &
+'       >    integer,parameter :: boolean4=4', &
+'       >    integer,parameter :: boolean8=8', &
+'       >    integer,parameter :: boolean16=16', &
+'       >    LOGICAL8  ==> KIND=1', &
+'       >    LOGICAL16 ==> KIND=2', &
+'       >    LOGICAL32 ==> KIND=4', &
+'       >    LOGICAL64 ==> KIND=8', &
+'       >    C_BOOL    ==> KIND=1', &
+'       > storage size of default logical = 32', &
+'       > storage size of smallest logical kind = 8', &
+'       > storage size of C_BOOL= 8', &
+'       > kind of default logical = 4', &
+'       > kind of smallest logical kind = 1', &
+'       > kind of C_BOOL= 1', &
+'', &
+'  In summary generally using KIND=C_BOOL is a good choice as it is compatible', &
+'  with the C interface bindings, and is typically the smallest at one byte per', &
+'  value; but this requires verification on any given platform.', &
+'', &
+'MASKING IN INTRINSICS', &
+'  Fortran''s logical intrinsic operators are primarily used for evaluating and', &
+'  manipulating Boolean (true/false) values and conditions, but in addition', &
+'  masks are used in many intrinsics ...', &
+'', &
+'       result = all(mask [,dim])', &
+'       result = any(mask [,dim])', &
+'       result = count(mask [,dim] [,kind] )', &
+'       result = findloc (array, value, dim [,mask] [,kind] [,back])', &
+'       result = findloc (array, value [,mask] [,kind] [,back])', &
+'       result = maxloc(array [,mask]) | maxloc(array [,dim] [,mask])', &
+'       result = maxval(array [,mask]) | maxval(array [,dim] [,mask])', &
+'       result = merge(tsource, fsource, mask)', &
+'       result = minloc(array [,mask]) | minloc(array [,dim] [,mask])', &
+'       result = minval(array [,mask])', &
+'       result = minval(array ,dim [,mask])', &
+'       result = pack( array, mask [,vector] )', &
+'       result = parity( mask [,dim] )', &
+'       result = product(array [,dim] [,mask])', &
+'       result = reduce(array, operation [,mask]  [,identity]  [,ordered] )', &
+'       result = sum(array [,dim[,mask]] | [mask] )', &
+'       result = unpack(vector, mask, field)', &
+'', &
+'USES', &
+'  Here are the main uses of Fortran logical intrinsic procedures:', &
+'', &
+'  CONDITIONAL EXECUTION: The most common use is in IF statements and DO WHILE', &
+'  loops to control which blocks of code are executed based on whether a', &
+'  condition is true or false.', &
+'', &
+'            ! Example using a logical expression directly in an IF statement', &
+'            IF (x > 0 .AND. y < 10) THEN', &
+'                PRINT *, "Condition met"', &
+'', &
+'   ENDIF', &
+'  USAGE IN CONTROL FLOW: Logicals are essential for decision-making', &
+'  structures:', &
+'', &
+'           LOGICAL :: condition', &
+'           INTEGER :: x', &
+'', &
+'           x = 10', &
+'           condition = (x .GT. 5) .AND. (x .LT. 15)', &
+'', &
+'           IF (condition) THEN', &
+'               PRINT *, "x is between 5 and 15"', &
+'           ELSEIF(x < 0)then', &
+'               PRINT *, "x is negative"', &
+'', &
+'   ELSE', &
+'  PRINT *, "x is outside the range"', &
+'', &
+'   ENDIF', &
+'  program demo_random_number use, intrinsic :: iso_fortran_env, only :', &
+'  dp=>real64 implicit none', &
+'', &
+'  integer', &
+'    :: i, first, last, rand_int, sumup, passes real(kind=kind(0.0d0)) ::', &
+'    rand_val ! generate a lot of random integers from -10 to 100 and add to', &
+'    sum ! until upper limit is reached, for no reason first=-10 last=100', &
+'    sumup=0 passes=0 do while (sumup <= 1000000000) call', &
+'    random_number(rand_val) rand_int=first+floor((last+1-first)*rand_val)', &
+'    sumup=sumup+rand_int passes=passes+1 enddo', &
+'    write(*,*)''sumup='',sumup,''passes='',passes end program demo_random_number', &
+'', &
+'ARRAY MASKING', &
+'  Logical arrays can be used as masks to selectively apply operations to', &
+'  elements of other arrays. This is particularly efficient for numerical', &
+'  computations.', &
+'', &
+'         integer,parameter       :: isz=10', &
+'         real, dimension(isz)    :: a', &
+'         logical, dimension(isz) :: mask', &
+'', &
+'         mask = (a > 5.0)', &
+'         ! Double elements of ''a'' where ''a'' is greater than 5.0', &
+'         a(mask) = a(mask) * 2.0', &
+'', &
+'  A WHERE construct allows for multiple masks to be conditionally used.', &
+'', &
+'         WHERE(cond1)', &
+'            ...', &
+'         ELSEWHERE(cond2)', &
+'            ...', &
+'', &
+'   ELSEWHERE', &
+'   END WHERE', &
+'  Examples of masked array assignment are:', &
+'', &
+'        WHERE (TEMP > 100.0) TEMP = TEMP - REDUCE_TEMP', &
+'', &
+'        WHERE (PRESSURE <= 1.0)', &
+'           PRESSURE = PRESSURE + INC_PRESSURE', &
+'           TEMP = TEMP - 5.0', &
+'', &
+'   ELSEWHERE', &
+'  RAINING = .TRUE.', &
+'', &
+'   END WHERE', &
+'LOGICAL OPERATIONS', &
+'  Intrinsic operators like .AND., .OR., .NOT., and .EQV. (equivalent) or', &
+'  .NEQV. (not equivalent) are used to combine or negate logical expressions,', &
+'  creating more complex conditions.', &
+'', &
+'         LOGICAL :: condition1, condition2, result', &
+'', &
+'         condition1 = (value1 == 10)', &
+'         condition2 = (value2 /= 0)', &
+'         result = condition1 .OR. condition2', &
+'', &
+'  [verify] is very powerful when using expressions as masks for processing', &
+'  strings. For example, to determine if strings represent valid Fortran symbol', &
+'  names:', &
+'', &
+'      program fortran_symbol_name', &
+'      implicit none', &
+'      integer :: i', &
+'      ! some strings to inspect for being valid symbol names', &
+'      character(len=*),parameter :: symbols(*)=[character(len=10) :: &', &
+'       ''A_ '', &', &
+'       ''10 '', &', &
+'       ''September '', &', &
+'       ''A B'', &', &
+'       ''_A '', &', &
+'       '' '']', &
+'', &
+'        write(*,''("|",*(g0,"|"))'') symbols', &
+'        write(*,''("|",*(1x,l1,8x,"|"))'') fortran_name(symbols)', &
+'', &
+'      contains', &
+'', &
+'      elemental function fortran_name(line) result (lout)', &
+'      ! determine if a string is a valid Fortran name', &
+'      ! ignoring trailing spaces (but not leading spaces)', &
+'      character(len=*),parameter   :: int=''0123456789''', &
+'      character(len=*),parameter   :: lower=''abcdefghijklmnopqrstuvwxyz''', &
+'      character(len=*),parameter   :: upper=''ABCDEFGHIJKLMNOPQRSTUVWXYZ''', &
+'      character(len=*),parameter   :: allowed=upper//lower//int//''_''', &
+'      character(len=*),intent(in)  :: line', &
+'      character(len=:),allocatable :: name', &
+'      logical                     :: lout', &
+'        name=trim(line)', &
+'        if(len(name).ne.0)then', &
+'           ! first character is alphameric', &
+'           lout = verify(name(1:1), lower//upper) == 0  &', &
+'            ! verify other characters allowed in a symbol name', &
+'            & .and. verify(name,allowed) == 0           &', &
+'            ! check conforms to allowable length', &
+'            & .and. len(name) <= 63', &
+'        else', &
+'           lout = .false.', &
+'        endif', &
+'      end function fortran_name', &
+'', &
+'      end program fortran_symbol_name', &
+'', &
+'  Results:', &
+'', &
+'       > |A_       |10        |September |A B       |_A        |          |', &
+'       > | T       | F        | T        | F        | F        | F        |', &
+'', &
+'ARRAY REDUCTION FUNCTIONS', &
+'  Intrinsic functions like ALL() and ANY() are used to check if all or any', &
+'  elements in a logical array satisfy a condition, often used in conjunction', &
+'  with array masking.', &
+'', &
+'         logical,parameter :: t=.true., f=.false.', &
+'         logical, dimension(5) :: status = [ t, f, t, t, t ]', &
+'', &
+'         if (all(status)) then', &
+'            print *, "All statuses are true"', &
+'         endif', &
+'', &
+'         if (any(status)) then', &
+'            print *, "At least one status is true"', &
+'         endif', &
+'', &
+'BITWISE LOGICAL OPERATIONS', &
+'  For handling individual bits within integer variables, Fortran offers', &
+'  intrinsic functions like IAND (bitwise AND), IOR (bitwise OR), IEOR (bitwise', &
+'  exclusive OR), and NOT (bitwise NOT). These are crucial in low-level', &
+'  programming and certain numerical algorithms.', &
+'', &
+'         integer :: a, b, c', &
+'', &
+'         a = int(z''0101'')', &
+'         b = int(z''0011'')', &
+'         c = IAND(a, b) ! c will be 1 (0001)', &
+'         write(*,''*(g0,z0,1x)''),''a='',a,''b='',b,''c='',c', &
+'', &
+'  but these return integer, not logical values and are mentioned only for', &
+'  reference.', &
+'', &
+'CONDITIONAL EXPRESSIONS', &
+'  A conditional expression is related to logicals in that it is used to', &
+'  selectively evaluate a chosen subexpression.', &
+'', &
+'      scalar-logical-expr ? expr [ : scalar-logical-expr ? expr ]... : expr )', &
+'', &
+'  Each expr of a conditional-expr shall have the same declared type, kind type', &
+'  parameters, and rank.', &
+'', &
+'  Examples of a conditional expression are:', &
+'', &
+'        ( ABS(RESIDUAL)<=TOLERANCE ? "ok" : "did not converge" )', &
+'        ( I>0 .AND. I<=SIZE(A) ? A (I) : PRESENT(VAL) ? VAL : 0.0 )', &
+'', &
+'  Conditional expressions are required to short-circuit (execute only the', &
+'  selected expression and not the other candidate) unlike the remainder of', &
+'  Fortran where short-circuiting behavior is typically left up to the', &
+'  processor.', &
+'', &
+'  That is, elsewhere in Fortran it is not necessary for a processor to', &
+'  evaluate all of the operands of an expression, or to evaluate entirely each', &
+'  operand -- but the processor is free to evaluate all of the operands. That', &
+'  is, all of the operands may or may not be evaluated.', &
+'', &
+'  This principle is most often applicable to logical expressions, zero-sized', &
+'  arrays, and zero-length strings, but it applies to all expressions.', &
+'', &
+'  For example, in evaluating the expression', &
+'', &
+'          X > Y .OR. L(Z)', &
+'', &
+'  L(Z) may or may not be evaluated assuming "L" is a procedure name when the', &
+'  first condition (X > Y) is true.', &
+'', &
+'LOGICALS CANNOT BE USED AS INTEGERS', &
+'  Logicals are not allowed in numeric expressions, as in common in several', &
+'  other languages. There is no automatic promotion of LOGICAL to INTEGER', &
+'  allowed by the standard or vice-versa. That being said, it is a common', &
+'  extension to cast .FALSE. to zero(0) and .TRUE. to some none-zero number;', &
+'  but what values are used and how many bits are significant in the values', &
+'  varies widely between current popular compilers and so the extension should', &
+'  be avoided.', &
+'', &
+'  Sample program:', &
+'', &
+'      program logical_integer', &
+'      implicit none', &
+'      character(len=*),parameter           :: all=''(*(g0))''', &
+'      integer                              :: i1, i2', &
+'      ! make T and F abbreviations for .TRUE. and .FALSE.', &
+'      logical,parameter                    :: T=.true., F=.false.', &
+'      logical                              :: l1, l2', &
+'', &
+'       print all, ''MERGE() is one method for transposing logical and integer''', &
+'       ! converting a logical to an integer is not done', &
+'       ! with LOGICAL(3f) and INT(3f) or promotion by assignment;', &
+'       ! but can be done with MERGE(3f) with scalars or arrays.', &
+'        i1=merge(1,0,T)', &
+'        i2=merge(1,0,F)', &
+'        write(*,all)''  T-->'',i1,'' F-->'',I2', &
+'        l1=merge(T,F,i1.eq.0)', &
+'        l2=merge(T,F,i2.eq.0)', &
+'        write(*,all)''  0-->'',l1,'' 1-->'',l2', &
+'      end program logical_integer', &
+'', &
+'  Results:', &
+'', &
+'       > MERGE() is one method for transposing logical and integer', &
+'       >    T-->1 F-->0', &
+'       >    0-->F 1-->T', &
+'', &
+'LOGICAL EDITING', &
+'  The Lw edit descriptor indicates that the field occupies w positions.  The', &
+'  input field so specified consists of optional blanks, optionally followed by', &
+'  a period, followed by a "T" for true or "F" for false. The "T" or "F" may be', &
+'  followed by additional characters in the field, which are ignored.', &
+'', &
+'  So, for example the strings ".TRUE." and ".FALSE." are acceptable input', &
+'  forms if "w" is sufficiently sized.', &
+'', &
+'  A lower-case letter is equivalent to the corresponding upper-case letter in', &
+'  a logical input field.', &
+'', &
+'  The output eld consists of w-1 blanks followed by a T or F, depending on', &
+'  whether the internal value is true or false, respectively.', &
+'', &
+'      program logical_formatted', &
+'      implicit none', &
+'      character(len=*),parameter    :: all=''(*(g0))''', &
+'      character(len=:),allocatable  :: line', &
+'      logical                      :: array(8), p, q', &
+'       print all, ''Logicals print as the right-justified string "T" or "F"''', &
+'       write(*,''("[",l10,"]")'') .TRUE.', &
+'       write(*,''("[",l0,"]")'')  .FALSE.', &
+'       print all, ''the first non-blank letter after an optional period''', &
+'       print all, ''determines the value on input''', &
+'       print all, repeat(''1234567'',8)', &
+'       line=''.false. .true.  T    F      TrustyFake!!!tr     fffffff''', &
+'       print all, line', &
+'       read(line,''(8(L7))'') array', &
+'       print all, array', &
+'      end program logical_formatted', &
+'', &
+'  Results:', &
+'', &
+'       > Logicals print as the right-justified string "T" or "F"', &
+'       > [        T]', &
+'       > [F]', &
+'       > the first non-blank letter after an optional period', &
+'       > determines the value on input', &
+'       > 12345671234567123456712345671234567123456712345671234567', &
+'       > .false. .true.  T    F       TrustyFake!!!tr    fffffff', &
+'       > FTTFTFTF', &
+'', &
+'  The G edit descriptor also may be used to edit logical data.', &
+'', &
+'SEE ALSO', &
+'  Bit-level procedures', &
+'', &
+'  o  ieor(3), ior(3), ishftc(3), ishft(3), iand(3).', &
+'', &
+'  o  result = iall(array [,mask]) | iall(array ,dim [,mask])', &
+'', &
+'  o  result = iany(array [,mask]) | iany(array ,dim [,mask])', &
+'', &
+'  o  result = iparity( array [,mask] ) | iparity( array, dim [,mask] )', &
+'', &
+'  o  result = maskl( i [,kind] )', &
+'', &
+'  o  result = maskr( i [,kind] )', &
+'', &
+'  o  result = merge_bits(i, j, mask) ! Merge bits using a mask', &
+'', &
+'  Other', &
+'', &
+'  o  VERIFY(3) is very powerful when using expressions as masks for processing', &
+'     strings', &
+'', &
+'  o  [[iso_fortran_env]] module', &
+'', &
+'  o  iso_c_binding module', &
+'', &
+'  o  TRANSFER(3) - Transfer bit patterns', &
+'', &
+'  Fortran Tutorials(license: MIT) @urbanjost', &
+'', &
+'                              December 23, 2025            logicals(7fortran)', &
+'']
+
+shortname="logicals"
+call process()
+
+case('153','maskl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18000,13 +19101,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 maskl(3fortran)', &
+'                              December 23, 2025               maskl(3fortran)', &
 '']
 
 shortname="maskl"
 call process()
 
-case('153','maskr')
+case('154','maskr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18107,13 +19208,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 maskr(3fortran)', &
+'                              December 23, 2025               maskr(3fortran)', &
 '']
 
 shortname="maskr"
 call process()
 
-case('154','matmul')
+case('155','matmul')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18346,13 +19447,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                matmul(3fortran)', &
+'                              December 23, 2025              matmul(3fortran)', &
 '']
 
 shortname="matmul"
 call process()
 
-case('155','max')
+case('156','max')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18504,13 +19605,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   max(3fortran)', &
+'                              December 23, 2025                 max(3fortran)', &
 '']
 
 shortname="max"
 call process()
 
-case('156','maxexponent')
+case('157','maxexponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18568,13 +19669,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025           maxexponent(3fortran)', &
+'                              December 23, 2025         maxexponent(3fortran)', &
 '']
 
 shortname="maxexponent"
 call process()
 
-case('157','maxloc')
+case('158','maxloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18690,13 +19791,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025                maxloc(3fortran)', &
+'                              December 23, 2025              maxloc(3fortran)', &
 '']
 
 shortname="maxloc"
 call process()
 
-case('158','maxval')
+case('159','maxval')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18821,13 +19922,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                maxval(3fortran)', &
+'                              December 23, 2025              maxval(3fortran)', &
 '']
 
 shortname="maxval"
 call process()
 
-case('159','merge')
+case('160','merge')
 
 textblock=[character(len=256) :: &
 '', &
@@ -18915,12 +20016,24 @@ textblock=[character(len=256) :: &
 '      integer :: i', &
 '      integer :: k', &
 '      logical :: chooseleft', &
+'      logical :: maybe', &
 '', &
 '        ! Works with scalars', &
 '        k=5', &
 '        write(*,*)merge (1.0, 0.0, k > 0)', &
 '        k=-2', &
 '        write(*,*)merge (1.0, 0.0, k > 0)', &
+'', &
+'        ! note for scalar logicals calls such as', &
+'        maybe = merge (.true.,.false., k > 0)', &
+'        ! are simply the same as', &
+'        if (k > 0)then', &
+'           maybe=.true.', &
+'        else', &
+'           maybe=.false.', &
+'        endif', &
+'        ! but even more succinctly, and array-compatible, is', &
+'        maybe = k > 0', &
 '', &
 '        ! set up some simple arrays that all conform to the', &
 '        ! same shape', &
@@ -18999,13 +20112,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 merge(3fortran)', &
+'                              December 23, 2025               merge(3fortran)', &
 '']
 
 shortname="merge"
 call process()
 
-case('160','merge_bits')
+case('161','merge_bits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19129,13 +20242,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025            merge_bits(3fortran)', &
+'                              December 23, 2025          merge_bits(3fortran)', &
 '']
 
 shortname="merge_bits"
 call process()
 
-case('161','min')
+case('162','min')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19233,13 +20346,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost ''', &
 '', &
-'                               March 16, 2025                   min(3fortran)', &
+'                              December 23, 2025                 min(3fortran)', &
 '']
 
 shortname="min"
 call process()
 
-case('162','minexponent')
+case('163','minexponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19296,13 +20409,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025           minexponent(3fortran)', &
+'                              December 23, 2025         minexponent(3fortran)', &
 '']
 
 shortname="minexponent"
 call process()
 
-case('163','minloc')
+case('164','minloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19406,13 +20519,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                minloc(3fortran)', &
+'                              December 23, 2025              minloc(3fortran)', &
 '']
 
 shortname="minloc"
 call process()
 
-case('164','minval')
+case('165','minval')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19608,13 +20721,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                minval(3fortran)', &
+'                              December 23, 2025              minval(3fortran)', &
 '']
 
 shortname="minval"
 call process()
 
-case('165','mod')
+case('166','mod')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19720,13 +20833,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   mod(3fortran)', &
+'                              December 23, 2025                 mod(3fortran)', &
 '']
 
 shortname="mod"
 call process()
 
-case('166','modulo')
+case('167','modulo')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19803,13 +20916,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025                modulo(3fortran)', &
+'                              December 23, 2025              modulo(3fortran)', &
 '']
 
 shortname="modulo"
 call process()
 
-case('167','move_alloc')
+case('168','move_alloc')
 
 textblock=[character(len=256) :: &
 '', &
@@ -19910,13 +21023,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025            move_alloc(3fortran)', &
+'                              December 23, 2025          move_alloc(3fortran)', &
 '']
 
 shortname="move_alloc"
 call process()
 
-case('168','mvbits')
+case('169','mvbits')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20063,13 +21176,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                mvbits(3fortran)', &
+'                              December 23, 2025              mvbits(3fortran)', &
 '']
 
 shortname="mvbits"
 call process()
 
-case('169','namelist')
+case('170','namelist')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20657,13 +21770,13 @@ textblock=[character(len=256) :: &
 '      output procedure or by continuation of delimited character sequences,', &
 '      each output record begins with a blank character.', &
 '', &
-'                               March 16, 2025              namelist(7fortran)', &
+'                              December 23, 2025            namelist(7fortran)', &
 '']
 
 shortname="namelist"
 call process()
 
-case('170','nearest')
+case('171','nearest')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20748,13 +21861,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025               nearest(3fortran)', &
+'                              December 23, 2025             nearest(3fortran)', &
 '']
 
 shortname="nearest"
 call process()
 
-case('171','new_line')
+case('172','new_line')
 
 textblock=[character(len=256) :: &
 '', &
@@ -20918,13 +22031,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025              new_line(3fortran)', &
+'                              December 23, 2025            new_line(3fortran)', &
 '']
 
 shortname="new_line"
 call process()
 
-case('172','nint')
+case('173','nint')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21069,13 +22182,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  nint(3fortran)', &
+'                              December 23, 2025                nint(3fortran)', &
 '']
 
 shortname="nint"
 call process()
 
-case('173','norm2')
+case('174','norm2')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21122,7 +22235,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Case (ii) : The result of NORM2 (X, DIM=DIM) has a value equal to that of', &
 '  NORM2 (X) if X has rank one. Otherwise, the resulting array is reduced in', &
-'  rank with dimension DIM removed, and each remaining elment is the result of', &
+'  rank with dimension DIM removed, and each remaining element is the result of', &
 '  NORM2(X) for the values along dimension DIM.', &
 '', &
 '  It is recommended that the processor compute the result without undue', &
@@ -21187,13 +22300,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 norm2(3fortran)', &
+'                              December 23, 2025               norm2(3fortran)', &
 '']
 
 shortname="norm2"
 call process()
 
-case('174','not')
+case('175','not')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21277,13 +22390,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   not(3fortran)', &
+'                              December 23, 2025                 not(3fortran)', &
 '']
 
 shortname="not"
 call process()
 
-case('175','null')
+case('176','null')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21404,13 +22517,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  null(3fortran)', &
+'                              December 23, 2025                null(3fortran)', &
 '']
 
 shortname="null"
 call process()
 
-case('176','num_images')
+case('177','num_images')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21489,13 +22602,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025            num_images(3fortran)', &
+'                              December 23, 2025          num_images(3fortran)', &
 '']
 
 shortname="num_images"
 call process()
 
-case('177','open')
+case('178','open')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21811,13 +22924,13 @@ textblock=[character(len=256) :: &
 '  BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),', &
 '  READ(7), REWIND(7), WAIT(7), WRITE(7)', &
 '', &
-'                               March 16, 2025                  open(7fortran)', &
+'                              December 23, 2025                open(7fortran)', &
 '']
 
 shortname="open"
 call process()
 
-case('178','out_of_range')
+case('179','out_of_range')
 
 textblock=[character(len=256) :: &
 '', &
@@ -21964,13 +23077,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025          out_of_range(3fortran)', &
+'                              December 23, 2025        out_of_range(3fortran)', &
 '']
 
 shortname="out_of_range"
 call process()
 
-case('179','pack')
+case('180','pack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22094,13 +23207,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  pack(3fortran)', &
+'                              December 23, 2025                pack(3fortran)', &
 '']
 
 shortname="pack"
 call process()
 
-case('180','parity')
+case('181','parity')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22202,13 +23315,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                parity(3fortran)', &
+'                              December 23, 2025              parity(3fortran)', &
 '']
 
 shortname="parity"
 call process()
 
-case('181','popcnt')
+case('182','popcnt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22287,13 +23400,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                popcnt(3fortran)', &
+'                              December 23, 2025              popcnt(3fortran)', &
 '']
 
 shortname="popcnt"
 call process()
 
-case('182','poppar')
+case('183','poppar')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22378,13 +23491,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                poppar(3fortran)', &
+'                              December 23, 2025              poppar(3fortran)', &
 '']
 
 shortname="poppar"
 call process()
 
-case('183','precision')
+case('184','precision')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22445,13 +23558,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025             precision(3fortran)', &
+'                              December 23, 2025           precision(3fortran)', &
 '']
 
 shortname="precision"
 call process()
 
-case('184','present')
+case('185','present')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22569,13 +23682,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025               present(3fortran)', &
+'                              December 23, 2025             present(3fortran)', &
 '']
 
 shortname="present"
 call process()
 
-case('185','print')
+case('186','print')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22667,13 +23780,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 print(7fortran)', &
+'                              December 23, 2025               print(7fortran)', &
 '']
 
 shortname="print"
 call process()
 
-case('186','product')
+case('187','product')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22902,13 +24015,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025               product(3fortran)', &
+'                              December 23, 2025             product(3fortran)', &
 '']
 
 shortname="product"
 call process()
 
-case('187','program')
+case('188','program')
 
 textblock=[character(len=256) :: &
 '', &
@@ -22992,13 +24105,13 @@ textblock=[character(len=256) :: &
 '  A main program, external subprogram, module, submodule, or block data', &
 '  program unit.', &
 '', &
-'                               March 16, 2025               program(7fortran)', &
+'                              December 23, 2025             program(7fortran)', &
 '']
 
 shortname="program"
 call process()
 
-case('188','radix')
+case('189','radix')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23063,13 +24176,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 radix(3fortran)', &
+'                              December 23, 2025               radix(3fortran)', &
 '']
 
 shortname="radix"
 call process()
 
-case('189','random_init')
+case('190','random_init')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23138,17 +24251,17 @@ textblock=[character(len=256) :: &
 '  Fortran 2018', &
 '', &
 'SEE ALSO', &
-'  random_number, random_seed', &
+'  RANDOM_NUMBER(3), RANDOM_SEED(3)', &
 '', &
 '  _Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025           random_init(3fortran)', &
+'                              December 23, 2025         random_init(3fortran)', &
 '']
 
 shortname="random_init"
 call process()
 
-case('190','random_number')
+case('191','random_number')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23236,17 +24349,17 @@ textblock=[character(len=256) :: &
 '  Fortran 95', &
 '', &
 'SEE ALSO', &
-'  RANDOM_SEED(3)', &
+'  RANDOM_SEED(3), RANDOM_INIT(3)', &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025         random_number(3fortran)', &
+'                              December 23, 2025       random_number(3fortran)', &
 '']
 
 shortname="random_number"
 call process()
 
-case('191','random_seed')
+case('192','random_seed')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23315,17 +24428,17 @@ textblock=[character(len=256) :: &
 '  Fortran 95', &
 '', &
 'SEE ALSO', &
-'  RANDOM_NUMBER(3)', &
+'  RANDOM_NUMBER(3), RANDOM_INIT(3)', &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025           random_seed(3fortran)', &
+'                              December 23, 2025         random_seed(3fortran)', &
 '']
 
 shortname="random_seed"
 call process()
 
-case('192','range')
+case('193','range')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23398,13 +24511,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 range(3fortran)', &
+'                              December 23, 2025               range(3fortran)', &
 '']
 
 shortname="range"
 call process()
 
-case('193','rank')
+case('194','rank')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23566,13 +24679,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  rank(3fortran)', &
+'                              December 23, 2025                rank(3fortran)', &
 '']
 
 shortname="rank"
 call process()
 
-case('194','read')
+case('195','read')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23629,13 +24742,13 @@ textblock=[character(len=256) :: &
 '  BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),', &
 '  READ(7), REWIND(7), WAIT(7), WRITE(7)', &
 '', &
-'                               March 16, 2025                  read(7fortran)', &
+'                              December 23, 2025                read(7fortran)', &
 '']
 
 shortname="read"
 call process()
 
-case('195','real')
+case('196','real')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23737,13 +24850,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  real(3fortran)', &
+'                              December 23, 2025                real(3fortran)', &
 '']
 
 shortname="real"
 call process()
 
-case('196','reduce')
+case('197','reduce')
 
 textblock=[character(len=256) :: &
 '', &
@@ -23778,7 +24891,7 @@ textblock=[character(len=256) :: &
 '  o  OPERATION is a pure function with exactly two arguments', &
 '', &
 '     o each argument is scalar, non-allocatable, a nonpointer, nonpolymorphic', &
-'       and nonoptional with the same type and kind as array.', &
+'       and nonoptional with the same type and kind as ARRAY.', &
 '', &
 '     o if one argument has the asynchronous, target, or value attribute so', &
 '       shall the other.', &
@@ -23812,14 +24925,12 @@ textblock=[character(len=256) :: &
 'OPTIONS', &
 '  o  ARRAY : An array of any type and allowed rank to select values from.', &
 '', &
-'  o  OPERATION : shall be a pure function with exactly two arguments; each', &
-'     argument shall be a scalar, nonallocatable, nonpointer, nonpolymorphic,', &
-'     nonoptional dummy data object with the same type and type parameters as', &
-'     ARRAY. If one argument has the ASYNCHRONOUS, TARGET, or VALUE attribute,', &
-'     the other shall have that attribute. Its result shall be a nonpolymorphic', &
-'     scalar and have the same type and type parameters as ARRAY. OPERATION', &
-'     should implement a mathematically associative operation. It need not be', &
-'     commutative.', &
+'  o  OPERATION : shall be a pure function with exactly two arguments.', &
+'     OPERATION should implement a mathematically associative operation.  It', &
+'     need not be commutative.', &
+'', &
+'     The function result shall be a nonpolymorphic scalar and have the same', &
+'     type and type parameters as ARRAY.', &
 '', &
 '   NOTE', &
 '  If OPERATION is not computationally associative, REDUCE without', &
@@ -23834,17 +24945,21 @@ textblock=[character(len=256) :: &
 '  o  DIM : An integer scalar with a value in the range 1<= DIM <= n, where n', &
 '     is the rank of ARRAY.', &
 '', &
-'     o MASK : (optional) shall be of type logical and shall be conformable', &
-'       with ARRAY.', &
+'     If DIM is present, it indicates the one dimension along which to perform', &
+'     the reduction, and the resultant array has a rank reduced by one relative', &
+'     to the input array.', &
 '', &
-'       When present only those elements of ARRAY are passed to OPERATION for', &
-'       which the corresponding elements of MASK are true, as if ARRAY was', &
-'       filtered with PACK(3).', &
+'  o  MASK : (optional) shall be of type logical and shall be conformable with', &
+'     ARRAY.', &
 '', &
-'     o IDENTITY : shall be scalar with the same type and type parameters as', &
-'       ARRAY. If the initial sequence is empty, the result has the value', &
-'       IDENTIFY if IDENTIFY is present, and otherwise, error termination is', &
-'       initiated.', &
+'     When present only those elements of ARRAY are passed to OPERATION for', &
+'     which the corresponding elements of MASK are true, as if ARRAY was', &
+'     filtered with PACK(3).', &
+'', &
+'  o  IDENTITY : shall be scalar with the same type and type parameters as', &
+'     ARRAY. If the initial sequence is empty, the result has the value', &
+'     IDENTIFY if IDENTIFY is present, and otherwise, error termination is', &
+'     initiated.', &
 '', &
 '     o ORDERED : shall be a logical scalar. If ORDERED is present with the', &
 '       value .true., the calls to the OPERATOR function begins with the first', &
@@ -23855,8 +24970,9 @@ textblock=[character(len=256) :: &
 '       optimal way.', &
 '', &
 'RESULT', &
-'  The result is of the same type and type parameters as ARRAY. It is scalar if', &
-'  DIM does not appear.', &
+'  The result is of the same type and type parameters as ARRAY.', &
+'', &
+'  It is scalar if DIM does not appear.', &
 '', &
 '  If DIM is present, it indicates the one dimension along which to perform the', &
 '  reduction, and the resultant array has a rank reduced by one relative to the', &
@@ -23939,13 +25055,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                reduce(3fortran)', &
+'                              December 23, 2025              reduce(3fortran)', &
 '']
 
 shortname="reduce"
 call process()
 
-case('197','repeat')
+case('198','repeat')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24014,13 +25130,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                repeat(3fortran)', &
+'                              December 23, 2025              repeat(3fortran)', &
 '']
 
 shortname="repeat"
 call process()
 
-case('198','reshape')
+case('199','reshape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24227,13 +25343,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025               reshape(3fortran)', &
+'                              December 23, 2025             reshape(3fortran)', &
 '']
 
 shortname="reshape"
 call process()
 
-case('199','return')
+case('200','return')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24351,13 +25467,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran statement descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                return(7fortran)', &
+'                              December 23, 2025              return(7fortran)', &
 '']
 
 shortname="return"
 call process()
 
-case('200','rewind')
+case('201','rewind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24447,13 +25563,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran statement descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                rewind(7fortran)', &
+'                              December 23, 2025              rewind(7fortran)', &
 '']
 
 shortname="rewind"
 call process()
 
-case('201','rrspacing')
+case('202','rrspacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24536,13 +25652,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025             rrspacing(3fortran)', &
+'                              December 23, 2025           rrspacing(3fortran)', &
 '']
 
 shortname="rrspacing"
 call process()
 
-case('202','same_type_as')
+case('203','same_type_as')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24670,13 +25786,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025          same_type_as(3fortran)', &
+'                              December 23, 2025        same_type_as(3fortran)', &
 '']
 
 shortname="same_type_as"
 call process()
 
-case('203','scale')
+case('204','scale')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24771,13 +25887,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 scale(3fortran)', &
+'                              December 23, 2025               scale(3fortran)', &
 '']
 
 shortname="scale"
 call process()
 
-case('204','scan')
+case('205','scan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -24869,13 +25985,45 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  scan(3fortran)', &
+'                              December 23, 2025                scan(3fortran)', &
 '']
 
 shortname="scan"
 call process()
 
-case('205','select_case')
+case('206','select')
+
+textblock=[character(len=256) :: &
+'', &
+'select(7fortran)                                             select(7fortran)', &
+'', &
+'NAME', &
+'  select(7f) - [EXECUTION CONTROL] select a block based on a value, type, or', &
+'  rank', &
+'', &
+'SYNOPSIS', &
+'  See SELECT_CASE, SELECT_RANK, or SELECT_TYPE', &
+'', &
+'DESCRIPTION', &
+'  A SELECT CASE may be used to select and execute a block of statements based', &
+'  on a value somewhat like a special case of IF/ELSEIF/ELSE/ENDIF.', &
+'', &
+'  A SELECT RANK selects code to execute conditionally based on the RANK of a', &
+'  array in a polymorphic procedure.', &
+'', &
+'  Similarly a A SELECT TYPE selects code to execute conditionally based on the', &
+'  TYPE of a value passed to a procedure.', &
+'', &
+'  For further details see the specific documentation in the topics', &
+'  SELECT_CASE, SELECT_RANK, and SELECT_TYPE.', &
+'', &
+'                              December 23, 2025              select(7fortran)', &
+'']
+
+shortname="select"
+call process()
+
+case('207','select_case')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25031,13 +26179,13 @@ textblock=[character(len=256) :: &
 '              call other()', &
 '        end select', &
 '', &
-'                               March 16, 2025           select_case(7fortran)', &
+'                              December 23, 2025         select_case(7fortran)', &
 '']
 
 shortname="select_case"
 call process()
 
-case('206','selected_char_kind')
+case('208','selected_char_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25098,12 +26246,11 @@ textblock=[character(len=256) :: &
 'EXAMPLES', &
 '  Sample program:', &
 '', &
-'      Linux', &
 '      program demo_selected_char_kind', &
-'      use iso_fortran_env', &
+'      use iso_fortran_env, only: output_unit, CHARACTER_KINDS', &
 '      implicit none', &
 '', &
-'      intrinsic date_and_time,selected_char_kind', &
+'      intrinsic date_and_time, selected_char_kind', &
 '', &
 '      ! set some aliases for common character kinds', &
 '      ! as the numbers can vary from platform to platform', &
@@ -25118,6 +26265,8 @@ textblock=[character(len=256) :: &
 '      character(len=26, kind=ascii ) :: alphabet', &
 '      character(len=30, kind=ucs4  ) :: hello_world', &
 '      character(len=30, kind=ucs4  ) :: string', &
+'', &
+'        write(*,''(*(g0,1x))'')''Available CHARACTER kind values:'',CHARACTER_KINDS', &
 '', &
 '        write(*,*)''ASCII     '',&', &
 '         & merge(''Supported   '',''Not Supported'',ascii /= -1)', &
@@ -25173,13 +26322,14 @@ textblock=[character(len=256) :: &
 '', &
 '  The results are very processor-dependent', &
 '', &
+'       > Available CHARACTER kind values: 1 4', &
 '       >  ASCII     Supported', &
 '       >  ISO_10646 Supported', &
 '       >  UTF-8     Not Supported', &
 '       >  ASCII is the default on this processor', &
 '       >  abcdefghijklmnopqrstuvwxyz', &
 '       >  Hello World and Ni Hao --', &
-'       >  20221015', &
+'       >  2025814', &
 '', &
 'STANDARD', &
 '  Fortran 2003', &
@@ -25191,13 +26341,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025    selected_char_kind(3fortran)', &
+'                              December 23, 2025  selected_char_kind(3fortran)', &
 '']
 
 shortname="selected_char_kind"
 call process()
 
-case('207','selected_int_kind')
+case('209','selected_int_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25244,21 +26394,58 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_selected_int_kind', &
+'      use iso_fortran_env, only: output_unit, INTEGER_KINDS', &
+'      use,intrinsic :: iso_fortran_env, only : compiler_version', &
 '      implicit none', &
+'      character(len=*),parameter :: all=''(*(g0))''', &
 '      integer,parameter :: k5 = selected_int_kind(5)', &
 '      integer,parameter :: k15 = selected_int_kind(15)', &
+'      integer          :: i, ii', &
 '      integer(kind=k5) :: i5', &
 '      integer(kind=k15) :: i15', &
+'        ! write a program that can print attributes about each available kind', &
+'        print all,''program kinds''', &
+'        print all, &', &
+'           ''! This file was written by '', compiler_version()', &
+'        do i=1,size(INTEGER_KINDS)', &
+'           ii=integer_kinds(i)', &
+'           print all,''integer,parameter :: i'',ii,''='',ii', &
+'        enddo', &
+'        do i=1,size(INTEGER_KINDS)', &
+'           ii=integer_kinds(i)', &
+'           print all, &', &
+'           ''write(*,*)"huge(0_i'', &', &
+'           ii, &', &
+'           '')=",huge(0_i'', &', &
+'           ii, &', &
+'           '')''', &
+'        enddo', &
+'        print all,''end program kinds''', &
 '', &
-'         print *, huge(i5), huge(i15)', &
+'        print *', &
+'        print *, huge(i5), huge(i15)', &
+'        ! the following inequalities are always true', &
+'        print *, huge(i5) >= 10_k5**5-1', &
+'        print *, huge(i15) >= 10_k15**15-1', &
 '', &
-'         ! the following inequalities are always true', &
-'         print *, huge(i5) >= 10_k5**5-1', &
-'         print *, huge(i15) >= 10_k15**15-1', &
 '      end program demo_selected_int_kind', &
 '', &
 '  Results:', &
 '', &
+'       > program kinds', &
+'       > ! This file was written by GCC version 13.1.0', &
+'       > integer,parameter :: i1=1', &
+'       > integer,parameter :: i2=2', &
+'       > integer,parameter :: i4=4', &
+'       > integer,parameter :: i8=8', &
+'       > integer,parameter :: i16=16', &
+'       > write(*,*)"huge(0_i1)=",huge(0_i1)', &
+'       > write(*,*)"huge(0_i2)=",huge(0_i2)', &
+'       > write(*,*)"huge(0_i4)=",huge(0_i4)', &
+'       > write(*,*)"huge(0_i8)=",huge(0_i8)', &
+'       > write(*,*)"huge(0_i16)=",huge(0_i16)', &
+'       > end program kinds', &
+'       >', &
 '       >   2147483647  9223372036854775807', &
 '       >  T', &
 '       >  T', &
@@ -25271,13 +26458,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025     selected_int_kind(3fortran)', &
+'                              December 23, 2025   selected_int_kind(3fortran)', &
 '']
 
 shortname="selected_int_kind"
 call process()
 
-case('208','selected_real_kind')
+case('210','selected_real_kind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25363,6 +26550,7 @@ textblock=[character(len=256) :: &
 '  Sample program:', &
 '', &
 '      program demo_selected_real_kind', &
+'      use, intrinsic :: iso_fortran_env', &
 '      implicit none', &
 '      integer,parameter :: p6 = selected_real_kind(6)', &
 '      integer,parameter :: p10r100 = selected_real_kind(10,100)', &
@@ -25370,6 +26558,11 @@ textblock=[character(len=256) :: &
 '      real(kind=p6) :: x', &
 '      real(kind=p10r100) :: y', &
 '      real(kind=r400) :: z', &
+'', &
+'        write(*,*) ''real_kinds    ='', real_kinds(:)', &
+'        write(*,*) ''real constants='', real16, real32, real64, real128 !, bfloat16', &
+'        write(*,*) ''integer_kinds='', integer_kinds(:)', &
+'        write(*,*) ''int constants='', int8, int16, int32, int64  !, int128', &
 '', &
 '        print *, precision(x), range(x)', &
 '        print *, precision(y), range(y)', &
@@ -25390,13 +26583,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025    selected_real_kind(3fortran)', &
+'                              December 23, 2025  selected_real_kind(3fortran)', &
 '']
 
 shortname="selected_real_kind"
 call process()
 
-case('209','set_exponent')
+case('211','set_exponent')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25466,13 +26659,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025          set_exponent(3fortran)', &
+'                              December 23, 2025        set_exponent(3fortran)', &
 '']
 
 shortname="set_exponent"
 call process()
 
-case('210','shape')
+case('212','shape')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25576,13 +26769,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 shape(3fortran)', &
+'                              December 23, 2025               shape(3fortran)', &
 '']
 
 shortname="shape"
 call process()
 
-case('211','shifta')
+case('213','shifta')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25702,13 +26895,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                shifta(3fortran)', &
+'                              December 23, 2025              shifta(3fortran)', &
 '']
 
 shortname="shifta"
 call process()
 
-case('212','shiftl')
+case('214','shiftl')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25831,13 +27024,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                shiftl(3fortran)', &
+'                              December 23, 2025              shiftl(3fortran)', &
 '']
 
 shortname="shiftl"
 call process()
 
-case('213','shiftr')
+case('215','shiftr')
 
 textblock=[character(len=256) :: &
 '', &
@@ -25962,13 +27155,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                shiftr(3fortran)', &
+'                              December 23, 2025              shiftr(3fortran)', &
 '']
 
 shortname="shiftr"
 call process()
 
-case('214','sign')
+case('216','sign')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26055,13 +27248,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  sign(3fortran)', &
+'                              December 23, 2025                sign(3fortran)', &
 '']
 
 shortname="sign"
 call process()
 
-case('215','sin')
+case('217','sin')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26085,11 +27278,24 @@ textblock=[character(len=256) :: &
 '  o  The returned value will be of the same type and kind as the argument X.', &
 '', &
 'DESCRIPTION', &
-'  SIN(3) computes the sine of an angle given the size of the angle in radians.', &
+'  SIN(X) computes the sine of X, where X is an angle in radians. The result is', &
+'  a scalar or array of the same type and kind as X. For real inputs, the', &
+'  result is in the range [-1, 1]. For complex inputs, the sine is computed', &
+'  using the complex trigonometric definition. That is, for complex inputs,', &
+'', &
+'       SIN(X) = (EXP(i*X) - EXP(-i*X)) / (2*i)', &
 '', &
 '  The sine of an angle in a right-angled triangle is the ratio of the length', &
 '  of the side opposite the given angle divided by the length of the', &
 '  hypotenuse.', &
+'', &
+'  For real inputs, ensure X is in radians, not degrees. Use', &
+'', &
+'       RADIAN = DEGREE * 3.14159265359 / 180.0', &
+'', &
+'  for conversion.', &
+'', &
+'  where i is the imaginary unit. The result''s kind matches the input''s kind.', &
 '', &
 'OPTIONS', &
 '  o  X : The angle in radians to compute the sine of.', &
@@ -26189,13 +27395,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   sin(3fortran)', &
+'                              December 23, 2025                 sin(3fortran)', &
 '']
 
 shortname="sin"
 call process()
 
-case('216','sind')
+case('218','sind')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26320,13 +27526,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  sind(3fortran)', &
+'                              December 23, 2025                sind(3fortran)', &
 '']
 
 shortname="sind"
 call process()
 
-case('217','sinh')
+case('219','sinh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26417,13 +27623,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  sinh(3fortran)', &
+'                              December 23, 2025                sinh(3fortran)', &
 '']
 
 shortname="sinh"
 call process()
 
-case('218','sinpi')
+case('220','sinpi')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26522,13 +27728,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 sinpi(3fortran)', &
+'                              December 23, 2025               sinpi(3fortran)', &
 '']
 
 shortname="sinpi"
 call process()
 
-case('219','size')
+case('221','size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26693,13 +27899,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  size(3fortran)', &
+'                              December 23, 2025                size(3fortran)', &
 '']
 
 shortname="size"
 call process()
 
-case('220','spacing')
+case('222','spacing')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26772,13 +27978,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025               spacing(3fortran)', &
+'                              December 23, 2025             spacing(3fortran)', &
 '']
 
 shortname="spacing"
 call process()
 
-case('221','split')
+case('223','split')
 
 textblock=[character(len=256) :: &
 '', &
@@ -26908,13 +28114,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 split(3fortran)', &
+'                              December 23, 2025               split(3fortran)', &
 '']
 
 shortname="split"
 call process()
 
-case('222','spread')
+case('224','spread')
 
 textblock=[character(len=256) :: &
 '', &
@@ -27089,13 +28295,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                spread(3fortran)', &
+'                              December 23, 2025              spread(3fortran)', &
 '']
 
 shortname="spread"
 call process()
 
-case('223','sqrt')
+case('225','sqrt')
 
 textblock=[character(len=256) :: &
 '', &
@@ -27193,13 +28399,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  sqrt(3fortran)', &
+'                              December 23, 2025                sqrt(3fortran)', &
 '']
 
 shortname="sqrt"
 call process()
 
-case('224','stop')
+case('226','stop')
 
 textblock=[character(len=256) :: &
 '', &
@@ -27311,13 +28517,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran statement descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  stop(7fortran)', &
+'                              December 23, 2025                stop(7fortran)', &
 '']
 
 shortname="stop"
 call process()
 
-case('225','storage_size')
+case('227','storage_size')
 
 textblock=[character(len=256) :: &
 '', &
@@ -27414,20 +28620,21 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025          storage_size(3fortran)', &
+'                              December 23, 2025        storage_size(3fortran)', &
 '']
 
 shortname="storage_size"
 call process()
 
-case('226','sum')
+case('228','sum')
 
 textblock=[character(len=256) :: &
 '', &
 'sum(3fortran)                                                   sum(3fortran)', &
 '', &
 'NAME', &
-'  SUM(3) - [ARRAY:REDUCTION] Sum the elements of an array', &
+'  SUM(3) - [ARRAY:REDUCTION] Sum all elements of an array, optionally along a', &
+'  dimension or with a mask', &
 '', &
 'SYNOPSIS', &
 '  result = sum(array [,dim[,mask]] | [mask] )', &
@@ -27451,7 +28658,10 @@ textblock=[character(len=256) :: &
 '     not present or ARRAY is a vector, else it is an array.', &
 '', &
 'DESCRIPTION', &
-'  SUM(3) adds the elements of ARRAY.', &
+'  SUM(ARRAY, DIM, MASK) computes the sum of all elements in ARRAY, optionally', &
+'  along a specified dimension DIM or for elements where MASK is .TRUE.. The', &
+'  result is a scalar (if DIM is absent) or an array of rank reduced by one (if', &
+'  DIM is present).', &
 '', &
 '  When only ARRAY is specified all elements are summed, but groups of sums may', &
 '  be returned along the dimension specified by DIM and/or elements to add may', &
@@ -27633,13 +28843,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   sum(3fortran)', &
+'                              December 23, 2025                 sum(3fortran)', &
 '']
 
 shortname="sum"
 call process()
 
-case('227','system_clock')
+case('229','system_clock')
 
 textblock=[character(len=256) :: &
 '', &
@@ -27789,13 +28999,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025          system_clock(3fortran)', &
+'                              December 23, 2025        system_clock(3fortran)', &
 '']
 
 shortname="system_clock"
 call process()
 
-case('228','tan')
+case('230','tan')
 
 textblock=[character(len=256) :: &
 '', &
@@ -27849,13 +29059,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   tan(3fortran)', &
+'                              December 23, 2025                 tan(3fortran)', &
 '']
 
 shortname="tan"
 call process()
 
-case('229','tand')
+case('231','tand')
 
 textblock=[character(len=256) :: &
 '', &
@@ -27910,13 +29120,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  tand(3fortran)', &
+'                              December 23, 2025                tand(3fortran)', &
 '']
 
 shortname="tand"
 call process()
 
-case('230','tanh')
+case('232','tanh')
 
 textblock=[character(len=256) :: &
 '', &
@@ -27979,13 +29189,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025                  tanh(3fortran)', &
+'                              December 23, 2025                tanh(3fortran)', &
 '']
 
 shortname="tanh"
 call process()
 
-case('231','tanpi')
+case('233','tanpi')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28056,13 +29266,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                 tanpi(3fortran)', &
+'                              December 23, 2025               tanpi(3fortran)', &
 '']
 
 shortname="tanpi"
 call process()
 
-case('232','this_image')
+case('234','this_image')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28140,13 +29350,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025            this_image(3fortran)', &
+'                              December 23, 2025          this_image(3fortran)', &
 '']
 
 shortname="this_image"
 call process()
 
-case('233','tiny')
+case('235','tiny')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28206,13 +29416,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  tiny(3fortran)', &
+'                              December 23, 2025                tiny(3fortran)', &
 '']
 
 shortname="tiny"
 call process()
 
-case('234','tokenize')
+case('236','tokenize')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28271,7 +29481,7 @@ textblock=[character(len=256) :: &
 '     beginning position of the tokens and the other the end positions.', &
 '', &
 '  Since the token form pads all the tokens to the same length the original', &
-'  number of trailing spaces of each token accept for the longest is lost.', &
+'  number of trailing spaces of each token except for the longest is lost.', &
 '', &
 '  The array bounds form retains information regarding the exact token length', &
 '  even when padded by spaces.', &
@@ -28292,6 +29502,10 @@ textblock=[character(len=256) :: &
 '', &
 '     The tokens in STRING are assigned in the order found, as if by intrinsic', &
 '     assignment, to the elements of TOKENS, in array element order.', &
+'', &
+'  o  SEPARATOR : separator(i) is equal to the ith token delimiter in string.', &
+'     There is no element in separator that indicates beginning or end of', &
+'     string.', &
 '', &
 '  o  FIRST : shall be an allocatable array of type integer and rank one.  It', &
 '     is an INTENT(OUT) argument. It shall not be a coarray or a coindexed', &
@@ -28394,13 +29608,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025              tokenize(3fortran)', &
+'                              December 23, 2025            tokenize(3fortran)', &
 '']
 
 shortname="tokenize"
 call process()
 
-case('235','trailz')
+case('237','trailz')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28494,13 +29708,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                trailz(3fortran)', &
+'                              December 23, 2025              trailz(3fortran)', &
 '']
 
 shortname="trailz"
 call process()
 
-case('236','transfer')
+case('238','transfer')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28619,13 +29833,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions', &
 '', &
-'                               March 16, 2025              transfer(3fortran)', &
+'                              December 23, 2025            transfer(3fortran)', &
 '']
 
 shortname="transfer"
 call process()
 
-case('237','transpose')
+case('239','transpose')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28737,13 +29951,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025             transpose(3fortran)', &
+'                              December 23, 2025           transpose(3fortran)', &
 '']
 
 shortname="transpose"
 call process()
 
-case('238','trim')
+case('240','trim')
 
 textblock=[character(len=256) :: &
 '', &
@@ -28837,13 +30051,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                  trim(3fortran)', &
+'                              December 23, 2025                trim(3fortran)', &
 '']
 
 shortname="trim"
 call process()
 
-case('239','ubound')
+case('241','ubound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -29013,13 +30227,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                ubound(3fortran)', &
+'                              December 23, 2025              ubound(3fortran)', &
 '']
 
 shortname="ubound"
 call process()
 
-case('240','ucobound')
+case('242','ucobound')
 
 textblock=[character(len=256) :: &
 '', &
@@ -29057,13 +30271,13 @@ textblock=[character(len=256) :: &
 'SEE ALSO', &
 '  LCOBOUND(3), LBOUND(3), UBOUND(3)', &
 '', &
-'                               March 16, 2025              ucobound(3fortran)', &
+'                              December 23, 2025            ucobound(3fortran)', &
 '']
 
 shortname="ucobound"
 call process()
 
-case('241','unpack')
+case('243','unpack')
 
 textblock=[character(len=256) :: &
 '', &
@@ -29098,10 +30312,16 @@ textblock=[character(len=256) :: &
 '  any rank using .true. values from MASK in array element order to specify', &
 '  placement of the VECTOR values.', &
 '', &
-'  So a copy of FIELD is generated with select elements replaced with values', &
-'  from VECTOR. This allows for complex replacement patterns that would be', &
-'  difficult when using array syntax or multiple assignment statements,', &
-'  particularly when the replacements are conditional.', &
+'  The result is a copy of FIELD generated with select elements replaced with', &
+'  values from VECTOR.', &
+'', &
+'  That is, FIELD and MASK are of the same shape. A copy of FIELD is made', &
+'  except that where any element of MASK is .true. the corresponding element in', &
+'  FIELD is replaced with the next value in VECTOR.', &
+'', &
+'  This allows for complex replacement patterns that would be difficult when', &
+'  using array syntax or multiple assignment statements, particularly when the', &
+'  replacements are conditional.', &
 '', &
 'OPTIONS', &
 '  o  VECTOR : New values to place into specified locations in FIELD. It shall', &
@@ -29110,71 +30330,64 @@ textblock=[character(len=256) :: &
 '  o  MASK : Shall be an array that specifies which values in FIELD are to be', &
 '     replaced with values from VECTOR.', &
 '', &
-'  o  FIELD : The input array to be altered.', &
+'  o  FIELD : The input array to be altered, or a scalar.', &
 '', &
 'RESULT', &
 '  The element of the result that corresponds to the ith true element of MASK,', &
-'  in array element order, has the value VECTOR(I) for i = 1, 2, . .  ., t,', &
-'  where t is the number of true values in MASK. Each other element has a value', &
-'  equal to FIELD if FIELD is scalar or to the corresponding element of FIELD', &
-'  if it is an array.', &
+'  in array element order, has the value VECTOR(I) for i = 1, 2, .., N, where N', &
+'  is the number of true values in MASK. Each other element has a value equal', &
+'  to FIELD if FIELD is scalar or to the corresponding element of FIELD if it', &
+'  is an array.', &
 '', &
 '  The resulting array corresponds to FIELD with .true. elements of MASK', &
 '  replaced by values from VECTOR in array element order.', &
 '', &
 'EXAMPLES', &
-'  Particular values may be "scattered" to particular positions in an array by', &
-'  using', &
-'', &
-'    1 0 0', &
-'', &
-'  If M is the array', &
-'    0 1 0 0 0 1', &
-'', &
-'    V is the array [1, 2, 3], . T .', &
-'', &
-'    and Q is the logical mask', &
-'      T . .  . . T where "T" represents true and "." represents false, then', &
-'      the result of', &
-'', &
-'    UNPACK (V, MASK = Q, FIELD = M) has the value', &
-'', &
-'      1 2 0 1 1 0 0 0 3', &
-'', &
-'    and the result of UNPACK (V, MASK = Q, FIELD = 0) has the value', &
-'', &
-'      0 2 0 1 0 0 0 0 3', &
-'', &
 '  Sample program:', &
 '', &
 '      program demo_unpack', &
 '      implicit none', &
 '      logical,parameter :: T=.true., F=.false.', &
+'      integer,parameter :: rows=3, cols=3', &
+'      integer          :: i', &
+'      logical          :: mask(rows,cols) = reshape([ &', &
+'        T, F, F, &', &
+'        F, T, F, &', &
+'        F, F, T  &', &
+'      ],[3,3])', &
+'      integer :: field(rows,cols) = reshape([ &', &
+'        1, 2, 3, &', &
+'        4, 5, 6, &', &
+'        7, 8, 9  &', &
+'      ],[3,3])', &
+'      integer :: result(rows,cols)', &
 '', &
-'      integer :: vector(2)  = [1,1]', &
+'       ! mask and field must conform or field must be a scalar', &
+'        write(*,*) ''if the logical mask is''', &
+'        do i=1,size(mask,dim=1)', &
+'           write(*,*)mask(i,:)', &
+'        enddo', &
+'        write(*,*) ''and field is a scalar (in this case, 0)''', &
+'        write(*,*) ''the result is the shape of the mask''', &
+'        write(*,*) ''with all values set to the scalar value''', &
+'        write(*,*) ''except the true elements of the mask are''', &
+'        write(*,*) ''filled in row-column order with values''', &
+'        write(*,*) ''from the vector of values [11,22,33]''', &
+'        result = unpack( [11,22,33], mask, field=0 )', &
+'        call print_matrix_int(''result='', result)', &
 '', &
-'      ! mask and field must conform', &
-'      integer,parameter :: r=2, c=2', &
-'      logical :: mask(r,c)  = reshape([ T,F,F,T ],[2,2])', &
-'      integer :: field(r,c) = 0, unity(2,2)', &
-'', &
-'        ! basic usage', &
-'        unity = unpack( vector, mask, field )', &
-'        call print_matrix_int(''unity='', unity)', &
-'', &
-'        ! if FIELD is a scalar it is used to fill all the elements', &
-'        ! not assigned to by the vector and mask.', &
-'        call print_matrix_int(''scalar field'',               &', &
-'        & unpack(                                     &', &
-'        & vector=[ 1, 2, 3, 4 ],                      &', &
-'        & mask=reshape([ T,F,T,F,F,F,T,F,T ], [3,3]), &', &
-'        & field=0) )', &
+'        write(*,*) ''if field is an array it must conform''', &
+'        write(*,*) ''to the shape of the mask''', &
+'        call print_matrix_int(''field='',field)', &
+'        write(*,*) ''and the combination results in''', &
+'        result = unpack( [11,22,33], mask, field )', &
+'        call print_matrix_int(''result='', result)', &
 '', &
 '      contains', &
 '', &
 '      subroutine print_matrix_int(title,arr)', &
-'      ! convenience routine:', &
-'      ! just prints small integer arrays in row-column format', &
+'      ! @(#) convenience routine:', &
+'      !      prints small integer arrays in row-column format', &
 '      implicit none', &
 '      character(len=*),intent(in)  :: title', &
 '      integer,intent(in)          :: arr(:,:)', &
@@ -29199,13 +30412,31 @@ textblock=[character(len=256) :: &
 '', &
 '  Results:', &
 '', &
-'        > unity=', &
-'        >  [ 1, 0 ]', &
-'        >  [ 0, 1 ]', &
-'        > scalar field', &
-'        >  [  1,  0,  3 ]', &
-'        >  [  0,  0,  0 ]', &
-'        >  [  2,  0,  4 ]', &
+'       >  if the logical mask is', &
+'       >  T F F', &
+'       >  F T F', &
+'       >  F F T', &
+'       >  and field is a scalar (in this case, 0)', &
+'       >  the result is the shape of the mask', &
+'       >  with all values set to the scalar value', &
+'       >  except the true elements of the mask are', &
+'       >  filled in row-column order with values', &
+'       >  from the vector of values [11,22,33]', &
+'       >  result=', &
+'       >   [  11,   0,  0 ]', &
+'       >   [   0,  22,  0 ]', &
+'       >   [   0,   0, 33 ]', &
+'       >  if field is an array it must conform', &
+'       >  to the shape of the mask', &
+'       >  field=', &
+'       >   [  1,  4,  7 ]', &
+'       >   [  2,  5,  8 ]', &
+'       >   [  3,  6,  9 ]', &
+'       >  and the combination results in', &
+'       >  result=', &
+'       >   [  11,   4,  7 ]', &
+'       >   [   2,  22,  8 ]', &
+'       >   [   3,   6, 33 ]', &
 '', &
 'STANDARD', &
 '  Fortran 95', &
@@ -29215,13 +30446,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                unpack(3fortran)', &
+'                              December 23, 2025              unpack(3fortran)', &
 '']
 
 shortname="unpack"
 call process()
 
-case('242','use')
+case('244','use')
 
 textblock=[character(len=256) :: &
 '', &
@@ -29324,12 +30555,12 @@ textblock=[character(len=256) :: &
 '  only-list.', &
 '', &
 '  There is no prohibition against a use-name or use-defined-operator appearing', &
-'  multiple times in one USE state- ment or in multiple USE statements', &
-'  involving the same module. As a result, it is possible for one use-', &
-'  associated entity to be accessible by more than one local identifier.', &
+'  multiple times in one USE statement or in multiple USE statements involving', &
+'  the same module. As a result, it is possible for one use-associated entity', &
+'  to be accessible by more than one local identifier.', &
 '', &
 '  An entity in a scoping unit that is accessed by use association through more', &
-'  than one use path, has the ASYN- CHRONOUS or VOLATILE attribute in any of', &
+'  than one use path, has the ASYNCHRONOUS or VOLATILE attribute in any of', &
 '  those use paths, and is not given that attribute in that scoping unit, shall', &
 '  have that attribute in all use paths.', &
 '', &
@@ -29472,13 +30703,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                   use(7fortran)', &
+'                              December 23, 2025                 use(7fortran)', &
 '']
 
 shortname="use"
 call process()
 
-case('243','verify')
+case('245','verify')
 
 textblock=[character(len=256) :: &
 '', &
@@ -29529,7 +30760,7 @@ textblock=[character(len=256) :: &
 '', &
 '  o  BACK : The direction to look for an unmatched character. The left-most', &
 '     unmatched character position is returned unless BACK is present and', &
-'     .false., which causes the position of the right-most unmatched character', &
+'     .true., which causes the position of the right-most unmatched character', &
 '     to be returned instead of the left-most unmatched character.', &
 '', &
 '  o  KIND : An integer initialization expression indicating the kind parameter', &
@@ -29541,8 +30772,8 @@ textblock=[character(len=256) :: &
 '  If STRING is of zero length a zero (0) is always returned.', &
 '', &
 '  Otherwise, if an unmatched character is found The position of the first or', &
-'  last (if BACK is .false.) unmatched character in STRING is returned,', &
-'  starting with position one on the left end of the string.', &
+'  last (if BACK is .true.) unmatched character in STRING is returned, starting', &
+'  with position one on the left end of the string.', &
 '', &
 'EXAMPLES', &
 '  Sample program I:', &
@@ -29815,8 +31046,8 @@ textblock=[character(len=256) :: &
 '        write(*,*)''last non-letter'',verify(strings,upp//low//blank,back=.true.)', &
 '', &
 '        ! even BACK can be an array', &
-'        ! find last non-uppercase character in "Howdy "', &
-'        ! and first non-lowercase in "there "', &
+'        ! find last non-uppercase character in "Go    "', &
+'        ! and first non-lowercase in "right "', &
 '        write(*,*) verify(strings(1:2),[upp,low],back=[.true.,.false.])', &
 '', &
 '        ! using a null string for a set is not well defined. Avoid it', &
@@ -29834,7 +31065,7 @@ textblock=[character(len=256) :: &
 '  Results:', &
 '', &
 '         > last non-letter 0 0 5', &
-'         > 6 6', &
+'         > 2 6', &
 '         > null 9', &
 '         > blank 8', &
 '         > 1 2 1', &
@@ -29852,13 +31083,13 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
-'                               March 16, 2025                verify(3fortran)', &
+'                              December 23, 2025              verify(3fortran)', &
 '']
 
 shortname="verify"
 call process()
 
-case('244','wait')
+case('246','wait')
 
 textblock=[character(len=256) :: &
 '', &
@@ -29928,13 +31159,13 @@ textblock=[character(len=256) :: &
 '  BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),', &
 '  READ(7), REWIND(7), WAIT(7), WRITE(7)', &
 '', &
-'                               March 16, 2025                  wait(7fortran)', &
+'                              December 23, 2025                wait(7fortran)', &
 '']
 
 shortname="wait"
 call process()
 
-case('245','where')
+case('247','where')
 
 textblock=[character(len=256) :: &
 '', &
@@ -29951,7 +31182,7 @@ textblock=[character(len=256) :: &
 '  WHERE construct without ELSEWHERE:', &
 '', &
 '          [where-construct-name:] WHERE ( mask-expr )', &
-'          ELSEWHERE (mask-expr ) [where-construct-name]', &
+'          ENDWHERE (mask-expr ) [where-construct-name]', &
 '', &
 '  WHERE construct with ELSEWHEREs:', &
 '', &
@@ -29964,7 +31195,7 @@ textblock=[character(len=256) :: &
 '          [ELSEWHERE', &
 '             elemental-statements', &
 '          ]', &
-'          END WHERE [where-construct-name]', &
+'          ENDWHERE [where-construct-name]', &
 '', &
 'DESCRIPTION', &
 '  A masked array assignment is either a WHERE statement or a WHERE construct.', &
@@ -30040,7 +31271,7 @@ textblock=[character(len=256) :: &
 '                 . . .', &
 '                 elsewhere                ! Statement 3', &
 '                 . . .', &
-'                 end where', &
+'                 endwhere', &
 '', &
 '  Following execution of statement 1, the control mask has the value cond1 and', &
 '  the pending control mask has the value .NOT. cond1. Following execution of', &
@@ -30094,13 +31325,13 @@ textblock=[character(len=256) :: &
 '            A = LOG (A)           ! LOG is invoked only for positive elements.', &
 '            A = A / SUM (LOG (A)) ! LOG is invoked for all elements', &
 '                                  ! because SUM is transformational.', &
-'         end where', &
+'         endwhere', &
 '', &
 'EXAMPLE', &
 '  Sample', &
 '', &
 '        program demo_where', &
-'        !  Example of WHERE, ELSE WHERE, END WHERE', &
+'        !  Example of WHERE, ELSEWHERE, ENDWHERE', &
 '        integer,parameter :: nd=10, ndh=nd/2, nduh=nd-ndh-1', &
 '        integer :: j', &
 '        real, dimension(nd):: a=[ (2*j,j=1,nd) ]', &
@@ -30120,10 +31351,10 @@ textblock=[character(len=256) :: &
 '        where (b(1:nd).ne.0.0)', &
 '           c=a/b', &
 '           iflag=0', &
-'        else where', &
+'        elsewhere', &
 '           c=0.0', &
 '           iflag=1', &
-'        end where', &
+'        endwhere', &
 '', &
 '        write (*,2000) c(1:nd)', &
 '        write (*,1000) iflag(1:nd)', &
@@ -30140,13 +31371,13 @@ textblock=[character(len=256) :: &
 '       > iflag=', &
 '       >       0      0      0     0      0      1      0      0      0      0', &
 '', &
-'                               March 16, 2025                 where(7fortran)', &
+'                              December 23, 2025               where(7fortran)', &
 '']
 
 shortname="where"
 call process()
 
-case('246','write')
+case('248','write')
 
 textblock=[character(len=256) :: &
 '', &
@@ -30160,7 +31391,7 @@ textblock=[character(len=256) :: &
 '  BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),', &
 '  READ(7), REWIND(7), WAIT(7), WRITE(7)', &
 '', &
-'                               March 16, 2025                 write(7fortran)', &
+'                              December 23, 2025               write(7fortran)', &
 '']
 
 shortname="write"
@@ -30255,7 +31486,6 @@ end module M_intrinsics
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
 
-
 !>>>>> ././src/M_vendor.F90
 module M_vendor
 private
@@ -30304,7 +31534,6 @@ contains
 end module M_vendor
 
 !>>>>> ./././/../GLINKS/M_CLI2/src/M_CLI2.F90
-
 !VERSION 1.0 2020-01-15
 !VERSION 2.0 2020-08-02
 !VERSION 3.0 2020-10-21  LONG:SHORT syntax
@@ -30447,7 +31676,7 @@ end module M_vendor
 !!      ! variables are fixed-length or pre-allocated.
 !!      !
 !!      ! After SET_ARGS(3f) has parsed the command line
-!!      ! GET_ARGS(3f) retrieves the value of keywords accept for
+!!      ! GET_ARGS(3f) retrieves the value of keywords except for
 !!      ! two special cases. For fixed-length CHARACTER variables
 !!      ! see GET_ARGS_FIXED_LENGTH(3f). For fixed-size arrays see
 !!      ! GET_ARGS_FIXED_SIZE(3f).
@@ -30522,6 +31751,9 @@ integer,parameter,private :: dp=kind(0.0d0)
 integer,parameter,private :: sp=kind(0.0)
 
 character(len=*),parameter          :: gen='(*(g0))'
+character(len=1),parameter          :: slash=achar(47)  ! ichar("/")
+character(len=1),parameter          :: bslash=achar(92) ! ichar("\") ! some compilers default to \ being like C escape character
+
 character(len=:),allocatable,public :: unnamed(:)
 character(len=:),allocatable,public :: args(:)
 character(len=:),allocatable,public :: remaining
@@ -31044,10 +32276,6 @@ end subroutine check_commandline
 !!  is alphanumeric (using names like "a-b" or other non-alphanumeric
 !!  characters also prevents the "@" from being treated specially).
 !!
-!!   LEADING UNDERSCORE IS EQUIVALENT TO AT
-!!  Therefore, a leading underscore on a word is converted to an at ("@")
-!!  when response file mode is enabled. It will be converted to an "@"
-!!  before processing continues.
 !!
 !!   TRAILING AT IS EQUIVALENT TO LEADING AT
 !!  Alternatively To accommodate special handling of leading "@" characters
@@ -31343,7 +32571,7 @@ character(len=:),allocatable                      :: debug_mode
    call prototype_and_cmd_args_to_nlist(hold,string)
    if(allocated(G_RESPONSE_IGNORED))then
       if(G_DEBUG)write(*,gen)'<DEBUG>SET_ARGS:G_RESPONSE_IGNORED:',G_RESPONSE_IGNORED
-      if(size(unnamed) /= 0)write(*,*)'LOGIC ERROR'
+      !if(size(unnamed) /= 0)write(*,*)'LOGIC ERROR'
       call split(G_RESPONSE_IGNORED,unnamed)
    endif
 
@@ -31567,16 +32795,17 @@ end subroutine move_from_end
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
 function change_leading_underscore_to_prefix(string) result(newstring)
+! CAUSES FILENAMES STaRTING WITH _ TO bE TREATED AS REQUESTS FOR RESPONSE FILES. TURN IT OFF; maybe make optional
 character(len=*) :: string
 character(len=:),allocatable :: newstring
 ! @ is treated as a special character in powershell so allow the underscore to be a prefix
-   if(string.eq.'')then
+!x!   if(string.eq.'')then
+!x!      newstring=string
+!x!   elseif(string(1:1).eq.'_')then
+!x!      newstring=G_RESPONSE_PREFIX//string(2:)
+!x!   else
       newstring=string
-   elseif(string(1:1).eq.'_')then
-      newstring=G_RESPONSE_PREFIX//string(2:)
-   else
-      newstring=string
-   endif
+!x!   endif
 end function change_leading_underscore_to_prefix
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
@@ -31693,15 +32922,17 @@ end subroutine set_usage
 !!##LICENSE
 !!      Public Domain
 !===================================================================================================================================
-recursive subroutine prototype_to_dictionary(string)
+recursive subroutine prototype_to_dictionary(string,pass)
 
 ! ident_3="@(#) M_CLI2 prototype_to_dictionary(3f) parse user command and store tokens into dictionary"
 
 character(len=*),intent(in)   :: string  ! string is character input string of options and values
+integer,intent(in),optional   :: pass
 
 character(len=:),allocatable  :: dummy   ! working copy of string
 character(len=:),allocatable  :: value
 character(len=:),allocatable  :: keyword
+character(len=:),allocatable  :: oldvalue
 character(len=3)              :: delmt   ! flag if in a delimited string or not
 character(len=1)              :: currnt  ! current character being processed
 character(len=1)              :: prev    ! character to left of CURRNT
@@ -31715,6 +32946,14 @@ integer                       :: ifwd
 integer                       :: ibegin
 integer                       :: iend
 integer                       :: place
+integer                       :: pass_local
+integer                       :: longest
+
+   if(present(pass))then
+      pass_local=pass
+   else
+      pass_local=1
+   endif
 
    islen=len_trim(string)                               ! find number of characters in input string
    if(islen  ==  0)then                                 ! if input string is blank, even default variable will not be changed
@@ -31763,7 +33002,19 @@ integer                       :: place
             enddo TESTIT
             if(keyword /= ' ')then
                if(value=='[]')value=','
-               call update(keyword,value)            ! store name and its value
+               if(pass_local == 1 )then
+                  call update(keyword,value)            ! store name and its value
+               else
+                  oldvalue=get(keyword)
+                  select case(oldvalue)
+                  case('T','F')
+                     call update(keyword,'T')
+                     longest=max(len(unnamed),len_trim(value))
+                     unnamed=[character(len=longest) :: unnamed,value]
+                  case default
+                     call update(keyword,value)            ! store name and its value
+                  end select
+               endif
             elseif( G_remaining_option_allowed)then  ! meaning "--" has been encountered
                if(value=='[]')value=','
                call update('_args_',trim(value))
@@ -32148,17 +33399,17 @@ end subroutine update
 !!      Public Domain
 !===================================================================================================================================
 subroutine wipe_dictionary()
-   if(allocated(keywords))deallocate(keywords)
+   if(allocated(keywords))   deallocate(keywords)
+   if(allocated(values))     deallocate(values)
+   if(allocated(counts))     deallocate(counts)
+   if(allocated(shorts))     deallocate(shorts)
+   if(allocated(present_in)) deallocate(present_in)
+   if(allocated(mandatory))  deallocate(mandatory)
    allocate(character(len=0) :: keywords(0))
-   if(allocated(values))deallocate(values)
    allocate(character(len=0) :: values(0))
-   if(allocated(counts))deallocate(counts)
    allocate(counts(0))
-   if(allocated(shorts))deallocate(shorts)
    allocate(character(len=0) :: shorts(0))
-   if(allocated(present_in))deallocate(present_in)
    allocate(present_in(0))
-   if(allocated(mandatory))deallocate(mandatory)
    allocate(mandatory(0))
 end subroutine wipe_dictionary
 !===================================================================================================================================
@@ -32280,7 +33531,7 @@ integer                               :: iused
    G_remaining_on=.false.
    G_remaining=''
    if(prototype /= '')then
-      call prototype_to_dictionary(prototype)       ! build dictionary from prototype
+      call prototype_to_dictionary(prototype,1)       ! build dictionary from prototype
 
       ! if short keywords not used by user allow them for standard options
 
@@ -32313,7 +33564,7 @@ integer                               :: iused
 
    if(present(string))then                          ! instead of command line arguments use another prototype string
       if(G_DEBUG)write(*,gen)'<DEBUG>CMD_ARGS_TO_NLIST:CALL PROTOTYPE_TO_DICTIONARY:STRING=',STRING
-      call prototype_to_dictionary(string)          ! build dictionary from prototype
+      call prototype_to_dictionary(string,2)        ! build dictionary from prototype
    else
       if(G_DEBUG)write(*,gen)'<DEBUG>CMD_ARGS_TO_NLIST:CALL CMD_ARGS_TO_DICTIONARY:CHECK=',.true.
       call cmd_args_to_dictionary()
@@ -32344,7 +33595,7 @@ logical                      :: hold
       hold=G_append
       G_append=.false.
       if(G_DEBUG)write(*,gen)'<DEBUG>EXPAND_RESPONSE:CALL PROTOTYPE_TO_DICTIONARY:PROTOTYPE=',prototype
-      call prototype_to_dictionary(prototype)       ! build dictionary from prototype
+      call prototype_to_dictionary(prototype,1)       ! build dictionary from prototype
       G_append=hold
    endif
 
@@ -32416,7 +33667,7 @@ integer                      :: ios
    prototype=''
    ! look for NAME.rsp
    ! assume if have / or \ a full filename was supplied to support ifort(1)
-   if((index(rname,'/') /= 0.or.index(rname,'\') /= 0) .and. len(rname) > 1 )then
+   if((index(rname,slash) /= 0.or.index(rname,bslash) /= 0) .and. len(rname) > 1 )then
       filename=rname
       lun=fileopen(filename,message)
       if(lun /= -1)then
@@ -32653,8 +33904,8 @@ function join_path(a1,a2,a3,a4,a5) result(path)
    if (present(a5)) path = path // filesep // trim(a5)
    path=adjustl(path//'   ')
    ! clean up duplicate adjacent separators
-   path=path(1:2)//replace_str(path(3:),filesep//filesep,filesep) ! some systems allow filepath starting with // or \   path=trim(path)
-
+   path=path(1:2)//replace_str(path(3:),filesep//filesep,filesep) ! some systems allow filepath starting with // or \\
+   path=trim(path)
 end function join_path
 !===================================================================================================================================
 function get_name() result(name)
@@ -32698,7 +33949,7 @@ integer :: iend
       return_with_suffix = keep_suffix
    endif
 
-   call split(path,file_parts,delimiters='\/')
+   call split(path,file_parts,delimiters=bslash//slash)
    if(size(file_parts) > 0)then
       base = trim(file_parts(size(file_parts)))
    else
@@ -32753,7 +34004,7 @@ function separator() result(sep)
 ! use the pathname returned as arg0 to determine pathname separator
 integer                      :: ios
 integer                      :: i
-logical                      :: existing=.false.
+logical,save                 :: existing=.false.
 character(len=1)             :: sep
 !x!IFORT BUG:character(len=1),save        :: sep_cache=' '
 integer,save                 :: isep=-1
@@ -32775,7 +34026,7 @@ character(len=:),allocatable :: envnames(:)
     ! using POSIX filenames to do not rely on '\.'.
     inquire(file='/.',exist=existing,iostat=ios,name=name)
     if(existing.and.ios == 0)then
-        sep='/'
+        sep=slash
         exit FOUND
     endif
     ! check variables names common to many platforms that usually have a
@@ -32785,17 +34036,17 @@ character(len=:),allocatable :: envnames(:)
     ! POSIX filenames in the environment.
     envnames=[character(len=10) :: 'PATH', 'HOME']
     do i=1,size(envnames)
-       if(index(get_env(envnames(i)),'\') /= 0)then
-          sep='\'
+       if(index(get_env(envnames(i)),bslash) /= 0)then
+          sep=bslash
           exit FOUND
-       elseif(index(get_env(envnames(i)),'/') /= 0)then
-          sep='/'
+       elseif(index(get_env(envnames(i)),slash) /= 0)then
+          sep=slash
           exit FOUND
        endif
     enddo
 
     write(*,*)'<WARNING>unknown system directory path separator'
-    sep='\'
+    sep=bslash
     endblock FOUND
     !x!IFORT BUG:sep_cache=sep
     isep=ichar(sep)
@@ -34825,7 +36076,7 @@ character(len=20)                    :: local_mode
    case('double')
       quoted_str=double_quote//trim(replace_str(quoted_str,'"','""'))//double_quote
    case('escape')
-      quoted_str=double_quote//trim(replace_str(quoted_str,'"','\"'))//double_quote
+      quoted_str=double_quote//trim(replace_str(quoted_str,'"',bslash//'"'))//double_quote
    case default
       call journal('*quote* ERROR: unknown quote mode ',local_mode)
       quoted_str=str
@@ -34876,7 +36127,7 @@ end function quote
 !!       implicit none
 !!       character(len=128)           :: quoted_str
 !!       character(len=:),allocatable :: unquoted_str
-!!       character(len=1),parameter   :: esc='\'
+!!       character(len=1),parameter   :: esc=bslash
 !!       character(len=1024)          :: msg
 !!       integer                      :: ios
 !!       character(len=1024)          :: dummy
@@ -36198,9 +37449,7 @@ end module M_CLI2
 !===================================================================================================================================
 !===================================================================================================================================
 
-
 !>>>>> ./././/../GLINKS/M_match/src/M_match.f90
-
 !09/22/1980  15:38:34
 !04/19/2020  11:05:06
 !==================================================================================================================================!
@@ -37367,9 +38616,34 @@ end module M_match
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !==================================================================================================================================!
 
-
 !>>>>> ./././/../GLINKS/M_strings/src/M_strings.F90
+!-----------------------------------------------------------------------------------------------------------------------------------
+#define  __INTEL_COMP        1
+#define  __GFORTRAN_COMP     2
+#define  __NVIDIA_COMP       3
+#define  __NAG_COMP          4
+#define  __LLVM_FLANG_COMP   5
+#define  __UNKNOWN_COMP   9999
 
+#define FLOAT128
+
+#ifdef __INTEL_COMPILER
+#   define __COMPILER__ __INTEL_COMP
+#elif __GFORTRAN__ == 1
+#   define __COMPILER__ __GFORTRAN_COMP
+#elif __flang__
+#   undef FLOAT128
+#   warning  NOTE: REAL128 not supported
+#   define __COMPILER__ __LLVM_FLANG_COMP
+#elif __NVCOMPILER
+#   undef FLOAT128
+#   warning  NOTE: REAL128 not supported
+#   define __COMPILER__ __NVIDIA_COMP
+#else
+#   define __COMPILER__ __UNKNOWN_COMP
+#   warning  NOTE: UNKNOWN COMPILER
+#endif
+!-----------------------------------------------------------------------------------------------------------------------------------
 !>
 !!##NAME
 !!    M_strings(3f) - [M_strings::INTRO] Fortran string module
@@ -37831,10 +39105,10 @@ public listout            !  expand a list of numbers where  negative numbers de
 !
 public int, real, dble, nint
 
-interface int;     module procedure atoi;              end interface
-interface real;    module procedure real_s2v;          end interface
-interface dble;    module procedure dble_s2v;          end interface
-interface nint;    module procedure nint_s2v;          end interface
+interface int;   module procedure atoi;      end interface
+interface real;  module procedure real_s2v;  end interface
+interface dble;  module procedure dble_s2v;  end interface
+interface nint;  module procedure nint_s2v;  end interface
 
 interface aton
 module procedure ator_real32
@@ -38429,11 +39703,11 @@ end function glob
 !!##LICENSE
 !!    Public Domain
 pure function ends_with_str(string, ending,ignorecase) result(matched)
-character(*), intent(in)     :: string, ending
-logical,intent(in),optional  :: ignorecase
-integer                      :: n1, n2
-logical                      :: matched
-logical                      :: ignorecase_local
+character(*), intent(in)    :: string, ending
+logical,intent(in),optional :: ignorecase
+integer                     :: n1, n2
+logical                     :: matched
+logical                     :: ignorecase_local
    if(present(ignorecase))then
            ignorecase_local=ignorecase
    else
@@ -38579,13 +39853,13 @@ intrinsic index, min, present, len
 !  given a line of structure " par1 par2 par3 ... parn " store each par(n) into a separate variable in array.
 !    o by default adjacent delimiters in the input string do not create an empty string in the output array
 !    o no quoting of delimiters is supported
-character(len=*),intent(in)              :: input_line  ! input string to tokenize
-character(len=*),optional,intent(in)     :: delimiters  ! list of delimiter characters
-character(len=*),optional,intent(in)     :: nulls       ! return strings composed of delimiters or not ignore|return|ignoreend
-character(len=*),optional,intent(in)     :: order       ! return strings composed of delimiters or not ignore|return|ignoreend
+character(len=*),intent(in)          :: input_line  ! input string to tokenize
+character(len=*),optional,intent(in) :: delimiters  ! list of delimiter characters
+character(len=*),optional,intent(in) :: nulls       ! return strings composed of delimiters or not ignore|return|ignoreend
+character(len=*),optional,intent(in) :: order       ! return strings composed of delimiters or not ignore|return|ignoreend
 
-character(len=:),allocatable             :: sep(:)      ! output array of tokens
-integer                                  :: isize
+character(len=:),allocatable         :: sep(:)      ! output array of tokens
+integer                              :: isize
    call split(input_line,sep,delimiters,'right',nulls)
    if(present(order))then
    select case(order)
@@ -38884,7 +40158,7 @@ end subroutine split
 !!        call printme()
 !!     contains
 !!     subroutine printme()
-!!        write(*,'((*(:/,3x,"[",g0,"]")))')&
+!!        write(*,'(*(:/,3x,"[",g0,"]"))')&
 !!                & (line(ibegin(i):iend(i)),i=1,size(ibegin))
 !!        write(*,'(*(g0,1x))')'SIZE:',size(ibegin)
 !!     end subroutine printme
@@ -38961,34 +40235,34 @@ intrinsic index, min, present, len
 !  given a line of structure " par1 par2 par3 ... parn " store each par(n) into a separate variable in array.
 !    o by default adjacent delimiters in the input string do not create an empty string in the output array
 !    o no quoting of delimiters is supported
-character(len=*),intent(in)              :: input_line  ! input string to tokenize
-integer,allocatable,intent(out)          :: ibegin(:)   ! positions in input string where tokens start
-integer,allocatable,intent(out)          :: iend(:)     ! positions in input string where tokens end
-character(len=*),optional,intent(in)     :: delimiters  ! list of delimiter characters
-character(len=*),optional,intent(in)     :: nulls       ! return strings composed of delimiters or not ignore|return|ignoreend
+character(len=*),intent(in)          :: input_line  ! input string to tokenize
+integer,allocatable,intent(out)      :: ibegin(:)   ! positions in input string where tokens start
+integer,allocatable,intent(out)      :: iend(:)     ! positions in input string where tokens end
+character(len=*),optional,intent(in) :: delimiters  ! list of delimiter characters
+character(len=*),optional,intent(in) :: nulls       ! return strings composed of delimiters or not ignore|return|ignoreend
 !-----------------------------------------------------------------------------------------------------------------------------------
-integer                         :: n                      ! max number of strings INPUT_LINE could slice into if all delimiter
-character(len=:),allocatable    :: dlim                   ! string containing delimiter characters
-character(len=:),allocatable    :: nlls                   ! string containing nulls keyword
-integer                         :: icount                 ! number of tokens found
-integer                         :: ii                     ! loop parameters used to control print order
-integer                         :: lgth                   ! length of input string with trailing spaces trimmed
-integer                         :: i10,i20,i30            ! loop counters
-integer                         :: icol                   ! pointer into input string as it is being parsed
-integer                         :: idlim                  ! number of delimiter characters
-integer                         :: ifound                 ! where next delimiter character is found in remaining input string data
-integer                         :: inotnull               ! count strings not composed of delimiters
-integer                         :: ireturn                ! number of tokens returned
-integer                         :: imax                   ! length of longest token
+integer                      :: n                   ! max number of strings INPUT_LINE could slice into if all delimiter
+character(len=:),allocatable :: dlim                ! string containing delimiter characters
+character(len=:),allocatable :: nlls                ! string containing nulls keyword
+integer                      :: icount              ! number of tokens found
+integer                      :: ii                  ! loop parameters used to control print order
+integer                      :: lgth                ! length of input string with trailing spaces trimmed
+integer                      :: i10,i20,i30         ! loop counters
+integer                      :: icol                ! pointer into input string as it is being parsed
+integer                      :: idlim               ! number of delimiter characters
+integer                      :: ifound              ! where next delimiter character is found in remaining input string data
+integer                      :: inotnull            ! count strings not composed of delimiters
+integer                      :: ireturn             ! number of tokens returned
+integer                      :: imax                ! length of longest token
 !-----------------------------------------------------------------------------------------------------------------------------------
    ! decide on value for optional DELIMITERS parameter
-   if (present(delimiters)) then                                     ! optional delimiter list was present
-      if(delimiters /= '')then                                       ! if DELIMITERS was specified and not null use it
+   if (present(delimiters)) then                                            ! optional delimiter list was present
+      if(delimiters /= '')then                                              ! if DELIMITERS was specified and not null use it
          dlim=delimiters
-      else                                                           ! DELIMITERS was specified on call as empty string
+      else                                                                  ! DELIMITERS was specified on call as empty string
          dlim=' '//char(9)//char(10)//char(11)//char(12)//char(13)//char(0) ! use default delimiter when not specified
       endif
-   else                                                              ! no delimiter value was specified
+   else                                                                     ! no delimiter value was specified
       dlim=' '//char(9)//char(10)//char(11)//char(12)//char(13)//char(0)    ! use default delimiter when not specified
    endif
    idlim=len(dlim)                                                   ! dlim a lot of blanks on some machines if dlim is a big string
@@ -39367,24 +40641,24 @@ subroutine delim(line,array,n,icount,ibegin,iterm,lgth,dlim)
 !     no quoting of delimiter is allowed
 !     no checking for more than n parameters, if any more they are ignored
 !
-character(len=*),intent(in)    :: line
-integer,intent(in)             :: n
-character(len=*)               :: array(n)
-integer,intent(out)            :: icount
-integer,intent(out)            :: ibegin(n)
-integer,intent(out)            :: iterm(n)
-integer,intent(out)            :: lgth
-character(len=*),intent(in)    :: dlim
+character(len=*),intent(in) :: line
+integer,intent(in)          :: n
+character(len=*)            :: array(n)
+integer,intent(out)         :: icount
+integer,intent(out)         :: ibegin(n)
+integer,intent(out)         :: iterm(n)
+integer,intent(out)         :: lgth
+character(len=*),intent(in) :: dlim
 !-----------------------------------------------------------------------------------------------------------------------------------
-character(len=len(line)):: line_local
-logical             :: lstore
-integer             :: i10
-integer             :: iarray
-integer             :: icol
-integer             :: idlim
-integer             :: iend
-integer             :: ifound
-integer             :: istart
+character(len=len(line))    :: line_local
+logical                     :: lstore
+integer                     :: i10
+integer                     :: iarray
+integer                     :: icol
+integer                     :: idlim
+integer                     :: iend
+integer                     :: ifound
+integer                     :: istart
 !-----------------------------------------------------------------------------------------------------------------------------------
       icount=0
       lgth=len_trim(line)
@@ -40055,10 +41329,10 @@ logical                          :: ifok
 integer                          :: lmax                   ! length of target string
 integer                          :: start_token,end_token
 !-----------------------------------------------------------------------------------------------------------------------------------
-   lmax=len_trim(cmd)                                                          ! significant length of change directive
+   lmax=len_trim(cmd)                        ! significant length of change directive
    if(lmax >= 4)then                         ! strtok ignores blank tokens so look for special case where first token is really null
-      delimiters=cmd(id:id)                                                    ! find delimiter in expected location
-      itoken=0                                                                 ! initialize strtok(3f) procedure
+      delimiters=cmd(id:id)                  ! find delimiter in expected location
+      itoken=0                               ! initialize strtok(3f) procedure
 
       if(strtok(cmd(id:),itoken,start_token,end_token,delimiters)) then        ! find OLD string
          old=cmd(start_token+id-1:end_token+id-1)
@@ -40197,7 +41471,7 @@ integer,save                 :: isource_len
 !----------------------------------------------------------------------------------------------------------------------------
    isource_len=len(source_string)                ! length of input string
 !----------------------------------------------------------------------------------------------------------------------------
-   if(token_start > isource_len)then            ! user input error or at end of string
+   if(token_start > isource_len)then             ! user input error or at end of string
       token_end=isource_len                      ! assume end of token is end of string until proven otherwise so it is set
       strtok_status=.false.
       return
@@ -40220,7 +41494,7 @@ integer,save                 :: isource_len
       token_end = token_end + 1
    enddo
 !----------------------------------------------------------------------------------------------------------------------------
-   if (token_start  >  isource_len) then        ! determine if finished
+   if (token_start  >  isource_len) then         ! determine if finished
       strtok_status=.false.                      ! flag that input string has been completely processed
    else
       itoken=itoken+1                            ! increment count of tokens found
@@ -40365,7 +41639,7 @@ character(len=3),parameter  :: c='#&^'         !ASSIGN DEFAULT EDIT CHARACTERS
 integer                     :: maxscra         !LENGTH OF SCRATCH BUFFER
 character(len=len(cline))   :: dum2            !SCRATCH CHARACTER BUFFER
 logical                     :: linsrt          !FLAG FOR INSERTING DATA ON LINE
-integer :: i, j, ic, ichr, iend, lmax, lmx1
+integer                     :: i, j, ic, ichr, iend, lmax, lmx1
 maxscra=len(cline)
    cmod=trim(mod)
    lmax=min0(len(cline),maxscra)               !DETERMINE MAXIMUM LINE LENGTH
@@ -40462,7 +41736,7 @@ end subroutine modif                           !RETURN
 !!      implicit none
 !!      character(len=80) :: s
 !!      integer           :: lgth, lastnb
-!!      intrinsic len
+!!      intrinsic         :: len
 !!
 !!      s=' ABCDEFG abcdefg '
 !!      lgth = len(s)
@@ -40524,9 +41798,9 @@ elemental integer function len_white(string)
 
 ! ident_16="@(#) M_strings len_white(3f) return position of last non-blank/non-null character in string"
 
-character(len=*),intent(in):: string ! input string to determine length of
-integer                    :: i10
-intrinsic len
+character(len=*),intent(in) :: string ! input string to determine length of
+integer                     :: i10
+intrinsic                   :: len
    len_white=0
    do i10=len(string),1,-1
       select case(string(i10:i10))
@@ -41172,13 +42446,13 @@ function percent_decode_string(input, exit_code) result(output)
 ! ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 ! OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 !
-character(len=*), intent(in)   :: input  !! Encoded input string.
-character(len=:), allocatable  :: output !! Decoded output string.
-integer,intent(out),optional   :: exit_code
-character(len=2)  :: hex
-integer           :: input_col, output_col, hex_chars, input_len, output_len
-integer           :: iostat
-integer,parameter :: ERROR_BOUNDS=1, ERROR_NONE=0
+character(len=*), intent(in)  :: input  !! Encoded input string.
+character(len=:), allocatable :: output !! Decoded output string.
+integer,intent(out),optional  :: exit_code
+character(len=2)              :: hex
+integer                       :: input_col, output_col, hex_chars, input_len, output_len
+integer                       :: iostat
+integer,parameter             :: ERROR_BOUNDS=1, ERROR_NONE=0
    if(present(exit_code))then
       exit_code = ERROR_BOUNDS ! initially assume an error has occurred if return
    endif
@@ -41266,8 +42540,8 @@ end function percent_decode_string
 !!     program demo_join
 !!     use M_strings, only: join
 !!     implicit none
-!!     character(len=*),parameter :: w='(/,*(g0,/,g0))'
-!!     character(len=:),allocatable  :: s(:)
+!!     character(len=*),parameter   :: w='(/,*(g0,/,g0))'
+!!     character(len=:),allocatable :: s(:)
 !!       s=[character(len=10) :: &
 !!         & ' United', &
 !!         & 'we', &
@@ -41595,14 +42869,14 @@ elemental pure function upper_quoted(str) result (string)
 
 ! ident_24="@(#) M_strings upper_quoted(3f) elemental function converts string to uppercase skipping strings quoted per Fortran syntax rules"
 
-character(len=*), intent(in)   :: str     ! The input string
-character(len=len(str))        :: string  ! The output string
-logical                        :: toggle
-character(len=1)               :: togglechar
-integer                        :: irnk
-integer                        :: i
-character(len=26), parameter   :: large="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-character(len=26), parameter   :: small="abcdefghijklmnopqrstuvwxyz"
+character(len=*), intent(in) :: str     ! The input string
+character(len=len(str))      :: string  ! The output string
+logical                      :: toggle
+character(len=1)             :: togglechar
+integer                      :: irnk
+integer                      :: i
+character(len=26), parameter :: large="ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+character(len=26), parameter :: small="abcdefghijklmnopqrstuvwxyz"
 
    string=str
    toggle = .TRUE.
@@ -42208,8 +43482,8 @@ end function indent
 !!
 !!    function visible(input) result(output)
 !!
-!!     character(len=*),intent(in)           :: input
-!!     character(len=:),allocatable          :: output
+!!     character(len=*),intent(in)  :: input
+!!     character(len=:),allocatable :: output
 !!
 !!##DESCRIPTION
 !!     visible(3f) expands characters to commonly used sequences used
@@ -42331,8 +43605,8 @@ end function visible
 !!    program demo_expand
 !!       ! demonstrate filter to expand C-like escape sequences in input lines
 !!       use M_strings, only : expand
-!!       integer,parameter     :: iwidth=1024
-!!       integer               :: i
+!!       integer,parameter               :: iwidth=1024
+!!       integer                         :: i
 !!       character(len=iwidth),parameter :: input(*)=[ character(len=iwidth) :: &
 !!          '\e[H\e[2J',&   ! home cursor and clear screen on ANSI terminals
 !!          '\tABC\tabc',&  ! write some tabs in the output
@@ -42351,8 +43625,8 @@ end function visible
 !!     > ONE
 !!     > TWO
 !!     > THREE
-!!     > !!
-
+!!     > \
+!!
 !!##AUTHOR
 !!    John S. Urban
 !!
@@ -42505,9 +43779,9 @@ end function expand
 !!    write(*,*)'['//string//']'
 !!    contains
 !!    subroutine makefile(lun)
-!!    integer :: lun
-!!    integer :: i
-!!    character(len=80),parameter  :: fakefile(*)=[character(len=80) :: &
+!!    integer                     :: lun
+!!    integer                     :: i
+!!    character(len=80),parameter :: fakefile(*)=[character(len=80) :: &
 !!    'col1'//t//'col2' ,&
 !!    'a'//t//'one'     ,&
 !!    'bb'//t//'two'    ,&
@@ -42534,22 +43808,22 @@ elemental impure subroutine notabs(instr,outstr,lgth)
 
 ! ident_35="@(#) M_strings notabs(3f) convert tabs to spaces while maintaining columns remove CRLF chars"
 
-character(len=*),intent(in)            :: instr        ! input line to scan for tab characters
-character(len=*),intent(out),optional  :: outstr       ! tab-expanded version of INSTR produced
-integer,intent(out),optional           :: lgth         ! column position of last character put into output string
+character(len=*),intent(in)           :: instr        ! input line to scan for tab characters
+character(len=*),intent(out),optional :: outstr       ! tab-expanded version of INSTR produced
+integer,intent(out),optional          :: lgth         ! column position of last character put into output string
                                                        ! that is, lgth holds the position of the last non-blank character in OUTSTR
 !===================================================================================================================================
-integer,parameter             :: tabsize=8    ! assume a tab stop is set every 8th column
-integer                       :: ipos         ! position in OUTSTR to put next character of INSTR
-integer                       :: lenin        ! length of input string trimmed of trailing spaces
-integer                       :: lenout       ! number of characters output string can hold
-integer                       :: istep        ! counter that advances thru input string INSTR one character at a time
-character(len=1)              :: c            ! character in input line being processed
-integer                       :: iade         ! ADE (ASCII Decimal Equivalent) of character being tested
+integer,parameter                     :: tabsize=8    ! assume a tab stop is set every 8th column
+integer                               :: ipos         ! position in OUTSTR to put next character of INSTR
+integer                               :: lenin        ! length of input string trimmed of trailing spaces
+integer                               :: lenout       ! number of characters output string can hold
+integer                               :: istep        ! counter that advances thru input string INSTR one character at a time
+character(len=1)                      :: c            ! character in input line being processed
+integer                               :: iade         ! ADE (ASCII Decimal Equivalent) of character being tested
 !===================================================================================================================================
-character(len=:),allocatable  :: outstr_      ! tab-expanded version of INSTR produced
-integer                       :: i
-integer                       :: icount
+character(len=:),allocatable          :: outstr_      ! tab-expanded version of INSTR produced
+integer                               :: i
+integer                               :: icount
    icount=0                                   ! ensure the expanded string is of sufficient length
    do i=1,len(instr)
       if(instr(i:i) == char(9))icount=icount+1
@@ -42937,12 +44211,12 @@ function stretch(line,length,pattern,suffix) result(strout)
 
 ! ident_40="@(#) M_strings stretch(3f) return string padded to at least specified length"
 
-character(len=*),intent(in)                  :: line
-integer,intent(in)                           :: length
-character(len=*),intent(in),optional         :: pattern
-character(len=*),intent(in),optional         :: suffix
+character(len=*),intent(in)                   :: line
+integer,intent(in)                            :: length
+character(len=*),intent(in),optional          :: pattern
+character(len=*),intent(in),optional          :: suffix
 !-!character(len=max(length,len(trim(line)))) :: strout
-character(len=:),allocatable                 :: strout
+character(len=:),allocatable                  :: strout
    if(present(pattern))then
       strout=pad(line,length,pattern)
    else
@@ -43446,11 +44720,11 @@ function zpad_scalar(valuein,length) result(strout)
 
 ! ident_47="@(#) M_strings zpad_vector(3f) return string or argument converted to string zero-padded to at least specified length"
 
-class(*),intent(in)              :: valuein
-integer,intent(in),optional      :: length
-character(len=:),allocatable     :: strout
-character(len=4096)              :: line
-integer                          :: local_length
+class(*),intent(in)          :: valuein
+integer,intent(in),optional  :: length
+character(len=:),allocatable :: strout
+character(len=4096)          :: line
+integer                      :: local_length
    if(present(length))then
       local_length=length
    else
@@ -43484,11 +44758,11 @@ function zpad_vector(valuein,length) result(strout)
 
 ! ident_48="@(#) M_strings zpad_vector(3f) return vector of strings or arguments converted to string zero-padded to at least specified length"
 
-class(*),intent(in)              :: valuein(:)
-integer,intent(in),optional      :: length
-character(len=:),allocatable     :: strout(:)
-integer                          :: i
-integer                          :: mxlen
+class(*),intent(in)          :: valuein(:)
+integer,intent(in),optional  :: length
+character(len=:),allocatable :: strout(:)
+integer                      :: i
+integer                      :: mxlen
    if(present(length))then
       allocate(character(len=length) :: strout(size(valuein) ))
       do i=1,size(valuein)
@@ -44200,8 +45474,8 @@ end function noesc
 !!    program demo_string_to_value
 !!     use M_strings, only: string_to_value
 !!     implicit none
-!!     real :: value
-!!     integer :: ierr
+!!     real              :: value
+!!     integer           :: ierr
 !!     character(len=80) :: string
 !!        string=' -40.5e-2 '
 !!        call string_to_value(string,value,ierr)
@@ -44803,15 +46077,15 @@ subroutine value_to_string(gval,chars,length,err,fmt,trimz)
 
 ! ident_57="@(#) M_strings value_to_string(3fp) subroutine returns a string from a value"
 
-class(*),intent(in)                      :: gval
-character(len=*),intent(out)             :: chars
-integer,intent(out),optional             :: length
-integer,optional                         :: err
-integer                                  :: err_local
-character(len=*),optional,intent(in)     :: fmt         ! format to write value with
-logical,intent(in),optional              :: trimz
-character(len=:),allocatable             :: fmt_local
-character(len=1024)                      :: iomsg
+class(*),intent(in)                  :: gval
+character(len=*),intent(out)         :: chars
+integer,intent(out),optional         :: length
+integer,optional                     :: err
+integer                              :: err_local
+character(len=*),optional,intent(in) :: fmt         ! format to write value with
+logical,intent(in),optional          :: trimz
+character(len=:),allocatable         :: fmt_local
+character(len=1024)                  :: iomsg
 
 !  Notice that the value GVAL can be any of several types ( INTEGER,REAL,DOUBLEPRECISION,LOGICAL)
 
@@ -45012,8 +46286,8 @@ end function l2s
 !!
 !!    function isnumber(str,msg)
 !!
-!!     character(len=*),intent(in)  :: str
-!!     character(len=:),intent(out),allocatable,optional  :: msg
+!!     character(len=*),intent(in)                       :: str
+!!     character(len=:),intent(out),allocatable,optional :: msg
 !!
 !!##DESCRIPTION
 !!     ISNUMBER(3f) returns a value greater than zero if the string represents
@@ -45434,17 +46708,17 @@ subroutine listout(icurve_lists,icurve_expanded,inums_out,ierr)
 ! ident_64="@(#) M_strings listout(3f) copy icurve_lists to icurve_expanded expanding negative numbers to ranges (1 -10 means 1 thru 10)"
 
 !   Created: 19971231
-integer,intent(in)    :: icurve_lists(:)             ! input array
-integer,intent(out)   :: icurve_expanded(:)          ! output array
-integer,intent(out)   :: inums_out                   ! number of icurve_expanded numbers on output
-integer,intent(out)   :: ierr                        ! status variable
+integer,intent(in)  :: icurve_lists(:)             ! input array
+integer,intent(out) :: icurve_expanded(:)          ! output array
+integer,intent(out) :: inums_out                   ! number of icurve_expanded numbers on output
+integer,intent(out) :: ierr                        ! status variable
 
-character(len=80)     :: temp1
-integer               :: i80, i90
-integer               :: imin, imax
-integer               :: idirection, icount
-integer               :: iin
-integer               :: inums_max
+character(len=80)   :: temp1
+integer             :: i80, i90
+integer             :: imin, imax
+integer             :: idirection, icount
+integer             :: iin
+integer             :: inums_max
 
    ierr=0
    icurve_expanded=0                          ! initialize output array
@@ -45772,8 +47046,8 @@ end function unquote
 !!
 !!    pure elemental function edit_distance(str1,str2) result (distance)
 !!
-!!     character(len=*),intent(in)   :: str1, str2
-!!     integer :: distance
+!!     character(len=*),intent(in) :: str1, str2
+!!     integer                     :: distance
 !!
 !!##DESCRIPTION
 !!
@@ -46340,10 +47614,10 @@ end function describe
 !!       program demo_getvals
 !!       use M_strings, only: getvals
 !!       implicit none
-!!       integer,parameter  :: longest_line=256
+!!       integer,parameter           :: longest_line=256
 !!       character(len=longest_line) :: line
-!!       real               :: values(longest_line/2+1)
-!!       integer            :: iostat,icount,ierr
+!!       real                        :: values(longest_line/2+1)
+!!       integer                     :: iostat,icount,ierr
 !!       INFINITE: do
 !!          read(*,'(a)',iostat=iostat) line
 !!          if(iostat /= 0)exit INFINITE
@@ -46624,7 +47898,7 @@ end subroutine string_to_values
 !!
 !!       function s2vs(line[,delim])
 !!
-!!        character(len=*) :: line
+!!        character(len=*)            :: line
 !!        doubleprecision,allocatable :: s2vs(:)
 !!
 !!##DESCRIPTION
@@ -46649,10 +47923,10 @@ end subroutine string_to_values
 !!      program demo_s2vs
 !!      use M_strings, only : s2vs
 !!      implicit none
-!!      character(len=80) :: s=' 10 20e3;3.45 -400.3e-2;1234; 5678 '
-!!      real,allocatable :: values(:)
+!!      character(len=80)   :: s=' 10 20e3;3.45 -400.3e-2;1234; 5678 '
+!!      real,allocatable    :: values(:)
 !!      integer,allocatable :: ivalues(:)
-!!      integer :: ii
+!!      integer             :: ii
 !!
 !!      values=s2vs(s)
 !!      ivalues=int(s2vs(s))
@@ -47720,9 +48994,9 @@ end function isalnum
 !!    program demo_base
 !!    use M_strings, only: base
 !!    implicit none
-!!    integer           :: ba, bd, i
-!!    character(len=40) :: x, y
-!!    character(len=*), parameter :: input(*) = [character(len=80) :: &
+!!    integer                      :: ba, bd, i
+!!    character(len=40)            :: x, y
+!!    character(len=*), parameter  :: input(*) = [character(len=80) :: &
 !!       '10 12345 10', &
 !!       '2 10111 10', &
 !!       '10 12345 20', &
@@ -47901,9 +49175,9 @@ end function base2
 !!    program demo_decodebase
 !!    use M_strings, only : codebase, decodebase
 !!    implicit none
-!!    integer           :: bd, i, r
-!!    character(len=40) :: x
-!!    character(len=*), parameter :: input(*) = [character(len=80) :: &
+!!    integer                      :: bd, i, r
+!!    character(len=40)            :: x
+!!    character(len=*), parameter  :: input(*) = [character(len=80) :: &
 !!       '10  12345',   &
 !!       '2   10111',   &
 !!       '6   12345',   &
@@ -48214,7 +49488,7 @@ end function tobase
 !!
 !!    character(len=*),intent(in)       :: source_string
 !!    integer,intent(in)                :: length
-!!    character(allocatable(len=length)    :: paragraph(:)
+!!    character(allocatable(len=length) :: paragraph(:)
 !!
 !!##DESCRIPTION
 !!    paragraph(3f) breaks a long line into a simple paragraph of specified
@@ -48242,7 +49516,7 @@ end function tobase
 !!    use M_strings, only : paragraph
 !!    implicit none
 !!    character(len=:),allocatable :: paragrph(:)
-!!    character(len=*),parameter    :: string= '&
+!!    character(len=*),parameter   :: string= '&
 !!     &one two three four five &
 !!     &six seven eight &
 !!     &nine ten eleven twelve &
@@ -48462,11 +49736,12 @@ end function setbits64
 !!     function str( g1,g2,g3,g4,g5,g6,g7,g8,g9,g10, &
 !!                 & g11,g12,g13,g14,g15,g16,g17,g18,g19,g20,sep,csv)
 !!
-!!      class(*),intent(in),optional  :: g1,g2,g3,g4,g5,g6,g7,g8,g9,g10
-!!      class(*),intent(in),optional  :: g11,g12,g13,g14,g15,g16,g17,g18,g19,g20
+!!      class(*),intent(in),optional         :: g1,g2,g3,g4,g5,g6,g7,g8,g9,g10
+!!      class(*),intent(in),optional         :: g11,g12,g13,g14,g15,g16,g17
+!!      class(*),intent(in),optional         :: g18,g19,g20
 !!      character(len=*),intent(in),optional :: sep
-!!      logical,intent(in),optional :: csv
-!!      character(len=:),allocatable :: str
+!!      logical,intent(in),optional          :: csv
+!!      character(len=:),allocatable         :: str
 !!
 !!##DESCRIPTION
 !!     str(3f) builds a string from up to twenty scalar values.
@@ -48560,15 +49835,15 @@ function str_scalar(g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12, g13, g14,
 
 ! ident_89="@(#) M_strings str_scalar(3fp) writes a message to a string composed of any standard scalar types"
 
-class(*),intent(in),optional  :: g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12, g13, g14, g15, g16, g17, g18, g19, g20
+class(*),intent(in),optional         :: g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12, g13, g14, g15, g16, g17, g18, g19, g20
 character(len=*),intent(in),optional :: sep
-logical,intent(in),optional   :: csv
-character(len=:),allocatable  :: sep_local
-logical                       :: csv_local
-character(len=:), allocatable :: str_scalar
-character(len=4096)           :: line
-integer                       :: ibegin
-integer                       :: increment
+logical,intent(in),optional          :: csv
+character(len=:),allocatable         :: sep_local
+logical                              :: csv_local
+character(len=:), allocatable        :: str_scalar
+character(len=4096)                  :: line
+integer                              :: ibegin
+integer                              :: increment
 
    if(present(csv))then
       csv_local=csv
@@ -48619,7 +49894,9 @@ class(*),intent(in) :: generic
       type is (integer(kind=int64));    write(line(ibegin:),'(i0)') generic
       type is (real(kind=real32));      write(line(ibegin:),'(1pg0)') generic
       type is (real(kind=real64));      write(line(ibegin:),'(1pg0)') generic
-      !x!type is (real(kind=real128));     write(line(ibegin:),'(1pg0)') generic
+#ifdef FLOAT128
+      type is (real(kind=real128));     write(line(ibegin:),'(1pg0)') generic
+#endif
       !x!type is (real(kind=real256));     write(line(ibegin:),'(1pg0)') generic
       type is (logical);                write(line(ibegin:),'(l1)') generic
       type is (character(len=*))
@@ -48701,7 +49978,7 @@ contains
 !===================================================================================================================================
 subroutine print_generic(generic)
 class(*),intent(in),optional :: generic(:)
-integer :: i
+integer                      :: i
    if(csv_local)then
       select type(generic)
          type is (integer(kind=int8));     write(line(ibegin:),'(*(i0:,","))') generic
@@ -48710,7 +49987,9 @@ integer :: i
          type is (integer(kind=int64));    write(line(ibegin:),'(*(i0:,","))') generic
          type is (real(kind=real32));      write(line(ibegin:),'(*(1pg0:,","))') generic
          type is (real(kind=real64));      write(line(ibegin:),'(*(1pg0:,","))') generic
-         !x!type is (real(kind=real128));     write(line(ibegin:),'(*(1pg0:,","))') generic
+#ifdef FLOAT128
+         type is (real(kind=real128));     write(line(ibegin:),'(*(1pg0:,","))') generic
+#endif
          !x!type is (real(kind=real256));     write(line(ibegin:),'(*(1pg0:,","))') generic
          type is (logical);                write(line(ibegin:),'(*(l1:,","))') generic
          type is (character(len=*));       write(line(ibegin:),'(:*(a:,","))') (quote(trim(generic(i))),i=1,size(generic))
@@ -48726,7 +50005,9 @@ integer :: i
          type is (integer(kind=int64));    write(line(ibegin:),'("[",*(i0:,","))') generic
          type is (real(kind=real32));      write(line(ibegin:),'("[",*(1pg0:,","))') generic
          type is (real(kind=real64));      write(line(ibegin:),'("[",*(1pg0:,","))') generic
-         !x!type is (real(kind=real128));     write(line(ibegin:),'("[",*(1pg0:,","))') generic
+#ifdef FLOAT128
+         type is (real(kind=real128));     write(line(ibegin:),'("[",*(1pg0:,","))') generic
+#endif
          !x!type is (real(kind=real256));     write(line(ibegin:),'("[",*(1pg0:,","))') generic
          type is (logical);                write(line(ibegin:),'("[",*(l1:,","))') generic
          type is (character(len=*));       write(line(ibegin:),'("[",:*(:"""",a,"""":,","))') (trim(generic(i)),i=1,size(generic))
@@ -48829,12 +50110,16 @@ logical                              :: trimit
          type is (integer(kind=int64));    fmt_local='(i0,a)'
          type is (real(kind=real32));      fmt_local='(1pg0,a)'
          type is (real(kind=real64));      fmt_local='(1pg0,a)'
-
+#ifdef FLOAT128
          type is (real(kind=real128));     fmt_local='(1pg0,a)'
-
+#endif
          type is (logical);                fmt_local='(l1,a)'
          type is (character(len=*));       fmt_local='(a,a)'
          type is (complex);                fmt_local='("(",1pg0,",",1pg0,")",a)'
+         type is (complex(kind=real64));   fmt_local='("(",1pg0,",",1pg0,")",a)'
+         class default
+          fmt_local='(*(g0,1x)'
+          stop '<ERROR>*fmt* unknown type.'
       end select
    else
       if(format(1:1) == '(')then
@@ -48852,9 +50137,9 @@ logical                              :: trimit
       type is (integer(kind=int64));    write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
       type is (real(kind=real32));      write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
       type is (real(kind=real64));      write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
-
+#ifdef FLOAT128
       type is (real(kind=real128));     write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
-
+#endif
       type is (logical);                write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
       type is (character(len=*));       write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
       type is (complex);
@@ -48869,6 +50154,20 @@ logical                              :: trimit
               else
                  write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
               endif
+      type is (complex(kind=real64));
+              if(trimit)then
+                 re=fmt(generic%re)
+                 im=fmt(generic%im)
+                 call trimzeros_(re)
+                 call trimzeros_(im)
+                 fmt_local='("(",g0,",",g0,")",a)'
+                 write(line,fmt_local,iostat=iostat,iomsg=iomsg) trim(re),trim(im),null
+                 trimit=.false.
+              else
+                 write(line,fmt_local,iostat=iostat,iomsg=iomsg) generic,null
+              endif
+      class default
+          stop '<ERROR>*fmt* unknown type'
    end select
    if(iostat /= 0)then
       line='<ERROR>'//trim(iomsg)
@@ -49036,9 +50335,9 @@ character*(*),optional,intent(in)  :: delims
 character*(*),optional,intent(out) :: delim
 logical,optional,intent(out)       :: found
 !-------------------- local.
-character  :: delimiter*1
-integer    :: pos, field_start, field_end, i
-logical    :: trim_blanks
+character                          :: delimiter*1
+integer                            :: pos, field_start, field_end, i
+logical                            :: trim_blanks
 !-------------------- executable code.
    field = ''
    delimiter = char(0)
@@ -49241,7 +50540,7 @@ end subroutine find_field
 !!     block
 !!       character (len=:), allocatable :: string
 !!       character (len=:), allocatable :: tokens(:)
-!!       character (len=*),parameter :: set = " ,"
+!!       character (len=*),parameter    :: set = " ,"
 !!       string = 'first,second,third'
 !!       call split2020(string, set, tokens )
 !!       write(*,gen)tokens
@@ -49254,8 +50553,8 @@ end subroutine find_field
 !!
 !!     block
 !!       character (len=:), allocatable :: string
-!!       character (len=*),parameter :: set = " ,"
-!!       integer, allocatable        :: first(:), last(:)
+!!       character (len=*),parameter    :: set = " ,"
+!!       integer, allocatable           :: first(:), last(:)
 !!       string =    'first,second,,forth'
 !!       call split2020 (string, set, first, last)
 !!       write(*,gen)first
@@ -49268,8 +50567,8 @@ end subroutine find_field
 !!     ! Execution of STEP form
 !!     block
 !!       character (len=:), allocatable :: string
-!!       character (len=*),parameter :: set = " ,"
-!!       integer :: p, ibegin, iend
+!!       character (len=*),parameter    :: set = " ,"
+!!       integer                        :: p, ibegin, iend
 !!       string = " one,   last  example  "
 !!       do while (p < len(string))
 !!         ibegin = p + 1
@@ -49776,9 +51075,9 @@ end subroutine matching_delimiter
 !!    contains
 !!
 !!    subroutine compare(a,b,answer)
-!!    character(len=*),intent(in) :: a, b, answer
+!!    character(len=*),intent(in)  :: a, b, answer
 !!    character(len=:),allocatable :: match
-!!    character(len=*),parameter :: g='(*(g0))'
+!!    character(len=*),parameter   :: g='(*(g0))'
 !!       match=longest_common_substring(a,b)
 !!       write(*,g) 'comparing "',a,'" and "',b,'"'
 !!       write(*,g) merge('(PASSED) "','(FAILED) "',answer == match), &
@@ -49848,8 +51147,8 @@ end function longest_common_substring
 !!
 !!     function encode_base64(text,width) result(out)
 !!
-!!      character(len=1),intent(in) :: text(*)
-!!      integer,intent(in),optional :: width
+!!      character(len=1),intent(in)  :: text(*)
+!!      integer,intent(in),optional  :: width
 !!      character(len=1),allocatable :: out(:)
 !!
 !!##DESCRIPTION
@@ -49986,8 +51285,8 @@ integer                      :: outsize
             column=column+1
            if(wrap.gt.0)then
                if(column.ge.wrap)then
-                       ichars=ichars+1
-                       out(ichars)=new_line('a')
+                  ichars=ichars+1
+                  out(ichars)=new_line('a')
                   column=0
                endif
             endif
@@ -50188,8 +51487,8 @@ integer(kind=int32) :: val
 !!
 !!    pure elemental function atoi (string) result(val)
 !!
-!!     character(len=*),intent(in)      :: string
-!!     integer(kind=int32),intent(out)  :: val
+!!     character(len=*),intent(in)              :: string
+!!     integer(kind=int32),intent(out) :: val
 !!
 !!##DESCRIPTION
 !!    function atoi(3f) converts a string representing an integer value
@@ -50293,8 +51592,8 @@ integer(kind=int64) :: val
 !!
 !!    pure elemental function atol (string) result(val)
 !!
-!!     character(len=*),intent(in)      :: string
-!!     integer(kind=int64),intent(out)  :: val
+!!     character(len=*),intent(in)              :: string
+!!     integer(kind=int64),intent(out) :: val
 !!
 !!##DESCRIPTION
 !!    function atol(3f) converts a string representing an integer value
@@ -50458,8 +51757,8 @@ end function atol
 logical function ator_real32(str,val,msg)
 use iso_fortran_env, only: wp => real32, ip => int64
 ! Convert ASCII-text to DP and return .TRUE. if OK
-character(len=*),intent(in) :: str
-real(kind=wp) :: val
+character(len=*),intent(in)   :: str
+real(kind=wp)                 :: val
 character(len=:),allocatable,optional,intent(out) :: msg
 integer(kind=byte),parameter  :: upper_e=iachar('E'), lower_e=iachar('e'), upper_d=iachar('D'), lower_d=iachar('d')
 integer(kind=byte),parameter  :: plus_sign=iachar('+'), minus_sign=iachar('-'), decimal=iachar('.')
@@ -50568,8 +51867,8 @@ end function ator_real32
 logical function ator_real64(str,val,msg)
 use iso_fortran_env, only: wp => real64, ip => int64
 ! Convert ASCII-text to DP and return .TRUE. if OK
-character(len=*),intent(in) :: str
-real(kind=wp) :: val
+character(len=*),intent(in)   :: str
+real(kind=wp)                 :: val
 character(len=:),allocatable,optional,intent(out) :: msg
 integer(kind=byte),parameter  :: upper_e=iachar('E'), lower_e=iachar('e'), upper_d=iachar('D'), lower_d=iachar('d')
 integer(kind=byte),parameter  :: plus_sign=iachar('+'), minus_sign=iachar('-'), decimal=iachar('.')
@@ -50948,9 +52247,7 @@ end function atoi_int64
 !===================================================================================================================================
 end module M_strings
 
-
 !>>>>> ./././/../GLINKS/M_attr/src/M_attr.f90
-
 !>
 !!##NAME
 !!    M_attr(3f) - [M_attr::INTRO] control text attributes on terminals
@@ -52459,14 +53756,36 @@ end subroutine print_generic
 end function msg_one
 end module M_attr
 
-
 !>>>>> ./././/../GLINKS/M_io/src/M_io.F90
+!-----------------------------------------------------------------------------------------------------------------------------------
+#define  __INTEL_COMP        1
+#define  __GFORTRAN_COMP     2
+#define  __NVIDIA_COMP       3
+#define  __NAG_COMP          4
+#define  __LLVM_FLANG_COMP   5
+#define  __UNKNOWN_COMP   9999
 
+#define FLOAT128
+
+#ifdef __INTEL_COMPILER
+#   define __COMPILER__ __INTEL_COMP
+#elif __GFORTRAN__ == 1
+#   define __COMPILER__ __GFORTRAN_COMP
+#elif __flang__
+#   undef FLOAT128
+#   define __COMPILER__ __LLVM_FLANG_COMP
+#elif __NVCOMPILER
+#   undef FLOAT128
+#   define __COMPILER__ __NVIDIA_COMP
+#else
+#   define __COMPILER__ __UNKNOWN_COMP
+#   warning  NOTE: UNKNOWN COMPILER
+#endif
+!-----------------------------------------------------------------------------------------------------------------------------------
 !===================================================================================================================================
 MODULE M_io
 use, intrinsic :: iso_fortran_env, only : stdin=>input_unit, stdout=>output_unit, stderr=>error_unit
-use,intrinsic     :: iso_c_binding,   only : c_int, c_char
-
+use,intrinsic  :: iso_c_binding,   only : c_int, c_char
 implicit none
 private
 integer,parameter,private:: sp=kind(1.0), dp=kind(1.0d0)
@@ -52586,6 +53905,7 @@ interface
       import c_int
    end function system_getchar
 end interface
+!-----------------------------------
 CONTAINS
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
@@ -52881,8 +54201,16 @@ character(len=20)             :: sign           ; namelist/inquire/sign
 integer                       :: size           ; namelist/inquire/size
 character(len=20)             :: stream         ; namelist/inquire/stream
 !==============================================================================================
-   namein=merge_str(namein_in,'',present(namein_in))
-   lun=merge(lun_in,-1,present(lun_in))
+   if(present(namein_in))then
+      namein=namein_in
+   else
+      namein=''
+   endif
+   if(present(lun_in))then
+      lun=lun_in
+   else
+      lun=-1
+   endif
    ! exist, opened, and named always become defined unless an error condition occurs.
    !!write(*,*)'LUN=',lun,' FILENAME=',namein
    !-----------------------------------------------------------------------------------------------------------------------------------
@@ -52920,7 +54248,7 @@ character(len=20)             :: stream         ; namelist/inquire/stream
        call journal('sc','*print_inquire* must specify either filename or unit number')
     endif
 !-----------------------------------------------------------------------------------------------------------------------------------
-   write(*,nml=inquire,delim='none')
+   write(*,nml=inquire,delim='quote') ! APOSTROPHE, QUOTE, or NONE
    return
 !-----------------------------------------------------------------------------------------------------------------------------------
 999   continue
@@ -54304,7 +55632,11 @@ character(len=:),allocatable          :: local_mode
 character(len=256)                    :: message
 character(len=:),allocatable          :: action, position, access, form, status, file
 logical                               :: verbose
-   local_mode=lower(merge_str(mode,'',present(mode)))
+   if(present(mode))then
+      local_mode=mode
+   else
+      local_mode=''
+   endif
    file=trim(adjustl(filename))//'   '
    ifound=index(file,'>>')
    if(ifound /= 0)then
@@ -55151,7 +56483,11 @@ integer                                  :: lun_local
 
    line_local=''
    ier=0
-   lun_local=merge(lun,stdin,present(lun))
+   if(present(lun))then
+      lun_local=lun
+   else
+      lun_local=stdin
+   endif
    INFINITE: do                                                           ! read characters from line and append to result
       read(lun_local,pad='yes',iostat=ier,fmt='(a)',advance='no',size=isize,iomsg=message) buffer ! read next buffer (might use stream I/O for
                                                                           ! files other than stdin so system line limit
@@ -57871,9 +59207,9 @@ class(*),intent(in) :: generic
       type is (integer(kind=int64));    write(line(istart:),'(i0)') generic
       type is (real(kind=real32));      write(line(istart:),'(1pg0)') generic
       type is (real(kind=real64));      write(line(istart:),'(1pg0)') generic
-
+#ifdef FLOAT128
       type is (real(kind=real128));     write(line(istart:),'(1pg0)') generic
-
+#endif
       type is (logical);                write(line(istart:),'(l1)') generic
       type is (character(len=*));       write(line(istart:),'(a)') trim(generic)
       type is (complex);                write(line(istart:),'("(",1pg0,",",1pg0,")")') generic
@@ -57930,9 +59266,9 @@ integer :: i
       type is (integer(kind=int64));    write(line(istart:),'("[",*(i0,1x))') generic
       type is (real(kind=real32));      write(line(istart:),'("[",*(1pg0,1x))') generic
       type is (real(kind=real64));      write(line(istart:),'("[",*(1pg0,1x))') generic
-
+#ifdef FLOAT128
       type is (real(kind=real128));     write(line(istart:),'("[",*(1pg0,1x))') generic
-
+#endif
       !type is (real(kind=real256));     write(error_unit,'(1pg0)',advance='no') generic
       type is (logical);                write(line(istart:),'("[",*(l1,1x))') generic
       type is (character(len=*));       write(line(istart:),'("[",:*("""",a,"""",1x))') (trim(generic(i)),i=1,size(generic))
@@ -57955,19 +59291,17 @@ character(len=:),allocatable :: strout
    strout=trim(adjustl(strin))
 end function crop
 !===================================================================================================================================
-end module m_io
+end module M_io
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()!
 !===================================================================================================================================
 
-
 !>>>>> app/fpm-man.f90
-
 program fman
 use, intrinsic :: iso_fortran_env, only : stderr=>ERROR_UNIT, stdout=>OUTPUT_UNIT, stdin=>INPUT_UNIT
 use M_intrinsics, only : help_intrinsics
-use M_CLI2,       only : set_args, sget, iget, lget, specified, topics=>unnamed
-use M_CLI2,       only : set_mode
+use M_CLI2,       only : set_args, sget, iget, lget, specified
+use M_CLI2,       only : set_mode, topics=>unnamed
 use M_match,      only : getpat, match, regex_pattern
 use M_match,      only : YES, ERR
 use M_strings,    only : lower, indent, atleast, str, replace
@@ -58457,7 +59791,25 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                      endif
                      remember='f'
                   case('h','?')
-                     call cribsheet()
+                     if(paws.eq.'h')then
+                        call cribsheet()
+                        if(paws.ne.'')then ! entered value at continue ...
+                           topics=[adjustl(paws)]
+                           call load_manual()
+                           if(color)manual=crayons(manual)
+                        endif
+                     else
+                        ! if just h show cribsheet but if
+                        ! characters after h assume could
+                        ! be h topic or help topic so
+                        ! treat it like t command
+                        if(paws.eq.'help')paws='help manual'
+                        m=index(paws(:len_trim(paws)),' ')
+                        if(m.eq.0)m=2
+                        topics=[adjustl(paws(m:))]
+                        call load_manual()
+                        if(color)manual=crayons(manual)
+                     endif
                      i=max(0,i-2*lines+2) ! back
                      remember='f'
                   case default
@@ -58465,6 +59817,11 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                         ierr=run(paws)
                      else
                         call cribsheet()
+                        if(paws.ne.'')then ! entered value at continue ...
+                           topics=[adjustl(paws)]
+                           call load_manual()
+                           if(color)manual=crayons(manual)
+                        endif
                         i=max(0,i-2*lines+2) ! back
                         remember='f'
                      endif
@@ -58493,34 +59850,33 @@ contains
 subroutine cribsheet()
    ! '123456789 123456789 123456789 123456789 123456789 123456789 123456789 123456789 '
    write(stdout,'(a)')[character(len=80) :: &
-   & ' +------------+-----+----------------------+------+---------------------------+ ', &
-   & ' |POSITIONING:| b   | back one page        | f    | forward one page(default) | ', &
-   & ' |            | u   | up 1/2 page          | d    | down 1/2 page             | ', &
-   & ' |            | e   | up 1 line, eeeeee... | y    | down 1 line, yyyyyy...    | ', &
-   & ' |            | gN  | goto Nth line        | [+-]N| [relative] moveto Nth line| ', &
-   & ' +------------+-----+----------------------+------+---------------------------+ ', &
-   & ' |SEARCH:     | /RE | search for expression| \RE  | backward search           | ', &
-   & ' |            | n   | repeat last search   | N    | repeat last search upward | ', &
-   & ' +------------+-----+----------------------+------+---------------------------+ ', &
-   & ' |SYSTEM:     | s F | save to filename     | !cmd | execute system_command    | ', &
-   & ' +------------+-----+----------------------+------+---------------------------+ ', &
-   & ' |OPTIONS:    | #   | toggle line numbers  | lNNN | change lines per page     | ', &
-   & ' |            | i   | toggle search by case| c    | toggle color mode         | ', &
-   & ' +------------+-----+----------------------+------+---------------------------+ ', &
-   & ' |GENERAL:    | q   | quit                 | r    | refresh                   | ', &
-   & ' |            | h   | display help         | T    | reload Table Of Contents  | ', &
-   & ' |            | tstr| load specified topic |      |                           | ', &
-   & ' +------------+-----+----------------------+------+---------------------------+ ', &
+   & ' +---------+--------+----------------------+------+---------------------------+ ', &
+   & ' |POSITION:| b      | back one page        | f    | forward one page(default) | ', &
+   & ' |         | u      | up 1/2 page          | d    | down 1/2 page             | ', &
+   & ' |         | e      | up 1 line, eeeeee... | y    | down 1 line, yyyyyy...    | ', &
+   & ' |         | gN     | goto Nth line        | [+-]N| [relative] moveto Nth line| ', &
+   & ' +---------+--------+----------------------+------+---------------------------+ ', &
+   & ' |SEARCH:  | /RE    | search for expression| \RE  | backward search           | ', &
+   & ' |         | n      | repeat last search   | N    | repeat last search upward | ', &
+   & ' +---------+--------+----------------------+------+---------------------------+ ', &
+   & ' |SYSTEM:  | s file | save to filename     | !cmd | execute system_command    | ', &
+   & ' +---------+--------+----------------------+------+---------------------------+ ', &
+   & ' |DISPLAY  | #      | toggle line numbers  | lNNN | change lines per page     | ', &
+   & ' |OPTIONS  | i      | toggle search by case| c    | toggle color mode         | ', &
+   & ' |& MODES: | D      | toggle demo only mode| P    | toggle prefix mode        | ', &
+   & ' +---------+--------+----------------------+------+---------------------------+ ', &
+   & ' |GENERAL: | q      | quit                 | r    | refresh                   | ', &
+   & ' |         | h      | display this help    | T    | reload Table Of Contents  | ', &
+   & ' |         | h topic| load specified topic | t    | short table of contents   | ', &
+   & ' +---------+--------+----------------------+------+---------------------------+ ', &
    & ' | An empty string repeats the last positioning or toggle command. So if you  | ', &
    & ' | searched for a string or did an "e" or "y" and then just hit return the    | ', &
    & ' | previous command is repeated until a non-blank command like "r" is entered.| ', &
-   & ' |                                                                            | ', &
    & ' +----------------------------------------------------------------------------+ ']
    if(paws(1:1).eq.'X')then
    write(stdout,'(a)')[character(len=80) :: &
    & ' +------------+-----+----------------------+------+---------------------------+ ', &
-   & ' |DEVELOPER:  | C   | toggle color mode    | D    | toggle demo program mode  | ', &
-   & ' |            | Cstr| change colors        | P    | toggle prefix mode        | ', &
+   & ' |DEVELOPER:  | C   | toggle color mode    | Cstr | change colors             | ', &
    & ' |            | C?  | show current colors  | X    | show developer help       | ', &
    & ' |            | H   | command help         | L    | load file                 | ', &
    & ' |            | V   | version information  | B    | toggle showblanks         | ', &
@@ -58637,7 +59993,7 @@ integer                        :: start_keep, end_keep
        if(size(topics).lt.1.or.i.lt.1)then
           write(stdout,*)'!<ERROR> *fman* missing topics. standard demo code format not found.'
        else
-          write(stdout,*)'!<ERROR> *fman* standard demo code format not found for ',trim(topics(i))
+          write(stdout,*)'!<ERROR> *fman* standard demo code format not found'
        endif
        section=['']
     else
@@ -58908,7 +60264,7 @@ version_text=[ CHARACTER(LEN=128) :: &
 '@(#) PRODUCT:         GPF (General Purpose Fortran) utilities and examples     >',&
 '@(#) PROGRAM:         fman(1)                                                  >',&
 '@(#) DESCRIPTION:     output Fortran intrinsic descriptions                    >',&
-'@(#) VERSION:         3.0.0, 2025-03-14                                        >',&
+'@(#) VERSION:         3.0.1, 2025-08-08                                        >',&
 '@(#) AUTHOR:          John S. Urban                                            >',&
 '@(#) HOME PAGE:       http://www.urbanjost.altervista.org/index.html           >',&
 '@(#) LICENSE:         MIT License                                              >',&
@@ -58921,4 +60277,3 @@ end program fman
 ! kludge1: older versions of gfortran do not handle character arrays with both line and size allocatable
 ! always make non-color and color and toggle between the two
 ! a search that shows topic prefix and line number in original file
-

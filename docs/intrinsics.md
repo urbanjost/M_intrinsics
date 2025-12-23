@@ -11380,12 +11380,13 @@ Fortran 2003
    Retrieve the value of an environment variable
 
 ### **Synopsis**
+ Syntax:
 ```fortran
     call get_environment_variable(name [,value] [,length] &
     & [,status] [,trim_name] [,errmsg] )
 ```
 ```fortran
-     subroutine character(len=*) get_environment_variable( &
+     subroutine get_environment_variable( &
      & name, value, length, status, trim_name, errmsg )
 
       character(len=*),intent(in) :: name

@@ -8266,9 +8266,10 @@ $$</span><br /></p>
 <h3 id="name-98"><strong>Name</strong></h3>
 <p><strong>get_environment_variable</strong>(3) - [SYSTEM:ENVIRONMENT] Retrieve the value of an environment variable</p>
 <h3 id="synopsis-98"><strong>Synopsis</strong></h3>
+<p>Syntax:</p>
 <div class="sourceCode" id="cb446"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb446-1" title="1">    <span class="kw">call</span> get_environment_variable(name <span class="kw">[</span>,value<span class="kw">]</span> <span class="kw">[</span>,length<span class="kw">]</span> <span class="kw">&amp;</span></a>
 <a class="sourceLine" id="cb446-2" title="2">    <span class="kw">&amp;</span> <span class="kw">[</span>,status<span class="kw">]</span> <span class="kw">[</span>,trim_name<span class="kw">]</span> <span class="kw">[</span>,errmsg<span class="kw">]</span> )</a></code></pre></div>
-<div class="sourceCode" id="cb447"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb447-1" title="1">     <span class="kw">subroutine</span> <span class="dt">character(len=*)</span> get_environment_variable( <span class="kw">&amp;</span></a>
+<div class="sourceCode" id="cb447"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb447-1" title="1">     <span class="kw">subroutine</span> get_environment_variable( <span class="kw">&amp;</span></a>
 <a class="sourceLine" id="cb447-2" title="2">     <span class="kw">&amp;</span> name, value, length, status, trim_name, errmsg )</a>
 <a class="sourceLine" id="cb447-3" title="3"></a>
 <a class="sourceLine" id="cb447-4" title="4">      <span class="dt">character(len=*)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> name</a>

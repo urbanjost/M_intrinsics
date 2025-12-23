@@ -31,6 +31,7 @@ ford ford.md
 ######################################
 (
 fpm standalone
+mkdir -p standalone
 mv standalone.f90 standalone/fman.F90
 cd standalone
 gfortran fman.F90 -o fpm-man
