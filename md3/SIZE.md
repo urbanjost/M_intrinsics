@@ -35,10 +35,6 @@
   if **dim** is specified returns the number of elements along that
   dimension.
 
-  **size**(3) determines the extent of **array** along a specified
-  dimension **dim**, or the total number of elements in **array** if
-  **dim** is absent.
-
 ### **Options**
 
 - **array**
