@@ -79,23 +79,22 @@ endfile unit_number
 </A>
 <BLOCKQUOTE>
 <P>
-An ENDFILE(7f) ends or truncates a file at the current record.
+An ENDFILE(7) ends or truncates a file at the current record.
 <P>
-Execution of an ENDFILE(7F) statement for a file connected for
-SEQUENTIAL ACCESS writes an endfile record as the next record of the
-file. The file is then positioned after the endfile record, which
-becomes the last record of the file.
-<TABLE cellpadding=3><!-- tsb: Execution of an ENDFILE(7F) statement for a file connected for
+Execution of an ENDFILE(7) statement for a file connected for SEQUENTIAL
+ACCESS writes an endfile record as the next record of the file. The file
+is then positioned after the endfile record, which becomes the last
+record of the file.
+<TABLE cellpadding=3><!-- tsb: Execution of an ENDFILE(7) statement for a file connected for SEQUENTIAL
  -->
 <TR></TR><TR></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-SEQUENTIAL ACCESS : After execution of an ENDFILE(7F) statement for
-a file connected for sequential access, a BACKSPACE(7F) or
-REWIND(7F) statement shall be used to reposition the file prior to
-execution of any data transfer input/output statement or ENDFILE(7F)
-statement.
+SEQUENTIAL ACCESS : After execution of an ENDFILE(7) statement for a
+file connected for sequential access, a BACKSPACE(7) or REWIND(7)
+statement shall be used to reposition the file prior to execution of
+any data transfer input/output statement or ENDFILE(7) statement.
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
@@ -109,7 +108,7 @@ the file.
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-STREAM ACCESS : Execution of an ENDFILE(7F) statement for a file
+STREAM ACCESS : Execution of an ENDFILE(7) statement for a file
 connected for STREAM ACCESS causes the terminal point of the file to
 become equal to the current file position. Only file storage units
 before the current position are considered to have been written;
@@ -117,7 +116,7 @@ thus only those file storage units shall be subsequently read.
 Subsequent stream output statements may be used to write further
 data to the file.
 </TD></TR>
-<TR></TR></TABLE>Execution of an ENDFILE(7F) statement for a file that is connected but
+<TR></TR></TABLE>Execution of an ENDFILE(7) statement for a file that is connected but
 does not exist creates the file; if the file is connected for sequential
 access, it is created prior to writing the endfile record.
 </BLOCKQUOTE>
@@ -141,7 +140,7 @@ A unit number of a connected file
 </A>
 <BLOCKQUOTE>
 <P>
-An example of an ENDFILE(7f) statement is:
+An example of an ENDFILE(7) statement is:
 <P>
 <PRE>
         program demo_endfile
@@ -162,7 +161,7 @@ An example of an ENDFILE(7f) statement is:
            endfile lun ! will truncate line at current position
            !
            ! NOTE: backspace before writing any addition lines
-           !       once an ENDFILE(7f) statement is executed
+           !       once an ENDFILE(7) statement is executed
            ! backspace(lun)
            !
            ! rewind and echo remaining file

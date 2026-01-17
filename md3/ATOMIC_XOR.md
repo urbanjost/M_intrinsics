@@ -26,9 +26,8 @@ bitwise XOR operation
 
 - **stat** is a Scalar default-kind integer variable.
 
-### **Characteristics**
-
 ### **Description**
+
 **atomic_xor(atom, value, stat)** atomically performs a bitwise **xor**
 operation between the value of **atom** and **value**, storing the result
 in **atom**.
@@ -57,7 +56,6 @@ Use for toggling bits atomically.
 - **stat**
   : (optional) Scalar default-kind integer variable.
   Set to 0 on success, or a positive value on failure.
-
 
 ### **Examples**
 

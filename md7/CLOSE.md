@@ -1,7 +1,7 @@
 ## close
 
 ### **Name**
-   close(7f) - [IO] terminate the connection of a specified unit
+   close(7) - [IO] terminate the connection of a specified unit
    to an external file.
 
 ### **Synopsis**

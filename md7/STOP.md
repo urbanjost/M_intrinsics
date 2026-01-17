@@ -34,7 +34,7 @@ numeric or a string.
 Note that although *STOP* causes a "normal" termination,  system status
 codes or "exit codes" are often used for error processing in many
 scripting languages. This code may be detectable by
-**EXECUTE\_SYSTEM\_COMMAND**(3f).
+**EXECUTE\_SYSTEM\_COMMAND**(3).
 
 Execution of an **ERROR STOP** statement initiates error termination
 *of* an execution, which on several systems includes the output from a

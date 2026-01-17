@@ -223,7 +223,7 @@ the script "fpm-docs"
 ################################################################################
 trap "/bin/rm -f ${SCRATCH:-_NOTTHERE_}" EXIT
 SCRATCH=/tmp/scratch_$(uuidgen).txt
-fpm manual > $SCRATCH
+fpm man manual > $SCRATCH
 ################################################################################
 # use default colors
 unset FMAN_COLORS 

@@ -58,8 +58,8 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-backspace(7f) - [IO:FILE POSITIONING] - backspace one record on
-specified I/O unit
+backspace(7) - [IO:FILE POSITIONING] - backspace one record on specified
+I/O unit
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
@@ -82,7 +82,7 @@ BACKSPACE([UNIT=]unit-number][,IOMSG=iomsg][,IOSTAT=iostat][,ERR=label])
 </A>
 <BLOCKQUOTE>
 <P>
-backspace(7f) positions the specified file back to the beginning of the
+backspace(7) positions the specified file back to the beginning of the
 current record or if already at the beginning of a record, back to the
 beginning of the previous record.
 <P>
@@ -91,9 +91,9 @@ changed.
 <P>
 It is most often used when a program has partially read a line and then
 wants to go back and reread the line using the information from the
-previous read(7f),
+previous read(7),
 <P>
-backspace(7f) is rarely used in new code as the subsequent addition of
+backspace(7) is rarely used in new code as the subsequent addition of
 Fortran features such as non-advancing I/O and internal reads into a
 CHARACTER variable (which can be read from multiple times) are typically
 far more efficient and provide much of the same functionality when
@@ -106,10 +106,10 @@ through a file when moving back large numbers of lines on Linux and Unix
 platforms.
 <P>
 A unit open for direct access or unformatted access cannot be referenced
-by backspace(7f). backspace(7f) only works with formatted sequential
-files that may be repositioned. So it does not generally work with
-standard input from a terminal, pipes, and other formatted sequential
-file types that cannot be rewound or positioned.
+by backspace(7). backspace(7) only works with formatted sequential files
+that may be repositioned. So it does not generally work with standard
+input from a terminal, pipes, and other formatted sequential file types
+that cannot be rewound or positioned.
 <P>
 Backspacing over records written using list-directed or namelist
 formatting is prohibited. It will usually work, but since the compiler

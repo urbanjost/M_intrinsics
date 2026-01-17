@@ -1,7 +1,7 @@
 ## backspace
 
 ### **Name**
-   backspace(7f) - [IO:FILE POSITIONING] - backspace one record on
+   backspace(7) - [IO:FILE POSITIONING] - backspace one record on
    specified I/O unit
 
 ### **Synopsis**
@@ -12,7 +12,7 @@ BACKSPACE file-unit-number
 BACKSPACE([UNIT=]unit-number][,IOMSG=iomsg][,IOSTAT=iostat][,ERR=label])
 ```
 ### **Description**
-   backspace(7f) positions the specified file back to the beginning
+   backspace(7) positions the specified file back to the beginning
    of the current record or if already at the beginning of a record,
    back to the beginning of the previous record.
 
@@ -21,9 +21,9 @@ BACKSPACE([UNIT=]unit-number][,IOMSG=iomsg][,IOSTAT=iostat][,ERR=label])
 
    It is most often used when a program has partially read a line and
    then wants to go back and reread the line using the information from
-   the previous read(7f),
+   the previous read(7),
 
-   backspace(7f) is rarely used in new code as the subsequent addition
+   backspace(7) is rarely used in new code as the subsequent addition
    of Fortran features such as non-advancing I/O and internal reads
    into a CHARACTER variable (which can be read from multiple times) are
    typically far more efficient and provide much of the same functionality
@@ -36,7 +36,7 @@ BACKSPACE([UNIT=]unit-number][,IOMSG=iomsg][,IOSTAT=iostat][,ERR=label])
    Unix platforms.
 
    A unit open for direct access or unformatted access cannot be
-   referenced by backspace(7f).  backspace(7f) only works with formatted
+   referenced by backspace(7).  backspace(7) only works with formatted
    sequential files that may be repositioned. So it does not generally
    work with standard input from a terminal, pipes, and other formatted
    sequential file types that cannot be rewound or positioned.

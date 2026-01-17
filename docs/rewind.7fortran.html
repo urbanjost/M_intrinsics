@@ -58,7 +58,7 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-rewind(7f) - [FILE_POSITIONING] rewind specified sequential access I/O
+rewind(7) - [FILE_POSITIONING] rewind specified sequential access I/O
 unit
 <P>
 </BLOCKQUOTE>
@@ -83,14 +83,14 @@ rewind ( [UNIT=]file-unit-number][,IOMSG=iomsg-variable] &
 </A>
 <BLOCKQUOTE>
 <P>
-Execution of a REWIND(7F) statement causes the file connected to the
+Execution of a REWIND(7) statement causes the file connected to the
 specified unit to be positioned at the beginning of the file.
 <P>
 If the file is already positioned at its initial point, execution of
 this statement has no effect on the position of the file.
 <P>
-Execution of a REWIND(7F) statement for a file that is connected but
-does not exist is permitted and has no effect on any file.
+Execution of a REWIND(7) statement for a file that is connected but does
+not exist is permitted and has no effect on any file.
 </BLOCKQUOTE>
 <A name=3>
 
@@ -100,7 +100,7 @@ does not exist is permitted and has no effect on any file.
 <BLOCKQUOTE>
 <P>
 UNIT : unit number of file to rewind. A unit open for direct access or
-stream access cannot be referenced by a REWIND(7F) (e.g. you cannot
+stream access cannot be referenced by a REWIND(7) (e.g. you cannot
 typically rewind stdin and stdout).
 <P>
 IOSTAT : (Optional) a compiler-specific number that indicates an error
@@ -118,7 +118,7 @@ ERR : (Optional) a label number to jump to if an error occurs
 </A>
 <BLOCKQUOTE>
 <P>
-An example of a REWIND(7F) statement is:
+An example of a REWIND(7) statement is:
 <P>
 <PRE>
         program demo_rewind

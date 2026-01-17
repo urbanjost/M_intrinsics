@@ -58,7 +58,7 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-BLOCK(7f) - [EXECUTION CONTROL] block construct
+BLOCK(7) - [EXECUTION CONTROL] block construct
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
@@ -86,8 +86,8 @@ Syntax:
 </A>
 <BLOCKQUOTE>
 <P>
-The BLOCK(7F) construct is an executable construct which may contain
-declarations, and may be exited using the EXIT(7F) statement.
+The BLOCK(7) construct is an executable construct which may contain
+declarations, and may be exited using the EXIT(7) statement.
 <P>
 Aside from the following restrictions a block construct is in many ways
 similar to a contained procedure without parameters accept it is
@@ -96,14 +96,14 @@ constructed in-line instead of after the body of the current procedure.
 So if you are thinking about making a contained procedure that will be
 called once it will probably be clearer inlined using a block construct.
 <P>
-The specification-part of a BLOCK(7F) construct cannot contain a COMMON,
+The specification-part of a BLOCK(7) construct cannot contain a COMMON,
 EQUIVALENCE, IMPLICIT, INTENT, NAMELIST, or OPTIONAL statement.
 <P>
-A SAVE of a common-block-name is not allowed in a BLOCK(7F) construct.
+A SAVE of a common-block-name is not allowed in a BLOCK(7) construct.
 <P>
 Except for the ASYNCHRONOUS and VOLATILE statements, specifications in a
-BLOCK(7F) construct declare construct entities whose scope is that of
-the block construct.
+BLOCK(7) construct declare construct entities whose scope is that of the
+block construct.
 </BLOCKQUOTE>
 <A name=3>
 
@@ -142,7 +142,7 @@ Sample programs:
         integer :: i=-100
         integer :: tan
           tan=20 ! intentionally cause a conflict with intrinsic
-          ! cannot use tan(3f) right here because using name for a variable
+          ! cannot use tan(3) right here because using name for a variable
           TESTFORZERO: block
              integer :: I      ! local block variable
              intrinsic :: tan  ! can use the TAN intrinsic in the block now

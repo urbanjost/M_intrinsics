@@ -1,7 +1,7 @@
 ## if
 
 ### **Name**
-     if(7f) - [EXECUTION CONTROL] selects a block based on a
+     if(7) - [EXECUTION CONTROL] selects a block based on a
      sequence of logical expressions.
 
 ### **Synopsis**

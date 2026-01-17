@@ -4262,9 +4262,8 @@ bitwise XOR operation
 
 - **stat** is a Scalar default-kind integer variable.
 
-### **Characteristics**
-
 ### **Description**
+
 **atomic_xor(atom, value, stat)** atomically performs a bitwise **xor**
 operation between the value of **atom** and **value**, storing the result
 in **atom**.
@@ -5903,7 +5902,7 @@ Fortran 2003
       type(TYPE),pointer,intent(out) :: fprt
 ```
 ### **Characteristics**
-
+   +
 ### **Description**
 
 **c_f_procpointer**(3) assigns the target of the C function
@@ -6937,24 +6936,92 @@ Sample program:
 ```fortran
 program demo_compiler_version
 use, intrinsic :: iso_fortran_env, only : compiler_version
-use, intrinsic :: iso_fortran_env, only : compiler_options
 implicit none
-   print '(4a)', &
-      'This file was compiled by ', &
-      compiler_version(),           &
-      ' using the options ',        &
-      compiler_options()
+      print '(4a)', 'This file was compiled by ', compiler_version()
 end program demo_compiler_version
 ```
-Results:
+Results (plain):
 ```text
  > This file was compiled by GCC version 10.3.0
 
- > This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler
- > Classic for applications running on Intel(R) 64, Version 2021.3.0 Build
- > 20210609_000000
+ > This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler Classic for
+ > applications running on Intel(R) 64, Version 2021.3.0 Build 20210609_000000
 
  > This file was compiled by nvfortran 21.5-0 LLVM
+```
+An extended version that wraps the version to a width of 80 columns
+and attempts to show the options used one per line:
+```fortran
+program extended_compiler_version
+implicit none
+   call platform()
+contains
+
+subroutine platform()
+use, intrinsic :: iso_fortran_env, only : compiler_version
+use, intrinsic :: iso_fortran_env, only : compiler_options
+implicit none
+character(len=:),allocatable :: version, options
+character(len=*),parameter   :: nl=new_line('a')
+integer                      :: where, start, break, i, last, col
+   version=compiler_version()//' '
+   options=' '//compiler_options()
+   start=1
+   do
+      where=index(options(start:),' -')
+      if(where.eq.0)exit
+      break=where+start-1
+      options(break:break)=nl
+      start=where
+   enddo
+   if(start.eq.1)then
+      do
+         where=index(options(start:),' /')
+         if(where.eq.0)exit
+         break=where+start-1
+         options(break:break)=nl
+         start=where
+      enddo
+   endif
+   last=len_trim(version)+1
+   col=0
+   do i=1,len_trim(version)
+    col=col+1
+    if(version(i:i).eq.' ')last=i
+    if(col.gt.76)then
+       version(last:last)=nl
+       col=0
+    endif
+   enddo
+   print '(a,/,3x,*(a))', 'This file was compiled by :', inset(version)
+   if(options.ne.'')then
+      print '(*(a))', 'using the options :', inset(options)
+   endif
+end subroutine platform
+
+function inset(string) result(longer)
+character(len=*),intent(in)  :: string
+character(len=:),allocatable :: longer
+character(len=*),parameter   :: nl=new_line('a')
+integer                      :: i
+   longer=''
+   do i=1,len(string)
+      longer=longer//string(i:i)
+      if(string(i:i).eq.nl)then
+         longer=longer//'   '
+      endif
+   enddo
+end function inset
+
+end program extended_compiler_version
+```
+Results (fancy):
+```text
+ > This file was compiled by :
+ >    GCC version 16.0.0 20250727 (experimental)
+ > using the options :
+ >    -mtune=generic
+ >    -march=x86-64
 ```
 ### **Standard**
 
@@ -15678,9 +15745,7 @@ multiplication
   Note that **matrix_a** and **matrix_b** may be different numeric
   types.
 
-### **Result**
-
-####  **Numeric Arguments**
+### **Results for Numeric Arguments**
 
   If **matrix_a** and **matrix_b** are numeric the result is an
   array containing the conventional matrix product of **matrix_a**
@@ -15688,10 +15753,8 @@ multiplication
 
   First, for the numeric expression **C=matmul(A,B)**
 
-   - Any vector **A(n)** is treated as a row vector **A(1,n)**.
-   - Any vector **B(n)** is treated as a column vector **B(n,1)**.
-
-#####  **Shape and Rank**
+   + Any vector **A(n)** is treated as a row vector **A(1,n)**.
+   + Any vector **B(n)** is treated as a column vector **B(n,1)**.
 
   The shape of the result can then be determined as the number of rows
   of the first matrix and the number of columns of the second; but if
@@ -15706,16 +15769,12 @@ multiplication
    + If **matrix_a** has shape [n,m] and **matrix_b** has shape [m],
      the result has shape [n].
 
-#####  **Values**
-
   Then element **C(i,j)** of the product is obtained by multiplying
   term-by-term the entries of the ith row of **A** and the jth column
   of **B**, and summing these products. In other words, **C(i,j)**
   is the dot product of the ith row of **A** and the jth column of **B**.
 
-#### **Logical Arguments**
-
-#####  **Values**
+### **Results for Logical Arguments**
 
   If **matrix_a** and **matrix_b** are of type logical, the array elements
   of the result are instead:
@@ -16795,7 +16854,7 @@ Fortran 95
   the locations of the minimum element along each row of the array in
   the **dim** direction.
 
-  If **mask** is present, only the elements for which **mask** is _true._
+  If **mask** is present, only the elements for which **mask** is _.true._
   are considered.
 
   If more than one element in the array has the minimum value, the
@@ -23147,16 +23206,12 @@ fortran 2023
   if **dim** is specified returns the number of elements along that
   dimension.
 
-  **size**(3) determines the extent of **array** along a specified
-  dimension **dim**, or the total number of elements in **array** if
-  **dim** is absent.
-
 ### **Options**
 
 - **array**
   : the array to measure the number of elements of.
-  If **array** is an assumed-size array, **dim** shall be present with a value less
-  than the rank of **array**.
+  If **array** is an assumed-size array, **dim** shall be present with
+  a value less than the rank of **array**.
 
 - **dim**
   : a value shall be

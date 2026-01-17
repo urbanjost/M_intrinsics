@@ -43,12 +43,12 @@ logical                        :: prefix, ignorecase, demo, color
 character(len=512)             :: paws, remember
 character(len=20) ::  &
 &  bg=       '<E>                ',  &  ! initial background color
-&  fg=       '<w><bo>            ',  &  ! text color
-&  prg=      '<c><bo>            ',  &  ! demo program text color
-&  head=     '<y><bo>            ',  &  ! header line
+&  fg=       '<bo><w>            ',  &  ! text color
+&  prg=      '<bo><c>            ',  &  ! demo program text color
+&  head=     '<bo><r>            ',  &  ! header line
 &  head_=    '</bo>              ',  &
 &  fixed=    '<w>                ',  &  ! color of leading > in demo program output
-&  output=   '<y><bo>            ',  &  ! demo program output
+&  output=   '<bo><y>            ',  &  ! demo program output
 &  output_=  '</bo>              '
 namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
    ! process command line
@@ -492,7 +492,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                      endif
                      remember='f'
                   case('h','?')
-                     if(paws.eq.'h')then
+                     if(paws.eq.'h'.or.paws.eq.'?')then
                         call cribsheet()
                         if(paws.ne.'')then ! entered value at continue ...
                            topics=[adjustl(paws)]
@@ -504,7 +504,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                         ! characters after h assume could
                         ! be h topic or help topic so
                         ! treat it like t command
-                        if(paws.eq.'help')paws='help manual'
+                        if(paws.eq.'help')paws='help help'
                         m=index(paws(:len_trim(paws)),' ')
                         if(m.eq.0)m=2
                         topics=[adjustl(paws(m:))]

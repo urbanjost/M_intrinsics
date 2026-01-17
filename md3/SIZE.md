@@ -35,16 +35,12 @@
   if **dim** is specified returns the number of elements along that
   dimension.
 
-  **size**(3) determines the extent of **array** along a specified
-  dimension **dim**, or the total number of elements in **array** if
-  **dim** is absent.
-
 ### **Options**
 
 - **array**
   : the array to measure the number of elements of.
-  If **array** is an assumed-size array, **dim** shall be present with a value less
-  than the rank of **array**.
+  If **array** is an assumed-size array, **dim** shall be present with
+  a value less than the rank of **array**.
 
 - **dim**
   : a value shall be

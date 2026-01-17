@@ -53,9 +53,7 @@ multiplication
   Note that **matrix_a** and **matrix_b** may be different numeric
   types.
 
-### **Result**
-
-####  **Numeric Arguments**
+### **Results for Numeric Arguments**
 
   If **matrix_a** and **matrix_b** are numeric the result is an
   array containing the conventional matrix product of **matrix_a**
@@ -63,10 +61,8 @@ multiplication
 
   First, for the numeric expression **C=matmul(A,B)**
 
-   - Any vector **A(n)** is treated as a row vector **A(1,n)**.
-   - Any vector **B(n)** is treated as a column vector **B(n,1)**.
-
-#####  **Shape and Rank**
+   + Any vector **A(n)** is treated as a row vector **A(1,n)**.
+   + Any vector **B(n)** is treated as a column vector **B(n,1)**.
 
   The shape of the result can then be determined as the number of rows
   of the first matrix and the number of columns of the second; but if
@@ -81,16 +77,12 @@ multiplication
    + If **matrix_a** has shape [n,m] and **matrix_b** has shape [m],
      the result has shape [n].
 
-#####  **Values**
-
   Then element **C(i,j)** of the product is obtained by multiplying
   term-by-term the entries of the ith row of **A** and the jth column
   of **B**, and summing these products. In other words, **C(i,j)**
   is the dot product of the ith row of **A** and the jth column of **B**.
 
-#### **Logical Arguments**
-
-#####  **Values**
+### **Results for Logical Arguments**
 
   If **matrix_a** and **matrix_b** are of type logical, the array elements
   of the result are instead:

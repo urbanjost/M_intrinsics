@@ -25,7 +25,7 @@
           integer :: i=-100
           integer :: tan
             tan=20 ! intentionally cause a conflict with intrinsic
-            ! cannot use tan(3f) right here because using name for a variable
+            ! cannot use tan(3) right here because using name for a variable
             TESTFORZERO: block
                integer :: I      ! local block variable
                intrinsic :: tan  ! can use the TAN intrinsic in the block now

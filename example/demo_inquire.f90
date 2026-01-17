@@ -11,7 +11,7 @@
       contains
       subroutine print_inquire(lun_in,filename)
 
-      ! @(#) print_inquire(3f) print INQUIRE of file by name/number
+      ! @(#) print_inquire(3) print INQUIRE of file by name/number
 
       integer,intent(in),optional           ::  lun_in
       character(len=*),intent(in),optional  ::  filename

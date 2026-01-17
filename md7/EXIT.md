@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**exit**(7f) - \[EXECUTION CONTROL\] terminate do-loops and block constructs
+**exit**(7) - \[EXECUTION CONTROL\] terminate do-loops and block constructs
 
 ### **Synopsis**
 
@@ -65,7 +65,7 @@ cannot have **exit** statements associated with them.
 A few additional restrictions apply, primarily for potentially parallel
 regions.
 
- + An **exit** statement cannot cannot terminate a **do concurrent**
+ + An **exit** statement cannot terminate a **do concurrent**
    construct because the execution order of the iterations is allowed
    to be indeterminate -- so an exit would result in an unknown state.
 
@@ -104,7 +104,7 @@ Samples:
    !
    ! the basics
    !
-   ! Note we will use the function irand(3f) contained in
+   ! Note we will use the function irand(3) contained in
    ! the end of the code below to generate random whole numbers
    !
    !----------------------
@@ -211,7 +211,7 @@ Samples:
          do i=1,size(iarr)
            ! when you find what you are looking for use an EXIT instead
            ! of a GOTO , which follows much more restricted rules on
-           ! on where you can land, preventing the threat of spaghetti code
+           ! where you can land, preventing the threat of spaghetti code
            if(iarr(i).eq.5) exit LOOKFOR
          enddo
          write(*,*)'should not get here. iarr=',iarr

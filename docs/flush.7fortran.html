@@ -58,7 +58,7 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-flush(7f) - [IO] flush I/O buffers of specified files
+flush(7) - [IO] flush I/O buffers of specified files
 <P>
 </BLOCKQUOTE>
 <BLOCKQUOTE>
@@ -81,7 +81,7 @@ flush([UNIT=]file_unit_number,[iostat=i],[iomsg=str],[err=label_number])
 <BLOCKQUOTE>
 <P>
 I/O statements can buffer output before delivering it to the host system
-in order to minimize the overhead of system calls. Use FLUSH(7F) to
+in order to minimize the overhead of system calls. Use FLUSH(7) to
 deliver any such pending I/O for the identified file to the host system.
 <P>
 This is generally not required accept to ensure critical information is
@@ -91,20 +91,19 @@ I/O operations or programs using large amounts of I/O might experience
 significant performance degradation, particularly if the I/O is to a
 block-oriented device.
 <P>
-Note execution of a FLUSH(7F) statement performs a wait operation for
-all pending asynchronous data transfer operations for the specified
-unit.
+Note execution of a FLUSH(7) statement performs a wait operation for all
+pending asynchronous data transfer operations for the specified unit.
 <P>
-More generally execution of a FLUSH(7F) statement causes data written to
+More generally execution of a FLUSH(7) statement causes data written to
 an external file not only to be available to other processes, causes
 data placed in an external file by means other than Fortran to be
-available to a READ(7F) statement; but these actions are processor
+available to a READ(7) statement; but these actions are processor
 dependent.
 <P>
-Execution of a FLUSH(7F) statement for a file that is connected but does
+Execution of a FLUSH(7) statement for a file that is connected but does
 not exist is permitted and has no effect on any file.
 <P>
-A FLUSH(7F) statement has no effect on file position.
+A FLUSH(7) statement has no effect on file position.
 </BLOCKQUOTE>
 <A name=3>
 
@@ -129,7 +128,7 @@ value if an error occurs, to zero if the flush operation was successful,
 or to a processor-dependent negative value if the flush operation is not
 supported for the unit specified. IOMSG : character variable holding
 error description when iostat is not zero. ERR : The numeric line label
-of a target statement in the same scope as the FLUSH(7F) statement.
+of a target statement in the same scope as the FLUSH(7) statement.
 <P>
 NOTE From the Fortran standard:
 <P>

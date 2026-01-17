@@ -1,7 +1,7 @@
 ## select
 
 ### **Name**
-   select(7f) - [EXECUTION CONTROL] select a block based on 
+   select(7) - [EXECUTION CONTROL] select a block based on 
    a value, type, or rank
 
 ### **Synopsis**
