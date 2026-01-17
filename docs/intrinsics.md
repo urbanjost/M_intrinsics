@@ -4262,9 +4262,8 @@ bitwise XOR operation
 
 - **stat** is a Scalar default-kind integer variable.
 
-### **Characteristics**
-
 ### **Description**
+
 **atomic_xor(atom, value, stat)** atomically performs a bitwise **xor**
 operation between the value of **atom** and **value**, storing the result
 in **atom**.
@@ -5903,7 +5902,7 @@ Fortran 2003
       type(TYPE),pointer,intent(out) :: fprt
 ```
 ### **Characteristics**
-
+   +
 ### **Description**
 
 **c_f_procpointer**(3) assigns the target of the C function

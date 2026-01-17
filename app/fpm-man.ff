@@ -43,12 +43,12 @@ logical                        :: prefix, ignorecase, demo, color
 character(len=512)             :: paws, remember
 character(len=20) ::  &
 &  bg=       '<E>                ',  &  ! initial background color
-&  fg=       '<w><bo>            ',  &  ! text color
-&  prg=      '<c><bo>            ',  &  ! demo program text color
-&  head=     '<y><bo>            ',  &  ! header line
+&  fg=       '<bo><w>            ',  &  ! text color
+&  prg=      '<bo><c>            ',  &  ! demo program text color
+&  head=     '<bo><r>            ',  &  ! header line
 &  head_=    '</bo>              ',  &
 &  fixed=    '<w>                ',  &  ! color of leading > in demo program output
-&  output=   '<y><bo>            ',  &  ! demo program output
+&  output=   '<bo><y>            ',  &  ! demo program output
 &  output_=  '</bo>              '
 namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
    ! process command line

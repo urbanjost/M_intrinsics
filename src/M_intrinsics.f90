@@ -4967,7 +4967,6 @@ textblock=[character(len=256) :: &
 '', &
 '  o  STAT is a Scalar default-kind integer variable.', &
 '', &
-'CHARACTERISTICS', &
 'DESCRIPTION', &
 '  ATOMIC_XOR(ATOM, VALUE, STAT) atomically performs a bitwise XOR operation', &
 '  between the value of ATOM and VALUE, storing the result in ATOM.', &
@@ -6780,6 +6779,8 @@ textblock=[character(len=256) :: &
 '           type(TYPE),pointer,intent(out) :: fprt', &
 '', &
 'CHARACTERISTICS', &
+'  o', &
+'', &
 'DESCRIPTION', &
 '  C_F_PROCPOINTER(3) assigns the target of the C function pointer CPTR to the', &
 '  Fortran procedure pointer FPTR.', &
