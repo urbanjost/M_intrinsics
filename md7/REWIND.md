@@ -1,7 +1,7 @@
 ## rewind
 
 ### **Name**
-  rewind(7f) - [FILE_POSITIONING] rewind specified sequential
+  rewind(7) - [FILE_POSITIONING] rewind specified sequential
   access I/O unit
 
 ### **Synopsis**
@@ -13,19 +13,19 @@
 ```
 ### **Description**
 
-Execution of a REWIND(7F) statement causes the file connected to the
+Execution of a REWIND(7) statement causes the file connected to the
 specified unit to be positioned at the beginning of the file.
 
 If the file is already positioned at its initial point, execution of
 this statement has no effect on the position of the file.
 
-Execution of a REWIND(7F) statement for a file that is connected but
+Execution of a REWIND(7) statement for a file that is connected but
 does not exist is permitted and has no effect on any file.
 
 ### **Options**
 
 UNIT : unit number of file to rewind. A unit open for direct access or
-stream access cannot be referenced by a REWIND(7F) (e.g. you cannot
+stream access cannot be referenced by a REWIND(7) (e.g. you cannot
 typically rewind stdin and stdout).
 
 IOSTAT : (Optional) a compiler-specific number that indicates an error
@@ -38,7 +38,7 @@ ERR : (Optional) a label number to jump to if an error occurs
 
 ### **Examples**
 
-An example of a REWIND(7F) statement is:
+An example of a REWIND(7) statement is:
 ```fortran
     program demo_rewind
     implicit none

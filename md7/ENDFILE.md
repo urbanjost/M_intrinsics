@@ -10,18 +10,18 @@
 ```
 ### **Description**
 
-An **endfile**(7f) ends or truncates a file at the current record.
+An **endfile**(7) ends or truncates a file at the current record.
 
-Execution of an **endfile**(7F) statement for a file connected for
+Execution of an **endfile**(7) statement for a file connected for
 SEQUENTIAL ACCESS writes an endfile record as the next record of the
 file. The file is then positioned after the endfile record, which
 becomes the last record of the file.
 
 -  SEQUENTIAL ACCESS
-   : After execution of an **endfile**(7F) statement for
-   a file connected for sequential access, a BACKSPACE(7F) or
-   REWIND(7F) statement shall be used to reposition the file prior to
-   execution of any data transfer input/output statement or **endfile**(7F)
+   : After execution of an **endfile**(7) statement for
+   a file connected for sequential access, a BACKSPACE(7) or
+   REWIND(7) statement shall be used to reposition the file prior to
+   execution of any data transfer input/output statement or **endfile**(7)
    statement.
 
 -  DIRECT ACCESS
@@ -32,7 +32,7 @@ becomes the last record of the file.
    the file.
 
 -  STREAM ACCESS
-   : Execution of an **endfile**(7F) statement for a file
+   : Execution of an **endfile**(7) statement for a file
    connected for STREAM ACCESS causes the terminal point of the file to
    become equal to the current file position. Only file storage units
    before the current position are considered to have been written;
@@ -40,7 +40,7 @@ becomes the last record of the file.
    Subsequent stream output statements may be used to write further
    data to the file.
 
-Execution of an **endfile**(7F) statement for a file that is connected but
+Execution of an **endfile**(7) statement for a file that is connected but
 does not exist creates the file; if the file is connected for sequential
 access, it is created prior to writing the endfile record.
 
@@ -49,7 +49,7 @@ access, it is created prior to writing the endfile record.
 
 ### **Examples**
 
-An example of an **endfile**(7f) statement is:
+An example of an **endfile**(7) statement is:
 ```fortran
     program demo_endfile
     implicit none
@@ -69,7 +69,7 @@ An example of an **endfile**(7f) statement is:
        endfile lun ! will truncate line at current position
        !
        ! NOTE: backspace before writing any addition lines
-       !       once an ENDFILE(7f) statement is executed
+       !       once an ENDFILE(7) statement is executed
        ! backspace(lun)
        !
        ! rewind and echo remaining file

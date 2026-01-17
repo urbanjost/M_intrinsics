@@ -1,7 +1,7 @@
 ## deallocate
 
 ### **Name**
-  **deallocate**(7f) - [FORTRAN:STATEMENT] causes allocated variables
+  **deallocate**(7) - [FORTRAN:STATEMENT] causes allocated variables
   and targets to be deallocated
 
 ### **Synopsis**

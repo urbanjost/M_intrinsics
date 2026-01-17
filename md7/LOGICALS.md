@@ -486,8 +486,8 @@ logical                               :: l1, l2
 
   print all, 'MERGE() is one method for transposing logical and integer'
   ! converting a logical to an integer is not done
-  ! with LOGICAL(3f) and INT(3f) or promotion by assignment;
-  ! but can be done with MERGE(3f) with scalars or arrays.
+  ! with LOGICAL(3) and INT(3) or promotion by assignment;
+  ! but can be done with MERGE(3) with scalars or arrays.
    i1=merge(1,0,T)
    i2=merge(1,0,F)
    write(*,all)'   T-->',i1,' F-->',I2

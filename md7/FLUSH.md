@@ -1,7 +1,7 @@
 ## flush
 
 ### **Name**
-   flush(7f) - [IO] flush I/O buffers of specified files
+   flush(7) - [IO] flush I/O buffers of specified files
 ### **Synopsis**
 ```fortran
    flush file-unit-number
@@ -11,7 +11,7 @@
 
    I/O statements can buffer output before delivering it to the
    host system in order to minimize the overhead of system calls.
-   Use **flush(7f)** to deliver any such pending I/O for the identified
+   Use **flush(7)** to deliver any such pending I/O for the identified
    file to the host system.
 
    This is generally not required accept to ensure critical information
@@ -21,20 +21,20 @@
    experience significant performance degradation, particularly if the
    I/O is to a block-oriented device.
 
-   Note execution of a **flush(7f)** statement performs a wait operation
+   Note execution of a **flush(7)** statement performs a wait operation
    for all pending asynchronous data transfer operations for the
    specified unit.
 
-   More generally execution of a **flush(7f)** statement causes data
+   More generally execution of a **flush(7)** statement causes data
    written to an external file not only to be available to other
    processes,  causes data placed in an external file by means other
-   than Fortran to be available to a **read(7f)** statement; but these
+   than Fortran to be available to a **read(7)** statement; but these
    actions are processor dependent.
 
-   Execution of a **flush(7f)** statement for a file that is connected
+   Execution of a **flush(7)** statement for a file that is connected
    but does not exist is permitted and has no effect on any file.
 
-   A **flush(7f)** statement has no effect on file position.
+   A **flush(7)** statement has no effect on file position.
 
 ### **Options**
    **unit** 
@@ -54,7 +54,7 @@
      is not zero.
    **err**
    : The numeric line label of a target statement in the same
-     scope as the **flush(7f)** statement.
+     scope as the **flush(7)** statement.
 
    NOTE
    From the Fortran standard:

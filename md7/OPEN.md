@@ -1,7 +1,7 @@
 ## open
 
 ### **Name**
-   open(7f) - [IO] Initiates or modifies a connection between
+   open(7) - [IO] Initiates or modifies a connection between
    an external file and a specified unit.
 
 ### **Synopsis**

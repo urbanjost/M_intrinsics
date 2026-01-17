@@ -1,7 +1,7 @@
 ## namelist
 
 ### **Name**
-    namelist(7f) - [STATEMENT] specify a group of data to be referred
+    namelist(7) - [STATEMENT] specify a group of data to be referred
     to by a single name in data input/output
 
 ### **Synopsis**

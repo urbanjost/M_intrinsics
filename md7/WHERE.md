@@ -1,7 +1,7 @@
 ## where
 
 ### **Name**
-   where(7f) - [ASSIGNMENT] masked array assignment
+   where(7) - [ASSIGNMENT] masked array assignment
 
 ### **Syntax**
   **where** statement:

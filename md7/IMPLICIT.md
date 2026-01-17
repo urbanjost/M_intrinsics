@@ -2,7 +2,7 @@
 
 ### **Name**
 
-   **implicit**(7f) - [STATEMENT]  specify default type associated
+   **implicit**(7) - [STATEMENT]  specify default type associated
    to a starting letter or disallow implicit typing
 
 ### **Synopsis**

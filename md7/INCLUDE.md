@@ -1,7 +1,7 @@
 ## include
 
 ### **Name**
-  include(7f) - [PREPROCESS] blending source text
+  include(7) - [PREPROCESS] blending source text
 
 ### **Synopsis**
   INCLUDE char-literal-constant

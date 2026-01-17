@@ -1,7 +1,7 @@
 ## return
 
 ### **Name**
-   return(7f) - [STATEMENT] completes execution of the instance
+   return(7) - [STATEMENT] completes execution of the instance
    of the subprogram in which it appears
 
 ### **Synopsis**

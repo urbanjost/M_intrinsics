@@ -22,7 +22,7 @@ A **continue** statement is most often used as a target for transfer
 control statements such as **goto**. That is,  a numeric label is added
 to the line.
 
-CONTINUE(7f)  is rarely used in new code but was very commonly encountered
+CONTINUE(7)  is rarely used in new code but was very commonly encountered
 in older FORTRAN code before the advent of constructs like **enddo**,
 **cycle**, **block**, and **exit**.
 

@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**block**(7f) - \[EXECUTION CONTROL\] block construct
+**block**(7) - \[EXECUTION CONTROL\] block construct
 
 ### **Synopsis**
 Syntax:
@@ -13,8 +13,8 @@ Syntax:
 ```
 ### **Description**
 
-The **block(7f)** construct is an executable construct which may contain
-declarations, and may be exited using the **exit(7f)** statement.
+The **block(7)** construct is an executable construct which may contain
+declarations, and may be exited using the **exit(7)** statement.
 
 Aside from the following restrictions a block construct is in many
 ways similar to a contained procedure without parameters accept it is
@@ -23,15 +23,15 @@ constructed in-line instead of after the body of the current procedure.
 So if you are thinking about making a contained procedure that will be
 called once it will probably be clearer inlined using a block construct.
 
-The specification-part of a **block(7f)** construct cannot contain a
+The specification-part of a **block(7)** construct cannot contain a
 **common**, **equivalence**, **implicit**, **intent**, **namelist**,
 or **optional** statement.
 
-A **save** of a common-block-name is not allowed in a **block(7f)**
+A **save** of a common-block-name is not allowed in a **block(7)**
 construct.
 
 Except for the **asynchronous** and **volatile** statements,
-specifications in a **block(7f)** construct declare construct entities
+specifications in a **block(7)** construct declare construct entities
 whose scope is that of the block construct.
 
 ### **Examples**
@@ -66,7 +66,7 @@ Sample programs:
     integer :: i=-100
     integer :: tan
       tan=20 ! intentionally cause a conflict with intrinsic
-      ! cannot use tan(3f) right here because using name for a variable
+      ! cannot use tan(3) right here because using name for a variable
       TESTFORZERO: block
          integer :: I      ! local block variable
          intrinsic :: tan  ! can use the TAN intrinsic in the block now

@@ -67,6 +67,7 @@ public help_intrinsics
 !   module procedure help_intrinsics_all
 !   module procedure help_intrinsics_one
 !end interface help_intrinsics
+integer,save :: G_section=3
 contains
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
@@ -84,6 +85,17 @@ integer                                           :: i, j, k, p, pg
    select case(name)
    case('','manual','intrinsics','fortranmanual','fortran_manual')
       textblock=help_intrinsics_all(prefix,topic,m_help)
+   case('help')
+     textblock=[character(len=80) :: &
+     'Enter "h" to see the available interactive commands.', &
+     'In addition, the help command takes these options:', &
+     'manual,intrinsics -- load the entire manual', &
+     'toc,toc3,toc5,toc7 -- load specific manual section index', &
+     '                      Section 3 is the intrinsics. Additional', &
+     '                      experimental sections 5 and 7 are under development.', &
+     'TOPIC -- otherwise, the topic is assumed to be the name of a topic in any', &
+     '         one of the topics.', &
+     '                                                                                ']
    case('fortran','toc','toc3','toc5','toc7')
       textblock=help_intrinsics_section()
       do i=1,size(textblock)

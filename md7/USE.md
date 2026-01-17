@@ -1,7 +1,7 @@
 ## use
 
 ### **Name**
-   use(7f) - [FORTRAN] gives a program unit access to public entities
+   use(7) - [FORTRAN] gives a program unit access to public entities
    in a module.
 
 ### **Synopsis**

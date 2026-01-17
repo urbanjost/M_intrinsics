@@ -39,8 +39,8 @@
 
 - **array**
   : the array to measure the number of elements of.
-  If **array** is an assumed-size array, **dim** shall be present with a value less
-  than the rank of **array**.
+  If **array** is an assumed-size array, **dim** shall be present with
+  a value less than the rank of **array**.
 
 - **dim**
   : a value shall be

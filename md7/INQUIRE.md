@@ -1,7 +1,7 @@
 ## inquire
 
 ### **Name**
-   inquire(7f) - [FILE_INQUIRE] File inquiry statement
+   inquire(7) - [FILE_INQUIRE] File inquiry statement
    
 ### **Synopsis**
 ```fortran
@@ -108,7 +108,7 @@
   When a returned value of a specifier other than the NAME= specifier
   is of type character, the value returned is in upper case.
 
-  The specifier that receives the returned value is a a default scalar
+  The specifier that receives the returned value is a default scalar
   variable.
 
 ### **Inputs**
@@ -487,7 +487,7 @@ integer :: iostat
 contains
 subroutine print_inquire(lun_in,filename)
 
-! @(#) print_inquire(3f) print INQUIRE of file by name/number
+! @(#) print_inquire(3) print INQUIRE of file by name/number
 
 integer,intent(in),optional           ::  lun_in
 character(len=*),intent(in),optional  ::  filename

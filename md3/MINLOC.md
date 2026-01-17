@@ -27,7 +27,7 @@
   the locations of the minimum element along each row of the array in
   the **dim** direction.
 
-  If **mask** is present, only the elements for which **mask** is _true._
+  If **mask** is present, only the elements for which **mask** is _.true._
   are considered.
 
   If more than one element in the array has the minimum value, the

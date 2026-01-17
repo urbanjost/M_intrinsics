@@ -1,7 +1,7 @@
 ## wait
 
 ### **Name**
-  wait(7f) - [IO] statement performs a wait operation for
+  wait(7) - [IO] statement performs a wait operation for
   specified pending asynchronous data transfer operations
 
 ### **Synopsis**
@@ -17,7 +17,7 @@
      )
 ```
 ### **Description**
-   The WAIT(7f) statement performs a wait operation for specified pending
+   The WAIT(7) statement performs a wait operation for specified pending
    asynchronous data transfer operations.
 
    The CLOSE, INQUIRE, and file positioning statements may also perform

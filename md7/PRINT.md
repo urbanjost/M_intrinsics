@@ -1,26 +1,26 @@
 ## print
 
 ### **Name**
-   print(7f) - [IO] write formatted sequential I/O to stdout
+   print(7) - [IO] write formatted sequential I/O to stdout
 ### **Synopsis**
 ```fortran
     PRINT format [ , output-item-list ]
 ```
 ### **Description**
-    print(7f) is equivalent to
+    print(7) is equivalent to
 ```fortran
         write(*,fmt=FORMAT_SPECIFIER) LIST
 ```
     That is, it always writes formatted sequential I/O to stdout. It
     may use list-directed I/O or a FORMAT specifier.
 
-    print(7f) allows for no other options and therefore cannot be used
+    print(7) allows for no other options and therefore cannot be used
     for binary or non-advancing or stream or asynchronous I/O or any
     of the other options provided by the more general but also more
-    complicated write(7f) statement.
+    complicated write(7) statement.
 
     Note that pure subprograms cannot contain I/O statements such as
-    print(7f).
+    print(7).
 
 ### **Options**
     format            a format may be used to specify how output items
@@ -42,7 +42,7 @@ character(len=*),parameter :: commas='(*(g0:,","))'
  ! List-directed output is frequently specified
   PRINT *, A, S
 
- ! a format may be placed on the print(7f) statement
+ ! a format may be placed on the print(7) statement
   PRINT '(*(g0,1x))', A, S, J
 
  ! the format may be in a character variable

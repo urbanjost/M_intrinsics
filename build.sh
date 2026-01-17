@@ -5,6 +5,8 @@
 # fpm-standalone
 # fpm
 # fortran compiler, defaults to gfortran
+export FMAN_COLOR=
+declare +x FMAN_COLOR
 cd $(dirname $0)
 (
 exec 2>&1
@@ -31,7 +33,8 @@ ford ford.md
 ######################################
 (
 fpm standalone
-mv standalone.f90 standalone/fman.F90
+mkdir -p standalone
+mv standalone.[fF]90 standalone/fman.F90
 cd standalone
 gfortran fman.F90 -o fpm-man
 rm -f fpm-man
@@ -68,7 +71,8 @@ cp txt/* $HOME/LIBRARY/libGPF/download/doc/
 bash scripts/rebuild.sh
 )
 cp `which fpm-man` `which fman`
-fpm manual >docs/manual.txt
+env FMAN_COLORS= fpm man manual --lines=0 >docs/manual.txt
+fpm man --color --lines=0 manual |ansi2html>docs/manual.html
 ######################################
 exit
 ######################################

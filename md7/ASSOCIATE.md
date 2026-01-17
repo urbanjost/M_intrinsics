@@ -1,7 +1,7 @@
 ## associate
 
 ### **Name**
-   ASSOCIATE(7f) - [EXECUTION CONTROL] aliases selected variable
+   ASSOCIATE(7) - [EXECUTION CONTROL] aliases selected variable
    identifiers as well as creates constants within the block from runtime
    expressions at entry into the block
    (LICENSE:PD)
@@ -171,7 +171,7 @@ a macro. That would generally be implemented via a contained procedure.
    has the same rank and corank as its associated selector.
 
    The lower bound of each dimension is the result of the intrinsic
-   function LBOUND(3f) applied to the corresponding dimension of selector.
+   function LBOUND(3) applied to the corresponding dimension of selector.
    The upper bound of each dimension is one less than the sum of the
    lower bound and the extent.
 
@@ -189,8 +189,8 @@ a macro. That would generally be implemented via a contained procedure.
       b([1,3,2,4])=[lbound(arr(:,:)),ubound(arr(:,:))]
       print bounds,'arr(:,:)',b
      !
-     ! and the bounds assigned to the identifiers are what UBOUND(3f)
-     ! and LBOUND(3f) return given the selector as an argument so
+     ! and the bounds assigned to the identifiers are what UBOUND(3)
+     ! and LBOUND(3) return given the selector as an argument so
       associate ( &
          alias=>   arr,       & ! keeps the custom bounds
          normal=>  arr(:,:)   & ! gets normal bounds
@@ -331,8 +331,8 @@ Sample program:
                                'ubound=',ubound(array)
      write(*,g)'array(:,:): ', 'lbound=',lbound(array(:,:)), &
                                'ubound=',ubound(array(:,:))
-   ! the bounds assigned to the identifiers are what UBOUND(3f)
-   ! and LBOUND(3f) return given the selector as an argument
+   ! the bounds assigned to the identifiers are what UBOUND(3)
+   ! and LBOUND(3) return given the selector as an argument
      associate ( &
       alias=>   array,              & ! keeps the custom bounds
       normal=>  array(:,:),         & ! gets normal bounds
