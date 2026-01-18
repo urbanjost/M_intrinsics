@@ -1,8 +1,9 @@
 ## return
 
 ### **Name**
-   return(7) - [STATEMENT] completes execution of the instance
-   of the subprogram in which it appears
+
+**return**(7) - \[STATEMENT\] completes execution of the instance
+of the subprogram in which it appears
 
 ### **Synopsis**
 ```fortran

@@ -1,8 +1,9 @@
 ## rewind
 
 ### **Name**
-  rewind(7) - [FILE_POSITIONING] rewind specified sequential
-  access I/O unit
+
+**rewind**(7) - \[FILE:POSITIONING\] rewind specified sequential
+access I/O unit
 
 ### **Synopsis**
 ```fortran

@@ -1,8 +1,9 @@
 ## close
 
 ### **Name**
-   close(7) - [IO] terminate the connection of a specified unit
-   to an external file.
+
+**close**(7) - \[IO\] terminate the connection of a specified unit
+to an external file.
 
 ### **Synopsis**
 ```fortran

@@ -1,7 +1,9 @@
 ## flush
 
 ### **Name**
-   flush(7) - [IO] flush I/O buffers of specified files
+
+**flush**(7) - \[IO\] flush I/O buffers of specified files
+
 ### **Synopsis**
 ```fortran
    flush file-unit-number

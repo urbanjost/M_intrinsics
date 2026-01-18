@@ -1,8 +1,9 @@
 ## open
 
 ### **Name**
-   open(7) - [IO] Initiates or modifies a connection between
-   an external file and a specified unit.
+
+**open**(7) - \[IO\] Initiates or modifies a connection between
+an external file and a specified unit.
 
 ### **Synopsis**
 ```fortran

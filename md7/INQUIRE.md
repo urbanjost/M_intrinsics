@@ -1,7 +1,8 @@
 ## inquire
 
 ### **Name**
-   inquire(7) - [FILE_INQUIRE] File inquiry statement
+
+**inquire**(7) - \[FILE:INQUIRE\] File inquiry statement
    
 ### **Synopsis**
 ```fortran

@@ -324,4 +324,4 @@ SEE ALSO
 
   Fortran Tutorials(license: MIT) @urbanjost
 
-                               January 16, 2026             logicals(7fortran)
+                               January 18, 2026             logicals(7fortran)

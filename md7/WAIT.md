@@ -1,8 +1,9 @@
 ## wait
 
 ### **Name**
-  wait(7) - [IO] statement performs a wait operation for
-  specified pending asynchronous data transfer operations
+
+**wait**(7) - \[IO\] statement performs a wait operation for
+specified pending asynchronous data transfer operations
 
 ### **Synopsis**
 ```fortran

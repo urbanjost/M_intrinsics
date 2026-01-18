@@ -1,8 +1,9 @@
 ## backspace
 
 ### **Name**
-   backspace(7) - [IO:FILE POSITIONING] - backspace one record on
-   specified I/O unit
+
+**backspace**(7) - \[IO:FILE POSITIONING\] - backspace one record on
+specified I/O unit
 
 ### **Synopsis**
 ```fortran

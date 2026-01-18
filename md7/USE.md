@@ -1,8 +1,9 @@
 ## use
 
 ### **Name**
-   use(7) - [FORTRAN] gives a program unit access to public entities
-   in a module.
+
+**use**(7) - \[FORTRAN\] gives a program unit access to public entities
+in a module.
 
 ### **Synopsis**
    There are two forms. One loads all public entities optionally
