@@ -1,9 +1,8 @@
 ## use
 
 ### **Name**
-
-**use**(7) - \[FORTRAN\] gives a program unit access to public entities
-in a module.
+   **use(7)** - \[FORTRAN\] gives a program unit access to public entities
+   in a module.
 
 ### **Synopsis**
    There are two forms. One loads all public entities optionally
@@ -248,11 +247,11 @@ in a module.
    so the names **real32** and **real64** are not available. If you wanted
    both names you would have to add
 ```fortran
-   use,intrinsic :: iso use,intrinsic , real32=>real32, real64=>real64
+   use,intrinsic :: iso_fortran_env, real32=>real32, real64=>real64
 ```
    or
 ```fortran
-   use,intrinsic :: iso use,intrinsic , only: real32, real64
+   use,intrinsic :: iso_fortran_env, real32, real64
 ```
 ### **See Also**
 

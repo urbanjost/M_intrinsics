@@ -47,6 +47,7 @@ integer :: i
    print *, i
    print *, exponent(0.0)
    print *, exponent([10.0,100.0,1000.0,-10000.0])
+   print '(*(i32,1x))', exponent([10.0,100.0,1000.0,-10000.0])
    ! beware of overflow, it may occur silently
    !print *, 2**[10.0,100.0,1000.0,-10000.0]
    print *, exponent(huge(0.0))
@@ -55,9 +56,11 @@ end program demo_exponent
 ```
 Results:
 ```text
- >            4           7          10          14
- >          128
- >         -125
+ >          1
+ >          0
+ >          4           7          10          14
+ >        128
+ >       -125
 ```
 ### **Standard**
 

@@ -153,6 +153,7 @@ Sample program:
        print *, i
        print *, exponent(0.0)
        print *, exponent([10.0,100.0,1000.0,-10000.0])
+       print &#146;(*(i32,1x))&#146;, exponent([10.0,100.0,1000.0,-10000.0])
        ! beware of overflow, it may occur silently
        !print *, 2**[10.0,100.0,1000.0,-10000.0]
        print *, exponent(huge(0.0))
@@ -163,9 +164,11 @@ Sample program:
 Results:
 <P>
 <PRE>
-     &gt;            4           7          10          14
-     &gt;          128
-     &gt;         -125
+     &gt;          1
+     &gt;          0
+     &gt;          4           7          10          14
+     &gt;        128
+     &gt;       -125
 <P>
 </PRE>
 </BLOCKQUOTE>
