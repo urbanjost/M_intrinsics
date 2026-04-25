@@ -10403,9 +10403,9 @@ FORTRAN 77
     result = exponent(x)
 ```
 ```fortran
-     elemental integer function exponent(x)
+    elemental integer function exponent(x)
 
-      real(kind=**),intent(in) :: x
+     real(kind=**),intent(in) :: x
 ```
 ### **Characteristics**
  - **x** shall be of type _real_ of any valid kind
@@ -10435,26 +10435,93 @@ Sample program:
 ```fortran
 program demo_exponent
 implicit none
-real :: x = 1.0
+real    :: x
 integer :: i
+   print *, 'basic usage'
+   print *, exponent([2.0,32.0,256.0,0.25])
+   print *, exponent([1.0,10.0,100.0])
+   print '(g0,1x,a,g0,1x,b32.32)', 500.0, 'exponent(500.0)=', &
+   exponent(500.0), 500.0
+   print '(g0,1x,a,g0,1x,b32.32)', 512.0, 'exponent(512.0)=', &
+   exponent(512.0), 512.0
+   print '(g0,1x,a,g0,1x,b32.32)', 550.0, 'exponent(550.0)=', &
+   exponent(550.0), 525.0
+   print *,'==>',log([500.0,512.0,550.0])/log(2.0)
+   x=9.31
    i = exponent(x)
-   print *, i
-   print *, exponent(0.0)
+   print *, i ,  x
+
+   print *, 'elemental'
    print *, exponent([10.0,100.0,1000.0,-10000.0])
-   print '(*(i32,1x))', exponent([10.0,100.0,1000.0,-10000.0])
+
    ! beware of overflow, it may occur silently
    !print *, 2**[10.0,100.0,1000.0,-10000.0]
-   print *, exponent(huge(0.0))
-   print *, exponent(tiny(0.0))
+
+   print *, 'exponent range'
+   print *, minexponent(0.0),    maxexponent(0.0)
+   print *, exponent(tiny(0.0)), exponent(huge(0.0))
+   call dusty_corners()
+contains
+subroutine dusty_corners()
+use, intrinsic :: ieee_arithmetic
+real :: my_inf, my_neg_inf
+real :: my_qnan, my_snan
+
+   print *
+   print *, 'exponent(0.0)=', exponent(0.0)
+   print *
+   ! Generate positive infinity
+   my_inf = ieee_value(my_inf, ieee_positive_inf)
+   !print "(A,b32.32)" ,'in binary format      = ',my_inf
+   print *, 'ieee_value(my_inf, ieee_positive_inf) =', my_inf
+   print *
+   ! Generate negative infinity
+   my_neg_inf = ieee_value(my_neg_inf, ieee_negative_inf)
+   print *,'ieee_value(my_inf, ieee_neg_inf)', my_neg_inf
+   print *
+   print *,'exponent([my_inf,my_neg_inf]) =',exponent([my_inf,my_neg_inf])
+
+   if (ieee_support_nan(x)) then
+
+      print *
+      my_qnan = ieee_value(my_qnan, ieee_quiet_nan)
+      print *, 'ieee_value(my_qnan, ieee_quiet_nan) =', my_qnan
+      my_snan = ieee_value(my_snan, ieee_signaling_nan)
+      print *, 'ieee_value(my_snan, ieee_signaling_nan) =', my_snan
+      print *, 'exponent([my_qnan,my_snan]) =',exponent([my_qnan,my_snan])
+      print *
+      print *, 'Not sure ...'
+      print *, 'exponent(tiny(0.0)/2)=', exponent(tiny(0.0)/2)
+
+   endif
+end subroutine dusty_corners
+
 end program demo_exponent
 ```
 Results:
 ```text
- >          1
- >          0
- >          4           7          10          14
- >        128
- >       -125
+  >  basic usage
+  >            4   9.31000042
+  >  elemental
+  >            4           7          10          14
+  >  exponent range
+  >         -125         128
+  >         -125         128
+  >
+  >  exponent(0.0)=           0
+  >
+  >  ieee_value(my_inf, ieee_positive_inf) =         Infinity
+  >
+  >  ieee_value(my_inf, ieee_neg_inf)        -Infinity
+  >
+  >  exponent([my_inf,my_neg_inf]) =  2147483647  2147483647
+  >
+  >  ieee_value(my_qnan, ieee_quiet_nan) =              NaN
+  >  ieee_value(my_snan, ieee_signaling_nan) =              NaN
+  >  exponent([my_qnan,my_snan]) =  2147483647  2147483647
+  >
+  >  Not sure ...
+  >  exponent(tiny(0.0)/2)=        -126
 ```
 ### **Standard**
 
@@ -17999,7 +18066,7 @@ Fortran 95
 
 ### **Name**
 
-**new_line**(3) - \[CHARACTER:INQUIRY\] Newline character
+**new_line**(3) - \[CHARACTER:WHITESPACE\] Newline character
 
 ### **Synopsis**
 ```fortran
@@ -18103,20 +18170,48 @@ Sample program:
 ```fortran
 program demo_new_line
 implicit none
-character,parameter :: nl=new_line('a')
+! Get the system's newline character
+character,parameter          :: nl=new_line('a')
 character(len=:),allocatable :: string
-real :: r
-integer :: i, count
+real                         :: r
+integer                      :: i, count
+integer                      :: u, pos_save
+character(len=256)           :: line_buffer
 
   ! basics
    ! print a string with a newline embedded in it
    string='This is record 1.'//nl//'This is record 2.'
    write(*,'(a)') string
 
+  ! Non-Advancing I/O with Newline
+   ! Combining ADVANCE='NO' with NEW_LINE allows for granular control
+   ! over output formatting.
    ! print a newline character string
    write(*,'(*(a))',advance='no') &
       nl,'This is record 1.',nl,'This is record 2.',nl
 
+  ! Stream I/O
+
+    ! 1. Open a file for formatted stream output
+    open(newunit=u, file='test_stream.txt', access='stream', &
+         form='formatted', status='replace')
+
+    ! 2. Write data with manual newlines
+    write(u, '(A)') 'First Line' // nl
+
+    ! Inquire current position (byte offset) before writing second line
+    inquire(unit=u, pos=pos_save)
+
+    write(u, '(A)') 'Second Line' // nl
+    write(u, '(A)') 'Third Line' // nl
+
+    ! Jump directly to the saved position (start of the second line)
+    read(u, '(A)', pos=pos_save) line_buffer
+    print *, 'Data read from saved position:', trim(line_buffer)
+
+    close(u)
+
+  ! Extended Example Providing Paragraph Fill
    ! output a number of words of random length as a paragraph
    ! by inserting a new_line before line exceeds 70 characters
 
@@ -18146,17 +18241,17 @@ Results:
  >
  > This is record 1.
  > This is record 2.
- >  x x xxxx xxxxxxx xxxxxxxxxx xxxxxxxxx xxxx xxxxxxxxxx xxxxxxxx
- >  xxxxxxxxx xxxx xxxxxxxxx x xxxxxxxxx xxxxxxxx xxxxxxxx xxxx x
- >  xxxxxxxxxx x x x xxxxxx xxxxxxxxxx x xxxxxxxxxx x xxxxxxx xxxxxxxxx
- >  xx xxxxxxxxxx xxxxxxxx x xx xxxxxxxxxx xxxxxxxx xxx xxxxxxx xxxxxx
- >  xxxxx xxxxxxxxx x xxxxxxxxxx xxxxxx xxxxxxxx xxxxx xxxxxxxx xxxxxxxx
- >  xxxxx xxx xxxxxxxx xxxxxxx xxxxxxxx xxx xxxx xxx xxxxxxxx xxxxxx
- >  xxxxxxx xxxxxxx xxxxx xxxxx xx xxxxxx xx xxxxxxxxxx xxxxxx x xxxx
- >  xxxxxx xxxxxxx x xxx xxxxx xxxxxxxxx xxx xxxxxxx x xxxxxx xxxxxxxxx
- >  xxxx xxxxxxxxx xxxxxxxx xxxxxxxx xxx xxxxxxx xxxxxxx xxxxxxxxxx
- >  xxxxxxxxxx xxxxxx xxxxx xxxx xxxxxxx xx xxxxxxxxxx xxxxxx xxxxxx
- >  xxxxxx xxxx xxxxx
+ >  Data read from saved position:Second Line
+ >  xxxxxx xx xxxxxxx xxxx xxxxx x xxxxx xxxxx xxxxxxxxxx xxxxxxx xxxxxxx
+ >  xxx xx xxxxxxxxxx xxxxxx x xx xxxx xxxxxxx x xxxxxxxxxx xxxxxx
+ >  xxxxxxx xxxx xxxxxxxxxx xxx xxxxxxxxx xxxxxxx xx xxxxxxxxxx x
+ >  xxxxxxxxxx xxxxxxxxx x xxx xxxx xxxxxxxxx xx xxxxxxxx xxx xxxxxxx x x
+ >  xxxx xxxxx xxxxxx xxxxxxxxx xxxxxxxxx xxxxxx x xxxxxxxxx x xx xxxxxxx
+ >  xxx xxxxxx xxxxx xxxxxxxx xxxxxxxxxx xx xx xxxxxxxxxx xxxxxxxxxx
+ >  xxxxxx xxxx xxxxxxx xxxxxx xxxxxx xx xxxxxxxx xxxxxxxx xxx xxxxxxxx
+ >  xxxxxxxxx xxxxxx xxxxxxxxx xx xxxxxxxxx xxxxx xx xxxxxxx xxxxxxxxx
+ >  xxxxxxxxx xxxx xxxxxxxxxx xxx xxxxxxxxx xxxxxxxxxx x xxxxxx xxxxxx
+ >  xxxxxxxxxx x xxxxx xx xxxxxxx xxxxxxx xxxxxx xxxxx xxxxxxx
 ```
 ### **Standard**
 

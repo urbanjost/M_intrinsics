@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**new_line**(3) - \[CHARACTER:INQUIRY\] Newline character
+**new_line**(3) - \[CHARACTER:WHITESPACE\] Newline character
 
 ### **Synopsis**
 ```fortran
@@ -106,20 +106,48 @@ Sample program:
 ```fortran
 program demo_new_line
 implicit none
-character,parameter :: nl=new_line('a')
+! Get the system's newline character
+character,parameter          :: nl=new_line('a')
 character(len=:),allocatable :: string
-real :: r
-integer :: i, count
+real                         :: r
+integer                      :: i, count
+integer                      :: u, pos_save
+character(len=256)           :: line_buffer
 
   ! basics
    ! print a string with a newline embedded in it
    string='This is record 1.'//nl//'This is record 2.'
    write(*,'(a)') string
 
+  ! Non-Advancing I/O with Newline 
+   ! Combining ADVANCE='NO' with NEW_LINE allows for granular control
+   ! over output formatting.
    ! print a newline character string
    write(*,'(*(a))',advance='no') &
       nl,'This is record 1.',nl,'This is record 2.',nl
 
+  ! Stream I/O
+
+    ! 1. Open a file for formatted stream output
+    open(newunit=u, file='test_stream.txt', access='stream', &
+         form='formatted', status='replace')
+
+    ! 2. Write data with manual newlines
+    write(u, '(A)') 'First Line' // nl
+    
+    ! Inquire current position (byte offset) before writing second line
+    inquire(unit=u, pos=pos_save)
+    
+    write(u, '(A)') 'Second Line' // nl
+    write(u, '(A)') 'Third Line' // nl
+    
+    ! Jump directly to the saved position (start of the second line)
+    read(u, '(A)', pos=pos_save) line_buffer
+    print *, 'Data read from saved position:', trim(line_buffer)
+
+    close(u)
+
+  ! Extended Example Providing Paragraph Fill
    ! output a number of words of random length as a paragraph
    ! by inserting a new_line before line exceeds 70 characters
 
@@ -146,20 +174,20 @@ Results:
 ```text
  > This is record 1.
  > This is record 2.
- >
+ > 
  > This is record 1.
  > This is record 2.
- >  x x xxxx xxxxxxx xxxxxxxxxx xxxxxxxxx xxxx xxxxxxxxxx xxxxxxxx
- >  xxxxxxxxx xxxx xxxxxxxxx x xxxxxxxxx xxxxxxxx xxxxxxxx xxxx x
- >  xxxxxxxxxx x x x xxxxxx xxxxxxxxxx x xxxxxxxxxx x xxxxxxx xxxxxxxxx
- >  xx xxxxxxxxxx xxxxxxxx x xx xxxxxxxxxx xxxxxxxx xxx xxxxxxx xxxxxx
- >  xxxxx xxxxxxxxx x xxxxxxxxxx xxxxxx xxxxxxxx xxxxx xxxxxxxx xxxxxxxx
- >  xxxxx xxx xxxxxxxx xxxxxxx xxxxxxxx xxx xxxx xxx xxxxxxxx xxxxxx
- >  xxxxxxx xxxxxxx xxxxx xxxxx xx xxxxxx xx xxxxxxxxxx xxxxxx x xxxx
- >  xxxxxx xxxxxxx x xxx xxxxx xxxxxxxxx xxx xxxxxxx x xxxxxx xxxxxxxxx
- >  xxxx xxxxxxxxx xxxxxxxx xxxxxxxx xxx xxxxxxx xxxxxxx xxxxxxxxxx
- >  xxxxxxxxxx xxxxxx xxxxx xxxx xxxxxxx xx xxxxxxxxxx xxxxxx xxxxxx
- >  xxxxxx xxxx xxxxx
+ >  Data read from saved position:Second Line
+ >  xxxxxx xx xxxxxxx xxxx xxxxx x xxxxx xxxxx xxxxxxxxxx xxxxxxx xxxxxxx
+ >  xxx xx xxxxxxxxxx xxxxxx x xx xxxx xxxxxxx x xxxxxxxxxx xxxxxx
+ >  xxxxxxx xxxx xxxxxxxxxx xxx xxxxxxxxx xxxxxxx xx xxxxxxxxxx x
+ >  xxxxxxxxxx xxxxxxxxx x xxx xxxx xxxxxxxxx xx xxxxxxxx xxx xxxxxxx x x
+ >  xxxx xxxxx xxxxxx xxxxxxxxx xxxxxxxxx xxxxxx x xxxxxxxxx x xx xxxxxxx
+ >  xxx xxxxxx xxxxx xxxxxxxx xxxxxxxxxx xx xx xxxxxxxxxx xxxxxxxxxx
+ >  xxxxxx xxxx xxxxxxx xxxxxx xxxxxx xx xxxxxxxx xxxxxxxx xxx xxxxxxxx
+ >  xxxxxxxxx xxxxxx xxxxxxxxx xx xxxxxxxxx xxxxx xx xxxxxxx xxxxxxxxx
+ >  xxxxxxxxx xxxx xxxxxxxxxx xxx xxxxxxxxx xxxxxxxxxx x xxxxxx xxxxxx
+ >  xxxxxxxxxx x xxxxx xx xxxxxxx xxxxxxx xxxxxx xxxxx xxxxxxx
 ```
 ### **Standard**
 
