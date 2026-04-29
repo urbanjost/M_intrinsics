@@ -1,7 +1,9 @@
 ## print
 
 ### **Name**
-   print(7) - [IO] write formatted sequential I/O to stdout
+
+**print**(7) - \[IO\] write formatted sequential I/O to stdout
+
 ### **Synopsis**
 ```fortran
     PRINT format [ , output-item-list ]

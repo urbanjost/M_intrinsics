@@ -1,8 +1,9 @@
 ## deallocate
 
 ### **Name**
-  **deallocate**(7) - [FORTRAN:STATEMENT] causes allocated variables
-  and targets to be deallocated
+
+**deallocate**(7) - \[FORTRAN:STATEMENT\] causes allocated variables
+and targets to be deallocated
 
 ### **Synopsis**
   DEALLOCATE(allocate-object-list [,STAT=stat][,ERRMSG=errmsg] )

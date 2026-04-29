@@ -1,8 +1,9 @@
 ## if
 
 ### **Name**
-     if(7) - [EXECUTION CONTROL] selects a block based on a
-     sequence of logical expressions.
+
+**if**(7) - \[EXECUTION CONTROL\] selects a block based on a
+sequence of logical expressions.
 
 ### **Synopsis**
 Syntax:

@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**program**(3) - \[PROGRAM UNITS\] Absolute value
+**program**(7) - \[PROGRAM UNITS\] Absolute value
 
 ### **Synopsis**
 Basic Fortran program sections:

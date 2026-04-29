@@ -2,8 +2,8 @@
 
 ### **Name**
 
-   **implicit**(7) - [STATEMENT]  specify default type associated
-   to a starting letter or disallow implicit typing
+**implicit**(7) - \[STATEMENT\]  specify default type associated
+to a starting letter or disallow implicit typing
 
 ### **Synopsis**
 ```fortran

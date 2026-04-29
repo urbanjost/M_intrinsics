@@ -1,7 +1,8 @@
 ## continuation
 
 ### **Name**
-   CONTINUATION(5) - [FORTRAN] - the rules for free-format line continuation
+
+**continuation**(5) - \[FORTRAN\] - the rules for free-format line continuation
 
 ### **Synopsis**
  general rule:

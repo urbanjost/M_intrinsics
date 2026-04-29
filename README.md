@@ -1,13 +1,15 @@
-The short version is to take the standalone/fman.F90 file, compile it
-and you have a CLI (Command Line Interface) to descriptions of the
-Fortran intrinsics; with instructions available via "fman --help".
+If you are in hurry, the short version is to take the standalone/fman.F90
+file, compile it and you have a CLI (Command Line Interface) to
+descriptions of the Fortran intrinsics; with instructions available via
+"fman --help".
 
-The descriptions can be previewed as
-[HTML](https://urbanjost.github.io/M_intrinsics/index3.html)
-
-If you want man-pages, HTML, or markdown descriptions; a Fortran module
-you can call with your own programs to display the descriptions, or to
-integrate the descriptions into fpm(1) as a plugin, read on.
+If you want
+ + man-pages
+ + [HTML](https://urbanjost.github.io/M_intrinsics/index3.html)
+ + markdown descriptions
+ + a Fortran module you can call with your own programs to display the descriptions
+ + to integrate the descriptions into fpm(1) as a plugin
+read on.
 
 ## Name
 
@@ -119,6 +121,7 @@ Using pandoc(1) they are then converted to flat-text files which are
    - These are collected into a single document using javascript:
      [BOOK_FORTRAN](https://urbanjost.github.io/M_intrinsics/BOOK_FORTRAN.html).
    - All pages in a single [slidy HTML file](https://urbanjost.github.io/M_intrinsics/intrinsics_slidy.html)
+   - All pages in a single [text file](https://urbanjost.github.io/M_intrinsics/manual.txt)
    - [documentation shortcuts](https://urbanjost.github.io/M_intrinsics)
 
 * the example programs are extracted into the [example/](example/) directory.
@@ -215,18 +218,18 @@ but the differences between these and the on-line fortran-lang.org pages
 may become more extensive as time goes on.
 
 To ensure color and the interactive mode are used bash(1) users can create
-the script "fpm-docs" 
+the script "fpm-docs"
 ```bash
 #!/bin/bash
 ################################################################################
-# @(#) fpm-docs(1) - run fpm-man ensuring color interactive mode 
+# @(#) fpm-docs(1) - run fpm-man ensuring color interactive mode
 ################################################################################
 trap "/bin/rm -f ${SCRATCH:-_NOTTHERE_}" EXIT
 SCRATCH=/tmp/scratch_$(uuidgen).txt
 fpm man manual > $SCRATCH
 ################################################################################
 # use default colors
-unset FMAN_COLORS 
+unset FMAN_COLORS
 ################################################################################
 # set custom colors
 export FMAN_COLORS=\
@@ -297,12 +300,8 @@ being explored to provide better formatting.
 
 Add
 
- + RANDOM_INIT
  + COSHAPE
  + FAILED_IMAGES
  + GET_TEAM
  + IMAGE_STATUS
- + LCOBOUND
- + STOPPED_IMAGES
  + TEAM_NUMBER
- + UCOBOUND

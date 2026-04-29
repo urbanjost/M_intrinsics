@@ -58,7 +58,7 @@ a.existingWikiWord[title]{ //border: 1px dashed #BBB; }
 </A>
 <BLOCKQUOTE>
 <P>
-use(7) - [FORTRAN] gives a program unit access to public entities in a
+USE(7) - [FORTRAN] gives a program unit access to public entities in a
 module.
 <P>
 </BLOCKQUOTE>
@@ -379,13 +379,13 @@ so the names REAL32 and REAL64 are not available. If you wanted both
 names you would have to add
 <P>
 <PRE>
-       use,intrinsic :: iso use,intrinsic , real32=&gt;real32, real64=&gt;real64
+       use,intrinsic :: iso_fortran_env, real32=&gt;real32, real64=&gt;real64
 <P>
 </PRE>
 or
 <P>
 <PRE>
-       use,intrinsic :: iso use,intrinsic , only: real32, real64
+       use,intrinsic :: iso_fortran_env, real32, real64
 <P>
 </PRE>
 </BLOCKQUOTE>

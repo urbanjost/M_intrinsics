@@ -1,8 +1,9 @@
 ## select_case
 
 ### **Name**
-   select_case(7) - [EXECUTION CONTROL] select a block based on the
-   value of an expression (a case)
+
+**select_case**(7) - \[EXECUTION CONTROL\] select a block based on the
+value of an expression (a case)
 
 ### **Synopsis**
 The CASE construct selects for execution at most one of its constituent

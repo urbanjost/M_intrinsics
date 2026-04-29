@@ -1,10 +1,11 @@
 ## associate
 
 ### **Name**
-   ASSOCIATE(7) - [EXECUTION CONTROL] aliases selected variable
-   identifiers as well as creates constants within the block from runtime
-   expressions at entry into the block
-   (LICENSE:PD)
+
+**associate**(7) - \[EXECUTION CONTROL\] aliases selected variable
+identifiers as well as creates constants within the block from runtime
+expressions at entry into the block
+(LICENSE:PD)
 
 ### **Syntax**
 Syntax:

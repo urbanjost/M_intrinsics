@@ -4385,6 +4385,18 @@ all operations.</code></pre>
 <p>Fortran 2003</p>
 </div><div id="see-also-49" class="slide section level3">
 <h1><strong>See Also</strong></h1>
+<ul>
+<li><strong>DO</strong>(3) - construct</li>
+<li><strong>IF</strong>(3) - selects a block based on a sequence of logical expressions.</li>
+<li><strong>CYCLE</strong>(3) - construct</li>
+<li><strong>EXIT</strong>(3) - statement</li>
+<li><strong>ASSOCIATE</strong>(3) - associate construct</li>
+<li><strong>BLOCK</strong>(3) - construct</li>
+<li><strong>GOTO</strong>(3) - jump to target line</li>
+<li><strong>SELECT</strong>(3) - select a block based on the value of an expression (a case)</li>
+<li><strong>CASE</strong>(3) - select a block based on the value of an expression (a case)</li>
+<li><strong>ENDSELECT</strong>(3) - select a block based on the value of an expression (a case)</li>
+</ul>
 <p><a href="#c_loc"><strong>c_loc</strong>(3)</a>, <a href="#c_funloc"><strong>c_funloc</strong>(3)</a>, <strong>iso_c_binding</strong>(3)</p>
 <p>Fortran intrinsic descriptions</p>
 </div>
@@ -5314,7 +5326,7 @@ all operations.</code></pre>
 <p>None</p>
 </div><div id="result-44" class="slide section level3">
 <h1><strong>Result</strong></h1>
-<p>The return value is of type default integer. It is the number of arguments passed on the command line when the program was invoked.</p>
+<p>The returned value is the number of arguments passed on the command line when the program was invoked.</p>
 <p>If there are no command arguments available or if the processor does not support command arguments, then the result has the value zero.</p>
 <p>If the processor has a concept of a command name, the command name does not count as one of the command arguments.</p>
 </div><div id="examples-60" class="slide section level3">
@@ -5323,18 +5335,134 @@ all operations.</code></pre>
 <div class="sourceCode" id="cb272"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb272-1" title="1"><span class="kw">program</span> demo_command_argument_count</a>
 <a class="sourceLine" id="cb272-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
 <a class="sourceLine" id="cb272-3" title="3"><span class="dt">integer</span> <span class="dt">::</span> <span class="fu">count</span></a>
-<a class="sourceLine" id="cb272-4" title="4">   <span class="fu">count</span> <span class="kw">=</span> command_argument_count()</a>
-<a class="sourceLine" id="cb272-5" title="5">   <span class="fu">print</span> <span class="kw">*</span>, <span class="fu">count</span></a>
-<a class="sourceLine" id="cb272-6" title="6"><span class="kw">end program</span> demo_command_argument_count</a></code></pre></div>
-<p>Sample output:</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb273-1" title="1">   <span class="co"># the command verb does not count</span></a>
-<a class="sourceLine" id="cb273-2" title="2">   <span class="ex">./test_command_argument_count</span></a>
-<a class="sourceLine" id="cb273-3" title="3">       <span class="ex">0</span></a>
-<a class="sourceLine" id="cb273-4" title="4">   <span class="co"># quoted strings may count as one argument</span></a>
-<a class="sourceLine" id="cb273-5" title="5">   <span class="ex">./test_command_argument_count</span> count arguments</a>
-<a class="sourceLine" id="cb273-6" title="6">       <span class="ex">2</span></a>
-<a class="sourceLine" id="cb273-7" title="7">   <span class="ex">./test_command_argument_count</span> <span class="st">&#39;count arguments&#39;</span></a>
-<a class="sourceLine" id="cb273-8" title="8">       <span class="ex">1</span></a></code></pre></div>
+<a class="sourceLine" id="cb272-4" title="4"><span class="dt">integer</span> <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb272-5" title="5"></a>
+<a class="sourceLine" id="cb272-6" title="6"><span class="co">! basics:</span></a>
+<a class="sourceLine" id="cb272-7" title="7">   <span class="fu">count</span> <span class="kw">=</span> command_argument_count()</a>
+<a class="sourceLine" id="cb272-8" title="8">   <span class="fu">print</span> <span class="kw">*</span></a>
+<a class="sourceLine" id="cb272-9" title="9">   <span class="fu">print</span> <span class="st">&#39;(*(g0))&#39;</span>, <span class="st">&#39;argument count=&#39;</span>,<span class="fu">count</span></a>
+<a class="sourceLine" id="cb272-10" title="10">   <span class="co">! usually used in conjunction with get_command_argument()</span></a>
+<a class="sourceLine" id="cb272-11" title="11">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,command_argument_count()</a>
+<a class="sourceLine" id="cb272-12" title="12">      <span class="co">! call function wrapper around get_command_argument()</span></a>
+<a class="sourceLine" id="cb272-13" title="13">      <span class="fu">write(*</span>,<span class="fu">*)</span>i,get_arg(i)</a>
+<a class="sourceLine" id="cb272-14" title="14">   <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb272-15" title="15"></a>
+<a class="sourceLine" id="cb272-16" title="16"><span class="co">! more:</span></a>
+<a class="sourceLine" id="cb272-17" title="17">   <span class="co">! test the function extensively</span></a>
+<a class="sourceLine" id="cb272-18" title="18">   <span class="kw">call</span> testit()</a>
+<a class="sourceLine" id="cb272-19" title="19"></a>
+<a class="sourceLine" id="cb272-20" title="20"><span class="co">contains</span></a>
+<a class="sourceLine" id="cb272-21" title="21"><span class="co">! a test done by recursively calling the program</span></a>
+<a class="sourceLine" id="cb272-22" title="22"><span class="co">! NO PLACE FOR BEGINNERS!</span></a>
+<a class="sourceLine" id="cb272-23" title="23"><span class="kw">subroutine</span> testit()</a>
+<a class="sourceLine" id="cb272-24" title="24"><span class="dt">integer</span>,<span class="dt">parameter</span>             <span class="dt">::</span> sz<span class="kw">=</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb272-25" title="25"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span>  <span class="dt">::</span> self</a>
+<a class="sourceLine" id="cb272-26" title="26"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span>  <span class="dt">::</span> cmd</a>
+<a class="sourceLine" id="cb272-27" title="27"><span class="dt">character(len=sz)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> first</a>
+<a class="sourceLine" id="cb272-28" title="28"><span class="dt">type</span> test</a>
+<a class="sourceLine" id="cb272-29" title="29">   <span class="dt">character(len=sz)</span>            <span class="dt">::</span> testname</a>
+<a class="sourceLine" id="cb272-30" title="30">   <span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> cmd</a>
+<a class="sourceLine" id="cb272-31" title="31">   <span class="dt">integer</span>                      <span class="dt">::</span> answer</a>
+<a class="sourceLine" id="cb272-32" title="32"><span class="dt">end type</span></a>
+<a class="sourceLine" id="cb272-33" title="33"><span class="dt">type(test)</span>,<span class="dt">allocatable</span>        <span class="dt">::</span> tests(:)</a>
+<a class="sourceLine" id="cb272-34" title="34"><span class="dt">integer</span>                       <span class="dt">::</span> i</a>
+<a class="sourceLine" id="cb272-35" title="35"><span class="dt">integer</span>                       <span class="dt">::</span> indx</a>
+<a class="sourceLine" id="cb272-36" title="36">   <span class="co">! a set of tests (note a test cannot be null):</span></a>
+<a class="sourceLine" id="cb272-37" title="37">   tests<span class="kw">=[</span> <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb272-38" title="38">    <span class="kw">&amp;</span> test(<span class="st">&#39;singular&#39;</span>,<span class="st">&#39;&#39;</span>,<span class="dv">0</span>), <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb272-39" title="39">    <span class="kw">&amp;</span> test(<span class="st">&#39;multiple&#39;</span>,<span class="st">&#39;orange wolf C&#39;</span>,<span class="dv">3</span>), <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb272-40" title="40">    <span class="kw">&amp;</span> test(<span class="st">&#39;quotes&#39;</span>,<span class="st">&#39;a &quot;Quoted String&quot;&#39;</span>,<span class="dv">2</span>), <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb272-41" title="41">    <span class="kw">&amp;</span> test(<span class="st">&#39;spaces&#39;</span>,<span class="st">&#39; one two three four    five  six  &#39;</span>,<span class="dv">6</span>), <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb272-42" title="42">   <span class="co">! note many characters might be special to a shell</span></a>
+<a class="sourceLine" id="cb272-43" title="43">    <span class="kw">&amp;</span> test(<span class="st">&#39;special&#39;</span>,<span class="st">&#39;&quot;&lt;&gt;$@# &quot; &quot;$%&amp;*()_-&quot;&#39;</span>,<span class="dv">2</span>), <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb272-44" title="44">    <span class="kw">&amp;</span> test(<span class="st">&#39;many&#39;</span>,<span class="st">&#39;a b c d e f g h i j k l m n o p q r s t u v w x y z&#39;</span>,<span class="dv">26</span>)<span class="kw">]</span></a>
+<a class="sourceLine" id="cb272-45" title="45">   <span class="co">! get name of program</span></a>
+<a class="sourceLine" id="cb272-46" title="46">   self<span class="kw">=</span>get_arg(<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb272-47" title="47">   <span class="co">! if no options call all the test cases</span></a>
+<a class="sourceLine" id="cb272-48" title="48">   <span class="kw">if</span>(<span class="fu">count</span><span class="op">.eq.</span><span class="dv">0</span>)<span class="kw">then</span></a>
+<a class="sourceLine" id="cb272-49" title="49">      <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(tests)</a>
+<a class="sourceLine" id="cb272-50" title="50">         <span class="kw">call</span> execute_command_line<span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb272-51" title="51">          <span class="kw">&amp;</span> (self<span class="kw">//</span><span class="st">&#39; &#39;</span><span class="kw">//</span>tests(i)%testname<span class="kw">//</span><span class="st">&#39; &#39;</span><span class="kw">//</span>tests(i)%cmd)</a>
+<a class="sourceLine" id="cb272-52" title="52">      <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb272-53" title="53">    <span class="kw">else</span></a>
+<a class="sourceLine" id="cb272-54" title="54">      <span class="co">! assumed to be a test call of the program so compare</span></a>
+<a class="sourceLine" id="cb272-55" title="55">      <span class="co">! test and results and report</span></a>
+<a class="sourceLine" id="cb272-56" title="56">      cmd<span class="kw">=</span>get_cmd()</a>
+<a class="sourceLine" id="cb272-57" title="57">      first<span class="kw">=</span>get_arg(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb272-58" title="58">      indx<span class="kw">=</span>findloc(tests%testname,first,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb272-59" title="59">      <span class="kw">if</span>(indx<span class="op">.gt.</span><span class="dv">0</span>)<span class="kw">then</span></a>
+<a class="sourceLine" id="cb272-60" title="60">         <span class="fu">write(*</span>,<span class="st">&#39;(*(g0,1x))&#39;</span><span class="fu">)</span><span class="st">&#39;testing &#39;</span>,first,tests(indx)%cmd</a>
+<a class="sourceLine" id="cb272-61" title="61">         <span class="fu">write(*</span>,<span class="st">&#39;(*(g0,1x))&#39;</span><span class="fu">)</span><span class="st">&#39;got     &#39;</span>,cmd</a>
+<a class="sourceLine" id="cb272-62" title="62">         <span class="fu">write(*</span>,<span class="st">&#39;(a,a,tl20,a,t26,a)&#39;</span><span class="fu">)</span><span class="st">&#39;case &#39;</span>,<span class="fu">repeat</span>(<span class="st">&#39;.&#39;</span>,<span class="dv">20</span>), <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb272-63" title="63">          <span class="kw">&amp;</span> <span class="fu">trim</span>(first),<span class="bu">merge</span>(<span class="st">&#39; PASSED&#39;</span>,<span class="st">&#39; FAILED&#39;</span>,<span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb272-64" title="64">          <span class="kw">&amp;</span> <span class="fu">count</span><span class="op">.eq.</span>tests(indx)%answer<span class="kw">+</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb272-65" title="65">      <span class="kw">else</span></a>
+<a class="sourceLine" id="cb272-66" title="66">         <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;&lt;ERROR&gt;Unexpected command line &#39;</span>,cmd</a>
+<a class="sourceLine" id="cb272-67" title="67">      <span class="kw">endif</span></a>
+<a class="sourceLine" id="cb272-68" title="68">   <span class="kw">endif</span></a>
+<a class="sourceLine" id="cb272-69" title="69"><span class="kw">end subroutine</span> testit</a>
+<a class="sourceLine" id="cb272-70" title="70"></a>
+<a class="sourceLine" id="cb272-71" title="71"><span class="kw">function</span> get_cmd() <span class="kw">result</span>(command_line)</a>
+<a class="sourceLine" id="cb272-72" title="72"><span class="co">! return entire command line</span></a>
+<a class="sourceLine" id="cb272-73" title="73"><span class="dt">integer</span>                      <span class="dt">::</span> command_line_length</a>
+<a class="sourceLine" id="cb272-74" title="74"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> command_line</a>
+<a class="sourceLine" id="cb272-75" title="75">   <span class="co">! get command line length</span></a>
+<a class="sourceLine" id="cb272-76" title="76">   <span class="kw">call</span> get_command(length<span class="kw">=</span>command_line_length)</a>
+<a class="sourceLine" id="cb272-77" title="77">   <span class="co">! allocate string big enough to hold command line</span></a>
+<a class="sourceLine" id="cb272-78" title="78">   <span class="kw">allocate</span>(<span class="dt">character(len=command_line_length)</span> <span class="dt">::</span> command_line)</a>
+<a class="sourceLine" id="cb272-79" title="79">   <span class="co">! get command line as a string</span></a>
+<a class="sourceLine" id="cb272-80" title="80">   <span class="kw">call</span> get_command(command<span class="kw">=</span>command_line)</a>
+<a class="sourceLine" id="cb272-81" title="81">   <span class="co">! trim leading spaces just in case</span></a>
+<a class="sourceLine" id="cb272-82" title="82">   command_line<span class="kw">=</span><span class="bu">adjustl</span>(command_line)</a>
+<a class="sourceLine" id="cb272-83" title="83"><span class="kw">end function</span> get_cmd</a>
+<a class="sourceLine" id="cb272-84" title="84"></a>
+<a class="sourceLine" id="cb272-85" title="85"><span class="kw">function</span> get_arg(n,status) <span class="kw">result</span>(arg)</a>
+<a class="sourceLine" id="cb272-86" title="86"><span class="co">! get nth argument from command line</span></a>
+<a class="sourceLine" id="cb272-87" title="87"><span class="dt">integer</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> n</a>
+<a class="sourceLine" id="cb272-88" title="88"><span class="dt">integer</span>,<span class="dt">intent(out)</span>,<span class="dt">optional</span> <span class="dt">::</span> status</a>
+<a class="sourceLine" id="cb272-89" title="89"><span class="dt">integer</span>                      <span class="dt">::</span> argument_length, istat</a>
+<a class="sourceLine" id="cb272-90" title="90"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> arg</a>
+<a class="sourceLine" id="cb272-91" title="91">   <span class="kw">call</span> get_command_argument( number<span class="kw">=</span>n, length<span class="kw">=</span>argument_length )</a>
+<a class="sourceLine" id="cb272-92" title="92">   <span class="kw">if</span>(<span class="fu">allocated</span>(arg))<span class="kw">deallocate</span>( arg )</a>
+<a class="sourceLine" id="cb272-93" title="93">   <span class="kw">allocate</span>(<span class="dt">character(len=argument_length)</span> <span class="dt">::</span> arg )</a>
+<a class="sourceLine" id="cb272-94" title="94">   <span class="kw">call</span> get_command_argument(n, arg, status<span class="kw">=</span>istat )</a>
+<a class="sourceLine" id="cb272-95" title="95">   <span class="kw">if</span>(<span class="fu">present</span>(status)) status<span class="kw">=</span>istat</a>
+<a class="sourceLine" id="cb272-96" title="96"><span class="kw">end function</span> get_arg</a>
+<a class="sourceLine" id="cb272-97" title="97"></a>
+<a class="sourceLine" id="cb272-98" title="98"><span class="kw">end program</span> demo_command_argument_count</a></code></pre></div>
+<p>Results:</p>
+<pre class="text"><code> &gt;
+ &gt; argument count=0
+ &gt;
+ &gt; argument count=1
+ &gt; testing  singular
+ &gt; got      tst singular
+ &gt; case singular............ PASSED
+ &gt;
+ &gt; argument count=4
+ &gt; testing  multiple   orange wolf C
+ &gt; got      tst multiple orange wolf C
+ &gt; case multiple............ PASSED
+ &gt;
+ &gt; argument count=3
+ &gt; testing  quotes     a &quot;Quoted String&quot;
+ &gt; got      tst quotes a Quoted String
+ &gt; case quotes.............. PASSED
+ &gt;
+ &gt; argument count=7
+ &gt; testing  spaces      one two three four    five  six
+ &gt; got      tst spaces one two three four five six
+ &gt; case spaces.............. PASSED
+ &gt;
+ &gt; argument count=3
+ &gt; testing  special    &quot;&lt;&gt;$@# &quot; &quot;$%&amp;*()_-&quot;
+ &gt; got      tst special &lt;&gt;#  $%&amp;*()_-
+ &gt; case special............. PASSED
+ &gt;
+ &gt; argument count=27
+ &gt; testing  many       a b c d e f g h i j k l m n o p q r s t u v w x y z
+ &gt; got      tst many a b c d e f g h i j k l m n o p q r s t u v w x y z
+ &gt; case many................ PASSED</code></pre>
 </div><div id="standard-60" class="slide section level3">
 <h1><strong>Standard</strong></h1>
 <p>Fortran 2003</p>
@@ -8084,9 +8212,9 @@ $$</span><br /></p>
 </div><div id="synopsis-90" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb411"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb411-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> <span class="bu">exponent</span>(x)</a></code></pre></div>
-<div class="sourceCode" id="cb412"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb412-1" title="1">     <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> <span class="bu">exponent</span>(x)</a>
+<div class="sourceCode" id="cb412"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb412-1" title="1">    <span class="kw">elemental</span> <span class="dt">integer</span> <span class="kw">function</span> <span class="bu">exponent</span>(x)</a>
 <a class="sourceLine" id="cb412-2" title="2"></a>
-<a class="sourceLine" id="cb412-3" title="3"><span class="dt">      real(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
+<a class="sourceLine" id="cb412-3" title="3"><span class="dt">     real(kind=**)</span>,<span class="dt">intent(in)</span> <span class="dt">::</span> x</a></code></pre></div>
 </div><div id="characteristics-89" class="slide section level3">
 <h1><strong>Characteristics</strong></h1>
 <ul>
@@ -8115,21 +8243,91 @@ $$</span><br /></p>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb413"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb413-1" title="1"><span class="kw">program</span> demo_exponent</a>
 <a class="sourceLine" id="cb413-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb413-3" title="3"><span class="dt">real</span> <span class="dt">::</span> x <span class="kw">=</span> <span class="fl">1.0</span></a>
+<a class="sourceLine" id="cb413-3" title="3"><span class="dt">real</span>    <span class="dt">::</span> x</a>
 <a class="sourceLine" id="cb413-4" title="4"><span class="dt">integer</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb413-5" title="5">   i <span class="kw">=</span> <span class="bu">exponent</span>(x)</a>
-<a class="sourceLine" id="cb413-6" title="6">   <span class="fu">print</span> <span class="kw">*</span>, i</a>
-<a class="sourceLine" id="cb413-7" title="7">   <span class="fu">print</span> <span class="kw">*</span>, <span class="bu">exponent</span>(<span class="fl">0.0</span>)</a>
-<a class="sourceLine" id="cb413-8" title="8">   <span class="fu">print</span> <span class="kw">*</span>, <span class="bu">exponent</span>(<span class="kw">[</span><span class="fl">10.0</span>,<span class="fl">100.0</span>,<span class="fl">1000.0</span>,<span class="kw">-</span><span class="fl">10000.0</span><span class="kw">]</span>)</a>
-<a class="sourceLine" id="cb413-9" title="9">   <span class="co">! beware of overflow, it may occur silently</span></a>
-<a class="sourceLine" id="cb413-10" title="10">   <span class="co">!print *, 2**[10.0,100.0,1000.0,-10000.0]</span></a>
-<a class="sourceLine" id="cb413-11" title="11">   <span class="fu">print</span> <span class="kw">*</span>, <span class="bu">exponent</span>(<span class="fu">huge</span>(<span class="fl">0.0</span>))</a>
-<a class="sourceLine" id="cb413-12" title="12">   <span class="fu">print</span> <span class="kw">*</span>, <span class="bu">exponent</span>(<span class="fu">tiny</span>(<span class="fl">0.0</span>))</a>
-<a class="sourceLine" id="cb413-13" title="13"><span class="kw">end program</span> demo_exponent</a></code></pre></div>
+<a class="sourceLine" id="cb413-5" title="5">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;basic usage&#39;</span></a>
+<a class="sourceLine" id="cb413-6" title="6">   <span class="fu">print</span> <span class="kw">*</span>, <span class="bu">exponent</span>(<span class="kw">[</span><span class="fl">2.0</span>,<span class="fl">32.0</span>,<span class="fl">256.0</span>,<span class="fl">0.25</span><span class="kw">]</span>)</a>
+<a class="sourceLine" id="cb413-7" title="7">   <span class="fu">print</span> <span class="kw">*</span>, <span class="bu">exponent</span>(<span class="kw">[</span><span class="fl">1.0</span>,<span class="fl">10.0</span>,<span class="fl">100.0</span><span class="kw">]</span>)</a>
+<a class="sourceLine" id="cb413-8" title="8">   <span class="fu">print</span> <span class="st">&#39;(g0,1x,a,g0,1x,b32.32)&#39;</span>, <span class="fl">500.0</span>, <span class="st">&#39;exponent(500.0)=&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb413-9" title="9">   <span class="bu">exponent</span>(<span class="fl">500.0</span>), <span class="fl">500.0</span></a>
+<a class="sourceLine" id="cb413-10" title="10">   <span class="fu">print</span> <span class="st">&#39;(g0,1x,a,g0,1x,b32.32)&#39;</span>, <span class="fl">512.0</span>, <span class="st">&#39;exponent(512.0)=&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb413-11" title="11">   <span class="bu">exponent</span>(<span class="fl">512.0</span>), <span class="fl">512.0</span></a>
+<a class="sourceLine" id="cb413-12" title="12">   <span class="fu">print</span> <span class="st">&#39;(g0,1x,a,g0,1x,b32.32)&#39;</span>, <span class="fl">550.0</span>, <span class="st">&#39;exponent(550.0)=&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb413-13" title="13">   <span class="bu">exponent</span>(<span class="fl">550.0</span>), <span class="fl">525.0</span></a>
+<a class="sourceLine" id="cb413-14" title="14">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;==&gt;&#39;</span>,<span class="bu">log</span>(<span class="kw">[</span><span class="fl">500.0</span>,<span class="fl">512.0</span>,<span class="fl">550.0</span><span class="kw">]</span>)<span class="kw">/</span><span class="bu">log</span>(<span class="fl">2.0</span>)</a>
+<a class="sourceLine" id="cb413-15" title="15">   x<span class="kw">=</span><span class="fl">9.31</span></a>
+<a class="sourceLine" id="cb413-16" title="16">   i <span class="kw">=</span> <span class="bu">exponent</span>(x)</a>
+<a class="sourceLine" id="cb413-17" title="17">   <span class="fu">print</span> <span class="kw">*</span>, i ,  x</a>
+<a class="sourceLine" id="cb413-18" title="18"></a>
+<a class="sourceLine" id="cb413-19" title="19">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;elemental&#39;</span></a>
+<a class="sourceLine" id="cb413-20" title="20">   <span class="fu">print</span> <span class="kw">*</span>, <span class="bu">exponent</span>(<span class="kw">[</span><span class="fl">10.0</span>,<span class="fl">100.0</span>,<span class="fl">1000.0</span>,<span class="kw">-</span><span class="fl">10000.0</span><span class="kw">]</span>)</a>
+<a class="sourceLine" id="cb413-21" title="21"></a>
+<a class="sourceLine" id="cb413-22" title="22">   <span class="co">! beware of overflow, it may occur silently</span></a>
+<a class="sourceLine" id="cb413-23" title="23">   <span class="co">!print *, 2**[10.0,100.0,1000.0,-10000.0]</span></a>
+<a class="sourceLine" id="cb413-24" title="24"></a>
+<a class="sourceLine" id="cb413-25" title="25">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;exponent range&#39;</span></a>
+<a class="sourceLine" id="cb413-26" title="26">   <span class="fu">print</span> <span class="kw">*</span>, <span class="fu">minexponent</span>(<span class="fl">0.0</span>),    <span class="fu">maxexponent</span>(<span class="fl">0.0</span>)</a>
+<a class="sourceLine" id="cb413-27" title="27">   <span class="fu">print</span> <span class="kw">*</span>, <span class="bu">exponent</span>(<span class="fu">tiny</span>(<span class="fl">0.0</span>)), <span class="bu">exponent</span>(<span class="fu">huge</span>(<span class="fl">0.0</span>))</a>
+<a class="sourceLine" id="cb413-28" title="28">   <span class="kw">call</span> dusty_corners()</a>
+<a class="sourceLine" id="cb413-29" title="29"><span class="co">contains</span></a>
+<a class="sourceLine" id="cb413-30" title="30"><span class="kw">subroutine</span> dusty_corners()</a>
+<a class="sourceLine" id="cb413-31" title="31"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> ieee_arithmetic</a>
+<a class="sourceLine" id="cb413-32" title="32"><span class="dt">real</span> <span class="dt">::</span> my_inf, my_neg_inf</a>
+<a class="sourceLine" id="cb413-33" title="33"><span class="dt">real</span> <span class="dt">::</span> my_qnan, my_snan</a>
+<a class="sourceLine" id="cb413-34" title="34"></a>
+<a class="sourceLine" id="cb413-35" title="35">   <span class="fu">print</span> <span class="kw">*</span></a>
+<a class="sourceLine" id="cb413-36" title="36">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;exponent(0.0)=&#39;</span>, <span class="bu">exponent</span>(<span class="fl">0.0</span>)</a>
+<a class="sourceLine" id="cb413-37" title="37">   <span class="fu">print</span> <span class="kw">*</span></a>
+<a class="sourceLine" id="cb413-38" title="38">   <span class="co">! Generate positive infinity</span></a>
+<a class="sourceLine" id="cb413-39" title="39">   my_inf <span class="kw">=</span> ieee_value(my_inf, ieee_positive_inf)</a>
+<a class="sourceLine" id="cb413-40" title="40">   <span class="co">!print &quot;(A,b32.32)&quot; ,&#39;in binary format      = &#39;,my_inf</span></a>
+<a class="sourceLine" id="cb413-41" title="41">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;ieee_value(my_inf, ieee_positive_inf) =&#39;</span>, my_inf</a>
+<a class="sourceLine" id="cb413-42" title="42">   <span class="fu">print</span> <span class="kw">*</span></a>
+<a class="sourceLine" id="cb413-43" title="43">   <span class="co">! Generate negative infinity</span></a>
+<a class="sourceLine" id="cb413-44" title="44">   my_neg_inf <span class="kw">=</span> ieee_value(my_neg_inf, ieee_negative_inf)</a>
+<a class="sourceLine" id="cb413-45" title="45">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;ieee_value(my_inf, ieee_neg_inf)&#39;</span>, my_neg_inf</a>
+<a class="sourceLine" id="cb413-46" title="46">   <span class="fu">print</span> <span class="kw">*</span></a>
+<a class="sourceLine" id="cb413-47" title="47">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;exponent([my_inf,my_neg_inf]) =&#39;</span>,<span class="bu">exponent</span>(<span class="kw">[</span>my_inf,my_neg_inf<span class="kw">]</span>)</a>
+<a class="sourceLine" id="cb413-48" title="48"></a>
+<a class="sourceLine" id="cb413-49" title="49">   <span class="kw">if</span> (ieee_support_nan(x)) <span class="kw">then</span></a>
+<a class="sourceLine" id="cb413-50" title="50"></a>
+<a class="sourceLine" id="cb413-51" title="51">      <span class="fu">print</span> <span class="kw">*</span></a>
+<a class="sourceLine" id="cb413-52" title="52">      my_qnan <span class="kw">=</span> ieee_value(my_qnan, ieee_quiet_nan)</a>
+<a class="sourceLine" id="cb413-53" title="53">      <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;ieee_value(my_qnan, ieee_quiet_nan) =&#39;</span>, my_qnan</a>
+<a class="sourceLine" id="cb413-54" title="54">      my_snan <span class="kw">=</span> ieee_value(my_snan, ieee_signaling_nan)</a>
+<a class="sourceLine" id="cb413-55" title="55">      <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;ieee_value(my_snan, ieee_signaling_nan) =&#39;</span>, my_snan</a>
+<a class="sourceLine" id="cb413-56" title="56">      <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;exponent([my_qnan,my_snan]) =&#39;</span>,<span class="bu">exponent</span>(<span class="kw">[</span>my_qnan,my_snan<span class="kw">]</span>)</a>
+<a class="sourceLine" id="cb413-57" title="57">      <span class="fu">print</span> <span class="kw">*</span></a>
+<a class="sourceLine" id="cb413-58" title="58">      <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;Not sure ...&#39;</span></a>
+<a class="sourceLine" id="cb413-59" title="59">      <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;exponent(tiny(0.0)/2)=&#39;</span>, <span class="bu">exponent</span>(<span class="fu">tiny</span>(<span class="fl">0.0</span>)<span class="kw">/</span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb413-60" title="60"></a>
+<a class="sourceLine" id="cb413-61" title="61">   <span class="kw">endif</span></a>
+<a class="sourceLine" id="cb413-62" title="62"><span class="kw">end subroutine</span> dusty_corners</a>
+<a class="sourceLine" id="cb413-63" title="63"></a>
+<a class="sourceLine" id="cb413-64" title="64"><span class="kw">end program</span> demo_exponent</a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code> &gt;            4           7          10          14
- &gt;          128
- &gt;         -125</code></pre>
+<pre class="text"><code>  &gt;  basic usage
+  &gt;            4   9.31000042
+  &gt;  elemental
+  &gt;            4           7          10          14
+  &gt;  exponent range
+  &gt;         -125         128
+  &gt;         -125         128
+  &gt;
+  &gt;  exponent(0.0)=           0
+  &gt;
+  &gt;  ieee_value(my_inf, ieee_positive_inf) =         Infinity
+  &gt;
+  &gt;  ieee_value(my_inf, ieee_neg_inf)        -Infinity
+  &gt;
+  &gt;  exponent([my_inf,my_neg_inf]) =  2147483647  2147483647
+  &gt;
+  &gt;  ieee_value(my_qnan, ieee_quiet_nan) =              NaN
+  &gt;  ieee_value(my_snan, ieee_signaling_nan) =              NaN
+  &gt;  exponent([my_qnan,my_snan]) =  2147483647  2147483647
+  &gt;
+  &gt;  Not sure ...
+  &gt;  exponent(tiny(0.0)/2)=        -126</code></pre>
 </div><div id="standard-90" class="slide section level3">
 <h1><strong>Standard</strong></h1>
 <p>Fortran 95</p>
@@ -14182,7 +14380,7 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 </div>
 <div id="new_line" class="title-slide slide section level2"><h1>new_line</h1></div><div id="name-152" class="slide section level3">
 <h1><strong>Name</strong></h1>
-<p><strong>new_line</strong>(3) - [CHARACTER:INQUIRY] Newline character</p>
+<p><strong>new_line</strong>(3) - [CHARACTER:WHITESPACE] Newline character</p>
 </div><div id="synopsis-152" class="slide section level3">
 <h1><strong>Synopsis</strong></h1>
 <div class="sourceCode" id="cb682"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb682-1" title="1">    <span class="kw">result</span> <span class="kw">=</span> new_line(c)</a></code></pre></div>
@@ -14255,58 +14453,86 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <p>Sample program:</p>
 <div class="sourceCode" id="cb690"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb690-1" title="1"><span class="kw">program</span> demo_new_line</a>
 <a class="sourceLine" id="cb690-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb690-3" title="3"><span class="dt">character</span>,<span class="dt">parameter</span> <span class="dt">::</span> nl<span class="kw">=</span>new_line(<span class="st">&#39;a&#39;</span>)</a>
-<a class="sourceLine" id="cb690-4" title="4"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> string</a>
-<a class="sourceLine" id="cb690-5" title="5"><span class="dt">real</span> <span class="dt">::</span> r</a>
-<a class="sourceLine" id="cb690-6" title="6"><span class="dt">integer</span> <span class="dt">::</span> i, <span class="fu">count</span></a>
-<a class="sourceLine" id="cb690-7" title="7"></a>
-<a class="sourceLine" id="cb690-8" title="8">  <span class="co">! basics</span></a>
-<a class="sourceLine" id="cb690-9" title="9">   <span class="co">! print a string with a newline embedded in it</span></a>
-<a class="sourceLine" id="cb690-10" title="10">   string<span class="kw">=</span><span class="st">&#39;This is record 1.&#39;</span><span class="kw">//</span>nl<span class="kw">//</span><span class="st">&#39;This is record 2.&#39;</span></a>
-<a class="sourceLine" id="cb690-11" title="11">   <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span> string</a>
-<a class="sourceLine" id="cb690-12" title="12"></a>
-<a class="sourceLine" id="cb690-13" title="13">   <span class="co">! print a newline character string</span></a>
-<a class="sourceLine" id="cb690-14" title="14">   <span class="fu">write(*</span>,<span class="st">&#39;(*(a))&#39;</span>,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)</span> <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb690-15" title="15">      nl,<span class="st">&#39;This is record 1.&#39;</span>,nl,<span class="st">&#39;This is record 2.&#39;</span>,nl</a>
-<a class="sourceLine" id="cb690-16" title="16"></a>
-<a class="sourceLine" id="cb690-17" title="17">   <span class="co">! output a number of words of random length as a paragraph</span></a>
-<a class="sourceLine" id="cb690-18" title="18">   <span class="co">! by inserting a new_line before line exceeds 70 characters</span></a>
-<a class="sourceLine" id="cb690-19" title="19"></a>
-<a class="sourceLine" id="cb690-20" title="20">  <span class="co">! simplistic paragraph print using non-advancing I/O</span></a>
-<a class="sourceLine" id="cb690-21" title="21">   <span class="fu">count</span><span class="kw">=</span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb690-22" title="22">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="dv">100</span></a>
-<a class="sourceLine" id="cb690-23" title="23"></a>
-<a class="sourceLine" id="cb690-24" title="24">      <span class="co">! make some fake word of random length</span></a>
-<a class="sourceLine" id="cb690-25" title="25">      <span class="kw">call</span> <span class="fu">random_number</span>(r)</a>
-<a class="sourceLine" id="cb690-26" title="26">      string<span class="kw">=</span><span class="fu">repeat</span>(<span class="st">&#39;x&#39;</span>,<span class="bu">int</span>(r<span class="kw">*</span><span class="dv">10</span>)<span class="kw">+</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb690-27" title="27"></a>
-<a class="sourceLine" id="cb690-28" title="28">      <span class="fu">count</span><span class="kw">=</span><span class="fu">count</span><span class="kw">+</span><span class="fu">len</span>(string)<span class="kw">+</span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb690-29" title="29">      <span class="kw">if</span>(<span class="fu">count</span><span class="op">.gt.</span><span class="dv">70</span>)<span class="kw">then</span></a>
-<a class="sourceLine" id="cb690-30" title="30">         <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span>,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)</span>nl</a>
-<a class="sourceLine" id="cb690-31" title="31">         <span class="fu">count</span><span class="kw">=</span><span class="fu">len</span>(string)<span class="kw">+</span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb690-32" title="32">      <span class="kw">endif</span></a>
-<a class="sourceLine" id="cb690-33" title="33">      <span class="fu">write(*</span>,<span class="st">&#39;(1x,a)&#39;</span>,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)</span>string</a>
-<a class="sourceLine" id="cb690-34" title="34">   <span class="kw">enddo</span></a>
-<a class="sourceLine" id="cb690-35" title="35">   <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span>,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)</span>nl</a>
-<a class="sourceLine" id="cb690-36" title="36"></a>
-<a class="sourceLine" id="cb690-37" title="37"><span class="kw">end program</span> demo_new_line</a></code></pre></div>
+<a class="sourceLine" id="cb690-3" title="3"><span class="co">! Get the system&#39;s newline character</span></a>
+<a class="sourceLine" id="cb690-4" title="4"><span class="dt">character</span>,<span class="dt">parameter</span>          <span class="dt">::</span> nl<span class="kw">=</span>new_line(<span class="st">&#39;a&#39;</span>)</a>
+<a class="sourceLine" id="cb690-5" title="5"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> string</a>
+<a class="sourceLine" id="cb690-6" title="6"><span class="dt">real</span>                         <span class="dt">::</span> r</a>
+<a class="sourceLine" id="cb690-7" title="7"><span class="dt">integer</span>                      <span class="dt">::</span> i, <span class="fu">count</span></a>
+<a class="sourceLine" id="cb690-8" title="8"><span class="dt">integer</span>                      <span class="dt">::</span> u, pos_save</a>
+<a class="sourceLine" id="cb690-9" title="9"><span class="dt">character(len=256)</span>           <span class="dt">::</span> line_buffer</a>
+<a class="sourceLine" id="cb690-10" title="10"></a>
+<a class="sourceLine" id="cb690-11" title="11">  <span class="co">! basics</span></a>
+<a class="sourceLine" id="cb690-12" title="12">   <span class="co">! print a string with a newline embedded in it</span></a>
+<a class="sourceLine" id="cb690-13" title="13">   string<span class="kw">=</span><span class="st">&#39;This is record 1.&#39;</span><span class="kw">//</span>nl<span class="kw">//</span><span class="st">&#39;This is record 2.&#39;</span></a>
+<a class="sourceLine" id="cb690-14" title="14">   <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span> string</a>
+<a class="sourceLine" id="cb690-15" title="15"></a>
+<a class="sourceLine" id="cb690-16" title="16">  <span class="co">! Non-Advancing I/O with Newline</span></a>
+<a class="sourceLine" id="cb690-17" title="17">   <span class="co">! Combining ADVANCE=&#39;NO&#39; with NEW_LINE allows for granular control</span></a>
+<a class="sourceLine" id="cb690-18" title="18">   <span class="co">! over output formatting.</span></a>
+<a class="sourceLine" id="cb690-19" title="19">   <span class="co">! print a newline character string</span></a>
+<a class="sourceLine" id="cb690-20" title="20">   <span class="fu">write(*</span>,<span class="st">&#39;(*(a))&#39;</span>,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)</span> <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb690-21" title="21">      nl,<span class="st">&#39;This is record 1.&#39;</span>,nl,<span class="st">&#39;This is record 2.&#39;</span>,nl</a>
+<a class="sourceLine" id="cb690-22" title="22"></a>
+<a class="sourceLine" id="cb690-23" title="23">  <span class="co">! Stream I/O</span></a>
+<a class="sourceLine" id="cb690-24" title="24"></a>
+<a class="sourceLine" id="cb690-25" title="25">    <span class="co">! 1. Open a file for formatted stream output</span></a>
+<a class="sourceLine" id="cb690-26" title="26">    <span class="fu">open(</span>newunit<span class="kw">=</span>u, <span class="fu">file</span><span class="kw">=</span><span class="st">&#39;test_stream.txt&#39;</span>, <span class="fu">access</span><span class="kw">=</span><span class="st">&#39;stream&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb690-27" title="27">         <span class="fu">form</span><span class="kw">=</span><span class="st">&#39;formatted&#39;</span>, <span class="fu">status</span><span class="kw">=</span><span class="st">&#39;replace&#39;</span><span class="fu">)</span></a>
+<a class="sourceLine" id="cb690-28" title="28"></a>
+<a class="sourceLine" id="cb690-29" title="29">    <span class="co">! 2. Write data with manual newlines</span></a>
+<a class="sourceLine" id="cb690-30" title="30">    <span class="fu">write(</span>u, <span class="st">&#39;(A)&#39;</span><span class="fu">)</span> <span class="st">&#39;First Line&#39;</span> <span class="kw">//</span> nl</a>
+<a class="sourceLine" id="cb690-31" title="31"></a>
+<a class="sourceLine" id="cb690-32" title="32">    <span class="co">! Inquire current position (byte offset) before writing second line</span></a>
+<a class="sourceLine" id="cb690-33" title="33">    <span class="fu">inquire(unit</span><span class="kw">=</span>u, pos<span class="kw">=</span>pos_save<span class="fu">)</span></a>
+<a class="sourceLine" id="cb690-34" title="34"></a>
+<a class="sourceLine" id="cb690-35" title="35">    <span class="fu">write(</span>u, <span class="st">&#39;(A)&#39;</span><span class="fu">)</span> <span class="st">&#39;Second Line&#39;</span> <span class="kw">//</span> nl</a>
+<a class="sourceLine" id="cb690-36" title="36">    <span class="fu">write(</span>u, <span class="st">&#39;(A)&#39;</span><span class="fu">)</span> <span class="st">&#39;Third Line&#39;</span> <span class="kw">//</span> nl</a>
+<a class="sourceLine" id="cb690-37" title="37"></a>
+<a class="sourceLine" id="cb690-38" title="38">    <span class="co">! Jump directly to the saved position (start of the second line)</span></a>
+<a class="sourceLine" id="cb690-39" title="39">    <span class="fu">read(</span>u, <span class="st">&#39;(A)&#39;</span>, pos<span class="kw">=</span>pos_save<span class="fu">)</span> line_buffer</a>
+<a class="sourceLine" id="cb690-40" title="40">    <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;Data read from saved position:&#39;</span>, <span class="fu">trim</span>(line_buffer)</a>
+<a class="sourceLine" id="cb690-41" title="41"></a>
+<a class="sourceLine" id="cb690-42" title="42">    <span class="fu">close(</span>u<span class="fu">)</span></a>
+<a class="sourceLine" id="cb690-43" title="43"></a>
+<a class="sourceLine" id="cb690-44" title="44">  <span class="co">! Extended Example Providing Paragraph Fill</span></a>
+<a class="sourceLine" id="cb690-45" title="45">   <span class="co">! output a number of words of random length as a paragraph</span></a>
+<a class="sourceLine" id="cb690-46" title="46">   <span class="co">! by inserting a new_line before line exceeds 70 characters</span></a>
+<a class="sourceLine" id="cb690-47" title="47"></a>
+<a class="sourceLine" id="cb690-48" title="48">  <span class="co">! simplistic paragraph print using non-advancing I/O</span></a>
+<a class="sourceLine" id="cb690-49" title="49">   <span class="fu">count</span><span class="kw">=</span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb690-50" title="50">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="dv">100</span></a>
+<a class="sourceLine" id="cb690-51" title="51"></a>
+<a class="sourceLine" id="cb690-52" title="52">      <span class="co">! make some fake word of random length</span></a>
+<a class="sourceLine" id="cb690-53" title="53">      <span class="kw">call</span> <span class="fu">random_number</span>(r)</a>
+<a class="sourceLine" id="cb690-54" title="54">      string<span class="kw">=</span><span class="fu">repeat</span>(<span class="st">&#39;x&#39;</span>,<span class="bu">int</span>(r<span class="kw">*</span><span class="dv">10</span>)<span class="kw">+</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb690-55" title="55"></a>
+<a class="sourceLine" id="cb690-56" title="56">      <span class="fu">count</span><span class="kw">=</span><span class="fu">count</span><span class="kw">+</span><span class="fu">len</span>(string)<span class="kw">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb690-57" title="57">      <span class="kw">if</span>(<span class="fu">count</span><span class="op">.gt.</span><span class="dv">70</span>)<span class="kw">then</span></a>
+<a class="sourceLine" id="cb690-58" title="58">         <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span>,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)</span>nl</a>
+<a class="sourceLine" id="cb690-59" title="59">         <span class="fu">count</span><span class="kw">=</span><span class="fu">len</span>(string)<span class="kw">+</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb690-60" title="60">      <span class="kw">endif</span></a>
+<a class="sourceLine" id="cb690-61" title="61">      <span class="fu">write(*</span>,<span class="st">&#39;(1x,a)&#39;</span>,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)</span>string</a>
+<a class="sourceLine" id="cb690-62" title="62">   <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb690-63" title="63">   <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span>,<span class="fu">advance</span><span class="kw">=</span><span class="st">&#39;no&#39;</span><span class="fu">)</span>nl</a>
+<a class="sourceLine" id="cb690-64" title="64"></a>
+<a class="sourceLine" id="cb690-65" title="65"><span class="kw">end program</span> demo_new_line</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code> &gt; This is record 1.
  &gt; This is record 2.
  &gt;
  &gt; This is record 1.
  &gt; This is record 2.
- &gt;  x x xxxx xxxxxxx xxxxxxxxxx xxxxxxxxx xxxx xxxxxxxxxx xxxxxxxx
- &gt;  xxxxxxxxx xxxx xxxxxxxxx x xxxxxxxxx xxxxxxxx xxxxxxxx xxxx x
- &gt;  xxxxxxxxxx x x x xxxxxx xxxxxxxxxx x xxxxxxxxxx x xxxxxxx xxxxxxxxx
- &gt;  xx xxxxxxxxxx xxxxxxxx x xx xxxxxxxxxx xxxxxxxx xxx xxxxxxx xxxxxx
- &gt;  xxxxx xxxxxxxxx x xxxxxxxxxx xxxxxx xxxxxxxx xxxxx xxxxxxxx xxxxxxxx
- &gt;  xxxxx xxx xxxxxxxx xxxxxxx xxxxxxxx xxx xxxx xxx xxxxxxxx xxxxxx
- &gt;  xxxxxxx xxxxxxx xxxxx xxxxx xx xxxxxx xx xxxxxxxxxx xxxxxx x xxxx
- &gt;  xxxxxx xxxxxxx x xxx xxxxx xxxxxxxxx xxx xxxxxxx x xxxxxx xxxxxxxxx
- &gt;  xxxx xxxxxxxxx xxxxxxxx xxxxxxxx xxx xxxxxxx xxxxxxx xxxxxxxxxx
- &gt;  xxxxxxxxxx xxxxxx xxxxx xxxx xxxxxxx xx xxxxxxxxxx xxxxxx xxxxxx
- &gt;  xxxxxx xxxx xxxxx</code></pre>
+ &gt;  Data read from saved position:Second Line
+ &gt;  xxxxxx xx xxxxxxx xxxx xxxxx x xxxxx xxxxx xxxxxxxxxx xxxxxxx xxxxxxx
+ &gt;  xxx xx xxxxxxxxxx xxxxxx x xx xxxx xxxxxxx x xxxxxxxxxx xxxxxx
+ &gt;  xxxxxxx xxxx xxxxxxxxxx xxx xxxxxxxxx xxxxxxx xx xxxxxxxxxx x
+ &gt;  xxxxxxxxxx xxxxxxxxx x xxx xxxx xxxxxxxxx xx xxxxxxxx xxx xxxxxxx x x
+ &gt;  xxxx xxxxx xxxxxx xxxxxxxxx xxxxxxxxx xxxxxx x xxxxxxxxx x xx xxxxxxx
+ &gt;  xxx xxxxxx xxxxx xxxxxxxx xxxxxxxxxx xx xx xxxxxxxxxx xxxxxxxxxx
+ &gt;  xxxxxx xxxx xxxxxxx xxxxxx xxxxxx xx xxxxxxxx xxxxxxxx xxx xxxxxxxx
+ &gt;  xxxxxxxxx xxxxxx xxxxxxxxx xx xxxxxxxxx xxxxx xx xxxxxxx xxxxxxxxx
+ &gt;  xxxxxxxxx xxxx xxxxxxxxxx xxx xxxxxxxxx xxxxxxxxxx x xxxxxx xxxxxx
+ &gt;  xxxxxxxxxx x xxxxx xx xxxxxxx xxxxxxx xxxxxx xxxxx xxxxxxx</code></pre>
 </div><div id="standard-151" class="slide section level3">
 <h1><strong>Standard</strong></h1>
 <p>Fortran 2003</p>
