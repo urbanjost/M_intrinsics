@@ -37,12 +37,29 @@
 Sample program:
 ```fortran
 program demo_kind
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
 integer,parameter :: dc = kind(' ')
 integer,parameter :: dl = kind(.true.)
 
+! use number of digits in constant appropriate to the kind
+! 
+real(kind=real32),parameter :: pi= &
+3.141592653589793238462643383279502884197169399375105820974944592307_kind(pi)
+
+real(kind=real64),parameter :: pi8= &
+3.141592653589793238462643383279502884197169399375105820974944592307_kind(pi8)
+
+real(kind=real64),parameter :: pi16= &
+3.141592653589793238462643383279502884197169399375105820974944592307_kind(pi16)
+
    print *, "The default character kind is ", dc
    print *, "The default logical kind is ", dl
+   print * ' &
+   3.141592653589793238462643383279502884197169399375105820974944592307'
+   print *, pi
+   print *, p8
+   print *, p16
 
 end program demo_kind
 ```
