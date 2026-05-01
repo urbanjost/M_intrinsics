@@ -295,7 +295,11 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                              !lines=get_env('LINES',lines)  ! adjust for screen size change if set
                              i=max(0,i-1*lines+2)
                              iinf=0
-                             remember=paws
+                             if(paws(1:1).eq.'r')then
+                                remember='f'
+                             else
+                                remember=paws
+                             endif
                   case('L')
                              topics=['']
                              filename=adjustl(trim(paws(2:)))
@@ -335,11 +339,12 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                              i=i-1
                              iinf=0
                              remember='f'
-                  case('y','j','v'); i=max(0,i-1*lines+2) ! down one line
+                  case('e','j','v'); i=max(0,i-1*lines+2) ! down one line
                              i=i+len_trim(paws)-1
                              iinf=0
                               remember=paws
-                  case('e','k','^'); i=max(0,i-1*lines-0) ! up one line
+/bin/bash: pb0: command not found
+                  case('y','k','^'); i=max(0,i-1*lines-0) ! up one line
                              i=max(0,i-len_trim(paws)+1)
                              iinf=0
                               remember=paws
@@ -477,10 +482,15 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                      i=max(0,i-2*lines+2) ! back
                      remember='f'
 !+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                  case('t','T','m')
+                  case('t','T','m','A')
                      i=0  ! developer: load a topic
-                     if(paws.eq.'T')paws(2:)='toc'
-                     if(paws(1:4).eq.'man')paws(2:)=paws(5:)
+                     if(paws.eq.'T')then
+                        paws(2:)='toc3'
+                     elseif(paws.eq.'A')then
+                        paws(2:)='toc'
+                     elseif(paws(1:4).eq.'man')then
+                        paws(2:)=paws(5:)
+                     endif
                      topics=[adjustl(paws(2:))]
                      if(paws.eq.'t')then
                         call shorttopics()

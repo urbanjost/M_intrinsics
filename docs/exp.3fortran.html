@@ -110,7 +110,7 @@ the power of X.
 <P>
 "e" is also known as Euler&#146;s constant.
 <P>
-So for either a real or complex scalar X, it returns eˆX , where e is
+So for either a real or complex scalar X, it returns e**X , where e is
 the base of the natural logarithm (approximately 2.718281828459045).
 <P>
 For real inputs, EXP returns a real result.
@@ -126,13 +126,13 @@ Since EXP(3) is the inverse function of LOG(3) the maximum valid
 magnitude of the real component of X is LOG(HUGE(X)).
 <P>
 EXP being elemental, when X is an array (real or complex), the function
-is applied element‐wise, returning an array of the same shape.
+is applied element-wise, returning an array of the same shape.
 <P>
 <PRE>
     Numerical Considerations
 <P>
      For very large real X, the result may overflow to infinity in
-     finite‐precision arithmetic. For very small (negative) real X ,
+     finite-precision arithmetic. For very small (negative) real X ,
      the result approaches zero. Complex inputs with large imaginary
      parts may produce results with significant numerical errors due
      to the trigonometric functions involved.

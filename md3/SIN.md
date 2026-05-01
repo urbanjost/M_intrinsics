@@ -41,8 +41,8 @@
   for conversion.
 
 
-  where i is the imaginary unit. The result’s kind matches the
-  input’s kind.
+  where i is the imaginary unit. The result's kind matches the
+  input's kind.
 
 ### **Options**
 

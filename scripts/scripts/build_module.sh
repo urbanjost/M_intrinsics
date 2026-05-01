@@ -19,11 +19,10 @@ do
 SHORTNAME=${NAME/.*}
 (
 cat <<EOF
-function help_${SHORTNAME}(prefix,topic,m_help) result (textblock)
+function help_${SHORTNAME}(prefix,topic) result (textblock)
 character(len=256),allocatable   :: textblock(:)
 logical,intent(in),optional      :: prefix
 logical,intent(in),optional      :: topic
-logical,intent(in),optional      :: m_help
 character(len=*),parameter       :: shortname="$SHORTNAME"
 character(len=:),allocatable,intent(out),optional :: name
 textblock=[character(len=256)    :: &
@@ -37,12 +36,6 @@ $(TOCHARACTER)
          do i=1,size(textblock)
             textblock(i)=shortname//':'//trim(textblock(i))
          enddo
-      endif
-   elseif(present(m_help))then
-      if(m_help)then
-         textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname in
-	 textblock=' '//textblock ! shift to right by one character
-         textblock(1)=shortname
       endif
    endif
 end function help_${SHORTNAME}
@@ -63,20 +56,15 @@ module M_intrinsics
 implicit none
 private
 public help_intrinsics
-!interface help_intrinsics
-!   module procedure help_intrinsics_all
-!   module procedure help_intrinsics_one
-!end interface help_intrinsics
 integer,save :: G_section=3
 contains
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
-function help_intrinsics(name,prefix,topic,m_help) result (textblock)
+function help_intrinsics(name,prefix,topic) result (textblock)
 character(len=*),intent(in)                       :: name
 logical,intent(in),optional                       :: prefix
 logical,intent(in),optional                       :: topic
-logical,intent(in),optional                       :: m_help
 character(len=256),allocatable                    :: textblock(:)
 character(len=256),allocatable                    :: narrow(:)
 character(len=256)                                :: header
@@ -84,7 +72,7 @@ character(len=:),allocatable                      :: a, b, c
 integer                                           :: i, j, k, p, pg
    select case(name)
    case('','manual','intrinsics','fortranmanual','fortran_manual')
-      textblock=help_intrinsics_all(prefix,topic,m_help)
+      textblock=help_intrinsics_all(prefix,topic)
    case('help')
      textblock=[character(len=80) :: &
      'Enter "h" to see the available interactive commands.', &
@@ -133,7 +121,7 @@ integer                                           :: i, j, k, p, pg
       enddo
       textblock=narrow
    case default
-      textblock=help_intrinsics_one(name,prefix,topic,m_help)
+      textblock=help_intrinsics_one(name,prefix,topic)
    end select
 end function help_intrinsics
 !===================================================================================================================================
@@ -294,10 +282,9 @@ end function help_intrinsics_section
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
-function help_intrinsics_all(prefix,topic,m_help) result (textblock)
+function help_intrinsics_all(prefix,topic) result (textblock)
 logical,intent(in),optional     :: prefix
 logical,intent(in),optional     :: topic
-logical,intent(in),optional     :: m_help
 character(len=256),allocatable  :: textblock(:)
 character(len=256),allocatable  :: header(:)
 character(len=256),allocatable  :: add(:)
@@ -307,99 +294,18 @@ integer                         :: icount
    icount=1
    do
       write(cnum,'(i0)') icount
-      add=help_intrinsics_one(cnum,prefix,topic,m_help)
+      add=help_intrinsics_one(cnum,prefix,topic)
       if( size(add) .eq. 0 ) exit
       textblock=[character(len=256) :: textblock,add]
       icount=icount + 1
    enddo
-   if(present(m_help))then
-      if(m_help)then
-         header=[ character(len=256) :: &
-         '================================================================================',    &
-         'SUMMARY',    &
-         ' The primary Fortran topics are',    &
-         ' abs                   achar                     acos',    &
-         ' acosh                 adjustl                   adjustr',    &
-         ' aimag                 aint                      all',    &
-         ' allocated             anint                     any',    &
-         ' asin                  asinh                     associated',    &
-         ' atan                  atan2                     atanh',    &
-         ' atomic_add            atomic_and                atomic_cas',    &
-         ' atomic_define         atomic_fetch_add          atomic_fetch_and',    &
-         ' atomic_fetch_or       atomic_fetch_xor          atomic_or',    &
-         ' atomic_ref            atomic_xor                backspace',    &
-         ' bessel_j0             bessel_j1                 bessel_jn',    &
-         ' bessel_y0             bessel_y1                 bessel_yn',    &
-         ' bge                   bgt                       bit_size',    &
-         ' ble                   block                     blt',    &
-         ' btest                 c_associated              ceiling',    &
-         ' c_f_pointer           c_f_procpointer           c_funloc',    &
-         ' char                  c_loc                     close',    &
-         ' cmplx                 co_broadcast              co_lbound',    &
-         ' co_max                co_min                    command_argument_count',    &
-         ' compiler_options      compiler_version          conjg',    &
-         ' continue              co_reduce                 cos',    &
-         ' cosh                  co_sum                    co_ubound',    &
-         ' count                 cpu_time                  cshift',    &
-         ' c_sizeof              date_and_time             dble',    &
-         ' digits                dim                       dot_product',    &
-         ' dprod                 dshiftl                   dshiftr',    &
-         ' eoshift               epsilon                   erf',    &
-         ' erfc                  erfc_scaled               event_query',    &
-         ' execute_command_line  exit                      exp',    &
-         ' exponent              extends_type_of           findloc',    &
-         ' float                 floor                     flush',    &
-         ' fraction              gamma                     get_command',    &
-         ' get_command_argument  get_environment_variable  huge',    &
-         ' hypot                 iachar                    iall',    &
-         ' iand                  iany                      ibclr',    &
-         ' ibits                 ibset                     ichar',    &
-         ' ieor                  image_index               include',    &
-         ' index                 int                       ior',    &
-         ' iparity               is_contiguous             ishft',    &
-         ' ishftc                is_iostat_end             is_iostat_eor',    &
-         ' kind                  lbound                    leadz',    &
-         ' len                   len_trim                  lge',    &
-         ' lgt                   lle                       llt',    &
-         ' log                   log10                     log_gamma',    &
-         ' logical               maskl                     maskr',    &
-         ' matmul                max                       maxexponent',    &
-         ' maxloc                maxval                    merge',    &
-         ' merge_bits            min                       minexponent',    &
-         ' minloc                minval                    mod',    &
-         ' modulo                move_alloc                mvbits',    &
-         ' nearest               new_line                  nint',    &
-         ' norm2                 not                       null',    &
-         ' num_images            pack                      parity',    &
-         ' popcnt                poppar                    precision',    &
-         ' present               product                   radix',    &
-         ' random_number         random_seed               range',    &
-         ' rank                  real                      repeat',    &
-         ' reshape               return                    rewind',    &
-         ' rrspacing             same_type_as              scale',    &
-         ' scan                  selected_char_kind        selected_int_kind',    &
-         ' selected_real_kind    set_exponent              shape',    &
-         ' shifta                shiftl                    shiftr',    &
-         ' sign                  sin                       sinh',    &
-         ' size                  sngl                      spacing',    &
-         ' spread                sqrt                      stop',    &
-         ' storage_size          sum                       system_clock',    &
-         ' tan                   tanh                      this_image',    &
-         ' tiny                  trailz                    transfer',    &
-         ' transpose             trim                      ubound',    &
-         ' unpack                verify',    &
-         '']
-         textblock=[header,textblock]
-      endif
-   endif
 end function help_intrinsics_all
 !===================================================================================================================================
 !()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()()=
 !===================================================================================================================================
-function help_intrinsics_one(name,prefix,topic,m_help) result (textblock)
+function help_intrinsics_one(name,prefix,topic) result (textblock)
 character(len=*),intent(in)      :: name
 logical,intent(in),optional      :: prefix
-logical,intent(in),optional      :: m_help
 logical,intent(in),optional      :: topic
 character(len=256),allocatable   :: textblock(:)
 character(len=:),allocatable     :: shortname
@@ -445,13 +351,6 @@ if(present(prefix))then
    endif
 endif
 
-if(present(m_help))then
-   if(m_help)then
-      textblock=[character(len=len(textblock)+1) :: ' ',textblock] ! add blank line to put shortname into
-      textblock=' '//textblock                                     ! shift to right by one character
-      textblock(1)=shortname
-   endif
-endif
 end subroutine process
 end function help_intrinsics_one
 !===================================================================================================================================

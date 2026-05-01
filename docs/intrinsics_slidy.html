@@ -692,7 +692,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb33-21" title="21">  <span class="co">! or even printed without adjusting the string a</span></a>
 <a class="sourceLine" id="cb33-22" title="22">  <span class="co">! cropped substring can be printed</span></a>
 <a class="sourceLine" id="cb33-23" title="23">    iend<span class="kw">=</span><span class="bu">len_trim</span>(str)</a>
-<a class="sourceLine" id="cb33-24" title="24">    istart<span class="kw">=</span> <span class="bu">verify</span>(str, <span class="st">&#39; &#39;</span>) <span class="co">! first non‐blank character</span></a>
+<a class="sourceLine" id="cb33-24" title="24">    istart<span class="kw">=</span> <span class="bu">verify</span>(str, <span class="st">&#39; &#39;</span>) <span class="co">! first non-blank character</span></a>
 <a class="sourceLine" id="cb33-25" title="25">    <span class="fu">write(*</span>,au<span class="fu">)</span> <span class="st">&#39;substring:&#39;</span>,str(istart:iend)</a>
 <a class="sourceLine" id="cb33-26" title="26"></a>
 <a class="sourceLine" id="cb33-27" title="27">  <span class="co">! to generate an actually trimmed allocated variable</span></a>
@@ -7460,16 +7460,16 @@ $$</span><br /></p>
 <h3 id="description-89"><strong>Description</strong></h3>
 <p><strong>exp</strong>(3) returns the value of e (the base of natural logarithms) raised to the power of <strong>x</strong>.</p>
 <p>“e” is also known as Euler’s constant.</p>
-<p>So for either a real or complex scalar X, it returns eˆX , where e is the base of the natural logarithm (approximately 2.718281828459045).</p>
+<p>So for either a real or complex scalar X, it returns e**X , where e is the base of the natural logarithm (approximately 2.718281828459045).</p>
 <p>For real inputs, EXP returns a real result.</p>
 <p>If <strong>x</strong> is of type complex, its imaginary part is regarded as a value in radians such that (see Euler’s formula):</p>
 <div class="sourceCode" id="cb407"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb407-1" title="1">    <span class="bu">exp</span>((re,im)) <span class="kw">=</span> <span class="bu">exp</span>(re) <span class="kw">*</span> <span class="bu">cmplx</span>(<span class="bu">cos</span>(im),<span class="bu">sin</span>(im),<span class="fu">kind</span><span class="kw">=</span><span class="fu">kind</span>(cx))</a></code></pre></div>
 <p>Since <strong>exp</strong>(3) is the inverse function of <strong>log</strong>(3) the maximum valid magnitude of the real component of <strong>x</strong> is <strong>log(huge(x))</strong>.</p>
-<p><strong>exp</strong> being elemental, when X is an array (real or complex), the function is applied element‐wise, returning an array of the same shape.</p>
+<p><strong>exp</strong> being elemental, when X is an array (real or complex), the function is applied element-wise, returning an array of the same shape.</p>
 <pre><code>Numerical Considerations
 
  For very large real X, the result may overflow to infinity in
- finite‐precision arithmetic. For very small (negative) real X ,
+ finite-precision arithmetic. For very small (negative) real X ,
  the result approaches zero. Complex inputs with large imaginary
  parts may produce results with significant numerical errors due
  to the trigonometric functions involved.</code></pre>

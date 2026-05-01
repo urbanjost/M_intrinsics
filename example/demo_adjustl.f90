@@ -21,7 +21,7 @@
         ! or even printed without adjusting the string a
         ! cropped substring can be printed
           iend=len_trim(str)
-          istart= verify(str, ' ') ! first non‐blank character
+          istart= verify(str, ' ') ! first non-blank character
           write(*,au) 'substring:',str(istart:iend)
 
         ! to generate an actually trimmed allocated variable

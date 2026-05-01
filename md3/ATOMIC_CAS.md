@@ -23,7 +23,7 @@ value of **atom**.
 
 **atomic_cas** is useful for implementing locks or conditional updates.
 
-Only one image’s **new** value is set if multiple images attempt the
+Only one image's **new** value is set if multiple images attempt the
 operation simultaneously.
 
 When **stat** is present and the invocation

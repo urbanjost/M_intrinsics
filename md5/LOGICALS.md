@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**logicals** - \[SUMMARY\] logical expressions and variables
+**logicals**(5) - \[SUMMARY\] logical expressions and variables
 
 ### **Synopsis**
 
@@ -520,7 +520,7 @@ forms if "w" is sufficiently sized.
 A lower-case letter is equivalent to the corresponding upper-case letter
 in a logical input field.
 
-The output ﬁeld consists of w−1 blanks followed by a T or F, depending
+The output field consists of w-1 blanks followed by a T or F, depending
 on whether the internal value is true or false, respectively.
 ```fortran
 program logical_formatted
