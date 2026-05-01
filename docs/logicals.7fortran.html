@@ -63,7 +63,7 @@ LOGICALS - [SUMMARY] logical expressions and variables
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=17>
+<A name=18>
 
      <H3>SYNOPSIS</H3>
 
@@ -285,48 +285,57 @@ o
 </TD><TD>
 kind(val) ! return integer value of kind of a value
 </TD></TR>
-<TR></TR></TABLE><!-- .nf -->
+<TR></TR></TABLE></BLOCKQUOTE>
+<A name=7>
+
+     <H3>EXAMPLE</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+sample program:
+<P>
 <PRE>
-    program demo_different_logical_kinds
-    use iso_fortran_env, only : logical_kinds
-    use,intrinsic :: iso_fortran_env, only : &
-     & LOGICAL8, LOGICAL16, LOGICAL32, LOGICAL64
-    use,intrinsic :: iso_c_binding,   only : C_BOOL
-    implicit none
-    character(len=*),parameter             :: all=&#146;(*(g0))&#146;
-    ! potentially save space and improve performance by using the
-    ! smallest available kind
-    integer,parameter                      :: lk=selected_logical_kind(1)
-    logical(lk)                            :: smallest_storage(10,20)
+       program demo_different_logical_kinds
+       use iso_fortran_env, only : logical_kinds
+       use,intrinsic :: iso_fortran_env, only : &
+        & LOGICAL8, LOGICAL16, LOGICAL32, LOGICAL64
+       use,intrinsic :: iso_c_binding,   only : C_BOOL
+       implicit none
+       character(len=*),parameter             :: all=&#146;(*(g0))&#146;
+       ! potentially save space and improve performance by using the
+       ! smallest available kind
+       integer,parameter                      :: lk=selected_logical_kind(1)
+       logical(lk)                            :: smallest_storage(10,20)
 <P>
-    ! C_BOOL is a kind compatible with C interfaces
-    logical(kind=c_bool)                   :: boolean=.TRUE.
+       ! C_BOOL is a kind compatible with C interfaces
+       logical(kind=c_bool)                   :: boolean=.TRUE.
 <P>
-    integer                                :: i
-      ! The integer array constant LOGICAL_KINDS() contains the kind
-      ! values for supported logical kinds for the current processor
-      print all, &#146;list LOGICAL kind values available on this platform&#146;
-       do i =1, size(logical_kinds)
-          print all, &#146;   integer,parameter :: boolean&#146;, &
-          & logical_kinds(i),&#146;=&#146;, logical_kinds(i)
-       enddo
+       integer                                :: i
+         ! The integer array constant LOGICAL_KINDS() contains the kind
+         ! values for supported logical kinds for the current processor
+         print all, &#146;list LOGICAL kind values available on this platform&#146;
+          do i =1, size(logical_kinds)
+             print all, &#146;   integer,parameter :: boolean&#146;, &
+             & logical_kinds(i),&#146;=&#146;, logical_kinds(i)
+          enddo
 <P>
-      print all, &#146;   LOGICAL8  ==&gt; KIND=&#146;,LOGICAL8
-      print all, &#146;   LOGICAL16 ==&gt; KIND=&#146;,LOGICAL16
-      print all, &#146;   LOGICAL32 ==&gt; KIND=&#146;,LOGICAL32
-      print all, &#146;   LOGICAL64 ==&gt; KIND=&#146;,LOGICAL64
-      print all, &#146;   C_BOOL    ==&gt; KIND=&#146;,C_BOOL
+         print all, &#146;   LOGICAL8  ==&gt; KIND=&#146;,LOGICAL8
+         print all, &#146;   LOGICAL16 ==&gt; KIND=&#146;,LOGICAL16
+         print all, &#146;   LOGICAL32 ==&gt; KIND=&#146;,LOGICAL32
+         print all, &#146;   LOGICAL64 ==&gt; KIND=&#146;,LOGICAL64
+         print all, &#146;   C_BOOL    ==&gt; KIND=&#146;,C_BOOL
 <P>
-      print all, &#146;storage size of default logical = &#146;, storage_size(.true.)
-      print all, &#146;storage size of smallest logical kind = &#146;, &
-       storage_size(smallest_storage)
-      print all, &#146;storage size of C_BOOL= &#146;, storage_size(boolean)
+         print all, &#146;storage size of default logical = &#146;, storage_size(.true.)
+         print all, &#146;storage size of smallest logical kind = &#146;, &
+          storage_size(smallest_storage)
+         print all, &#146;storage size of C_BOOL= &#146;, storage_size(boolean)
 <P>
-      print all, &#146;kind of default logical = &#146;, kind(.true.)
-      print all, &#146;kind of smallest logical kind = &#146;, kind(smallest_storage)
-      print all, &#146;kind of C_BOOL= &#146;, kind(.true._c_bool)
+         print all, &#146;kind of default logical = &#146;, kind(.true.)
+         print all, &#146;kind of smallest logical kind = &#146;, kind(smallest_storage)
+         print all, &#146;kind of C_BOOL= &#146;, kind(.true._c_bool)
 <P>
-    end program demo_different_logical_kinds
+       end program demo_different_logical_kinds
 <P>
 </PRE>
 Typical (platform-specific) output:
@@ -356,7 +365,7 @@ compatible with the C interface bindings, and is typically the smallest
 at one byte per value; but this requires verification on any given
 platform.
 </BLOCKQUOTE>
-<A name=7>
+<A name=8>
 
      <H3>MASKING IN INTRINSICS</H3>
 
@@ -388,7 +397,7 @@ addition masks are used in many intrinsics &#46;&#46;&#46;
 <P>
 </PRE>
 </BLOCKQUOTE>
-<A name=8>
+<A name=9>
 
      <H3>USES</H3>
 
@@ -442,10 +451,10 @@ PRINT *, "x is outside the range"
 </A>
 <BLOCKQUOTE>
 <P>
-program demo_random_number
+program example_random_number
 use, intrinsic :: iso_fortran_env, only : dp=&gt;real64
 implicit none
-<TABLE cellpadding=3><!-- tsb: program demo_random_number
+<TABLE cellpadding=3><!-- tsb: program example_random_number
  -->
 <TR></TR><TR></TR>
 <TR valign=top><TD colspan=2>
@@ -465,10 +474,10 @@ sumup=sumup+rand_int
 passes=passes+1
 enddo
 write(*,*)&#146;sumup=&#146;,sumup,&#146;passes=&#146;,passes
-end program demo_random_number
+end program example_random_number
 </TD></TR>
 <TR></TR></TABLE></BLOCKQUOTE>
-<A name=9>
+<A name=10>
 
      <H3>ARRAY MASKING</H3>
 
@@ -535,7 +544,7 @@ RAINING = .TRUE.
 <BLOCKQUOTE>
 <P>
 </BLOCKQUOTE>
-<A name=10>
+<A name=11>
 
      <H3>LOGICAL OPERATIONS</H3>
 
@@ -559,47 +568,47 @@ strings. For example, to determine if strings represent valid Fortran
 symbol names:
 <P>
 <PRE>
-    program fortran_symbol_name
-    implicit none
-    integer :: i
-    ! some strings to inspect for being valid symbol names
-    character(len=*),parameter :: symbols(*)=[character(len=10) :: &
-     &#146;A_ &#146;, &
-     &#146;10 &#146;, &
-     &#146;September &#146;, &
-     &#146;A B&#146;, &
-     &#146;_A &#146;, &
-     &#146; &#146;]
+       program fortran_symbol_name
+       implicit none
+       integer :: i
+       ! some strings to inspect for being valid symbol names
+       character(len=*),parameter :: symbols(*)=[character(len=10) :: &
+        &#146;A_ &#146;, &
+        &#146;10 &#146;, &
+        &#146;September &#146;, &
+        &#146;A B&#146;, &
+        &#146;_A &#146;, &
+        &#146; &#146;]
 <P>
-       write(*,&#146;("|",*(g0,"|"))&#146;) symbols
-       write(*,&#146;("|",*(1x,l1,8x,"|"))&#146;) fortran_name(symbols)
+          write(*,&#146;("|",*(g0,"|"))&#146;) symbols
+          write(*,&#146;("|",*(1x,l1,8x,"|"))&#146;) fortran_name(symbols)
 <P>
-    contains
+       contains
 <P>
-    elemental function fortran_name(line) result (lout)
-    ! determine if a string is a valid Fortran name
-    ! ignoring trailing spaces (but not leading spaces)
-    character(len=*),parameter   :: int=&#146;0123456789&#146;
-    character(len=*),parameter   :: lower=&#146;abcdefghijklmnopqrstuvwxyz&#146;
-    character(len=*),parameter   :: upper=&#146;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#146;
-    character(len=*),parameter   :: allowed=upper//lower//int//&#146;_&#146;
-    character(len=*),intent(in)  :: line
-    character(len=:),allocatable :: name
-    logical                      :: lout
-       name=trim(line)
-       if(len(name).ne.0)then
-          ! first character is alphameric
-          lout = verify(name(1:1), lower//upper) == 0  &
-           ! verify other characters allowed in a symbol name
-           & .and. verify(name,allowed) == 0           &
-           ! check conforms to allowable length
-           & .and. len(name) &lt;= 63
-       else
-          lout = .false.
-       endif
-    end function fortran_name
+       elemental function fortran_name(line) result (lout)
+       ! determine if a string is a valid Fortran name
+       ! ignoring trailing spaces (but not leading spaces)
+       character(len=*),parameter   :: int=&#146;0123456789&#146;
+       character(len=*),parameter   :: lower=&#146;abcdefghijklmnopqrstuvwxyz&#146;
+       character(len=*),parameter   :: upper=&#146;ABCDEFGHIJKLMNOPQRSTUVWXYZ&#146;
+       character(len=*),parameter   :: allowed=upper//lower//int//&#146;_&#146;
+       character(len=*),intent(in)  :: line
+       character(len=:),allocatable :: name
+       logical                      :: lout
+          name=trim(line)
+          if(len(name).ne.0)then
+             ! first character is alphameric
+             lout = verify(name(1:1), lower//upper) == 0  &
+              ! verify other characters allowed in a symbol name
+              & .and. verify(name,allowed) == 0           &
+              ! check conforms to allowable length
+              & .and. len(name) &lt;= 63
+          else
+             lout = .false.
+          endif
+       end function fortran_name
 <P>
-    end program fortran_symbol_name
+       end program fortran_symbol_name
 <P>
 </PRE>
 Results:
@@ -610,7 +619,7 @@ Results:
 <P>
 </PRE>
 </BLOCKQUOTE>
-<A name=11>
+<A name=12>
 
      <H3>ARRAY REDUCTION FUNCTIONS</H3>
 
@@ -635,7 +644,7 @@ conjunction with array masking.
 <P>
 </PRE>
 </BLOCKQUOTE>
-<A name=12>
+<A name=13>
 
      <H3>BITWISE LOGICAL OPERATIONS</H3>
 
@@ -659,7 +668,7 @@ low-level programming and certain numerical algorithms.
 but these return integer, not logical values and are mentioned only for
 reference.
 </BLOCKQUOTE>
-<A name=13>
+<A name=14>
 
      <H3>CONDITIONAL EXPRESSIONS</H3>
 
@@ -706,7 +715,7 @@ For example, in evaluating the expression
 L(Z) may or may not be evaluated assuming "L" is a procedure name when
 the first condition (X &gt; Y) is true.
 </BLOCKQUOTE>
-<A name=14>
+<A name=15>
 
      <H3>LOGICALS CANNOT BE USED AS INTEGERS</H3>
 
@@ -754,7 +763,7 @@ Results:
 <P>
 </PRE>
 </BLOCKQUOTE>
-<A name=15>
+<A name=16>
 
      <H3>LOGICAL EDITING</H3>
 
@@ -810,7 +819,7 @@ Results:
 </PRE>
 The G edit descriptor also may be used to edit logical data.
 </BLOCKQUOTE>
-<A name=16>
+<A name=17>
 
      <H3>SEE ALSO</H3>
 

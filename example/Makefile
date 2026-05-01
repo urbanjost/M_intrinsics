@@ -2,13 +2,32 @@ SRCS := $(wildcard *.f90)
 PROGRAMS := $(patsubst %.f90,%,$(SRCS))
 #Vary the command to your liking with make FC90=f90 F90FLAGS=-g  F90LDFLAGS=-s 
 
-FC90=ifort 
-F90FLAGS=
-F90LDFLAGS=
+gfortran: FC90=gfortran 
+gfortran: F90FLAGS= -fcoarray=single -Wall -Wextra -Wno-maybe-uninitialized -Wno-uninitialized -finit-real=snan
+gfortran: F90LDFLAGS=
+gfortran: all
+	@echo built with $(F90)
 
-FC90=gfortran 
-F90FLAGS=-std=f2018 -fcoarray=single -Wall
-F90LDFLAGS=
+ifx: FC90=ifx 
+ifx: F90FLAGS=-warn all -coarray -traceback
+ifx: F90LDFLAGS=
+ifx: all
+	@echo built with $(F90)
+
+nvfortran: F90=nvfortran
+nvfortran: F90FLAGS := -Minform=inform -Mbackslash -traceback
+nvfortran: all
+	@echo built with $(F90)
+
+ifort: F90=ifort
+ifort: F90FLAGS := -warn all -traceback
+ifort: all
+	@echo built with $(F90)
+
+nagfor: F90=nagfor
+nagfor: F90FLAGS := -C all
+nagfor: all
+	@echo built with $(F90)
 
 # For this unusual case, where each executable has a single source file
 # with a .f90 extension, all you need is 

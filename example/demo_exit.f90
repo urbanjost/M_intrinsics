@@ -2,15 +2,9 @@
          implicit none
          integer,parameter :: arbitrary_size=10
          integer :: i, j, k, iarr(arbitrary_size)
-         integer :: iostat, lun
-         logical :: ok
-         character(len=80) :: line
          character(len=*),parameter :: gen='(*(g0:,1x))'
          !
          ! the basics
-         !
-         ! Note we will use the function irand(3) contained in
-         ! the end of the code below to generate random whole numbers
          !
          !----------------------
          ! EXIT an infinite loop
@@ -27,10 +21,14 @@
            ! a related common use is to read a file of unknown size
            ! till an error or end-of-file, although READ does have
            ! the options ERR=numeric-label and EOF=numeric-label.
-           ! INFINITE: do
-           !    read(*,'(a)',iostat=iostat) line
-           !    if(iostat.ne.0)exit INFINITE
-           ! enddo INFINITE
+            CRASH: block
+            integer :: iostat, lun=10
+            character(len=80) :: line
+            INFINITE: do
+               read(lun,'(a)',iostat=iostat) line
+               if(iostat.ne.0)exit INFINITE
+            enddo INFINITE
+            endblock CRASH
 
          ! Some argue that an infinite loop is never a good idea.
          ! A common practice is to avoid even the possibility of an
@@ -41,7 +39,7 @@
          ! problems bigger than it was intended for, or not loop infinitely
          ! if some unexpected or incorrect input or condition is encountered.
          ! It might make it stop unintentionally as well.
-           !
+            !
             ! run a loop but quit as soon as 200 random integers are odd
             j=0
             ! fun facts: What are the odds of not getting 200 in 10000?
@@ -170,7 +168,6 @@
          contains
          ! choose a value from range of integers inclusive randomly
          function irand(first,last)
-         integer, allocatable :: seed(:)
          integer,intent(in)   :: first,last
          real                 :: rand_val
          integer              :: irand

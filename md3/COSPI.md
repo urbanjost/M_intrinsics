@@ -49,7 +49,7 @@
 
 Sample program:
 ```fortran
-program demo_cos
+program demo_cospi
 implicit none
 character(len=*),parameter :: g2='(a,t21,*(g0,1x))'
    write(*,g2) 'Basics:'
@@ -62,7 +62,7 @@ character(len=*),parameter :: g2='(a,t21,*(g0,1x))'
    write(*,g2) 'COSpi(3000)=',   cospi(3000.0d0)
    write(*,g2) 'Elemental:'
    write(*,g2) 'COSpi([0,1/4,-1/4])=',COSpi([0.0,0.25,-0.25])
-end program demo_cos
+end program demo_cospi
 ```
 Results:
 ```text

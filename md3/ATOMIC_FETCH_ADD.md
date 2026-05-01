@@ -83,7 +83,7 @@ program demo_atomic_fetch_add
   implicit none
   integer(atomic_int_kind) :: counter[*]  ! Coarray for shared counter
   integer(atomic_int_kind) :: old_value   ! Stores value before addition
-  integer :: stat, me, i
+  integer :: stat, me
 
   ! Initialize counter on image 1
   if (this_image() == 1) counter = 0
