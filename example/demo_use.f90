@@ -24,11 +24,13 @@
             subroutine static_method1(arg)
                integer :: arg
                ! code to implement method goes here
+           arg=arg+1
             end subroutine static_method1
 
             subroutine static_method2(arg)
                integer :: arg
                ! code to implement method goes here
+           arg=arg+2
             end subroutine static_method2
 
          end module example

@@ -409,7 +409,7 @@ program demo_acosd
 use, intrinsic :: iso_fortran_env, only : real32,real64,real128
 implicit none
 character(len=*),parameter :: all='(*(g0,1x))'
-real(kind=real64) :: x , d2r
+real(kind=real64) :: x
 
    ! basics
     print *,'acosd(-1.0) -->',acosd( -1.0 )
@@ -769,7 +769,7 @@ integer :: istart, iend
   ! or even printed without adjusting the string a
   ! cropped substring can be printed
     iend=len_trim(str)
-    istart= verify(str, ' ') ! first non‐blank character
+    istart= verify(str, ' ') ! first non-blank character
     write(*,au) 'substring:',str(istart:iend)
 
   ! to generate an actually trimmed allocated variable
@@ -914,7 +914,7 @@ Fortran 95
   **aimag**(3) yields the imaginary part of the complex argument **z**.
 
   This is similar to the modern complex-part-designator **%IM** which also
-  designates the imaginary part of a value, accept a designator is treated
+  designates the imaginary part of a value, except a designator is treated
   as a variable. This means it may appear
   on the left-hand side of an assignment as well, as in **val%im=10.0** or
   as an argument in a procedure call that will act as a typical variable
@@ -1714,15 +1714,6 @@ character(len=*),parameter :: all='(*(g0,1x))'
   print all, 'angle of incline(radians) = ', angle
 
   print all, 'percent grade=',rise/run*100.0_dp
-contains
-subroutine sub1()
-! notice the (incidentally empty) type is defined below
-! the implicit statement
-implicit type(nil) (a)
-type nil
-end type nil
-type(nil) :: anull
-end subroutine sub1
 end program demo_asind
 ```
 Results:
@@ -2028,13 +2019,6 @@ character(len=*),parameter :: all='(*(g0,1x))'
   angle = angle/D2HR
   print all, 'angle of incline(degrees) = ', angle
   print all, 'percent grade=',rise/run*100.0_dp
-contains
-elemental function asinpi(x)
-real(kind=dp),parameter  :: PI=acos(-1.0_dp)
-real(kind=dp),intent(in) :: x
-real(kind=dp)            :: asinpi
-   asinpi=asin(x)/PI
-end function asinpi
 end program demo_asinpi
 ```
 Results:
@@ -2453,70 +2437,70 @@ Range of returned values by quadrant:
 
 Sample program:
 ```fortran
-program demo_atan2
-real    :: z
-complex :: c
- !
- ! basic usage
-  ! ATAN2 (1.5574077, 1.0) has the value 1.0 (approximately).
-  z=atan2(1.5574077, 1.0)
-  write(*,*) 'radians=',z,'degrees=',r2d(z)
- !
- ! elemental : arrays
-  write(*,*)'elemental',atan2( [10.0, 20.0], [30.0,40.0] )
- !
- ! elemental : arrays and scalars
-  write(*,*)'elemental',atan2( [10.0, 20.0], 50.0 )
- !
- ! break complex values into real and imaginary components
- ! (note TAN2() can take a complex type value )
-  c=(0.0,1.0)
-  write(*,*)'complex',c,atan2( x=c%re, y=c%im )
- !
- ! extended sample converting cartesian coordinates to polar
-  COMPLEX_VALS: block
-  real                :: ang, radius
-  complex,allocatable :: vals(:)
-  integer             :: i
- !
-  vals=[ &
-    !     0            45            90           135
-    ( 1.0, 0.0 ), ( 1.0, 1.0 ), ( 0.0, 1.0 ), (-1.0, 1.0 ), &
-    !    180           225          270
-    (-1.0, 0.0 ), (-1.0,-1.0 ), ( 0.0,-1.0 ) ]
-  do i=1,size(vals)
-     call cartesian_to_polar(vals(i), radius,ang)
-     write(*,101)vals(i),ang,r2d(ang),radius
-  enddo
-  101 format( 'X=',f5.2,' Y=',f5.2,' ANGLE=',g0, &
-  & T38,'DEGREES=',g0.4, T54,'DISTANCE=',g0)
- endblock COMPLEX_VALS
-!
-contains
-!
-elemental real function r2d(radians)
-! input radians to convert to degrees
-doubleprecision,parameter :: DEGREE=0.017453292519943d0 ! radians
-real,intent(in)           :: radians
-   r2d=radians / DEGREE ! do the conversion
-end function r2d
-!
-subroutine cartesian_to_polar(xy,radius,inclination)
-! return angle in radians in range 0 to 2*PI
-implicit none
-complex,intent(in)  :: xy
-real,intent(out) :: radius,inclination
-   radius=abs( xy )
-   ! arbitrarily set angle to zero when radius is zero
-   inclination=merge(0.0,atan2(x=xy%re, y=xy%im),radius==0.0)
-   ! bring into range 0 <= inclination < 2*PI
-   if(inclination < 0.0)inclination=inclination+2*atan2(0.0d0,-1.0d0)
-end subroutine cartesian_to_polar
-!
-end program demo_atan2
-
+   program demo_atan2
+   real    :: z
+   complex :: c
+    !
+    ! basic usage
+     ! ATAN2 (1.5574077, 1.0) has the value 1.0 (approximately).
+     z=atan2(1.5574077, 1.0)
+     write(*,*) 'radians=',z,'degrees=',r2d(z)
+    !
+    ! elemental : arrays
+     write(*,*)'elemental',atan2( [10.0, 20.0], [30.0,40.0] )
+    !
+    ! elemental : arrays and scalars
+     write(*,*)'elemental',atan2( [10.0, 20.0], 50.0 )
+    !
+    ! break complex values into real and imaginary components
+    ! (note TAN2() can take a complex type value )
+     c=(0.0,1.0)
+     write(*,*)'complex',c,atan2( x=c%re, y=c%im )
+    !
+    ! extended sample converting cartesian coordinates to polar
+     COMPLEX_VALS: block
+     real                :: ang, radius
+     complex,allocatable :: vals(:)
+     integer             :: i
+    !
+     vals=[ &
+       !     0            45            90           135
+       ( 1.0, 0.0 ), ( 1.0, 1.0 ), ( 0.0, 1.0 ), (-1.0, 1.0 ), &
+       !    180           225          270
+       (-1.0, 0.0 ), (-1.0,-1.0 ), ( 0.0,-1.0 ) ]
+     do i=1,size(vals)
+        call cartesian_to_polar(vals(i), radius,ang)
+        write(*,101)vals(i),ang,r2d(ang),radius
+     enddo
+     101 format( 'X=',f5.2,' Y=',f5.2,' ANGLE=',g0, &
+     & T38,'DEGREES=',g0.4, T54,'DISTANCE=',g0)
+    endblock COMPLEX_VALS
+   !
+   contains
+   !
+   elemental real function r2d(radians)
+   ! input radians to convert to degrees
+   doubleprecision,parameter :: DEGREE=0.017453292519943d0 ! radians
+   real,intent(in)           :: radians
+      r2d=radians / DEGREE ! do the conversion
+   end function r2d
+   !
+   subroutine cartesian_to_polar(xy,radius,inclination)
+   ! return angle in radians in range 0 to 2*PI
+   implicit none
+   complex,intent(in)  :: xy
+   real,intent(out) :: radius,inclination
+      radius=abs( xy )
+      ! arbitrarily set angle to zero when radius is zero
+      inclination=merge(0.0,atan2(x=xy%re, y=xy%im),radius==0.0)
+      ! bring into range 0 <= inclination < 2*PI
+      if(inclination < 0.0)inclination=inclination+2*atan2(0.0d0,-1.0d0)
+   end subroutine cartesian_to_polar
+   !
+   end program demo_atan2
+```
 Results:
-
+```text
  >  radians=   1.00000000     degrees=   57.2957802
  >  elemental  0.321750551      0.463647604
  >  elemental  0.197395563      0.380506366
@@ -2528,6 +2512,7 @@ Results:
  > X=-1.00 Y= 0.00 ANGLE= 3.14159274  DEGREES= 180.0 DISTANCE=1.00000000
  > X=-1.00 Y=-1.00 ANGLE= 3.92699075  DEGREES= 225.0 DISTANCE=1.41421354
  > X= 0.00 Y=-1.00 ANGLE= 4.71238899  DEGREES= 270.0 DISTANCE=1.00000000
+```
 
 ### **Standard**
 
@@ -3029,7 +3014,7 @@ program demo_atanpi
 use, intrinsic :: iso_fortran_env, only : real32, real64
 implicit none
 character(len=*),parameter :: all='(*(g0,1x))'
-real(kind=real64) :: x, y
+real(kind=real64) :: x
     x=2.866_real64
     print all, atanpi(x)
 
@@ -3327,7 +3312,7 @@ value of **atom**.
 
 **atomic_cas** is useful for implementing locks or conditional updates.
 
-Only one image’s **new** value is set if multiple images attempt the
+Only one image's **new** value is set if multiple images attempt the
 operation simultaneously.
 
 When **stat** is present and the invocation
@@ -3553,7 +3538,7 @@ The operation is only guaranteed to be atomic for variables of kind
 **atomic_int_kind**.
 
 For coindexed variables (e.g., counter[1]), the operation targets
-the specified image’s coarray.
+the specified image's coarray.
 
 Always use synchronization (e.g., sync all) to ensure consistent
 state across images before and after atomic operations.
@@ -3606,7 +3591,7 @@ program demo_atomic_fetch_add
   implicit none
   integer(atomic_int_kind) :: counter[*]  ! Coarray for shared counter
   integer(atomic_int_kind) :: old_value   ! Stores value before addition
-  integer :: stat, me, i
+  integer :: stat, me
 
   ! Initialize counter on image 1
   if (this_image() == 1) counter = 0
@@ -6435,7 +6420,7 @@ is **real(x, kind)** and the imaginary part is **real(y, kind)**.
 Sample program:
 
 ```fortran
-program demo_aimag
+program demo_cmplx
 implicit none
 integer,parameter :: dp=kind(0.0d0)
 real(kind=dp)     :: precise
@@ -6477,7 +6462,7 @@ complex           :: z4, zthree(3)
    zthree(1:2)%re=[100,200]
    print *, 'zthree=',zthree
 
-end program demo_aimag
+end program demo_cmplx
 ```
 Results:
 ```text
@@ -7834,7 +7819,7 @@ FORTRAN 77
 
 Sample program:
 ```fortran
-program demo_cos
+program demo_cospi
 implicit none
 character(len=*),parameter :: g2='(a,t21,*(g0,1x))'
    write(*,g2) 'Basics:'
@@ -7847,7 +7832,7 @@ character(len=*),parameter :: g2='(a,t21,*(g0,1x))'
    write(*,g2) 'COSpi(3000)=',   cospi(3000.0d0)
    write(*,g2) 'Elemental:'
    write(*,g2) 'COSpi([0,1/4,-1/4])=',COSpi([0.0,0.25,-0.25])
-end program demo_cos
+end program demo_cospi
 ```
 Results:
 ```text
@@ -10272,7 +10257,7 @@ raised to the power of **x**.
 
 "_e_" is also known as _Euler's constant_.
 
-So for either a real or complex scalar X, it returns eˆX , where e is
+So for either a real or complex scalar X, it returns e\*\*X , where e is
 the base of the natural logarithm (approximately 2.718281828459045).
 
 For real inputs, EXP returns a real result.
@@ -10286,12 +10271,12 @@ Since **exp**(3) is the inverse function of **log**(3) the maximum valid magnitu
 of the _real_ component of **x** is **log(huge(x))**.
 
 **exp** being elemental, when X is an array (real or complex), the
-function is applied element‐wise, returning an array of the same shape.
+function is applied element-wise, returning an array of the same shape.
 
     Numerical Considerations
 
      For very large real X, the result may overflow to infinity in
-     finite‐precision arithmetic. For very small (negative) real X ,
+     finite-precision arithmetic. For very small (negative) real X ,
      the result approaches zero. Complex inputs with large imaginary
      parts may produce results with significant numerical errors due
      to the trigonometric functions involved.
@@ -15501,7 +15486,6 @@ logical(kind=c_bool)                   :: boolean=.TRUE.
    l1=merge(T,F,i1.eq.0)
    l2=merge(T,F,i2.eq.0)
    write(*,all)'   0-->',l1,' 1-->',l2
-
   !
   ! Note the standard specifies the default INTEGER, REAL, and LOGICAL
   ! types have the same storage size, but compiler options often allow
@@ -15524,6 +15508,7 @@ logical(kind=c_bool)                   :: boolean=.TRUE.
    call showme(logical(l1,kind=8))
   print all,'kind=C_BOOL'
    call showme(logical(l1,kind=c_bool))
+   call showme(boolean)
   print all,'SELECTED_LOGICAL_KIND() is more portable than KIND values'
   ! you might want to check the resulting kind
    call showme(logical(l1,kind=selected_logical_kind(1))) ! smallest
@@ -15532,6 +15517,7 @@ logical(kind=c_bool)                   :: boolean=.TRUE.
    call showme(logical(l1,kind=selected_logical_kind(16)))
    call showme(logical(l1,kind=selected_logical_kind(32)))
    call showme(logical(l1,kind=selected_logical_kind(64)))
+   call showme(smallest_storage(1,1))
 
 contains
 subroutine showme(val)
@@ -15561,40 +15547,41 @@ end program demo_logical
 Results:
 
 ```text
-    > list LOGICAL kind values available on this platform
-    >    integer,parameter :: boolean1=1
-    >    integer,parameter :: boolean2=2
-    >    integer,parameter :: boolean4=4
-    >    integer,parameter :: boolean8=8
-    >    integer,parameter :: boolean16=16
-    >    LOGICAL8  ==> KIND=1
-    >    LOGICAL16 ==> KIND=2
-    >    LOGICAL32 ==> KIND=4
-    >    LOGICAL64 ==> KIND=8
-    >    C_BOOL    ==> KIND=1
-    > MERGE() is one method for transposing logical and integer
-    >    T-->0 F-->1
-    >    0-->T 1-->F
-    > show kind and storage size of default logical
-    >    logical(kind=4) T storage=32
-    >    logical(kind=4) T storage=32
-    > storage size of smallest logical kind
-    >    logical(kind=1) T storage=8
-    > different kinds are being passed because of LOGICAL() call
-    > KIND values are platform-specific
-    >    logical(kind=1) T storage=8
-    >    logical(kind=2) T storage=16
-    >    logical(kind=4) T storage=32
-    >    logical(kind=8) T storage=64
-    > kind=C_BOOL
-    >    logical(kind=1) T storage=8
-    > SELECTED_LOGICAL_KIND() is more portable than KIND values
-    >    logical(kind=1) T storage=8
-    >    logical(kind=4) T storage=32
-    >    logical(kind=1) T storage=8
-    >    logical(kind=2) T storage=16
-    >    logical(kind=4) T storage=32
-    >    logical(kind=8) T storage=64
+   > list LOGICAL kind values available on this platform
+   >    integer,parameter :: boolean1=1
+   >    integer,parameter :: boolean2=2
+   >    integer,parameter :: boolean4=4
+   >    integer,parameter :: boolean8=8
+   >    LOGICAL8  ==> KIND=1
+   >    LOGICAL16 ==> KIND=2
+   >    LOGICAL32 ==> KIND=4
+   >    LOGICAL64 ==> KIND=8
+   >    C_BOOL    ==> KIND=1
+   > MERGE() is one method for transposing logical and integer
+   >    T-->0 F-->1
+   >    0-->T 1-->F
+   > show kind and storage size of default logical
+   >    logical(kind=4) T storage=32
+   >    logical(kind=4) T storage=32
+   > storage size of smallest logical kind
+   >    logical(kind=1) T storage=8
+   > different kinds are being passed because of LOGICAL() call
+   > KIND values are platform-specific
+   >    logical(kind=1) T storage=8
+   >    logical(kind=2) T storage=16
+   >    logical(kind=4) T storage=32
+   >    logical(kind=8) T storage=64
+   > kind=C_BOOL
+   >    logical(kind=1) T storage=8
+   >    logical(kind=1) T storage=8
+   > SELECTED_LOGICAL_KIND() is more portable than KIND values
+   >    logical(kind=1) T storage=8
+   >    logical(kind=4) T storage=32
+   >    logical(kind=1) T storage=8
+   >    logical(kind=2) T storage=16
+   >    logical(kind=4) T storage=32
+   >    logical(kind=8) T storage=64
+   >    logical(kind=1) F storage=8
 ```
 ### **Standard**
 
@@ -17880,7 +17867,7 @@ integer(kind=int32) :: intfrom, intto, abcd_int
 character(len=*),parameter :: bits= '(g0,t30,b32.32)'
 character(len=*),parameter :: fmt= '(g0,t30,a,t40,b32.32)'
 
-    intfrom=huge(0)  ! all bits are 1 accept the sign bit
+    intfrom=huge(0)  ! all bits are 1 except the sign bit
     intto=0          ! all bits are 0
 
     !! CHANGE BIT 0
@@ -20129,48 +20116,47 @@ pseudorandom numbers from the uniform distribution over the range
 ### **Examples**
 
 Sample program:
-
 ```fortran
-program demo_random_number
-use, intrinsic :: iso_fortran_env, only : dp=>real64
-implicit none
-integer, allocatable :: seed(:)
-integer              :: n
-integer              :: first,last
-integer              :: i
-integer              :: rand_int
-integer,allocatable  :: count(:)
-real(kind=dp)        :: rand_val
-   call random_seed(size = n)
-   allocate(seed(n))
-   call random_seed(get=seed)
-   first=1
-   last=10
-   allocate(count(last-first+1))
-   ! To have a discrete uniform distribution on the integers
-   ! [first, first+1, ..., last-1, last] carve the continuous
-   ! distribution up into last+1-first equal sized chunks,
-   ! mapping each chunk to an integer.
-   !
-   ! One way is:
-   !   call random_number(rand_val)
-   ! choose one from last-first+1 integers
-   !   rand_int = first + FLOOR((last+1-first)*rand_val)
-      count=0
-      ! generate a lot of random integers from 1 to 10 and count them.
-      ! with a large number of values you should get about the same
-      ! number of each value
-      do i=1,100000000
-         call random_number(rand_val)
-         rand_int=first+floor((last+1-first)*rand_val)
-         if(rand_int.ge.first.and.rand_int.le.last)then
-            count(rand_int)=count(rand_int)+1
-         else
-            write(*,*)rand_int,' is out of range'
-         endif
-      enddo
-      write(*,'(i0,1x,i0)')(i,count(i),i=1,size(count))
-end program demo_random_number
+   program demo_random_number
+   use, intrinsic :: iso_fortran_env, only : dp=>real64
+   implicit none
+   integer, allocatable :: seed(:)
+   integer              :: n
+   integer              :: first,last
+   integer              :: i
+   integer              :: rand_int
+   integer,allocatable  :: count(:)
+   real(kind=dp)        :: rand_val
+      call random_seed(size = n)
+      allocate(seed(n))
+      call random_seed(get=seed)
+      first=1
+      last=10
+      allocate(count(last-first+1))
+      ! To have a discrete uniform distribution on the integers
+      ! [first, first+1, ..., last-1, last] carve the continuous
+      ! distribution up into last+1-first equal sized chunks,
+      ! mapping each chunk to an integer.
+      !
+      ! One way is:
+      !   call random_number(rand_val)
+      ! choose one from last-first+1 integers
+      !   rand_int = first + FLOOR((last+1-first)*rand_val)
+         count=0
+         ! generate a lot of random integers from 1 to 10 and count them.
+         ! with a large number of values you should get about the same
+         ! number of each value
+         do i=1,100000000
+            call random_number(rand_val)
+            rand_int=first+floor((last+1-first)*rand_val)
+            if(rand_int.ge.first.and.rand_int.le.last)then
+               count(rand_int)=count(rand_int)+1
+            else
+               write(*,*)rand_int,' is out of range'
+            endif
+         enddo
+         write(*,'(i0,1x,i0)')(i,count(i),i=1,size(count))
+   end program demo_random_number
 ```
 Results:
 ```
@@ -23175,8 +23161,8 @@ Fortran 95 , for a complex argument Fortran 2008
 
   for conversion.
 
-  where i is the imaginary unit. The result’s kind matches the
-  input’s kind.
+  where i is the imaginary unit. The result's kind matches the
+  input's kind.
 
 ### **Options**
 

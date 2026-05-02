@@ -17,7 +17,7 @@ The **block(7)** construct is an executable construct which may contain
 declarations, and may be exited using the **exit(7)** statement.
 
 Aside from the following restrictions a block construct is in many
-ways similar to a contained procedure without parameters accept it is
+ways similar to a contained procedure without parameters except it is
 constructed in-line instead of after the body of the current procedure.
 
 So if you are thinking about making a contained procedure that will be

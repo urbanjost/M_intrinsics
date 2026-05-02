@@ -11,16 +11,29 @@ to a starting letter or disallow implicit typing
 ```
 ### **Description**
    Determine default mapping between the first letter of a data entity
-   and a type. The default is the equivalent of the statement
+   name and a type. The standard default is equivalent to the statement
 ```fortran
       implicit real(a-h,o-z),integer(i-n)
-```
-   Compiler switches often allow the default to be the commonly
-   recommended
+
+   Note compiler switches often allow the default to be (the commonly
+   recommended) equivalent of
 ```fortran
-      implicit none ! require all variables to have type statements
+      implicit none 
 ```
-   This requires that the procedures be written using "strong typing";
+   The **implicit** statement allows the default rule to be changed
+   including requiring "strong typing".
+
+   Every data entity has a type (**integer**, **real**, **character**,
+   ...). The default is that types be assigned according to
+   the following rule:
+
+     + if a variable or function appears in a variable declaration the
+       type is that which was explicitly specified
+     + otherwise the type is **integer** if the name starts with the
+       letters from I to N (the first two letters of the word "integer")
+     + else it defaults to **real**.
+```
+   "NONE" requires that the procedures be written using "strong typing";
    where every variable subsequently has to be defined in a type
    declaration statement.
 
@@ -34,16 +47,6 @@ to a starting letter or disallow implicit typing
    where terseness is not critical (as is sometimes the case in
    interactive usage or quick prototyping).
 
-   Every data entity has a type (**integer**, **real**, **character**,
-   ...). If a type is not explicitly assigned to a variable or function
-   it will (by default) be assigned one according to the following rule
-   -- the type is **integer** if the name starts with the letters from
-   I to N (the first two letters of the word "integer"); otherwise it
-   defaults to **real**.
-
-   The **implicit** statement allows the default rule to be changed or
-   set to null.
-
    To turn off implicit typing enter one and only one **implicit**
    statement in the scoping unit
 
@@ -52,31 +55,24 @@ to a starting letter or disallow implicit typing
    Each data entity will now require having a type declared explicitly
    (**integer**, **real**, **double**, **complex**, ...).
 
-   The statement must appear after any USE statements and before any type
-   declarations, including PARAMETER statements (which must know the
-   rules to determine what type names are that have not been explicitly
-   declared).
+   The **implicit** statement must appear after any USE statements and
+   before any type declarations, including PARAMETER statements (which
+   must know the rules to determine what type names are that have not
+   been explicitly declared).
 
-   In most new code implicit typing is turned off either with an
-   "IMPLICIT NONE" or sometimes by a compiler switch. On the other hand,
-   the majority of pre-fortran90 code depends on implicit defaults.
+   The majority of pre-fortran90 code depends on implicit defaults.
 
    Each prefix letter may have the type assigned to it declared only
    once in a unit.
 
-   As previously stated, the default rule, expressed as an **implicit**
-   statement is
-```fortran
-      implicit real(a-h,o-z),integer(i-n)
-```
    To make the default for all names be a **doubleprecision** type one
    could enter
 ```fortran
       implicit doubleprecision (a-z)
 ```
-   NOTE: The standard does not require constants to be affected, so a
-   type suffix is required for most constants. That is, even if A is
-   implicitly double-precision
+   NOTE: The standard does not require constants to be affected.  That is,
+   even if A is implicitly double-precision the LHS (Left Hand Side)
+   does not effect the type of the constant.
 ```fortran
      A=123456789.01234 ! only retains the precision of a default REAL
 ```
@@ -246,8 +242,8 @@ to a starting letter or disallow implicit typing
    implicit none
    ! it is still a convention used by many programmers to reserve
    ! starting letters of I to N for integers.
-   integer    :: i, j, k
-   type(real) :: x,y,z
+   !   integer    :: i, j, k
+   !   type(real) :: x,y,z
    intrinsic sin,cos ! intrinsic types are already specified
    integer,external :: zzz ! but external functions need declared
                            ! if they do not have an interface

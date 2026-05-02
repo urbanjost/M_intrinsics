@@ -30,7 +30,7 @@ The operation is only guaranteed to be atomic for variables of kind
 **atomic_int_kind**.
 
 For coindexed variables (e.g., counter[1]), the operation targets
-the specified image’s coarray.
+the specified image's coarray.
 
 Always use synchronization (e.g., sync all) to ensure consistent
 state across images before and after atomic operations.
@@ -83,7 +83,7 @@ program demo_atomic_fetch_add
   implicit none
   integer(atomic_int_kind) :: counter[*]  ! Coarray for shared counter
   integer(atomic_int_kind) :: old_value   ! Stores value before addition
-  integer :: stat, me, i
+  integer :: stat, me
 
   ! Initialize counter on image 1
   if (this_image() == 1) counter = 0

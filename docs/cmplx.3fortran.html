@@ -337,7 +337,7 @@ and the imaginary part is REAL(Y, KIND).
 Sample program:
 <P>
 <PRE>
-    program demo_aimag
+    program demo_cmplx
     implicit none
     integer,parameter :: dp=kind(0.0d0)
     real(kind=dp)     :: precise
@@ -379,7 +379,7 @@ Sample program:
        zthree(1:2)%re=[100,200]
        print *, &#146;zthree=&#146;,zthree
 <P>
-    end program demo_aimag
+    end program demo_cmplx
 <P>
 </PRE>
 Results:

@@ -214,7 +214,6 @@ Sample program:
        l1=merge(T,F,i1.eq.0)
        l2=merge(T,F,i2.eq.0)
        write(*,all)&#146;   0--&gt;&#146;,l1,&#146; 1--&gt;&#146;,l2
-<P>
       !
       ! Note the standard specifies the default INTEGER, REAL, and LOGICAL
       ! types have the same storage size, but compiler options often allow
@@ -237,6 +236,7 @@ Sample program:
        call showme(logical(l1,kind=8))
       print all,&#146;kind=C_BOOL&#146;
        call showme(logical(l1,kind=c_bool))
+       call showme(boolean)
       print all,&#146;SELECTED_LOGICAL_KIND() is more portable than KIND values&#146;
       ! you might want to check the resulting kind
        call showme(logical(l1,kind=selected_logical_kind(1))) ! smallest
@@ -245,6 +245,7 @@ Sample program:
        call showme(logical(l1,kind=selected_logical_kind(16)))
        call showme(logical(l1,kind=selected_logical_kind(32)))
        call showme(logical(l1,kind=selected_logical_kind(64)))
+       call showme(smallest_storage(1,1))
 <P>
     contains
     subroutine showme(val)
@@ -275,40 +276,41 @@ Sample program:
 Results:
 <P>
 <PRE>
-        &gt; list LOGICAL kind values available on this platform
-        &gt;    integer,parameter :: boolean1=1
-        &gt;    integer,parameter :: boolean2=2
-        &gt;    integer,parameter :: boolean4=4
-        &gt;    integer,parameter :: boolean8=8
-        &gt;    integer,parameter :: boolean16=16
-        &gt;    LOGICAL8  ==&gt; KIND=1
-        &gt;    LOGICAL16 ==&gt; KIND=2
-        &gt;    LOGICAL32 ==&gt; KIND=4
-        &gt;    LOGICAL64 ==&gt; KIND=8
-        &gt;    C_BOOL    ==&gt; KIND=1
-        &gt; MERGE() is one method for transposing logical and integer
-        &gt;    T--&gt;0 F--&gt;1
-        &gt;    0--&gt;T 1--&gt;F
-        &gt; show kind and storage size of default logical
-        &gt;    logical(kind=4) T storage=32
-        &gt;    logical(kind=4) T storage=32
-        &gt; storage size of smallest logical kind
-        &gt;    logical(kind=1) T storage=8
-        &gt; different kinds are being passed because of LOGICAL() call
-        &gt; KIND values are platform-specific
-        &gt;    logical(kind=1) T storage=8
-        &gt;    logical(kind=2) T storage=16
-        &gt;    logical(kind=4) T storage=32
-        &gt;    logical(kind=8) T storage=64
-        &gt; kind=C_BOOL
-        &gt;    logical(kind=1) T storage=8
-        &gt; SELECTED_LOGICAL_KIND() is more portable than KIND values
-        &gt;    logical(kind=1) T storage=8
-        &gt;    logical(kind=4) T storage=32
-        &gt;    logical(kind=1) T storage=8
-        &gt;    logical(kind=2) T storage=16
-        &gt;    logical(kind=4) T storage=32
-        &gt;    logical(kind=8) T storage=64
+       &gt; list LOGICAL kind values available on this platform
+       &gt;    integer,parameter :: boolean1=1
+       &gt;    integer,parameter :: boolean2=2
+       &gt;    integer,parameter :: boolean4=4
+       &gt;    integer,parameter :: boolean8=8
+       &gt;    LOGICAL8  ==&gt; KIND=1
+       &gt;    LOGICAL16 ==&gt; KIND=2
+       &gt;    LOGICAL32 ==&gt; KIND=4
+       &gt;    LOGICAL64 ==&gt; KIND=8
+       &gt;    C_BOOL    ==&gt; KIND=1
+       &gt; MERGE() is one method for transposing logical and integer
+       &gt;    T--&gt;0 F--&gt;1
+       &gt;    0--&gt;T 1--&gt;F
+       &gt; show kind and storage size of default logical
+       &gt;    logical(kind=4) T storage=32
+       &gt;    logical(kind=4) T storage=32
+       &gt; storage size of smallest logical kind
+       &gt;    logical(kind=1) T storage=8
+       &gt; different kinds are being passed because of LOGICAL() call
+       &gt; KIND values are platform-specific
+       &gt;    logical(kind=1) T storage=8
+       &gt;    logical(kind=2) T storage=16
+       &gt;    logical(kind=4) T storage=32
+       &gt;    logical(kind=8) T storage=64
+       &gt; kind=C_BOOL
+       &gt;    logical(kind=1) T storage=8
+       &gt;    logical(kind=1) T storage=8
+       &gt; SELECTED_LOGICAL_KIND() is more portable than KIND values
+       &gt;    logical(kind=1) T storage=8
+       &gt;    logical(kind=4) T storage=32
+       &gt;    logical(kind=1) T storage=8
+       &gt;    logical(kind=2) T storage=16
+       &gt;    logical(kind=4) T storage=32
+       &gt;    logical(kind=8) T storage=64
+       &gt;    logical(kind=1) F storage=8
 <P>
 </PRE>
 </BLOCKQUOTE>

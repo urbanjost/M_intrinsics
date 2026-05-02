@@ -195,7 +195,7 @@ is **real(x, kind)** and the imaginary part is **real(y, kind)**.
 Sample program:
 
 ```fortran
-program demo_aimag
+program demo_cmplx
 implicit none
 integer,parameter :: dp=kind(0.0d0)
 real(kind=dp)     :: precise
@@ -237,7 +237,7 @@ complex           :: z4, zthree(3)
    zthree(1:2)%re=[100,200]
    print *, 'zthree=',zthree
 
-end program demo_aimag
+end program demo_cmplx
 ```
 Results:
 ```text

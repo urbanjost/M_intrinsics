@@ -156,7 +156,7 @@ Example: COSPI(1.0) has the value <B>-1.0</B> (approximately).
 Sample program:
 <P>
 <PRE>
-    program demo_cos
+    program demo_cospi
     implicit none
     character(len=*),parameter :: g2=&#146;(a,t21,*(g0,1x))&#146;
        write(*,g2) &#146;Basics:&#146;
@@ -169,7 +169,7 @@ Sample program:
        write(*,g2) &#146;COSpi(3000)=&#146;,   cospi(3000.0d0)
        write(*,g2) &#146;Elemental:&#146;
        write(*,g2) &#146;COSpi([0,1/4,-1/4])=&#146;,COSpi([0.0,0.25,-0.25])
-    end program demo_cos
+    end program demo_cospi
 <P>
 </PRE>
 Results:

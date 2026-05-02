@@ -27,7 +27,7 @@
   **aimag**(3) yields the imaginary part of the complex argument **z**.
 
   This is similar to the modern complex-part-designator **%IM** which also
-  designates the imaginary part of a value, accept a designator is treated
+  designates the imaginary part of a value, except a designator is treated
   as a variable. This means it may appear
   on the left-hand side of an assignment as well, as in **val%im=10.0** or
   as an argument in a procedure call that will act as a typical variable

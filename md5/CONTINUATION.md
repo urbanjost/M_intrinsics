@@ -27,7 +27,7 @@ You __cannot__ split a comment or an **INCLUDE** pre-processor directive
 onto multiple lines using this syntax.
 
 The rule for commenting continued lines is simple, really. Comments can
-go in the same places on continued lines as on non-continued lines accept
+go in the same places on continued lines as on non-continued lines except
 they cannot appear after the right-hand "&" when continuing a long string.
 
 So applying the general rule the line
@@ -164,7 +164,7 @@ multiple lines!).
 
 So here is how to make an INCLUDE file for both fixed and free-format files:
 
-+ Conﬁne statement labels to character positions 1 to 5 and statements
++ Confine statement labels to character positions 1 to 5 and statements
   to character positions 7 to 72, which is a requirement of fixed-format.
 + Treat blanks as being significant, which they are in free-format.
 + Use only the exclamation mark (!) to indicate a comment, but do not
@@ -183,8 +183,13 @@ for all but the first line both rules for free and fixed source files
 are satisfied.
 
 Fixed-format can use most printable characters in column 6 to indicate
-continuation. One of the allowed characters is "&", which is the one and
-only character used by free-format. So using it obeys both rules.
+continuation. In modern Fortran one of the allowed characters is "&",
+which is the one and only character used by free-format. So using it
+obeys both rules (Note that "&" was __not__ technically a part of the
+Fortran character set that standard-conforming code was to be composed of
+(except possibly for comments and constant strings) in early versions
+of Fortran, but every compiler I know of allowed any one-byte character
+in column six except "0" to be used to indicate continuation).
 
 Therefore the following is equivalent in fixed and free-format parsing:
 ```fortran

@@ -47,7 +47,6 @@
          l1=merge(T,F,i1.eq.0)
          l2=merge(T,F,i2.eq.0)
          write(*,all)'   0-->',l1,' 1-->',l2
-
         !
         ! Note the standard specifies the default INTEGER, REAL, and LOGICAL
         ! types have the same storage size, but compiler options often allow
@@ -70,6 +69,7 @@
          call showme(logical(l1,kind=8))
         print all,'kind=C_BOOL'
          call showme(logical(l1,kind=c_bool))
+         call showme(boolean)
         print all,'SELECTED_LOGICAL_KIND() is more portable than KIND values'
         ! you might want to check the resulting kind
          call showme(logical(l1,kind=selected_logical_kind(1))) ! smallest
@@ -78,6 +78,7 @@
          call showme(logical(l1,kind=selected_logical_kind(16)))
          call showme(logical(l1,kind=selected_logical_kind(32)))
          call showme(logical(l1,kind=selected_logical_kind(64)))
+         call showme(smallest_storage(1,1))
 
       contains
       subroutine showme(val)

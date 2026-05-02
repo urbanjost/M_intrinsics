@@ -194,15 +194,6 @@ Sample program:
       print all, &#146;angle of incline(radians) = &#146;, angle
 <P>
       print all, &#146;percent grade=&#146;,rise/run*100.0_dp
-    contains
-    subroutine sub1()
-    ! notice the (incidentally empty) type is defined below
-    ! the implicit statement
-    implicit type(nil) (a)
-    type nil
-    end type nil
-    type(nil) :: anull
-    end subroutine sub1
     end program demo_asind
 <P>
 </PRE>

@@ -31,7 +31,6 @@ pseudorandom numbers from the uniform distribution over the range
 ### **Examples**
 
 Sample program:
-
 ```fortran
    program demo_random_number
    use, intrinsic :: iso_fortran_env, only : dp=>real64

@@ -2,7 +2,7 @@
 
 ### **Name**
 
-**logicals** - \[SUMMARY\] logical expressions and variables
+**logicals**(5) - \[SUMMARY\] logical expressions and variables
 
 ### **Synopsis**
 
@@ -152,47 +152,50 @@ the kind and size of **LOGICAL** variables. It demonstrates ...
   + logical_kinds()         ! list of supported kinds
   + kind(val)               ! return integer value of kind of a value
 
+### **Example**
+ sample program:
+
 ```fortran
-program demo_different_logical_kinds
-use iso_fortran_env, only : logical_kinds
-use,intrinsic :: iso_fortran_env, only : &
- & LOGICAL8, LOGICAL16, LOGICAL32, LOGICAL64
-use,intrinsic :: iso_c_binding,   only : C_BOOL
-implicit none
-character(len=*),parameter             :: all='(*(g0))'
-! potentially save space and improve performance by using the
-! smallest available kind
-integer,parameter                      :: lk=selected_logical_kind(1)
-logical(lk)                            :: smallest_storage(10,20)
-
-! C_BOOL is a kind compatible with C interfaces
-logical(kind=c_bool)                   :: boolean=.TRUE.
-
-integer                                :: i
-  ! The integer array constant LOGICAL_KINDS() contains the kind
-  ! values for supported logical kinds for the current processor
-  print all, 'list LOGICAL kind values available on this platform'
-   do i =1, size(logical_kinds)
-      print all, '   integer,parameter :: boolean', &
-      & logical_kinds(i),'=', logical_kinds(i)
-   enddo
-
-  print all, '   LOGICAL8  ==> KIND=',LOGICAL8
-  print all, '   LOGICAL16 ==> KIND=',LOGICAL16
-  print all, '   LOGICAL32 ==> KIND=',LOGICAL32
-  print all, '   LOGICAL64 ==> KIND=',LOGICAL64
-  print all, '   C_BOOL    ==> KIND=',C_BOOL
-
-  print all, 'storage size of default logical = ', storage_size(.true.)
-  print all, 'storage size of smallest logical kind = ', &
-   storage_size(smallest_storage)
-  print all, 'storage size of C_BOOL= ', storage_size(boolean)
-
-  print all, 'kind of default logical = ', kind(.true.)
-  print all, 'kind of smallest logical kind = ', kind(smallest_storage)
-  print all, 'kind of C_BOOL= ', kind(.true._c_bool)
-
-end program demo_different_logical_kinds
+   program demo_different_logical_kinds
+   use iso_fortran_env, only : logical_kinds
+   use,intrinsic :: iso_fortran_env, only : &
+    & LOGICAL8, LOGICAL16, LOGICAL32, LOGICAL64
+   use,intrinsic :: iso_c_binding,   only : C_BOOL
+   implicit none
+   character(len=*),parameter             :: all='(*(g0))'
+   ! potentially save space and improve performance by using the
+   ! smallest available kind
+   integer,parameter                      :: lk=selected_logical_kind(1)
+   logical(lk)                            :: smallest_storage(10,20)
+   
+   ! C_BOOL is a kind compatible with C interfaces
+   logical(kind=c_bool)                   :: boolean=.TRUE.
+   
+   integer                                :: i
+     ! The integer array constant LOGICAL_KINDS() contains the kind
+     ! values for supported logical kinds for the current processor
+     print all, 'list LOGICAL kind values available on this platform'
+      do i =1, size(logical_kinds)
+         print all, '   integer,parameter :: boolean', &
+         & logical_kinds(i),'=', logical_kinds(i)
+      enddo
+   
+     print all, '   LOGICAL8  ==> KIND=',LOGICAL8
+     print all, '   LOGICAL16 ==> KIND=',LOGICAL16
+     print all, '   LOGICAL32 ==> KIND=',LOGICAL32
+     print all, '   LOGICAL64 ==> KIND=',LOGICAL64
+     print all, '   C_BOOL    ==> KIND=',C_BOOL
+   
+     print all, 'storage size of default logical = ', storage_size(.true.)
+     print all, 'storage size of smallest logical kind = ', &
+      storage_size(smallest_storage)
+     print all, 'storage size of C_BOOL= ', storage_size(boolean)
+   
+     print all, 'kind of default logical = ', kind(.true.)
+     print all, 'kind of smallest logical kind = ', kind(smallest_storage)
+     print all, 'kind of C_BOOL= ', kind(.true._c_bool)
+   
+   end program demo_different_logical_kinds
 ```
 Typical (platform-specific) output:
 ```text
@@ -273,7 +276,7 @@ structures:
       ENDIF
 ```
 ```fortran
-    program demo_random_number
+    program example_random_number
     use, intrinsic :: iso_fortran_env, only : dp=>real64
     implicit none
     integer                :: i, first, last, rand_int, sumup, passes
@@ -291,7 +294,7 @@ structures:
        passes=passes+1
        enddo
        write(*,*)'sumup=',sumup,'passes=',passes
-    end program demo_random_number
+    end program example_random_number
 ```
 ### **Array Masking**
 
@@ -347,47 +350,47 @@ processing strings.  For example, to determine if strings represent
 valid Fortran symbol names:
 
 ```fortran
-program fortran_symbol_name
-implicit none
-integer :: i
-! some strings to inspect for being valid symbol names
-character(len=*),parameter :: symbols(*)=[character(len=10) :: &
- 'A_ ', &
- '10 ', &
- 'September ', &
- 'A B', &
- '_A ', &
- ' ']
+   program fortran_symbol_name
+   implicit none
+   integer :: i
+   ! some strings to inspect for being valid symbol names
+   character(len=*),parameter :: symbols(*)=[character(len=10) :: &
+    'A_ ', &
+    '10 ', &
+    'September ', &
+    'A B', &
+    '_A ', &
+    ' ']
+   
+      write(*,'("|",*(g0,"|"))') symbols
+      write(*,'("|",*(1x,l1,8x,"|"))') fortran_name(symbols)
+   
+   contains
+   
+   elemental function fortran_name(line) result (lout)
+   ! determine if a string is a valid Fortran name
+   ! ignoring trailing spaces (but not leading spaces)
+   character(len=*),parameter   :: int='0123456789'
+   character(len=*),parameter   :: lower='abcdefghijklmnopqrstuvwxyz'
+   character(len=*),parameter   :: upper='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+   character(len=*),parameter   :: allowed=upper//lower//int//'_'
+   character(len=*),intent(in)  :: line
+   character(len=:),allocatable :: name
+   logical                      :: lout
+      name=trim(line)
+      if(len(name).ne.0)then
+         ! first character is alphameric
+         lout = verify(name(1:1), lower//upper) == 0  &
+          ! verify other characters allowed in a symbol name
+          & .and. verify(name,allowed) == 0           &
+          ! check conforms to allowable length
+          & .and. len(name) <= 63
+      else
+         lout = .false.
+      endif
+   end function fortran_name
 
-   write(*,'("|",*(g0,"|"))') symbols
-   write(*,'("|",*(1x,l1,8x,"|"))') fortran_name(symbols)
-
-contains
-
-elemental function fortran_name(line) result (lout)
-! determine if a string is a valid Fortran name
-! ignoring trailing spaces (but not leading spaces)
-character(len=*),parameter   :: int='0123456789'
-character(len=*),parameter   :: lower='abcdefghijklmnopqrstuvwxyz'
-character(len=*),parameter   :: upper='ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-character(len=*),parameter   :: allowed=upper//lower//int//'_'
-character(len=*),intent(in)  :: line
-character(len=:),allocatable :: name
-logical                      :: lout
-   name=trim(line)
-   if(len(name).ne.0)then
-      ! first character is alphameric
-      lout = verify(name(1:1), lower//upper) == 0  &
-       ! verify other characters allowed in a symbol name
-       & .and. verify(name,allowed) == 0           &
-       ! check conforms to allowable length
-       & .and. len(name) <= 63
-   else
-      lout = .false.
-   endif
-end function fortran_name
-
-end program fortran_symbol_name
+   end program fortran_symbol_name
 ```
 Results:
 ```text
@@ -517,7 +520,7 @@ forms if "w" is sufficiently sized.
 A lower-case letter is equivalent to the corresponding upper-case letter
 in a logical input field.
 
-The output ﬁeld consists of w−1 blanks followed by a T or F, depending
+The output field consists of w-1 blanks followed by a T or F, depending
 on whether the internal value is true or false, respectively.
 ```fortran
 program logical_formatted

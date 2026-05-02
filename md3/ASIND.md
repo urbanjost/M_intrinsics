@@ -82,15 +82,6 @@ character(len=*),parameter :: all='(*(g0,1x))'
   print all, 'angle of incline(radians) = ', angle
 
   print all, 'percent grade=',rise/run*100.0_dp
-contains
-subroutine sub1()
-! notice the (incidentally empty) type is defined below
-! the implicit statement
-implicit type(nil) (a)
-type nil
-end type nil
-type(nil) :: anull
-end subroutine sub1
 end program demo_asind
 ```
 Results:
