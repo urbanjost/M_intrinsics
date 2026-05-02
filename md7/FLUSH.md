@@ -16,7 +16,7 @@
    Use **flush(7)** to deliver any such pending I/O for the identified
    file to the host system.
 
-   This is generally not required accept to ensure critical information
+   This is generally not required except to ensure critical information
    is displayed or written as reliably as possible or to synchronise
    data from different units going to the same device. Do not arbitrarily
    flush all I/O operations or programs using large amounts of I/O might

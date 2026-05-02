@@ -27,7 +27,7 @@ You __cannot__ split a comment or an **INCLUDE** pre-processor directive
 onto multiple lines using this syntax.
 
 The rule for commenting continued lines is simple, really. Comments can
-go in the same places on continued lines as on non-continued lines accept
+go in the same places on continued lines as on non-continued lines except
 they cannot appear after the right-hand "&" when continuing a long string.
 
 So applying the general rule the line

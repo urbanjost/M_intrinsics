@@ -1135,7 +1135,7 @@
 <span class="b0"><span class="bold"><span class="f7">  AIMAG(3) yields the imaginary part of the complex argument Z.                       </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  This is similar to the modern complex-part-designator %IM which also                </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">  designates the imaginary part of a value, accept a designator is treated as         </span></span></span>
+<span class="b0"><span class="bold"><span class="f7">  designates the imaginary part of a value, except a designator is treated as         </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  a variable. This means it may appear on the left-hand side of an assignment         </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  as well, as in VAL%IM=10.0 or as an argument in a procedure call that will          </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  act as a typical variable passed by reference.                                      </span></span></span>
@@ -2849,69 +2849,69 @@
 <span class="f1 b0"><span class="bold"> EXAMPLES                                                                             </span></span>
 <span class="b0"><span class="bold"><span class="f7">  Sample program:                                                                     </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">program demo_atan2                                                              </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">real    :: z                                                                    </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">complex :: c                                                                    </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> !                                                                              </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> ! basic usage                                                                  </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> ! ATAN2 (1.5574077, 1.0) has the value 1.0 (approximately).                    </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> z=atan2(1.5574077, 1.0)                                                        </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> write(*,*) 'radians=',z,'degrees=',r2d(z)                                      </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> !                                                                              </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> ! elemental : arrays                                                           </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> write(*,*)'elemental',atan2( [10.0, 20.0], [30.0,40.0] )                       </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> !                                                                              </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> ! elemental : arrays and scalars                                               </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> write(*,*)'elemental',atan2( [10.0, 20.0], 50.0 )                              </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> !                                                                              </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> ! break complex values into real and imaginary components                      </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> ! (note TAN2() can take a complex type value )                                 </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> c=(0.0,1.0)                                                                    </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> write(*,*)'complex',c,atan2( x=c%re, y=c%im )                                  </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> !                                                                              </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> ! extended sample converting cartesian coordinates to polar                    </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> COMPLEX_VALS: block                                                            </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> real                :: ang, radius                                             </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> complex,allocatable :: vals(:)                                                 </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> integer             :: i                                                       </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> !                                                                              </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> vals=[ &amp;                                                                       </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">   !     0            45            90           135                            </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">   ( 1.0, 0.0 ), ( 1.0, 1.0 ), ( 0.0, 1.0 ), (-1.0, 1.0 ), &amp;                    </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">   !    180           225          270                                          </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">   (-1.0, 0.0 ), (-1.0,-1.0 ), ( 0.0,-1.0 ) ]                                   </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> do i=1,size(vals)                                                              </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">    call cartesian_to_polar(vals(i), radius,ang)                                </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">    write(*,101)vals(i),ang,r2d(ang),radius                                     </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> enddo                                                                          </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> 101 format( 'X=',f5.2,' Y=',f5.2,' ANGLE=',g0, &amp;                               </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> &amp; T38,'DEGREES=',g0.4, T54,'DISTANCE=',g0)                                     </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6"> endblock COMPLEX_VALS                                                          </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">!                                                                               </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">contains                                                                        </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">!                                                                               </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">elemental real function r2d(radians)                                            </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">! input radians to convert to degrees                                           </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">doubleprecision,parameter :: DEGREE=0.017453292519943d0 ! radians               </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">real,intent(in)          :: radians                                             </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">  r2d=radians / DEGREE ! do the conversion                                      </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">end function r2d                                                                </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">!                                                                               </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">subroutine cartesian_to_polar(xy,radius,inclination)                            </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">! return angle in radians in range 0 to 2*PI                                    </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">implicit none                                                                   </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">complex,intent(in)  :: xy                                                       </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">real,intent(out) :: radius,inclination                                          </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">  radius=abs( xy )                                                              </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">  ! arbitrarily set angle to zero when radius is zero                           </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">  inclination=merge(0.0,atan2(x=xy%re, y=xy%im),radius==0.0)                    </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">  ! bring into range 0 &lt;= inclination &lt; 2*PI                                    </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">  if(inclination &lt; 0.0)inclination=inclination+2*atan2(0.0d0,-1.0d0)            </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">end subroutine cartesian_to_polar                                               </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">!                                                                               </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">end program demo_atan2                                                          </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">program demo_atan2                                                            </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">real    :: z                                                                  </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">complex :: c                                                                  </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6"> !                                                                            </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6"> ! basic usage                                                                </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">  ! ATAN2 (1.5574077, 1.0) has the value 1.0 (approximately).                 </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">  z=atan2(1.5574077, 1.0)                                                     </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">  write(*,*) 'radians=',z,'degrees=',r2d(z)                                   </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6"> !                                                                            </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6"> ! elemental : arrays                                                         </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">  write(*,*)'elemental',atan2( [10.0, 20.0], [30.0,40.0] )                    </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6"> !                                                                            </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6"> ! elemental : arrays and scalars                                             </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">  write(*,*)'elemental',atan2( [10.0, 20.0], 50.0 )                           </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6"> !                                                                            </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6"> ! break complex values into real and imaginary components                    </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6"> ! (note TAN2() can take a complex type value )                               </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">  c=(0.0,1.0)                                                                 </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">  write(*,*)'complex',c,atan2( x=c%re, y=c%im )                               </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6"> !                                                                            </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6"> ! extended sample converting cartesian coordinates to polar                  </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">  COMPLEX_VALS: block                                                         </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">  real                :: ang, radius                                          </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">  complex,allocatable :: vals(:)                                              </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">  integer             :: i                                                    </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6"> !                                                                            </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">  vals=[ &amp;                                                                    </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">    !     0            45            90           135                         </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">    ( 1.0, 0.0 ), ( 1.0, 1.0 ), ( 0.0, 1.0 ), (-1.0, 1.0 ), &amp;                 </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">    !    180           225          270                                       </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">    (-1.0, 0.0 ), (-1.0,-1.0 ), ( 0.0,-1.0 ) ]                                </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">  do i=1,size(vals)                                                           </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">     call cartesian_to_polar(vals(i), radius,ang)                             </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">     write(*,101)vals(i),ang,r2d(ang),radius                                  </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">  enddo                                                                       </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">  101 format( 'X=',f5.2,' Y=',f5.2,' ANGLE=',g0, &amp;                            </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">  &amp; T38,'DEGREES=',g0.4, T54,'DISTANCE=',g0)                                  </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6"> endblock COMPLEX_VALS                                                        </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">!                                                                             </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">contains                                                                      </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">!                                                                             </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">elemental real function r2d(radians)                                          </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">! input radians to convert to degrees                                         </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">doubleprecision,parameter :: DEGREE=0.017453292519943d0 ! radians             </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">real,intent(in)           :: radians                                          </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">   r2d=radians / DEGREE ! do the conversion                                   </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">end function r2d                                                              </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">!                                                                             </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">subroutine cartesian_to_polar(xy,radius,inclination)                          </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">! return angle in radians in range 0 to 2*PI                                  </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">implicit none                                                                 </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">complex,intent(in)  :: xy                                                     </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">real,intent(out) :: radius,inclination                                        </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">   radius=abs( xy )                                                           </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">   ! arbitrarily set angle to zero when radius is zero                        </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">   inclination=merge(0.0,atan2(x=xy%re, y=xy%im),radius==0.0)                 </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">   ! bring into range 0 &lt;= inclination &lt; 2*PI                                 </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">   if(inclination &lt; 0.0)inclination=inclination+2*atan2(0.0d0,-1.0d0)         </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">end subroutine cartesian_to_polar                                             </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">!                                                                             </span></span></span></span>
+<span class="b0">        <span class="b0"><span class="bold"><span class="f6">end program demo_atan2                                                        </span></span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">      Results:                                                                        </span></span></span>
+<span class="b0"><span class="bold"><span class="f7">  Results:                                                                            </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">       &gt;<span class="b0"><span class="bold"><span class="f3">  radians=   1.00000000     degrees=   57.2957802                             </span></span></span></span></span></span>
 <span class="b0"><span class="bold"><span class="f7">       &gt;<span class="b0"><span class="bold"><span class="f3">  elemental  0.321750551      0.463647604                                     </span></span></span></span></span></span>
@@ -2925,21 +2925,20 @@
 <span class="b0"><span class="bold"><span class="f7">       &gt;<span class="b0"><span class="bold"><span class="f3"> X=-1.00 Y=-1.00 ANGLE= 3.92699075  DEGREES= 225.0 DISTANCE=1.41421354        </span></span></span></span></span></span>
 <span class="b0"><span class="bold"><span class="f7">       &gt;<span class="b0"><span class="bold"><span class="f3"> X= 0.00 Y=-1.00 ANGLE= 4.71238899  DEGREES= 270.0 DISTANCE=1.00000000        </span></span></span></span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">      # STANDARD                                                                      </span></span></span>
+<span class="f1 b0"><span class="bold"> STANDARD                                                                             </span></span>
+<span class="b0"><span class="bold"><span class="f7">  FORTRAN 77                                                                          </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">      FORTRAN 77                                                                      </span></span></span>
+<span class="f1 b0"><span class="bold"> SEE ALSO                                                                             </span></span>
+<span class="b0"><span class="bold"><span class="f7">  o  ATAN(3)                                                                          </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">      # SEE ALSO                                                                      </span></span></span>
+<span class="b0"><span class="bold"><span class="f7">  o  TAN(3)                                                                           </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">      - [**atan**(3)](#atan)                                                          </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">      - [**tan**(3)](#tan)                                                            </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">      - [**tan2**(3)](#tan2)                                                          </span></span></span>
+<span class="b0"><span class="bold"><span class="f7">  o  TAN2(3)                                                                          </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">      # RESOURCES                                                                     </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">      - [arctan:wikipedia]                                                            </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">       (https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)                </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">       _Fortran intrinsic descriptions (license: MIT) \@urbanjost_                    </span></span></span>
+<span class="f1 b0"><span class="bold"> RESOURCES                                                                            </span></span>
+<span class="b0"><span class="bold"><span class="f7">  o  [arctan:wikipedia]                                                               </span></span></span>
+<span class="b0"><span class="bold"><span class="f7">     (https://en.wikipedia.org/wiki/Inverse_trigonometric_functions) Fortran          </span></span></span>
+<span class="b0"><span class="bold"><span class="f7">     intrinsic descriptions (license: MIT) @urbanjost                                 </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                May 01, 2026                  atan2(3fortran)         </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
@@ -5592,7 +5591,7 @@
 <span class="b0"><span class="bold"><span class="f7">  declarations, and may be exited using the EXIT(7) statement.                        </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  Aside from the following restrictions a block construct is in many ways             </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">  similar to a contained procedure without parameters accept it is constructed        </span></span></span>
+<span class="b0"><span class="bold"><span class="f7">  similar to a contained procedure without parameters except it is constructed        </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  in-line instead of after the body of the current procedure.                         </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  So if you are thinking about making a contained procedure that will be              </span></span></span>
@@ -7786,7 +7785,7 @@
 <span class="b0"><span class="bold"><span class="f7">  multiple lines using this syntax.                                                   </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  The rule for commenting continued lines is simple, really. Comments can go          </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">  in the same places on continued lines as on non-continued lines accept they         </span></span></span>
+<span class="b0"><span class="bold"><span class="f7">  in the same places on continued lines as on non-continued lines except they         </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  cannot appear after the right-hand &quot;&amp;&quot; when continuing a long string.               </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  So applying the general rule the line                                               </span></span></span>
@@ -7917,7 +7916,7 @@
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  So here is how to make an INCLUDE file for both fixed and free-format files:        </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">  o  Conne statement labels to character positions 1 to 5 and statements to           </span></span></span>
+<span class="b0"><span class="bold"><span class="f7">  o  Confine statement labels to character positions 1 to 5 and statements to         </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">     character positions 7 to 72, which is a requirement of fixed-format.             </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  o  Treat blanks as being significant, which they are in free-format.                </span></span></span>
@@ -7938,8 +7937,13 @@
 <span class="b0"><span class="bold"><span class="f7">  but the first line both rules for free and fixed source files are satisfied.        </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  Fixed-format can use most printable characters in column 6 to indicate              </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">  continuation. One of the allowed characters is &quot;&amp;&quot;, which is the one and            </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">  only character used by free-format. So using it obeys both rules.                   </span></span></span>
+<span class="b0"><span class="bold"><span class="f7">  continuation. In modern Fortran one of the allowed characters is &quot;&amp;&quot;, which         </span></span></span>
+<span class="b0"><span class="bold"><span class="f7">  is the one and only character used by free-format. So using it obeys both           </span></span></span>
+<span class="b0"><span class="bold"><span class="f7">  rules (Note that &quot;&amp;&quot; was NOT technically a part of the Fortran character set        </span></span></span>
+<span class="b0"><span class="bold"><span class="f7">  that standard-conforming code was to be composed of (except possibly for            </span></span></span>
+<span class="b0"><span class="bold"><span class="f7">  comments and constant strings) in early versions of Fortran, but every              </span></span></span>
+<span class="b0"><span class="bold"><span class="f7">  compiler I know of allowed any one-byte character in column six except &quot;0&quot;          </span></span></span>
+<span class="b0"><span class="bold"><span class="f7">  to be used to indicate continuation).                                               </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  Therefore the following is equivalent in fixed and free-format parsing:             </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
@@ -11230,7 +11234,7 @@
 <span class="b0"><span class="bold"><span class="f7">  scope.                                                                              </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  Unnamed EXIT statements could introduce errors when loop nesting is                 </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">  modified. Therefore names are strongly recommended accept perhaps where the         </span></span></span>
+<span class="b0"><span class="bold"><span class="f7">  modified. Therefore names are strongly recommended except perhaps where the         </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  loop comprises only a few lines of code.                                            </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
 <span class="f1 b0"><span class="bold"> EXAMPLES                                                                             </span></span>
@@ -11461,7 +11465,7 @@
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  &quot;e&quot; is also known as Euler's constant.                                              </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">  So for either a real or complex scalar X, it returns eX , where e is the            </span></span></span>
+<span class="b0"><span class="bold"><span class="f7">  So for either a real or complex scalar X, it returns e**X , where e is the          </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  base of the natural logarithm (approximately 2.718281828459045).                    </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  For real inputs, EXP returns a real result.                                         </span></span></span>
@@ -12272,7 +12276,7 @@
 <span class="b0"><span class="bold"><span class="f7">  order to minimize the overhead of system calls. Use FLUSH(7) to deliver any         </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  such pending I/O for the identified file to the host system.                        </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">  This is generally not required accept to ensure critical information is             </span></span></span>
+<span class="b0"><span class="bold"><span class="f7">  This is generally not required except to ensure critical information is             </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  displayed or written as reliably as possible or to synchronise data from            </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  different units going to the same device. Do not arbitrarily flush all I/O          </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  operations or programs using large amounts of I/O might experience                  </span></span></span>
@@ -17606,10 +17610,10 @@
 <span class="b0"><span class="bold"><span class="f7">                                May 01, 2026                logical(3fortran)         </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">logicals(7fortran)                                         logicals(7fortran)         </span></span></span>
+<span class="b0"><span class="bold"><span class="f7">logicals(5fortran)                                         logicals(5fortran)         </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
 <span class="f1 b0"><span class="bold"> NAME                                                                                 </span></span>
-<span class="b0"><span class="bold"><span class="f7">  LOGICALS - [SUMMARY] logical expressions and variables                              </span></span></span>
+<span class="b0"><span class="bold"><span class="f7">  LOGICALS(5) - [SUMMARY] logical expressions and variables                           </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
 <span class="f1 b0"><span class="bold"> SYNOPSIS                                                                             </span></span>
 <span class="b0"><span class="bold"><span class="f7">  Logical expressions and operators:                                                  </span></span></span>
@@ -18100,7 +18104,7 @@
 <span class="b0"><span class="bold"><span class="f7">  A lower-case letter is equivalent to the corresponding upper-case letter in         </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  a logical input field.                                                              </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">  The output eld consists of w-1 blanks followed by a T or F, depending on            </span></span></span>
+<span class="b0"><span class="bold"><span class="f7">  The output field consists of w-1 blanks followed by a T or F, depending on          </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  whether the internal value is true or false, respectively.                          </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">      program logical_formatted                                                       </span></span></span>
@@ -18163,7 +18167,7 @@
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">  Fortran Tutorials(license: MIT) @urbanjost                                          </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
-<span class="b0"><span class="bold"><span class="f7">                                May 01, 2026               logicals(7fortran)         </span></span></span>
+<span class="b0"><span class="bold"><span class="f7">                                May 01, 2026               logicals(5fortran)         </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">                                                                                      </span></span></span>
 <span class="b0"><span class="bold"><span class="f7">maskl(3fortran)                                               maskl(3fortran)         </span></span></span>
@@ -20134,7 +20138,7 @@
 <span class="b0">      <span class="b0"><span class="bold"><span class="f6">character(len=*),parameter :: bits= '(g0,t30,b32.32)'                           </span></span></span></span>
 <span class="b0">      <span class="b0"><span class="bold"><span class="f6">character(len=*),parameter :: fmt= '(g0,t30,a,t40,b32.32)'                      </span></span></span></span>
 <span class="b0">      <span class="b0"><span class="bold"><span class="f6">                                                                                </span></span></span></span>
-<span class="b0">      <span class="b0"><span class="bold"><span class="f6">   intfrom=huge(0)  ! all bits are 1 accept the sign bit                        </span></span></span></span>
+<span class="b0">      <span class="b0"><span class="bold"><span class="f6">   intfrom=huge(0)  ! all bits are 1 except the sign bit                        </span></span></span></span>
 <span class="b0">      <span class="b0"><span class="bold"><span class="f6">   intto=0          ! all bits are 0                                            </span></span></span></span>
 <span class="b0">      <span class="b0"><span class="bold"><span class="f6">                                                                                </span></span></span></span>
 <span class="b0">      <span class="b0"><span class="bold"><span class="f6">   !! CHANGE BIT 0                                                              </span></span></span></span>

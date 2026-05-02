@@ -87,7 +87,7 @@ regions.
                        names must be unique within the same scope.
 
    Unnamed **exit** statements could introduce errors when loop nesting
-   is modified. Therefore names are strongly recommended accept perhaps
+   is modified. Therefore names are strongly recommended except perhaps
    where the loop comprises only a few lines of code.
 
 ### **Examples**

@@ -1224,7 +1224,7 @@ textblock=[character(len=256) :: &
 '  AIMAG(3) yields the imaginary part of the complex argument Z.', &
 '', &
 '  This is similar to the modern complex-part-designator %IM which also', &
-'  designates the imaginary part of a value, accept a designator is treated as', &
+'  designates the imaginary part of a value, except a designator is treated as', &
 '  a variable. This means it may appear on the left-hand side of an assignment', &
 '  as well, as in VAL%IM=10.0 or as an argument in a procedure call that will', &
 '  act as a typical variable passed by reference.', &
@@ -3034,69 +3034,69 @@ textblock=[character(len=256) :: &
 'EXAMPLES', &
 '  Sample program:', &
 '', &
-'      program demo_atan2', &
-'      real    :: z', &
-'      complex :: c', &
-'       !', &
-'       ! basic usage', &
-'       ! ATAN2 (1.5574077, 1.0) has the value 1.0 (approximately).', &
-'       z=atan2(1.5574077, 1.0)', &
-'       write(*,*) ''radians='',z,''degrees='',r2d(z)', &
-'       !', &
-'       ! elemental : arrays', &
-'       write(*,*)''elemental'',atan2( [10.0, 20.0], [30.0,40.0] )', &
-'       !', &
-'       ! elemental : arrays and scalars', &
-'       write(*,*)''elemental'',atan2( [10.0, 20.0], 50.0 )', &
-'       !', &
-'       ! break complex values into real and imaginary components', &
-'       ! (note TAN2() can take a complex type value )', &
-'       c=(0.0,1.0)', &
-'       write(*,*)''complex'',c,atan2( x=c%re, y=c%im )', &
-'       !', &
-'       ! extended sample converting cartesian coordinates to polar', &
-'       COMPLEX_VALS: block', &
-'       real                :: ang, radius', &
-'       complex,allocatable :: vals(:)', &
-'       integer             :: i', &
-'       !', &
-'       vals=[ &', &
-'         !     0            45            90           135', &
-'         ( 1.0, 0.0 ), ( 1.0, 1.0 ), ( 0.0, 1.0 ), (-1.0, 1.0 ), &', &
-'         !    180           225          270', &
-'         (-1.0, 0.0 ), (-1.0,-1.0 ), ( 0.0,-1.0 ) ]', &
-'       do i=1,size(vals)', &
-'          call cartesian_to_polar(vals(i), radius,ang)', &
-'          write(*,101)vals(i),ang,r2d(ang),radius', &
-'       enddo', &
-'       101 format( ''X='',f5.2,'' Y='',f5.2,'' ANGLE='',g0, &', &
-'       & T38,''DEGREES='',g0.4, T54,''DISTANCE='',g0)', &
-'       endblock COMPLEX_VALS', &
-'      !', &
-'      contains', &
-'      !', &
-'      elemental real function r2d(radians)', &
-'      ! input radians to convert to degrees', &
-'      doubleprecision,parameter :: DEGREE=0.017453292519943d0 ! radians', &
-'      real,intent(in)          :: radians', &
-'        r2d=radians / DEGREE ! do the conversion', &
-'      end function r2d', &
-'      !', &
-'      subroutine cartesian_to_polar(xy,radius,inclination)', &
-'      ! return angle in radians in range 0 to 2*PI', &
-'      implicit none', &
-'      complex,intent(in)  :: xy', &
-'      real,intent(out) :: radius,inclination', &
-'        radius=abs( xy )', &
-'        ! arbitrarily set angle to zero when radius is zero', &
-'        inclination=merge(0.0,atan2(x=xy%re, y=xy%im),radius==0.0)', &
-'        ! bring into range 0 <= inclination < 2*PI', &
-'        if(inclination < 0.0)inclination=inclination+2*atan2(0.0d0,-1.0d0)', &
-'      end subroutine cartesian_to_polar', &
-'      !', &
-'      end program demo_atan2', &
+'        program demo_atan2', &
+'        real    :: z', &
+'        complex :: c', &
+'         !', &
+'         ! basic usage', &
+'          ! ATAN2 (1.5574077, 1.0) has the value 1.0 (approximately).', &
+'          z=atan2(1.5574077, 1.0)', &
+'          write(*,*) ''radians='',z,''degrees='',r2d(z)', &
+'         !', &
+'         ! elemental : arrays', &
+'          write(*,*)''elemental'',atan2( [10.0, 20.0], [30.0,40.0] )', &
+'         !', &
+'         ! elemental : arrays and scalars', &
+'          write(*,*)''elemental'',atan2( [10.0, 20.0], 50.0 )', &
+'         !', &
+'         ! break complex values into real and imaginary components', &
+'         ! (note TAN2() can take a complex type value )', &
+'          c=(0.0,1.0)', &
+'          write(*,*)''complex'',c,atan2( x=c%re, y=c%im )', &
+'         !', &
+'         ! extended sample converting cartesian coordinates to polar', &
+'          COMPLEX_VALS: block', &
+'          real                :: ang, radius', &
+'          complex,allocatable :: vals(:)', &
+'          integer             :: i', &
+'         !', &
+'          vals=[ &', &
+'            !     0            45            90           135', &
+'            ( 1.0, 0.0 ), ( 1.0, 1.0 ), ( 0.0, 1.0 ), (-1.0, 1.0 ), &', &
+'            !    180           225          270', &
+'            (-1.0, 0.0 ), (-1.0,-1.0 ), ( 0.0,-1.0 ) ]', &
+'          do i=1,size(vals)', &
+'             call cartesian_to_polar(vals(i), radius,ang)', &
+'             write(*,101)vals(i),ang,r2d(ang),radius', &
+'          enddo', &
+'          101 format( ''X='',f5.2,'' Y='',f5.2,'' ANGLE='',g0, &', &
+'          & T38,''DEGREES='',g0.4, T54,''DISTANCE='',g0)', &
+'         endblock COMPLEX_VALS', &
+'        !', &
+'        contains', &
+'        !', &
+'        elemental real function r2d(radians)', &
+'        ! input radians to convert to degrees', &
+'        doubleprecision,parameter :: DEGREE=0.017453292519943d0 ! radians', &
+'        real,intent(in)           :: radians', &
+'           r2d=radians / DEGREE ! do the conversion', &
+'        end function r2d', &
+'        !', &
+'        subroutine cartesian_to_polar(xy,radius,inclination)', &
+'        ! return angle in radians in range 0 to 2*PI', &
+'        implicit none', &
+'        complex,intent(in)  :: xy', &
+'        real,intent(out) :: radius,inclination', &
+'           radius=abs( xy )', &
+'           ! arbitrarily set angle to zero when radius is zero', &
+'           inclination=merge(0.0,atan2(x=xy%re, y=xy%im),radius==0.0)', &
+'           ! bring into range 0 <= inclination < 2*PI', &
+'           if(inclination < 0.0)inclination=inclination+2*atan2(0.0d0,-1.0d0)', &
+'        end subroutine cartesian_to_polar', &
+'        !', &
+'        end program demo_atan2', &
 '', &
-'      Results:', &
+'  Results:', &
 '', &
 '       >  radians=   1.00000000     degrees=   57.2957802', &
 '       >  elemental  0.321750551      0.463647604', &
@@ -3110,21 +3110,20 @@ textblock=[character(len=256) :: &
 '       > X=-1.00 Y=-1.00 ANGLE= 3.92699075  DEGREES= 225.0 DISTANCE=1.41421354', &
 '       > X= 0.00 Y=-1.00 ANGLE= 4.71238899  DEGREES= 270.0 DISTANCE=1.00000000', &
 '', &
-'      # STANDARD', &
+'STANDARD', &
+'  FORTRAN 77', &
 '', &
-'      FORTRAN 77', &
+'SEE ALSO', &
+'  o  ATAN(3)', &
 '', &
-'      # SEE ALSO', &
+'  o  TAN(3)', &
 '', &
-'      - [**atan**(3)](#atan)', &
-'      - [**tan**(3)](#tan)', &
-'      - [**tan2**(3)](#tan2)', &
+'  o  TAN2(3)', &
 '', &
-'      # RESOURCES', &
-'', &
-'      - [arctan:wikipedia]', &
-'       (https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)', &
-'       _Fortran intrinsic descriptions (license: MIT) \@urbanjost_', &
+'RESOURCES', &
+'  o  [arctan:wikipedia]', &
+'     (https://en.wikipedia.org/wiki/Inverse_trigonometric_functions) Fortran', &
+'     intrinsic descriptions (license: MIT) @urbanjost', &
 '', &
 '                                May 01, 2026                  atan2(3fortran)', &
 '']
@@ -6009,7 +6008,7 @@ textblock=[character(len=256) :: &
 '  declarations, and may be exited using the EXIT(7) statement.', &
 '', &
 '  Aside from the following restrictions a block construct is in many ways', &
-'  similar to a contained procedure without parameters accept it is constructed', &
+'  similar to a contained procedure without parameters except it is constructed', &
 '  in-line instead of after the body of the current procedure.', &
 '', &
 '  So if you are thinking about making a contained procedure that will be', &
@@ -8371,7 +8370,7 @@ textblock=[character(len=256) :: &
 '  multiple lines using this syntax.', &
 '', &
 '  The rule for commenting continued lines is simple, really. Comments can go', &
-'  in the same places on continued lines as on non-continued lines accept they', &
+'  in the same places on continued lines as on non-continued lines except they', &
 '  cannot appear after the right-hand "&" when continuing a long string.', &
 '', &
 '  So applying the general rule the line', &
@@ -12060,7 +12059,7 @@ textblock=[character(len=256) :: &
 '  scope.', &
 '', &
 '  Unnamed EXIT statements could introduce errors when loop nesting is', &
-'  modified. Therefore names are strongly recommended accept perhaps where the', &
+'  modified. Therefore names are strongly recommended except perhaps where the', &
 '  loop comprises only a few lines of code.', &
 '', &
 'EXAMPLES', &
@@ -13150,7 +13149,7 @@ textblock=[character(len=256) :: &
 '  order to minimize the overhead of system calls. Use FLUSH(7) to deliver any', &
 '  such pending I/O for the identified file to the host system.', &
 '', &
-'  This is generally not required accept to ensure critical information is', &
+'  This is generally not required except to ensure critical information is', &
 '  displayed or written as reliably as possible or to synchronise data from', &
 '  different units going to the same device. Do not arbitrarily flush all I/O', &
 '  operations or programs using large amounts of I/O might experience', &
@@ -18844,10 +18843,10 @@ case('152','logicals')
 
 textblock=[character(len=256) :: &
 '', &
-'logicals(7fortran)                                         logicals(7fortran)', &
+'logicals(5fortran)                                         logicals(5fortran)', &
 '', &
 'NAME', &
-'  LOGICALS - [SUMMARY] logical expressions and variables', &
+'  LOGICALS(5) - [SUMMARY] logical expressions and variables', &
 '', &
 'SYNOPSIS', &
 '  Logical expressions and operators:', &
@@ -19338,7 +19337,7 @@ textblock=[character(len=256) :: &
 '  A lower-case letter is equivalent to the corresponding upper-case letter in', &
 '  a logical input field.', &
 '', &
-'  The output eld consists of w-1 blanks followed by a T or F, depending on', &
+'  The output field consists of w-1 blanks followed by a T or F, depending on', &
 '  whether the internal value is true or false, respectively.', &
 '', &
 '      program logical_formatted', &
@@ -19401,7 +19400,7 @@ textblock=[character(len=256) :: &
 '', &
 '  Fortran Tutorials(license: MIT) @urbanjost', &
 '', &
-'                                May 01, 2026               logicals(7fortran)', &
+'                                May 01, 2026               logicals(5fortran)', &
 '']
 
 shortname="logicals"
@@ -21508,7 +21507,7 @@ textblock=[character(len=256) :: &
 '      character(len=*),parameter :: bits= ''(g0,t30,b32.32)''', &
 '      character(len=*),parameter :: fmt= ''(g0,t30,a,t40,b32.32)''', &
 '', &
-'         intfrom=huge(0)  ! all bits are 1 accept the sign bit', &
+'         intfrom=huge(0)  ! all bits are 1 except the sign bit', &
 '         intto=0          ! all bits are 0', &
 '', &
 '         !! CHANGE BIT 0', &
@@ -60172,7 +60171,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                              regex=''
                              iinf=0
                              remember=paws
-                  case('r'); i=i-1                         ! refresh
+                  case('r'); i=i-1                          ! refresh
                              !lines=get_env('LINES',lines)  ! adjust for screen size change if set
                              i=max(0,i-1*lines+2)
                              iinf=0
@@ -60223,12 +60222,11 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                   case('e','j','v'); i=max(0,i-1*lines+2) ! down one line
                              i=i+len_trim(paws)-1
                              iinf=0
-                              remember=paws
-/bin/bash: pb0: command not found
+                             remember=paws
                   case('y','k','^'); i=max(0,i-1*lines-0) ! up one line
                              i=max(0,i-len_trim(paws)+1)
                              iinf=0
-                              remember=paws
+                             remember=paws
                   case('s','w'); paws=adjustl(paws(2:)) ! save to file
                              if(paws.eq.'')paws='fman.txt'
                              iostat=filewrite(paws,clone_no_color)
@@ -60363,10 +60361,15 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                      i=max(0,i-2*lines+2) ! back
                      remember='f'
 !+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-                  case('t','T','m')
+                  case('t','T','m','A')
                      i=0  ! developer: load a topic
-                     if(paws.eq.'T')paws(2:)='toc'
-                     if(paws(1:4).eq.'man')paws(2:)=paws(5:)
+                     if(paws.eq.'T')then
+                        paws(2:)='toc3'
+                     elseif(paws.eq.'A')then
+                        paws(2:)='toc'
+                     elseif(paws(1:4).eq.'man')then
+                        paws(2:)=paws(5:)
+                     endif
                      topics=[adjustl(paws(2:))]
                      if(paws.eq.'t')then
                         call shorttopics()

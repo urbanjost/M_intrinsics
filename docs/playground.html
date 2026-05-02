@@ -869,7 +869,7 @@
       end program demo_atan2d
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fatan2%0D%0A%20%20%20%20%20%20real%20%20%20%20%3A%3A%20z%0D%0A%20%20%20%20%20%20complex%20%3A%3A%20c%0D%0A%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%21%20basic%20usage%0D%0A%20%20%20%20%20%20%20%20%21%20ATAN2%20%281%2E5574077%2C%201%2E0%29%20has%20the%20value%201%2E0%20%28approximately%29%2E%0D%0A%20%20%20%20%20%20%20%20z%3Datan2%281%2E5574077%2C%201%2E0%29%0D%0A%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20%27radians%3D%27%2Cz%2C%27degrees%3D%27%2Cr2d%28z%29%0D%0A%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%21%20elemental%20%3A%20arrays%0D%0A%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27elemental%27%2Catan2%28%20%5B10%2E0%2C%2020%2E0%5D%2C%20%5B30%2E0%2C40%2E0%5D%20%29%0D%0A%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%21%20elemental%20%3A%20arrays%20and%20scalars%0D%0A%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27elemental%27%2Catan2%28%20%5B10%2E0%2C%2020%2E0%5D%2C%2050%2E0%20%29%0D%0A%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%21%20break%20complex%20values%20into%20real%20and%20imaginary%20components%0D%0A%20%20%20%20%20%20%20%21%20%28note%20TAN2%28%29%20can%20take%20a%20complex%20type%20value%20%29%0D%0A%20%20%20%20%20%20%20%20c%3D%280%2E0%2C1%2E0%29%0D%0A%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27complex%27%2Cc%2Catan2%28%20x%3Dc%25re%2C%20y%3Dc%25im%20%29%0D%0A%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%21%20extended%20sample%20converting%20cartesian%20coordinates%20to%20polar%0D%0A%20%20%20%20%20%20%20%20COMPLEX%5FVALS%3A%20block%0D%0A%20%20%20%20%20%20%20%20real%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20ang%2C%20radius%0D%0A%20%20%20%20%20%20%20%20complex%2Callocatable%20%3A%3A%20vals%28%3A%29%0D%0A%20%20%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20i%0D%0A%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20vals%3D%5B%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20%20%20%20%200%20%20%20%20%20%20%20%20%20%20%20%2045%20%20%20%20%20%20%20%20%20%20%20%2090%20%20%20%20%20%20%20%20%20%20%20135%0D%0A%20%20%20%20%20%20%20%20%20%20%28%201%2E0%2C%200%2E0%20%29%2C%20%28%201%2E0%2C%201%2E0%20%29%2C%20%28%200%2E0%2C%201%2E0%20%29%2C%20%28%2D1%2E0%2C%201%2E0%20%29%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20%20%20%20180%20%20%20%20%20%20%20%20%20%20%20225%20%20%20%20%20%20%20%20%20%20270%0D%0A%20%20%20%20%20%20%20%20%20%20%28%2D1%2E0%2C%200%2E0%20%29%2C%20%28%2D1%2E0%2C%2D1%2E0%20%29%2C%20%28%200%2E0%2C%2D1%2E0%20%29%20%5D%0D%0A%20%20%20%20%20%20%20%20do%20i%3D1%2Csize%28vals%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20call%20cartesian%5Fto%5Fpolar%28vals%28i%29%2C%20radius%2Cang%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C101%29vals%28i%29%2Cang%2Cr2d%28ang%29%2Cradius%0D%0A%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20101%20format%28%20%27X%3D%27%2Cf5%2E2%2C%27%20Y%3D%27%2Cf5%2E2%2C%27%20ANGLE%3D%27%2Cg0%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%26%20T38%2C%27DEGREES%3D%27%2Cg0%2E4%2C%20T54%2C%27DISTANCE%3D%27%2Cg0%29%0D%0A%20%20%20%20%20%20%20endblock%20COMPLEX%5FVALS%0D%0A%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20contains%0D%0A%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20elemental%20real%20function%20r2d%28radians%29%0D%0A%20%20%20%20%20%20%21%20input%20radians%20to%20convert%20to%20degrees%0D%0A%20%20%20%20%20%20doubleprecision%2Cparameter%20%3A%3A%20DEGREE%3D0%2E017453292519943d0%20%21%20radians%0D%0A%20%20%20%20%20%20real%2Cintent%28in%29%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20radians%0D%0A%20%20%20%20%20%20%20%20%20r2d%3Dradians%20%2F%20DEGREE%20%21%20do%20the%20conversion%0D%0A%20%20%20%20%20%20end%20function%20r2d%0D%0A%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20subroutine%20cartesian%5Fto%5Fpolar%28xy%2Cradius%2Cinclination%29%0D%0A%20%20%20%20%20%20%21%20return%20angle%20in%20radians%20in%20range%200%20to%202%2API%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20complex%2Cintent%28in%29%20%20%3A%3A%20xy%0D%0A%20%20%20%20%20%20real%2Cintent%28out%29%20%3A%3A%20radius%2Cinclination%0D%0A%20%20%20%20%20%20%20%20%20radius%3Dabs%28%20xy%20%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20arbitrarily%20set%20angle%20to%20zero%20when%20radius%20is%20zero%0D%0A%20%20%20%20%20%20%20%20%20inclination%3Dmerge%280%2E0%2Catan2%28x%3Dxy%25re%2C%20y%3Dxy%25im%29%2Cradius%3D%3D0%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20bring%20into%20range%200%20%3C%3D%20inclination%20%3C%202%2API%0D%0A%20%20%20%20%20%20%20%20%20if%28inclination%20%3C%200%2E0%29inclination%3Dinclination%2B2%2Aatan2%280%2E0d0%2C%2D1%2E0d0%29%0D%0A%20%20%20%20%20%20end%20subroutine%20cartesian%5Fto%5Fpolar%0D%0A%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fatan2%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20%20%20%20program%20demo%5Fatan2%0D%0A%20%20%20%20%20%20%20%20%20real%20%20%20%20%3A%3A%20z%0D%0A%20%20%20%20%20%20%20%20%20complex%20%3A%3A%20c%0D%0A%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20basic%20usage%0D%0A%20%20%20%20%20%20%20%20%20%20%20%21%20ATAN2%20%281%2E5574077%2C%201%2E0%29%20has%20the%20value%201%2E0%20%28approximately%29%2E%0D%0A%20%20%20%20%20%20%20%20%20%20%20z%3Datan2%281%2E5574077%2C%201%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20%27radians%3D%27%2Cz%2C%27degrees%3D%27%2Cr2d%28z%29%0D%0A%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20elemental%20%3A%20arrays%0D%0A%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27elemental%27%2Catan2%28%20%5B10%2E0%2C%2020%2E0%5D%2C%20%5B30%2E0%2C40%2E0%5D%20%29%0D%0A%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20elemental%20%3A%20arrays%20and%20scalars%0D%0A%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27elemental%27%2Catan2%28%20%5B10%2E0%2C%2020%2E0%5D%2C%2050%2E0%20%29%0D%0A%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20break%20complex%20values%20into%20real%20and%20imaginary%20components%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20%28note%20TAN2%28%29%20can%20take%20a%20complex%20type%20value%20%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20c%3D%280%2E0%2C1%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27complex%27%2Cc%2Catan2%28%20x%3Dc%25re%2C%20y%3Dc%25im%20%29%0D%0A%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20extended%20sample%20converting%20cartesian%20coordinates%20to%20polar%0D%0A%20%20%20%20%20%20%20%20%20%20%20COMPLEX%5FVALS%3A%20block%0D%0A%20%20%20%20%20%20%20%20%20%20%20real%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20ang%2C%20radius%0D%0A%20%20%20%20%20%20%20%20%20%20%20complex%2Callocatable%20%3A%3A%20vals%28%3A%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20i%0D%0A%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20%20vals%3D%5B%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20%20%20%20%200%20%20%20%20%20%20%20%20%20%20%20%2045%20%20%20%20%20%20%20%20%20%20%20%2090%20%20%20%20%20%20%20%20%20%20%20135%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%28%201%2E0%2C%200%2E0%20%29%2C%20%28%201%2E0%2C%201%2E0%20%29%2C%20%28%200%2E0%2C%201%2E0%20%29%2C%20%28%2D1%2E0%2C%201%2E0%20%29%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20%20%20%20180%20%20%20%20%20%20%20%20%20%20%20225%20%20%20%20%20%20%20%20%20%20270%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%28%2D1%2E0%2C%200%2E0%20%29%2C%20%28%2D1%2E0%2C%2D1%2E0%20%29%2C%20%28%200%2E0%2C%2D1%2E0%20%29%20%5D%0D%0A%20%20%20%20%20%20%20%20%20%20%20do%20i%3D1%2Csize%28vals%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20call%20cartesian%5Fto%5Fpolar%28vals%28i%29%2C%20radius%2Cang%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C101%29vals%28i%29%2Cang%2Cr2d%28ang%29%2Cradius%0D%0A%20%20%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20%20%20%20101%20format%28%20%27X%3D%27%2Cf5%2E2%2C%27%20Y%3D%27%2Cf5%2E2%2C%27%20ANGLE%3D%27%2Cg0%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%26%20T38%2C%27DEGREES%3D%27%2Cg0%2E4%2C%20T54%2C%27DISTANCE%3D%27%2Cg0%29%0D%0A%20%20%20%20%20%20%20%20%20%20endblock%20COMPLEX%5FVALS%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20contains%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20elemental%20real%20function%20r2d%28radians%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20input%20radians%20to%20convert%20to%20degrees%0D%0A%20%20%20%20%20%20%20%20%20doubleprecision%2Cparameter%20%3A%3A%20DEGREE%3D0%2E017453292519943d0%20%21%20radians%0D%0A%20%20%20%20%20%20%20%20%20real%2Cintent%28in%29%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20radians%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20r2d%3Dradians%20%2F%20DEGREE%20%21%20do%20the%20conversion%0D%0A%20%20%20%20%20%20%20%20%20end%20function%20r2d%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20subroutine%20cartesian%5Fto%5Fpolar%28xy%2Cradius%2Cinclination%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20return%20angle%20in%20radians%20in%20range%200%20to%202%2API%0D%0A%20%20%20%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%20%20%20complex%2Cintent%28in%29%20%20%3A%3A%20xy%0D%0A%20%20%20%20%20%20%20%20%20real%2Cintent%28out%29%20%3A%3A%20radius%2Cinclination%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20radius%3Dabs%28%20xy%20%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20arbitrarily%20set%20angle%20to%20zero%20when%20radius%20is%20zero%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20inclination%3Dmerge%280%2E0%2Catan2%28x%3Dxy%25re%2C%20y%3Dxy%25im%29%2Cradius%3D%3D0%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20bring%20into%20range%200%20%3C%3D%20inclination%20%3C%202%2API%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20if%28inclination%20%3C%200%2E0%29inclination%3Dinclination%2B2%2Aatan2%280%2E0d0%2C%2D1%2E0d0%29%0D%0A%20%20%20%20%20%20%20%20%20end%20subroutine%20cartesian%5Fto%5Fpolar%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20end%20program%20demo%5Fatan2%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> atan2
@@ -877,67 +877,67 @@
   <details>
     <summary>Source</summary>
   <xmp>
-      program demo_atan2
-      real    :: z
-      complex :: c
-       !
-       ! basic usage
-        ! ATAN2 (1.5574077, 1.0) has the value 1.0 (approximately).
-        z=atan2(1.5574077, 1.0)
-        write(*,*) 'radians=',z,'degrees=',r2d(z)
-       !
-       ! elemental : arrays
-        write(*,*)'elemental',atan2( [10.0, 20.0], [30.0,40.0] )
-       !
-       ! elemental : arrays and scalars
-        write(*,*)'elemental',atan2( [10.0, 20.0], 50.0 )
-       !
-       ! break complex values into real and imaginary components
-       ! (note TAN2() can take a complex type value )
-        c=(0.0,1.0)
-        write(*,*)'complex',c,atan2( x=c%re, y=c%im )
-       !
-       ! extended sample converting cartesian coordinates to polar
-        COMPLEX_VALS: block
-        real                :: ang, radius
-        complex,allocatable :: vals(:)
-        integer             :: i
-       !
-        vals=[ &
-          !     0            45            90           135
-          ( 1.0, 0.0 ), ( 1.0, 1.0 ), ( 0.0, 1.0 ), (-1.0, 1.0 ), &
-          !    180           225          270
-          (-1.0, 0.0 ), (-1.0,-1.0 ), ( 0.0,-1.0 ) ]
-        do i=1,size(vals)
-           call cartesian_to_polar(vals(i), radius,ang)
-           write(*,101)vals(i),ang,r2d(ang),radius
-        enddo
-        101 format( 'X=',f5.2,' Y=',f5.2,' ANGLE=',g0, &
-        & T38,'DEGREES=',g0.4, T54,'DISTANCE=',g0)
-       endblock COMPLEX_VALS
-      !
-      contains
-      !
-      elemental real function r2d(radians)
-      ! input radians to convert to degrees
-      doubleprecision,parameter :: DEGREE=0.017453292519943d0 ! radians
-      real,intent(in)           :: radians
-         r2d=radians / DEGREE ! do the conversion
-      end function r2d
-      !
-      subroutine cartesian_to_polar(xy,radius,inclination)
-      ! return angle in radians in range 0 to 2*PI
-      implicit none
-      complex,intent(in)  :: xy
-      real,intent(out) :: radius,inclination
-         radius=abs( xy )
-         ! arbitrarily set angle to zero when radius is zero
-         inclination=merge(0.0,atan2(x=xy%re, y=xy%im),radius==0.0)
-         ! bring into range 0 <= inclination < 2*PI
-         if(inclination < 0.0)inclination=inclination+2*atan2(0.0d0,-1.0d0)
-      end subroutine cartesian_to_polar
-      !
-      end program demo_atan2
+         program demo_atan2
+         real    :: z
+         complex :: c
+          !
+          ! basic usage
+           ! ATAN2 (1.5574077, 1.0) has the value 1.0 (approximately).
+           z=atan2(1.5574077, 1.0)
+           write(*,*) 'radians=',z,'degrees=',r2d(z)
+          !
+          ! elemental : arrays
+           write(*,*)'elemental',atan2( [10.0, 20.0], [30.0,40.0] )
+          !
+          ! elemental : arrays and scalars
+           write(*,*)'elemental',atan2( [10.0, 20.0], 50.0 )
+          !
+          ! break complex values into real and imaginary components
+          ! (note TAN2() can take a complex type value )
+           c=(0.0,1.0)
+           write(*,*)'complex',c,atan2( x=c%re, y=c%im )
+          !
+          ! extended sample converting cartesian coordinates to polar
+           COMPLEX_VALS: block
+           real                :: ang, radius
+           complex,allocatable :: vals(:)
+           integer             :: i
+          !
+           vals=[ &
+             !     0            45            90           135
+             ( 1.0, 0.0 ), ( 1.0, 1.0 ), ( 0.0, 1.0 ), (-1.0, 1.0 ), &
+             !    180           225          270
+             (-1.0, 0.0 ), (-1.0,-1.0 ), ( 0.0,-1.0 ) ]
+           do i=1,size(vals)
+              call cartesian_to_polar(vals(i), radius,ang)
+              write(*,101)vals(i),ang,r2d(ang),radius
+           enddo
+           101 format( 'X=',f5.2,' Y=',f5.2,' ANGLE=',g0, &
+           & T38,'DEGREES=',g0.4, T54,'DISTANCE=',g0)
+          endblock COMPLEX_VALS
+         !
+         contains
+         !
+         elemental real function r2d(radians)
+         ! input radians to convert to degrees
+         doubleprecision,parameter :: DEGREE=0.017453292519943d0 ! radians
+         real,intent(in)           :: radians
+            r2d=radians / DEGREE ! do the conversion
+         end function r2d
+         !
+         subroutine cartesian_to_polar(xy,radius,inclination)
+         ! return angle in radians in range 0 to 2*PI
+         implicit none
+         complex,intent(in)  :: xy
+         real,intent(out) :: radius,inclination
+            radius=abs( xy )
+            ! arbitrarily set angle to zero when radius is zero
+            inclination=merge(0.0,atan2(x=xy%re, y=xy%im),radius==0.0)
+            ! bring into range 0 <= inclination < 2*PI
+            if(inclination < 0.0)inclination=inclination+2*atan2(0.0d0,-1.0d0)
+         end subroutine cartesian_to_polar
+         !
+         end program demo_atan2
   </xmp>
   </details>
   <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fatan2pi%0D%0A%20%20%20%20%20%20real%20%3A%3A%20z%0D%0A%20%20%20%20%20%20complex%20%3A%3A%20c%0D%0A%20%20%20%20%20%20real%2C%20parameter%20%3A%3A%20h2d%20%3D%20180%2E0%0D%0A%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%21%20basic%20usage%0D%0A%20%20%20%20%20%20%20%20%21%20atan2pi%20%281%2E5574077%2C%201%2E0%29%20has%20the%20value%201%2E0%20%28approximately%29%2E%0D%0A%20%20%20%20%20%20%20%20z%3Datan2pi%281%2E5574077%2C%201%2E0%29%0D%0A%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20%27half%2Drevolutions%3D%27%2Cz%2C%27degrees%3D%27%2Ch2d%2Az%0D%0A%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%21%20elemental%20arrays%0D%0A%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27elemental%27%2Catan2pi%28%20%5B10%2E0%2C%2020%2E0%5D%2C%20%5B30%2E0%2C40%2E0%5D%20%29%0D%0A%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%21%20elemental%20arrays%20and%20scalars%0D%0A%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27elemental%27%2Catan2pi%28%20%5B10%2E0%2C%2020%2E0%5D%2C%2050%2E0%20%29%0D%0A%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%21%20break%20complex%20values%20into%20real%20and%20imaginary%20components%0D%0A%20%20%20%20%20%20%20%21%20%28note%20TAN2%28%29%20can%20take%20a%20complex%20type%20value%20%29%0D%0A%20%20%20%20%20%20%20%20c%3D%280%2E0%2C1%2E0%29%0D%0A%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27complex%27%2Cc%2Catan2pi%28%20x%3Dc%25re%2C%20y%3Dc%25im%20%29%0D%0A%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%21%20extended%20sample%20converting%20cartesian%20coordinates%20to%20polar%0D%0A%20%20%20%20%20%20%20%20COMPLEX%5FVALS%3A%20block%0D%0A%20%20%20%20%20%20%20%20real%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20ang%0D%0A%20%20%20%20%20%20%20%20complex%2Callocatable%20%3A%3A%20vals%28%3A%29%0D%0A%20%20%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20i%0D%0A%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20vals%3D%5B%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%28%201%2E0%2C%200%2E0%20%29%2C%20%26%20%21%200%0D%0A%20%20%20%20%20%20%20%20%20%20%28%201%2E0%2C%201%2E0%20%29%2C%20%26%20%21%2045%0D%0A%20%20%20%20%20%20%20%20%20%20%28%200%2E0%2C%201%2E0%20%29%2C%20%26%20%21%2090%0D%0A%20%20%20%20%20%20%20%20%20%20%28%2D1%2E0%2C%201%2E0%20%29%2C%20%26%20%21%20135%0D%0A%20%20%20%20%20%20%20%20%20%20%28%2D1%2E0%2C%200%2E0%20%29%2C%20%26%20%21%20180%0D%0A%20%20%20%20%20%20%20%20%20%20%28%2D1%2E0%2C%2D1%2E0%20%29%2C%20%26%20%21%20225%0D%0A%20%20%20%20%20%20%20%20%20%20%28%200%2E0%2C%2D1%2E0%20%29%5D%20%20%20%21%20270%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28a%29%27%29repeat%28%271234567890%27%2C8%29%0D%0A%20%20%20%20%20%20%20%20do%20i%3D1%2Csize%28vals%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20ang%3Datan2pi%28vals%28i%29%25im%2Cvals%28i%29%25re%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C101%29vals%28i%29%2Cang%2Ch2d%2Aang%0D%0A%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20101%20format%28%20%20%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%26%20%27X%3D%20%27%2Cf5%2E2%2C%20%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%26%20%27%20Y%3D%20%27%2Cf5%2E2%2C%20%20%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%26%20%27%20HALF%2DREVOLUTIONS%3D%20%27%2Cf7%2E3%2C%20%20%20%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%26%20T50%2C%27%20DEGREES%3D%20%27%2Cg0%2E4%29%0D%0A%20%20%20%20%20%20%20endblock%20COMPLEX%5FVALS%0D%0A%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fatan2pi%0D%0A"
@@ -6573,7 +6573,7 @@
       end program demo_move_alloc
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fmvbits%0D%0A%20%20%20%20%20%20use%2Cintrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20%20only%20%3A%20int8%2C%20int16%2C%20int32%2C%20int64%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%28kind%3Dint32%29%20%3A%3A%20intfrom%2C%20intto%2C%20abcd%5Fint%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%20bits%3D%20%27%28g0%2Ct30%2Cb32%2E32%29%27%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%20fmt%3D%20%27%28g0%2Ct30%2Ca%2Ct40%2Cb32%2E32%29%27%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20intfrom%3Dhuge%280%29%20%20%21%20all%20bits%20are%201%20accept%20the%20sign%20bit%0D%0A%20%20%20%20%20%20%20%20%20%20intto%3D0%20%20%20%20%20%20%20%20%20%20%21%20all%20bits%20are%200%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%21%21%20CHANGE%20BIT%200%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20show%20the%20value%20and%20bit%20pattern%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2Cbits%29intfrom%2Cintfrom%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2Cbits%29intto%2Cintto%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20copy%20bit%200%20from%20intfrom%20to%20intto%20to%20show%20the%20rightmost%20bit%20changes%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20%20%20%20%20%20%20%20%20%20%28from%2C%20%20%20%20frompos%2C%20len%2C%20%20%20%20to%2C%20topos%29%0D%0A%20%20%20%20%20%20%20%20%20%20call%20mvbits%28intfrom%2C%20%20%20%20%20%20%200%2C%20%20%201%2C%20intto%2C%20%20%20%20%200%29%20%21%20change%20bit%200%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2Cbits%29intto%2Cintto%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%21%21%20COPY%20PART%20OF%20A%20VALUE%20TO%20ITSELF%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20can%20copy%20bit%20from%20a%20value%20to%20itself%0D%0A%20%20%20%20%20%20%20%20%20%20call%20mvbits%28intfrom%2C0%2C1%2Cintfrom%2C31%29%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2Cbits%29intfrom%2Cintfrom%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%21%21%20MOVING%20BYTES%20AT%20A%20TIME%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20make%20native%20integer%20value%20with%20bit%20patterns%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20that%20happen%20to%20be%20the%20same%20as%20the%20beginning%20of%20the%20alphabet%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20to%20make%20it%20easy%20to%20see%20the%20bytes%20are%20reversed%0D%0A%20%20%20%20%20%20%20%20%20%20abcd%5Fint%3Dtransfer%28%27abcd%27%2C0%29%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20show%20the%20value%20and%20bit%20pattern%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27native%27%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2Cfmt%29abcd%5Fint%2Cabcd%5Fint%2Cabcd%5Fint%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20change%20endian%20of%20the%20value%0D%0A%20%20%20%20%20%20%20%20%20%20abcd%5Fint%3Dint%5Fswap32%28abcd%5Fint%29%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20show%20the%20values%20and%20their%20bit%20pattern%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27non%2Dnative%27%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2Cfmt%29abcd%5Fint%2Cabcd%5Fint%2Cabcd%5Fint%0D%0A%0D%0A%20%20%20%20%20%20%20contains%0D%0A%0D%0A%20%20%20%20%20%20%20pure%20elemental%20function%20int%5Fswap32%28intin%29%20result%28intout%29%0D%0A%20%20%20%20%20%20%20%21%20Convert%20a%2032%20bit%20integer%20from%20big%20Endian%20to%20little%20Endian%2C%0D%0A%20%20%20%20%20%20%20%21%20or%20conversely%20from%20little%20Endian%20to%20big%20Endian%2E%0D%0A%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20integer%28kind%3Dint32%29%2C%20intent%28in%29%20%20%3A%3A%20intin%0D%0A%20%20%20%20%20%20%20integer%28kind%3Dint32%29%20%3A%3A%20intout%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20copy%20bytes%20from%20input%20value%20to%20new%20position%20in%20output%20value%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20%20%20%20%20%20%20%20%20%20%28from%2C%20%20frompos%2C%20len%2C%20%20%20%20%20to%2C%20topos%29%0D%0A%20%20%20%20%20%20%20%20%20%20call%20mvbits%28intin%2C%20%20%20%20%20%20%200%2C%20%20%208%2C%20intout%2C%20%20%20%2024%29%20%21%20byte1%20to%20byte4%0D%0A%20%20%20%20%20%20%20%20%20%20call%20mvbits%28intin%2C%20%20%20%20%20%20%208%2C%20%20%208%2C%20intout%2C%20%20%20%2016%29%20%21%20byte2%20to%20byte3%0D%0A%20%20%20%20%20%20%20%20%20%20call%20mvbits%28intin%2C%20%20%20%20%20%2016%2C%20%20%208%2C%20intout%2C%20%20%20%20%208%29%20%21%20byte3%20to%20byte2%0D%0A%20%20%20%20%20%20%20%20%20%20call%20mvbits%28intin%2C%20%20%20%20%20%2024%2C%20%20%208%2C%20intout%2C%20%20%20%20%200%29%20%21%20byte4%20to%20byte1%0D%0A%20%20%20%20%20%20%20end%20function%20int%5Fswap32%0D%0A%0D%0A%20%20%20%20%20%20%20end%20program%20demo%5Fmvbits%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fmvbits%0D%0A%20%20%20%20%20%20use%2Cintrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20%20only%20%3A%20int8%2C%20int16%2C%20int32%2C%20int64%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%28kind%3Dint32%29%20%3A%3A%20intfrom%2C%20intto%2C%20abcd%5Fint%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%20bits%3D%20%27%28g0%2Ct30%2Cb32%2E32%29%27%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%20fmt%3D%20%27%28g0%2Ct30%2Ca%2Ct40%2Cb32%2E32%29%27%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20intfrom%3Dhuge%280%29%20%20%21%20all%20bits%20are%201%20except%20the%20sign%20bit%0D%0A%20%20%20%20%20%20%20%20%20%20intto%3D0%20%20%20%20%20%20%20%20%20%20%21%20all%20bits%20are%200%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%21%21%20CHANGE%20BIT%200%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20show%20the%20value%20and%20bit%20pattern%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2Cbits%29intfrom%2Cintfrom%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2Cbits%29intto%2Cintto%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20copy%20bit%200%20from%20intfrom%20to%20intto%20to%20show%20the%20rightmost%20bit%20changes%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20%20%20%20%20%20%20%20%20%20%28from%2C%20%20%20%20frompos%2C%20len%2C%20%20%20%20to%2C%20topos%29%0D%0A%20%20%20%20%20%20%20%20%20%20call%20mvbits%28intfrom%2C%20%20%20%20%20%20%200%2C%20%20%201%2C%20intto%2C%20%20%20%20%200%29%20%21%20change%20bit%200%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2Cbits%29intto%2Cintto%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%21%21%20COPY%20PART%20OF%20A%20VALUE%20TO%20ITSELF%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20can%20copy%20bit%20from%20a%20value%20to%20itself%0D%0A%20%20%20%20%20%20%20%20%20%20call%20mvbits%28intfrom%2C0%2C1%2Cintfrom%2C31%29%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2Cbits%29intfrom%2Cintfrom%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%21%21%20MOVING%20BYTES%20AT%20A%20TIME%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20make%20native%20integer%20value%20with%20bit%20patterns%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20that%20happen%20to%20be%20the%20same%20as%20the%20beginning%20of%20the%20alphabet%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20to%20make%20it%20easy%20to%20see%20the%20bytes%20are%20reversed%0D%0A%20%20%20%20%20%20%20%20%20%20abcd%5Fint%3Dtransfer%28%27abcd%27%2C0%29%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20show%20the%20value%20and%20bit%20pattern%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27native%27%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2Cfmt%29abcd%5Fint%2Cabcd%5Fint%2Cabcd%5Fint%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20change%20endian%20of%20the%20value%0D%0A%20%20%20%20%20%20%20%20%20%20abcd%5Fint%3Dint%5Fswap32%28abcd%5Fint%29%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20show%20the%20values%20and%20their%20bit%20pattern%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27non%2Dnative%27%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2Cfmt%29abcd%5Fint%2Cabcd%5Fint%2Cabcd%5Fint%0D%0A%0D%0A%20%20%20%20%20%20%20contains%0D%0A%0D%0A%20%20%20%20%20%20%20pure%20elemental%20function%20int%5Fswap32%28intin%29%20result%28intout%29%0D%0A%20%20%20%20%20%20%20%21%20Convert%20a%2032%20bit%20integer%20from%20big%20Endian%20to%20little%20Endian%2C%0D%0A%20%20%20%20%20%20%20%21%20or%20conversely%20from%20little%20Endian%20to%20big%20Endian%2E%0D%0A%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20integer%28kind%3Dint32%29%2C%20intent%28in%29%20%20%3A%3A%20intin%0D%0A%20%20%20%20%20%20%20integer%28kind%3Dint32%29%20%3A%3A%20intout%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20copy%20bytes%20from%20input%20value%20to%20new%20position%20in%20output%20value%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20%20%20%20%20%20%20%20%20%20%28from%2C%20%20frompos%2C%20len%2C%20%20%20%20%20to%2C%20topos%29%0D%0A%20%20%20%20%20%20%20%20%20%20call%20mvbits%28intin%2C%20%20%20%20%20%20%200%2C%20%20%208%2C%20intout%2C%20%20%20%2024%29%20%21%20byte1%20to%20byte4%0D%0A%20%20%20%20%20%20%20%20%20%20call%20mvbits%28intin%2C%20%20%20%20%20%20%208%2C%20%20%208%2C%20intout%2C%20%20%20%2016%29%20%21%20byte2%20to%20byte3%0D%0A%20%20%20%20%20%20%20%20%20%20call%20mvbits%28intin%2C%20%20%20%20%20%2016%2C%20%20%208%2C%20intout%2C%20%20%20%20%208%29%20%21%20byte3%20to%20byte2%0D%0A%20%20%20%20%20%20%20%20%20%20call%20mvbits%28intin%2C%20%20%20%20%20%2024%2C%20%20%208%2C%20intout%2C%20%20%20%20%200%29%20%21%20byte4%20to%20byte1%0D%0A%20%20%20%20%20%20%20end%20function%20int%5Fswap32%0D%0A%0D%0A%20%20%20%20%20%20%20end%20program%20demo%5Fmvbits%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> mvbits
@@ -6588,7 +6588,7 @@
       character(len=*),parameter :: bits= '(g0,t30,b32.32)'
       character(len=*),parameter :: fmt= '(g0,t30,a,t40,b32.32)'
 
-          intfrom=huge(0)  ! all bits are 1 accept the sign bit
+          intfrom=huge(0)  ! all bits are 1 except the sign bit
           intto=0          ! all bits are 0
 
           !! CHANGE BIT 0

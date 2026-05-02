@@ -291,7 +291,7 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                              regex=''
                              iinf=0
                              remember=paws
-                  case('r'); i=i-1                         ! refresh
+                  case('r'); i=i-1                          ! refresh
                              !lines=get_env('LINES',lines)  ! adjust for screen size change if set
                              i=max(0,i-1*lines+2)
                              iinf=0
@@ -342,12 +342,11 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                   case('e','j','v'); i=max(0,i-1*lines+2) ! down one line
                              i=i+len_trim(paws)-1
                              iinf=0
-                              remember=paws
-/bin/bash: pb0: command not found
+                             remember=paws
                   case('y','k','^'); i=max(0,i-1*lines-0) ! up one line
                              i=max(0,i-len_trim(paws)+1)
                              iinf=0
-                              remember=paws
+                             remember=paws
                   case('s','w'); paws=adjustl(paws(2:)) ! save to file
                              if(paws.eq.'')paws='fman.txt'
                              iostat=filewrite(paws,clone_no_color)
