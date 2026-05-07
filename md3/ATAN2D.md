@@ -45,7 +45,7 @@ degrees (inverse tangent)
   component of the point **\<x,y\>**.
 
 ### **Result**
-The result is in degrees, not radians.
+The result is in degrees (not radians.
 
 The radian value is by definition the principal value of the complex
 number **(x, y)**, or in other terms, the phase of the phasor x+i\*y.
