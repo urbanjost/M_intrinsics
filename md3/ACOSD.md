@@ -27,8 +27,8 @@
 ### **Options**
 
 - **x**
-  : The value to compute the arctangent of.
-    If the type is _real_, the value must satisfy |**x**| <= 1.
+  : The value to compute the arccosine of.
+    The value must satisfy |**x**| <= 1.
 
 ### **Result**
 

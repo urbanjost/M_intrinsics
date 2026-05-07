@@ -41,13 +41,13 @@ the hypotenuse and the opposite side of a right triangle are known.
 
   If **x** is real the result is _real_ and it is expressed in radians
   and lies in the range
-```fortran
-        PI/2 <= ASIN (X) <= PI/2.
+```text
+   -PI/2 <= ASIN (X) <= PI/2.
 ```
   If the argument (and therefore the result) is imaginary the real part
   of the result is in radians and lies in the range
-```fortran
-    -PI/2 <= real(asin(x)) <= PI/2
+```text
+    -PI/2 <= REAL(ASIN(X)) <= PI/2
 ```
 ### **Examples**
 
