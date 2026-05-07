@@ -622,7 +622,7 @@
       end program demo_any
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fasind%0D%0A%20%20%20%20%20%20use%2C%20intrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20dp%3D%3Ereal64%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%21%20value%20to%20convert%20degrees%20to%20radians%0D%0A%20%20%20%20%20%20real%28kind%3Ddp%29%2Cparameter%20%3A%3A%20R2D%3D180%2E0%5Fdp%2Facos%28%2D1%2E0%5Fdp%29%0D%0A%20%20%20%20%20%20real%28kind%3Ddp%29%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20angle%2C%20rise%2C%20run%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%20all%3D%27%28%2A%28g0%2C1x%29%29%27%0D%0A%20%20%20%20%20%20%20%20%21%20given%20sine%28theta%29%20%3D%201%2E25%20miles%2F50%20miles%20%28opposite%2Fhypotenuse%29%0D%0A%20%20%20%20%20%20%20%20%21%20then%20taking%20the%20arcsine%20of%20both%20sides%20of%20the%20equality%20yields%0D%0A%20%20%20%20%20%20%20%20%21%20theta%20%3D%20arcsine%281%2E25%20miles%2F50%20miles%29%20ie%2E%20arcsine%28opposite%2Fhypotenuse%29%0D%0A%20%20%20%20%20%20%20%20rise%3D1%2E250%5Fdp%0D%0A%20%20%20%20%20%20%20%20run%3D50%2E00%5Fdp%0D%0A%20%20%20%20%20%20%20%20angle%20%3D%20asind%28rise%2Frun%29%0D%0A%20%20%20%20%20%20%20%20print%20all%2C%20%27angle%20of%20incline%28degrees%29%20%3D%20%27%2C%20angle%0D%0A%20%20%20%20%20%20%20%20angle%20%3D%20angle%2FR2D%0D%0A%20%20%20%20%20%20%20%20print%20all%2C%20%27angle%20of%20incline%28radians%29%20%3D%20%27%2C%20angle%0D%0A%0D%0A%20%20%20%20%20%20%20%20print%20all%2C%20%27percent%20grade%3D%27%2Crise%2Frun%2A100%2E0%5Fdp%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fasind%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fasind%0D%0A%20%20%20%20%20%20use%2C%20intrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20dp%3D%3Ereal64%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%21%20value%20to%20convert%20degrees%20to%20radians%0D%0A%20%20%20%20%20%20real%28kind%3Ddp%29%2Cparameter%20%20%20%20%3A%3A%20R2D%3D180%2E0%5Fdp%2Facos%28%2D1%2E0%5Fdp%29%0D%0A%20%20%20%20%20%20real%28kind%3Ddp%29%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20angle%2C%20grade%2C%20rise%2C%20run%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%20all%3D%27%28%2A%28g0%2C1x%29%29%27%0D%0A%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20i%0D%0A%20%20%20%20%20%20%20%20%21%20given%20sine%28theta%29%20%3D%201%2E25%20miles%2F50%20miles%20%28opposite%2Fhypotenuse%29%0D%0A%20%20%20%20%20%20%20%20%21%20then%20taking%20the%20arcsine%20of%20both%20sides%20of%20the%20equality%20yields%0D%0A%20%20%20%20%20%20%20%20%21%20theta%20%3D%20arcsine%281%2E25%20miles%2F50%20miles%29%20ie%2E%20arcsine%28opposite%2Fhypotenuse%29%0D%0A%20%20%20%20%20%20%20%20rise%3D1%2E250%5Fdp%0D%0A%20%20%20%20%20%20%20%20run%3D50%2E00%5Fdp%0D%0A%20%20%20%20%20%20%20%20angle%20%3D%20asind%28rise%2Frun%29%0D%0A%20%20%20%20%20%20%20%20print%20all%2C%20%27angle%20of%20incline%28degrees%29%20%3D%20%27%2C%20angle%0D%0A%20%20%20%20%20%20%20%20angle%20%3D%20angle%2FR2D%0D%0A%20%20%20%20%20%20%20%20print%20all%2C%20%27angle%20of%20incline%28radians%29%20%3D%20%27%2C%20angle%0D%0A%20%20%20%20%20%20%20%20print%20all%2C%20%27angle%20of%20incline%28radians%29%20%3D%20%27%2C%20asin%28rise%2Frun%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20print%20all%2C%20%27percent%20grade%3D%27%2Crise%2Frun%2A100%2E0%5Fdp%0D%0A%20%20%20%20%20%20%20%20print%20all%2C%0D%0A%20%20%20%20%20%20%20%20do%20i%3D%2D360%2C360%2C45%0D%0A%20%20%20%20%20%20%20%20%20%20%20grade%3Di%2F360%2E0d0%0D%0A%20%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20grade%2C%20asind%28grade%29%2C%20sind%28asind%28grade%29%29%0D%0A%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fasind%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> asind
@@ -634,9 +634,10 @@
       use, intrinsic :: iso_fortran_env, only : dp=>real64
       implicit none
       ! value to convert degrees to radians
-      real(kind=dp),parameter :: R2D=180.0_dp/acos(-1.0_dp)
-      real(kind=dp)           :: angle, rise, run
+      real(kind=dp),parameter    :: R2D=180.0_dp/acos(-1.0_dp)
+      real(kind=dp)              :: angle, grade, rise, run
       character(len=*),parameter :: all='(*(g0,1x))'
+      integer                    :: i
         ! given sine(theta) = 1.25 miles/50 miles (opposite/hypotenuse)
         ! then taking the arcsine of both sides of the equality yields
         ! theta = arcsine(1.25 miles/50 miles) ie. arcsine(opposite/hypotenuse)
@@ -646,8 +647,14 @@
         print all, 'angle of incline(degrees) = ', angle
         angle = angle/R2D
         print all, 'angle of incline(radians) = ', angle
+        print all, 'angle of incline(radians) = ', asin(rise/run)
 
         print all, 'percent grade=',rise/run*100.0_dp
+        print all,
+        do i=-360,360,45
+           grade=i/360.0d0
+           print *, grade, asind(grade), sind(asind(grade))
+        enddo
       end program demo_asind
   </xmp>
   </details>
