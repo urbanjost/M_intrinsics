@@ -75,17 +75,17 @@ a single space so this is equivalent to the previous example:
 ```
  **COMMENTS ON COMMENTING CONTINUED LINES**
 
-First, note you cannot continue a comment onto another line.  An "&" in
-a comment is treated like any other character, with no special effect
+First, note you cannot continue a comment onto another line.  An "&"
+in a comment is treated like any other character, with no special effect
 (Just start an additional comment line if you want a comment to appear
 across multiple lines).
 
-That being said, comments themselves may occur as individual lines inbetween
-sections of a continued statement, or after the ending ampersand
+That being said, comments themselves may occur as individual lines in
+between sections of a continued statement, or after the ending ampersand
 __if not continuing a string constant__.
 
-So lets add an explanation about the continued line using in-line comments,
-comment lines and blank lines:
+So lets add an explanation about the continued line using in-line
+comments, comment lines and blank lines:
 ```fortran
     integer,save :: xx(2,3)= reshape([& ! define array in row-column order
 

@@ -38,7 +38,7 @@
    A **USE** statement without **only** provides access to all **public**
    entities in the specified namespace. This is true even if renamed
    entities are specified, but the renamed entities will only be available
-   with the specified local name unless also explicitity requested with
+   with the specified local name unless also explicitly requested with
    the original name. This is particularly useful behavior when there
    would otherwise be name conflicts.
 

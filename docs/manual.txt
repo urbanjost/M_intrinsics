@@ -183,7 +183,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    abs(3fortran)
+                                May 05, 2026                    abs(3fortran)
 
 
 achar(3fortran)                                               achar(3fortran)
@@ -333,7 +333,7 @@ RESOURCES
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  achar(3fortran)
+                                May 05, 2026                  achar(3fortran)
 
 
 acos(3fortran)                                                 acos(3fortran)
@@ -419,7 +419,7 @@ RESOURCES
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   acos(3fortran)
+                                May 05, 2026                   acos(3fortran)
 
 
 acosd(3fortran)                                               acosd(3fortran)
@@ -497,7 +497,7 @@ RESOURCES
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  acosd(3fortran)
+                                May 05, 2026                  acosd(3fortran)
 
 
 acosh(3fortran)                                               acosh(3fortran)
@@ -563,7 +563,7 @@ RESOURCES
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  acosh(3fortran)
+                                May 05, 2026                  acosh(3fortran)
 
 
 acospi(3fortran)                                             acospi(3fortran)
@@ -656,7 +656,7 @@ RESOURCES
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 acospi(3fortran)
+                                May 05, 2026                 acospi(3fortran)
 
 
 adjustl(3fortran)                                           adjustl(3fortran)
@@ -739,7 +739,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                adjustl(3fortran)
+                                May 05, 2026                adjustl(3fortran)
 
 
 adjustr(3fortran)                                           adjustr(3fortran)
@@ -817,7 +817,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                adjustr(3fortran)
+                                May 05, 2026                adjustr(3fortran)
 
 
 aimag(3fortran)                                               aimag(3fortran)
@@ -931,7 +931,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  aimag(3fortran)
+                                May 05, 2026                  aimag(3fortran)
 
 
 aint(3fortran)                                                 aint(3fortran)
@@ -1016,7 +1016,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   aint(3fortran)
+                                May 05, 2026                   aint(3fortran)
 
 
 all(3fortran)                                                   all(3fortran)
@@ -1121,7 +1121,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    all(3fortran)
+                                May 05, 2026                    all(3fortran)
 
 
 allocated(3fortran)                                       allocated(3fortran)
@@ -1213,7 +1213,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026              allocated(3fortran)
+                                May 05, 2026              allocated(3fortran)
 
 
 anint(3fortran)                                               anint(3fortran)
@@ -1324,7 +1324,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  anint(3fortran)
+                                May 05, 2026                  anint(3fortran)
 
 
 any(3fortran)                                                   any(3fortran)
@@ -1475,7 +1475,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    any(3fortran)
+                                May 05, 2026                    any(3fortran)
 
 
 asin(3fortran)                                                 asin(3fortran)
@@ -1582,7 +1582,7 @@ RESOURCES
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   asin(3fortran)
+                                May 05, 2026                   asin(3fortran)
 
 
 asind(3fortran)                                               asind(3fortran)
@@ -1690,7 +1690,7 @@ RESOURCES
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  asind(3fortran)
+                                May 05, 2026                  asind(3fortran)
 
 
 asinh(3fortran)                                               asinh(3fortran)
@@ -1756,7 +1756,7 @@ RESOURCES
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  asinh(3fortran)
+                                May 05, 2026                  asinh(3fortran)
 
 
 asinpi(3fortran)                                             asinpi(3fortran)
@@ -1873,7 +1873,7 @@ RESOURCES
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 asinpi(3fortran)
+                                May 05, 2026                 asinpi(3fortran)
 
 
 associate(7fortran)                                       associate(7fortran)
@@ -2366,7 +2366,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026              associate(7fortran)
+                                May 05, 2026              associate(7fortran)
 
 
 associated(3fortran)                                     associated(3fortran)
@@ -2478,7 +2478,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026             associated(3fortran)
+                                May 05, 2026             associated(3fortran)
 
 
 atan2(3fortran)                                               atan2(3fortran)
@@ -2649,7 +2649,7 @@ RESOURCES
      (https://en.wikipedia.org/wiki/Inverse_trigonometric_functions) Fortran
      intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  atan2(3fortran)
+                                May 05, 2026                  atan2(3fortran)
 
 
 atan2d(3fortran)                                             atan2d(3fortran)
@@ -2813,7 +2813,7 @@ RESOURCES
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 atan2d(3fortran)
+                                May 05, 2026                 atan2d(3fortran)
 
 
 atan2pi(3fortran)                                           atan2pi(3fortran)
@@ -2963,7 +2963,7 @@ SEE ALSO
 RESOURCES
   o  arctan:wikipedia Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                atan2pi(3fortran)
+                                May 05, 2026                atan2pi(3fortran)
 
 
 atan(3fortran)                                                 atan(3fortran)
@@ -3058,7 +3058,7 @@ RESOURCES
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   atan(3fortran)
+                                May 05, 2026                   atan(3fortran)
 
 
 atand(3fortran)                                               atand(3fortran)
@@ -3137,7 +3137,7 @@ RESOURCES
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  atand(3fortran)
+                                May 05, 2026                  atand(3fortran)
 
 
 atanh(3fortran)                                               atanh(3fortran)
@@ -3195,7 +3195,7 @@ RESOURCES
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  atanh(3fortran)
+                                May 05, 2026                  atanh(3fortran)
 
 
 atanpi(3fortran)                                             atanpi(3fortran)
@@ -3275,7 +3275,7 @@ SEE ALSO
 RESOURCES
   o  wikipedia: inverse trigonometric functions
 
-                                May 01, 2026                 atanpi(3fortran)
+                                May 05, 2026                 atanpi(3fortran)
 
 
 atomic_add(3fortran)                                     atomic_add(3fortran)
@@ -3385,7 +3385,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026             atomic_add(3fortran)
+                                May 05, 2026             atomic_add(3fortran)
 
 
 atomic_and(3fortran)                                     atomic_and(3fortran)
@@ -3479,7 +3479,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026             atomic_and(3fortran)
+                                May 05, 2026             atomic_and(3fortran)
 
 
 atomic_cas(3fortran)                                     atomic_cas(3fortran)
@@ -3574,7 +3574,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026             atomic_cas(3fortran)
+                                May 05, 2026             atomic_cas(3fortran)
 
 
 atomic_define(3fortran)                               atomic_define(3fortran)
@@ -3660,7 +3660,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026          atomic_define(3fortran)
+                                May 05, 2026          atomic_define(3fortran)
 
 
 atomic_fetch_add(3fortran)                         atomic_fetch_add(3fortran)
@@ -3812,7 +3812,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026       atomic_fetch_add(3fortran)
+                                May 05, 2026       atomic_fetch_add(3fortran)
 
 
 atomic_fetch_and(3fortran)                         atomic_fetch_and(3fortran)
@@ -3904,7 +3904,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026       atomic_fetch_and(3fortran)
+                                May 05, 2026       atomic_fetch_and(3fortran)
 
 
 atomic_fetch_or(3fortran)                           atomic_fetch_or(3fortran)
@@ -3993,7 +3993,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026        atomic_fetch_or(3fortran)
+                                May 05, 2026        atomic_fetch_or(3fortran)
 
 
 atomic_fetch_xor(3fortran)                         atomic_fetch_xor(3fortran)
@@ -4089,7 +4089,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026       atomic_fetch_xor(3fortran)
+                                May 05, 2026       atomic_fetch_xor(3fortran)
 
 
 atomic_or(3fortran)                                       atomic_or(3fortran)
@@ -4180,7 +4180,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026              atomic_or(3fortran)
+                                May 05, 2026              atomic_or(3fortran)
 
 
 atomic_ref(3fortran)                                     atomic_ref(3fortran)
@@ -4274,7 +4274,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026             atomic_ref(3fortran)
+                                May 05, 2026             atomic_ref(3fortran)
 
 
 atomic_xor(3fortran)                                     atomic_xor(3fortran)
@@ -4362,7 +4362,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026             atomic_xor(3fortran)
+                                May 05, 2026             atomic_xor(3fortran)
 
 
 backspace(7fortran)                                       backspace(7fortran)
@@ -4483,7 +4483,7 @@ EXAMPLE
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026              backspace(7fortran)
+                                May 05, 2026              backspace(7fortran)
 
 
 bessel_j0(3fortran)                                       bessel_j0(3fortran)
@@ -4537,7 +4537,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026              bessel_j0(3fortran)
+                                May 05, 2026              bessel_j0(3fortran)
 
 
 bessel_j1(3fortran)                                       bessel_j1(3fortran)
@@ -4590,7 +4590,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026              bessel_j1(3fortran)
+                                May 05, 2026              bessel_j1(3fortran)
 
 
 bessel_jn(3fortran)                                       bessel_jn(3fortran)
@@ -4677,7 +4677,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026              bessel_jn(3fortran)
+                                May 05, 2026              bessel_jn(3fortran)
 
 
 bessel_y0(3fortran)                                       bessel_y0(3fortran)
@@ -4730,7 +4730,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026              bessel_y0(3fortran)
+                                May 05, 2026              bessel_y0(3fortran)
 
 
 bessel_y1(3fortran)                                       bessel_y1(3fortran)
@@ -4782,7 +4782,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026              bessel_y1(3fortran)
+                                May 05, 2026              bessel_y1(3fortran)
 
 
 bessel_yn(3fortran)                                       bessel_yn(3fortran)
@@ -4869,7 +4869,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026              bessel_yn(3fortran)
+                                May 05, 2026              bessel_yn(3fortran)
 
 
 bge(3fortran)                                                   bge(3fortran)
@@ -5019,7 +5019,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    bge(3fortran)
+                                May 05, 2026                    bge(3fortran)
 
 
 bgt(3fortran)                                                   bgt(3fortran)
@@ -5116,7 +5116,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    bgt(3fortran)
+                                May 05, 2026                    bgt(3fortran)
 
 
 bit_size(3fortran)                                         bit_size(3fortran)
@@ -5194,7 +5194,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026               bit_size(3fortran)
+                                May 05, 2026               bit_size(3fortran)
 
 
 ble(3fortran)                                                   ble(3fortran)
@@ -5280,7 +5280,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    ble(3fortran)
+                                May 05, 2026                    ble(3fortran)
 
 
 block(7fortran)                                               block(7fortran)
@@ -5396,7 +5396,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  block(7fortran)
+                                May 05, 2026                  block(7fortran)
 
 
 blt(3fortran)                                                   blt(3fortran)
@@ -5476,7 +5476,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    blt(3fortran)
+                                May 05, 2026                    blt(3fortran)
 
 
 btest(3fortran)                                               btest(3fortran)
@@ -5599,7 +5599,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  btest(3fortran)
+                                May 05, 2026                  btest(3fortran)
 
 
 c_associated(3fortran)                                 c_associated(3fortran)
@@ -5683,7 +5683,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026           c_associated(3fortran)
+                                May 05, 2026           c_associated(3fortran)
 
 
 ceiling(3fortran)                                           ceiling(3fortran)
@@ -5911,7 +5911,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                ceiling(3fortran)
+                                May 05, 2026                ceiling(3fortran)
 
 
 c_f_pointer(3fortran)                                   c_f_pointer(3fortran)
@@ -5972,7 +5972,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026            c_f_pointer(3fortran)
+                                May 05, 2026            c_f_pointer(3fortran)
 
 
 c_f_procpointer(3fortran)                           c_f_procpointer(3fortran)
@@ -6034,7 +6034,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026        c_f_procpointer(3fortran)
+                                May 05, 2026        c_f_procpointer(3fortran)
 
 
 c_funloc(3fortran)                                         c_funloc(3fortran)
@@ -6094,7 +6094,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026               c_funloc(3fortran)
+                                May 05, 2026               c_funloc(3fortran)
 
 
 char(3fortran)                                                 char(3fortran)
@@ -6215,7 +6215,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   char(3fortran)
+                                May 05, 2026                   char(3fortran)
 
 
 c_loc(3fortran)                                               c_loc(3fortran)
@@ -6262,7 +6262,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026                  c_loc(3fortran)
+                                May 05, 2026                  c_loc(3fortran)
 
 
 close(7fortran)                                               close(7fortran)
@@ -6385,7 +6385,7 @@ SEE ALSO
   BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),
   READ(7), REWIND(7), WAIT(7), WRITE(7)
 
-                                May 01, 2026                  close(7fortran)
+                                May 05, 2026                  close(7fortran)
 
 
 cmplx(3fortran)                                               cmplx(3fortran)
@@ -6642,7 +6642,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  cmplx(3fortran)
+                                May 05, 2026                  cmplx(3fortran)
 
 
 co_broadcast(3fortran)                                 co_broadcast(3fortran)
@@ -6696,7 +6696,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026           co_broadcast(3fortran)
+                                May 05, 2026           co_broadcast(3fortran)
 
 
 co_lbound(3fortran)                                        co_lbound(3fortran)
@@ -6794,7 +6794,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026                 co_max(3fortran)
+                                May 05, 2026                 co_max(3fortran)
 
 
 co_min(3fortran)                                             co_min(3fortran)
@@ -6849,7 +6849,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026                 co_min(3fortran)
+                                May 05, 2026                 co_min(3fortran)
 
 
 command_argument_count(3fortran)             command_argument_count(3fortran)
@@ -7028,7 +7028,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026 command_argument_count(3fortran)
+                                May 05, 2026 command_argument_count(3fortran)
 
 
 comment(5fortran)                                           comment(5fortran)
@@ -7149,7 +7149,7 @@ EXAMPLES
 SEE ALSO
   CONTINUATION(5),
 
-                                May 01, 2026                comment(5fortran)
+                                May 05, 2026                comment(5fortran)
 
 
 compiler_options(3fortran)                         compiler_options(3fortran)
@@ -7222,7 +7222,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026       compiler_options(3fortran)
+                                May 05, 2026       compiler_options(3fortran)
 
 
 compiler_version(3fortran)                         compiler_version(3fortran)
@@ -7350,7 +7350,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026       compiler_version(3fortran)
+                                May 05, 2026       compiler_version(3fortran)
 
 
 conjg(3fortran)                                               conjg(3fortran)
@@ -7465,7 +7465,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  conjg(3fortran)
+                                May 05, 2026                  conjg(3fortran)
 
 
 continuation(5fortran)                                 continuation(5fortran)
@@ -7545,9 +7545,9 @@ COMMENTS ON COMMENTING CONTINUED LINES
   start an additional comment line if you want a comment to appear across
   multiple lines).
 
-  That being said, comments themselves may occur as individual lines inbetween
-  sections of a continued statement, or after the ending ampersand IF NOT
-  CONTINUING A STRING CONSTANT.
+  That being said, comments themselves may occur as individual lines in
+  between sections of a continued statement, or after the ending ampersand IF
+  NOT CONTINUING A STRING CONSTANT.
 
   So lets add an explanation about the continued line using in-line comments,
   comment lines and blank lines:
@@ -7838,7 +7838,7 @@ EXAMPLE
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026           continuation(5fortran)
+                                May 05, 2026           continuation(5fortran)
 
 
 continue(7fortran)                                         continue(7fortran)
@@ -7907,7 +7907,7 @@ EXAMPLES
 
   Fortran statement descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026               continue(7fortran)
+                                May 05, 2026               continue(7fortran)
 
 
 co_reduce(3fortran)                                       co_reduce(3fortran)
@@ -7998,7 +7998,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026              co_reduce(3fortran)
+                                May 05, 2026              co_reduce(3fortran)
 
 
 cos(3fortran)                                                   cos(3fortran)
@@ -8195,7 +8195,7 @@ RESOURCES
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026                    cos(3fortran)
+                                May 05, 2026                    cos(3fortran)
 
 
 cosd(3fortran)                                                 cosd(3fortran)
@@ -8272,7 +8272,7 @@ RESOURCES
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026                   cosd(3fortran)
+                                May 05, 2026                   cosd(3fortran)
 
 
 cosh(3fortran)                                                 cosh(3fortran)
@@ -8331,7 +8331,7 @@ RESOURCES
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026                   cosh(3fortran)
+                                May 05, 2026                   cosh(3fortran)
 
 
 cospi(3fortran)                                               cospi(3fortran)
@@ -8414,7 +8414,7 @@ RESOURCES
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026                  cospi(3fortran)
+                                May 05, 2026                  cospi(3fortran)
 
 
 co_sum(3fortran)                                             co_sum(3fortran)
@@ -8477,7 +8477,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026                 co_sum(3fortran)
+                                May 05, 2026                 co_sum(3fortran)
 
 
 co_ubound(3fortran)                                        co_ubound(3fortran)
@@ -8745,7 +8745,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  count(3fortran)
+                                May 05, 2026                  count(3fortran)
 
 
 cpu_time(3fortran)                                         cpu_time(3fortran)
@@ -8843,7 +8843,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026               cpu_time(3fortran)
+                                May 05, 2026               cpu_time(3fortran)
 
 
 cshift(3fortran)                                             cshift(3fortran)
@@ -8966,7 +8966,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026                 cshift(3fortran)
+                                May 05, 2026                 cshift(3fortran)
 
 
 c_sizeof(3fortran)                                         c_sizeof(3fortran)
@@ -9018,7 +9018,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026               c_sizeof(3fortran)
+                                May 05, 2026               c_sizeof(3fortran)
 
 
 date_and_time(3fortran)                               date_and_time(3fortran)
@@ -9192,7 +9192,7 @@ RESOURCES
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026          date_and_time(3fortran)
+                                May 05, 2026          date_and_time(3fortran)
 
 
 dble(3fortran)                                                 dble(3fortran)
@@ -9256,7 +9256,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   dble(3fortran)
+                                May 05, 2026                   dble(3fortran)
 
 
 deallocate(7fortran)                                     deallocate(7fortran)
@@ -9417,7 +9417,7 @@ DEALLOCATION OF POINTER TARGETS
      shall retain its previous allocation status or pointer association
      status.
 
-                                May 01, 2026             deallocate(7fortran)
+                                May 05, 2026             deallocate(7fortran)
 
 
 digits(3fortran)                                             digits(3fortran)
@@ -9478,7 +9478,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 digits(3fortran)
+                                May 05, 2026                 digits(3fortran)
 
 
 dim(3fortran)                                                   dim(3fortran)
@@ -9573,7 +9573,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    dim(3fortran)
+                                May 05, 2026                    dim(3fortran)
 
 
 dot_product(3fortran)                                   dot_product(3fortran)
@@ -9662,7 +9662,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026            dot_product(3fortran)
+                                May 05, 2026            dot_product(3fortran)
 
 
 dprod(3fortran)                                               dprod(3fortran)
@@ -9761,7 +9761,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  dprod(3fortran)
+                                May 05, 2026                  dprod(3fortran)
 
 
 dshiftl(3fortran)                                           dshiftl(3fortran)
@@ -9896,7 +9896,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                dshiftl(3fortran)
+                                May 05, 2026                dshiftl(3fortran)
 
 
 dshiftr(3fortran)                                           dshiftr(3fortran)
@@ -10034,7 +10034,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                dshiftr(3fortran)
+                                May 05, 2026                dshiftr(3fortran)
 
 
 endfile(7fortran)                                           endfile(7fortran)
@@ -10118,7 +10118,7 @@ SEE ALSO
   BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),
   READ(7), REWIND(7), WAIT(7), WRITE(7)
 
-                                May 01, 2026                endfile(7fortran)
+                                May 05, 2026                endfile(7fortran)
 
 
 eoshift(3fortran)                                           eoshift(3fortran)
@@ -10288,7 +10288,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                eoshift(3fortran)
+                                May 05, 2026                eoshift(3fortran)
 
 
 epsilon(3fortran)                                           epsilon(3fortran)
@@ -10405,7 +10405,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                epsilon(3fortran)
+                                May 05, 2026                epsilon(3fortran)
 
 
 erf(3fortran)                                                   erf(3fortran)
@@ -10462,7 +10462,7 @@ RESOURCES
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026                    erf(3fortran)
+                                May 05, 2026                    erf(3fortran)
 
 
 erfc(3fortran)                                                 erfc(3fortran)
@@ -10534,7 +10534,7 @@ RESOURCES
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   erfc(3fortran)
+                                May 05, 2026                   erfc(3fortran)
 
 
 erfc_scaled(3fortran)                                   erfc_scaled(3fortran)
@@ -10601,7 +10601,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026            erfc_scaled(3fortran)
+                                May 05, 2026            erfc_scaled(3fortran)
 
 
 event_query(3fortran)                                   event_query(3fortran)
@@ -10677,7 +10677,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026            event_query(3fortran)
+                                May 05, 2026            event_query(3fortran)
 
 
 execute_command_line(3fortran)                 execute_command_line(3fortran)
@@ -10850,7 +10850,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026   execute_command_line(3fortran)
+                                May 05, 2026   execute_command_line(3fortran)
 
 
 exit(7fortran)                                                 exit(7fortran)
@@ -11148,7 +11148,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   exit(7fortran)
+                                May 05, 2026                   exit(7fortran)
 
 
 exp(3fortran)                                                   exp(3fortran)
@@ -11285,7 +11285,7 @@ RESOURCES
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    exp(3fortran)
+                                May 05, 2026                    exp(3fortran)
 
 
 exponent(3fortran)                                         exponent(3fortran)
@@ -11422,7 +11422,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026               exponent(3fortran)
+                                May 05, 2026               exponent(3fortran)
 
 
 extends_type_of(3fortran)                           extends_type_of(3fortran)
@@ -11588,7 +11588,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026        extends_type_of(3fortran)
+                                May 05, 2026        extends_type_of(3fortran)
 
 
 findloc(3fortran)                                           findloc(3fortran)
@@ -11869,7 +11869,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                findloc(3fortran)
+                                May 05, 2026                findloc(3fortran)
 
 
 floor(3fortran)                                               floor(3fortran)
@@ -11968,7 +11968,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  floor(3fortran)
+                                May 05, 2026                  floor(3fortran)
 
 
 flush(7fortran)                                               flush(7fortran)
@@ -12052,7 +12052,7 @@ EXAMPLES
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  flush(7fortran)
+                                May 05, 2026                  flush(7fortran)
 
 
 fraction(3fortran)                                         fraction(3fortran)
@@ -12118,7 +12118,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026               fraction(3fortran)
+                                May 05, 2026               fraction(3fortran)
 
 
 gamma(3fortran)                                               gamma(3fortran)
@@ -12256,7 +12256,7 @@ RESOURCES
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026                  gamma(3fortran)
+                                May 05, 2026                  gamma(3fortran)
 
 
 get_command(3fortran)                                   get_command(3fortran)
@@ -12350,7 +12350,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026            get_command(3fortran)
+                                May 05, 2026            get_command(3fortran)
 
 
 get_command_argument(3fortran)                 get_command_argument(3fortran)
@@ -12489,7 +12489,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026   get_command_argument(3fortran)
+                                May 05, 2026   get_command_argument(3fortran)
 
 
 get_environment_variable(3fortran)         get_environment_variable(3fortran)
@@ -12635,7 +12635,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 202get_environment_variable(3fortran)
+                                May 05, 202get_environment_variable(3fortran)
 
 
 huge(3fortran)                                                 huge(3fortran)
@@ -12765,7 +12765,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   huge(3fortran)
+                                May 05, 2026                   huge(3fortran)
 
 
 hypot(3fortran)                                               hypot(3fortran)
@@ -12870,7 +12870,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  hypot(3fortran)
+                                May 05, 2026                  hypot(3fortran)
 
 
 iachar(3fortran)                                             iachar(3fortran)
@@ -12977,7 +12977,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 iachar(3fortran)
+                                May 05, 2026                 iachar(3fortran)
 
 
 iall(3fortran)                                                 iall(3fortran)
@@ -13053,7 +13053,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   iall(3fortran)
+                                May 05, 2026                   iall(3fortran)
 
 
 iand(3fortran)                                                 iand(3fortran)
@@ -13131,7 +13131,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   iand(3fortran)
+                                May 05, 2026                   iand(3fortran)
 
 
 iany(3fortran)                                                 iany(3fortran)
@@ -13234,7 +13234,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   iany(3fortran)
+                                May 05, 2026                   iany(3fortran)
 
 
 ibclr(3fortran)                                               ibclr(3fortran)
@@ -13325,7 +13325,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  ibclr(3fortran)
+                                May 05, 2026                  ibclr(3fortran)
 
 
 ibits(3fortran)                                               ibits(3fortran)
@@ -13419,7 +13419,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  ibits(3fortran)
+                                May 05, 2026                  ibits(3fortran)
 
 
 ibset(3fortran)                                               ibset(3fortran)
@@ -13509,7 +13509,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  ibset(3fortran)
+                                May 05, 2026                  ibset(3fortran)
 
 
 ichar(3fortran)                                               ichar(3fortran)
@@ -13612,7 +13612,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  ichar(3fortran)
+                                May 05, 2026                  ichar(3fortran)
 
 
 ieor(3fortran)                                                 ieor(3fortran)
@@ -13710,7 +13710,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   ieor(3fortran)
+                                May 05, 2026                   ieor(3fortran)
 
 
 if(7fortran)                                                     if(7fortran)
@@ -13883,7 +13883,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                     if(7fortran)
+                                May 05, 2026                     if(7fortran)
 
 
 image_index(3fortran)                                   image_index(3fortran)
@@ -13926,7 +13926,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026            image_index(3fortran)
+                                May 05, 2026            image_index(3fortran)
 
 
 implicit(7fortran)                                         implicit(7fortran)
@@ -14193,7 +14193,7 @@ EXAMPLE
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026               implicit(7fortran)
+                                May 05, 2026               implicit(7fortran)
 
 
 include(7fortran)                                           include(7fortran)
@@ -14369,7 +14369,7 @@ EXAMPLE
       include "somemorecode.inc"
       end program show_include
 
-                                May 01, 2026                include(7fortran)
+                                May 05, 2026                include(7fortran)
 
 
 index(3fortran)                                               index(3fortran)
@@ -14463,7 +14463,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026                  index(3fortran)
+                                May 05, 2026                  index(3fortran)
 
 
 inquire(7fortran)                                           inquire(7fortran)
@@ -15029,7 +15029,7 @@ SEE ALSO
   BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),
   READ(7), REWIND(7), WAIT(7), WRITE(7)
 
-                                May 01, 2026                inquire(7fortran)
+                                May 05, 2026                inquire(7fortran)
 
 
 int(3fortran)                                                   int(3fortran)
@@ -15150,7 +15150,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    int(3fortran)
+                                May 05, 2026                    int(3fortran)
 
 
 ior(3fortran)                                                   ior(3fortran)
@@ -15224,7 +15224,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    ior(3fortran)
+                                May 05, 2026                    ior(3fortran)
 
 
 iparity(3fortran)                                           iparity(3fortran)
@@ -15304,7 +15304,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026                iparity(3fortran)
+                                May 05, 2026                iparity(3fortran)
 
 
 is_contiguous(3fortran)                               is_contiguous(3fortran)
@@ -15426,7 +15426,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026          is_contiguous(3fortran)
+                                May 05, 2026          is_contiguous(3fortran)
 
 
 ishft(3fortran)                                               ishft(3fortran)
@@ -15514,7 +15514,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  ishft(3fortran)
+                                May 05, 2026                  ishft(3fortran)
 
 
 ishftc(3fortran)                                             ishftc(3fortran)
@@ -15648,7 +15648,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 ishftc(3fortran)
+                                May 05, 2026                 ishftc(3fortran)
 
 
 is_iostat_end(3fortran)                               is_iostat_end(3fortran)
@@ -15767,7 +15767,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026          is_iostat_end(3fortran)
+                                May 05, 2026          is_iostat_end(3fortran)
 
 
 is_iostat_eor(3fortran)                               is_iostat_eor(3fortran)
@@ -15876,7 +15876,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026          is_iostat_eor(3fortran)
+                                May 05, 2026          is_iostat_eor(3fortran)
 
 
 kind(3fortran)                                                 kind(3fortran)
@@ -15949,7 +15949,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   kind(3fortran)
+                                May 05, 2026                   kind(3fortran)
 
 
 lbound(3fortran)                                             lbound(3fortran)
@@ -16110,7 +16110,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 lbound(3fortran)
+                                May 05, 2026                 lbound(3fortran)
 
 
 lcobound(3fortran)                                         lcobound(3fortran)
@@ -16149,7 +16149,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026               lcobound(3fortran)
+                                May 05, 2026               lcobound(3fortran)
 
 
 leadz(3fortran)                                               leadz(3fortran)
@@ -16227,7 +16227,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  leadz(3fortran)
+                                May 05, 2026                  leadz(3fortran)
 
 
 len(3fortran)                                                   len(3fortran)
@@ -16361,7 +16361,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    len(3fortran)
+                                May 05, 2026                    len(3fortran)
 
 
 len_trim(3fortran)                                         len_trim(3fortran)
@@ -16459,7 +16459,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026               len_trim(3fortran)
+                                May 05, 2026               len_trim(3fortran)
 
 
 lge(3fortran)                                                   lge(3fortran)
@@ -16562,7 +16562,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    lge(3fortran)
+                                May 05, 2026                    lge(3fortran)
 
 
 lgt(3fortran)                                                   lgt(3fortran)
@@ -16666,7 +16666,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    lgt(3fortran)
+                                May 05, 2026                    lgt(3fortran)
 
 
 lle(3fortran)                                                   lle(3fortran)
@@ -16794,7 +16794,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    lle(3fortran)
+                                May 05, 2026                    lle(3fortran)
 
 
 llt(3fortran)                                                   llt(3fortran)
@@ -16901,7 +16901,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    llt(3fortran)
+                                May 05, 2026                    llt(3fortran)
 
 
 log10(3fortran)                                               log10(3fortran)
@@ -16972,7 +16972,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026                  log10(3fortran)
+                                May 05, 2026                  log10(3fortran)
 
 
 log(3fortran)                                                   log(3fortran)
@@ -17046,7 +17046,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    log(3fortran)
+                                May 05, 2026                    log(3fortran)
 
 
 log_gamma(3fortran)                                       log_gamma(3fortran)
@@ -17101,7 +17101,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026              log_gamma(3fortran)
+                                May 05, 2026              log_gamma(3fortran)
 
 
 logical(3fortran)                                           logical(3fortran)
@@ -17316,7 +17316,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                logical(3fortran)
+                                May 05, 2026                logical(3fortran)
 
 
 logicals(5fortran)                                         logicals(5fortran)
@@ -17876,7 +17876,7 @@ SEE ALSO
 
   Fortran Tutorials(license: MIT) @urbanjost
 
-                                May 01, 2026               logicals(5fortran)
+                                May 05, 2026               logicals(5fortran)
 
 
 maskl(3fortran)                                               maskl(3fortran)
@@ -17958,7 +17958,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  maskl(3fortran)
+                                May 05, 2026                  maskl(3fortran)
 
 
 maskr(3fortran)                                               maskr(3fortran)
@@ -18058,7 +18058,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  maskr(3fortran)
+                                May 05, 2026                  maskr(3fortran)
 
 
 matmul(3fortran)                                             matmul(3fortran)
@@ -18286,7 +18286,7 @@ RESOURCES
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 matmul(3fortran)
+                                May 05, 2026                 matmul(3fortran)
 
 
 max(3fortran)                                                   max(3fortran)
@@ -18437,7 +18437,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    max(3fortran)
+                                May 05, 2026                    max(3fortran)
 
 
 maxexponent(3fortran)                                   maxexponent(3fortran)
@@ -18494,7 +18494,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026            maxexponent(3fortran)
+                                May 05, 2026            maxexponent(3fortran)
 
 
 maxloc(3fortran)                                             maxloc(3fortran)
@@ -18609,7 +18609,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026                 maxloc(3fortran)
+                                May 05, 2026                 maxloc(3fortran)
 
 
 maxval(3fortran)                                             maxval(3fortran)
@@ -18733,7 +18733,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 maxval(3fortran)
+                                May 05, 2026                 maxval(3fortran)
 
 
 merge(3fortran)                                               merge(3fortran)
@@ -18916,7 +18916,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  merge(3fortran)
+                                May 05, 2026                  merge(3fortran)
 
 
 merge_bits(3fortran)                                     merge_bits(3fortran)
@@ -19039,7 +19039,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026             merge_bits(3fortran)
+                                May 05, 2026             merge_bits(3fortran)
 
 
 min(3fortran)                                                   min(3fortran)
@@ -19136,7 +19136,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost '
 
-                                May 01, 2026                    min(3fortran)
+                                May 05, 2026                    min(3fortran)
 
 
 minexponent(3fortran)                                   minexponent(3fortran)
@@ -19192,7 +19192,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026            minexponent(3fortran)
+                                May 05, 2026            minexponent(3fortran)
 
 
 minloc(3fortran)                                             minloc(3fortran)
@@ -19295,7 +19295,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 minloc(3fortran)
+                                May 05, 2026                 minloc(3fortran)
 
 
 minval(3fortran)                                             minval(3fortran)
@@ -19490,7 +19490,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 minval(3fortran)
+                                May 05, 2026                 minval(3fortran)
 
 
 mod(3fortran)                                                   mod(3fortran)
@@ -19595,7 +19595,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    mod(3fortran)
+                                May 05, 2026                    mod(3fortran)
 
 
 modulo(3fortran)                                             modulo(3fortran)
@@ -19671,7 +19671,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026                 modulo(3fortran)
+                                May 05, 2026                 modulo(3fortran)
 
 
 move_alloc(3fortran)                                     move_alloc(3fortran)
@@ -19771,7 +19771,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026             move_alloc(3fortran)
+                                May 05, 2026             move_alloc(3fortran)
 
 
 mvbits(3fortran)                                             mvbits(3fortran)
@@ -19917,7 +19917,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 mvbits(3fortran)
+                                May 05, 2026                 mvbits(3fortran)
 
 
 namelist(7fortran)                                         namelist(7fortran)
@@ -20504,7 +20504,7 @@ OTHER
       output procedure or by continuation of delimited character sequences,
       each output record begins with a blank character.
 
-                                May 01, 2026               namelist(7fortran)
+                                May 05, 2026               namelist(7fortran)
 
 
 nearest(3fortran)                                           nearest(3fortran)
@@ -20588,7 +20588,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026                nearest(3fortran)
+                                May 05, 2026                nearest(3fortran)
 
 
 new_line(3fortran)                                         new_line(3fortran)
@@ -20779,7 +20779,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026               new_line(3fortran)
+                                May 05, 2026               new_line(3fortran)
 
 
 nint(3fortran)                                                 nint(3fortran)
@@ -20923,7 +20923,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   nint(3fortran)
+                                May 05, 2026                   nint(3fortran)
 
 
 norm2(3fortran)                                               norm2(3fortran)
@@ -21034,7 +21034,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  norm2(3fortran)
+                                May 05, 2026                  norm2(3fortran)
 
 
 not(3fortran)                                                   not(3fortran)
@@ -21117,7 +21117,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    not(3fortran)
+                                May 05, 2026                    not(3fortran)
 
 
 null(3fortran)                                                 null(3fortran)
@@ -21237,7 +21237,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   null(3fortran)
+                                May 05, 2026                   null(3fortran)
 
 
 num_images(3fortran)                                     num_images(3fortran)
@@ -21315,7 +21315,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026             num_images(3fortran)
+                                May 05, 2026             num_images(3fortran)
 
 
 open(7fortran)                                                 open(7fortran)
@@ -21630,7 +21630,7 @@ SEE ALSO
   BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),
   READ(7), REWIND(7), WAIT(7), WRITE(7)
 
-                                May 01, 2026                   open(7fortran)
+                                May 05, 2026                   open(7fortran)
 
 
 out_of_range(3fortran)                                 out_of_range(3fortran)
@@ -21776,7 +21776,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026           out_of_range(3fortran)
+                                May 05, 2026           out_of_range(3fortran)
 
 
 pack(3fortran)                                                 pack(3fortran)
@@ -21899,7 +21899,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   pack(3fortran)
+                                May 05, 2026                   pack(3fortran)
 
 
 parity(3fortran)                                             parity(3fortran)
@@ -22000,7 +22000,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 parity(3fortran)
+                                May 05, 2026                 parity(3fortran)
 
 
 popcnt(3fortran)                                             popcnt(3fortran)
@@ -22078,7 +22078,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 popcnt(3fortran)
+                                May 05, 2026                 popcnt(3fortran)
 
 
 poppar(3fortran)                                             poppar(3fortran)
@@ -22162,7 +22162,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 poppar(3fortran)
+                                May 05, 2026                 poppar(3fortran)
 
 
 precision(3fortran)                                       precision(3fortran)
@@ -22222,7 +22222,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026              precision(3fortran)
+                                May 05, 2026              precision(3fortran)
 
 
 present(3fortran)                                           present(3fortran)
@@ -22339,7 +22339,7 @@ STANDARD
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                present(3fortran)
+                                May 05, 2026                present(3fortran)
 
 
 print(7fortran)                                               print(7fortran)
@@ -22429,7 +22429,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  print(7fortran)
+                                May 05, 2026                  print(7fortran)
 
 
 product(3fortran)                                           product(3fortran)
@@ -22657,7 +22657,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                product(3fortran)
+                                May 05, 2026                product(3fortran)
 
 
 program(7fortran)                                           program(7fortran)
@@ -22740,7 +22740,7 @@ GLOSSARY
   A main program, external subprogram, module, submodule, or block data
   program unit.
 
-                                May 01, 2026                program(7fortran)
+                                May 05, 2026                program(7fortran)
 
 
 radix(3fortran)                                               radix(3fortran)
@@ -22804,7 +22804,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  radix(3fortran)
+                                May 05, 2026                  radix(3fortran)
 
 
 random_init(3fortran)                                   random_init(3fortran)
@@ -22876,7 +22876,7 @@ SEE ALSO
 
   _Fortran intrinsic descriptions
 
-                                May 01, 2026            random_init(3fortran)
+                                May 05, 2026            random_init(3fortran)
 
 
 random_number(3fortran)                               random_number(3fortran)
@@ -22967,7 +22967,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026          random_number(3fortran)
+                                May 05, 2026          random_number(3fortran)
 
 
 random_seed(3fortran)                                   random_seed(3fortran)
@@ -23039,7 +23039,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026            random_seed(3fortran)
+                                May 05, 2026            random_seed(3fortran)
 
 
 range(3fortran)                                               range(3fortran)
@@ -23111,7 +23111,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  range(3fortran)
+                                May 05, 2026                  range(3fortran)
 
 
 rank(3fortran)                                                 rank(3fortran)
@@ -23272,7 +23272,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   rank(3fortran)
+                                May 05, 2026                   rank(3fortran)
 
 
 read(7fortran)                                                 read(7fortran)
@@ -23328,7 +23328,7 @@ SEE ALSO
   BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),
   READ(7), REWIND(7), WAIT(7), WRITE(7)
 
-                                May 01, 2026                   read(7fortran)
+                                May 05, 2026                   read(7fortran)
 
 
 real(3fortran)                                                 real(3fortran)
@@ -23429,7 +23429,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   real(3fortran)
+                                May 05, 2026                   real(3fortran)
 
 
 reduce(3fortran)                                             reduce(3fortran)
@@ -23627,7 +23627,7 @@ RESOURCES
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 reduce(3fortran)
+                                May 05, 2026                 reduce(3fortran)
 
 
 repeat(3fortran)                                             repeat(3fortran)
@@ -23695,7 +23695,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 repeat(3fortran)
+                                May 05, 2026                 repeat(3fortran)
 
 
 reshape(3fortran)                                           reshape(3fortran)
@@ -23901,7 +23901,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                reshape(3fortran)
+                                May 05, 2026                reshape(3fortran)
 
 
 return(7fortran)                                             return(7fortran)
@@ -24018,7 +24018,7 @@ EXAMPLE
 
   Fortran statement descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 return(7fortran)
+                                May 05, 2026                 return(7fortran)
 
 
 rewind(7fortran)                                             rewind(7fortran)
@@ -24107,7 +24107,7 @@ SEE ALSO
 
   Fortran statement descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 rewind(7fortran)
+                                May 05, 2026                 rewind(7fortran)
 
 
 rrspacing(3fortran)                                       rrspacing(3fortran)
@@ -24189,7 +24189,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026              rrspacing(3fortran)
+                                May 05, 2026              rrspacing(3fortran)
 
 
 same_type_as(3fortran)                                 same_type_as(3fortran)
@@ -24316,7 +24316,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026           same_type_as(3fortran)
+                                May 05, 2026           same_type_as(3fortran)
 
 
 scale(3fortran)                                               scale(3fortran)
@@ -24410,7 +24410,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  scale(3fortran)
+                                May 05, 2026                  scale(3fortran)
 
 
 scan(3fortran)                                                 scan(3fortran)
@@ -24501,7 +24501,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   scan(3fortran)
+                                May 05, 2026                   scan(3fortran)
 
 
 select(7fortran)                                             select(7fortran)
@@ -24526,7 +24526,7 @@ DESCRIPTION
   For further details see the specific documentation in the topics
   SELECT_CASE, SELECT_RANK, and SELECT_TYPE.
 
-                                May 01, 2026                 select(7fortran)
+                                May 05, 2026                 select(7fortran)
 
 
 select_case(7fortran)                                   select_case(7fortran)
@@ -24681,7 +24681,7 @@ EXAMPLES
               call other()
         end select
 
-                                May 01, 2026            select_case(7fortran)
+                                May 05, 2026            select_case(7fortran)
 
 
 selected_char_kind(3fortran)                     selected_char_kind(3fortran)
@@ -24836,7 +24836,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026     selected_char_kind(3fortran)
+                                May 05, 2026     selected_char_kind(3fortran)
 
 
 selected_int_kind(3fortran)                       selected_int_kind(3fortran)
@@ -24946,7 +24946,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026      selected_int_kind(3fortran)
+                                May 05, 2026      selected_int_kind(3fortran)
 
 
 selected_real_kind(3fortran)                     selected_real_kind(3fortran)
@@ -25064,7 +25064,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026     selected_real_kind(3fortran)
+                                May 05, 2026     selected_real_kind(3fortran)
 
 
 set_exponent(3fortran)                                 set_exponent(3fortran)
@@ -25133,7 +25133,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026           set_exponent(3fortran)
+                                May 05, 2026           set_exponent(3fortran)
 
 
 shape(3fortran)                                               shape(3fortran)
@@ -25236,7 +25236,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  shape(3fortran)
+                                May 05, 2026                  shape(3fortran)
 
 
 shifta(3fortran)                                             shifta(3fortran)
@@ -25355,7 +25355,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 shifta(3fortran)
+                                May 05, 2026                 shifta(3fortran)
 
 
 shiftl(3fortran)                                             shiftl(3fortran)
@@ -25477,7 +25477,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 shiftl(3fortran)
+                                May 05, 2026                 shiftl(3fortran)
 
 
 shiftr(3fortran)                                             shiftr(3fortran)
@@ -25601,7 +25601,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 shiftr(3fortran)
+                                May 05, 2026                 shiftr(3fortran)
 
 
 sign(3fortran)                                                 sign(3fortran)
@@ -25687,7 +25687,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   sign(3fortran)
+                                May 05, 2026                   sign(3fortran)
 
 
 sin(3fortran)                                                   sin(3fortran)
@@ -25827,7 +25827,7 @@ RESOURCES
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    sin(3fortran)
+                                May 05, 2026                    sin(3fortran)
 
 
 sind(3fortran)                                                 sind(3fortran)
@@ -25951,7 +25951,7 @@ RESOURCES
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   sind(3fortran)
+                                May 05, 2026                   sind(3fortran)
 
 
 sinh(3fortran)                                                 sinh(3fortran)
@@ -26041,7 +26041,7 @@ RESOURCES
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   sinh(3fortran)
+                                May 05, 2026                   sinh(3fortran)
 
 
 sinpi(3fortran)                                               sinpi(3fortran)
@@ -26139,7 +26139,7 @@ RESOURCES
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  sinpi(3fortran)
+                                May 05, 2026                  sinpi(3fortran)
 
 
 size(3fortran)                                                 size(3fortran)
@@ -26300,7 +26300,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   size(3fortran)
+                                May 05, 2026                   size(3fortran)
 
 
 spacing(3fortran)                                           spacing(3fortran)
@@ -26372,7 +26372,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                spacing(3fortran)
+                                May 05, 2026                spacing(3fortran)
 
 
 split(3fortran)                                               split(3fortran)
@@ -26501,7 +26501,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  split(3fortran)
+                                May 05, 2026                  split(3fortran)
 
 
 spread(3fortran)                                             spread(3fortran)
@@ -26675,7 +26675,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 spread(3fortran)
+                                May 05, 2026                 spread(3fortran)
 
 
 sqrt(3fortran)                                                 sqrt(3fortran)
@@ -26772,7 +26772,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   sqrt(3fortran)
+                                May 05, 2026                   sqrt(3fortran)
 
 
 stop(7fortran)                                                 stop(7fortran)
@@ -26883,7 +26883,7 @@ STANDARD
 
   Fortran statement descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   stop(7fortran)
+                                May 05, 2026                   stop(7fortran)
 
 
 storage_size(3fortran)                                 storage_size(3fortran)
@@ -26979,7 +26979,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026           storage_size(3fortran)
+                                May 05, 2026           storage_size(3fortran)
 
 
 sum(3fortran)                                                   sum(3fortran)
@@ -27195,7 +27195,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    sum(3fortran)
+                                May 05, 2026                    sum(3fortran)
 
 
 system_clock(3fortran)                                 system_clock(3fortran)
@@ -27344,7 +27344,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026           system_clock(3fortran)
+                                May 05, 2026           system_clock(3fortran)
 
 
 tan(3fortran)                                                   tan(3fortran)
@@ -27397,7 +27397,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    tan(3fortran)
+                                May 05, 2026                    tan(3fortran)
 
 
 tand(3fortran)                                                 tand(3fortran)
@@ -27451,7 +27451,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   tand(3fortran)
+                                May 05, 2026                   tand(3fortran)
 
 
 tanh(3fortran)                                                 tanh(3fortran)
@@ -27513,7 +27513,7 @@ RESOURCES
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026                   tanh(3fortran)
+                                May 05, 2026                   tanh(3fortran)
 
 
 tanpi(3fortran)                                               tanpi(3fortran)
@@ -27583,7 +27583,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                  tanpi(3fortran)
+                                May 05, 2026                  tanpi(3fortran)
 
 
 this_image(3fortran)                                     this_image(3fortran)
@@ -27660,7 +27660,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026             this_image(3fortran)
+                                May 05, 2026             this_image(3fortran)
 
 
 tiny(3fortran)                                                 tiny(3fortran)
@@ -27719,7 +27719,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   tiny(3fortran)
+                                May 05, 2026                   tiny(3fortran)
 
 
 tokenize(3fortran)                                         tokenize(3fortran)
@@ -27904,7 +27904,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026               tokenize(3fortran)
+                                May 05, 2026               tokenize(3fortran)
 
 
 trailz(3fortran)                                             trailz(3fortran)
@@ -27997,7 +27997,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 trailz(3fortran)
+                                May 05, 2026                 trailz(3fortran)
 
 
 transfer(3fortran)                                         transfer(3fortran)
@@ -28115,7 +28115,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions
 
-                                May 01, 2026               transfer(3fortran)
+                                May 05, 2026               transfer(3fortran)
 
 
 transpose(3fortran)                                       transpose(3fortran)
@@ -28226,7 +28226,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026              transpose(3fortran)
+                                May 05, 2026              transpose(3fortran)
 
 
 trim(3fortran)                                                 trim(3fortran)
@@ -28319,7 +28319,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                   trim(3fortran)
+                                May 05, 2026                   trim(3fortran)
 
 
 ubound(3fortran)                                             ubound(3fortran)
@@ -28488,7 +28488,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 ubound(3fortran)
+                                May 05, 2026                 ubound(3fortran)
 
 
 ucobound(3fortran)                                         ucobound(3fortran)
@@ -28525,7 +28525,7 @@ STANDARD
 SEE ALSO
   LCOBOUND(3), LBOUND(3), UBOUND(3)
 
-                                May 01, 2026               ucobound(3fortran)
+                                May 05, 2026               ucobound(3fortran)
 
 
 unpack(3fortran)                                             unpack(3fortran)
@@ -28693,7 +28693,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 unpack(3fortran)
+                                May 05, 2026                 unpack(3fortran)
 
 
 use(7fortran)                                                   use(7fortran)
@@ -28736,7 +28736,7 @@ DESCRIPTION
   A USE statement without ONLY provides access to all PUBLIC entities in the
   specified namespace. This is true even if renamed entities are specified,
   but the renamed entities will only be available with the specified local
-  name unless also explicitity requested with the original name. This is
+  name unless also explicitly requested with the original name. This is
   particularly useful behavior when there would otherwise be name conflicts.
 
   A USE statement with ONLY provides access only to those entities that appear
@@ -28945,7 +28945,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                    use(7fortran)
+                                May 05, 2026                    use(7fortran)
 
 
 verify(3fortran)                                             verify(3fortran)
@@ -29318,7 +29318,7 @@ SEE ALSO
 
   Fortran intrinsic descriptions (license: MIT) @urbanjost
 
-                                May 01, 2026                 verify(3fortran)
+                                May 05, 2026                 verify(3fortran)
 
 
 wait(7fortran)                                                 wait(7fortran)
@@ -29387,7 +29387,7 @@ SEE ALSO
   BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),
   READ(7), REWIND(7), WAIT(7), WRITE(7)
 
-                                May 01, 2026                   wait(7fortran)
+                                May 05, 2026                   wait(7fortran)
 
 
 where(7fortran)                                               where(7fortran)
@@ -29592,7 +29592,7 @@ EXAMPLE
        > iflag=
        >       0      0      0     0      0      1      0      0      0      0
 
-                                May 01, 2026                  where(7fortran)
+                                May 05, 2026                  where(7fortran)
 
 
 write(7fortran)                                               write(7fortran)
@@ -29605,6 +29605,6 @@ SEE ALSO
   BACKSPACE(7), CLOSE(7), ENDFILE(7), FLUSH(7), INQUIRE(7), OPEN(7), PRINT(7),
   READ(7), REWIND(7), WAIT(7), WRITE(7)
 
-                                May 01, 2026                  write(7fortran)
+                                May 05, 2026                  write(7fortran)
 
 
