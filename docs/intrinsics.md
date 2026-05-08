@@ -389,8 +389,8 @@ FORTRAN 77. KIND argument added Fortran 2003
 ### **Options**
 
 - **x**
-  : The value to compute the arctangent of.
-    If the type is _real_, the value must satisfy |**x**| <= 1.
+  : The value to compute the arccosine of.
+    The value must satisfy |**x**| <= 1.
 
 ### **Result**
 
@@ -1652,7 +1652,10 @@ Fortran 95
 
 ### **Description**
 
-**asind**(3) computes the arc sine of its argument **x** in degrees
+**asind**(3) computes the arcsine of its argument **x** in degrees.
+
+The arcsine will allow you to find the measure of a right angle when you
+know the ratio of the side opposite the angle to the hypotenuse.
 
 The arcsine is the inverse function of the sine function. It is commonly
 used in trigonometry when trying to find the angle when the lengths of
@@ -1663,36 +1666,34 @@ Example: **asind(1.0)** has the value 90.0 (approximately).
 ### **Options**
 
 - **x**
-  : The value to compute the arc sine of
+  : The value to compute the arc sine of.
     The type shall be _real_ and a magnitude that is less than or
     equal to one |X| <= 1.
-    It is expressed in degrees and lies in the range 90 <= asind(x) <= 90.
+    It is expressed in degrees and lies in the range -90 <= asind(x) <= 90.
 
 ### **Result**
 
   The result has a value equal to a processor-dependent approximation
   to arcsin(x).
 
-  If **x** is real the result is _real_ and it is expressed in radians
-  and lies in the range
+  The result is expressed in degrees and lies in the range
 ```fortran
-        PI/2 <= asind (X) <= PI/2.
-```
-  If the argument (and therefore the result) is imaginary the real part
-  of the result is in radians and lies in the range
-```fortran
-    -PI/2 <= real(asind(x)) <= PI/2
+        -90 <= asind (X) <= 90.
 ```
 ### **Examples**
 
-The arcsine will allow you to find the measure of a right angle when you
-know the ratio of the side opposite the angle to the hypotenuse.
-
 So if you knew that a train track rose 1.25 vertical miles on a track
-that was 50 miles long, you could determine the average angle of incline
-of the track using the arcsine. Given
+that was 50 miles long, what is the angle of incline of the track?
 
-     sin(theta) = 1.25 miles/50 miles (opposite/hypotenuse)
+The percentage grade is the slope, written as a percent. To calculate
+the slope you divide the rise by the run.  so the slope is 1.25/50 =
+0.025. Written as a percent this is 2.5 %.
+
+For the US, 2 1/2 percent, or a rise of 2.5 feet when going 100 feet
+forward, is generally thought of as the upper limit of the grade on
+straight track. This was the maximum grade on the first major US railroad,
+the Baltimore and Ohio. Note curves in the track increase the frictional
+drag on a train reducing the allowable grade.
 
 Sample program:
 ```fortran
@@ -1700,9 +1701,10 @@ program demo_asind
 use, intrinsic :: iso_fortran_env, only : dp=>real64
 implicit none
 ! value to convert degrees to radians
-real(kind=dp),parameter :: R2D=180.0_dp/acos(-1.0_dp)
-real(kind=dp)           :: angle, rise, run
+real(kind=dp),parameter    :: R2D=180.0_dp/acos(-1.0_dp)
+real(kind=dp)              :: angle, grade, rise, run
 character(len=*),parameter :: all='(*(g0,1x))'
+integer                    :: i
   ! given sine(theta) = 1.25 miles/50 miles (opposite/hypotenuse)
   ! then taking the arcsine of both sides of the equality yields
   ! theta = arcsine(1.25 miles/50 miles) ie. arcsine(opposite/hypotenuse)
@@ -1712,27 +1714,41 @@ character(len=*),parameter :: all='(*(g0,1x))'
   print all, 'angle of incline(degrees) = ', angle
   angle = angle/R2D
   print all, 'angle of incline(radians) = ', angle
+  print all, 'angle of incline(radians) = ', asin(rise/run)
 
   print all, 'percent grade=',rise/run*100.0_dp
+  print all,
+  do i=-360,360,45
+     grade=i/360.0d0
+     print *, grade, asind(grade), sind(asind(grade))
+  enddo
 end program demo_asind
 ```
 Results:
 ```text
- > angle of incline(degrees) =  1.4325437375665075
- > angle of incline(radians) =  0.25002604899361135E-1
- > percent grade= 2.5000000000000000
+    > angle of incline(degrees) =  1.4325437375665075
+    > angle of incline(radians) =  0.25002604899361135E-1
+    > angle of incline(radians) =  0.25002604899361139E-1
+    > percent grade= 2.5000000000000000
+    >
+    >   -1.0000000000000000  -90.000000000000000   -1.0000000000000000
+    >  -0.87500000000000000  -61.044975628140158  -0.87500000000000000
+    >  -0.75000000000000000  -48.590377890729144  -0.75000000000000000
+    >  -0.62500000000000000  -38.682187453489441  -0.62500000000000000
+    >  -0.50000000000000000  -30.000000000000004  -0.50000000000000011
+    >  -0.37500000000000000  -22.024312837042164  -0.37500000000000006
+    >  -0.25000000000000000  -14.477512185929925  -0.25000000000000006
+    >  -0.12500000000000000  -7.1807557814582816  -0.12500000000000000
+    >    0.0000000000000000   0.0000000000000000   0.0000000000000000
+    >   0.12500000000000000   7.1807557814582816   0.12500000000000000
+    >   0.25000000000000000   14.477512185929925   0.25000000000000006
+    >   0.37500000000000000   22.024312837042164   0.37500000000000006
+    >   0.50000000000000000   30.000000000000004   0.50000000000000011
+    >   0.62500000000000000   38.682187453489441   0.62500000000000000
+    >   0.75000000000000000   48.590377890729144   0.75000000000000000
+    >   0.87500000000000000   61.044975628140158   0.87500000000000000
+    >    1.0000000000000000   90.000000000000000    1.0000000000000000
 ```
-The percentage grade is the slope, written as a percent. To calculate
-the slope you divide the rise by the run. In the example the rise is
-1.25 mile over a run of 50 miles so the slope is 1.25/50 = 0.025.
-Written as a percent this is 2.5 %.
-
-For the US, two and 1/2 percent is generally thought of as the upper
-limit. This means a rise of 2.5 feet when going 100 feet forward. In
-the US this was the maximum grade on the first major US railroad, the
-Baltimore and Ohio. Note curves increase the frictional drag on a
-train reducing the allowable grade.
-
 ### **Standard**
 
 Fortran 2023
@@ -1862,13 +1878,13 @@ the hypotenuse and the opposite side of a right triangle are known.
 
   If **x** is real the result is _real_ and it is expressed in radians
   and lies in the range
-```fortran
-        PI/2 <= ASIN (X) <= PI/2.
+```text
+   -PI/2 <= ASIN (X) <= PI/2.
 ```
   If the argument (and therefore the result) is imaginary the real part
   of the result is in radians and lies in the range
-```fortran
-    -PI/2 <= real(asin(x)) <= PI/2
+```text
+    -PI/2 <= REAL(ASIN(X)) <= PI/2
 ```
 ### **Examples**
 
@@ -2225,7 +2241,7 @@ degrees (inverse tangent)
   component of the point **\<x,y\>**.
 
 ### **Result**
-The result is in degrees, not radians.
+The result is in degrees (not radians.
 
 The radian value is by definition the principal value of the complex
 number **(x, y)**, or in other terms, the phase of the phasor x+i\*y.
@@ -18254,6 +18270,153 @@ Fortran 2003
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
 
+## next
+
+### **Name**
+
+**next**(3) - \[ENUMERATION\] Next enumeration value
+
+### **Synopsis**
+```fortran
+    result = next (a [, stat])
+```
+```fortran
+     elemental enumerator function next(a,stat) result(answer)
+
+      enumerator,intent(in) :: a
+      integer(kind=**),intent(out),optional :: stat
+      enumerator :: answer
+```
+### **Characteristics**
+
+ - **A** shall be of enumeration type.
+ - **STAT** is an integer with a decimal exponent range of at least four.
+ - The returned value will be of the same type and kind as the argument.
+
+### **Description**
+   Next enumeration value
+
+### **Options**
+
+- **a**
+  : The starting value to use to locate the next value from
+
+- **stat**
+  : If **a** is equal to the last enumerator of its type, it is assigned a
+    processor-dependent positive value; otherwise, it is assigned the
+    value zero. If STAT would have been  assigned a nonzero value
+    but is not present, error termination is  initiated.
+
+### **Result**
+
+   If **a** is equal to the last enumerator of its type,
+   the value of the result is that of A. Otherwise, the value of the
+   result is the next enumerator following the value of A.
+
+   For example, if the enumerators of an enumeration type are EN1, EN2,
+   EN3, and EN4, NEXT (EN1) is equal to EN2, and NEXT (EN4, ISTAT)
+   is equal to EN4 and a positive value is assigned to ISTAT.
+
+Sample program:
+
+```fortran
+!program demo_next
+module enumeration_mod
+
+enumeration type :: v_value
+   enumerator :: v_one, v_two, v_three
+   enumerator v_four
+end enumeration type
+
+enumeration type :: w_value
+   enumerator :: w1, w2, w3, w4, w5, w_endsentinel
+end enumeration type
+
+contains
+
+subroutine sub(a)
+type(v_value),intent(in) :: a
+   print 1,a ! Acts similarly to Print *,Int(a).
+1  format('A has ordinal value ',i0)
+end subroutine
+
+subroutine wcheck(w)
+type(w_value),intent(in) :: w
+   select case(w)
+    case(w1)
+      print *,'w1 selected'
+    case (w2:w4)
+      print *,'One of w2...w4 selected'
+    case (w_endsentinel)
+      stop 'Invalid w selected'
+    case default
+      stop 'Unrecognized w selected'
+   end select
+end subroutine
+
+end module
+program demo_next
+! Here is an example of a program using that module.
+use enumeration_mod
+type(v_value) :: x = v_one
+type(v_value) :: y = v_value(2)  ! Explicit constructor producing v_two.
+type(v_value) :: z,nz            ! Initially undefined.
+   call sub(x)
+   call sub(v_three)
+   z = v_value(1)                ! First value.
+   do
+      if (z==huge(x)) write (*,'(A)',advance='No') ' Huge:'
+      call sub(z)
+      nz = next(z)
+      if (z==nz) exit
+      z = nz
+   end do
+
+end program demo_next
+```
+Results:
+```text
+ >
+ >
+```
+Here is an example showing some invalid usages of enumerations.
+
+Program invalid
+Use enumeration_mod
+```fortran
+Type(v_value) :: a, b
+   a = 1         ! INVALID - wrong type (INTEGER).
+   b = w1        ! INVALID - wrong enumeration type.
+   Print *,a     ! INVALID - list-directed i/o not available.
+End Program
+```
+An enumeration type can be used to declare components, for example:
+```fortran
+Module example2
+Use enumeration_mod
+Type vw
+   Type(v_value) v
+   Type(w_value) w
+End Type
+
+Contains
+Subroutine showme(ka)
+Type(vw),Intent(In) :: ka
+   Print 1,ka
+1  Format(1X,'v ordinal is ',I0,', w ordinal is ',I0)
+End Subroutine
+End Module
+```
+### **Standard**
+
+Fortran 2023
+
+### **See Also**
+ - Next enumeration value: [**previous**(3)](previous)
+ - Conversion of position to INTEGER: [**int**(3)](int)
+
+ _Fortran intrinsic descriptions_
+
 ## nint
 
 ### **Name**
@@ -19506,9 +19669,10 @@ There are many procedures that operator or query values at the bit level:
 
    The precision of values of the type and kind of **x**
 <!--
-   Result Value. The result has the value INT ((p - 1) * LOG10 (b)) + k, where b and p are as defined in 16.4
-   for the model representing real numbers with the same value for the kind type parameter as X, and where k is 1
-   if b is an integral power of 10 and 0 otherwise.
+   Result Value. The result has the value INT ((p - 1) * LOG10 (b)) +
+   k, where b and p are as defined in 16.4 for the model representing
+   real numbers with the same value for the kind type parameter as X,
+   and where k is 1 if b is an integral power of 10 and 0 otherwise.
 -->
 ### **Examples**
 
@@ -19678,6 +19842,101 @@ Results:
 Fortran 95
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
+
+## previous
+
+### **Name**
+
+**previous**(3) - \[ENUMERATION\] Previous enumeration value
+
+### **Synopsis**
+```fortran
+    result = previous (a [, stat])
+```
+```fortran
+     elemental enumerator function previous(a,stat) result(answer)
+
+      enumerator,intent(in) :: a
+      integer(kind=**),intent(out),optional :: stat
+      enumerator :: answer
+```
+### **Characteristics**
+
+ - **A** shall be of enumeration type.
+ - **STAT** is an integer with a decimal exponent range of at least four.
+ - The returned value will be of the same type and kind as the argument.
+   If **A** is equal to the first enumerator of its type, it is assigned
+
+### **Description**
+   Previous enumeration value
+
+### **Options**
+
+- **a**
+  : the starting value to locate the previous value relative to
+
+- **stat**
+  : If **A** is equal to the last enumerator of its type, it is assigned a
+    processor-dependent positive value; otherwise, it is assigned the
+    value zero. If STAT would have been  assigned a nonzero value
+    but is not present, error termination is  initiated.
+
+### **Result**
+   If **A** is equal to the first enumerator of its type,
+   the value of the result is that of **a**. Otherwise, the value of
+   the result is the enumerator preceding the value of **A**.
+
+### **Example**
+
+   Example. If the enumerators of an enumeration type are EN1, EN2,
+   EN3, and EN4, PREVIOUS (EN3) is equal to EN2, and PREVIOUS (EN1,
+   ISTAT) is equal to EN1 and a positive value is assigned to ISTAT.
+
+Sample program:
+
+```fortran
+program demo_previous
+implicit none
+
+! Fortran 2023 strongly-typed enumeration
+enum, bind(c) :: color
+   enumerator :: red, green, blue
+end enum
+
+type(color) :: current_color
+
+  ! Initialize to the first item
+  current_color = red
+  print *, "Initial position: ", int(current_color)
+
+  ! Advance using the new NEXT intrinsic
+  current_color = next(current_color)
+  print *, "Next position (green): ", int(current_color)
+
+  ! Advance again
+  current_color = next(current_color)
+  print *, "Next position (blue): ", int(current_color)
+
+  ! Move backward using the new PREVIOUS intrinsic
+  current_color = previous(current_color)
+  print *, "Previous position (green): ", int(current_color)
+
+end program demo_previous
+```
+Results:
+```text
+ >
+ >
+```
+### **Standard**
+
+Fortran 2023
+
+### **See Also**
+ - Next enumeration value: [**next**(3)](next)
+ - Conversion of position to INTEGER: [**int**(3)](int)
+
+ _Fortran intrinsic descriptions_
 
 ## product
 
