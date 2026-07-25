@@ -264,9 +264,9 @@ EXAMPLES
         i=65
         write(*,'("decimal    =",i0)')i
         write(*,'("character  =",a1)')achar(i)
-        write(*,'("binary     =",b0)')achar(i)
-        write(*,'("octal      =",o0)')achar(i)
-        write(*,'("hexadecimal =",z0)')achar(i)
+        write(*,'("binary     =",b0)')i
+        write(*,'("octal      =",o0)')i
+        write(*,'("hexadecimal =",z0)')i
 
         write(*,'(8(i3,1x,a,1x))')(i,achar(i), i=32,126)
 

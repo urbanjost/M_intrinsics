@@ -66,13 +66,14 @@ instead of the more obscure
 ### **Options**
 
 - **tsource**
-  : May be of any type, including user-defined.
+  : Value to return when corresponding element of **mask** is true.
 
 - **fsource**
-  : Shall be of the same type and type parameters as **tsource**.
+  : Value to return when corresponding element of **mask** is false.
 
 - **mask**
-  : Shall be of type _logical_.
+  : _logical_ mask used to determine whether an elment or **tsource**
+  or an elment of **fsource**.
 
 Note that (currently) _character_ values must be of the same length.
 

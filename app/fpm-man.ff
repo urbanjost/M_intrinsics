@@ -327,12 +327,18 @@ namelist/fman_colors/bg,fg,prg,head,head_,fixed,output,output_
                                 i=max(0,i-2*lines+2) ! back
                              endif
                              if(paws(2:).eq.'')then
-                                lines=get_env('LINES',lines) ! adjust for screen size change if set
+                                write(stdout,'(a,i0)')'lines=',lines
+                                flush(stdout,iostat=iostat)
+                                write(stdout,gen,advance='no')'[',i,']Continue...'
+                                read(stdin,'(a)')paws
                              else
                                 read(paws(2:),'(g80.0)',iostat=iostat)rm
                                 if(iostat.eq.0)then
                                    rm=min(real(size(manual)),rm)
                                    m=nint(rm)
+				   if(m.lt.0)then
+                                      m=get_env('LINES',lines) ! adjust for screen size change if set
+				   endif
                                    lines=max(m,0)
                                 endif
                              endif
