@@ -172,17 +172,20 @@ instead of the more obscure
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-TSOURCE : May be of any type, including user-defined.
+TSOURCE : Value to return when corresponding element of MASK is
+true.
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-FSOURCE : Shall be of the same type and type parameters as TSOURCE.
+FSOURCE : Value to return when corresponding element of MASK is
+false.
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-MASK : Shall be of type logical.
+MASK : logical mask used to determine whether to select an element
+of TSOURCE or an element of FSOURCE.
 </TD></TR>
 <TR></TR></TABLE>Note that (currently) character values must be of the same length.
 </BLOCKQUOTE>

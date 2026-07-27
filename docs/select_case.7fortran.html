@@ -64,7 +64,7 @@ of an expression (a case)
 </BLOCKQUOTE>
 <BLOCKQUOTE>
 </BLOCKQUOTE>
-<A name=4>
+<A name=5>
 
      <H3>SYNOPSIS</H3>
 
@@ -200,7 +200,7 @@ if any, is executed. This completes execution of the construct.
 It is permissible to branch to an end-select-stmt only from within its
 CASE construct.
 </BLOCKQUOTE>
-<A name=3>
+<A name=4>
 
      <H3>EXAMPLES</H3>
 
@@ -271,15 +271,28 @@ the following three fragments are equivalent:
             end select
 <P>
 </PRE>
-A code fragment showing several selections of one block:
+</BLOCKQUOTE>
+<A name=4>
+
+     <H3>EXAMPLES</H3>
+
+</A>
+<BLOCKQUOTE>
+<P>
+showing several selections of one block:
 <P>
 <PRE>
+       program demo_select_case
+       implicit none
+       integer :: n
+       n=4
        select case (n)
-          case (1, 3:5, 8)        ! selects 1, 3, 4, 5, 8
-             call sub()
-          case default
-             call other()
+        case (1, 3:5, 8) ! selects 1, 3, 4, 5, 8
+           write(*,*)&#146;case A&#146;,n
+        case default
+           write(*,*)&#146;default&#146;,n
        end select
+       program demo_select_case
 </PRE>
 </BLOCKQUOTE>
 <P><HR>

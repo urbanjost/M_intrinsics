@@ -11,14 +11,14 @@
 ```fortran
      TYPE(kind=KIND) function pack(array,mask,vector)
 
-      TYPE(kind=KIND),option(in) :: array(..)
-      logical  :: mask(..)
-      TYPE(kind=KIND),option(in),optional :: vector(*)
+      TYPE(kind=KIND),intent(in) :: array(..)
+      logical,intent(in) :: mask(..)
+      TYPE(kind=KIND),intent(in),optional :: vector(*)
 ```
 ### **Characteristics**
 
   - **array** is an array of any type
-  - **mask** a _logical_ scalar as well as an array conformable with **array**.
+  - **mask** a _logical_ scalar or an array conformable with **array**.
   - **vector** is of the same kind and type as **array** and of rank one
   - the returned value is of the same kind and type as **array**
 

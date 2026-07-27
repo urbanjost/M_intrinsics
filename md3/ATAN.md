@@ -6,13 +6,13 @@
 
 ### **Synopsis**
 ```fortran
-    result = atan([x) | atan(y, x)
+    result = atan(x) | atan(y, x)
 ```
 ```fortran
      elemental TYPE(kind=KIND) function atan(y,x)
 
       TYPE(kind=KIND),intent(in) :: x
-      TYPE(kind=**),intent(in),optional :: y
+      TYPE(kind=KIND),intent(in),optional :: y
 ```
 ### **Characteristics**
 
@@ -25,12 +25,25 @@
 
 **atan(x)**(3) returns the inverse tangent (ie. arctangent) of the
 elements of **x** in radians. The function accepts both real and complex
-inputs, specified as a scalar, vector, matrix. The atan operation is
-element-wise when X is nonscalar.
+inputs, and is elemental (therefore allowing arguments to be scalar,
+vector, or matrix). The atan operation is performed element-wise when
+X is nonscalar.
 
   * For real values of X, atan(X) returns values in the interval
     [-PI/2, PI/2].
   * For complex values of X, atan(X) returns complex values.
+
+    When x is complex, Fortran’s intrinsic ATAN(x) computes the
+    principal value of the complex arctangent function and returns a
+    complex number in radians. The Imaginary part is an  unbounded real
+    value representing the hyperbolic growth of the inverse function.
+
+     - Converts complex coordinates using the natural logarithm and
+       imaginary unit.
+     - Reduces to the standard real arctangent when the input has a zero
+       imaginary component.
+     - Undefined at the exact poles.
+     - Branch cuts lie along the outer imaginary axis
 
 When Y is not supplied the inverse tangent is defined as
 
@@ -39,7 +52,8 @@ When Y is not supplied the inverse tangent is defined as
 
 This definition of the atan function returns angles in radians within
 the interval [-PI/2, PI/2]. To find the four-quadrant inverse tangent,
-where the returned angles are in the interval [-PI, PI], use atan2.
+where the returned angles are in the interval [-PI, PI], supply the
+**y** value or equivalently, use atan2(3).
 
 ### **Options**
 
@@ -67,17 +81,43 @@ Sample program:
 program demo_atan
 use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
-character(len=*),parameter :: all='(*(g0,1x))'
+character(len=*),parameter  :: g='(*(g0,1x))'
 real(kind=real64),parameter :: &
  Deg_Per_Rad = 57.2957795130823208767981548_real64
-real(kind=real64) :: x
-    x=2.866_real64
-    print all, atan(x)
+real(kind=real64)           :: x
+real(kind=real64),parameter              :: &
 
-    print all, atan( 2.0d0, 2.0d0),atan( 2.0d0, 2.0d0)*Deg_Per_Rad
-    print all, atan( 2.0d0,-2.0d0),atan( 2.0d0,-2.0d0)*Deg_Per_Rad
-    print all, atan(-2.0d0, 2.0d0),atan(-2.0d0, 2.0d0)*Deg_Per_Rad
-    print all, atan(-2.0d0,-2.0d0),atan(-2.0d0,-2.0d0)*Deg_Per_Rad
+ xvals(*)=[2.0d0, 2.0d0, 2.0d0,  2.0d0,  -2.0d0, -2.0d0, -2.0d0, -2.0d0 ]
+real(kind=real64),parameter              :: &
+ yvals(*)=[2.0d0, 2.0d0, -2.0d0, -2.0d0, 2.0d0,  2.0d0,  -2.0d0, -2.0d0 ]
+   !
+   ! basics
+   !
+   ! with just a real X returns angles in radians 
+   ! in the interval [-PI/2, PI/2].
+    x=2.866_real64
+    print g, atan(x)
+   !
+   ! all the quadrants using two arguments
+   !
+    print g, atan( 2.0d0, 2.0d0),atan( 2.0d0, 2.0d0)*Deg_Per_Rad
+    print g, atan( 2.0d0,-2.0d0),atan( 2.0d0,-2.0d0)*Deg_Per_Rad
+    print g, atan(-2.0d0, 2.0d0),atan(-2.0d0, 2.0d0)*Deg_Per_Rad
+    print g, atan(-2.0d0,-2.0d0),atan(-2.0d0,-2.0d0)*Deg_Per_Rad
+   !
+   ! elemental
+   !
+    print g, 'elemental:'
+    print g, atan(xvals,yvals)*Deg_Per_Rad
+    print g, 'elemental:'
+   !
+   ! when x and y are present, atan(3) is an alias for atan2(2)
+   !
+    print g, 'For comparison to atan2(3):'
+    print g, atan2(xvals,yvals)*Deg_Per_Rad
+    print g, 'test1 ',merge('PASSED','FAILED',     &
+    & all(atan(xvals,yvals)==atan2(xvals,yvals))), &
+    & atan(xvals,yvals)==atan2(xvals,yvals)
 
 end program demo_atan
 ```
@@ -88,6 +128,13 @@ Results:
  > 2.356194490192345 135.0000000000000
  > -.7853981633974483 -45.00000000000000
  > -2.356194490192345 -135.0000000000000
+ > elemental:
+ > 45.0000000000000 45.0000000000000 135.000000000000 135.000000000000
+ > -45.0000000000000 -45.0000000000000 -135.000000000000 -135.000000000000
+ > For comparison to atan2(3):
+ > 45.0000000000000 45.0000000000000 135.000000000000 135.000000000000
+ > -45.0000000000000 -45.0000000000000 -135.000000000000 -135.000000000000
+ > test1 PASSED T T T T T T T T
 ```
 ### **Standard**
 

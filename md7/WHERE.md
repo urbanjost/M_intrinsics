@@ -176,7 +176,7 @@
    real, dimension(nd):: b ! =[ ndh*1.0, 0.0, nduh*2.0 ]
    real, dimension(nd):: c ! =[ nd*-77.77 ]
    integer iflag(nd)
-   data b/ndh*1,0.0,nduh*2./,c/nd*-77.77/
+   data b/ ndh*1.0, 0.0, nduh*2.0 /, c/ nd*-77.77 /
 
    where (b.ne.0) c=a/b
    write (*,2000) c(1:nd)

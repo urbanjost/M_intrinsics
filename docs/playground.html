@@ -114,7 +114,7 @@
       end program demo_abs
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fachar%0D%0A%20%20%20%20%20%20use%2Cintrinsic%3A%3Aiso%5Ffortran%5Fenv%2Conly%3Aint8%2Cint16%2Cint32%2Cint64%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%0D%0A%20%20%20%20%20%20%20%20%20i%3D65%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22decimal%20%20%20%20%20%3D%22%2Ci0%29%27%29i%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22character%20%20%20%3D%22%2Ca1%29%27%29achar%28i%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22binary%20%20%20%20%20%20%3D%22%2Cb0%29%27%29achar%28i%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22octal%20%20%20%20%20%20%20%3D%22%2Co0%29%27%29achar%28i%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22hexadecimal%20%3D%22%2Cz0%29%27%29achar%28i%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%288%28i3%2C1x%2Ca%2C1x%29%29%27%29%28i%2Cachar%28i%29%2C%20i%3D32%2C126%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28a%29%27%29upper%28%27Mixed%20Case%27%29%0D%0A%20%20%20%20%20%20contains%0D%0A%20%20%20%20%20%20%21%20a%20classic%20use%20of%20achar%283%29%20is%20to%20convert%20the%20case%20of%20a%20string%0D%0A%0D%0A%20%20%20%20%20%20pure%20elemental%20function%20upper%28str%29%20result%20%28string%29%0D%0A%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%21%24%40%28%23%29%20upper%283%29%3A%20function%20to%20return%20a%20trimmed%20uppercase%2Donly%20string%0D%0A%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%21%20input%20string%20to%20convert%20to%20all%20uppercase%0D%0A%20%20%20%20%20%20character%28%2A%29%2C%20intent%28in%29%20%20%20%20%20%20%3A%3A%20str%0D%0A%20%20%20%20%20%20%21%20output%20string%20that%20contains%20no%20miniscule%20letters%0D%0A%20%20%20%20%20%20character%28len%28str%29%29%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20string%0D%0A%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20i%2C%20iend%0D%0A%20%20%20%20%20%20integer%2Cparameter%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20toupper%20%3D%20iachar%28%27A%27%29%2Diachar%28%27a%27%29%0D%0A%20%20%20%20%20%20%20%20%20iend%3Dlen%5Ftrim%28str%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20initialize%20output%20string%20to%20trimmed%20input%20string%0D%0A%20%20%20%20%20%20%20%20%20string%20%3D%20str%28%3Aiend%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20process%20each%20letter%20in%20the%20string%0D%0A%20%20%20%20%20%20%20%20%20do%20concurrent%20%28i%20%3D%201%3Aiend%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20select%20case%20%28str%28i%3Ai%29%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20located%20miniscule%20letter%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20case%20%28%27a%27%3A%27z%27%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20change%20miniscule%20to%20majuscule%20letter%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20string%28i%3Ai%29%20%3D%20achar%28iachar%28str%28i%3Ai%29%29%2Btoupper%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20end%20select%0D%0A%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20end%20function%20upper%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fachar%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fachar%0D%0A%20%20%20%20%20%20use%2Cintrinsic%3A%3Aiso%5Ffortran%5Fenv%2Conly%3Aint8%2Cint16%2Cint32%2Cint64%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%0D%0A%20%20%20%20%20%20%20%20%20i%3D65%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22decimal%20%20%20%20%20%3D%22%2Ci0%29%27%29i%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22character%20%20%20%3D%22%2Ca1%29%27%29achar%28i%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22binary%20%20%20%20%20%20%3D%22%2Cb0%29%27%29i%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22octal%20%20%20%20%20%20%20%3D%22%2Co0%29%27%29i%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%22hexadecimal%20%3D%22%2Cz0%29%27%29i%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%288%28i3%2C1x%2Ca%2C1x%29%29%27%29%28i%2Cachar%28i%29%2C%20i%3D32%2C126%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28a%29%27%29upper%28%27Mixed%20Case%27%29%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%21Shows%20how%20to%20place%20a%20non%2Dadvancing%20status%20counter%2E%2E%2E%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20do%20i%3D0%2C100%2C10%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2Cfmt%3D%22%28A1%2CA%2Ct21%2CF6%2E2%2CA%29%22%2Cadvance%3D%22NO%22%29%20achar%2813%29%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%26%20%22Percent%20Complete%3A%20%22%2C%20real%28i%29%2C%20%22%25%22%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20call%20system%5Fusleep%281000000%29%20%21give%20a%20delay%20in%20microseconds%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%0D%0A%20%20%20%20%20%20contains%0D%0A%20%20%20%20%20%20%21%20a%20classic%20use%20of%20achar%283%29%20is%20to%20convert%20the%20case%20of%20a%20string%0D%0A%0D%0A%20%20%20%20%20%20pure%20elemental%20function%20upper%28str%29%20result%20%28string%29%0D%0A%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%21%24%40%28%23%29%20upper%283%29%3A%20function%20to%20return%20a%20trimmed%20uppercase%2Donly%20string%0D%0A%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%21%20input%20string%20to%20convert%20to%20all%20uppercase%0D%0A%20%20%20%20%20%20character%28%2A%29%2C%20intent%28in%29%20%20%20%20%20%20%3A%3A%20str%0D%0A%20%20%20%20%20%20%21%20output%20string%20that%20contains%20no%20miniscule%20letters%0D%0A%20%20%20%20%20%20character%28len%28str%29%29%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20string%0D%0A%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20i%2C%20iend%0D%0A%20%20%20%20%20%20integer%2Cparameter%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20toupper%20%3D%20iachar%28%27A%27%29%2Diachar%28%27a%27%29%0D%0A%20%20%20%20%20%20%20%20%20iend%3Dlen%5Ftrim%28str%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20initialize%20output%20string%20to%20trimmed%20input%20string%0D%0A%20%20%20%20%20%20%20%20%20string%20%3D%20str%28%3Aiend%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20process%20each%20letter%20in%20the%20string%0D%0A%20%20%20%20%20%20%20%20%20do%20concurrent%20%28i%20%3D%201%3Aiend%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20select%20case%20%28str%28i%3Ai%29%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20located%20miniscule%20letter%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20case%20%28%27a%27%3A%27z%27%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20change%20miniscule%20to%20majuscule%20letter%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20string%28i%3Ai%29%20%3D%20achar%28iachar%28str%28i%3Ai%29%29%2Btoupper%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20end%20select%0D%0A%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20end%20function%20upper%0D%0A%0D%0A%20%20%20%20%20%20subroutine%20system%5Fusleep%28microseconds%29%0D%0A%20%20%20%20%20%20use%2Cintrinsic%20%20%20%20%20%20%20%3A%3A%20iso%5Fc%5Fbinding%2C%20only%3A%20c%5Fint%0D%0A%20%20%20%20%20%20integer%2Cintent%28in%29%20%20%3A%3A%20microseconds%0D%0A%20%20%20%20%20%20integer%28kind%3Dc%5Fint%29%20%3A%3A%20status%0D%0A%20%20%20%20%20%20interface%0D%0A%20%20%20%20%20%20%20%20%20function%20c%5Fusleep%28mseconds%29%20bind%20%28c%2Cname%3D%22usleep%22%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20import%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20should%20be%20unsigned%20int%20%28not%20available%20in%20Fortran%29%2E%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20OK%20until%20highest%20bit%20gets%20set%2E%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20integer%28c%5Fint%29%20%20%20%20%20%20%20%3A%3A%20c%5Fusleep%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20integer%28c%5Fint%29%2C%20intent%28in%29%2C%20value%20%3A%3A%20mseconds%0D%0A%20%20%20%20%20%20%20%20%20end%20function%20c%5Fusleep%0D%0A%20%20%20%20%20%20end%20interface%0D%0A%20%20%20%20%20%20%20%20%20if%28microseconds%20%3E%200%29then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20status%3Dc%5Fusleep%28int%28microseconds%2Ckind%3Dc%5Fint%29%29%0D%0A%20%20%20%20%20%20%20%20%20endif%0D%0A%20%20%20%20%20%20end%20subroutine%20system%5Fusleep%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fachar%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> achar
@@ -136,6 +136,15 @@
          write(*,'(8(i3,1x,a,1x))')(i,achar(i), i=32,126)
 
          write(*,'(a)')upper('Mixed Case')
+         !
+         !Shows how to place a non-advancing status counter...
+         !
+            do i=0,100,10
+               write(*,fmt="(A1,A,t21,F6.2,A)",advance="NO") achar(13), &
+               & "Percent Complete: ", real(i), "%"
+               call system_usleep(1000000) !give a delay in microseconds
+            enddo
+            write(*,*)
       contains
       ! a classic use of achar(3) is to convert the case of a string
 
@@ -162,6 +171,25 @@
              end select
          enddo
       end function upper
+
+      subroutine system_usleep(microseconds)
+      use,intrinsic       :: iso_c_binding, only: c_int
+      integer,intent(in)  :: microseconds
+      integer(kind=c_int) :: status
+      interface
+         function c_usleep(mseconds) bind (c,name="usleep")
+            import
+            ! should be unsigned int (not available in Fortran).
+            ! OK until highest bit gets set.
+            integer(c_int)       :: c_usleep
+            integer(c_int), intent(in), value :: mseconds
+         end function c_usleep
+      end interface
+         if(microseconds > 0)then
+            status=c_usleep(int(microseconds,kind=c_int))
+         endif
+      end subroutine system_usleep
+
       end program demo_achar
   </xmp>
   </details>
@@ -622,7 +650,7 @@
       end program demo_any
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fasind%0D%0A%20%20%20%20%20%20use%2C%20intrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20dp%3D%3Ereal64%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%21%20value%20to%20convert%20degrees%20to%20radians%0D%0A%20%20%20%20%20%20real%28kind%3Ddp%29%2Cparameter%20%20%20%20%3A%3A%20R2D%3D180%2E0%5Fdp%2Facos%28%2D1%2E0%5Fdp%29%0D%0A%20%20%20%20%20%20real%28kind%3Ddp%29%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20angle%2C%20grade%2C%20rise%2C%20run%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%20all%3D%27%28%2A%28g0%2C1x%29%29%27%0D%0A%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20i%0D%0A%20%20%20%20%20%20%20%20%21%20given%20sine%28theta%29%20%3D%201%2E25%20miles%2F50%20miles%20%28opposite%2Fhypotenuse%29%0D%0A%20%20%20%20%20%20%20%20%21%20then%20taking%20the%20arcsine%20of%20both%20sides%20of%20the%20equality%20yields%0D%0A%20%20%20%20%20%20%20%20%21%20theta%20%3D%20arcsine%281%2E25%20miles%2F50%20miles%29%20ie%2E%20arcsine%28opposite%2Fhypotenuse%29%0D%0A%20%20%20%20%20%20%20%20rise%3D1%2E250%5Fdp%0D%0A%20%20%20%20%20%20%20%20run%3D50%2E00%5Fdp%0D%0A%20%20%20%20%20%20%20%20angle%20%3D%20asind%28rise%2Frun%29%0D%0A%20%20%20%20%20%20%20%20print%20all%2C%20%27angle%20of%20incline%28degrees%29%20%3D%20%27%2C%20angle%0D%0A%20%20%20%20%20%20%20%20angle%20%3D%20angle%2FR2D%0D%0A%20%20%20%20%20%20%20%20print%20all%2C%20%27angle%20of%20incline%28radians%29%20%3D%20%27%2C%20angle%0D%0A%20%20%20%20%20%20%20%20print%20all%2C%20%27angle%20of%20incline%28radians%29%20%3D%20%27%2C%20asin%28rise%2Frun%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20print%20all%2C%20%27percent%20grade%3D%27%2Crise%2Frun%2A100%2E0%5Fdp%0D%0A%20%20%20%20%20%20%20%20print%20all%2C%0D%0A%20%20%20%20%20%20%20%20do%20i%3D%2D360%2C360%2C45%0D%0A%20%20%20%20%20%20%20%20%20%20%20grade%3Di%2F360%2E0d0%0D%0A%20%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20grade%2C%20asind%28grade%29%2C%20sind%28asind%28grade%29%29%0D%0A%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fasind%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fasind%0D%0A%20%20%20%20%20%20use%2C%20intrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20dp%3D%3Ereal64%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%21%20value%20to%20convert%20degrees%20to%20radians%0D%0A%20%20%20%20%20%20real%28kind%3Ddp%29%2Cparameter%20%20%20%20%3A%3A%20R2D%3D180%2E0%5Fdp%2Facos%28%2D1%2E0%5Fdp%29%0D%0A%20%20%20%20%20%20real%28kind%3Ddp%29%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20angle%2C%20grade%2C%20rise%2C%20run%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%20all%3D%27%28%2A%28g0%2C1x%29%29%27%0D%0A%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20i%0D%0A%20%20%20%20%20%20%20%20%21%20given%20sine%28theta%29%20%3D%201%2E25%20miles%2F50%20miles%20%28opposite%2Fhypotenuse%29%0D%0A%20%20%20%20%20%20%20%20%21%20then%20taking%20the%20arcsine%20of%20both%20sides%20of%20the%20equality%20yields%0D%0A%20%20%20%20%20%20%20%20%21%20theta%20%3D%20arcsine%281%2E25%20miles%2F50%20miles%29%20ie%2E%20arcsine%28opposite%2Fhypotenuse%29%0D%0A%20%20%20%20%20%20%20%20rise%3D1%2E250%5Fdp%0D%0A%20%20%20%20%20%20%20%20run%3D50%2E00%5Fdp%0D%0A%20%20%20%20%20%20%20%20angle%20%3D%20asind%28rise%2Frun%29%0D%0A%20%20%20%20%20%20%20%20print%20all%2C%20%27angle%20of%20incline%28degrees%29%20%3D%20%27%2C%20angle%0D%0A%20%20%20%20%20%20%20%20angle%20%3D%20angle%2FR2D%0D%0A%20%20%20%20%20%20%20%20print%20all%2C%20%27angle%20of%20incline%28radians%29%20%3D%20%27%2C%20angle%0D%0A%20%20%20%20%20%20%20%20print%20all%2C%20%27angle%20of%20incline%28radians%29%20%3D%20%27%2C%20asin%28rise%2Frun%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20print%20all%2C%20%27percent%20grade%3D%27%2Crise%2Frun%2A100%2E0%5Fdp%0D%0A%20%20%20%20%20%20%20%20print%20all%0D%0A%20%20%20%20%20%20%20%20do%20i%3D%2D360%2C360%2C45%0D%0A%20%20%20%20%20%20%20%20%20%20%20grade%3Di%2F360%2E0d0%0D%0A%20%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20grade%2C%20asind%28grade%29%2C%20sind%28asind%28grade%29%29%0D%0A%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fasind%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> asind
@@ -650,7 +678,7 @@
         print all, 'angle of incline(radians) = ', asin(rise/run)
 
         print all, 'percent grade=',rise/run*100.0_dp
-        print all,
+        print all
         do i=-360,360,45
            grade=i/360.0d0
            print *, grade, asind(grade), sind(asind(grade))
@@ -1031,7 +1059,7 @@
       end program demo_atand
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fatan%0D%0A%20%20%20%20%20%20use%2C%20intrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20real32%2C%20real64%2C%20real128%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%20all%3D%27%28%2A%28g0%2C1x%29%29%27%0D%0A%20%20%20%20%20%20real%28kind%3Dreal64%29%2Cparameter%20%3A%3A%20%26%0D%0A%20%20%20%20%20%20%20Deg%5FPer%5FRad%20%3D%2057%2E2957795130823208767981548%5Freal64%0D%0A%20%20%20%20%20%20real%28kind%3Dreal64%29%20%3A%3A%20x%0D%0A%20%20%20%20%20%20%20%20%20%20x%3D2%2E866%5Freal64%0D%0A%20%20%20%20%20%20%20%20%20%20print%20all%2C%20atan%28x%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20print%20all%2C%20atan%28%202%2E0d0%2C%202%2E0d0%29%2Catan%28%202%2E0d0%2C%202%2E0d0%29%2ADeg%5FPer%5FRad%0D%0A%20%20%20%20%20%20%20%20%20%20print%20all%2C%20atan%28%202%2E0d0%2C%2D2%2E0d0%29%2Catan%28%202%2E0d0%2C%2D2%2E0d0%29%2ADeg%5FPer%5FRad%0D%0A%20%20%20%20%20%20%20%20%20%20print%20all%2C%20atan%28%2D2%2E0d0%2C%202%2E0d0%29%2Catan%28%2D2%2E0d0%2C%202%2E0d0%29%2ADeg%5FPer%5FRad%0D%0A%20%20%20%20%20%20%20%20%20%20print%20all%2C%20atan%28%2D2%2E0d0%2C%2D2%2E0d0%29%2Catan%28%2D2%2E0d0%2C%2D2%2E0d0%29%2ADeg%5FPer%5FRad%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fatan%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fatan%0D%0A%20%20%20%20%20%20use%2C%20intrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20real32%2C%20real64%2C%20real128%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%20%3A%3A%20g%3D%27%28%2A%28g0%2C1x%29%29%27%0D%0A%20%20%20%20%20%20real%28kind%3Dreal64%29%2Cparameter%20%3A%3A%20%26%0D%0A%20%20%20%20%20%20%20Deg%5FPer%5FRad%20%3D%2057%2E2957795130823208767981548%5Freal64%0D%0A%20%20%20%20%20%20real%28kind%3Dreal64%29%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20x%0D%0A%20%20%20%20%20%20real%28kind%3Dreal64%29%2Cparameter%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20%26%0D%0A%0D%0A%20%20%20%20%20%20%20xvals%28%2A%29%3D%5B2%2E0d0%2C%202%2E0d0%2C%202%2E0d0%2C%20%202%2E0d0%2C%20%20%2D2%2E0d0%2C%20%2D2%2E0d0%2C%20%2D2%2E0d0%2C%20%2D2%2E0d0%20%5D%0D%0A%20%20%20%20%20%20real%28kind%3Dreal64%29%2Cparameter%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20%26%0D%0A%20%20%20%20%20%20%20yvals%28%2A%29%3D%5B2%2E0d0%2C%202%2E0d0%2C%20%2D2%2E0d0%2C%20%2D2%2E0d0%2C%202%2E0d0%2C%20%202%2E0d0%2C%20%20%2D2%2E0d0%2C%20%2D2%2E0d0%20%5D%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%21%20basics%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%21%20with%20just%20a%20real%20X%20returns%20angles%20in%20radians%0D%0A%20%20%20%20%20%20%20%20%20%21%20in%20the%20interval%20%5B%2DPI%2F2%2C%20PI%2F2%5D%2E%0D%0A%20%20%20%20%20%20%20%20%20%20x%3D2%2E866%5Freal64%0D%0A%20%20%20%20%20%20%20%20%20%20print%20g%2C%20atan%28x%29%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%21%20all%20the%20quadrants%20using%20two%20arguments%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20print%20g%2C%20atan%28%202%2E0d0%2C%202%2E0d0%29%2Catan%28%202%2E0d0%2C%202%2E0d0%29%2ADeg%5FPer%5FRad%0D%0A%20%20%20%20%20%20%20%20%20%20print%20g%2C%20atan%28%202%2E0d0%2C%2D2%2E0d0%29%2Catan%28%202%2E0d0%2C%2D2%2E0d0%29%2ADeg%5FPer%5FRad%0D%0A%20%20%20%20%20%20%20%20%20%20print%20g%2C%20atan%28%2D2%2E0d0%2C%202%2E0d0%29%2Catan%28%2D2%2E0d0%2C%202%2E0d0%29%2ADeg%5FPer%5FRad%0D%0A%20%20%20%20%20%20%20%20%20%20print%20g%2C%20atan%28%2D2%2E0d0%2C%2D2%2E0d0%29%2Catan%28%2D2%2E0d0%2C%2D2%2E0d0%29%2ADeg%5FPer%5FRad%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%21%20elemental%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20print%20g%2C%20%27elemental%3A%27%0D%0A%20%20%20%20%20%20%20%20%20%20print%20g%2C%20atan%28xvals%2Cyvals%29%2ADeg%5FPer%5FRad%0D%0A%20%20%20%20%20%20%20%20%20%20print%20g%2C%20%27elemental%3A%27%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%21%20when%20x%20and%20y%20are%20present%2C%20atan%283%29%20is%20an%20alias%20for%20atan2%282%29%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20print%20g%2C%20%27For%20comparison%20to%20atan2%283%29%3A%27%0D%0A%20%20%20%20%20%20%20%20%20%20print%20g%2C%20atan2%28xvals%2Cyvals%29%2ADeg%5FPer%5FRad%0D%0A%20%20%20%20%20%20%20%20%20%20print%20g%2C%20%27test1%20%27%2Cmerge%28%27PASSED%27%2C%27FAILED%27%2C%20%20%20%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%26%20all%28atan%28xvals%2Cyvals%29%3D%3Datan2%28xvals%2Cyvals%29%29%29%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%26%20atan%28xvals%2Cyvals%29%3D%3Datan2%28xvals%2Cyvals%29%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fatan%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> atan
@@ -1042,17 +1070,43 @@
       program demo_atan
       use, intrinsic :: iso_fortran_env, only : real32, real64, real128
       implicit none
-      character(len=*),parameter :: all='(*(g0,1x))'
+      character(len=*),parameter  :: g='(*(g0,1x))'
       real(kind=real64),parameter :: &
        Deg_Per_Rad = 57.2957795130823208767981548_real64
-      real(kind=real64) :: x
-          x=2.866_real64
-          print all, atan(x)
+      real(kind=real64)           :: x
+      real(kind=real64),parameter              :: &
 
-          print all, atan( 2.0d0, 2.0d0),atan( 2.0d0, 2.0d0)*Deg_Per_Rad
-          print all, atan( 2.0d0,-2.0d0),atan( 2.0d0,-2.0d0)*Deg_Per_Rad
-          print all, atan(-2.0d0, 2.0d0),atan(-2.0d0, 2.0d0)*Deg_Per_Rad
-          print all, atan(-2.0d0,-2.0d0),atan(-2.0d0,-2.0d0)*Deg_Per_Rad
+       xvals(*)=[2.0d0, 2.0d0, 2.0d0,  2.0d0,  -2.0d0, -2.0d0, -2.0d0, -2.0d0 ]
+      real(kind=real64),parameter              :: &
+       yvals(*)=[2.0d0, 2.0d0, -2.0d0, -2.0d0, 2.0d0,  2.0d0,  -2.0d0, -2.0d0 ]
+         !
+         ! basics
+         !
+         ! with just a real X returns angles in radians
+         ! in the interval [-PI/2, PI/2].
+          x=2.866_real64
+          print g, atan(x)
+         !
+         ! all the quadrants using two arguments
+         !
+          print g, atan( 2.0d0, 2.0d0),atan( 2.0d0, 2.0d0)*Deg_Per_Rad
+          print g, atan( 2.0d0,-2.0d0),atan( 2.0d0,-2.0d0)*Deg_Per_Rad
+          print g, atan(-2.0d0, 2.0d0),atan(-2.0d0, 2.0d0)*Deg_Per_Rad
+          print g, atan(-2.0d0,-2.0d0),atan(-2.0d0,-2.0d0)*Deg_Per_Rad
+         !
+         ! elemental
+         !
+          print g, 'elemental:'
+          print g, atan(xvals,yvals)*Deg_Per_Rad
+          print g, 'elemental:'
+         !
+         ! when x and y are present, atan(3) is an alias for atan2(2)
+         !
+          print g, 'For comparison to atan2(3):'
+          print g, atan2(xvals,yvals)*Deg_Per_Rad
+          print g, 'test1 ',merge('PASSED','FAILED',     &
+          & all(atan(xvals,yvals)==atan2(xvals,yvals))), &
+          & atan(xvals,yvals)==atan2(xvals,yvals)
 
       end program demo_atan
   </xmp>
@@ -1726,7 +1780,7 @@
       end program demo_ble
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20%20%20%20%20program%20demo%5Fblock%0D%0A%20%20%20%20%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%20%20%20%20integer%2Cparameter%20%3A%3A%20arr1%28%2A%29%3D%5B1%2C2%2C3%2C4%2C5%2C6%2C7%5D%0D%0A%20%20%20%20%20%20%20%20%20%20integer%2Cparameter%20%3A%3A%20arr2%28%2A%29%3D%5B0%2C1%2C2%2C3%2C4%2C5%2C6%2C7%5D%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20so%20when%20you%20want%20error%20processing%20to%20be%20skipped%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20if%20you%20exhaust%20a%20series%20of%20tries%20and%20really%20hate%20GOTO%20%2E%2E%2E%0D%0A%20%20%20%20%20%20%20%20%20%20DEBUG%3A%20block%0D%0A%20%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20icount%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20do%20icount%3D1%2C100%20%21%20look%20for%20answer%20up%20to%20100%20times%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%28icount%2Eeq%2E40%29exit%20DEBUG%20%21%20found%20answer%2C%20go%20on%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20never%20get%20here%20unless%20exhausted%20the%20DO%20loop%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27never%20found%20the%20answer%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20stop%203%0D%0A%20%20%20%20%20%20%20%20%20%20endblock%20DEBUG%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20call%20showme%28arr1%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20call%20showme%28arr2%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20contains%0D%0A%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20subroutine%20showme%28a%29%0D%0A%20%20%20%20%20%20%20%20%20%20integer%2Cintent%28in%29%20%3A%3A%20a%28%3A%29%0D%0A%20%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20i%3D%2D100%0D%0A%20%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20tan%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20tan%3D20%20%21%20intentionally%20cause%20a%20conflict%20with%20intrinsic%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20cannot%20use%20tan%283%29%20right%20here%20because%20using%20name%20for%20a%20variable%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20TESTFORZERO%3A%20block%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20I%20%20%20%20%20%20%21%20local%20block%20variable%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20intrinsic%20%3A%3A%20tan%20%20%21%20can%20use%20the%20TAN%20intrinsic%20in%20the%20block%20now%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20as%20this%20definition%20supersedes%20the%20one%20in%20the%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20parent%20body%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20do%20i%3D1%2Csize%28a%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%28a%28i%29%2Eeq%2E0%29%20then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27found%20zero%20at%20index%27%2Ci%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20exit%20TESTFORZERO%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20endif%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27Never%20found%20a%20zero%2C%20tried%20%27%2Ci%2D1%2C%27%20times%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20endblock%20TESTFORZERO%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20note%20the%20variable%20I%20in%20the%20block%20is%20local%20to%20the%20block%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27this%20is%20the%20variable%20back%20in%20the%20main%20scope%2C%20I%3D%27%2Ci%0D%0A%20%20%20%20%20%20%20%20%20%20end%20subroutine%20showme%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20end%20program%20demo%5Fblock%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20%20%20%20%20program%20demo%5Fblock%0D%0A%20%20%20%20%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%20%20%20%20integer%2Cparameter%20%3A%3A%20arr1%28%2A%29%3D%5B1%2C2%2C3%2C4%2C5%2C6%2C7%5D%0D%0A%20%20%20%20%20%20%20%20%20%20integer%2Cparameter%20%3A%3A%20arr2%28%2A%29%3D%5B0%2C1%2C2%2C3%2C4%2C5%2C6%2C7%5D%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20so%20when%20you%20want%20error%20processing%20to%20be%20skipped%0D%0A%20%20%20%20%20%20%20%20%20%20%21%20if%20you%20exhaust%20a%20series%20of%20tries%20and%20really%20hate%20GOTO%20%2E%2E%2E%0D%0A%20%20%20%20%20%20%20%20%20%20DEBUG%3A%20block%0D%0A%20%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20icount%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20do%20icount%3D1%2C100%20%21%20look%20for%20answer%20up%20to%20100%20times%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%28icount%2Eeq%2E40%29exit%20DEBUG%20%21%20found%20answer%2C%20go%20on%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20never%20get%20here%20unless%20exhausted%20the%20DO%20loop%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27never%20found%20the%20answer%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20stop%203%0D%0A%20%20%20%20%20%20%20%20%20%20endblock%20DEBUG%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20call%20showme%28arr1%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20call%20showme%28arr2%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20contains%0D%0A%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20subroutine%20showme%28a%29%0D%0A%20%20%20%20%20%20%20%20%20%20integer%2Cintent%28in%29%20%3A%3A%20a%28%3A%29%0D%0A%20%20%20%20%20%20%20%20%20%20integer%2Csave%20%20%20%20%20%20%20%3A%3A%20i%3D%2D100%0D%0A%20%20%20%20%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20tan%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20tan%3D20%20%21%20intentionally%20cause%20a%20conflict%20with%20intrinsic%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20cannot%20use%20tan%283%29%20right%20here%20because%20using%20name%20for%20a%20variable%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20TESTFORZERO%3A%20block%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20integer%20%20%20%3A%3A%20I%20%20%20%20%21%20local%20block%20variable%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20intrinsic%20%3A%3A%20tan%20%20%21%20can%20use%20the%20TAN%20intrinsic%20in%20the%20block%20now%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20as%20this%20definition%20supersedes%20the%20one%20in%20the%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20parent%20body%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20do%20i%3D1%2Csize%28a%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20if%28a%28i%29%2Eeq%2E0%29%20then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27found%20zero%20at%20index%27%2Ci%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20exit%20TESTFORZERO%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20endif%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27Never%20found%20a%20zero%2C%20tried%20%27%2Ci%2D1%2C%27%20times%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20return%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20endblock%20TESTFORZERO%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20note%20the%20variable%20I%20in%20the%20block%20is%20local%20to%20the%20block%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27this%20is%20the%20variable%20back%20in%20the%20main%20scope%2C%20I%3D%27%2Ci%0D%0A%20%20%20%20%20%20%20%20%20%20end%20subroutine%20showme%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20end%20program%20demo%5Fblock%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> block
@@ -1758,12 +1812,12 @@
           !
           subroutine showme(a)
           integer,intent(in) :: a(:)
-          integer :: i=-100
-          integer :: tan
+          integer,save       :: i=-100
+          integer            :: tan
             tan=20 ! intentionally cause a conflict with intrinsic
             ! cannot use tan(3) right here because using name for a variable
             TESTFORZERO: block
-               integer :: I      ! local block variable
+               integer   :: I    ! local block variable
                intrinsic :: tan  ! can use the TAN intrinsic in the block now
                                  ! as this definition supersedes the one in the
                                  ! parent body
@@ -2098,7 +2152,7 @@
       end program demo_c_funloc
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fchar%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%2C%20parameter%20%3A%3A%20ascii%20%3D%20%20selected%5Fchar%5Fkind%20%28%22ascii%22%29%0D%0A%20%20%20%20%20%20character%28len%3D1%2C%20kind%3Dascii%20%29%20%3A%3A%20c%2C%20esc%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%0D%0A%20%20%20%20%20%20%20%20%21%20basic%0D%0A%20%20%20%20%20%20%20%20%20i%3D74%0D%0A%20%20%20%20%20%20%20%20%20c%3Dchar%28i%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27ASCII%20character%20%27%2Ci%2C%27is%20%27%2Cc%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%2A%28g0%29%29%27%29%27Uppercase%20ASCII%3A%20%27%2C%28char%28i%29%2Ci%3D65%2C90%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%2A%28g0%29%29%27%29%27lowercase%20ASCII%3A%20%27%2C%28char%28i%29%2Ci%3D97%2C122%29%0D%0A%20%20%20%20%20%20%20%20%20esc%3Dchar%2827%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%2A%28g0%29%29%27%29%27Elemental%3A%20%27%2Cchar%28%5B65%2C97%2C90%2C122%5D%29%0D%0A%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27a%20selection%20of%20ASCII%20characters%20%28shows%20hex%20if%20not%20printable%29%27%0D%0A%20%20%20%20%20%20%20%20%20do%20i%3D0%2C127%2C10%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20c%20%3D%20char%28i%2Ckind%3Dascii%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20select%20case%28i%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%2832%3A126%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28i3%2C1x%2Ca%29%27%29i%2Cc%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%280%3A31%2C127%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20print%20hexadecimal%20value%20for%20unprintable%20characters%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28i3%2C1x%2Cz2%2E2%29%27%29i%2Cc%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%20default%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28i3%2C1x%2Ca%2C1x%2Ca%29%27%29i%2Cc%2C%27non%2Dstandard%20ASCII%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20end%20select%0D%0A%20%20%20%20%20%20%20%20%20enddo%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fchar%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fchar%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%2C%20parameter%20%3A%3A%20ascii%20%3D%20%20selected%5Fchar%5Fkind%20%28%22ascii%22%29%0D%0A%20%20%20%20%20%20character%28len%3D1%2C%20kind%3Dascii%20%29%20%3A%3A%20c%2C%20esc%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%0D%0A%20%20%20%20%20%20%20%20%21%20basic%0D%0A%20%20%20%20%20%20%20%20%20i%3D74%0D%0A%20%20%20%20%20%20%20%20%20c%3Dchar%28i%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27ASCII%20character%20%27%2Ci%2C%27is%20%27%2Cc%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%2A%28g0%29%29%27%29%27Uppercase%20ASCII%3A%20%27%2C%28char%28i%29%2Ci%3D65%2C90%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%2A%28g0%29%29%27%29%27lowercase%20ASCII%3A%20%27%2C%28char%28i%29%2Ci%3D97%2C122%29%0D%0A%20%20%20%20%20%20%20%20%20esc%3Dchar%2827%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%2A%28g0%29%29%27%29%27Elemental%3A%20%27%2Cchar%28%5B65%2C97%2C90%2C122%5D%29%0D%0A%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27a%20selection%20of%20ASCII%20characters%20%28shows%20hex%20if%20not%20printable%29%27%0D%0A%20%20%20%20%20%20%20%20%20do%20i%3D0%2C127%2C10%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20c%20%3D%20char%28i%2Ckind%3Dascii%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20select%20case%28i%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%2832%3A126%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28i3%2C1x%2Ca%29%27%29i%2Cc%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%280%3A31%2C127%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20print%20hexadecimal%20value%20for%20unprintable%20characters%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28i3%2C1x%2Cz2%2E2%29%27%29i%2Cichar%28c%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20case%20default%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28i3%2C1x%2Ca%2C1x%2Ca%29%27%29i%2Cc%2C%27non%2Dstandard%20ASCII%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20end%20select%0D%0A%20%20%20%20%20%20%20%20%20enddo%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fchar%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> char
@@ -2128,7 +2182,7 @@
                write(*,'(i3,1x,a)')i,c
             case(0:31,127)
                ! print hexadecimal value for unprintable characters
-               write(*,'(i3,1x,z2.2)')i,c
+               write(*,'(i3,1x,z2.2)')i,ichar(c)
             case default
                write(*,'(i3,1x,a,1x,a)')i,c,'non-standard ASCII'
             end select
@@ -2176,7 +2230,7 @@
           end program demo_close
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fcmplx%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%2Cparameter%20%3A%3A%20dp%3Dkind%280%2E0d0%29%0D%0A%20%20%20%20%20%20real%28kind%3Ddp%29%20%20%20%20%20%3A%3A%20precise%0D%0A%20%20%20%20%20%20complex%28kind%3Ddp%29%20%20%3A%3A%20z8%0D%0A%20%20%20%20%20%20complex%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20z4%2C%20zthree%283%29%0D%0A%20%20%20%20%20%20%20%20%20precise%3D1%2E2345678901234567d0%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20basic%0D%0A%20%20%20%20%20%20%20%20%20z4%20%3D%20cmplx%28%2D3%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27Z4%3D%27%2Cz4%0D%0A%20%20%20%20%20%20%20%20%20z4%20%3D%20cmplx%281%2E23456789%2C%201%2E23456789%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27Z4%3D%27%2Cz4%0D%0A%20%20%20%20%20%20%20%20%20%21%20with%20a%20format%20treat%20a%20complex%20as%20two%20real%20values%0D%0A%20%20%20%20%20%20%20%20%20print%20%27%281x%2Cg0%2C1x%2Cg0%2C1x%2Cg0%29%27%2C%27Z4%3D%27%2Cz4%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20working%20with%20higher%20precision%20values%0D%0A%20%20%20%20%20%20%20%20%20%21%20using%20kind%3Ddp%20makes%20it%20keep%20DOUBLEPRECISION%20precision%0D%0A%20%20%20%20%20%20%20%20%20%21%20otherwise%20the%20result%20would%20be%20of%20default%20kind%0D%0A%20%20%20%20%20%20%20%20%20z8%20%3D%20cmplx%28precise%2C%20%2Dprecise%20%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27lost%20precision%20Z8%3D%27%2Cz8%0D%0A%20%20%20%20%20%20%20%20%20z8%20%3D%20cmplx%28precise%2C%20%2Dprecise%20%2Ckind%3Ddp%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27kept%20precision%20Z8%3D%27%2Cz8%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20assignment%20of%20constant%20values%20does%20not%20require%20cmplx%283%2900%0D%0A%20%20%20%20%20%20%20%20%20%21%20The%20following%20is%20intuitive%20and%20works%20without%20calling%20cmplx%283%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20but%20does%20not%20work%20for%20variables%20just%20constants%0D%0A%20%20%20%20%20%20%20%20%20z8%20%3D%20%281%2E1111111111111111d0%2C%202%2E2222222222222222d0%20%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27Z8%20defined%20with%20constants%3D%27%2Cz8%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20what%20happens%20when%20you%20assign%20a%20complex%20to%20a%20real%3F%0D%0A%20%20%20%20%20%20%20%20%20precise%3Dz8%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27LHS%3D%27%2Cprecise%2C%27RHS%3D%27%2Cz8%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20elemental%0D%0A%20%20%20%20%20%20%20%20%20zthree%3Dcmplx%28%5B10%2C20%2C30%5D%2C%2D1%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27zthree%3D%27%2Czthree%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20descriptors%20are%20an%20alternative%0D%0A%20%20%20%20%20%20%20%20%20zthree%281%3A2%29%25re%3D%5B100%2C200%5D%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27zthree%3D%27%2Czthree%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fcmplx%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fcmplx%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%2Cparameter%20%3A%3A%20dp%3Dkind%280%2E0d0%29%0D%0A%20%20%20%20%20%20real%28kind%3Ddp%29%20%20%20%20%20%3A%3A%20precise%0D%0A%20%20%20%20%20%20complex%28kind%3Ddp%29%20%20%3A%3A%20z8%0D%0A%20%20%20%20%20%20complex%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20z4%2C%20zthree%283%29%0D%0A%20%20%20%20%20%20%20%20%20precise%3D1%2E2345678901234567d0%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20basic%0D%0A%20%20%20%20%20%20%20%20%20z4%20%3D%20cmplx%28%2D3%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27Z4%3D%27%2Cz4%0D%0A%20%20%20%20%20%20%20%20%20z4%20%3D%20cmplx%281%2E23456789%2C%201%2E23456789%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27Z4%3D%27%2Cz4%0D%0A%20%20%20%20%20%20%20%20%20%21%20with%20a%20format%20treat%20a%20complex%20as%20two%20real%20values%0D%0A%20%20%20%20%20%20%20%20%20print%20%27%281x%2Cg0%2C1x%2Cg0%2C1x%2Cg0%29%27%2C%27Z4%3D%27%2Cz4%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20working%20with%20higher%20precision%20values%0D%0A%20%20%20%20%20%20%20%20%20%21%20using%20kind%3Ddp%20makes%20it%20keep%20DOUBLEPRECISION%20precision%0D%0A%20%20%20%20%20%20%20%20%20%21%20otherwise%20the%20result%20would%20be%20of%20default%20kind%0D%0A%20%20%20%20%20%20%20%20%20z8%20%3D%20cmplx%28precise%2C%20%2Dprecise%20%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27lost%20precision%20Z8%3D%27%2Cz8%0D%0A%20%20%20%20%20%20%20%20%20z8%20%3D%20cmplx%28precise%2C%20%2Dprecise%20%2Ckind%3Ddp%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27kept%20precision%20Z8%3D%27%2Cz8%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20assignment%20of%20constant%20values%20does%20not%20require%20cmplx%283%2900%0D%0A%20%20%20%20%20%20%20%20%20%21%20The%20following%20is%20intuitive%20and%20works%20without%20calling%20cmplx%283%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20but%20does%20not%20work%20for%20variables%20just%20constants%0D%0A%20%20%20%20%20%20%20%20%20z8%20%3D%20%281%2E1111111111111111d0%2C%202%2E2222222222222222d0%20%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27Z8%20defined%20with%20constants%3D%27%2Cz8%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20what%20happens%20when%20you%20assign%20a%20complex%20to%20a%20real%3F%0D%0A%20%20%20%20%20%20%20%20%20precise%3Dz8%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27LHS%3D%27%2Cprecise%2C%27RHS%3D%27%2Cz8%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20elemental%0D%0A%20%20%20%20%20%20%20%20%20zthree%3Dcmplx%28%5B10%2C20%2C30%5D%2C%2D1%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27zthree%3D%27%2Czthree%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20descriptors%20are%20an%20alternative%0D%0A%20%20%20%20%20%20%20%20%20zthree%281%3A2%29%25re%3D%5B100%2C200%5D%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27zthree%3D%27%2Czthree%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20TEST%3A%20block%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20complex%20%3A%3A%20x%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20real%2Cparameter%3A%3A%20y%3Dsin%283%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20TEST%20I%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20x%25re%7Cmi%20can%20appear%20on%20the%20left%2Dhand%20side%20of%20an%20assignment%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20x%25re%3D100%2E0%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20x%25im%3Dsin%283%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27LHS%3A%27%2Cx%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20merge%28%27PASSED%27%2C%27FAILED%27%2Cx%2Eeq%2Ecmplx%28100%2E0%2Cy%29%20%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20TEST%20II%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20it%20can%20be%20passed%20as%20a%20subroutine%20argument%20and%20be%20changed%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20call%20trivial%28x%25re%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27RETURNED%3A%27%2Cx%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20merge%28%27PASSED%27%2C%27FAILED%27%2C%20x%2Eeq%2E%28200%2E0%2Cy%29%20%29%0D%0A%20%20%20%20%20%20%20%20%20endblock%20TEST%0D%0A%20%20%20%20%20%20contains%0D%0A%20%20%20%20%20%20%20%20%20subroutine%20trivial%28r%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20real%2Cintent%28inout%29%20%3A%3A%20r%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20r%3Dr%2A2%0D%0A%20%20%20%20%20%20%20%20%20end%20subroutine%20trivial%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fcmplx%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> cmplx
@@ -2192,7 +2246,7 @@
       complex           :: z4, zthree(3)
          precise=1.2345678901234567d0
 
-        ! basic
+         ! basic
          z4 = cmplx(-3)
          print *, 'Z4=',z4
          z4 = cmplx(1.23456789, 1.23456789)
@@ -2200,7 +2254,7 @@
          ! with a format treat a complex as two real values
          print '(1x,g0,1x,g0,1x,g0)','Z4=',z4
 
-        ! working with higher precision values
+         ! working with higher precision values
          ! using kind=dp makes it keep DOUBLEPRECISION precision
          ! otherwise the result would be of default kind
          z8 = cmplx(precise, -precise )
@@ -2208,23 +2262,45 @@
          z8 = cmplx(precise, -precise ,kind=dp)
          print *, 'kept precision Z8=',z8
 
-        ! assignment of constant values does not require cmplx(3)00
+         ! assignment of constant values does not require cmplx(3)00
          ! The following is intuitive and works without calling cmplx(3)
          ! but does not work for variables just constants
          z8 = (1.1111111111111111d0, 2.2222222222222222d0 )
          print *, 'Z8 defined with constants=',z8
 
-        ! what happens when you assign a complex to a real?
+         ! what happens when you assign a complex to a real?
          precise=z8
          print *, 'LHS=',precise,'RHS=',z8
 
-        ! elemental
+         ! elemental
          zthree=cmplx([10,20,30],-1)
          print *, 'zthree=',zthree
 
-        ! descriptors are an alternative
+         ! descriptors are an alternative
          zthree(1:2)%re=[100,200]
          print *, 'zthree=',zthree
+
+         TEST: block
+            complex :: x
+            real,parameter:: y=sin(3.0)
+            ! TEST I
+            ! x%re|mi can appear on the left-hand side of an assignment
+            x%re=100.0
+            x%im=sin(3.0)
+            write(*,*)'LHS:',x, &
+            merge('PASSED','FAILED',x.eq.cmplx(100.0,y) )
+
+            ! TEST II
+            ! it can be passed as a subroutine argument and be changed
+            call trivial(x%re)
+            write(*,*)'RETURNED:',x, &
+            merge('PASSED','FAILED', x.eq.(200.0,y) )
+         endblock TEST
+      contains
+         subroutine trivial(r)
+            real,intent(inout) :: r
+            r=r*2
+         end subroutine trivial
 
       end program demo_cmplx
   </xmp>
@@ -4622,7 +4698,7 @@
       end program demo_iand
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fiany%0D%0A%20%20%20%20%20%20use%2C%20intrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20integer%5Fkinds%2C%20%26%0D%0A%20%20%20%20%20%20%20%26%20int8%2C%20int16%2C%20int32%2C%20int64%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20logical%2Cparameter%20%3A%3A%20T%3D%2Etrue%2E%2C%20F%3D%2Efalse%2E%0D%0A%20%20%20%20%20%20integer%28kind%3Dint8%29%20%3A%3A%20a%283%29%0D%0A%20%20%20%20%20%20%20%20%20a%281%29%20%3D%20int%28b%2700100100%27%2Cint8%29%0D%0A%20%20%20%20%20%20%20%20%20a%282%29%20%3D%20int%28b%2701101010%27%2Cint8%29%0D%0A%20%20%20%20%20%20%20%20%20a%283%29%20%3D%20int%28b%2710101010%27%2Cint8%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27A%3D%27%0D%0A%20%20%20%20%20%20%20%20%20print%20%27%281x%2Cb8%2E8%29%27%2C%20a%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27IANY%28A%29%3D%27%0D%0A%20%20%20%20%20%20%20%20%20print%20%27%281x%2Cb8%2E8%29%27%2C%20iany%28a%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27IANY%28A%29%20with%20a%20mask%27%0D%0A%20%20%20%20%20%20%20%20%20print%20%27%281x%2Cb8%2E8%29%27%2C%20iany%28a%2Cmask%3D%5BT%2CF%2CT%5D%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27should%20match%20%27%0D%0A%20%20%20%20%20%20%20%20%20print%20%27%281x%2Cb8%2E8%29%27%2C%20iany%28%5Ba%281%29%2Ca%283%29%5D%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27does%20it%3F%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29iany%28a%2C%5BT%2CF%2CT%5D%29%20%3D%3D%20iany%28%5Ba%281%29%2Ca%283%29%5D%29%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fiany%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fiany%0D%0A%20%20%20%20%20%20use%2C%20intrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20compiler%5Fversion%0D%0A%20%20%20%20%20%20%20%20%20use%2C%20intrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20integer%5Fkinds%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20int8%2C%20int16%2C%20int32%2C%20int64%0D%0A%20%20%20%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%20%20%20logical%2Cparameter%20%3A%3A%20T%3D%2Etrue%2E%2C%20F%3D%2Efalse%2E%0D%0A%20%20%20%20%20%20%20%20%20integer%28kind%3Dint8%29%20%3A%3A%20a%283%29%0D%0A%20%20%20%20%20%20%20%20%20integer%28kind%3Dint8%29%20%3A%3A%20answer%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20print%20%27%282a%29%27%2C%20%27This%20file%20was%20compiled%20by%20%27%2C%20compiler%5Fversion%28%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20set%20some%20values%20to%20exercise%20with%0D%0A%20%20%20%20%20%20%20%20%20a%281%29%20%3D%20int%28b%2700100100%27%2Cint8%29%0D%0A%20%20%20%20%20%20%20%20%20a%282%29%20%3D%20int%28b%2701101010%27%2Cint8%29%0D%0A%20%20%20%20%20%20%20%20%20a%283%29%20%3D%20int%28b%2710101010%27%2Cint8%29%0D%0A%20%20%20%20%20%20%20%20%20answer%3Dint%28b%2711101110%27%2Cint8%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20if%20any%20bit%20on%20in%20any%20element%20of%20A%20it%20should%20be%20on%20in%20answer%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20basic%20call%0D%0A%20%20%20%20%20%20%20%20%20print%20%27%28%22A%3D%22%29%27%0D%0A%20%20%20%20%20%20%20%20%20print%20%27%28%22%20%20%22%2C1x%2Cb8%2E8%29%27%2C%20a%0D%0A%20%20%20%20%20%20%20%20%20print%20%27%28%22IANY%28A%29%3D%22%2C1x%2Cb8%2E8%2C%2F%29%27%2C%20iany%28a%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%27%28%22is%20it%20the%20expected%20value%3F%20%22%2C1x%2Cl1%2C%2F%29%27%2C%20iany%28a%29%3D%3Danswer%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20select%20values%20with%20a%20mask%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27IANY%28A%29%20with%20a%20mask%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27these%20values%20should%20be%20equivalent%27%0D%0A%20%20%20%20%20%20%20%20%20print%20%27%281x%2Cb8%2E8%29%27%2C%20iany%28a%2Cmask%3D%5BT%2CF%2CT%5D%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%27%281x%2Cb8%2E8%29%27%2C%20iany%28a%2C%5BT%2CF%2CT%5D%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%27%281x%2Cb8%2E8%29%27%2C%20iany%28a%2Cdim%3D1%2Cmask%3D%5BT%2CF%2CT%5D%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%0D%0A%20%20%20%20%20%20%20%20%20print%20%27%28%22the%20answer%20should%20match%22%2C1x%2Cb8%2E8%29%27%2C%20iany%28%5Ba%281%29%2Ca%283%29%5D%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27does%20it%3F%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29iany%28a%2C%5BT%2CF%2CT%5D%29%20%3D%3D%20iany%28%5Ba%281%29%2Ca%283%29%5D%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29iany%28a%2C%5BT%2CF%2CT%5D%29%20%3D%3D%20int%28b%2710101110%27%2Cint8%29%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fiany%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> iany
@@ -4631,28 +4707,42 @@
     <summary>Source</summary>
   <xmp>
       program demo_iany
-      use, intrinsic :: iso_fortran_env, only : integer_kinds, &
-       & int8, int16, int32, int64
-      implicit none
-      logical,parameter :: T=.true., F=.false.
-      integer(kind=int8) :: a(3)
+      use, intrinsic :: iso_fortran_env, only : compiler_version
+         use, intrinsic :: iso_fortran_env, only : integer_kinds, &
+         & int8, int16, int32, int64
+         implicit none
+         logical,parameter :: T=.true., F=.false.
+         integer(kind=int8) :: a(3)
+         integer(kind=int8) :: answer
+
+         print '(2a)', 'This file was compiled by ', compiler_version()
+
+         ! set some values to exercise with
          a(1) = int(b'00100100',int8)
          a(2) = int(b'01101010',int8)
          a(3) = int(b'10101010',int8)
-         write(*,*)'A='
-         print '(1x,b8.8)', a
-         print *
-         write(*,*)'IANY(A)='
-         print '(1x,b8.8)', iany(a)
-         print *
+         answer=int(b'11101110',int8)
+         ! if any bit on in any element of A it should be on in answer
+
+         ! basic call
+         print '("A=")'
+         print '("  ",1x,b8.8)', a
+         print '("IANY(A)=",1x,b8.8,/)', iany(a)
+         print '("is it the expected value? ",1x,l1,/)', iany(a)==answer
+
+         ! select values with a mask
          write(*,*)'IANY(A) with a mask'
+         write(*,*)'these values should be equivalent'
          print '(1x,b8.8)', iany(a,mask=[T,F,T])
+         print '(1x,b8.8)', iany(a,[T,F,T])
+         print '(1x,b8.8)', iany(a,dim=1,mask=[T,F,T])
+
          print *
-         write(*,*)'should match '
-         print '(1x,b8.8)', iany([a(1),a(3)])
-         print *
+         print '("the answer should match",1x,b8.8)', iany([a(1),a(3)])
          write(*,*)'does it?'
          write(*,*)iany(a,[T,F,T]) == iany([a(1),a(3)])
+         write(*,*)iany(a,[T,F,T]) == int(b'10101110',int8)
+
       end program demo_iany
   </xmp>
   </details>
@@ -6079,7 +6169,7 @@
       end program demo_maxexponent
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fmax%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20real%20%3A%3A%20arr1%284%29%3D%20%5B10%2E0%2C11%2E0%2C30%2E0%2C%2D100%2E0%5D%0D%0A%20%20%20%20%20%20real%20%3A%3A%20arr2%285%29%3D%20%5B20%2E0%2C21%2E0%2C32%2E0%2C%2D200%2E0%2C2200%2E0%5D%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20box%283%2C4%29%3D%20reshape%28%5B%2D6%2C%2D5%2C%2D4%2C%2D3%2C%2D2%2C%2D1%2C1%2C2%2C3%2C4%2C5%2C6%5D%2Cshape%28box%29%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20basic%20usage%0D%0A%20%20%20%20%20%20%20%20%20%21%20this%20is%20simple%20enough%20when%20all%20arguments%20are%20scalar%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20the%20most%20positive%20value%20is%20returned%2C%20not%20the%20one%20with%20the%0D%0A%20%20%20%20%20%20%20%20%20%21%20largest%20magnitude%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27scalars%3A%27%2Cmax%2810%2E0%2C11%2E0%2C30%2E0%2C%2D100%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27scalars%3A%27%2Cmax%28%2D22222%2E0%2C%2D0%2E0001%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20strings%20do%20not%20need%20to%20be%20of%20the%20same%20length%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27characters%3A%27%2Cmax%28%27the%27%2C%27words%27%2C%27order%27%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20leading%20spaces%20are%20significant%3B%20everyone%20is%20padded%20on%20the%20right%0D%0A%20%20%20%20%20%20%20%20%20%21%20to%20the%20length%20of%20the%20longest%20argument%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27characters%3A%27%2Cmax%28%27c%27%2C%27bb%27%2C%27a%27%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27characters%3A%27%2Cmax%28%27%20c%27%2C%27b%27%2C%27a%27%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20elemental%0D%0A%20%20%20%20%20%20%20%20%20%21%20there%20must%20be%20at%20least%20two%20arguments%2C%20so%20even%20if%20A1%20is%20an%20array%0D%0A%20%20%20%20%20%20%20%20%20%21%20max%28A1%29%20is%20not%20valid%2E%20See%20MAXVAL%283%29%20and%2For%20MAXLOC%283%29%20instead%2E%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20strings%20in%20a%20single%20array%20do%20need%20to%20be%20of%20the%20same%20length%0D%0A%20%20%20%20%20%20%20%20%20%21%20but%20the%20different%20objects%20can%20still%20be%20of%20different%20lengths%2E%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%22%28%2A%28%27%22%22%27%2Ca%2C%27%22%22%27%3A%2C1x%29%29%22%29MAX%28%5B%27A%27%2C%27Z%27%5D%2C%5B%27BB%27%2C%27Y%20%27%5D%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20note%20the%20result%20is%20now%20an%20array%20with%20the%20max%20of%20every%20element%0D%0A%20%20%20%20%20%20%20%20%20%21%20position%2C%20as%20can%20be%20illustrated%20numerically%20as%20well%3A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28a%2C%2A%28i3%2C1x%29%29%27%29%27box%3D%20%20%20%27%2Cbox%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28a%2C%2A%28i3%2C1x%29%29%27%29%27box%2A%2A2%3D%27%2Csign%281%2Cbox%29%2Abox%2A%2A2%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28a%2C%2A%28i3%2C1x%29%29%27%29%27max%20%20%20%20%27%2Cmax%28box%2Csign%281%2Cbox%29%2Abox%2A%2A2%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20Remember%20if%20any%20argument%20is%20an%20array%20by%20the%20definition%20of%20an%0D%0A%20%20%20%20%20%20%20%20%20%21%20elemental%20function%20all%20the%20array%20arguments%20must%20be%20the%20same%20shape%2E%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20to%20find%20the%20single%20largest%20value%20of%20multiple%20arrays%20you%20could%0D%0A%20%20%20%20%20%20%20%20%20%21%20use%20something%20like%0D%0A%20%20%20%20%20%20%20%20%20%21%20%20%20%20MAXVAL%28%5Barr1%2C%20arr2%5D%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20or%20probably%20better%20%28more%20likely%20to%20avoid%20creating%20a%20large%20temp%20array%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20%20%20%20max%28maxval%28arr1%29%2Cmaxval%28arr2%29%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20instead%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20so%20this%20returns%20an%20array%20of%20the%20same%20shape%20as%20any%20input%20array%0D%0A%20%20%20%20%20%20%20%20%20%21%20where%20each%20result%20is%20the%20maximum%20that%20occurs%20at%20that%20position%2E%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29max%28arr1%2Carr2%281%3A4%29%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20this%20returns%20an%20array%20just%20like%20BOX%20%20except%20all%20values%20less%20than%0D%0A%20%20%20%20%20%20%20%20%20%21%20zero%20are%20set%20to%20zero%3A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29max%28box%2C0%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20When%20mixing%20arrays%20and%20scalars%20you%20can%20think%20of%20the%20scalars%0D%0A%20%20%20%20%20%20%20%20%20%21%20as%20being%20a%20copy%20of%20one%20of%20the%20arrays%20with%20all%20values%20set%20to%0D%0A%20%20%20%20%20%20%20%20%20%21%20the%20scalar%20value%2E%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fmax%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fmax%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20real%20%3A%3A%20arr1%284%29%3D%20%5B10%2E0%2C11%2E0%2C30%2E0%2C%2D100%2E0%5D%0D%0A%20%20%20%20%20%20real%20%3A%3A%20arr2%285%29%3D%20%5B20%2E0%2C21%2E0%2C32%2E0%2C%2D200%2E0%2C2200%2E0%5D%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20box%283%2C4%29%3D%20reshape%28%5B%2D6%2C%2D5%2C%2D4%2C%2D3%2C%2D2%2C%2D1%2C1%2C2%2C3%2C4%2C5%2C6%5D%2Cshape%28box%29%29%0D%0A%20%20%20%20%20%20character%28len%3D%3A%29%2Callocatable%20%3A%3A%20answer%28%3A%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20basic%20usage%0D%0A%20%20%20%20%20%20%20%20%20%21%20this%20is%20simple%20enough%20when%20all%20arguments%20are%20scalar%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20the%20most%20positive%20value%20is%20returned%2C%20not%20the%20one%20with%20the%0D%0A%20%20%20%20%20%20%20%20%20%21%20largest%20magnitude%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27scalars%3A%27%2Cmax%2810%2E0%2C11%2E0%2C30%2E0%2C%2D100%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27scalars%3A%27%2Cmax%28%2D22222%2E0%2C%2D0%2E0001%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20strings%20do%20not%20need%20to%20be%20of%20the%20same%20length%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27characters%3A%27%2Cmax%28%27the%27%2C%27words%27%2C%27order%27%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20leading%20spaces%20are%20significant%3B%20everyone%20is%20padded%20on%20the%20right%0D%0A%20%20%20%20%20%20%20%20%20%21%20to%20the%20length%20of%20the%20longest%20argument%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27characters%3A%27%2Cmax%28%27c%27%2C%27bb%27%2C%27a%27%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27characters%3A%27%2Cmax%28%27%20c%27%2C%27b%27%2C%27a%27%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20elemental%0D%0A%20%20%20%20%20%20%20%20%20%21%20there%20must%20be%20at%20least%20two%20arguments%2C%20so%20even%20if%20A1%20is%20an%20array%0D%0A%20%20%20%20%20%20%20%20%20%21%20max%28A1%29%20is%20not%20valid%2E%20See%20MAXVAL%283%29%20and%2For%20MAXLOC%283%29%20instead%2E%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20strings%20in%20a%20single%20array%20do%20need%20to%20be%20of%20the%20same%20length%0D%0A%20%20%20%20%20%20%20%20%20%21%20but%20the%20different%20objects%20can%20still%20be%20of%20different%20lengths%2E%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%22%28%2A%28%27%22%22%27%2Ca%2C%27%22%22%27%3A%2C1x%29%29%22%29MAX%28%5B%27A%27%2C%27Z%27%5D%2C%5B%27BB%27%2C%27Y%20%27%5D%29%0D%0A%20%20%20%20%20%20%20%20%20answer%3DMAX%28%5B%27A%27%2C%20%27Z%27%5D%2C%20%5B%27BB%27%2C%20%27Y%20%27%5D%29%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20if%28all%28answer%20%2Eeq%2E%20%5B%27BB%27%2C%20%27Z%20%27%5D%29%20%2Eand%2E%20len%28answer%29%2Eeq%2E2%20%29then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27previous%20line%20passed%27%0D%0A%20%20%20%20%20%20%20%20%20else%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27%3CERROR%3E%20previous%20line%20should%20be%20%22BB%22%2C%22Z%20%22%27%0D%0A%20%20%20%20%20%20%20%20%20endif%0D%0A%20%20%20%20%20%20%20%20%20%21%20note%20the%20result%20is%20now%20an%20array%20with%20the%20max%20of%20every%20element%0D%0A%20%20%20%20%20%20%20%20%20%21%20position%2C%20as%20can%20be%20illustrated%20numerically%20as%20well%3A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28a%2C%2A%28i3%2C1x%29%29%27%29%27box%3D%20%20%20%27%2Cbox%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28a%2C%2A%28i3%2C1x%29%29%27%29%27box%2A%2A2%3D%27%2Csign%281%2Cbox%29%2Abox%2A%2A2%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28a%2C%2A%28i3%2C1x%29%29%27%29%27max%20%20%20%20%27%2Cmax%28box%2Csign%281%2Cbox%29%2Abox%2A%2A2%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20Remember%20if%20any%20argument%20is%20an%20array%20by%20the%20definition%20of%20an%0D%0A%20%20%20%20%20%20%20%20%20%21%20elemental%20function%20all%20the%20array%20arguments%20must%20be%20the%20same%20shape%2E%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20to%20find%20the%20single%20largest%20value%20of%20multiple%20arrays%20you%20could%0D%0A%20%20%20%20%20%20%20%20%20%21%20use%20something%20like%0D%0A%20%20%20%20%20%20%20%20%20%21%20%20%20%20MAXVAL%28%5Barr1%2C%20arr2%5D%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20or%20probably%20better%20%28more%20likely%20to%20avoid%20creating%20a%20large%20temp%20array%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20%20%20%20max%28maxval%28arr1%29%2Cmaxval%28arr2%29%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20instead%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20so%20this%20returns%20an%20array%20of%20the%20same%20shape%20as%20any%20input%20array%0D%0A%20%20%20%20%20%20%20%20%20%21%20where%20each%20result%20is%20the%20maximum%20that%20occurs%20at%20that%20position%2E%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29max%28arr1%2Carr2%281%3A4%29%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20this%20returns%20an%20array%20just%20like%20BOX%20%20except%20all%20values%20less%20than%0D%0A%20%20%20%20%20%20%20%20%20%21%20zero%20are%20set%20to%20zero%3A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29max%28box%2C0%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20When%20mixing%20arrays%20and%20scalars%20you%20can%20think%20of%20the%20scalars%0D%0A%20%20%20%20%20%20%20%20%20%21%20as%20being%20a%20copy%20of%20one%20of%20the%20arrays%20with%20all%20values%20set%20to%0D%0A%20%20%20%20%20%20%20%20%20%21%20the%20scalar%20value%2E%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fmax%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> max
@@ -6092,6 +6182,7 @@
       real :: arr1(4)= [10.0,11.0,30.0,-100.0]
       real :: arr2(5)= [20.0,21.0,32.0,-200.0,2200.0]
       integer :: box(3,4)= reshape([-6,-5,-4,-3,-2,-1,1,2,3,4,5,6],shape(box))
+      character(len=:),allocatable :: answer(:)
 
         ! basic usage
          ! this is simple enough when all arguments are scalar
@@ -6116,6 +6207,13 @@
          ! strings in a single array do need to be of the same length
          ! but the different objects can still be of different lengths.
          write(*,"(*('""',a,'""':,1x))")MAX(['A','Z'],['BB','Y '])
+         answer=MAX(['A', 'Z'], ['BB', 'Y '])
+         !
+         if(all(answer .eq. ['BB', 'Z ']) .and. len(answer).eq.2 )then
+            write(*,*)'previous line passed'
+         else
+            write(*,*)'<ERROR> previous line should be "BB","Z "'
+         endif
          ! note the result is now an array with the max of every element
          ! position, as can be illustrated numerically as well:
          write(*,'(a,*(i3,1x))')'box=   ',box
@@ -6179,7 +6277,7 @@
       end program demo_maxloc
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fmaxval%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%2Csave%20%3A%3A%20ints%283%2C5%29%3D%20reshape%28%5B%26%0D%0A%20%20%20%20%20%20%20%20%201%2C%20%202%2C%20%203%2C%20%204%2C%20%205%2C%20%26%0D%0A%20%20%20%20%20%20%20%2010%2C%2020%2C%2030%2C%2040%2C%2050%2C%20%26%0D%0A%20%20%20%20%20%20%20%2011%2C%2022%2C%2033%2C%2044%2C%2055%20%20%26%0D%0A%20%20%20%20%20%20%5D%2Cshape%28ints%29%2Corder%3D%5B2%2C1%5D%29%0D%0A%20%20%20%20%20%20character%28len%3D%3A%29%2Callocatable%20%3A%3A%20strs%28%3A%29%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%20gen%3D%27%28%2A%28g0%2C1x%29%29%27%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%20ind%3D%27%283x%2C%2A%28g0%2C1x%29%29%27%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20print%20gen%2C%27Given%20the%20array%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%281x%2C%2A%28g4%2E4%2C1x%29%29%27%29%20%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20%28ints%28i%2C%3A%29%2Cnew%5Fline%28%27a%27%29%2Ci%3D1%2Csize%28ints%2Cdim%3D1%29%29%0D%0A%20%20%20%20%20%20%20%20%20print%20gen%2C%27Basics%3A%27%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%27biggest%20value%20in%20array%27%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20maxval%28ints%29%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%27biggest%20value%20in%20each%20column%27%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20maxval%28ints%2Cdim%3D1%29%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%27biggest%20value%20in%20each%20row%27%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%20maxval%28ints%2Cdim%3D2%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20print%20gen%2C%27With%20a%20mask%3A%27%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%27%20find%20biggest%20number%20less%20than%2030%20with%20mask%27%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20maxval%28ints%2Cmask%3Dints%2Elt%2E30%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20print%20gen%2C%27If%20zero%20size%20considered%3A%27%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%27if%20zero%20size%20numeric%20array%27%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20maxval%28%5Binteger%20%3A%3A%20%5D%29%2C%27and%20%2Dhuge%280%29%20is%27%2C%2Dhuge%280%29%2C%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20%27%28often%20not%20the%20same%21%29%27%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%27if%20zero%2Dsize%20character%20array%20all%20nulls%27%0D%0A%20%20%20%20%20%20%20%20%20strs%3D%5Bcharacter%28len%3D5%29%3A%3A%5D%0D%0A%20%20%20%20%20%20%20%20%20strs%3Dmaxval%28strs%29%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20ichar%28%5B%28strs%28i%29%2Ci%3D1%2Clen%28strs%29%29%5D%29%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%27if%20everything%20is%20false%2C%27%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%27same%20as%20zero%2Dsize%20array%20for%20each%20subarray%27%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20maxval%28ints%2Cmask%3D%2Efalse%2E%29%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20maxval%28ints%2Cmask%3D%2Efalse%2E%2Cdim%3D1%29%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fmaxval%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fmaxval%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%2Csave%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20ints%283%2C5%29%3D%20reshape%28%5B%26%0D%0A%20%20%20%20%20%20%20%20%201%2C%20%202%2C%20%203%2C%20%2D4%2C%20%205%2C%20%26%0D%0A%20%20%20%20%20%20%20%2010%2C%2020%2C%2D30%2C%2040%2C%2050%2C%20%26%0D%0A%20%20%20%20%20%20%20%2011%2C%2D22%2C%2033%2C%2044%2C%2055%20%20%26%0D%0A%20%20%20%20%20%20%5D%2Cshape%28ints%29%2Corder%3D%5B2%2C1%5D%29%0D%0A%20%20%20%20%20%20character%28len%3D%3A%29%2Callocatable%20%3A%3A%20strs%28%3A%29%0D%0A%20%20%20%20%20%20character%28len%3D%3A%29%2Callocatable%20%3A%3A%20answer%0D%0A%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20i%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%20%20%3A%3A%20gen%3D%27%28%2A%28g0%2C1x%29%29%27%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%20%20%3A%3A%20ind%3D%27%283x%2C%2A%28g0%2C1x%29%29%27%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20print%20gen%2C%27Given%20the%20array%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%281x%2C%2A%28g4%2E4%2C1x%29%29%27%29%20%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20%28ints%28i%2C%3A%29%2Cnew%5Fline%28%27a%27%29%2Ci%3D1%2Csize%28ints%2Cdim%3D1%29%29%0D%0A%20%20%20%20%20%20%20%20%20print%20gen%2C%27Basics%3A%27%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%27biggest%20value%20in%20array%27%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20maxval%28ints%29%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%27biggest%20value%20in%20each%20column%27%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20maxval%28ints%2Cdim%3D1%29%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%27biggest%20value%20in%20each%20row%27%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%20maxval%28ints%2Cdim%3D2%29%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%27find%20biggest%20number%20less%20than%2030%20with%20mask%27%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%27find%20biggest%20negative%20value%27%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%27%28closest%20to%20zero%2C%20not%20biggest%20magnitude%29%27%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20maxval%28ints%2Cmask%3Dints%2Elt%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%27DEALING%20WITH%20ZERO%2DLENGTH%20STRINGS%20AND%20ZERO%2DSIZE%20ARRAYS%27%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%27if%20zero%20size%20numeric%20array%3A%27%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20maxval%28%5Binteger%20%3A%3A%20%5D%29%2C%27and%20%2Dhuge%280%29%20is%27%2C%2Dhuge%280%29%2C%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20%27%28often%20not%20the%20same%21%29%27%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20maxval%28%5Breal%20%3A%3A%20%5D%29%2C%27and%20%2Dhuge%280%2E0%29%20is%27%2C%2Dhuge%280%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%27if%20zero%2Dsize%20character%20array%20all%20nulls%27%0D%0A%20%20%20%20%20%20%20%20%20if%28allocated%28strs%29%29deallocate%28strs%29%0D%0A%20%20%20%20%20%20%20%20%20allocate%28character%28len%3D0%29%20%3A%3A%20strs%285%29%29%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%27STRS%28%29%20has%20a%20length%20of%3A%27%2C%20len%28strs%29%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%26%20%27a%20SHAPE%20of%3A%27%2Cshape%28strs%29%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%26%20%27%3Aa%20SIZE%20of%3A%27%2Csize%28strs%29%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%27is%20maxval%20of%20null%20length%20strings%20a%20null%20character%3F%20%27%2Cichar%28maxval%28strs%29%29%3D%3D0%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%0D%0A%20%20%20%20%20%20%20%20%20if%28allocated%28strs%29%29deallocate%28strs%29%0D%0A%20%20%20%20%20%20%20%20%20allocate%28character%28len%3D5%29%20%3A%3A%20strs%280%29%29%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%27STRS%28%29%20has%20a%20length%20of%3A%27%2C%20len%28strs%29%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%26%20%27a%20SHAPE%20of%3A%27%2Cshape%28strs%29%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%26%20%27%3Aa%20SIZE%20of%3A%27%2Csize%28strs%29%0D%0A%20%20%20%20%20%20%20%20%20%20answer%3Dmaxval%28strs%29%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%27is%20maxval%20of%20strings%20all%20null%20characters%3F%20%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%26%20%5B%28answer%28i%3Ai%29%2Ci%3D1%2Clen%28answer%29%29%5D%2Eeq%2Echar%280%29%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%27if%20everything%20in%20mask%20is%20false%2C%27%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20%27same%20as%20zero%2Dsize%20array%20for%20each%20subarray%27%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20maxval%28ints%2Cmask%3D%2Efalse%2E%29%0D%0A%20%20%20%20%20%20%20%20%20print%20ind%2C%20maxval%28ints%2Cmask%3D%2Efalse%2E%2Cdim%3D1%29%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fmaxval%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> maxval
@@ -6189,15 +6287,16 @@
   <xmp>
       program demo_maxval
       implicit none
-      integer,save :: ints(3,5)= reshape([&
-         1,  2,  3,  4,  5, &
-        10, 20, 30, 40, 50, &
-        11, 22, 33, 44, 55  &
+      integer,save                 :: ints(3,5)= reshape([&
+         1,  2,  3, -4,  5, &
+        10, 20,-30, 40, 50, &
+        11,-22, 33, 44, 55  &
       ],shape(ints),order=[2,1])
       character(len=:),allocatable :: strs(:)
-      integer :: i
-      character(len=*),parameter :: gen='(*(g0,1x))'
-      character(len=*),parameter :: ind='(3x,*(g0,1x))'
+      character(len=:),allocatable :: answer
+      integer                      :: i
+      character(len=*),parameter   :: gen='(*(g0,1x))'
+      character(len=*),parameter   :: ind='(3x,*(g0,1x))'
 
          print gen,'Given the array'
          write(*,'(1x,*(g4.4,1x))') &
@@ -6209,20 +6308,39 @@
          print ind, maxval(ints,dim=1)
          print ind, 'biggest value in each row'
          print ind,  maxval(ints,dim=2)
-
-         print gen,'With a mask:'
-         print ind, ' find biggest number less than 30 with mask'
-         print ind, maxval(ints,mask=ints.lt.30)
-
-         print gen,'If zero size considered:'
-         print ind, 'if zero size numeric array'
+         print ind
+         print ind, 'find biggest number less than 30 with mask'
+         print ind
+         print ind, 'find biggest negative value'
+         print ind, '(closest to zero, not biggest magnitude)'
+         print ind, maxval(ints,mask=ints.lt.0)
+         print ind
+         print ind, 'DEALING WITH ZERO-LENGTH STRINGS AND ZERO-SIZE ARRAYS'
+         print ind
+         print ind, 'if zero size numeric array:'
          print ind, maxval([integer :: ]),'and -huge(0) is',-huge(0),&
          & '(often not the same!)'
+         print ind
+         print ind, maxval([real :: ]),'and -huge(0.0) is',-huge(0.0)
+         print ind
          print ind, 'if zero-size character array all nulls'
-         strs=[character(len=5)::]
-         strs=maxval(strs)
-         print ind, ichar([(strs(i),i=1,len(strs))])
-         print ind, 'if everything is false,'
+         if(allocated(strs))deallocate(strs)
+         allocate(character(len=0) :: strs(5))
+         print ind, 'STRS() has a length of:', len(strs), &
+          & 'a SHAPE of:',shape(strs), &
+          & ':a SIZE of:',size(strs)
+         print ind, 'is maxval of null length strings a null character? ',ichar(maxval(strs))==0
+         print ind
+         if(allocated(strs))deallocate(strs)
+         allocate(character(len=5) :: strs(0))
+         print ind, 'STRS() has a length of:', len(strs), &
+          & 'a SHAPE of:',shape(strs), &
+          & ':a SIZE of:',size(strs)
+          answer=maxval(strs)
+         print ind, 'is maxval of strings all null characters? ', &
+          & [(answer(i:i),i=1,len(answer))].eq.char(0)
+         print ind
+         print ind, 'if everything in mask is false,'
          print ind, 'same as zero-size array for each subarray'
          print ind, maxval(ints,mask=.false.)
          print ind, maxval(ints,mask=.false.,dim=1)
@@ -6375,7 +6493,7 @@
       end program demo_minexponent
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fmin%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20rectangle%283%2C4%29%3Dreshape%28%5B%28%2D6%2Bi%2Ci%3D0%2C11%29%5D%2C%5B3%2C4%5D%29%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27basics%27%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20min%2810%2E0%2C11%2E0%2C30%2E0%2C%2D100%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20min%28%2D200%2E0%2C%2D1%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27elemental%27%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20min%281%2C%5B2%2C3%2C4%5D%29%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20min%285%2C%5B2%2C3%2C4%5D%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27box%3A%27%0D%0A%20%20%20%20%20%20%20%20%20%20do%20i%3D1%2Csize%28rectangle%2Cdim%3D1%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%2A%28i3%2C1x%29%29%27%29rectangle%28i%2C%3A%29%0D%0A%20%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27make%20all%20values%200%20or%20less%3A%27%0D%0A%20%20%20%20%20%20%20%20%20%20do%20i%3D1%2Csize%28rectangle%2Cdim%3D1%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%2A%28i3%2C1x%29%29%27%29min%28rectangle%28i%2C%3A%29%2C0%29%0D%0A%20%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fmin%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fmin%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20rectangle%283%2C4%29%3Dreshape%28%5B%28%2D6%2Bi%2Ci%3D0%2C11%29%5D%2C%5B3%2C4%5D%29%0D%0A%20%20%20%20%20%20character%28len%3D%3A%29%2Callocatable%20%3A%3A%20answer%0D%0A%20%20%20%20%20%20character%28len%3D%3A%29%2Callocatable%20%3A%3A%20aanswer%28%3A%29%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27basics%27%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20min%2810%2E0%2C11%2E0%2C30%2E0%2C%2D100%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20min%28%2D200%2E0%2C%2D1%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27elemental%27%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20min%281%2C%5B2%2C3%2C4%5D%29%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20min%285%2C%5B2%2C3%2C4%5D%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27box%3A%27%0D%0A%20%20%20%20%20%20%20%20%20%20do%20i%3D1%2Csize%28rectangle%2Cdim%3D1%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%2A%28i3%2C1x%29%29%27%29rectangle%28i%2C%3A%29%0D%0A%20%20%20%20%20%20%20%20%20%20enddo%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27make%20all%20values%200%20or%20less%3A%27%0D%0A%20%20%20%20%20%20%20%20%20%20do%20i%3D1%2Csize%28rectangle%2Cdim%3D1%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%28%2A%28i3%2C1x%29%29%27%29min%28rectangle%28i%2C%3A%29%2C0%29%0D%0A%20%20%20%20%20%20%20%20%20%20enddo%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27test1%20%27%2Cmerge%28%27PASSED%27%2C%27FAILED%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20MIN%28%2D9%2E0%2C%207%2E0%2C%202%2E0%29%20%3D%3D%20%2D9%2E0%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27test2A%20%27%2Cmerge%28%27PASSED%27%2C%27FAILED%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%26%20MIN%28%27A%27%2C%20%27YY%27%29%20%3D%3D%20%27A%20%27%20%2Eand%2E%20len%28MIN%28%27A%27%2C%27YY%27%29%29%2Eeq%2E2%29%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27test2B%20%27%2Cmerge%28%27PASSED%27%2C%27FAILED%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%26%20MIN%28%27AA%27%2C%20%27Y%27%29%20%3D%3D%20%27AA%27%20%2Eand%2E%20len%28MIN%28%27AA%27%2C%27Y%27%29%29%2Eeq%2E2%29%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27test2C%20%27%2Cmerge%28%27PASSED%27%2C%27FAILED%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%26%20MIN%28%27Y%27%2C%20%27AA%27%29%20%3D%3D%20%27AA%27%20%2Eand%2E%20len%28MIN%28%27Y%27%2C%27AA%27%29%29%2Eeq%2E2%29%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27test2D%20%27%2Cmerge%28%27PASSED%27%2C%27FAILED%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%26%20MIN%28%27YY%27%2C%20%27A%27%29%20%3D%3D%20%27A%20%27%20%2Eand%2E%20len%28MIN%28%27YY%27%2C%27A%27%29%29%2Eeq%2E2%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20aanswer%3DMIN%28%5B%27Z%27%2C%20%27A%27%5D%2C%20%5B%27YY%27%2C%20%27B%20%27%5D%29%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%281x%2C%2A%28g0%2C1x%29%29%27%29%20%22MIN%28%5B%27Z%27%2C%20%27A%27%5D%2C%20%5B%27YY%27%2C%20%27B%20%27%5D%29%3A%20%22%2Caanswer%0D%0A%20%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27test3%20%27%2Cmerge%28%27PASSED%27%2C%27FAILED%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20all%28aanswer%2Eeq%2E%20%5B%27YY%27%2C%20%27A%20%27%5D%29%20%2Eand%2E%20len%28aanswer%29%2Eeq%2E2%29%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fmin%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> min
@@ -6387,6 +6505,8 @@
       implicit none
       integer :: i
       integer :: rectangle(3,4)=reshape([(-6+i,i=0,11)],[3,4])
+      character(len=:),allocatable :: answer
+      character(len=:),allocatable :: aanswer(:)
           print *, 'basics'
           print *, min(10.0,11.0,30.0,-100.0)
           print *, min(-200.0,-1.0)
@@ -6402,6 +6522,24 @@
           do i=1,size(rectangle,dim=1)
              write(*,'(*(i3,1x))')min(rectangle(i,:),0)
           enddo
+
+          write(*,*)'test1 ',merge('PASSED','FAILED', &
+          MIN(-9.0, 7.0, 2.0) == -9.0)
+
+          write(*,*)'test2A ',merge('PASSED','FAILED', &
+          & MIN('A', 'YY') == 'A ' .and. len(MIN('A','YY')).eq.2)
+          write(*,*)'test2B ',merge('PASSED','FAILED', &
+          & MIN('AA', 'Y') == 'AA' .and. len(MIN('AA','Y')).eq.2)
+          write(*,*)'test2C ',merge('PASSED','FAILED', &
+          & MIN('Y', 'AA') == 'AA' .and. len(MIN('Y','AA')).eq.2)
+          write(*,*)'test2D ',merge('PASSED','FAILED', &
+          & MIN('YY', 'A') == 'A ' .and. len(MIN('YY','A')).eq.2)
+
+          aanswer=MIN(['Z', 'A'], ['YY', 'B '])
+          write(*,'(1x,*(g0,1x))') "MIN(['Z', 'A'], ['YY', 'B ']): ",aanswer
+          write(*,*)'test3 ',merge('PASSED','FAILED', &
+          all(aanswer.eq. ['YY', 'A ']) .and. len(aanswer).eq.2)
+
       end program demo_min
   </xmp>
   </details>
@@ -6430,7 +6568,7 @@
       end program demo_minloc
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fminval%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%0D%0A%20%20%20%20%20%20character%28len%3D%3A%29%2Callocatable%20%3A%3A%20strs%28%3A%29%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%3A%3A%20g%3D%27%283x%2C%2A%28g0%2C1x%29%29%27%0D%0A%0D%0A%20%20%20%20%20%20integer%2Csave%20%3A%3A%20ints%283%2C5%29%3D%20reshape%28%5B%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%201%2C%20%20%2D2%2C%20%20%203%2C%20%20%204%2C%20%20%205%2C%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%2010%2C%20%2020%2C%20%2D30%2C%20%2040%2C%20%2050%2C%20%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%2011%2C%20%2022%2C%20%2033%2C%20%2D44%2C%20%2055%20%20%26%0D%0A%20%20%20%20%20%20%5D%2Cshape%28ints%29%2Corder%3D%5B2%2C1%5D%29%0D%0A%0D%0A%20%20%20%20%20%20integer%2Csave%20%3A%3A%20box%283%2C5%2C2%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20box%28%3A%2C%3A%2C1%29%3Dints%0D%0A%20%20%20%20%20%20%20%20%20box%28%3A%2C%3A%2C2%29%3D%2Dints%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27Given%20the%20array%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%281x%2C%2A%28g4%2E4%2C1x%29%29%27%29%20%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20%28ints%28i%2C%3A%29%2Cnew%5Fline%28%27a%27%29%2Ci%3D1%2Csize%28ints%2Cdim%3D1%29%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27What%20is%20the%20smallest%20element%20in%20the%20array%3F%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%20minval%28ints%29%2C%27at%20%3C%27%2Cminloc%28ints%29%2C%27%3E%27%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27What%20is%20the%20smallest%20element%20in%20each%20column%3F%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%20minval%28ints%2Cdim%3D1%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27What%20is%20the%20smallest%20element%20in%20each%20row%3F%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%20minval%28ints%2Cdim%3D2%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20notice%20the%20shape%20of%20the%20output%20has%20less%20columns%0D%0A%20%20%20%20%20%20%20%20%20%21%20than%20the%20input%20in%20this%20case%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27What%20is%20the%20smallest%20element%20in%20each%20column%2C%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27considering%20only%20those%20elements%20that%20are%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27greater%20than%20zero%3F%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%20minval%28ints%2C%20dim%3D1%2C%20mask%20%3D%20ints%20%3E%200%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20%27if%20everything%20is%20false%20a%20zero%2Dsized%20array%20is%20NOT%20returned%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20minval%28ints%2C%20dim%3D1%2C%20mask%20%3D%20%2Efalse%2E%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27even%20for%20a%20zero%2Dsized%20input%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%20minval%28%5Binteger%20%3A%3A%5D%2C%20dim%3D1%2C%20mask%20%3D%20%2Efalse%2E%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27a%20scalar%20answer%20for%20everything%20false%20is%20huge%28%29%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%20minval%28ints%2C%20mask%20%3D%20%2Efalse%2E%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%20minval%28%5Binteger%20%3A%3A%5D%2C%20mask%20%3D%20%2Efalse%2E%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27if%20zero%2Dsize%20character%20array%20all%20dels%20if%20ASCII%27%0D%0A%20%20%20%20%20%20%20%20%20strs%3D%5Bcharacter%28len%3D5%29%3A%3A%5D%0D%0A%20%20%20%20%20%20%20%20%20strs%3Dminval%28strs%29%0D%0A%20%20%20%20%20%20%20%20%20print%20g%2C%20ichar%28%5B%28strs%28i%29%2Ci%3D1%2Clen%28strs%29%29%5D%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27some%20calls%20with%20three%20dimensions%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%20minval%28box%2C%20mask%20%3D%20%2Etrue%2E%20%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%20minval%28box%2C%20dim%3D1%2C%20mask%20%3D%20%2Etrue%2E%20%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%20minval%28box%2C%20dim%3D2%2C%20mask%20%3D%20%2Etrue%2E%20%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%20%27shape%20of%20answer%20is%20%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20shape%28minval%28box%2C%20dim%3D2%2C%20mask%20%3D%20%2Etrue%2E%20%29%29%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fminval%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fminval%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20integer%2Cparameter%20%3A%3A%20ucs4%3Dselected%5Fchar%5Fkind%28%27ISO%5F10646%27%29%0D%0A%20%20%20%20%20%20integer%2Cparameter%20%3A%3A%20ascii%3Dselected%5Fchar%5Fkind%28%27ascii%27%29%0D%0A%20%20%20%20%20%20integer%2Cparameter%20%3A%3A%20default%3Dselected%5Fchar%5Fkind%28%27default%27%29%0D%0A%20%20%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20i%0D%0A%20%20%20%20%20%20character%28len%3D%3A%2Ckind%3Dascii%29%2Callocatable%20%3A%3A%20strs%28%3A%29%0D%0A%20%20%20%20%20%20character%28len%3D%2A%29%2Cparameter%20%20%20%3A%3A%20g%3D%27%283x%2C%2A%28g0%2C1x%29%29%27%0D%0A%0D%0A%20%20%20%20%20%20integer%2Csave%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20ints%283%2C5%29%3D%20reshape%28%5B%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%201%2C%20%20%2D2%2C%20%20%203%2C%20%20%204%2C%20%20%205%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%2010%2C%20%2020%2C%20%2D30%2C%20%2040%2C%20%2050%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%2011%2C%20%2022%2C%20%2033%2C%20%2D44%2C%20%2055%20%20%26%0D%0A%20%20%20%20%20%20%5D%2Cshape%28ints%29%2Corder%3D%5B2%2C1%5D%29%0D%0A%0D%0A%20%20%20%20%20%20integer%2Csave%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20box%283%2C5%2C2%29%0D%0A%20%20%20%20%20%20character%28len%3D%3A%2Ckind%3Dascii%29%2Callocatable%20%3A%3A%20answer%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20box%28%3A%2C%3A%2C1%29%3Dints%0D%0A%20%20%20%20%20%20%20%20%20box%28%3A%2C%3A%2C2%29%3D%2Dints%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27Given%20the%20array%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%27%281x%2C%2A%28g4%2E4%2C1x%29%29%27%29%20%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20%28ints%28i%2C%3A%29%2Cnew%5Fline%28%27a%27%29%2Ci%3D1%2Csize%28ints%2Cdim%3D1%29%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27What%20is%20the%20smallest%20element%20in%20the%20array%3F%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%20minval%28ints%29%2C%27at%20%3C%27%2Cminloc%28ints%29%2C%27%3E%27%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27What%20is%20the%20smallest%20element%20in%20each%20column%3F%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%20minval%28ints%2Cdim%3D1%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27What%20is%20the%20smallest%20element%20in%20each%20row%3F%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%20minval%28ints%2Cdim%3D2%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20notice%20the%20shape%20of%20the%20output%20has%20less%20columns%0D%0A%20%20%20%20%20%20%20%20%20%21%20than%20the%20input%20in%20this%20case%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27What%20is%20the%20smallest%20element%20in%20each%20column%2C%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27considering%20only%20those%20elements%20that%20are%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27greater%20than%20zero%3F%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%20minval%28ints%2C%20dim%3D1%2C%20mask%20%3D%20ints%20%3E%200%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20%27if%20everything%20is%20false%20a%20zero%2Dsized%20array%20is%20NOT%20returned%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20minval%28ints%2C%20dim%3D1%2C%20mask%20%3D%20ints%20%3E%20ints%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27even%20for%20a%20zero%2Dsized%20input%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%20minval%28%5Binteger%20%3A%3A%5D%2C%20dim%3D1%20%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27a%20scalar%20answer%20for%20everything%20false%20is%20huge%28%29%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%20minval%28ints%2C%20mask%20%3D%20ints%20%3E%20ints%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%20minval%28%5Binteger%20%3A%3A%5D%20%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20strs%3D%5Bcharacter%28len%3D5%29%3A%3A%5D%0D%0A%20%20%20%20%20%20%20%20%20if%28len%28strs%29%2Eeq%2E0%29then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%27%3CWARNING%3E%20compensating%20for%20bug%20defining%20zero%2Dsize%20arrays%27%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20if%28allocated%28strs%29%29deallocate%28strs%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20allocate%28character%28len%3D5%29%20%3A%3A%20strs%280%29%29%0D%0A%20%20%20%20%20%20%20%20%20endif%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20answer%3Dminval%28strs%29%0D%0A%20%20%20%20%20%20%20%20%20print%20g%2C%20%27is%20minval%20of%20strings%20all%20del%20characters%3F%20%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%26%20%5B%28answer%28i%3Ai%29%2Ci%3D1%2Clen%28answer%29%29%5D%2Eeq%2Echar%28127%29%0D%0A%20%20%20%20%20%20%20%20%20print%20g%2C%20%27is%20minval%20of%20strings%20all%20del%20characters%3F%20%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%26%20ichar%28%5B%28answer%28i%3Ai%29%2Ci%3D1%2Clen%28answer%29%29%5D%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27some%20calls%20with%20three%20dimensions%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%20minval%28box%2C%20mask%20%3D%20%2Etrue%2E%20%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%20minval%28box%2C%20dim%3D1%2C%20mask%20%3D%20%2Etrue%2E%20%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%20minval%28box%2C%20dim%3D2%2C%20mask%20%3D%20%2Etrue%2E%20%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2Cg%29%20%27shape%20of%20answer%20is%20%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20shape%28minval%28box%2C%20dim%3D2%2C%20mask%20%3D%20%2Etrue%2E%20%29%29%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fminval%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> minval
@@ -6440,17 +6578,21 @@
   <xmp>
       program demo_minval
       implicit none
-      integer :: i
-      character(len=:),allocatable :: strs(:)
-      character(len=*),parameter :: g='(3x,*(g0,1x))'
+      integer,parameter :: ucs4=selected_char_kind('ISO_10646')
+      integer,parameter :: ascii=selected_char_kind('ascii')
+      integer,parameter :: default=selected_char_kind('default')
+      integer                      :: i
+      character(len=:,kind=ascii),allocatable :: strs(:)
+      character(len=*),parameter   :: g='(3x,*(g0,1x))'
 
-      integer,save :: ints(3,5)= reshape([&
-             1,  -2,   3,   4,   5,  &
-            10,  20, -30,  40,  50,  &
+      integer,save                 :: ints(3,5)= reshape([&
+             1,  -2,   3,   4,   5, &
+            10,  20, -30,  40,  50, &
             11,  22,  33, -44,  55  &
       ],shape(ints),order=[2,1])
 
-      integer,save :: box(3,5,2)
+      integer,save                 :: box(3,5,2)
+      character(len=:,kind=ascii),allocatable :: answer
 
          box(:,:,1)=ints
          box(:,:,2)=-ints
@@ -6477,18 +6619,26 @@
 
          write(*,*)&
          & 'if everything is false a zero-sized array is NOT returned'
-         write(*,*) minval(ints, dim=1, mask = .false.)
+         write(*,*) minval(ints, dim=1, mask = ints > ints)
          write(*,*)'even for a zero-sized input'
-         write(*,g) minval([integer ::], dim=1, mask = .false.)
+         write(*,g) minval([integer ::], dim=1 )
 
          write(*,*)'a scalar answer for everything false is huge()'
-         write(*,g) minval(ints, mask = .false.)
-         write(*,g) minval([integer ::], mask = .false.)
+         write(*,g) minval(ints, mask = ints > ints)
+         write(*,g) minval([integer ::] )
 
-         print *, 'if zero-size character array all dels if ASCII'
          strs=[character(len=5)::]
-         strs=minval(strs)
-         print g, ichar([(strs(i),i=1,len(strs))])
+         if(len(strs).eq.0)then
+            write(*,g)'<WARNING> compensating for bug defining zero-size arrays'
+            if(allocated(strs))deallocate(strs)
+            allocate(character(len=5) :: strs(0))
+         endif
+
+         answer=minval(strs)
+         print g, 'is minval of strings all del characters? ', &
+          & [(answer(i:i),i=1,len(answer))].eq.char(127)
+         print g, 'is minval of strings all del characters? ', &
+          & ichar([(answer(i:i),i=1,len(answer))])
 
          write(*,*)'some calls with three dimensions'
          write(*,g) minval(box, mask = .true. )
@@ -8577,7 +8727,7 @@
       end program demo_shiftr
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fsign%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%20%20%21%20basics%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%20sign%28%20%2D12%2C%20%201%20%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%20sign%28%20%2D12%2C%20%200%20%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%20sign%28%20%2D12%2C%20%2D1%20%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%20sign%28%20%2012%2C%20%201%20%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%20sign%28%20%2012%2C%20%200%20%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%20sign%28%20%2012%2C%20%2D1%20%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20if%28sign%281%2E0%2C%2D0%2E0%29%3D%3D%20%2D1%2E0%29then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27this%20processor%20distinguishes%20%2B0%20from%20%2D0%27%0D%0A%20%20%20%20%20%20%20%20%20else%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27this%20processor%20does%20not%20distinguish%20%2B0%20from%20%2D0%27%0D%0A%20%20%20%20%20%20%20%20%20endif%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%20%27elemental%27%2C%20sign%28%20%2D12%2E0%2C%20%5B1%2E0%2C%200%2E0%2C%20%2D1%2E0%5D%20%29%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fsign%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fsign%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%20%20%21%20basics%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%20sign%28%20%2D12%2C%20%201%20%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%20sign%28%20%2D12%2C%20%200%20%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%20sign%28%20%2D12%2C%20%2D1%20%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%20sign%28%20%2012%2C%20%201%20%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%20sign%28%20%2012%2C%20%200%20%29%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%20sign%28%20%2012%2C%20%2D1%20%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20if%28sign%281%2E0%2C%2D0%2E0%29%3D%3D%20%2D1%2E0%29then%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27this%20processor%20distinguishes%20%2B0%20from%20%2D0%27%0D%0A%20%20%20%20%20%20%20%20%20else%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27this%20processor%20does%20not%20distinguish%20%2B0%20from%20%2D0%27%0D%0A%20%20%20%20%20%20%20%20%20endif%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%27either%20way%2C%200%3D%3D%2D0%20is%20true%21%27%2C0%3D%3D%2D0%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%27either%20way%2C%200%3D%2F%2D0%20is%20false%21%27%2C0%2F%3D%2D0%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%20%27elemental%27%2C%20sign%28%20%2D12%2E0%2C%20%5B1%2E0%2C%200%2E0%2C%20%2D1%2E0%5D%20%29%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fsign%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> sign
@@ -8600,6 +8750,8 @@
          else
             print *, 'this processor does not distinguish +0 from -0'
          endif
+         print *,'either way, 0==-0 is true!',0==-0
+         print *,'either way, 0=/-0 is false!',0/=-0
 
          print *,  'elemental', sign( -12.0, [1.0, 0.0, -1.0] )
 
@@ -9628,7 +9780,7 @@
       end program demo_unpack
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20%20%20%20%21%20program%20demo%5Fuse%20and%20module%20examples%0D%0A%20%20%20%20%20%20%20%20%20module%20example%20%21%20example%20is%20the%20namespace%20name%0D%0A%20%20%20%20%20%20%20%20%20use%2Cintrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%20%2C%20only%20%3A%20real64%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20type%20type1%20%21%20type1%20is%20the%20class%20prototype%20name%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20contains%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20procedure%2C%20nopass%20%3A%3A%20static%5Fmethod1%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20end%20type%20type1%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20type%20type2%20%21%20type1%20is%20the%20class%20prototype%20name%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20contains%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20procedure%2C%20nopass%20%3A%3A%20static%5Fmethod2%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20end%20type%20type2%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20real%28kind%3Dreal64%29%2Cparameter%20%3A%3A%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20pi%20%20%3D%203%2E1415926535897932%5Freal64%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20Napier%27s%20constant%20is%20the%20base%20of%20the%20natural%20logarithm%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20system%2E%20It%20is%20often%20denoted%20by%20%22e%22%20in%20honor%20of%20Euler%2E%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20real%28kind%3Dreal64%29%2Cparameter%20%3A%3A%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20Napier%5Fconstant%20%3D%202%2E71828182845904523%5Freal64%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20contains%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20subroutine%20static%5Fmethod1%28arg%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20arg%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20code%20to%20implement%20method%20goes%20here%0D%0A%20%20%20%20%20%20%20%20%20%20%20arg%3Darg%2B1%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20end%20subroutine%20static%5Fmethod1%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20subroutine%20static%5Fmethod2%28arg%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20arg%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20code%20to%20implement%20method%20goes%20here%0D%0A%20%20%20%20%20%20%20%20%20%20%20arg%3Darg%2B2%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20end%20subroutine%20static%5Fmethod2%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20end%20module%20example%0D%0A%20%20%20%20%20%20%20%20%20program%20demo%5Fuse%0D%0A%20%20%20%20%20%20%20%20%20use%20example%2C%20only%3A%20type1%20%21%20class%20prototype%20type1%20available%2C%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20but%20nothing%20else%20is%20made%20available%20by%20this%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%21%20%28additionally%29%20within%20this%20scoping%20unit%2C%20type1%20is%20referred%20to%0D%0A%20%20%20%20%20%20%20%20%20%21%20as%20%22mytype%22%0D%0A%20%20%20%20%20%20%20%20%20use%20example%2C%20mytype%20%3D%3E%20type1%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%21%20only%3A%20is%20recommended%20but%20for%20long%20lists%20importing%20everything%0D%0A%20%20%20%20%20%20%20%20%20%21%20%20%20%20%20%20%20without%20listing%20it%20is%20supported%3A%0D%0A%20%20%20%20%20%20%20%20%20use%20example%20%21%20all%20public%20objects%20in%20namespace%20example%20available%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%21%20some%20popular%20intrinsic%20entities%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20use%2Cintrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20%26%0D%0A%20%20%20%20%20%20%20%20%20stderr%3D%3EERROR%5FUNIT%2C%20stdin%3D%3EINPUT%5FUNIT%2C%20stdout%3D%3EOUTPUT%5FUNIT%0D%0A%20%20%20%20%20%20%20%20%20%21%20specifying%20INTRINSIC%20or%20NON%5FINTRINSIC%20is%20typically%20optional%20but%0D%0A%20%20%20%20%20%20%20%20%20%21%20indicating%20INTRINSIC%20when%20it%20is%20so%20is%20the%20norm%2E%0D%0A%20%20%20%20%20%20%20%20%20use%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20integer%5Fkinds%2Cint8%2Cint16%2Cint32%2Cint64%0D%0A%20%20%20%20%20%20%20%20%20use%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20real%5Fkinds%2Creal32%2Creal64%2Creal128%0D%0A%20%20%20%20%20%20%20%20%20%21%20duplicates%20are%20OK%0D%0A%20%20%20%20%20%20%20%20%20use%2Cintrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20sp%3D%3Ereal32%2Cdp%3D%3Ereal64%0D%0A%20%20%20%20%20%20%20%20%20use%2Cintrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20integer%5Fkinds%0D%0A%20%20%20%20%20%20%20%20%20use%2Cintrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20compiler%5Fversion%0D%0A%20%20%20%20%20%20%20%20%20use%2Cintrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20compiler%5Foptions%0D%0A%20%20%20%20%20%20%20%20%20use%2Cintrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20iostat%5Feor%2C%20iostat%5Fend%0D%0A%20%20%20%20%20%20%20%20%20end%20program%20demo%5Fuse%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20%20%20%20%20%20%20%21%20program%20demo%5Fuse%20and%20module%20examples%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20module%20example%20%21%20example%20is%20the%20namespace%20name%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20use%2Cintrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%20%2C%20only%20%3A%20real64%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20private%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20public%20%3A%3A%20type1%2C%20type2%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20public%20%3A%3A%20pi%2C%20napier%5Fconstant%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20type%20type1%20%21%20type1%20is%20the%20class%20prototype%20name%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20contains%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20procedure%2C%20nopass%20%3A%3A%20static%5Fmethod1%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20end%20type%20type1%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20type%20type2%20%21%20type1%20is%20the%20class%20prototype%20name%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20contains%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20procedure%2C%20nopass%20%3A%3A%20static%5Fmethod2%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20end%20type%20type2%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20real%28kind%3Dreal64%29%2Cparameter%20%3A%3A%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20pi%20%20%3D%203%2E1415926535897932%5Freal64%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20Napier%27s%20constant%20is%20the%20base%20of%20the%20natural%20logarithm%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20system%2E%20It%20is%20often%20denoted%20by%20%22e%22%20in%20honor%20of%20Euler%2E%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20real%28kind%3Dreal64%29%2Cparameter%20%3A%3A%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20Napier%5Fconstant%20%3D%202%2E71828182845904523%5Freal64%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20contains%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20subroutine%20static%5Fmethod1%28arg%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20arg%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20code%20to%20implement%20method%20goes%20here%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20arg%3Darg%2B1%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20end%20subroutine%20static%5Fmethod1%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20subroutine%20static%5Fmethod2%28arg%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20arg%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20code%20to%20implement%20method%20goes%20here%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20arg%3Darg%2B2%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20end%20subroutine%20static%5Fmethod2%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20end%20module%20example%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20program%20demo%5Fuse%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20use%20example%2C%20only%3A%20type1%20%21%20class%20prototype%20type1%20available%2C%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20but%20nothing%20else%20is%20made%20available%20by%20this%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20%28additionally%29%20within%20this%20scoping%20unit%2C%20type1%20is%20referred%20to%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20as%20%22mytype%22%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20use%20example%2C%20mytype%20%3D%3E%20type1%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20only%3A%20is%20recommended%20but%20for%20long%20lists%20importing%20everything%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20%20%20%20%20%20%20without%20listing%20it%20is%20supported%3A%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20use%20example%20%21%20all%20public%20objects%20in%20namespace%20example%20available%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20some%20popular%20intrinsic%20entities%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20use%2Cintrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20%26%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20stderr%3D%3EERROR%5FUNIT%2C%20stdin%3D%3EINPUT%5FUNIT%2C%20stdout%3D%3EOUTPUT%5FUNIT%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20specifying%20INTRINSIC%20or%20NON%5FINTRINSIC%20is%20typically%20optional%20but%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20indicating%20INTRINSIC%20when%20it%20is%20so%20is%20the%20norm%2E%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20use%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20integer%5Fkinds%2Cint8%2Cint16%2Cint32%2Cint64%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20use%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20real%5Fkinds%2Creal32%2Creal64%2Creal128%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20duplicates%20are%20OK%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20use%2Cintrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20sp%3D%3Ereal32%2Cdp%3D%3Ereal64%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20use%2Cintrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20integer%5Fkinds%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20%21%20additional%20frequently%20used%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20use%2Cintrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20compiler%5Fversion%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20use%2Cintrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20compiler%5Foptions%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20use%2Cintrinsic%20%3A%3A%20iso%5Ffortran%5Fenv%2C%20only%20%3A%20iostat%5Feor%2C%20iostat%5Fend%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20end%20program%20demo%5Fuse%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> use
@@ -9636,69 +9788,75 @@
   <details>
     <summary>Source</summary>
   <xmp>
-         ! program demo_use and module examples
-         module example ! example is the namespace name
-         use,intrinsic :: iso_fortran_env , only : real64
+            ! program demo_use and module examples
+            module example ! example is the namespace name
+            use,intrinsic :: iso_fortran_env , only : real64
+            implicit none
+            private
+            public :: type1, type2
+            public :: pi, napier_constant
 
-            type type1 ! type1 is the class prototype name
+               type type1 ! type1 is the class prototype name
+               contains
+                  procedure, nopass :: static_method1
+               end type type1
+
+               type type2 ! type1 is the class prototype name
+               contains
+                  procedure, nopass :: static_method2
+               end type type2
+
+               real(kind=real64),parameter :: &
+               pi  = 3.1415926535897932_real64
+               ! Napier's constant is the base of the natural logarithm
+               ! system. It is often denoted by "e" in honor of Euler.
+               real(kind=real64),parameter :: &
+               Napier_constant = 2.71828182845904523_real64
+
             contains
-               procedure, nopass :: static_method1
-            end type type1
 
-            type type2 ! type1 is the class prototype name
-            contains
-               procedure, nopass :: static_method2
-            end type type2
+               subroutine static_method1(arg)
+                  integer :: arg
+                  ! code to implement method goes here
+              arg=arg+1
+               end subroutine static_method1
 
-            real(kind=real64),parameter :: &
-            pi  = 3.1415926535897932_real64
-            ! Napier's constant is the base of the natural logarithm
-            ! system. It is often denoted by "e" in honor of Euler.
-            real(kind=real64),parameter :: &
-            Napier_constant = 2.71828182845904523_real64
+               subroutine static_method2(arg)
+                  integer :: arg
+                  ! code to implement method goes here
+              arg=arg+2
+               end subroutine static_method2
 
-         contains
+            end module example
 
-            subroutine static_method1(arg)
-               integer :: arg
-               ! code to implement method goes here
-           arg=arg+1
-            end subroutine static_method1
-
-            subroutine static_method2(arg)
-               integer :: arg
-               ! code to implement method goes here
-           arg=arg+2
-            end subroutine static_method2
-
-         end module example
-         program demo_use
-         use example, only: type1 ! class prototype type1 available,
-                                  ! but nothing else is made available by this
-                                  !
-         ! (additionally) within this scoping unit, type1 is referred to
-         ! as "mytype"
-         use example, mytype => type1
-         !
-         ! only: is recommended but for long lists importing everything
-         !       without listing it is supported:
-         use example ! all public objects in namespace example available
-         !
-         ! some popular intrinsic entities
-         !
-         use,intrinsic :: iso_fortran_env, only : &
-         stderr=>ERROR_UNIT, stdin=>INPUT_UNIT, stdout=>OUTPUT_UNIT
-         ! specifying INTRINSIC or NON_INTRINSIC is typically optional but
-         ! indicating INTRINSIC when it is so is the norm.
-         use :: iso_fortran_env, only : integer_kinds,int8,int16,int32,int64
-         use iso_fortran_env, only : real_kinds,real32,real64,real128
-         ! duplicates are OK
-         use,intrinsic :: iso_fortran_env, only : sp=>real32,dp=>real64
-         use,intrinsic :: iso_fortran_env, only : integer_kinds
-         use,intrinsic :: iso_fortran_env, only : compiler_version
-         use,intrinsic :: iso_fortran_env, only : compiler_options
-         use,intrinsic :: iso_fortran_env, only : iostat_eor, iostat_end
-         end program demo_use
+            program demo_use
+            use example, only: type1 ! class prototype type1 available,
+                                     ! but nothing else is made available by this
+                                     !
+            ! (additionally) within this scoping unit, type1 is referred to
+            ! as "mytype"
+            use example, mytype => type1
+            !
+            ! only: is recommended but for long lists importing everything
+            !       without listing it is supported:
+            use example ! all public objects in namespace example available
+            !
+            ! some popular intrinsic entities
+            !
+            use,intrinsic :: iso_fortran_env, only : &
+            stderr=>ERROR_UNIT, stdin=>INPUT_UNIT, stdout=>OUTPUT_UNIT
+            ! specifying INTRINSIC or NON_INTRINSIC is typically optional but
+            ! indicating INTRINSIC when it is so is the norm.
+            use :: iso_fortran_env, only : integer_kinds,int8,int16,int32,int64
+            use iso_fortran_env, only : real_kinds,real32,real64,real128
+            ! duplicates are OK
+            use,intrinsic :: iso_fortran_env, only : sp=>real32,dp=>real64
+            use,intrinsic :: iso_fortran_env, only : integer_kinds
+            ! additional frequently used
+            use,intrinsic :: iso_fortran_env, only : compiler_version
+            use,intrinsic :: iso_fortran_env, only : compiler_options
+            use,intrinsic :: iso_fortran_env, only : iostat_eor, iostat_end
+            end program demo_use
   </xmp>
   </details>
   <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20program%20demo%5Fverify%0D%0A%20%20%20%20%20%20implicit%20none%0D%0A%20%20%20%20%20%20%21%20some%20useful%20character%20sets%0D%0A%20%20%20%20%20%20character%2Cparameter%20%3A%3A%20%26%0D%0A%20%20%20%20%20%20%20%26%20int%2A%28%2A%29%20%20%20%3D%20%271234567890%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%26%20low%2A%28%2A%29%20%20%20%3D%20%27abcdefghijklmnopqrstuvwxyz%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%26%20upp%2A%28%2A%29%20%20%20%3D%20%27ABCDEFGHIJKLMNOPQRSTUVWXYZ%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%26%20punc%2A%28%2A%29%20%20%3D%20%22%21%22%22%23%24%25%26%27%28%29%2A%2B%2C%2D%2E%2F%3A%3B%3C%3D%3E%3F%40%5B%5D%5E%5F%60%7B%7C%7D%7E%22%2C%20%26%0D%0A%20%20%20%20%20%20%20%26%20blank%2A%28%2A%29%20%3D%20%27%20%27%2C%20%26%0D%0A%20%20%20%20%20%20%20%26%20tab%20%20%20%20%20%20%20%3D%20char%2811%29%2C%20%26%0D%0A%20%20%20%20%20%20%20%26%20prnt%2A%28%2A%29%20%3D%20int%2F%2Flow%2F%2Fupp%2F%2Fblank%2F%2Fpunc%0D%0A%0D%0A%20%20%20%20%20%20character%28len%3D%3A%29%2Callocatable%20%3A%3A%20string%0D%0A%20%20%20%20%20%20integer%20%3A%3A%20i%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27basics%3A%27%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20VERIFY%20%28%27ABBA%27%2C%20%27A%27%29%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20has%20the%20value%202%2E%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20VERIFY%20%28%27ABBA%27%2C%20%27A%27%2C%20BACK%20%3D%20%2ETRUE%2E%29%20%21%20has%20the%20value%203%2E%0D%0A%20%20%20%20%20%20%20%20%20%20print%20%2A%2C%20VERIFY%20%28%27ABBA%27%2C%20%27AB%27%29%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%21%20has%20the%20value%200%2E%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%27find%20first%20non%2Duppercase%20letter%27%0D%0A%20%20%20%20%20%20%20%20%20%21%20will%20produce%20the%20location%20of%20%22d%22%2C%20because%20there%20is%20no%20match%20in%20UPP%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20%27something%20unmatched%27%2Cverify%28%22ABCdEFG%22%2C%20upp%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%27if%20everything%20is%20matched%20return%20zero%27%0D%0A%20%20%20%20%20%20%20%20%20%21%20will%20produce%200%20as%20all%20letters%20have%20a%20match%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20%27everything%20matched%27%2Cverify%28%22ffoorrttrraann%22%2C%20%22nartrof%22%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%27easily%20categorize%20strings%20as%20uppercase%2C%20lowercase%2C%20%2E%2E%2E%27%0D%0A%20%20%20%20%20%20%20%20%20%21%20easy%20C%2Dlike%20functionality%20but%20does%20entire%20strings%20not%20just%20characters%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27isdigit%20123%3F%27%2Cverify%28%22123%22%2C%20int%29%20%3D%3D%200%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27islower%20abc%3F%27%2Cverify%28%22abc%22%2C%20low%29%20%3D%3D%200%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27isalpha%20aBc%3F%27%2Cverify%28%22aBc%22%2C%20low%2F%2Fupp%29%20%3D%3D%200%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27isblank%20aBc%20dEf%3F%27%2Cverify%28%22aBc%20dEf%22%2C%20blank%2F%2Ftab%20%29%20%2F%3D%200%0D%0A%20%20%20%20%20%20%20%20%20%21%20check%20if%20all%20printable%20characters%0D%0A%20%20%20%20%20%20%20%20%20string%3D%22aB%3Bcde%2CfgHI%21Jklmno%20PQRSTU%20vwxyz%22%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27isprint%3F%27%2Cverify%28string%2Cprnt%29%20%3D%3D%200%0D%0A%20%20%20%20%20%20%20%20%20%21%20this%20now%20has%20a%20nonprintable%20tab%20character%20in%20it%0D%0A%20%20%20%20%20%20%20%20%20string%2810%3A10%29%3Dchar%2811%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27isprint%3F%27%2Cverify%28string%2Cprnt%29%20%3D%3D%200%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%27VERIFY%283%29%20is%20very%20powerful%20using%20expressions%20as%20masks%27%0D%0A%20%20%20%20%20%20%20%20%20%21%20verify%283%29%20is%20often%20used%20in%20a%20logical%20expression%0D%0A%20%20%20%20%20%20%20%20%20string%3D%22%20This%20is%20NOT%20all%20UPPERCASE%20%22%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27all%20uppercase%2Fspaces%3F%27%2Cverify%28string%2C%20blank%2F%2Fupp%29%20%3D%3D%200%0D%0A%20%20%20%20%20%20%20%20%20string%3D%22%20This%20IS%20all%20uppercase%20%22%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20%27string%3D%5B%27%2F%2Fstring%2F%2F%27%5D%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27all%20uppercase%2Fspaces%3F%27%2Cverify%28string%2C%20blank%2F%2Fupp%29%20%3D%3D%200%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21%20set%20and%20show%20complex%20string%20to%20be%20tested%0D%0A%20%20%20%20%20%20%20%20%20string%3D%27%20%20Check%20this%20out%2E%20Let%20me%20know%20%20%27%0D%0A%20%20%20%20%20%20%20%20%20%21%20show%20the%20string%20being%20examined%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20%27string%3D%5B%27%2F%2Fstring%2F%2F%27%5D%27%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20%27%20%20%20%20%20%20%20%20%27%2F%2Frepeat%28int%2C4%29%20%21%20number%20line%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20the%20Fortran%20functions%20returns%20a%20position%20just%20not%20a%20logical%20like%20C%0D%0A%20%20%20%20%20%20%20%20%20print%20%2A%2C%20%27returning%20a%20position%20not%20just%20a%20logical%20is%20useful%27%0D%0A%20%20%20%20%20%20%20%20%20%21%20which%20can%20be%20very%20useful%20for%20parsing%20strings%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27first%20non%2Dblank%20character%27%2Cverify%28string%2C%20blank%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27last%20non%2Dblank%20character%27%2Cverify%28string%2C%20blank%2Cback%3D%2Etrue%2E%29%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27first%20non%2Dletter%20non%2Dblank%27%2Cverify%28string%2Clow%2F%2Fupp%2F%2Fblank%29%0D%0A%0D%0A%20%20%20%20%20%20%20%20%21VERIFY%283%29%20is%20elemental%20so%20you%20can%20check%20an%20array%20of%20strings%20in%20one%20call%0D%0A%20%20%20%20%20%20%20%20print%20%2A%2C%20%27elemental%27%0D%0A%20%20%20%20%20%20%20%20%20%21%20are%20strings%20all%20letters%20%28or%20blanks%29%3F%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%20%27array%20of%20strings%27%2Cverify%28%20%26%0D%0A%20%20%20%20%20%20%20%20%20%21%20strings%20must%20all%20be%20same%20length%2C%20so%20force%20to%20length%2010%0D%0A%20%20%20%20%20%20%20%20%20%26%20%5Bcharacter%28len%3D10%29%20%3A%3A%20%22YES%22%2C%22ok%22%2C%22000%22%2C%22good%20one%22%2C%22Nope%21%22%5D%2C%20%26%0D%0A%20%20%20%20%20%20%20%20%20%26%20low%2F%2Fupp%2F%2Fblank%29%20%3D%3D%200%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20%21%20rarer%2C%20but%20the%20set%20can%20be%20an%20array%2C%20not%20just%20the%20strings%20to%20test%0D%0A%20%20%20%20%20%20%20%20%20%21%20you%20could%20do%20ISPRINT%28%29%20this%20%28harder%29%20way%20%3A%3E%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27isprint%3F%27%2C%2Enot%2Eall%28verify%28%22aBc%22%2C%20%5B%28char%28i%29%2Ci%3D32%2C126%29%5D%29%3D%3D1%29%0D%0A%20%20%20%20%20%20%20%20%20%21%20instead%20of%20this%20way%0D%0A%20%20%20%20%20%20%20%20%20write%28%2A%2C%2A%29%27isprint%3F%27%2Cverify%28%22aBc%22%2Cprnt%29%20%3D%3D%200%0D%0A%0D%0A%20%20%20%20%20%20end%20program%20demo%5Fverify%0D%0A"
@@ -9797,7 +9955,7 @@
   <xmp>
   </xmp>
   </details>
-  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20%20%20%20program%20demo%5Fwhere%0D%0A%20%20%20%20%20%20%20%20%20%21%20%20Example%20of%20WHERE%2C%20ELSEWHERE%2C%20ENDWHERE%0D%0A%20%20%20%20%20%20%20%20%20integer%2Cparameter%20%3A%3A%20nd%3D10%2C%20ndh%3Dnd%2F2%2C%20nduh%3Dnd%2Dndh%2D1%0D%0A%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20j%0D%0A%20%20%20%20%20%20%20%20%20real%2C%20dimension%28nd%29%3A%3A%20a%3D%5B%20%282%2Aj%2Cj%3D1%2Cnd%29%20%5D%0D%0A%20%20%20%20%20%20%20%20%20real%2C%20dimension%28nd%29%3A%3A%20b%20%21%20%3D%5B%20ndh%2A1%2E0%2C%200%2E0%2C%20nduh%2A2%2E0%20%5D%0D%0A%20%20%20%20%20%20%20%20%20real%2C%20dimension%28nd%29%3A%3A%20c%20%21%20%3D%5B%20nd%2A%2D77%2E77%20%5D%0D%0A%20%20%20%20%20%20%20%20%20integer%20iflag%28nd%29%0D%0A%20%20%20%20%20%20%20%20%20data%20b%2Fndh%2A1%2C0%2E0%2Cnduh%2A2%2E%2F%2Cc%2Fnd%2A%2D77%2E77%2F%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20where%20%28b%2Ene%2E0%29%20c%3Da%2Fb%0D%0A%20%20%20%20%20%20%20%20%20write%20%28%2A%2C2000%29%20c%281%3And%29%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%21%20The%20above%20protects%20against%20divide%20by%20zero%2C%20but%20doesn%27t%20actually%0D%0A%20%20%20%20%20%20%20%20%20%21%20assign%20values%20to%20elements%20in%20c%20when%20the%20corresponding%20element%20in%0D%0A%20%20%20%20%20%20%20%20%20%21%20b%20is%20zero%20The%20following%20covers%20that%2C%20and%20sets%20a%20flag%20when%20a%20divide%0D%0A%20%20%20%20%20%20%20%20%20%21%20by%20zero%20is%20present%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20where%20%28b%281%3And%29%2Ene%2E0%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20c%3Da%2Fb%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20iflag%3D0%0D%0A%20%20%20%20%20%20%20%20%20elsewhere%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20c%3D0%2E0%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20iflag%3D1%0D%0A%20%20%20%20%20%20%20%20%20endwhere%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20write%20%28%2A%2C2000%29%20c%281%3And%29%0D%0A%20%20%20%20%20%20%20%20%20write%20%28%2A%2C1000%29%20iflag%281%3And%29%0D%0A%20%20%20%20%20%20%20%20%201000%20format%20%28%27iflag%3D%20%27%2C%2F%2C%2810i7%29%29%0D%0A%20%20%20%20%20%20%20%20%202000%20format%20%28%27a%2Fb%20%3D%20%27%2C%2F%2C%2810f7%2E2%29%29%0D%0A%20%20%20%20%20%20%20%20%20end%20program%20demo%5Fwhere%0D%0A"
+  <a href="https://play.fortran-lang.org/?code=%20%20%20%20%20%20%20%20%20program%20demo%5Fwhere%0D%0A%20%20%20%20%20%20%20%20%20%21%20%20Example%20of%20WHERE%2C%20ELSEWHERE%2C%20ENDWHERE%0D%0A%20%20%20%20%20%20%20%20%20integer%2Cparameter%20%3A%3A%20nd%3D10%2C%20ndh%3Dnd%2F2%2C%20nduh%3Dnd%2Dndh%2D1%0D%0A%20%20%20%20%20%20%20%20%20integer%20%3A%3A%20j%0D%0A%20%20%20%20%20%20%20%20%20real%2C%20dimension%28nd%29%3A%3A%20a%3D%5B%20%282%2Aj%2Cj%3D1%2Cnd%29%20%5D%0D%0A%20%20%20%20%20%20%20%20%20real%2C%20dimension%28nd%29%3A%3A%20b%20%21%20%3D%5B%20ndh%2A1%2E0%2C%200%2E0%2C%20nduh%2A2%2E0%20%5D%0D%0A%20%20%20%20%20%20%20%20%20real%2C%20dimension%28nd%29%3A%3A%20c%20%21%20%3D%5B%20nd%2A%2D77%2E77%20%5D%0D%0A%20%20%20%20%20%20%20%20%20integer%20iflag%28nd%29%0D%0A%20%20%20%20%20%20%20%20%20data%20b%2F%20ndh%2A1%2E0%2C%200%2E0%2C%20nduh%2A2%2E0%20%2F%2C%20c%2F%20nd%2A%2D77%2E77%20%2F%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20where%20%28b%2Ene%2E0%29%20c%3Da%2Fb%0D%0A%20%20%20%20%20%20%20%20%20write%20%28%2A%2C2000%29%20c%281%3And%29%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20%21%20The%20above%20protects%20against%20divide%20by%20zero%2C%20but%20doesn%27t%20actually%0D%0A%20%20%20%20%20%20%20%20%20%21%20assign%20values%20to%20elements%20in%20c%20when%20the%20corresponding%20element%20in%0D%0A%20%20%20%20%20%20%20%20%20%21%20b%20is%20zero%20The%20following%20covers%20that%2C%20and%20sets%20a%20flag%20when%20a%20divide%0D%0A%20%20%20%20%20%20%20%20%20%21%20by%20zero%20is%20present%0D%0A%20%20%20%20%20%20%20%20%20%21%0D%0A%20%20%20%20%20%20%20%20%20where%20%28b%281%3And%29%2Ene%2E0%2E0%29%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20c%3Da%2Fb%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20iflag%3D0%0D%0A%20%20%20%20%20%20%20%20%20elsewhere%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20c%3D0%2E0%0D%0A%20%20%20%20%20%20%20%20%20%20%20%20iflag%3D1%0D%0A%20%20%20%20%20%20%20%20%20endwhere%0D%0A%0D%0A%20%20%20%20%20%20%20%20%20write%20%28%2A%2C2000%29%20c%281%3And%29%0D%0A%20%20%20%20%20%20%20%20%20write%20%28%2A%2C1000%29%20iflag%281%3And%29%0D%0A%20%20%20%20%20%20%20%20%201000%20format%20%28%27iflag%3D%20%27%2C%2F%2C%2810i7%29%29%0D%0A%20%20%20%20%20%20%20%20%202000%20format%20%28%27a%2Fb%20%3D%20%27%2C%2F%2C%2810f7%2E2%29%29%0D%0A%20%20%20%20%20%20%20%20%20end%20program%20demo%5Fwhere%0D%0A"
   target="_blank" title="Open in Fortran Playground">
   <img src="https://raw.githubusercontent.com/fortran-lang/playground/main/frontend/src/fortran-logo.png"
   alt="Fortran logo" class="align-text-bottom" height="15.5" /> where
@@ -9813,7 +9971,7 @@
          real, dimension(nd):: b ! =[ ndh*1.0, 0.0, nduh*2.0 ]
          real, dimension(nd):: c ! =[ nd*-77.77 ]
          integer iflag(nd)
-         data b/ndh*1,0.0,nduh*2./,c/nd*-77.77/
+         data b/ ndh*1.0, 0.0, nduh*2.0 /, c/ nd*-77.77 /
 
          where (b.ne.0) c=a/b
          write (*,2000) c(1:nd)

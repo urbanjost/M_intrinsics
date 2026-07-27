@@ -139,12 +139,12 @@ Sample programs:
         !
         subroutine showme(a)
         integer,intent(in) :: a(:)
-        integer :: i=-100
-        integer :: tan
+        integer,save       :: i=-100
+        integer            :: tan
           tan=20 ! intentionally cause a conflict with intrinsic
           ! cannot use tan(3) right here because using name for a variable
           TESTFORZERO: block
-             integer :: I      ! local block variable
+             integer   :: I    ! local block variable
              intrinsic :: tan  ! can use the TAN intrinsic in the block now
                                ! as this definition supersedes the one in the
                                ! parent body

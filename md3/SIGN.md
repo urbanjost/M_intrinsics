@@ -41,11 +41,11 @@
 
   a value with the magnitude of **a** with the sign of **b**. That is,
 
-  - If _b \>= 0_ then the result is _abs(a)_
+  - if the processor distinguishes between
+    positive and negative real zero, and _b_ is negative real zero, the
+    value of the result is _-abs(a)_.
+  - else if _b \>= 0_ then the result is _abs(a)_
   - else if _b < 0_ it is -_abs(a)_.
-  - if _b_ is _real_ and the processor distinguishes between _-0.0_
-    and _0.0_ then the
-    result is _-abs(a)_
 
 ### **Examples**
 
@@ -66,6 +66,8 @@ implicit none
    else
       print *, 'this processor does not distinguish +0 from -0'
    endif
+   print *,'either way, 0==-0 is true!',0==-0
+   print *,'either way, 0=/-0 is false!',0/=-0
 
    print *,  'elemental', sign( -12.0, [1.0, 0.0, -1.0] )
 

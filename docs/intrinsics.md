@@ -294,6 +294,15 @@ integer :: i
    write(*,'(8(i3,1x,a,1x))')(i,achar(i), i=32,126)
 
    write(*,'(a)')upper('Mixed Case')
+   !
+   !Shows how to place a non-advancing status counter...
+   !
+      do i=0,100,10
+         write(*,fmt="(A1,A,t21,F6.2,A)",advance="NO") achar(13), &
+         & "Percent Complete: ", real(i), "%"
+         call system_usleep(1000000) !give a delay in microseconds
+      enddo
+      write(*,*)
 contains
 ! a classic use of achar(3) is to convert the case of a string
 
@@ -320,6 +329,25 @@ integer,parameter             :: toupper = iachar('A')-iachar('a')
        end select
    enddo
 end function upper
+
+subroutine system_usleep(microseconds)
+use,intrinsic       :: iso_c_binding, only: c_int
+integer,intent(in)  :: microseconds
+integer(kind=c_int) :: status
+interface
+   function c_usleep(mseconds) bind (c,name="usleep")
+      import
+      ! should be unsigned int (not available in Fortran).
+      ! OK until highest bit gets set.
+      integer(c_int)       :: c_usleep
+      integer(c_int), intent(in), value :: mseconds
+   end function c_usleep
+end interface
+   if(microseconds > 0)then
+      status=c_usleep(int(microseconds,kind=c_int))
+   endif
+end subroutine system_usleep
+
 end program demo_achar
 ```
 Results:
@@ -342,6 +370,7 @@ Results:
  > 112 p 113 q 114 r 115 s 116 t 117 u 118 v 119 w
  > 120 x 121 y 122 z 123 { 124 | 125 } 126 ~
  > MIXED CASE
+ > Percent Complete: 100.00%
 ```
 ### **Standard**
 
@@ -1717,7 +1746,7 @@ integer                    :: i
   print all, 'angle of incline(radians) = ', asin(rise/run)
 
   print all, 'percent grade=',rise/run*100.0_dp
-  print all,
+  print all
   do i=-360,360,45
      grade=i/360.0d0
      print *, grade, asind(grade), sind(asind(grade))
@@ -2872,13 +2901,13 @@ Inverse function: [**tanh**(3)](#tanh)
 
 ### **Synopsis**
 ```fortran
-    result = atan([x) | atan(y, x)
+    result = atan(x) | atan(y, x)
 ```
 ```fortran
      elemental TYPE(kind=KIND) function atan(y,x)
 
       TYPE(kind=KIND),intent(in) :: x
-      TYPE(kind=**),intent(in),optional :: y
+      TYPE(kind=KIND),intent(in),optional :: y
 ```
 ### **Characteristics**
 
@@ -2891,12 +2920,25 @@ Inverse function: [**tanh**(3)](#tanh)
 
 **atan(x)**(3) returns the inverse tangent (ie. arctangent) of the
 elements of **x** in radians. The function accepts both real and complex
-inputs, specified as a scalar, vector, matrix. The atan operation is
-element-wise when X is nonscalar.
+inputs, and is elemental (therefore allowing arguments to be scalar,
+vector, or matrix). The atan operation is performed element-wise when
+X is nonscalar.
 
   * For real values of X, atan(X) returns values in the interval
     [-PI/2, PI/2].
   * For complex values of X, atan(X) returns complex values.
+
+    When x is complex, Fortran’s intrinsic ATAN(x) computes the
+    principal value of the complex arctangent function and returns a
+    complex number in radians. The Imaginary part is an  unbounded real
+    value representing the hyperbolic growth of the inverse function.
+
+     - Converts complex coordinates using the natural logarithm and
+       imaginary unit.
+     - Reduces to the standard real arctangent when the input has a zero
+       imaginary component.
+     - Undefined at the exact poles.
+     - Branch cuts lie along the outer imaginary axis
 
 When Y is not supplied the inverse tangent is defined as
 
@@ -2905,7 +2947,8 @@ When Y is not supplied the inverse tangent is defined as
 
 This definition of the atan function returns angles in radians within
 the interval [-PI/2, PI/2]. To find the four-quadrant inverse tangent,
-where the returned angles are in the interval [-PI, PI], use atan2.
+where the returned angles are in the interval [-PI, PI], supply the
+**y** value or equivalently, use atan2(3).
 
 ### **Options**
 
@@ -2933,17 +2976,43 @@ Sample program:
 program demo_atan
 use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
-character(len=*),parameter :: all='(*(g0,1x))'
+character(len=*),parameter  :: g='(*(g0,1x))'
 real(kind=real64),parameter :: &
  Deg_Per_Rad = 57.2957795130823208767981548_real64
-real(kind=real64) :: x
-    x=2.866_real64
-    print all, atan(x)
+real(kind=real64)           :: x
+real(kind=real64),parameter              :: &
 
-    print all, atan( 2.0d0, 2.0d0),atan( 2.0d0, 2.0d0)*Deg_Per_Rad
-    print all, atan( 2.0d0,-2.0d0),atan( 2.0d0,-2.0d0)*Deg_Per_Rad
-    print all, atan(-2.0d0, 2.0d0),atan(-2.0d0, 2.0d0)*Deg_Per_Rad
-    print all, atan(-2.0d0,-2.0d0),atan(-2.0d0,-2.0d0)*Deg_Per_Rad
+ xvals(*)=[2.0d0, 2.0d0, 2.0d0,  2.0d0,  -2.0d0, -2.0d0, -2.0d0, -2.0d0 ]
+real(kind=real64),parameter              :: &
+ yvals(*)=[2.0d0, 2.0d0, -2.0d0, -2.0d0, 2.0d0,  2.0d0,  -2.0d0, -2.0d0 ]
+   !
+   ! basics
+   !
+   ! with just a real X returns angles in radians
+   ! in the interval [-PI/2, PI/2].
+    x=2.866_real64
+    print g, atan(x)
+   !
+   ! all the quadrants using two arguments
+   !
+    print g, atan( 2.0d0, 2.0d0),atan( 2.0d0, 2.0d0)*Deg_Per_Rad
+    print g, atan( 2.0d0,-2.0d0),atan( 2.0d0,-2.0d0)*Deg_Per_Rad
+    print g, atan(-2.0d0, 2.0d0),atan(-2.0d0, 2.0d0)*Deg_Per_Rad
+    print g, atan(-2.0d0,-2.0d0),atan(-2.0d0,-2.0d0)*Deg_Per_Rad
+   !
+   ! elemental
+   !
+    print g, 'elemental:'
+    print g, atan(xvals,yvals)*Deg_Per_Rad
+    print g, 'elemental:'
+   !
+   ! when x and y are present, atan(3) is an alias for atan2(2)
+   !
+    print g, 'For comparison to atan2(3):'
+    print g, atan2(xvals,yvals)*Deg_Per_Rad
+    print g, 'test1 ',merge('PASSED','FAILED',     &
+    & all(atan(xvals,yvals)==atan2(xvals,yvals))), &
+    & atan(xvals,yvals)==atan2(xvals,yvals)
 
 end program demo_atan
 ```
@@ -2954,6 +3023,13 @@ Results:
  > 2.356194490192345 135.0000000000000
  > -.7853981633974483 -45.00000000000000
  > -2.356194490192345 -135.0000000000000
+ > elemental:
+ > 45.0000000000000 45.0000000000000 135.000000000000 135.000000000000
+ > -45.0000000000000 -45.0000000000000 -135.000000000000 -135.000000000000
+ > For comparison to atan2(3):
+ > 45.0000000000000 45.0000000000000 135.000000000000 135.000000000000
+ > -45.0000000000000 -45.0000000000000 -135.000000000000 -135.000000000000
+ > test1 PASSED T T T T T T T T
 ```
 ### **Standard**
 
@@ -6125,7 +6201,7 @@ integer :: i
          write(*,'(i3,1x,a)')i,c
       case(0:31,127)
          ! print hexadecimal value for unprintable characters
-         write(*,'(i3,1x,z2.2)')i,c
+         write(*,'(i3,1x,z2.2)')i,ichar(c)
       case default
          write(*,'(i3,1x,a,1x,a)')i,c,'non-standard ASCII'
       end select
@@ -6444,7 +6520,7 @@ complex(kind=dp)  :: z8
 complex           :: z4, zthree(3)
    precise=1.2345678901234567d0
 
-  ! basic
+   ! basic
    z4 = cmplx(-3)
    print *, 'Z4=',z4
    z4 = cmplx(1.23456789, 1.23456789)
@@ -6452,7 +6528,7 @@ complex           :: z4, zthree(3)
    ! with a format treat a complex as two real values
    print '(1x,g0,1x,g0,1x,g0)','Z4=',z4
 
-  ! working with higher precision values
+   ! working with higher precision values
    ! using kind=dp makes it keep DOUBLEPRECISION precision
    ! otherwise the result would be of default kind
    z8 = cmplx(precise, -precise )
@@ -6460,37 +6536,61 @@ complex           :: z4, zthree(3)
    z8 = cmplx(precise, -precise ,kind=dp)
    print *, 'kept precision Z8=',z8
 
-  ! assignment of constant values does not require cmplx(3)00
+   ! assignment of constant values does not require cmplx(3)00
    ! The following is intuitive and works without calling cmplx(3)
    ! but does not work for variables just constants
    z8 = (1.1111111111111111d0, 2.2222222222222222d0 )
    print *, 'Z8 defined with constants=',z8
 
-  ! what happens when you assign a complex to a real?
+   ! what happens when you assign a complex to a real?
    precise=z8
    print *, 'LHS=',precise,'RHS=',z8
 
-  ! elemental
+   ! elemental
    zthree=cmplx([10,20,30],-1)
    print *, 'zthree=',zthree
 
-  ! descriptors are an alternative
+   ! descriptors are an alternative
    zthree(1:2)%re=[100,200]
    print *, 'zthree=',zthree
+
+   TEST: block
+      complex :: x
+      real,parameter:: y=sin(3.0)
+      ! TEST I
+      ! x%re|mi can appear on the left-hand side of an assignment
+      x%re=100.0
+      x%im=sin(3.0)
+      write(*,*)'LHS:',x, &
+      merge('PASSED','FAILED',x.eq.cmplx(100.0,y) )
+
+      ! TEST II
+      ! it can be passed as a subroutine argument and be changed
+      call trivial(x%re)
+      write(*,*)'RETURNED:',x, &
+      merge('PASSED','FAILED', x.eq.(200.0,y) )
+   endblock TEST
+contains
+   subroutine trivial(r)
+      real,intent(inout) :: r
+      r=r*2
+   end subroutine trivial
 
 end program demo_cmplx
 ```
 Results:
 ```text
-  > Z4= (-3.000000,0.0000000E+00)
-  > Z4= (1.234568,1.234568)
-  > Z4= 1.234568 1.234568
-  > lost precision Z8= (1.23456788063049,-1.23456788063049)
-  > kept precision Z8= (1.23456789012346,-1.23456789012346)
-  > Z8 defined with constants= (1.11111111111111,2.22222222222222)
-  > LHS=   1.11111111111111      RHS= (1.11111111111111,2.22222222222222)
+  > Z4=            (-3.00000000,0.00000000)
+  > Z4=             (1.23456788,1.23456788)
+  > Z4= 1.23456788 1.23456788
+  > lost precision Z8= (1.2345678806304932,-1.2345678806304932)
+  > kept precision Z8= (1.2345678901234567,-1.2345678901234567)
+  > Z8 defined with constants= (1.1111111111111112,2.2222222222222223)
+  > LHS=   1.1111111111111112 RHS= (1.1111111111111112,2.2222222222222223)
   > zthree= (10.00000,-1.000000) (20.00000,-1.000000) (30.00000,-1.000000)
   > zthree= (100.0000,-1.000000) (200.0000,-1.000000) (30.00000,-1.000000)
+  > LHS: (100.000000,0.141120002) PASSED
+  > RETURNED:            (200.000000,0.141120002) PASSED
 ```
 ### **Standard**
 
@@ -12370,7 +12470,7 @@ Fortran 2023
  - **array** is an _integer_ array
  - **dim** may be of any _integer_ kind.
  - **mask** is a _logical_ array that conforms to **array**
- - The result will by of the same type and kind
+ - The result will be of the same type and kind
    as **array**. It is scalar if **dim** does not appear or is 1.
    Otherwise, it is the shape and rank of array reduced by the
    dimension **dim**.
@@ -12410,48 +12510,65 @@ Sample program:
 
 ```fortran
 program demo_iany
-use, intrinsic :: iso_fortran_env, only : integer_kinds, &
- & int8, int16, int32, int64
-implicit none
-logical,parameter :: T=.true., F=.false.
-integer(kind=int8) :: a(3)
+use, intrinsic :: iso_fortran_env, only : compiler_version
+   use, intrinsic :: iso_fortran_env, only : integer_kinds, &
+   & int8, int16, int32, int64
+   implicit none
+   logical,parameter :: T=.true., F=.false.
+   integer(kind=int8) :: a(3)
+   integer(kind=int8) :: answer
+
+   print '(2a)', 'This file was compiled by ', compiler_version()
+
+   ! set some values to exercise with
    a(1) = int(b'00100100',int8)
    a(2) = int(b'01101010',int8)
    a(3) = int(b'10101010',int8)
-   write(*,*)'A='
-   print '(1x,b8.8)', a
-   print *
-   write(*,*)'IANY(A)='
-   print '(1x,b8.8)', iany(a)
-   print *
+   answer=int(b'11101110',int8)
+   ! if any bit on in any element of A it should be on in answer
+
+   ! basic call
+   print '("A=")'
+   print '("  ",1x,b8.8)', a
+   print '("IANY(A)=",1x,b8.8,/)', iany(a)
+   print '("is it the expected value? ",1x,l1,/)', iany(a)==answer
+
+   ! select values with a mask
    write(*,*)'IANY(A) with a mask'
+   write(*,*)'these values should be equivalent'
    print '(1x,b8.8)', iany(a,mask=[T,F,T])
+   print '(1x,b8.8)', iany(a,[T,F,T])
+   print '(1x,b8.8)', iany(a,dim=1,mask=[T,F,T])
+
    print *
-   write(*,*)'should match '
-   print '(1x,b8.8)', iany([a(1),a(3)])
-   print *
+   print '("the answer should match",1x,b8.8)', iany([a(1),a(3)])
    write(*,*)'does it?'
    write(*,*)iany(a,[T,F,T]) == iany([a(1),a(3)])
+   write(*,*)iany(a,[T,F,T]) == int(b'10101110',int8)
+
 end program demo_iany
 ```
 Results:
 ```text
-  > A=
-  > 00100100
-  > 01101010
-  > 10101010
-  >
-  > IANY(A)=
-  > 11101110
-  >
-  > IANY(A) with a mask
-  > 10101110
-  >
-  > should match
-  > 10101110
-  >
-  > does it?
-  > T
+ > This file was compiled by GCC version 16.1.1 20260613
+ > A=
+ >    00100100
+ >    01101010
+ >    10101010
+ > IANY(A)= 11101110
+ >
+ > is it the expected value?  T
+ >
+ >  IANY(A) with a mask
+ >  these values should be equivalent
+ >  10101110
+ >  10101110
+ >  10101110
+ >
+ > the answer should match 10101110
+ >  does it?
+ >  T
+ >  T
 ```
 ### **Standard**
 
@@ -16404,6 +16521,7 @@ implicit none
 real :: arr1(4)= [10.0,11.0,30.0,-100.0]
 real :: arr2(5)= [20.0,21.0,32.0,-200.0,2200.0]
 integer :: box(3,4)= reshape([-6,-5,-4,-3,-2,-1,1,2,3,4,5,6],shape(box))
+character(len=:),allocatable :: answer(:)
 
   ! basic usage
    ! this is simple enough when all arguments are scalar
@@ -16428,6 +16546,13 @@ integer :: box(3,4)= reshape([-6,-5,-4,-3,-2,-1,1,2,3,4,5,6],shape(box))
    ! strings in a single array do need to be of the same length
    ! but the different objects can still be of different lengths.
    write(*,"(*('""',a,'""':,1x))")MAX(['A','Z'],['BB','Y '])
+   answer=MAX(['A', 'Z'], ['BB', 'Y '])
+   !
+   if(all(answer .eq. ['BB', 'Z ']) .and. len(answer).eq.2 )then
+      write(*,*)'previous line passed'
+   else
+      write(*,*)'<ERROR> previous line should be "BB","Z "'
+   endif
    ! note the result is now an array with the max of every element
    ! position, as can be illustrated numerically as well:
    write(*,'(a,*(i3,1x))')'box=   ',box
@@ -16496,16 +16621,20 @@ FORTRAN 77
     result = maxval(array [,mask]) | maxval(array [,dim] [,mask])
 ```
 ```fortran
-     NUMERIC function maxval(array ,dim, mask)
+     type(TYPE(kind=**)) function maxval(array, dim, mask)
 
-      NUMERIC,intent(in) :: array(..)
+      type(TYPE(kind=**)),intent(in) :: array(..)
       integer(kind=**),intent(in),optional :: dim
       logical(kind=**),intent(in),optional :: mask(..)
 ```
 ### **Characteristics**
 
+ - **TYPE** may be real, integer, or character.
  - a kind designated as ** may be any supported kind for the type
- - **NUMERIC** designates any numeric type and kind.
+ - **dim** is an integer scalar indicating a dimension of the array.
+   It may not be an optional dummy argument.
+ - **mask** is an array of type _logical_, and conformable with **array**.
+ - the result is of the same type and kind as **array**.
 
 ### **Description**
 
@@ -16549,15 +16678,16 @@ sample program:
 ```fortran
 program demo_maxval
 implicit none
-integer,save :: ints(3,5)= reshape([&
-   1,  2,  3,  4,  5, &
-  10, 20, 30, 40, 50, &
-  11, 22, 33, 44, 55  &
+integer,save                 :: ints(3,5)= reshape([&
+   1,  2,  3, -4,  5, &
+  10, 20,-30, 40, 50, &
+  11,-22, 33, 44, 55  &
 ],shape(ints),order=[2,1])
 character(len=:),allocatable :: strs(:)
-integer :: i
-character(len=*),parameter :: gen='(*(g0,1x))'
-character(len=*),parameter :: ind='(3x,*(g0,1x))'
+character(len=:),allocatable :: answer
+integer                      :: i
+character(len=*),parameter   :: gen='(*(g0,1x))'
+character(len=*),parameter   :: ind='(3x,*(g0,1x))'
 
    print gen,'Given the array'
    write(*,'(1x,*(g4.4,1x))') &
@@ -16569,20 +16699,39 @@ character(len=*),parameter :: ind='(3x,*(g0,1x))'
    print ind, maxval(ints,dim=1)
    print ind, 'biggest value in each row'
    print ind,  maxval(ints,dim=2)
-
-   print gen,'With a mask:'
-   print ind, ' find biggest number less than 30 with mask'
-   print ind, maxval(ints,mask=ints.lt.30)
-
-   print gen,'If zero size considered:'
-   print ind, 'if zero size numeric array'
+   print ind
+   print ind, 'find biggest number less than 30 with mask'
+   print ind
+   print ind, 'find biggest negative value'
+   print ind, '(closest to zero, not biggest magnitude)'
+   print ind, maxval(ints,mask=ints.lt.0)
+   print ind
+   print ind, 'DEALING WITH ZERO-LENGTH STRINGS AND ZERO-SIZE ARRAYS'
+   print ind
+   print ind, 'if zero size numeric array:'
    print ind, maxval([integer :: ]),'and -huge(0) is',-huge(0),&
    & '(often not the same!)'
+   print ind
+   print ind, maxval([real :: ]),'and -huge(0.0) is',-huge(0.0)
+   print ind
    print ind, 'if zero-size character array all nulls'
-   strs=[character(len=5)::]
-   strs=maxval(strs)
-   print ind, ichar([(strs(i),i=1,len(strs))])
-   print ind, 'if everything is false,'
+   if(allocated(strs))deallocate(strs)
+   allocate(character(len=0) :: strs(5))
+   print ind, 'STRS() has a length of:', len(strs), &
+    & 'a SHAPE of:',shape(strs), &
+    & ':a SIZE of:',size(strs)
+   print ind, 'is maxval of null length strings a null character? ',ichar(maxval(strs))==0
+   print ind
+   if(allocated(strs))deallocate(strs)
+   allocate(character(len=5) :: strs(0))
+   print ind, 'STRS() has a length of:', len(strs), &
+    & 'a SHAPE of:',shape(strs), &
+    & ':a SIZE of:',size(strs)
+    answer=maxval(strs)
+   print ind, 'is maxval of strings all null characters? ', &
+    & [(answer(i:i),i=1,len(answer))].eq.char(0)
+   print ind
+   print ind, 'if everything in mask is false,'
    print ind, 'same as zero-size array for each subarray'
    print ind, maxval(ints,mask=.false.)
    print ind, maxval(ints,mask=.false.,dim=1)
@@ -16591,24 +16740,43 @@ end program demo_maxval
 Results:
 ```
  > Given the array:
- >    1,  2,  3,  4,  5, &
- >   10, 20, 30, 40, 50, &
- >   11, 22, 33, 44, 55  &
- > biggest value in array
- > 55
- > biggest value in each column
- > 11 22 33 44 55
- > biggest value in each row
- > 5 50 55
- > find biggest number less than 30 with mask
- > 22
- > if zero size numeric array
- > -2147483648 and -huge(0) is -2147483647 (often not the same!)
- > if zero-size character array all nulls
- > 0 0 0 0 0
- > if everything is false, same as zero-size array
- > -2147483648
- > -2147483648 -2147483648 -2147483648 -2147483648 -2147483648
+ > Given the array
+ >     1    2    3   -4    5
+ >    10   20  -30   40   50
+ >    11  -22   33   44   55
+ >
+ > Basics:
+ >    biggest value in array
+ >    55
+ >    biggest value in each column
+ >    11 20 33 44 55
+ >    biggest value in each row
+ >    5 50 55
+ >
+ >    find biggest number less than 30 with mask
+ >
+ >    find biggest negative value
+ >    (closest to zero, not biggest magnitude)
+ >    -4
+ >
+ >    DEALING WITH ZERO-LENGTH STRINGS AND ZERO-SIZE ARRAYS
+ >
+ >    if zero size numeric array:
+ >    -2147483648 and -huge(0) is -2147483647 (often not the same!)
+ >
+ >    -0.340282347E+39 and -huge(0.0) is -0.340282347E+39
+ >
+ >    if zero-size character array all nulls
+ >    STRS() has a length of: 0 a SHAPE of: 5 :a SIZE of: 5
+ >    is maxval of null length strings a null character?  T
+ >
+ >    STRS() has a length of: 5 a SHAPE of: 0 :a SIZE of: 0
+ >    is maxval of strings all null characters?  T T T T T
+ >
+ >    if everything in mask is false,
+ >    same as zero-size array for each subarray
+ >    -2147483648
+ >    -2147483648 -2147483648 -2147483648 -2147483648 -2147483648
 ```
 ### **Standard**
 
@@ -16822,13 +16990,14 @@ instead of the more obscure
 ### **Options**
 
 - **tsource**
-  : May be of any type, including user-defined.
+  : Value to return when corresponding element of **mask** is true.
 
 - **fsource**
-  : Shall be of the same type and type parameters as **tsource**.
+  : Value to return when corresponding element of **mask** is false.
 
 - **mask**
-  : Shall be of type _logical_.
+  : _logical_ mask used to determine whether to select an element of
+  **tsource** or an element of **fsource**.
 
 Note that (currently) _character_ values must be of the same length.
 
@@ -17156,6 +17325,9 @@ Fortran 95
 ### **Characteristics**
 
 - **TYPE** may be _integer_, _real_ or _character_.
+- The arguments shall all be of the same type and they shall all have the same kind type parameter.
+- The type and kind type parameter of the result are the same as those of the arguments.
+- For arguments of character type, the length of the result is the length of the longest argument.
 
 ### **Description**
 
@@ -17187,6 +17359,18 @@ the kind of the expression a1+a2+a3+a4... per the rules of promotion.
 The return value corresponds to the minimum value among the arguments,
 and has the same type and kind as the first argument.
 
+If arguments are elemental arrays each element of the returned array
+shall be the minimum value of the Nth element of all the arrays (or
+expanded scalars).
+
+The value of the result is that of the smallest argument. For arguments
+of character type, the result is the value that would be selected by
+application of intrinsic relational operators; that is, the collating
+sequence for characters with the kind type parameter of the arguments is
+applied. If the selected argument is shorter than the longest argument,
+the result is extended with blanks on the right to the length of the
+longest argument.
+
 ### **Examples**
 
 Sample program
@@ -17195,6 +17379,8 @@ program demo_min
 implicit none
 integer :: i
 integer :: rectangle(3,4)=reshape([(-6+i,i=0,11)],[3,4])
+character(len=:),allocatable :: answer
+character(len=:),allocatable :: aanswer(:)
     print *, 'basics'
     print *, min(10.0,11.0,30.0,-100.0)
     print *, min(-200.0,-1.0)
@@ -17210,24 +17396,49 @@ integer :: rectangle(3,4)=reshape([(-6+i,i=0,11)],[3,4])
     do i=1,size(rectangle,dim=1)
        write(*,'(*(i3,1x))')min(rectangle(i,:),0)
     enddo
+
+    write(*,*)'test1 ',merge('PASSED','FAILED', &
+    MIN(-9.0, 7.0, 2.0) == -9.0)
+
+    write(*,*)'test2A ',merge('PASSED','FAILED', &
+    & MIN('A', 'YY') == 'A ' .and. len(MIN('A','YY')).eq.2)
+    write(*,*)'test2B ',merge('PASSED','FAILED', &
+    & MIN('AA', 'Y') == 'AA' .and. len(MIN('AA','Y')).eq.2)
+    write(*,*)'test2C ',merge('PASSED','FAILED', &
+    & MIN('Y', 'AA') == 'AA' .and. len(MIN('Y','AA')).eq.2)
+    write(*,*)'test2D ',merge('PASSED','FAILED', &
+    & MIN('YY', 'A') == 'A ' .and. len(MIN('YY','A')).eq.2)
+
+    aanswer=MIN(['Z', 'A'], ['YY', 'B '])
+    write(*,'(1x,*(g0,1x))') "MIN(['Z', 'A'], ['YY', 'B ']): ",aanswer
+    write(*,*)'test3 ',merge('PASSED','FAILED', &
+    all(aanswer.eq. ['YY', 'A ']) .and. len(aanswer).eq.2)
+
 end program demo_min
 ```
 Results:
 ```text
- >  basics
- >   -100.000000
- >   -200.000000
- >  elemental
- >            1           1           1
- >            2           3           4
- >  box:
- >  -6  -3   0   3
- >  -5  -2   1   4
- >  -4  -1   2   5
- >  make all values 0 or less:
- >  -6  -3   0   0
- >  -5  -2   0   0
- >  -4  -1   0   0
+ > basics
+ >  -100.000000
+ >  -200.000000
+ > elemental
+ >           1           1           1
+ >           2           3           4
+ > box:
+ > -6  -3   0   3
+ > -5  -2   1   4
+ > -4  -1   2   5
+ > make all values 0 or less:
+ > -6  -3   0   0
+ > -5  -2   0   0
+ > -4  -1   0   0
+ > test1 PASSED
+ > test2A PASSED
+ > test2B PASSED
+ > test2C PASSED
+ > test2D PASSED
+ > MIN(['Z', 'A'], ['YY', 'B ']):  YY A
+ > test3 PASSED
 ```
 ### **Standard**
 
@@ -17242,7 +17453,6 @@ FORTRAN 77
 [**maxval**(3)](#minval)
 
  _Fortran intrinsic descriptions (license: MIT) \@urbanjost_
-     '
 
 ## minval
 
@@ -17343,17 +17553,21 @@ sample program:
 ```fortran
 program demo_minval
 implicit none
-integer :: i
-character(len=:),allocatable :: strs(:)
-character(len=*),parameter :: g='(3x,*(g0,1x))'
+integer,parameter :: ucs4=selected_char_kind('ISO_10646')
+integer,parameter :: ascii=selected_char_kind('ascii')
+integer,parameter :: default=selected_char_kind('default')
+integer                      :: i
+character(len=:,kind=ascii),allocatable :: strs(:)
+character(len=*),parameter   :: g='(3x,*(g0,1x))'
 
-integer,save :: ints(3,5)= reshape([&
-       1,  -2,   3,   4,   5,  &
-      10,  20, -30,  40,  50,  &
+integer,save                 :: ints(3,5)= reshape([&
+       1,  -2,   3,   4,   5, &
+      10,  20, -30,  40,  50, &
       11,  22,  33, -44,  55  &
 ],shape(ints),order=[2,1])
 
-integer,save :: box(3,5,2)
+integer,save                 :: box(3,5,2)
+character(len=:,kind=ascii),allocatable :: answer
 
    box(:,:,1)=ints
    box(:,:,2)=-ints
@@ -17380,18 +17594,26 @@ integer,save :: box(3,5,2)
 
    write(*,*)&
    & 'if everything is false a zero-sized array is NOT returned'
-   write(*,*) minval(ints, dim=1, mask = .false.)
+   write(*,*) minval(ints, dim=1, mask = ints > ints)
    write(*,*)'even for a zero-sized input'
-   write(*,g) minval([integer ::], dim=1, mask = .false.)
+   write(*,g) minval([integer ::], dim=1 )
 
    write(*,*)'a scalar answer for everything false is huge()'
-   write(*,g) minval(ints, mask = .false.)
-   write(*,g) minval([integer ::], mask = .false.)
+   write(*,g) minval(ints, mask = ints > ints)
+   write(*,g) minval([integer ::] )
 
-   print *, 'if zero-size character array all dels if ASCII'
    strs=[character(len=5)::]
-   strs=minval(strs)
-   print g, ichar([(strs(i),i=1,len(strs))])
+   if(len(strs).eq.0)then
+      write(*,g)'<WARNING> compensating for bug defining zero-size arrays'
+      if(allocated(strs))deallocate(strs)
+      allocate(character(len=5) :: strs(0))
+   endif
+
+   answer=minval(strs)
+   print g, 'is minval of strings all del characters? ', &
+    & [(answer(i:i),i=1,len(answer))].eq.char(127)
+   print g, 'is minval of strings all del characters? ', &
+    & ichar([(answer(i:i),i=1,len(answer))])
 
    write(*,*)'some calls with three dimensions'
    write(*,g) minval(box, mask = .true. )
@@ -17427,8 +17649,9 @@ Result:
  >  a scalar answer for everything false is huge()
  >    2147483647
  >    2147483647
- >  if zero-size character array all dels if ASCII
- >
+ >    <WARNING> compensating for bug defining zero-size arrays
+ >    is minval of strings all del characters?  F F F F F
+ >    is minval of strings all del characters?  255 255 255 255 255
  >  some calls with three dimensions
  >    -55
  >    1 -2 -30 -44 5 -11 -22 -33 -40 -55
@@ -19176,14 +19399,14 @@ Results:
 ```fortran
      TYPE(kind=KIND) function pack(array,mask,vector)
 
-      TYPE(kind=KIND),option(in) :: array(..)
-      logical  :: mask(..)
-      TYPE(kind=KIND),option(in),optional :: vector(*)
+      TYPE(kind=KIND),intent(in) :: array(..)
+      logical,intent(in) :: mask(..)
+      TYPE(kind=KIND),intent(in),optional :: vector(*)
 ```
 ### **Characteristics**
 
   - **array** is an array of any type
-  - **mask** a _logical_ scalar as well as an array conformable with **array**.
+  - **mask** a _logical_ scalar or an array conformable with **array**.
   - **vector** is of the same kind and type as **array** and of rank one
   - the returned value is of the same kind and type as **array**
 
@@ -23083,11 +23306,11 @@ Fortran 2008
 
   a value with the magnitude of **a** with the sign of **b**. That is,
 
-  - If _b \>= 0_ then the result is _abs(a)_
+  - if the processor distinguishes between
+    positive and negative real zero, and _b_ is negative real zero, the
+    value of the result is _-abs(a)_.
+  - else if _b \>= 0_ then the result is _abs(a)_
   - else if _b < 0_ it is -_abs(a)_.
-  - if _b_ is _real_ and the processor distinguishes between _-0.0_
-    and _0.0_ then the
-    result is _-abs(a)_
 
 ### **Examples**
 
@@ -23108,6 +23331,8 @@ implicit none
    else
       print *, 'this processor does not distinguish +0 from -0'
    endif
+   print *,'either way, 0==-0 is true!',0==-0
+   print *,'either way, 0=/-0 is false!',0/=-0
 
    print *,  'elemental', sign( -12.0, [1.0, 0.0, -1.0] )
 

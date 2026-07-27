@@ -72,8 +72,8 @@ instead of the more obscure
   : Value to return when corresponding element of **mask** is false.
 
 - **mask**
-  : _logical_ mask used to determine whether an elment or **tsource**
-  or an elment of **fsource**.
+  : _logical_ mask used to determine whether to select an element of
+  **tsource** or an element of **fsource**.
 
 Note that (currently) _character_ values must be of the same length.
 

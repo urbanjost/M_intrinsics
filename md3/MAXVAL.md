@@ -9,16 +9,20 @@
     result = maxval(array [,mask]) | maxval(array [,dim] [,mask])
 ```
 ```fortran
-     NUMERIC function maxval(array ,dim, mask)
+     type(TYPE(kind=**)) function maxval(array, dim, mask)
 
-      NUMERIC,intent(in) :: array(..)
+      type(TYPE(kind=**)),intent(in) :: array(..)
       integer(kind=**),intent(in),optional :: dim
       logical(kind=**),intent(in),optional :: mask(..)
 ```
 ### **Characteristics**
 
+ - **TYPE** may be real, integer, or character.
  - a kind designated as ** may be any supported kind for the type
- - **NUMERIC** designates any numeric type and kind.
+ - **dim** is an integer scalar indicating a dimension of the array.
+   It may not be an optional dummy argument.
+ - **mask** is an array of type _logical_, and conformable with **array**.
+ - the result is of the same type and kind as **array**.
 
 ### **Description**
 
@@ -62,15 +66,16 @@ sample program:
 ```fortran
 program demo_maxval
 implicit none
-integer,save :: ints(3,5)= reshape([&
-   1,  2,  3,  4,  5, &
-  10, 20, 30, 40, 50, &
-  11, 22, 33, 44, 55  &
+integer,save                 :: ints(3,5)= reshape([&
+   1,  2,  3, -4,  5, &
+  10, 20,-30, 40, 50, &
+  11,-22, 33, 44, 55  &
 ],shape(ints),order=[2,1])
 character(len=:),allocatable :: strs(:)
-integer :: i
-character(len=*),parameter :: gen='(*(g0,1x))'
-character(len=*),parameter :: ind='(3x,*(g0,1x))'
+character(len=:),allocatable :: answer
+integer                      :: i
+character(len=*),parameter   :: gen='(*(g0,1x))'
+character(len=*),parameter   :: ind='(3x,*(g0,1x))'
 
    print gen,'Given the array'
    write(*,'(1x,*(g4.4,1x))') &
@@ -82,20 +87,39 @@ character(len=*),parameter :: ind='(3x,*(g0,1x))'
    print ind, maxval(ints,dim=1)
    print ind, 'biggest value in each row'
    print ind,  maxval(ints,dim=2)
-
-   print gen,'With a mask:'
-   print ind, ' find biggest number less than 30 with mask'
-   print ind, maxval(ints,mask=ints.lt.30)
-
-   print gen,'If zero size considered:'
-   print ind, 'if zero size numeric array'
+   print ind
+   print ind, 'find biggest number less than 30 with mask'
+   print ind
+   print ind, 'find biggest negative value'
+   print ind, '(closest to zero, not biggest magnitude)'
+   print ind, maxval(ints,mask=ints.lt.0)
+   print ind
+   print ind, 'DEALING WITH ZERO-LENGTH STRINGS AND ZERO-SIZE ARRAYS'
+   print ind
+   print ind, 'if zero size numeric array:'
    print ind, maxval([integer :: ]),'and -huge(0) is',-huge(0),&
    & '(often not the same!)'
+   print ind
+   print ind, maxval([real :: ]),'and -huge(0.0) is',-huge(0.0)
+   print ind
    print ind, 'if zero-size character array all nulls'
-   strs=[character(len=5)::]
-   strs=maxval(strs)
-   print ind, ichar([(strs(i),i=1,len(strs))])
-   print ind, 'if everything is false,'
+   if(allocated(strs))deallocate(strs)
+   allocate(character(len=0) :: strs(5))
+   print ind, 'STRS() has a length of:', len(strs), &
+    & 'a SHAPE of:',shape(strs), &
+    & ':a SIZE of:',size(strs)
+   print ind, 'is maxval of null length strings a null character? ',ichar(maxval(strs))==0
+   print ind
+   if(allocated(strs))deallocate(strs)
+   allocate(character(len=5) :: strs(0))
+   print ind, 'STRS() has a length of:', len(strs), &
+    & 'a SHAPE of:',shape(strs), &
+    & ':a SIZE of:',size(strs)
+    answer=maxval(strs)
+   print ind, 'is maxval of strings all null characters? ', &
+    & [(answer(i:i),i=1,len(answer))].eq.char(0)
+   print ind
+   print ind, 'if everything in mask is false,'
    print ind, 'same as zero-size array for each subarray'
    print ind, maxval(ints,mask=.false.)
    print ind, maxval(ints,mask=.false.,dim=1)
@@ -104,24 +128,43 @@ end program demo_maxval
 Results:
 ```
  > Given the array:
- >    1,  2,  3,  4,  5, &
- >   10, 20, 30, 40, 50, &
- >   11, 22, 33, 44, 55  &
- > biggest value in array
- > 55
- > biggest value in each column
- > 11 22 33 44 55
- > biggest value in each row
- > 5 50 55
- > find biggest number less than 30 with mask
- > 22
- > if zero size numeric array
- > -2147483648 and -huge(0) is -2147483647 (often not the same!)
- > if zero-size character array all nulls
- > 0 0 0 0 0
- > if everything is false, same as zero-size array
- > -2147483648
- > -2147483648 -2147483648 -2147483648 -2147483648 -2147483648
+ > Given the array
+ >     1    2    3   -4    5
+ >    10   20  -30   40   50
+ >    11  -22   33   44   55
+ >
+ > Basics:
+ >    biggest value in array
+ >    55
+ >    biggest value in each column
+ >    11 20 33 44 55
+ >    biggest value in each row
+ >    5 50 55
+ >
+ >    find biggest number less than 30 with mask
+ >
+ >    find biggest negative value
+ >    (closest to zero, not biggest magnitude)
+ >    -4
+ >
+ >    DEALING WITH ZERO-LENGTH STRINGS AND ZERO-SIZE ARRAYS
+ >
+ >    if zero size numeric array:
+ >    -2147483648 and -huge(0) is -2147483647 (often not the same!)
+ >
+ >    -0.340282347E+39 and -huge(0.0) is -0.340282347E+39
+ >
+ >    if zero-size character array all nulls
+ >    STRS() has a length of: 0 a SHAPE of: 5 :a SIZE of: 5
+ >    is maxval of null length strings a null character?  T
+ >
+ >    STRS() has a length of: 5 a SHAPE of: 0 :a SIZE of: 0
+ >    is maxval of strings all null characters?  T T T T T
+ >
+ >    if everything in mask is false,
+ >    same as zero-size array for each subarray
+ >    -2147483648
+ >    -2147483648 -2147483648 -2147483648 -2147483648 -2147483648
 ```
 ### **Standard**
 

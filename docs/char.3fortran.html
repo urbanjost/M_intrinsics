@@ -196,7 +196,7 @@ Sample program:
              write(*,&#146;(i3,1x,a)&#146;)i,c
           case(0:31,127)
              ! print hexadecimal value for unprintable characters
-             write(*,&#146;(i3,1x,z2.2)&#146;)i,c
+             write(*,&#146;(i3,1x,z2.2)&#146;)i,ichar(c)
           case default
              write(*,&#146;(i3,1x,a,1x,a)&#146;)i,c,&#146;non-standard ASCII&#146;
           end select

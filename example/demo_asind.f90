@@ -18,7 +18,7 @@
         print all, 'angle of incline(radians) = ', asin(rise/run)
 
         print all, 'percent grade=',rise/run*100.0_dp
-        print all,
+        print all
         do i=-360,360,45
            grade=i/360.0d0
            print *, grade, asind(grade), sind(asind(grade))

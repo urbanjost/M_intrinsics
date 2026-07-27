@@ -75,9 +75,9 @@ result = pack( array, mask [,vector] )
 <PRE>
          TYPE(kind=KIND) function pack(array,mask,vector)
 <P>
-          TYPE(kind=KIND),option(in) :: array(..)
-          logical  :: mask(..)
-          TYPE(kind=KIND),option(in),optional :: vector(*)
+          TYPE(kind=KIND),intent(in) :: array(..)
+          logical,intent(in) :: mask(..)
+          TYPE(kind=KIND),intent(in),optional :: vector(*)
 <P>
 </PRE>
 </BLOCKQUOTE>
@@ -97,7 +97,7 @@ ARRAY is an array of any type
 <TR valign=top><TD width=3%>
 o
 </TD><TD>
-MASK a logical scalar as well as an array conformable with ARRAY.
+MASK a logical scalar or an array conformable with ARRAY.
 </TD></TR>
 <TR valign=top><TD width=3%>
 o
