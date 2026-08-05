@@ -8309,7 +8309,7 @@ textblock=[character(len=256) :: &
 '        enddo', &
 '      end function inset', &
 '', &
-'      program demo_compiler_version', &
+'      end program demo_compiler_version', &
 '', &
 '  Results (fancy):', &
 '', &
