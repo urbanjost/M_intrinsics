@@ -59,22 +59,4 @@
          enddo
       end function inset
 
-      program demo_compiler_version
-
-  Results (fancy):
-
-       > This file was compiled by :
-       >    GCC version 16.0.0 20250727 (experimental)
-       > using the options :
-       >    -mtune=generic
-       >    -march=x86-64
-
-STANDARD
-  Fortran 2008
-
-SEE ALSO
-  COMPILER_OPTIONS(3), ISO_FORTRAN_ENV(7)
-
-  Fortran intrinsic descriptions (license: MIT) @urbanjost
-
-                                August 04, 2026     compiler_version(3fortran)
+      end program demo_compiler_version

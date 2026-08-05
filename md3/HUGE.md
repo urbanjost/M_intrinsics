@@ -148,8 +148,6 @@ character(len=80)               :: message
 end function checkprod
 end program demo_huge
 ```
-#################################
-#################################
 Results:
 ```text
  >  basics:

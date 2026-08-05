@@ -14253,7 +14253,7 @@ textblock=[character(len=256) :: &
 '      end function checkprod', &
 '      end program demo_huge', &
 '', &
-'  ################################# ################################# Results:', &
+'  Results:', &
 '', &
 '       >  basics:', &
 '       >   2147483647  3.40282347E+38   1.7976931348623157E+308', &
