@@ -114,7 +114,7 @@ integer(kind=int8),allocatable :: arr1(:), arr2(:)
    write(*,*)'so the results are as if values are unsigned integers.'
    do i=-128,127,32
       byte=i
-      write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,bge(byte,64_int8),byte
+      write(*,'(sp,i0.4,1x,l1,1x,b8.8)')i,bge(byte,64_int8),byte
    enddo
 
   ! SIGNED ZERO
@@ -142,14 +142,14 @@ Results:
     > Compare some one-byte values to 64.
     > Notice that the values are tested as bits not as integers
     > so the results are as if values are unsigned integers.
-    > -0128  T 10000000
-    > -0096  T 10100000
-    > -0064  T 11000000
-    > -0032  T 11100000
-    > +0000  F 00000000
-    > +0032  F 00100000
-    > +0064  T 01000000
-    > +0096  T 01100000
+    > -0128 T 10000000
+    > -0096 T 10100000
+    > -0064 T 11000000
+    > -0032 T 11100000
+    > +0000 F 00000000
+    > +0032 F 00100000
+    > +0064 T 01000000
+    > +0096 T 01100000
     > plus zero=0
     > minus zero=0
 ```

@@ -169,21 +169,35 @@ Sample program:
 <PRE>
     program demo_nearest
     implicit none
+    character(len=*),parameter :: g=&#146;(*(g0,1x))&#146;
+    character(len=*),parameter :: ref=&#146;(a,1x,*(g20.15,1x))&#146;
+    character(len=*),parameter :: lim=&#146;(a,1x,*(g20.15,1x))&#146;
+    real                       :: x, y
 <P>
-       real :: x, y
+       write (*,g) &#146;The basics &#46;&#46;&#46;&#146;
+<P>
        x = nearest(42.0, 1.0)
        y = nearest(42.0, -1.0)
-       write (*,"(3(g20.15))") x, y, x - y
+       write (*,&#146;(a,g20.15,a,g20.15,a,g20.15)&#146;)&#146;for 42 +&#146;,x,&#146;-&#146;, y,&#146;delta&#146;,x-y
 <P>
-    !  write (*,"(3(g20.15))") &
-    !   nearest(tiny(0.0),1.0), &
-    !   nearest(tiny(0.0),-1.0), &
-    !   nearest(tiny(0.0),1.0) -nearest(tiny(0.0),-1.0)
+       write (*,g) &#146;For reference &#46;&#46;&#46;&#146;
 <P>
-    !  write (*,"(3(g20.15))") &
-    !   nearest(huge(0.0),1.0), &
-    !   nearest(huge(0.0),-1.0), &
-    !   nearest(huge(0.0),1.0)- nearest(huge(0.0),-1.0)
+       write (*,ref) &#146;TINY    &#146;,tiny(0.0)
+       write (*,ref) &#146;HUGE    &#146;,huge(0.0)
+       write (*,ref) &#146;EPSILON &#146;,epsilon(0.0)
+       write (*,ref) &#146;SPACING &#146;,spacing(tiny(0.0)),spacing(huge(0.0))
+<P>
+       write (*,g) &#146;Tesing the limits &#46;&#46;&#46;&#146;
+<P>
+       write (*,lim) &#146;For TINY()&#146;, &
+        nearest(tiny(0.0),1.0),    &
+        nearest(tiny(0.0),-1.0),   &
+        nearest(tiny(0.0),1.0) -nearest(tiny(0.0),-1.0)
+<P>
+       write (*,lim) &#146;For HUGE()&#146;, &
+        nearest(huge(0.0),1.0),    &
+        nearest(huge(0.0),-1.0),   &
+        nearest(huge(0.0),1.0)- nearest(huge(0.0),-1.0)
 <P>
     end program demo_nearest
 <P>
@@ -191,7 +205,18 @@ Sample program:
 Results:
 <P>
 <PRE>
-      &gt; 42.0000038146973    41.9999961853027    .762939453125000E-05
+       &gt; The basics &#46;&#46;&#46;
+       &gt; for 42 +42.0000038146973 -41.9999961853027 delta.762939453125000E-05
+       &gt; For reference &#46;&#46;&#46;
+       &gt; TINY     .117549435082229E-37
+       &gt; HUGE     .340282346638529E+39
+       &gt; EPSILON  .119209289550781E-06
+       &gt; SPACING  .117549435082229E-37 .202824096036517E+32
+       &gt; Tesing the limits &#46;&#46;&#46;
+       &gt; For TINY() .117549449095213E-37 .117549421069244E-37
+       &gt; .280259692864963E-44
+       &gt; For HUGE()             Infinity .340282326356119E+39
+       &gt; Infinity
 <P>
 </PRE>
 </BLOCKQUOTE>

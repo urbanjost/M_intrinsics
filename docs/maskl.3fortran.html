@@ -147,8 +147,8 @@ is specified by KIND. That is, these Fortran statements must be
 </TD></TR>
 <TR></TR></TABLE><!-- .nf -->
 <PRE>
-       i &gt;= 0 .and. i &lt; bitsize(i) ! if KIND is not specified
-       i &gt;= 0 .and. i &lt; bitsize(0_KIND) ! if KIND is specified
+       i &gt;= 0 .and. i &lt;= bitsize(i) ! if KIND is not specified
+       i &gt;= 0 .and. i &lt;= bitsize(0_KIND) ! if KIND is specified
 <P>
 </PRE>
 <TABLE cellpadding=3>

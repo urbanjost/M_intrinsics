@@ -83,7 +83,8 @@ integer                       :: indx
     & test('spaces',' one two three four    five  six  ',6), &
    ! note many characters might be special to a shell
     & test('special','"<>$@# " "$%&*()_-"',2), &
-    & test('many','a b c d e f g h i j k l m n o p q r s t u v w x y z',26)]
+    & test('many',&
+    & 'a b c d e f g h i j k l m n o p q r s t u v w x y z',26)]
    ! get name of program
    self=get_arg(0)
    ! if no options call all the test cases

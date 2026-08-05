@@ -3682,7 +3682,7 @@ all operations.</code></pre>
 <a class="sourceLine" id="cb200-36" title="36">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;so the results are as if values are unsigned integers.&#39;</span></a>
 <a class="sourceLine" id="cb200-37" title="37">   <span class="kw">do</span> i<span class="kw">=-</span><span class="dv">128</span>,<span class="dv">127</span>,<span class="dv">32</span></a>
 <a class="sourceLine" id="cb200-38" title="38">      byte<span class="kw">=</span>i</a>
-<a class="sourceLine" id="cb200-39" title="39">      <span class="fu">write(*</span>,<span class="st">&#39;(sp,i0.4,*(1x,1l,1x,b0.8))&#39;</span><span class="fu">)</span>i,bge(byte,<span class="dv">64_int8</span>),byte</a>
+<a class="sourceLine" id="cb200-39" title="39">      <span class="fu">write(*</span>,<span class="st">&#39;(sp,i0.4,1x,l1,1x,b8.8)&#39;</span><span class="fu">)</span>i,bge(byte,<span class="dv">64_int8</span>),byte</a>
 <a class="sourceLine" id="cb200-40" title="40">   <span class="kw">enddo</span></a>
 <a class="sourceLine" id="cb200-41" title="41"></a>
 <a class="sourceLine" id="cb200-42" title="42">  <span class="co">! SIGNED ZERO</span></a>
@@ -3705,14 +3705,14 @@ all operations.</code></pre>
     &gt; Compare some one-byte values to 64.
     &gt; Notice that the values are tested as bits not as integers
     &gt; so the results are as if values are unsigned integers.
-    &gt; -0128  T 10000000
-    &gt; -0096  T 10100000
-    &gt; -0064  T 11000000
-    &gt; -0032  T 11100000
-    &gt; +0000  F 00000000
-    &gt; +0032  F 00100000
-    &gt; +0064  T 01000000
-    &gt; +0096  T 01100000
+    &gt; -0128 T 10000000
+    &gt; -0096 T 10100000
+    &gt; -0064 T 11000000
+    &gt; -0032 T 11100000
+    &gt; +0000 F 00000000
+    &gt; +0032 F 00100000
+    &gt; +0064 T 01000000
+    &gt; +0096 T 01100000
     &gt; plus zero=0
     &gt; minus zero=0</code></pre>
 <h3 id="standard-43"><strong>Standard</strong></h3>
@@ -3769,14 +3769,14 @@ all operations.</code></pre>
 <a class="sourceLine" id="cb204-9" title="9">   <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span> <span class="st">&#39;we will compare other values to 64&#39;</span></a>
 <a class="sourceLine" id="cb204-10" title="10">   i<span class="kw">=</span><span class="dv">64</span></a>
 <a class="sourceLine" id="cb204-11" title="11">   byte<span class="kw">=</span>i</a>
-<a class="sourceLine" id="cb204-12" title="12">   <span class="fu">write(*</span>,<span class="st">&#39;(sp,i0.4,*(1x,1l,1x,b0.8))&#39;</span><span class="fu">)</span>i,bgt(byte,<span class="dv">64_int8</span>),byte</a>
+<a class="sourceLine" id="cb204-12" title="12">   <span class="fu">write(*</span>,<span class="st">&#39;(sp,i0.4,1x,l1,1x,b8.8)&#39;</span><span class="fu">)</span>i,bgt(byte,<span class="dv">64_int8</span>),byte</a>
 <a class="sourceLine" id="cb204-13" title="13"></a>
 <a class="sourceLine" id="cb204-14" title="14">   <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span> <span class="st">&quot;comparing at the bit level, not as whole numbers.&quot;</span></a>
 <a class="sourceLine" id="cb204-15" title="15">   <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span> <span class="st">&quot;so pay particular attention to the negative&quot;</span></a>
 <a class="sourceLine" id="cb204-16" title="16">   <span class="fu">write(*</span>,<span class="st">&#39;(a)&#39;</span><span class="fu">)</span> <span class="st">&quot;values on this two&#39;s complement platform ...&quot;</span></a>
 <a class="sourceLine" id="cb204-17" title="17">   <span class="kw">do</span> i<span class="kw">=-</span><span class="dv">128</span>,<span class="dv">127</span>,<span class="dv">32</span></a>
 <a class="sourceLine" id="cb204-18" title="18">      byte<span class="kw">=</span>i</a>
-<a class="sourceLine" id="cb204-19" title="19">      <span class="fu">write(*</span>,<span class="st">&#39;(sp,i0.4,*(1x,1l,1x,b0.8))&#39;</span><span class="fu">)</span>i,bgt(byte,<span class="dv">64_int8</span>),byte</a>
+<a class="sourceLine" id="cb204-19" title="19">      <span class="fu">write(*</span>,<span class="st">&#39;(sp,i0.4,1x,l1,1x,b8.8)&#39;</span><span class="fu">)</span>i,bgt(byte,<span class="dv">64_int8</span>),byte</a>
 <a class="sourceLine" id="cb204-20" title="20">   <span class="kw">enddo</span></a>
 <a class="sourceLine" id="cb204-21" title="21"></a>
 <a class="sourceLine" id="cb204-22" title="22">   <span class="co">! see the BGE() description for an extended description</span></a>
@@ -3789,14 +3789,14 @@ all operations.</code></pre>
  &gt; comparing at the bit level, not as whole numbers.
  &gt; so pay particular attention to the negative
  &gt; values on this two&#39;s complement platform ...
- &gt; -0128  T 10000000
- &gt; -0096  T 10100000
- &gt; -0064  T 11000000
- &gt; -0032  T 11100000
- &gt; +0000  F 00000000
- &gt; +0032  F 00100000
- &gt; +0064  F 01000000
- &gt; +0096  T 01100000</code></pre>
+ &gt; -0128 T 10000000
+ &gt; -0096 T 10100000
+ &gt; -0064 T 11000000
+ &gt; -0032 T 11100000
+ &gt; +0000 F 00000000
+ &gt; +0032 F 00100000
+ &gt; +0064 F 01000000
+ &gt; +0096 T 01100000</code></pre>
 <h3 id="standard-44"><strong>Standard</strong></h3>
 <p>Fortran 2008</p>
 <h3 id="see-also-44"><strong>See Also</strong></h3>
@@ -3910,8 +3910,8 @@ all operations.</code></pre>
 <a class="sourceLine" id="cb212-8" title="8">   <span class="co">! so sign bits in the integer are treated just like any other</span></a>
 <a class="sourceLine" id="cb212-9" title="9">   <span class="kw">do</span> i<span class="kw">=-</span><span class="dv">128</span>,<span class="dv">127</span>,<span class="dv">32</span></a>
 <a class="sourceLine" id="cb212-10" title="10">      byte<span class="kw">=</span>i</a>
-<a class="sourceLine" id="cb212-11" title="11">      <span class="fu">write(*</span>,<span class="st">&#39;(sp,i0.4,*(1x,1l,1x,b0.8))&#39;</span><span class="fu">)</span>i,ble(byte,<span class="dv">64_int8</span>),byte</a>
-<a class="sourceLine" id="cb212-12" title="12">      <span class="fu">write(*</span>,<span class="st">&#39;(sp,i0.4,*(4x,b0.8))&#39;</span><span class="fu">)</span><span class="dv">64_int8</span>,<span class="dv">64_int8</span></a>
+<a class="sourceLine" id="cb212-11" title="11">      <span class="fu">write(*</span>,<span class="st">&#39;(sp,i0.4,1x,l1,1x,b8.8)&#39;</span><span class="fu">)</span>i,ble(byte,<span class="dv">64_int8</span>),byte</a>
+<a class="sourceLine" id="cb212-12" title="12">      <span class="fu">write(*</span>,<span class="st">&#39;(sp,i0.4,3x,b8.8)&#39;</span><span class="fu">)</span><span class="dv">64_int8</span>,<span class="dv">64_int8</span></a>
 <a class="sourceLine" id="cb212-13" title="13">   <span class="kw">enddo</span></a>
 <a class="sourceLine" id="cb212-14" title="14"></a>
 <a class="sourceLine" id="cb212-15" title="15">   <span class="co">! see the BGE() description for an extended description</span></a>
@@ -3919,22 +3919,22 @@ all operations.</code></pre>
 <a class="sourceLine" id="cb212-17" title="17"></a>
 <a class="sourceLine" id="cb212-18" title="18"><span class="kw">end program</span> demo_ble</a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code> &gt;  -0128  F 10000000
- &gt;  +0064    01000000
- &gt;  -0096  F 10100000
- &gt;  +0064    01000000
- &gt;  -0064  F 11000000
- &gt;  +0064    01000000
- &gt;  -0032  F 11100000
- &gt;  +0064    01000000
- &gt;  +0000  T 00000000
- &gt;  +0064    01000000
- &gt;  +0032  T 00100000
- &gt;  +0064    01000000
- &gt;  +0064  T 01000000
- &gt;  +0064    01000000
- &gt;  +0096  F 01100000
- &gt;  +0064    01000000</code></pre>
+<pre class="text"><code> &gt;  -0128 F 10000000
+ &gt;  +0064   01000000
+ &gt;  -0096 F 10100000
+ &gt;  +0064   01000000
+ &gt;  -0064 F 11000000
+ &gt;  +0064   01000000
+ &gt;  -0032 F 11100000
+ &gt;  +0064   01000000
+ &gt;  +0000 T 00000000
+ &gt;  +0064   01000000
+ &gt;  +0032 T 00100000
+ &gt;  +0064   01000000
+ &gt;  +0064 T 01000000
+ &gt;  +0064   01000000
+ &gt;  +0096 F 01100000
+ &gt;  +0064   01000000</code></pre>
 <h3 id="standard-46"><strong>Standard</strong></h3>
 <p>Fortran 2008</p>
 <h3 id="see-also-46"><strong>See Also</strong></h3>
@@ -3987,7 +3987,7 @@ all operations.</code></pre>
 <a class="sourceLine" id="cb216-8" title="8">   <span class="co">! so sign bits in the integer are treated just like any other</span></a>
 <a class="sourceLine" id="cb216-9" title="9">   <span class="kw">do</span> i<span class="kw">=-</span><span class="dv">128</span>,<span class="dv">127</span>,<span class="dv">32</span></a>
 <a class="sourceLine" id="cb216-10" title="10">      byte<span class="kw">=</span>i</a>
-<a class="sourceLine" id="cb216-11" title="11">      <span class="fu">write(*</span>,<span class="st">&#39;(sp,i0.4,*(1x,1l,1x,b0.8))&#39;</span><span class="fu">)</span>i,blt(byte,<span class="dv">64_int8</span>),byte</a>
+<a class="sourceLine" id="cb216-11" title="11">      <span class="fu">write(*</span>,<span class="st">&#39;(sp,i0.4,1x,l1,1x,b8.8)&#39;</span><span class="fu">)</span>i,blt(byte,<span class="dv">64_int8</span>),byte</a>
 <a class="sourceLine" id="cb216-12" title="12">   <span class="kw">enddo</span></a>
 <a class="sourceLine" id="cb216-13" title="13">  <span class="co">! BOZ literals</span></a>
 <a class="sourceLine" id="cb216-14" title="14">   <span class="fu">write(*</span>,<span class="fu">*)</span>blt(<span class="dv">z&#39;1000&#39;</span>, <span class="dv">z&#39;101011010&#39;</span>)</a>
@@ -3996,14 +3996,14 @@ all operations.</code></pre>
 <a class="sourceLine" id="cb216-17" title="17"></a>
 <a class="sourceLine" id="cb216-18" title="18"><span class="kw">end program</span> demo_blt</a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code>   &gt; -0128  F 10000000
-   &gt; -0096  F 10100000
-   &gt; -0064  F 11000000
-   &gt; -0032  F 11100000
-   &gt; +0000  T 00000000
-   &gt; +0032  T 00100000
-   &gt; +0064  F 01000000
-   &gt; +0096  F 01100000
+<pre class="text"><code>   &gt; -0128 F 10000000
+   &gt; -0096 F 10100000
+   &gt; -0064 F 11000000
+   &gt; -0032 F 11100000
+   &gt; +0000 T 00000000
+   &gt; +0032 T 00100000
+   &gt; +0064 F 01000000
+   &gt; +0096 F 01100000
    &gt; T</code></pre>
 <h3 id="standard-47"><strong>Standard</strong></h3>
 <p>Fortran 2008</p>
@@ -5118,61 +5118,62 @@ all operations.</code></pre>
 <a class="sourceLine" id="cb272-41" title="41">    <span class="kw">&amp;</span> test(<span class="st">&#39;spaces&#39;</span>,<span class="st">&#39; one two three four    five  six  &#39;</span>,<span class="dv">6</span>), <span class="kw">&amp;</span></a>
 <a class="sourceLine" id="cb272-42" title="42">   <span class="co">! note many characters might be special to a shell</span></a>
 <a class="sourceLine" id="cb272-43" title="43">    <span class="kw">&amp;</span> test(<span class="st">&#39;special&#39;</span>,<span class="st">&#39;&quot;&lt;&gt;$@# &quot; &quot;$%&amp;*()_-&quot;&#39;</span>,<span class="dv">2</span>), <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb272-44" title="44">    <span class="kw">&amp;</span> test(<span class="st">&#39;many&#39;</span>,<span class="st">&#39;a b c d e f g h i j k l m n o p q r s t u v w x y z&#39;</span>,<span class="dv">26</span>)<span class="kw">]</span></a>
-<a class="sourceLine" id="cb272-45" title="45">   <span class="co">! get name of program</span></a>
-<a class="sourceLine" id="cb272-46" title="46">   self<span class="kw">=</span>get_arg(<span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb272-47" title="47">   <span class="co">! if no options call all the test cases</span></a>
-<a class="sourceLine" id="cb272-48" title="48">   <span class="kw">if</span>(<span class="fu">count</span><span class="op">.eq.</span><span class="dv">0</span>)<span class="kw">then</span></a>
-<a class="sourceLine" id="cb272-49" title="49">      <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(tests)</a>
-<a class="sourceLine" id="cb272-50" title="50">         <span class="kw">call</span> execute_command_line<span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb272-51" title="51">          <span class="kw">&amp;</span> (self<span class="kw">//</span><span class="st">&#39; &#39;</span><span class="kw">//</span>tests(i)%testname<span class="kw">//</span><span class="st">&#39; &#39;</span><span class="kw">//</span>tests(i)%cmd)</a>
-<a class="sourceLine" id="cb272-52" title="52">      <span class="kw">enddo</span></a>
-<a class="sourceLine" id="cb272-53" title="53">    <span class="kw">else</span></a>
-<a class="sourceLine" id="cb272-54" title="54">      <span class="co">! assumed to be a test call of the program so compare</span></a>
-<a class="sourceLine" id="cb272-55" title="55">      <span class="co">! test and results and report</span></a>
-<a class="sourceLine" id="cb272-56" title="56">      cmd<span class="kw">=</span>get_cmd()</a>
-<a class="sourceLine" id="cb272-57" title="57">      first<span class="kw">=</span>get_arg(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb272-58" title="58">      indx<span class="kw">=</span>findloc(tests%testname,first,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb272-59" title="59">      <span class="kw">if</span>(indx<span class="op">.gt.</span><span class="dv">0</span>)<span class="kw">then</span></a>
-<a class="sourceLine" id="cb272-60" title="60">         <span class="fu">write(*</span>,<span class="st">&#39;(*(g0,1x))&#39;</span><span class="fu">)</span><span class="st">&#39;testing &#39;</span>,first,tests(indx)%cmd</a>
-<a class="sourceLine" id="cb272-61" title="61">         <span class="fu">write(*</span>,<span class="st">&#39;(*(g0,1x))&#39;</span><span class="fu">)</span><span class="st">&#39;got     &#39;</span>,cmd</a>
-<a class="sourceLine" id="cb272-62" title="62">         <span class="fu">write(*</span>,<span class="st">&#39;(a,a,tl20,a,t26,a)&#39;</span><span class="fu">)</span><span class="st">&#39;case &#39;</span>,<span class="fu">repeat</span>(<span class="st">&#39;.&#39;</span>,<span class="dv">20</span>), <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb272-63" title="63">          <span class="kw">&amp;</span> <span class="fu">trim</span>(first),<span class="bu">merge</span>(<span class="st">&#39; PASSED&#39;</span>,<span class="st">&#39; FAILED&#39;</span>,<span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb272-64" title="64">          <span class="kw">&amp;</span> <span class="fu">count</span><span class="op">.eq.</span>tests(indx)%answer<span class="kw">+</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb272-65" title="65">      <span class="kw">else</span></a>
-<a class="sourceLine" id="cb272-66" title="66">         <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;&lt;ERROR&gt;Unexpected command line &#39;</span>,cmd</a>
-<a class="sourceLine" id="cb272-67" title="67">      <span class="kw">endif</span></a>
-<a class="sourceLine" id="cb272-68" title="68">   <span class="kw">endif</span></a>
-<a class="sourceLine" id="cb272-69" title="69"><span class="kw">end subroutine</span> testit</a>
-<a class="sourceLine" id="cb272-70" title="70"></a>
-<a class="sourceLine" id="cb272-71" title="71"><span class="kw">function</span> get_cmd() <span class="kw">result</span>(command_line)</a>
-<a class="sourceLine" id="cb272-72" title="72"><span class="co">! return entire command line</span></a>
-<a class="sourceLine" id="cb272-73" title="73"><span class="dt">integer</span>                      <span class="dt">::</span> command_line_length</a>
-<a class="sourceLine" id="cb272-74" title="74"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> command_line</a>
-<a class="sourceLine" id="cb272-75" title="75">   <span class="co">! get command line length</span></a>
-<a class="sourceLine" id="cb272-76" title="76">   <span class="kw">call</span> get_command(length<span class="kw">=</span>command_line_length)</a>
-<a class="sourceLine" id="cb272-77" title="77">   <span class="co">! allocate string big enough to hold command line</span></a>
-<a class="sourceLine" id="cb272-78" title="78">   <span class="kw">allocate</span>(<span class="dt">character(len=command_line_length)</span> <span class="dt">::</span> command_line)</a>
-<a class="sourceLine" id="cb272-79" title="79">   <span class="co">! get command line as a string</span></a>
-<a class="sourceLine" id="cb272-80" title="80">   <span class="kw">call</span> get_command(command<span class="kw">=</span>command_line)</a>
-<a class="sourceLine" id="cb272-81" title="81">   <span class="co">! trim leading spaces just in case</span></a>
-<a class="sourceLine" id="cb272-82" title="82">   command_line<span class="kw">=</span><span class="bu">adjustl</span>(command_line)</a>
-<a class="sourceLine" id="cb272-83" title="83"><span class="kw">end function</span> get_cmd</a>
-<a class="sourceLine" id="cb272-84" title="84"></a>
-<a class="sourceLine" id="cb272-85" title="85"><span class="kw">function</span> get_arg(n,status) <span class="kw">result</span>(arg)</a>
-<a class="sourceLine" id="cb272-86" title="86"><span class="co">! get nth argument from command line</span></a>
-<a class="sourceLine" id="cb272-87" title="87"><span class="dt">integer</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> n</a>
-<a class="sourceLine" id="cb272-88" title="88"><span class="dt">integer</span>,<span class="dt">intent(out)</span>,<span class="dt">optional</span> <span class="dt">::</span> status</a>
-<a class="sourceLine" id="cb272-89" title="89"><span class="dt">integer</span>                      <span class="dt">::</span> argument_length, istat</a>
-<a class="sourceLine" id="cb272-90" title="90"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> arg</a>
-<a class="sourceLine" id="cb272-91" title="91">   <span class="kw">call</span> get_command_argument( number<span class="kw">=</span>n, length<span class="kw">=</span>argument_length )</a>
-<a class="sourceLine" id="cb272-92" title="92">   <span class="kw">if</span>(<span class="fu">allocated</span>(arg))<span class="kw">deallocate</span>( arg )</a>
-<a class="sourceLine" id="cb272-93" title="93">   <span class="kw">allocate</span>(<span class="dt">character(len=argument_length)</span> <span class="dt">::</span> arg )</a>
-<a class="sourceLine" id="cb272-94" title="94">   <span class="kw">call</span> get_command_argument(n, arg, status<span class="kw">=</span>istat )</a>
-<a class="sourceLine" id="cb272-95" title="95">   <span class="kw">if</span>(<span class="fu">present</span>(status)) status<span class="kw">=</span>istat</a>
-<a class="sourceLine" id="cb272-96" title="96"><span class="kw">end function</span> get_arg</a>
-<a class="sourceLine" id="cb272-97" title="97"></a>
-<a class="sourceLine" id="cb272-98" title="98"><span class="kw">end program</span> demo_command_argument_count</a></code></pre></div>
+<a class="sourceLine" id="cb272-44" title="44">    <span class="kw">&amp;</span> test(<span class="st">&#39;many&#39;</span>,<span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb272-45" title="45">    <span class="kw">&amp;</span> <span class="st">&#39;a b c d e f g h i j k l m n o p q r s t u v w x y z&#39;</span>,<span class="dv">26</span>)<span class="kw">]</span></a>
+<a class="sourceLine" id="cb272-46" title="46">   <span class="co">! get name of program</span></a>
+<a class="sourceLine" id="cb272-47" title="47">   self<span class="kw">=</span>get_arg(<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb272-48" title="48">   <span class="co">! if no options call all the test cases</span></a>
+<a class="sourceLine" id="cb272-49" title="49">   <span class="kw">if</span>(<span class="fu">count</span><span class="op">.eq.</span><span class="dv">0</span>)<span class="kw">then</span></a>
+<a class="sourceLine" id="cb272-50" title="50">      <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(tests)</a>
+<a class="sourceLine" id="cb272-51" title="51">         <span class="kw">call</span> execute_command_line<span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb272-52" title="52">          <span class="kw">&amp;</span> (self<span class="kw">//</span><span class="st">&#39; &#39;</span><span class="kw">//</span>tests(i)%testname<span class="kw">//</span><span class="st">&#39; &#39;</span><span class="kw">//</span>tests(i)%cmd)</a>
+<a class="sourceLine" id="cb272-53" title="53">      <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb272-54" title="54">    <span class="kw">else</span></a>
+<a class="sourceLine" id="cb272-55" title="55">      <span class="co">! assumed to be a test call of the program so compare</span></a>
+<a class="sourceLine" id="cb272-56" title="56">      <span class="co">! test and results and report</span></a>
+<a class="sourceLine" id="cb272-57" title="57">      cmd<span class="kw">=</span>get_cmd()</a>
+<a class="sourceLine" id="cb272-58" title="58">      first<span class="kw">=</span>get_arg(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb272-59" title="59">      indx<span class="kw">=</span>findloc(tests%testname,first,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb272-60" title="60">      <span class="kw">if</span>(indx<span class="op">.gt.</span><span class="dv">0</span>)<span class="kw">then</span></a>
+<a class="sourceLine" id="cb272-61" title="61">         <span class="fu">write(*</span>,<span class="st">&#39;(*(g0,1x))&#39;</span><span class="fu">)</span><span class="st">&#39;testing &#39;</span>,first,tests(indx)%cmd</a>
+<a class="sourceLine" id="cb272-62" title="62">         <span class="fu">write(*</span>,<span class="st">&#39;(*(g0,1x))&#39;</span><span class="fu">)</span><span class="st">&#39;got     &#39;</span>,cmd</a>
+<a class="sourceLine" id="cb272-63" title="63">         <span class="fu">write(*</span>,<span class="st">&#39;(a,a,tl20,a,t26,a)&#39;</span><span class="fu">)</span><span class="st">&#39;case &#39;</span>,<span class="fu">repeat</span>(<span class="st">&#39;.&#39;</span>,<span class="dv">20</span>), <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb272-64" title="64">          <span class="kw">&amp;</span> <span class="fu">trim</span>(first),<span class="bu">merge</span>(<span class="st">&#39; PASSED&#39;</span>,<span class="st">&#39; FAILED&#39;</span>,<span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb272-65" title="65">          <span class="kw">&amp;</span> <span class="fu">count</span><span class="op">.eq.</span>tests(indx)%answer<span class="kw">+</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb272-66" title="66">      <span class="kw">else</span></a>
+<a class="sourceLine" id="cb272-67" title="67">         <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;&lt;ERROR&gt;Unexpected command line &#39;</span>,cmd</a>
+<a class="sourceLine" id="cb272-68" title="68">      <span class="kw">endif</span></a>
+<a class="sourceLine" id="cb272-69" title="69">   <span class="kw">endif</span></a>
+<a class="sourceLine" id="cb272-70" title="70"><span class="kw">end subroutine</span> testit</a>
+<a class="sourceLine" id="cb272-71" title="71"></a>
+<a class="sourceLine" id="cb272-72" title="72"><span class="kw">function</span> get_cmd() <span class="kw">result</span>(command_line)</a>
+<a class="sourceLine" id="cb272-73" title="73"><span class="co">! return entire command line</span></a>
+<a class="sourceLine" id="cb272-74" title="74"><span class="dt">integer</span>                      <span class="dt">::</span> command_line_length</a>
+<a class="sourceLine" id="cb272-75" title="75"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> command_line</a>
+<a class="sourceLine" id="cb272-76" title="76">   <span class="co">! get command line length</span></a>
+<a class="sourceLine" id="cb272-77" title="77">   <span class="kw">call</span> get_command(length<span class="kw">=</span>command_line_length)</a>
+<a class="sourceLine" id="cb272-78" title="78">   <span class="co">! allocate string big enough to hold command line</span></a>
+<a class="sourceLine" id="cb272-79" title="79">   <span class="kw">allocate</span>(<span class="dt">character(len=command_line_length)</span> <span class="dt">::</span> command_line)</a>
+<a class="sourceLine" id="cb272-80" title="80">   <span class="co">! get command line as a string</span></a>
+<a class="sourceLine" id="cb272-81" title="81">   <span class="kw">call</span> get_command(command<span class="kw">=</span>command_line)</a>
+<a class="sourceLine" id="cb272-82" title="82">   <span class="co">! trim leading spaces just in case</span></a>
+<a class="sourceLine" id="cb272-83" title="83">   command_line<span class="kw">=</span><span class="bu">adjustl</span>(command_line)</a>
+<a class="sourceLine" id="cb272-84" title="84"><span class="kw">end function</span> get_cmd</a>
+<a class="sourceLine" id="cb272-85" title="85"></a>
+<a class="sourceLine" id="cb272-86" title="86"><span class="kw">function</span> get_arg(n,status) <span class="kw">result</span>(arg)</a>
+<a class="sourceLine" id="cb272-87" title="87"><span class="co">! get nth argument from command line</span></a>
+<a class="sourceLine" id="cb272-88" title="88"><span class="dt">integer</span>,<span class="dt">intent(in)</span>           <span class="dt">::</span> n</a>
+<a class="sourceLine" id="cb272-89" title="89"><span class="dt">integer</span>,<span class="dt">intent(out)</span>,<span class="dt">optional</span> <span class="dt">::</span> status</a>
+<a class="sourceLine" id="cb272-90" title="90"><span class="dt">integer</span>                      <span class="dt">::</span> argument_length, istat</a>
+<a class="sourceLine" id="cb272-91" title="91"><span class="dt">character(len=:)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> arg</a>
+<a class="sourceLine" id="cb272-92" title="92">   <span class="kw">call</span> get_command_argument( number<span class="kw">=</span>n, length<span class="kw">=</span>argument_length )</a>
+<a class="sourceLine" id="cb272-93" title="93">   <span class="kw">if</span>(<span class="fu">allocated</span>(arg))<span class="kw">deallocate</span>( arg )</a>
+<a class="sourceLine" id="cb272-94" title="94">   <span class="kw">allocate</span>(<span class="dt">character(len=argument_length)</span> <span class="dt">::</span> arg )</a>
+<a class="sourceLine" id="cb272-95" title="95">   <span class="kw">call</span> get_command_argument(n, arg, status<span class="kw">=</span>istat )</a>
+<a class="sourceLine" id="cb272-96" title="96">   <span class="kw">if</span>(<span class="fu">present</span>(status)) status<span class="kw">=</span>istat</a>
+<a class="sourceLine" id="cb272-97" title="97"><span class="kw">end function</span> get_arg</a>
+<a class="sourceLine" id="cb272-98" title="98"></a>
+<a class="sourceLine" id="cb272-99" title="99"><span class="kw">end program</span> demo_command_argument_count</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code> &gt;
  &gt; argument count=0
@@ -5231,7 +5232,7 @@ all operations.</code></pre>
 <p>The result contains the compiler flags used to compile the file containing the <strong>compiler_options</strong>(3) call.</p>
 <h3 id="examples-61"><strong>Examples</strong></h3>
 <p>Sample program:</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb276-1" title="1"><span class="kw">program</span> demo_compiler_version</a>
+<div class="sourceCode" id="cb276"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb276-1" title="1"><span class="kw">program</span> demo_compiler_options</a>
 <a class="sourceLine" id="cb276-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : compiler_version</a>
 <a class="sourceLine" id="cb276-3" title="3"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : compiler_options</a>
 <a class="sourceLine" id="cb276-4" title="4"><span class="kw">implicit</span> <span class="kw">none</span></a>
@@ -5240,7 +5241,7 @@ all operations.</code></pre>
 <a class="sourceLine" id="cb276-7" title="7">      compiler_version(),           <span class="kw">&amp;</span></a>
 <a class="sourceLine" id="cb276-8" title="8">      <span class="st">&#39; using the options &#39;</span>,        <span class="kw">&amp;</span></a>
 <a class="sourceLine" id="cb276-9" title="9">      compiler_options()</a>
-<a class="sourceLine" id="cb276-10" title="10"><span class="kw">end program</span> demo_compiler_version</a></code></pre></div>
+<a class="sourceLine" id="cb276-10" title="10"><span class="kw">end program</span> demo_compiler_options</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code> &gt; This file was compiled by GCC version 10.3.0 using
  &gt; the options -I build/gfortran_2A42023B310FA28D
@@ -5288,20 +5289,21 @@ all operations.</code></pre>
 <p>The return value contains the name of the compiler and its version number used to compile the file containing the <strong>compiler_version</strong>(3) call.</p>
 <h3 id="examples-62"><strong>Examples</strong></h3>
 <p>Sample program:</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb280-1" title="1"><span class="kw">program</span> demo_compiler_version</a>
+<div class="sourceCode" id="cb280"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb280-1" title="1"><span class="kw">program</span> basic_compiler_version</a>
 <a class="sourceLine" id="cb280-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : compiler_version</a>
 <a class="sourceLine" id="cb280-3" title="3"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb280-4" title="4">      <span class="fu">print</span> <span class="st">&#39;(4a)&#39;</span>, <span class="st">&#39;This file was compiled by &#39;</span>, compiler_version()</a>
-<a class="sourceLine" id="cb280-5" title="5"><span class="kw">end program</span> demo_compiler_version</a></code></pre></div>
+<a class="sourceLine" id="cb280-4" title="4">      <span class="fu">print</span> <span class="st">&#39;(2a)&#39;</span>, <span class="st">&#39;This file was compiled by &#39;</span>, compiler_version()</a>
+<a class="sourceLine" id="cb280-5" title="5"><span class="kw">end program</span> basic_compiler_version</a></code></pre></div>
 <p>Results (plain):</p>
 <pre class="text"><code> &gt; This file was compiled by GCC version 10.3.0
 
- &gt; This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler Classic for
- &gt; applications running on Intel(R) 64, Version 2021.3.0 Build 20210609_000000
+ &gt; This file was compiled by Intel(R) Fortran Intel(R) 64
+ &gt; Compiler Classic for applications running on Intel(R) 64,
+ &gt; Version 2021.3.0 Build 20210609_000000
 
  &gt; This file was compiled by nvfortran 21.5-0 LLVM</code></pre>
 <p>An extended version that wraps the version to a width of 80 columns and attempts to show the options used one per line:</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb282-1" title="1"><span class="kw">program</span> extended_compiler_version</a>
+<div class="sourceCode" id="cb282"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb282-1" title="1"><span class="kw">program</span> demo_compiler_version</a>
 <a class="sourceLine" id="cb282-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
 <a class="sourceLine" id="cb282-3" title="3">   <span class="kw">call</span> platform()</a>
 <a class="sourceLine" id="cb282-4" title="4"><span class="co">contains</span></a>
@@ -5362,7 +5364,7 @@ all operations.</code></pre>
 <a class="sourceLine" id="cb282-59" title="59">   <span class="kw">enddo</span></a>
 <a class="sourceLine" id="cb282-60" title="60"><span class="kw">end function</span> inset</a>
 <a class="sourceLine" id="cb282-61" title="61"></a>
-<a class="sourceLine" id="cb282-62" title="62"><span class="kw">end program</span> extended_compiler_version</a></code></pre></div>
+<a class="sourceLine" id="cb282-62" title="62"><span class="kw">program</span> demo_compiler_version</a></code></pre></div>
 <p>Results (fancy):</p>
 <pre class="text"><code> &gt; This file was compiled by :
  &gt;    GCC version 16.0.0 20250727 (experimental)
@@ -5751,23 +5753,24 @@ all operations.</code></pre>
 <a class="sourceLine" id="cb303-75" title="75">   <span class="fu">write(</span>str,<span class="st">&#39;(*(g0))&#39;</span><span class="fu">)</span><span class="kw">&amp;</span></a>
 <a class="sourceLine" id="cb303-76" title="76">   <span class="st">&#39;For sides A=&#39;</span>,a,<span class="st">&#39;, B=&#39;</span>,b,<span class="st">&#39; and X=&#39;</span>,x,<span class="st">&#39; degrees,&#39;</span>,nl,<span class="st">&#39;side C=&#39;</span>,c</a>
 <a class="sourceLine" id="cb303-77" title="77">   str<span class="kw">=</span><span class="fu">trim</span>(str)</a>
-<a class="sourceLine" id="cb303-78" title="78"><span class="co">!</span></a>
-<a class="sourceLine" id="cb303-79" title="79"><span class="co">!                        \</span></a>
-<a class="sourceLine" id="cb303-80" title="80"><span class="co">!                       / \</span></a>
-<a class="sourceLine" id="cb303-81" title="81"><span class="co">!                      / Y \</span></a>
-<a class="sourceLine" id="cb303-82" title="82"><span class="co">!                     /     \</span></a>
-<a class="sourceLine" id="cb303-83" title="83"><span class="co">!                    /       \</span></a>
-<a class="sourceLine" id="cb303-84" title="84"><span class="co">!                   /         \</span></a>
-<a class="sourceLine" id="cb303-85" title="85"><span class="co">!                b /           \ c</span></a>
-<a class="sourceLine" id="cb303-86" title="86"><span class="co">!                 /             \</span></a>
-<a class="sourceLine" id="cb303-87" title="87"><span class="co">!                /               \</span></a>
-<a class="sourceLine" id="cb303-88" title="88"><span class="co">!               /                 \</span></a>
-<a class="sourceLine" id="cb303-89" title="89"><span class="co">!              /                   \</span></a>
-<a class="sourceLine" id="cb303-90" title="90"><span class="co">!             / X                 Z \</span></a>
-<a class="sourceLine" id="cb303-91" title="91"><span class="co">!            -------------------------</span></a>
-<a class="sourceLine" id="cb303-92" title="92"><span class="co">!                        a</span></a>
-<a class="sourceLine" id="cb303-93" title="93"><span class="kw">end function</span> two_sides_and_degrees_between</a>
-<a class="sourceLine" id="cb303-94" title="94"><span class="kw">end program</span> demo_cos</a></code></pre></div>
+<a class="sourceLine" id="cb303-78" title="78"><span class="co">!=============================================!</span></a>
+<a class="sourceLine" id="cb303-79" title="79"><span class="co">!                     \                       !</span></a>
+<a class="sourceLine" id="cb303-80" title="80"><span class="co">!                    / \                      !</span></a>
+<a class="sourceLine" id="cb303-81" title="81"><span class="co">!                   / Y \                     !</span></a>
+<a class="sourceLine" id="cb303-82" title="82"><span class="co">!                  /     \                    !</span></a>
+<a class="sourceLine" id="cb303-83" title="83"><span class="co">!                 /       \                   !</span></a>
+<a class="sourceLine" id="cb303-84" title="84"><span class="co">!                /         \                  !</span></a>
+<a class="sourceLine" id="cb303-85" title="85"><span class="co">!             b /           \ c               !</span></a>
+<a class="sourceLine" id="cb303-86" title="86"><span class="co">!              /             \                !</span></a>
+<a class="sourceLine" id="cb303-87" title="87"><span class="co">!             /               \               !</span></a>
+<a class="sourceLine" id="cb303-88" title="88"><span class="co">!            /                 \              !</span></a>
+<a class="sourceLine" id="cb303-89" title="89"><span class="co">!           /                   \             !</span></a>
+<a class="sourceLine" id="cb303-90" title="90"><span class="co">!          / X                 Z \            !</span></a>
+<a class="sourceLine" id="cb303-91" title="91"><span class="co">!         -------------------------           !</span></a>
+<a class="sourceLine" id="cb303-92" title="92"><span class="co">!                     a                       !</span></a>
+<a class="sourceLine" id="cb303-93" title="93"><span class="co">!=============================================!</span></a>
+<a class="sourceLine" id="cb303-94" title="94"><span class="kw">end function</span> two_sides_and_degrees_between</a>
+<a class="sourceLine" id="cb303-95" title="95"><span class="kw">end program</span> demo_cos</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code> &gt; basics:
  &gt;  COS(0.0) =         1.00000000
@@ -7707,17 +7710,19 @@ $$</span><br /></p>
 <a class="sourceLine" id="cb409-34" title="34">   r_array <span class="kw">=</span> <span class="kw">[</span><span class="fl">0.0</span>, <span class="fl">1.0</span>, <span class="kw">-</span><span class="fl">1.0</span><span class="kw">]</span></a>
 <a class="sourceLine" id="cb409-35" title="35">   r_array_result <span class="kw">=</span> <span class="bu">exp</span>(r_array)</a>
 <a class="sourceLine" id="cb409-36" title="36">   <span class="kw">do</span> i <span class="kw">=</span> <span class="dv">1</span>, <span class="fu">size</span>(r_array)</a>
-<a class="sourceLine" id="cb409-37" title="37">     <span class="fu">write(*</span>, <span class="st">&#39;(A, I0, A, F15.10)&#39;</span><span class="fu">)</span> <span class="st">&quot;exp(r_array(&quot;</span>, i, <span class="st">&quot;)) = &quot;</span>, r_array_result(i)</a>
-<a class="sourceLine" id="cb409-38" title="38">   <span class="kw">enddo</span></a>
-<a class="sourceLine" id="cb409-39" title="39"></a>
-<a class="sourceLine" id="cb409-40" title="40">   <span class="co">! Complex array example</span></a>
-<a class="sourceLine" id="cb409-41" title="41">   c_array <span class="kw">=</span> <span class="kw">[</span><span class="bu">cmplx</span>(<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fu">kind</span><span class="kw">=</span>dp), <span class="bu">cmplx</span>(<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fu">kind</span><span class="kw">=</span>dp)<span class="kw">]</span></a>
-<a class="sourceLine" id="cb409-42" title="42">   c_array_result <span class="kw">=</span> <span class="bu">exp</span>(c_array)</a>
-<a class="sourceLine" id="cb409-43" title="43">   <span class="kw">do</span> i <span class="kw">=</span> <span class="dv">1</span>, <span class="fu">size</span>(c_array)</a>
-<a class="sourceLine" id="cb409-44" title="44">     <span class="fu">write(*</span>, <span class="st">&#39;(A, I0, A, F15.10, A, F15.10, A)&#39;</span><span class="fu">)</span> <span class="st">&quot;exp(c_array(&quot;</span>, i, <span class="st">&quot;)) = (&quot;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb409-45" title="45"><span class="dt">     real(c_array_result(i))</span>, <span class="st">&quot;, &quot;</span>, <span class="bu">aimag</span>(c_array_result(i)), <span class="st">&quot;)&quot;</span></a>
-<a class="sourceLine" id="cb409-46" title="46">   <span class="kw">enddo</span></a>
-<a class="sourceLine" id="cb409-47" title="47"><span class="kw">end program</span> demo_exp</a></code></pre></div>
+<a class="sourceLine" id="cb409-37" title="37">     <span class="fu">write(*</span>,<span class="st">&#39;(A, I0, A, F15.10)&#39;</span><span class="fu">)</span><span class="st">&quot;exp(r_array(&quot;</span>, i, <span class="st">&quot;)) = &quot;</span>,<span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb409-38" title="38">     <span class="kw">&amp;</span> r_array_result(i)</a>
+<a class="sourceLine" id="cb409-39" title="39">   <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb409-40" title="40"></a>
+<a class="sourceLine" id="cb409-41" title="41">   <span class="co">! Complex array example</span></a>
+<a class="sourceLine" id="cb409-42" title="42">   c_array <span class="kw">=</span> <span class="kw">[</span><span class="bu">cmplx</span>(<span class="fl">0.0</span>, <span class="fl">0.0</span>, <span class="fu">kind</span><span class="kw">=</span>dp), <span class="bu">cmplx</span>(<span class="fl">1.0</span>, <span class="fl">1.0</span>, <span class="fu">kind</span><span class="kw">=</span>dp)<span class="kw">]</span></a>
+<a class="sourceLine" id="cb409-43" title="43">   c_array_result <span class="kw">=</span> <span class="bu">exp</span>(c_array)</a>
+<a class="sourceLine" id="cb409-44" title="44">   <span class="kw">do</span> i <span class="kw">=</span> <span class="dv">1</span>, <span class="fu">size</span>(c_array)</a>
+<a class="sourceLine" id="cb409-45" title="45">     <span class="fu">write(*</span>, <span class="st">&#39;(A, I0, A, F15.10, A, F15.10, A)&#39;</span><span class="fu">)</span> <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb409-46" title="46">     <span class="kw">&amp;</span> <span class="st">&quot;exp(c_array(&quot;</span>, i, <span class="st">&quot;)) = (&quot;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb409-47" title="47"><span class="dt">     real(c_array_result(i))</span>, <span class="st">&quot;, &quot;</span>, <span class="bu">aimag</span>(c_array_result(i)), <span class="st">&quot;)&quot;</span></a>
+<a class="sourceLine" id="cb409-48" title="48">   <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb409-49" title="49"><span class="kw">end program</span> demo_exp</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code> &gt;  Euler&#39;s constant is approximately   2.71828175
  &gt;  given the complex value              (3.00000000,4.00000000)
@@ -8854,63 +8859,146 @@ $$</span><br /></p>
 <h3 id="examples-99"><strong>Examples</strong></h3>
 <p>Sample program:</p>
 <div class="sourceCode" id="cb455"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb455-1" title="1"><span class="kw">program</span> demo_huge</a>
-<a class="sourceLine" id="cb455-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb455-3" title="3"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> f<span class="kw">=</span><span class="st">&#39;(i2,1x,2(i11,1x),f14.0:,1x,l1,1x,a)&#39;</span></a>
-<a class="sourceLine" id="cb455-4" title="4"><span class="dt">integer</span>                    <span class="dt">::</span> i, j, k, biggest</a>
-<a class="sourceLine" id="cb455-5" title="5"><span class="dt">real</span>                       <span class="dt">::</span> v, w</a>
-<a class="sourceLine" id="cb455-6" title="6">doubleprecision            <span class="dt">::</span> tally</a>
-<a class="sourceLine" id="cb455-7" title="7">   <span class="co">! basic</span></a>
-<a class="sourceLine" id="cb455-8" title="8">   <span class="fu">print</span> <span class="kw">*</span>, <span class="fu">huge</span>(<span class="dv">0</span>), <span class="fu">huge</span>(<span class="fl">0.0</span>), <span class="fu">huge</span>(<span class="fl">0.0d0</span>)</a>
-<a class="sourceLine" id="cb455-9" title="9">   <span class="fu">print</span> <span class="kw">*</span>, <span class="fu">tiny</span>(<span class="fl">0.0</span>), <span class="fu">tiny</span>(<span class="fl">0.0d0</span>)</a>
-<a class="sourceLine" id="cb455-10" title="10"></a>
-<a class="sourceLine" id="cb455-11" title="11">   tally<span class="kw">=</span><span class="fl">0.0d0</span></a>
-<a class="sourceLine" id="cb455-12" title="12">   <span class="co">! note subtracting one because counter is the end value+1 on exit</span></a>
-<a class="sourceLine" id="cb455-13" title="13">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">0</span>,<span class="fu">huge</span>(<span class="dv">0</span>)<span class="kw">-</span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb455-14" title="14">      tally<span class="kw">=</span>tally<span class="kw">+</span>i</a>
-<a class="sourceLine" id="cb455-15" title="15">   <span class="kw">enddo</span></a>
-<a class="sourceLine" id="cb455-16" title="16">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;tally=&#39;</span>,tally</a>
-<a class="sourceLine" id="cb455-17" title="17"></a>
-<a class="sourceLine" id="cb455-18" title="18">   <span class="co">! advanced</span></a>
-<a class="sourceLine" id="cb455-19" title="19">   biggest<span class="kw">=</span><span class="fu">huge</span>(<span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb455-20" title="20">   <span class="co">! be careful of overflow when using integers in computation</span></a>
-<a class="sourceLine" id="cb455-21" title="21">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="dv">14</span></a>
-<a class="sourceLine" id="cb455-22" title="22">      j<span class="kw">=</span><span class="dv">6</span><span class="kw">**</span>i   <span class="co">! Danger, Danger</span></a>
-<a class="sourceLine" id="cb455-23" title="23">      w<span class="kw">=</span><span class="dv">6</span><span class="kw">**</span>i   <span class="co">! Danger, Danger</span></a>
-<a class="sourceLine" id="cb455-24" title="24">      v<span class="kw">=</span><span class="fl">6.0</span><span class="kw">**</span>i</a>
-<a class="sourceLine" id="cb455-25" title="25">      k<span class="kw">=</span>v      <span class="co">! Danger, Danger</span></a>
-<a class="sourceLine" id="cb455-26" title="26"></a>
-<a class="sourceLine" id="cb455-27" title="27">      <span class="kw">if</span>(v<span class="op">.gt.</span>biggest)<span class="kw">then</span></a>
-<a class="sourceLine" id="cb455-28" title="28">         <span class="fu">write(*</span>,f<span class="fu">)</span> i, j, k, v, v<span class="op">.eq.</span>w, <span class="st">&#39;wrong j and k and w&#39;</span></a>
-<a class="sourceLine" id="cb455-29" title="29">      <span class="kw">else</span></a>
-<a class="sourceLine" id="cb455-30" title="30">         <span class="fu">write(*</span>,f<span class="fu">)</span> i, j, k, v, v<span class="op">.eq.</span>w</a>
-<a class="sourceLine" id="cb455-31" title="31">      <span class="kw">endif</span></a>
-<a class="sourceLine" id="cb455-32" title="32">   <span class="kw">enddo</span></a>
-<a class="sourceLine" id="cb455-33" title="33">   <span class="co">! a simple check of the product of two 32-bit integers</span></a>
-<a class="sourceLine" id="cb455-34" title="34">   <span class="fu">print</span> <span class="kw">*</span>,checkprod(<span class="kw">[</span><span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">8</span><span class="kw">]</span>,<span class="kw">[</span><span class="dv">10000</span>,<span class="dv">20000</span>,<span class="dv">3000000</span>,<span class="dv">400000000</span><span class="kw">]</span>)</a>
-<a class="sourceLine" id="cb455-35" title="35"></a>
-<a class="sourceLine" id="cb455-36" title="36"><span class="co">contains</span></a>
-<a class="sourceLine" id="cb455-37" title="37">impure <span class="kw">elemental</span> <span class="kw">function</span> checkprod(i,j) <span class="kw">result</span>(ij32)</a>
-<a class="sourceLine" id="cb455-38" title="38"><span class="co">! checkprod(3f) - check for overflow when multiplying 32-bit integers</span></a>
-<a class="sourceLine" id="cb455-39" title="39"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : int8, int16, int32, int64</a>
-<a class="sourceLine" id="cb455-40" title="40"><span class="dt">integer(kind=int32)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> i, j</a>
-<a class="sourceLine" id="cb455-41" title="41"><span class="dt">integer(kind=int64)</span>             <span class="dt">::</span> ij64</a>
-<a class="sourceLine" id="cb455-42" title="42"><span class="dt">integer(kind=int32)</span>             <span class="dt">::</span> ij32</a>
-<a class="sourceLine" id="cb455-43" title="43"><span class="dt">integer</span>,<span class="dt">parameter</span>               <span class="dt">::</span> toobig<span class="kw">=</span><span class="fu">huge</span>(<span class="dv">0_int32</span>)</a>
-<a class="sourceLine" id="cb455-44" title="44"><span class="dt">character(len=80)</span>               <span class="dt">::</span> message</a>
-<a class="sourceLine" id="cb455-45" title="45">   ij64<span class="kw">=</span><span class="bu">int</span>(i,<span class="fu">kind</span><span class="kw">=</span>int64)<span class="kw">*</span><span class="bu">int</span>(j,<span class="fu">kind</span><span class="kw">=</span>int64)</a>
-<a class="sourceLine" id="cb455-46" title="46">   <span class="kw">if</span>(ij64<span class="op">.gt.</span>toobig)<span class="kw">then</span></a>
-<a class="sourceLine" id="cb455-47" title="47">      <span class="fu">write(</span>message,<span class="st">&#39;(*(g0))&#39;</span><span class="fu">)</span><span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb455-48" title="48">      <span class="kw">&amp;</span> <span class="st">&#39;&lt;ERROR&gt;checkprod(3f):&#39;</span>,i,<span class="st">&#39;*&#39;</span>,j,<span class="st">&#39;=&#39;</span>,ij64,<span class="st">&#39;&gt;&#39;</span>,toobig</a>
-<a class="sourceLine" id="cb455-49" title="49">      <span class="kw">stop</span> message</a>
-<a class="sourceLine" id="cb455-50" title="50">   <span class="kw">else</span></a>
-<a class="sourceLine" id="cb455-51" title="51">      ij32<span class="kw">=</span>ij64</a>
-<a class="sourceLine" id="cb455-52" title="52">   <span class="kw">endif</span></a>
-<a class="sourceLine" id="cb455-53" title="53"><span class="kw">end function</span> checkprod</a>
-<a class="sourceLine" id="cb455-54" title="54"><span class="kw">end program</span> demo_huge</a></code></pre></div>
+<a class="sourceLine" id="cb455-2" title="2"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : int8, int16, int32, int64</a>
+<a class="sourceLine" id="cb455-3" title="3"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : real32,real64,real128</a>
+<a class="sourceLine" id="cb455-4" title="4"><span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb455-5" title="5"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> f<span class="kw">=</span><span class="st">&#39;(i2,1x,2(i11,1x),f14.0:,1x,l1,1x,a)&#39;</span></a>
+<a class="sourceLine" id="cb455-6" title="6"><span class="dt">integer</span>                    <span class="dt">::</span> i, j, k, biggest</a>
+<a class="sourceLine" id="cb455-7" title="7"><span class="dt">real</span>                       <span class="dt">::</span> v, w</a>
+<a class="sourceLine" id="cb455-8" title="8"><span class="dt">integer</span>,<span class="dt">allocatable</span>        <span class="dt">::</span> undef(:,:,:)</a>
+<a class="sourceLine" id="cb455-9" title="9"></a>
+<a class="sourceLine" id="cb455-10" title="10">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;basics:&#39;</span></a>
+<a class="sourceLine" id="cb455-11" title="11"></a>
+<a class="sourceLine" id="cb455-12" title="12">   <span class="fu">print</span> <span class="kw">*</span>, <span class="fu">huge</span>(<span class="dv">0</span>), <span class="fu">huge</span>(<span class="fl">0.0</span>), <span class="fu">huge</span>(<span class="fl">0.0d0</span>)</a>
+<a class="sourceLine" id="cb455-13" title="13">   <span class="fu">print</span> <span class="kw">*</span>, <span class="fu">tiny</span>(<span class="fl">0.0</span>), <span class="fu">tiny</span>(<span class="fl">0.0d0</span>)</a>
+<a class="sourceLine" id="cb455-14" title="14">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;an array argument returns a scalar&#39;</span></a>
+<a class="sourceLine" id="cb455-15" title="15">   <span class="fu">print</span> <span class="kw">*</span>, <span class="fu">huge</span>(<span class="kw">[</span><span class="dv">10_int8</span>,<span class="dv">20_int8</span>,<span class="dv">30_int8</span><span class="kw">]</span>)</a>
+<a class="sourceLine" id="cb455-16" title="16">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;the value of the argument does not matter, it does not&#39;</span></a>
+<a class="sourceLine" id="cb455-17" title="17">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;even need to be allocated, just the type and kind are&#39;</span></a>
+<a class="sourceLine" id="cb455-18" title="18">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;used&#39;</span>,<span class="fu">huge</span>(<span class="dv">1000</span>),<span class="fu">huge</span>(<span class="kw">-</span><span class="dv">654321</span>),<span class="fu">huge</span>(undef)</a>
+<a class="sourceLine" id="cb455-19" title="19"></a>
+<a class="sourceLine" id="cb455-20" title="20">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;dusty corners:&#39;</span></a>
+<a class="sourceLine" id="cb455-21" title="21"></a>
+<a class="sourceLine" id="cb455-22" title="22">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;Perhaps instead of an &quot;infinite&quot; loop you want to make&#39;</span></a>
+<a class="sourceLine" id="cb455-23" title="23">   <span class="fu">print</span> <span class="kw">*</span>, <span class="st">&#39;a very large one so you have a counter handy.&#39;</span></a>
+<a class="sourceLine" id="cb455-24" title="24">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">huge</span>(<span class="dv">0</span>)<span class="kw">-</span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb455-25" title="25">      <span class="kw">call</span> <span class="fu">random_number</span>(w)</a>
+<a class="sourceLine" id="cb455-26" title="26">      <span class="kw">if</span>(w <span class="op">&gt;</span> <span class="fl">0.9999999</span>)<span class="kw">exit</span></a>
+<a class="sourceLine" id="cb455-27" title="27">   <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb455-28" title="28">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;exited with counter=&#39;</span>,i</a>
+<a class="sourceLine" id="cb455-29" title="29">   <span class="co">! use huge(0)-1 not huge(0) because when a loop terminates normally</span></a>
+<a class="sourceLine" id="cb455-30" title="30">   <span class="co">! the counter is set to the last value + 1. If the loop reached</span></a>
+<a class="sourceLine" id="cb455-31" title="31">   <span class="co">! i=huge(0) adding 1 would cause an overflow!</span></a>
+<a class="sourceLine" id="cb455-32" title="32"></a>
+<a class="sourceLine" id="cb455-33" title="33">   <span class="co">! Can HUGE(1.d0) be accurately formatted?</span></a>
+<a class="sourceLine" id="cb455-34" title="34">   <span class="fu">print</span> <span class="st">&#39;(E330.320)&#39;</span>, <span class="fu">huge</span>(<span class="fl">1.d0</span>)</a>
+<a class="sourceLine" id="cb455-35" title="35">   <span class="fu">print</span> <span class="kw">*</span>, <span class="fu">huge</span>(<span class="fl">1.d0</span>)</a>
+<a class="sourceLine" id="cb455-36" title="36">   <span class="fu">print</span> <span class="st">&#39;(g0)&#39;</span>, <span class="fu">huge</span>(<span class="fl">1.d0</span>)</a>
+<a class="sourceLine" id="cb455-37" title="37"></a>
+<a class="sourceLine" id="cb455-38" title="38">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;ranges for signed numbers  are symmetrical so if HUGE(0.0)&#39;</span></a>
+<a class="sourceLine" id="cb455-39" title="39">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;is a valid number  so is -HUGE(0.0).&#39;</span></a>
+<a class="sourceLine" id="cb455-40" title="40">   <span class="fu">print</span> <span class="kw">*</span>, <span class="fu">huge</span>(<span class="fl">0.0</span>),<span class="kw">-</span><span class="fu">huge</span>(<span class="fl">0.0</span>), <span class="fu">huge</span>(<span class="fl">0.0</span>)<span class="kw">-</span><span class="fu">huge</span>(<span class="fl">0.0</span>)</a>
+<a class="sourceLine" id="cb455-41" title="41">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;but for 2&#39;&#39;s-complement whole numbers -1-huge(0)=&#39;</span></a>
+<a class="sourceLine" id="cb455-42" title="42">   <span class="fu">print</span> <span class="kw">*</span>,  <span class="kw">-</span><span class="dv">1</span><span class="kw">-</span><span class="fu">huge</span>(<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb455-43" title="43">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;is a valid number too, but huge(0)+1 will cause an overflow!&#39;</span></a>
+<a class="sourceLine" id="cb455-44" title="44">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;Almost all computers use 2&#39;&#39;s-complement integers now-adays.&#39;</span></a>
+<a class="sourceLine" id="cb455-45" title="45">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;so -huge(0)-1 is often used as a &quot;magic number&quot; to designate&#39;</span></a>
+<a class="sourceLine" id="cb455-46" title="46">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;invalid whole numbers, as INTEGER types do not have a Nan&#39;</span></a>
+<a class="sourceLine" id="cb455-47" title="47">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;or Infinite value like floats do if it is not a &quot;possible&quot;&#39;</span></a>
+<a class="sourceLine" id="cb455-48" title="48">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;value for a computation.&#39;</span></a>
+<a class="sourceLine" id="cb455-49" title="49">   <span class="fu">print</span> <span class="kw">*</span></a>
+<a class="sourceLine" id="cb455-50" title="50">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;for a single byte a value can be from -128 to 127 so maybe&#39;</span></a>
+<a class="sourceLine" id="cb455-51" title="51">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;-128 is not unlikely to be used though, for example:&#39;</span></a>
+<a class="sourceLine" id="cb455-52" title="52">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;range of a 2&#39;&#39;scomplement one-byte kind is&#39;</span>,<span class="kw">-</span><span class="fu">huge</span>(<span class="dv">0_int8</span>)<span class="kw">-</span><span class="dv">1</span>,<span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb455-53" title="53">         <span class="kw">&amp;</span> <span class="st">&#39;to&#39;</span>,<span class="fu">huge</span>(<span class="dv">0_int8</span>)</a>
+<a class="sourceLine" id="cb455-54" title="54">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;so there is no &quot;perfect&quot; integer value to represent an &#39;</span></a>
+<a class="sourceLine" id="cb455-55" title="55">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;invalid number except on a case-by-case basis.&#39;</span></a>
+<a class="sourceLine" id="cb455-56" title="56"></a>
+<a class="sourceLine" id="cb455-57" title="57">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;advanced:&#39;</span></a>
+<a class="sourceLine" id="cb455-58" title="58"></a>
+<a class="sourceLine" id="cb455-59" title="59">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;be careful of overflow; Fortran is not required to report it&#39;</span></a>
+<a class="sourceLine" id="cb455-60" title="60">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;See OUT_OF_RANGE(3) for information on detecting overflows.&#39;</span></a>
+<a class="sourceLine" id="cb455-61" title="61"></a>
+<a class="sourceLine" id="cb455-62" title="62">   biggest<span class="kw">=</span><span class="fu">huge</span>(<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb455-63" title="63">   <span class="co">! be careful of overflow when using integers in computation</span></a>
+<a class="sourceLine" id="cb455-64" title="64">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="dv">14</span></a>
+<a class="sourceLine" id="cb455-65" title="65">      j<span class="kw">=</span><span class="dv">6</span><span class="kw">**</span>i   <span class="co">! Danger, Danger</span></a>
+<a class="sourceLine" id="cb455-66" title="66">      w<span class="kw">=</span><span class="dv">6</span><span class="kw">**</span>i   <span class="co">! Danger, Danger</span></a>
+<a class="sourceLine" id="cb455-67" title="67">      v<span class="kw">=</span><span class="fl">6.0</span><span class="kw">**</span>i</a>
+<a class="sourceLine" id="cb455-68" title="68">      k<span class="kw">=</span>v      <span class="co">! Danger, Danger</span></a>
+<a class="sourceLine" id="cb455-69" title="69"></a>
+<a class="sourceLine" id="cb455-70" title="70">      <span class="kw">if</span>(v<span class="op">.gt.</span>biggest)<span class="kw">then</span></a>
+<a class="sourceLine" id="cb455-71" title="71">         <span class="fu">write(*</span>,f<span class="fu">)</span> i, j, k, v, v<span class="op">.eq.</span>w, <span class="st">&#39;wrong j and k and w&#39;</span></a>
+<a class="sourceLine" id="cb455-72" title="72">      <span class="kw">else</span></a>
+<a class="sourceLine" id="cb455-73" title="73">         <span class="fu">write(*</span>,f<span class="fu">)</span> i, j, k, v, v<span class="op">.eq.</span>w</a>
+<a class="sourceLine" id="cb455-74" title="74">      <span class="kw">endif</span></a>
+<a class="sourceLine" id="cb455-75" title="75">   <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb455-76" title="76"></a>
+<a class="sourceLine" id="cb455-77" title="77">   <span class="co">! a simple check of the product of two 32-bit integers</span></a>
+<a class="sourceLine" id="cb455-78" title="78">   <span class="fu">print</span> <span class="kw">*</span>,checkprod(<span class="kw">[</span><span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">8</span><span class="kw">]</span>,<span class="kw">[</span><span class="dv">10000</span>,<span class="dv">20000</span>,<span class="dv">3000000</span>,<span class="dv">400000000</span><span class="kw">]</span>)</a>
+<a class="sourceLine" id="cb455-79" title="79"></a>
+<a class="sourceLine" id="cb455-80" title="80"><span class="co">contains</span></a>
+<a class="sourceLine" id="cb455-81" title="81">impure <span class="kw">elemental</span> <span class="kw">function</span> checkprod(i,j) <span class="kw">result</span>(ij32)</a>
+<a class="sourceLine" id="cb455-82" title="82"><span class="co">! checkprod(3f) - check for overflow when multiplying 32-bit integers</span></a>
+<a class="sourceLine" id="cb455-83" title="83"><span class="kw">use</span>,<span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : int8, int16, int32, int64</a>
+<a class="sourceLine" id="cb455-84" title="84"><span class="dt">integer(kind=int32)</span>,<span class="dt">intent(in)</span>  <span class="dt">::</span> i, j</a>
+<a class="sourceLine" id="cb455-85" title="85"><span class="dt">integer(kind=int64)</span>             <span class="dt">::</span> ij64</a>
+<a class="sourceLine" id="cb455-86" title="86"><span class="dt">integer(kind=int32)</span>             <span class="dt">::</span> ij32</a>
+<a class="sourceLine" id="cb455-87" title="87"><span class="dt">integer</span>,<span class="dt">parameter</span>               <span class="dt">::</span> toobig<span class="kw">=</span><span class="fu">huge</span>(<span class="dv">0_int32</span>)</a>
+<a class="sourceLine" id="cb455-88" title="88"><span class="dt">character(len=80)</span>               <span class="dt">::</span> message</a>
+<a class="sourceLine" id="cb455-89" title="89">   ij64<span class="kw">=</span><span class="bu">int</span>(i,<span class="fu">kind</span><span class="kw">=</span>int64)<span class="kw">*</span><span class="bu">int</span>(j,<span class="fu">kind</span><span class="kw">=</span>int64)</a>
+<a class="sourceLine" id="cb455-90" title="90">   <span class="kw">if</span>(ij64<span class="op">.gt.</span>toobig)<span class="kw">then</span></a>
+<a class="sourceLine" id="cb455-91" title="91">      <span class="fu">write(</span>message,<span class="st">&#39;(*(g0))&#39;</span><span class="fu">)</span><span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb455-92" title="92">      <span class="kw">&amp;</span> <span class="st">&#39;&lt;ERROR&gt;checkprod(3f):&#39;</span>,i,<span class="st">&#39;*&#39;</span>,j,<span class="st">&#39;=&#39;</span>,ij64,<span class="st">&#39;&gt;&#39;</span>,toobig</a>
+<a class="sourceLine" id="cb455-93" title="93">      <span class="kw">stop</span> message</a>
+<a class="sourceLine" id="cb455-94" title="94">   <span class="kw">else</span></a>
+<a class="sourceLine" id="cb455-95" title="95">      ij32<span class="kw">=</span>ij64</a>
+<a class="sourceLine" id="cb455-96" title="96">   <span class="kw">endif</span></a>
+<a class="sourceLine" id="cb455-97" title="97"><span class="kw">end function</span> checkprod</a>
+<a class="sourceLine" id="cb455-98" title="98"><span class="kw">end program</span> demo_huge</a></code></pre></div>
+<p id="section"></p>
+<p id="section-1"></p>
 <p>Results:</p>
-<pre class="text"><code> &gt;   2147483647   3.40282347E+38   1.7976931348623157E+308
+<pre class="text"><code> &gt;  basics:
+ &gt;   2147483647   3.40282347E+38   1.7976931348623157E+308
  &gt;    1.17549435E-38   2.2250738585072014E-308
- &gt;  tally=   2.3058430049858406E+018
+ &gt;  an array argument returns a scalar
+ &gt;   127
+ &gt;  the value of the argument does not matter, it does not
+ &gt;  even need to be allocated, just the type and kind are
+ &gt;  used  2147483647  2147483647  2147483647
+ &gt;  dusty corners:
+ &gt;  Perhaps instead of an &quot;infinite&quot; loop you want to make
+ &gt;  a very large one so you have a counter handy.
+ &gt;  exited with counter=      851169
+ &gt;     0.17976931348623157081452742373170435679807056752584499
+ &gt;     6598917476803157260780028538760589558632766878171540458
+ &gt;     9535143824642343213268894641827684675467035375169860499
+ &gt;     1057655128207624549009038932894407586850845513394230458
+ &gt;     3236903222948165808559332123348274797826204144723168738
+ &gt;     17718091929988125040402618412485836800000000000+309
+ &gt;    1.7976931348623157E+308
+ &gt; 0.17976931348623157E+309
+ &gt;  ranges for signed numbers  are symmetrical so if HUGE(0.0)
+ &gt;  is a valid number  so is -HUGE(0.0).
+ &gt;    3.40282347E+38  -3.40282347E+38   0.00000000
+ &gt;  but for 2&#39;s-complement whole numbers -1-huge(0)=
+ &gt;  -2147483648
+ &gt;  is a valid number too, but huge(0)+1 will cause an overflow!
+ &gt;  Almost all computers use 2&#39;s-complement integers now-adays.
+ &gt;  so -huge(0)-1 is often used as a &quot;magic number&quot; to designate
+ &gt;  invalid whole numbers, as INTEGER types do not have a Nan
+ &gt;  or Infinite value like floats do if it is not a &quot;possible&quot;
+ &gt;  value for a computation.
+ &gt;
+ &gt;  for a single byte a value can be from -128 to 127 so maybe
+ &gt;  -128 is not unlikely to be used though, for example:
+ &gt;  range of a 2&#39;scomplement one-byte kind is        -128 to  127
+ &gt;  so there is no &quot;perfect&quot; integer value to represent an
+ &gt;  invalid number except on a case-by-case basis.
+ &gt;  advanced:
+ &gt;  be careful of overflow; Fortran is not required to report it
+ &gt;  See OUT_OF_RANGE(3) for information on detecting overflows.
  &gt;  1           6           6             6. T
  &gt;  2          36          36            36. T
  &gt;  3         216         216           216. T
@@ -8925,7 +9013,54 @@ $$</span><br /></p>
  &gt; 12 -2118184960 -2147483648    2176782336. F wrong j and k and w
  &gt; 13   175792128 -2147483648   13060694016. F wrong j and k and w
  &gt; 14  1054752768 -2147483648   78364164096. F wrong j and k and w
- &gt; STOP &lt;ERROR&gt;checkprod(3f):8*400000000=3200000000&gt;2147483647</code></pre>
+ &gt; STOP &lt;ERROR&gt;checkprod(3f):8*400000000=3200000000&gt;2147483647
+
+### **Trivia**
+
+The Fortran standard does not specify what the largest value can be in
+a &quot;Ew.d&quot; edit descriptor, so &quot;E330.320&quot; will likely generate a value
+that fills all the positions without an error, or maybe cap it at some
+number of digits even though the vast majority will not be significant.
+
+But perhaps the bigger surprise is the same insignificant digits will
+likely be generated across platforms.
+
+Unless the platform chooses to pad with zeros it is likely a platform
+generates the number shown above, not random digits once it gets past
+the few significant digits.
+
+Most compilers print identical digits because IEEE 754 double
+precision defines an exact binary bit pattern for &quot;HUGE(0.D0)&quot;, and
+runtime libraries use standard, deterministic conversion algorithms to
+translate those exact bits into decimal text. Trailing digits beyond
+the 17th significant figure are purely algorithmic padding or repeating
+representations.
+
+#### IEEE 754 Binary Representation
+
+  + The value &quot;HUGE(0.D0)&quot; in Fortran represents the maximum positive
+    finite double-precision number (1.7976931348623157 × 10\*\*308).
+  + Internally, this is stored as a fixed 64-bit binary floating-point
+    number with a 53-bit significand (mantissa) and an 11-bit exponent.
+  + Because the underlying binary value is identical across all
+    conforming hardware and compilers, the exact mathematical value
+    being converted is always the same.
+
+#### Decimal Conversion and Padding
+
+  + A standard double-precision number only contains about 15 to 17
+    significant decimal digits of true numerical precision.
+  + When you request 320 digits of precision using &quot;E330.320&quot;, the
+    runtime formatting library runs out of real bits from the binary
+    number very quickly.
+  + To fulfill the large requested width, the compiler&#39;s runtime library
+    either pads the remaining lower-order digits with deterministic
+    zeros, or it mathematically exposes the repeating/terminating
+    behavior of the binary-to-decimal floating-point conversion routine
+    (such as Grisu or Ryu algorithms). Because different modern
+    compilers often link against similar standard math/io library
+    implementations or follow the exact same IEEE decimal formatting
+    specifications, the extended trailing digits match precisely.</code></pre>
 <h3 id="standard-99"><strong>Standard</strong></h3>
 <p>Fortran 95</p>
 <h3 id="see-also-99"><strong>See Also</strong></h3>
@@ -8968,48 +9103,154 @@ $$</span><br /></p>
 <p>The result is the positive magnitude of the distance of the point <strong>&lt;x,y&gt;</strong> from the origin <strong>&lt;0.0,0.0&gt;</strong> .</p>
 <h3 id="examples-100"><strong>Examples</strong></h3>
 <p>Sample program:</p>
-<div class="sourceCode" id="cb460"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb460-1" title="1"><span class="kw">program</span> demo_hypot</a>
-<a class="sourceLine" id="cb460-2" title="2"><span class="kw">use</span>, <span class="kw">intrinsic</span> <span class="dt">::</span> iso_fortran_env, <span class="kw">only</span> : real32, real64, real128</a>
-<a class="sourceLine" id="cb460-3" title="3"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb460-4" title="4"><span class="dt">real(kind=real32)</span> <span class="dt">::</span> x, y</a>
-<a class="sourceLine" id="cb460-5" title="5"><span class="dt">real(kind=real32)</span>,<span class="dt">allocatable</span> <span class="dt">::</span> xs(:), ys(:)</a>
-<a class="sourceLine" id="cb460-6" title="6"><span class="dt">integer</span> <span class="dt">::</span> i</a>
-<a class="sourceLine" id="cb460-7" title="7"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> f<span class="kw">=</span><span class="st">&#39;(a,/,SP,*(3x,g0,1x,g0:,/))&#39;</span></a>
-<a class="sourceLine" id="cb460-8" title="8"></a>
-<a class="sourceLine" id="cb460-9" title="9">   x <span class="kw">=</span> <span class="fl">1.e0_real32</span></a>
-<a class="sourceLine" id="cb460-10" title="10">   y <span class="kw">=</span> <span class="fl">0.5e0_real32</span></a>
-<a class="sourceLine" id="cb460-11" title="11"></a>
-<a class="sourceLine" id="cb460-12" title="12">   <span class="fu">write(*</span>,<span class="fu">*)</span></a>
-<a class="sourceLine" id="cb460-13" title="13">   <span class="fu">write(*</span>,<span class="st">&#39;(*(g0))&#39;</span><span class="fu">)</span><span class="st">&#39;point &lt;&#39;</span>,x,<span class="st">&#39;,&#39;</span>,y,<span class="st">&#39;&gt; is &#39;</span>,hypot(x,y)</a>
-<a class="sourceLine" id="cb460-14" title="14">   <span class="fu">write(*</span>,<span class="st">&#39;(*(g0))&#39;</span><span class="fu">)</span><span class="st">&#39;units away from the origin&#39;</span></a>
-<a class="sourceLine" id="cb460-15" title="15">   <span class="fu">write(*</span>,<span class="fu">*)</span></a>
-<a class="sourceLine" id="cb460-16" title="16"></a>
-<a class="sourceLine" id="cb460-17" title="17">   <span class="co">! elemental</span></a>
-<a class="sourceLine" id="cb460-18" title="18">   xs<span class="kw">=[</span>  x,  x<span class="kw">**</span><span class="dv">2</span>,  x<span class="kw">*</span><span class="fl">10.0</span>,  x<span class="kw">*</span><span class="fl">15.0</span>, <span class="kw">-</span>x<span class="kw">**</span><span class="dv">2</span>  <span class="kw">]</span></a>
-<a class="sourceLine" id="cb460-19" title="19">   ys<span class="kw">=[</span>  y,  y<span class="kw">**</span><span class="dv">2</span>, <span class="kw">-</span>y<span class="kw">*</span><span class="fl">20.0</span>,  y<span class="kw">**</span><span class="dv">2</span>,   <span class="kw">-</span>y<span class="kw">**</span><span class="dv">2</span>  <span class="kw">]</span></a>
-<a class="sourceLine" id="cb460-20" title="20"></a>
-<a class="sourceLine" id="cb460-21" title="21">   <span class="fu">write(*</span>,f<span class="fu">)</span><span class="st">&quot;the points&quot;</span>,(xs(i),ys(i),i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">size</span>(xs))</a>
-<a class="sourceLine" id="cb460-22" title="22">   <span class="fu">write(*</span>,f<span class="fu">)</span><span class="st">&quot;have distances from the origin of &quot;</span>,hypot(xs,ys)</a>
-<a class="sourceLine" id="cb460-23" title="23">   <span class="fu">write(*</span>,f<span class="fu">)</span><span class="st">&quot;the closest is&quot;</span>,<span class="fu">minval</span>(hypot(xs,ys))</a>
-<a class="sourceLine" id="cb460-24" title="24"></a>
-<a class="sourceLine" id="cb460-25" title="25"><span class="kw">end program</span> demo_hypot</a></code></pre></div>
+<pre class="text"><code>   program demo_hypot
+   use, intrinsic :: iso_fortran_env, only : real32, real64, real128
+   implicit none
+   real(kind=real32)             :: x, y
+   real(kind=real32),allocatable :: xs(:), ys(:)
+   integer                       :: i
+   character(len=*),parameter    :: f=&#39;(a,/,SP,*(3x,g0,1x,g0:,/))&#39;
+
+     ! basics
+      write(*,*)hypot(3.0,4.0)
+      write(*,*)hypot(1.0,0.25)
+      write(*,*)hypot(1.0,0.5)
+
+      x=3.0
+      y=4.0
+      ! all equivalent
+      write(*,*)sqrt(x**2+y**2), hypot(x,y), abs(cmplx(x,y))
+
+      ! a common use is to determine the distance of a point
+      ! from the origin
+      x = 1.e0_real32
+      y = 0.5e0_real32
+
+      write(*,*)
+      write(*,&#39;(*(g0))&#39;)&#39;point &lt;&#39;,x,&#39;,&#39;,y,&#39;&gt; is &#39;,hypot(x,y)
+      write(*,&#39;(*(g0))&#39;)&#39;units away from the origin&#39;
+      write(*,*)
+
+     ! elemental
+      xs=[  x,  x**2,  x*10.0,  x*15.0, -x**2  ]
+      ys=[  y,  y**2, -y*20.0,  y**2,   -y**2  ]
+
+      write(*,f)&quot;the points&quot;,(xs(i),ys(i),i=1,size(xs))
+      write(*,f)&quot;have distances from the origin of &quot;,hypot(xs,ys)
+      write(*,f)&quot;the closest is&quot;,minval(hypot(xs,ys))
+
+   ! Finding primitive Euclidean triple sets, which are pairs of whole
+   ! numbers that form the sides of a right triangle with a hypotenuse
+   ! whose length is also a whole number (like [3,4,5]).
+   !
+   EUCLIDEAN: block
+   ! Euclid&#39;s formula is a fundamental formula for generating Pythagorean
+   ! triples given an arbitrary pair of integers m and n with m &gt; n &gt; 0.
+   ! The formula states that the integers
+   !
+   !    a = m**2 − n**2
+   !    b = 2*m*n
+   !    c = m**2 + n**2
+   !
+   ! form a Pythagorean triple.
+      integer :: i,j
+      real    :: m,n, a,b,c
+      integer,parameter :: maxside=100
+      ! find all primitive Euclidean triplets with sides a and b &lt;= maxside
+      do i=1,maxside
+         do j=1,maxside
+            m=i
+            n=j
+            ! skip values unless m &gt; 2
+            if(m.le.n)cycle
+            a=m**2-n**2
+            b=2*m*n
+            c=m**2+n**2
+            ! skip writing it if it is not a primitive Euclidean triplet
+            if (gcd_vector(nint([a,b,c])) &gt; 1)cycle
+            if(a&gt;maxside.or.b&gt;maxside)cycle
+            ! c should be hypot(a,b) or equivalently abs(cmplx(a,b))
+            write(*,*) a, b, c, hypot(a,b), c==hypot(a,b)
+         enddo
+      enddo
+   endblock EUCLIDEAN
+   contains
+   function gcd(m,n) result(answer) ! greatest common denominator
+   integer,intent(in) :: m, n
+   integer            :: answer
+   integer            :: irest
+   intrinsic          :: mod,abs
+   integer            :: ifirst
+      ifirst=abs(m)
+      answer=abs(n)
+      if(answer.eq.0)then
+         answer=ifirst
+      else
+         do
+            irest = mod(ifirst,answer)
+            if(irest == 0)  exit
+            ifirst = answer
+            answer = irest
+         enddo
+         answer= iabs(answer)
+      endif
+   end function gcd
+   integer function gcd_vector(m)
+   integer,intent(in) :: m(:)
+   integer            :: vsize
+   integer            :: i
+      vsize=size(m)
+      if(vsize.gt.0)then
+         gcd_vector = m(1)
+         TILLONE: do i=1,vsize
+            gcd_vector = gcd(gcd_vector,iabs(m(i)))
+            if (gcd_vector.eq.1) exit TILLONE
+         enddo TILLONE
+      else
+         gcd_vector=0
+      endif
+   end function gcd_vector
+
+   end program demo_hypot</code></pre>
 <p>Results:</p>
-<pre class="text"><code> &gt;
- &gt; point &lt;1.00000000,0.500000000&gt; is 1.11803401
- &gt; units away from the origin
- &gt;
- &gt; the points
- &gt;    +1.00000000 +0.500000000
- &gt;    +1.00000000 +0.250000000
- &gt;    +10.0000000 -10.0000000
- &gt;    +15.0000000 +0.250000000
- &gt;    -1.00000000 -0.250000000
- &gt; have distances from the origin of
- &gt;    +1.11803401 +1.03077638
- &gt;    +14.1421356 +15.0020828
- &gt;    +1.03077638
- &gt; the closest is
- &gt;    +1.03077638</code></pre>
+<pre class="text"><code>    &gt;    5.00000000
+    &gt;    1.03077638
+    &gt;    1.11803401
+    &gt;    5.00000000       5.00000000       5.00000000
+    &gt;
+    &gt; point &lt;1.00000000,0.500000000&gt; is 1.11803401
+    &gt; units away from the origin
+    &gt;
+    &gt; the points
+    &gt;    +1.00000000 +0.500000000
+    &gt;    +1.00000000 +0.250000000
+    &gt;    +10.0000000 -10.0000000
+    &gt;    +15.0000000 +0.250000000
+    &gt;    -1.00000000 -0.250000000
+    &gt; have distances from the origin of
+    &gt;    +1.11803401 +1.03077638
+    &gt;    +14.1421356 +15.0020828
+    &gt;    +1.03077638
+    &gt; the closest is
+    &gt;    +1.03077638
+    &gt;    3.00000000     4.00000000     5.00000000     5.00000000 T
+    &gt;    5.00000000     12.0000000     13.0000000     13.0000000 T
+    &gt;    15.0000000     8.00000000     17.0000000     17.0000000 T
+    &gt;    7.00000000     24.0000000     25.0000000     25.0000000 T
+    &gt;    21.0000000     20.0000000     29.0000000     29.0000000 T
+    &gt;    9.00000000     40.0000000     41.0000000     41.0000000 T
+    &gt;    35.0000000     12.0000000     37.0000000     37.0000000 T
+    &gt;    11.0000000     60.0000000     61.0000000     61.0000000 T
+    &gt;    45.0000000     28.0000000     53.0000000     53.0000000 T
+    &gt;    33.0000000     56.0000000     65.0000000     65.0000000 T
+    &gt;    13.0000000     84.0000000     85.0000000     85.0000000 T
+    &gt;    63.0000000     16.0000000     65.0000000     65.0000000 T
+    &gt;    55.0000000     48.0000000     73.0000000     73.0000000 T
+    &gt;    39.0000000     80.0000000     89.0000000     89.0000000 T
+    &gt;    77.0000000     36.0000000     85.0000000     85.0000000 T
+    &gt;    65.0000000     72.0000000     97.0000000     97.0000000 T
+    &gt;    99.0000000     20.0000000     101.000000     101.000000 T
+    &gt;    91.0000000     60.0000000     109.000000     109.000000 T</code></pre>
 <h3 id="standard-100"><strong>Standard</strong></h3>
 <p>Fortran 2008</p>
 <h3 id="see-also-100"><strong>See also</strong></h3>
@@ -11747,8 +11988,8 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 </dd>
 </dl></li>
 </ul>
-<div class="sourceCode" id="cb598"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb598-1" title="1">   i <span class="op">&gt;</span><span class="kw">=</span> <span class="dv">0</span> <span class="op">.and.</span> i <span class="op">&lt;</span> bitsize(i) <span class="co">! if KIND is not specified</span></a>
-<a class="sourceLine" id="cb598-2" title="2">   i <span class="op">&gt;</span><span class="kw">=</span> <span class="dv">0</span> <span class="op">.and.</span> i <span class="op">&lt;</span> bitsize(<span class="dv">0_KIND</span>) <span class="co">! if KIND is specified</span></a></code></pre></div>
+<div class="sourceCode" id="cb598"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb598-1" title="1">   i <span class="op">&gt;</span><span class="kw">=</span> <span class="dv">0</span> <span class="op">.and.</span> i <span class="op">&lt;</span><span class="kw">=</span> bitsize(i) <span class="co">! if KIND is not specified</span></a>
+<a class="sourceLine" id="cb598-2" title="2">   i <span class="op">&gt;</span><span class="kw">=</span> <span class="dv">0</span> <span class="op">.and.</span> i <span class="op">&lt;</span><span class="kw">=</span> bitsize(<span class="dv">0_KIND</span>) <span class="co">! if KIND is specified</span></a></code></pre></div>
 <ul>
 <li><dl>
 <dt><strong>kind</strong></dt>
@@ -11815,8 +12056,8 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 </dd>
 </dl></li>
 </ul>
-<div class="sourceCode" id="cb603"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb603-1" title="1">   i <span class="op">&gt;</span><span class="kw">=</span> <span class="dv">0</span> <span class="op">.and.</span> i <span class="op">&lt;</span> bitsize(i) <span class="co">! if KIND is not specified</span></a>
-<a class="sourceLine" id="cb603-2" title="2">   i <span class="op">&gt;</span><span class="kw">=</span> <span class="dv">0</span> <span class="op">.and.</span> i <span class="op">&lt;</span> bitsize(<span class="dv">0_KIND</span>) <span class="co">! if KIND is specified</span></a></code></pre></div>
+<div class="sourceCode" id="cb603"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb603-1" title="1">   i <span class="op">&gt;</span><span class="kw">=</span> <span class="dv">0</span> <span class="op">.and.</span> i <span class="op">&lt;</span><span class="kw">=</span> bitsize(i)      <span class="co">! if KIND is not specified</span></a>
+<a class="sourceLine" id="cb603-2" title="2">   i <span class="op">&gt;</span><span class="kw">=</span> <span class="dv">0</span> <span class="op">.and.</span> i <span class="op">&lt;</span><span class="kw">=</span> bitsize(<span class="dv">0_KIND</span>) <span class="co">! if KIND is specified</span></a></code></pre></div>
 <ul>
 <li><dl>
 <dt><strong>kind</strong></dt>
@@ -11845,29 +12086,54 @@ If the absolute value of <strong>shift</strong> is greater than <strong>bit_size
 <a class="sourceLine" id="cb604-15" title="15">  <span class="co">! elemental</span></a>
 <a class="sourceLine" id="cb604-16" title="16">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;elemental &#39;</span></a>
 <a class="sourceLine" id="cb604-17" title="17">   <span class="fu">print</span> <span class="kw">*</span>,<span class="st">&#39;(array argument accepted like called with each element)&#39;</span></a>
-<a class="sourceLine" id="cb604-18" title="18">   <span class="fu">write(*</span>,<span class="st">&#39;(*(i11,1x,b0.32,1x,/))&#39;</span><span class="fu">)</span> maskr(<span class="kw">[</span>(i,i,i<span class="kw">=</span><span class="dv">0</span>,<span class="fu">bit_size</span>(<span class="dv">0</span>),<span class="dv">4</span>)<span class="kw">]</span>)</a>
+<a class="sourceLine" id="cb604-18" title="18">   <span class="fu">write(*</span>,<span class="st">&#39;(*(i11,1x,b0.32,1x,/))&#39;</span><span class="fu">)</span> maskr(<span class="kw">[</span>(i,i,i<span class="kw">=</span><span class="dv">0</span>,<span class="fu">bit_size</span>(<span class="dv">0</span>),<span class="dv">1</span>)<span class="kw">]</span>)</a>
 <a class="sourceLine" id="cb604-19" title="19"></a>
 <a class="sourceLine" id="cb604-20" title="20"><span class="kw">end program</span> demo_maskr</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code> &gt;   basics
- &gt;  1   00000000000000000000000000000001
- &gt;  5   00000000000000000000000000011111
- &gt;  11  00000000000000000000011111111111
- &gt;   should be equivalent on two&#39;s-complement processors
- &gt;  1   00000000000000000000000000000001
- &gt;  5   00000000000000000000000000011111
- &gt;  11  00000000000000000000011111111111
- &gt;   elemental
- &gt;   (array argument accepted like called with each element)
- &gt;            0 00000000000000000000000000000000
- &gt;           15 00000000000000000000000000001111
- &gt;          255 00000000000000000000000011111111
- &gt;         4095 00000000000000000000111111111111
- &gt;        65535 00000000000000001111111111111111
- &gt;      1048575 00000000000011111111111111111111
- &gt;     16777215 00000000111111111111111111111111
- &gt;    268435455 00001111111111111111111111111111
- &gt;           -1 11111111111111111111111111111111</code></pre>
+ basics
+ &gt; 1   00000000000000000000000000000001
+ &gt; 5   00000000000000000000000000011111
+ &gt; 11  00000000000000000000011111111111
+ &gt;  should be equivalent on two&#39;s-complement processors
+ &gt; 1   00000000000000000000000000000001
+ &gt; 5   00000000000000000000000000011111
+ &gt; 11  00000000000000000000011111111111
+ &gt;  elemental
+ &gt;  (array argument accepted like called with each element)
+ &gt;           0 00000000000000000000000000000000
+ &gt;           1 00000000000000000000000000000001
+ &gt;           3 00000000000000000000000000000011
+ &gt;           7 00000000000000000000000000000111
+ &gt;          15 00000000000000000000000000001111
+ &gt;          31 00000000000000000000000000011111
+ &gt;          63 00000000000000000000000000111111
+ &gt;         127 00000000000000000000000001111111
+ &gt;         255 00000000000000000000000011111111
+ &gt;         511 00000000000000000000000111111111
+ &gt;        1023 00000000000000000000001111111111
+ &gt;        2047 00000000000000000000011111111111
+ &gt;        4095 00000000000000000000111111111111
+ &gt;        8191 00000000000000000001111111111111
+ &gt;       16383 00000000000000000011111111111111
+ &gt;       32767 00000000000000000111111111111111
+ &gt;       65535 00000000000000001111111111111111
+ &gt;      131071 00000000000000011111111111111111
+ &gt;      262143 00000000000000111111111111111111
+ &gt;      524287 00000000000001111111111111111111
+ &gt;     1048575 00000000000011111111111111111111
+ &gt;     2097151 00000000000111111111111111111111
+ &gt;     4194303 00000000001111111111111111111111
+ &gt;     8388607 00000000011111111111111111111111
+ &gt;    16777215 00000000111111111111111111111111
+ &gt;    33554431 00000001111111111111111111111111
+ &gt;    67108863 00000011111111111111111111111111
+ &gt;   134217727 00000111111111111111111111111111
+ &gt;   268435455 00001111111111111111111111111111
+ &gt;   536870911 00011111111111111111111111111111
+ &gt;  1073741823 00111111111111111111111111111111
+ &gt;  2147483647 01111111111111111111111111111111
+ &gt;          -1 11111111111111111111111111111111</code></pre>
 <h3 id="standard-134"><strong>Standard</strong></h3>
 <p>Fortran 2008</p>
 <h3 id="see-also-135"><strong>See Also</strong></h3>
@@ -12415,22 +12681,24 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <a class="sourceLine" id="cb626-42" title="42">   <span class="fu">print</span> ind, <span class="st">&#39;STRS() has a length of:&#39;</span>, <span class="fu">len</span>(strs), <span class="kw">&amp;</span></a>
 <a class="sourceLine" id="cb626-43" title="43">    <span class="kw">&amp;</span> <span class="st">&#39;a SHAPE of:&#39;</span>,<span class="fu">shape</span>(strs), <span class="kw">&amp;</span></a>
 <a class="sourceLine" id="cb626-44" title="44">    <span class="kw">&amp;</span> <span class="st">&#39;:a SIZE of:&#39;</span>,<span class="fu">size</span>(strs)</a>
-<a class="sourceLine" id="cb626-45" title="45">   <span class="fu">print</span> ind, <span class="st">&#39;is maxval of null length strings a null character? &#39;</span>,<span class="bu">ichar</span>(<span class="fu">maxval</span>(strs))<span class="op">==</span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb626-46" title="46">   <span class="fu">print</span> ind</a>
-<a class="sourceLine" id="cb626-47" title="47">   <span class="kw">if</span>(<span class="fu">allocated</span>(strs))<span class="kw">deallocate</span>(strs)</a>
-<a class="sourceLine" id="cb626-48" title="48">   <span class="kw">allocate</span>(<span class="dt">character(len=5)</span> <span class="dt">::</span> strs(<span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb626-49" title="49">   <span class="fu">print</span> ind, <span class="st">&#39;STRS() has a length of:&#39;</span>, <span class="fu">len</span>(strs), <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb626-50" title="50">    <span class="kw">&amp;</span> <span class="st">&#39;a SHAPE of:&#39;</span>,<span class="fu">shape</span>(strs), <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb626-51" title="51">    <span class="kw">&amp;</span> <span class="st">&#39;:a SIZE of:&#39;</span>,<span class="fu">size</span>(strs)</a>
-<a class="sourceLine" id="cb626-52" title="52">    answer<span class="kw">=</span><span class="fu">maxval</span>(strs)</a>
-<a class="sourceLine" id="cb626-53" title="53">   <span class="fu">print</span> ind, <span class="st">&#39;is maxval of strings all null characters? &#39;</span>, <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb626-54" title="54">    <span class="kw">&amp;</span> <span class="kw">[</span>(answer(i:i),i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">len</span>(answer))<span class="kw">]</span><span class="op">.eq.</span><span class="bu">char</span>(<span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb626-55" title="55">   <span class="fu">print</span> ind</a>
-<a class="sourceLine" id="cb626-56" title="56">   <span class="fu">print</span> ind, <span class="st">&#39;if everything in mask is false,&#39;</span></a>
-<a class="sourceLine" id="cb626-57" title="57">   <span class="fu">print</span> ind, <span class="st">&#39;same as zero-size array for each subarray&#39;</span></a>
-<a class="sourceLine" id="cb626-58" title="58">   <span class="fu">print</span> ind, <span class="fu">maxval</span>(ints,mask<span class="kw">=</span><span class="cn">.false.</span>)</a>
-<a class="sourceLine" id="cb626-59" title="59">   <span class="fu">print</span> ind, <span class="fu">maxval</span>(ints,mask<span class="kw">=</span><span class="cn">.false.</span>,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb626-60" title="60"><span class="kw">end program</span> demo_maxval</a></code></pre></div>
+<a class="sourceLine" id="cb626-45" title="45">   <span class="fu">print</span> ind, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb626-46" title="46">    <span class="kw">&amp;</span> <span class="st">&#39;is maxval of null length strings a null character? &#39;</span>,<span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb626-47" title="47">    <span class="kw">&amp;</span> <span class="bu">ichar</span>(<span class="fu">maxval</span>(strs))<span class="op">==</span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb626-48" title="48">   <span class="fu">print</span> ind</a>
+<a class="sourceLine" id="cb626-49" title="49">   <span class="kw">if</span>(<span class="fu">allocated</span>(strs))<span class="kw">deallocate</span>(strs)</a>
+<a class="sourceLine" id="cb626-50" title="50">   <span class="kw">allocate</span>(<span class="dt">character(len=5)</span> <span class="dt">::</span> strs(<span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb626-51" title="51">   <span class="fu">print</span> ind, <span class="st">&#39;STRS() has a length of:&#39;</span>, <span class="fu">len</span>(strs), <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb626-52" title="52">    <span class="kw">&amp;</span> <span class="st">&#39;a SHAPE of:&#39;</span>,<span class="fu">shape</span>(strs), <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb626-53" title="53">    <span class="kw">&amp;</span> <span class="st">&#39;:a SIZE of:&#39;</span>,<span class="fu">size</span>(strs)</a>
+<a class="sourceLine" id="cb626-54" title="54">    answer<span class="kw">=</span><span class="fu">maxval</span>(strs)</a>
+<a class="sourceLine" id="cb626-55" title="55">   <span class="fu">print</span> ind, <span class="st">&#39;is maxval of strings all null characters? &#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb626-56" title="56">    <span class="kw">&amp;</span> <span class="kw">[</span>(answer(i:i),i<span class="kw">=</span><span class="dv">1</span>,<span class="fu">len</span>(answer))<span class="kw">]</span><span class="op">.eq.</span><span class="bu">char</span>(<span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb626-57" title="57">   <span class="fu">print</span> ind</a>
+<a class="sourceLine" id="cb626-58" title="58">   <span class="fu">print</span> ind, <span class="st">&#39;if everything in mask is false,&#39;</span></a>
+<a class="sourceLine" id="cb626-59" title="59">   <span class="fu">print</span> ind, <span class="st">&#39;same as zero-size array for each subarray&#39;</span></a>
+<a class="sourceLine" id="cb626-60" title="60">   <span class="fu">print</span> ind, <span class="fu">maxval</span>(ints,mask<span class="kw">=</span><span class="cn">.false.</span>)</a>
+<a class="sourceLine" id="cb626-61" title="61">   <span class="fu">print</span> ind, <span class="fu">maxval</span>(ints,mask<span class="kw">=</span><span class="cn">.false.</span>,<span class="bu">dim</span><span class="kw">=</span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb626-62" title="62"><span class="kw">end program</span> demo_maxval</a></code></pre></div>
 <p>Results:</p>
 <pre><code> &gt; Given the array:
  &gt; Given the array
@@ -13574,25 +13842,50 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 <p>Sample program:</p>
 <div class="sourceCode" id="cb680"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb680-1" title="1"><span class="kw">program</span> demo_nearest</a>
 <a class="sourceLine" id="cb680-2" title="2"><span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb680-3" title="3"></a>
-<a class="sourceLine" id="cb680-4" title="4"><span class="dt">   real</span> <span class="dt">::</span> x, y</a>
-<a class="sourceLine" id="cb680-5" title="5">   x <span class="kw">=</span> <span class="bu">nearest</span>(<span class="fl">42.0</span>, <span class="fl">1.0</span>)</a>
-<a class="sourceLine" id="cb680-6" title="6">   y <span class="kw">=</span> <span class="bu">nearest</span>(<span class="fl">42.0</span>, <span class="kw">-</span><span class="fl">1.0</span>)</a>
-<a class="sourceLine" id="cb680-7" title="7">   <span class="fu">write (*</span>,<span class="st">&quot;(3(g20.15))&quot;</span><span class="fu">)</span> x, y, x <span class="kw">-</span> y</a>
-<a class="sourceLine" id="cb680-8" title="8"></a>
-<a class="sourceLine" id="cb680-9" title="9"><span class="co">!  write (*,&quot;(3(g20.15))&quot;) &amp;</span></a>
-<a class="sourceLine" id="cb680-10" title="10"><span class="co">!   nearest(tiny(0.0),1.0), &amp;</span></a>
-<a class="sourceLine" id="cb680-11" title="11"><span class="co">!   nearest(tiny(0.0),-1.0), &amp;</span></a>
-<a class="sourceLine" id="cb680-12" title="12"><span class="co">!   nearest(tiny(0.0),1.0) -nearest(tiny(0.0),-1.0)</span></a>
+<a class="sourceLine" id="cb680-3" title="3"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> g<span class="kw">=</span><span class="st">&#39;(*(g0,1x))&#39;</span></a>
+<a class="sourceLine" id="cb680-4" title="4"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> ref<span class="kw">=</span><span class="st">&#39;(a,1x,*(g20.15,1x))&#39;</span></a>
+<a class="sourceLine" id="cb680-5" title="5"><span class="dt">character(len=*)</span>,<span class="dt">parameter</span> <span class="dt">::</span> lim<span class="kw">=</span><span class="st">&#39;(a,1x,*(g20.15,1x))&#39;</span></a>
+<a class="sourceLine" id="cb680-6" title="6"><span class="dt">real</span>                       <span class="dt">::</span> x, y</a>
+<a class="sourceLine" id="cb680-7" title="7"></a>
+<a class="sourceLine" id="cb680-8" title="8">   <span class="fu">write (*</span>,g<span class="fu">)</span> <span class="st">&#39;The basics ...&#39;</span></a>
+<a class="sourceLine" id="cb680-9" title="9"></a>
+<a class="sourceLine" id="cb680-10" title="10">   x <span class="kw">=</span> <span class="bu">nearest</span>(<span class="fl">42.0</span>, <span class="fl">1.0</span>)</a>
+<a class="sourceLine" id="cb680-11" title="11">   y <span class="kw">=</span> <span class="bu">nearest</span>(<span class="fl">42.0</span>, <span class="kw">-</span><span class="fl">1.0</span>)</a>
+<a class="sourceLine" id="cb680-12" title="12">   <span class="fu">write (*</span>,<span class="st">&#39;(a,g20.15,a,g20.15,a,g20.15)&#39;</span><span class="fu">)</span><span class="st">&#39;for 42 +&#39;</span>,x,<span class="st">&#39;-&#39;</span>, y,<span class="st">&#39;delta&#39;</span>,x<span class="kw">-</span>y</a>
 <a class="sourceLine" id="cb680-13" title="13"></a>
-<a class="sourceLine" id="cb680-14" title="14"><span class="co">!  write (*,&quot;(3(g20.15))&quot;) &amp;</span></a>
-<a class="sourceLine" id="cb680-15" title="15"><span class="co">!   nearest(huge(0.0),1.0), &amp;</span></a>
-<a class="sourceLine" id="cb680-16" title="16"><span class="co">!   nearest(huge(0.0),-1.0), &amp;</span></a>
-<a class="sourceLine" id="cb680-17" title="17"><span class="co">!   nearest(huge(0.0),1.0)- nearest(huge(0.0),-1.0)</span></a>
-<a class="sourceLine" id="cb680-18" title="18"></a>
-<a class="sourceLine" id="cb680-19" title="19"><span class="kw">end program</span> demo_nearest</a></code></pre></div>
+<a class="sourceLine" id="cb680-14" title="14">   <span class="fu">write (*</span>,g<span class="fu">)</span> <span class="st">&#39;For reference ...&#39;</span></a>
+<a class="sourceLine" id="cb680-15" title="15"></a>
+<a class="sourceLine" id="cb680-16" title="16">   <span class="fu">write (*</span>,ref<span class="fu">)</span> <span class="st">&#39;TINY    &#39;</span>,<span class="fu">tiny</span>(<span class="fl">0.0</span>)</a>
+<a class="sourceLine" id="cb680-17" title="17">   <span class="fu">write (*</span>,ref<span class="fu">)</span> <span class="st">&#39;HUGE    &#39;</span>,<span class="fu">huge</span>(<span class="fl">0.0</span>)</a>
+<a class="sourceLine" id="cb680-18" title="18">   <span class="fu">write (*</span>,ref<span class="fu">)</span> <span class="st">&#39;EPSILON &#39;</span>,<span class="fu">epsilon</span>(<span class="fl">0.0</span>)</a>
+<a class="sourceLine" id="cb680-19" title="19">   <span class="fu">write (*</span>,ref<span class="fu">)</span> <span class="st">&#39;SPACING &#39;</span>,<span class="bu">spacing</span>(<span class="fu">tiny</span>(<span class="fl">0.0</span>)),<span class="bu">spacing</span>(<span class="fu">huge</span>(<span class="fl">0.0</span>))</a>
+<a class="sourceLine" id="cb680-20" title="20"></a>
+<a class="sourceLine" id="cb680-21" title="21">   <span class="fu">write (*</span>,g<span class="fu">)</span> <span class="st">&#39;Tesing the limits ...&#39;</span></a>
+<a class="sourceLine" id="cb680-22" title="22"></a>
+<a class="sourceLine" id="cb680-23" title="23">   <span class="fu">write (*</span>,lim<span class="fu">)</span> <span class="st">&#39;For TINY()&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb680-24" title="24">    <span class="bu">nearest</span>(<span class="fu">tiny</span>(<span class="fl">0.0</span>),<span class="fl">1.0</span>),    <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb680-25" title="25">    <span class="bu">nearest</span>(<span class="fu">tiny</span>(<span class="fl">0.0</span>),<span class="kw">-</span><span class="fl">1.0</span>),   <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb680-26" title="26">    <span class="bu">nearest</span>(<span class="fu">tiny</span>(<span class="fl">0.0</span>),<span class="fl">1.0</span>) <span class="kw">-</span><span class="bu">nearest</span>(<span class="fu">tiny</span>(<span class="fl">0.0</span>),<span class="kw">-</span><span class="fl">1.0</span>)</a>
+<a class="sourceLine" id="cb680-27" title="27"></a>
+<a class="sourceLine" id="cb680-28" title="28">   <span class="fu">write (*</span>,lim<span class="fu">)</span> <span class="st">&#39;For HUGE()&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb680-29" title="29">    <span class="bu">nearest</span>(<span class="fu">huge</span>(<span class="fl">0.0</span>),<span class="fl">1.0</span>),    <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb680-30" title="30">    <span class="bu">nearest</span>(<span class="fu">huge</span>(<span class="fl">0.0</span>),<span class="kw">-</span><span class="fl">1.0</span>),   <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb680-31" title="31">    <span class="bu">nearest</span>(<span class="fu">huge</span>(<span class="fl">0.0</span>),<span class="fl">1.0</span>)<span class="kw">-</span> <span class="bu">nearest</span>(<span class="fu">huge</span>(<span class="fl">0.0</span>),<span class="kw">-</span><span class="fl">1.0</span>)</a>
+<a class="sourceLine" id="cb680-32" title="32"></a>
+<a class="sourceLine" id="cb680-33" title="33"><span class="kw">end program</span> demo_nearest</a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code>  &gt; 42.0000038146973    41.9999961853027    .762939453125000E-05</code></pre>
+<pre class="text"><code>   &gt; The basics ...
+   &gt; for 42 +42.0000038146973 -41.9999961853027 delta.762939453125000E-05
+   &gt; For reference ...
+   &gt; TINY     .117549435082229E-37
+   &gt; HUGE     .340282346638529E+39
+   &gt; EPSILON  .119209289550781E-06
+   &gt; SPACING  .117549435082229E-37 .202824096036517E+32
+   &gt; Tesing the limits ...
+   &gt; For TINY() .117549449095213E-37 .117549421069244E-37
+   &gt; .280259692864963E-44
+   &gt; For HUGE()             Infinity .340282326356119E+39
+   &gt; Infinity</code></pre>
 <h3 id="standard-150"><strong>Standard</strong></h3>
 <p>Fortran 95</p>
 <h3 id="see-also-151"><strong>See Also</strong></h3>
@@ -15410,20 +15703,72 @@ Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be differe
 </ul>
 <h3 id="examples-165"><strong>Examples</strong></h3>
 <p>Sample program:</p>
-<div class="sourceCode" id="cb769"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb769-1" title="1">    <span class="kw">program</span> demo_random_seed</a>
-<a class="sourceLine" id="cb769-2" title="2">    <span class="kw">implicit</span> <span class="kw">none</span></a>
-<a class="sourceLine" id="cb769-3" title="3">    <span class="dt">integer</span>, <span class="dt">allocatable</span> <span class="dt">::</span> seed(:)</a>
-<a class="sourceLine" id="cb769-4" title="4">    <span class="dt">integer</span> <span class="dt">::</span> n</a>
-<a class="sourceLine" id="cb769-5" title="5"></a>
-<a class="sourceLine" id="cb769-6" title="6">       <span class="kw">call</span> <span class="fu">random_seed</span>(<span class="fu">size</span> <span class="kw">=</span> n)</a>
-<a class="sourceLine" id="cb769-7" title="7">       <span class="kw">allocate</span>(seed(n))</a>
-<a class="sourceLine" id="cb769-8" title="8">       <span class="kw">call</span> <span class="fu">random_seed</span>(get<span class="kw">=</span>seed)</a>
-<a class="sourceLine" id="cb769-9" title="9">       <span class="fu">write (*</span>, <span class="fu">*)</span> seed</a>
-<a class="sourceLine" id="cb769-10" title="10"></a>
-<a class="sourceLine" id="cb769-11" title="11">    <span class="kw">end program</span> demo_random_seed</a></code></pre></div>
+<div class="sourceCode" id="cb769"><pre class="sourceCode fortran"><code class="sourceCode fortran"><a class="sourceLine" id="cb769-1" title="1"><span class="kw">program</span> demo_random_seed</a>
+<a class="sourceLine" id="cb769-2" title="2">   <span class="kw">implicit</span> <span class="kw">none</span></a>
+<a class="sourceLine" id="cb769-3" title="3">   <span class="dt">integer</span>, <span class="dt">allocatable</span> <span class="dt">::</span> seed(:),initial_seed(:)</a>
+<a class="sourceLine" id="cb769-4" title="4">   <span class="dt">integer</span> <span class="dt">::</span> i,j,n</a>
+<a class="sourceLine" id="cb769-5" title="5"><span class="dt">   real</span> <span class="dt">::</span> x(<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb769-6" title="6">   <span class="kw">call</span> <span class="fu">random_seed</span>() <span class="co">! set random seed if f2023</span></a>
+<a class="sourceLine" id="cb769-7" title="7"></a>
+<a class="sourceLine" id="cb769-8" title="8">   <span class="kw">call</span> <span class="fu">random_seed</span>(<span class="fu">size</span> <span class="kw">=</span> n)</a>
+<a class="sourceLine" id="cb769-9" title="9">   <span class="kw">allocate</span>(seed(n))</a>
+<a class="sourceLine" id="cb769-10" title="10">   <span class="kw">call</span> <span class="fu">random_seed</span>(get<span class="kw">=</span>seed)</a>
+<a class="sourceLine" id="cb769-11" title="11">   initial_seed<span class="kw">=</span>seed</a>
+<a class="sourceLine" id="cb769-12" title="12"></a>
+<a class="sourceLine" id="cb769-13" title="13">   <span class="fu">write (*</span>, <span class="fu">*)</span> <span class="st">&#39;queried initial seed=&#39;</span>,seed</a>
+<a class="sourceLine" id="cb769-14" title="14">   <span class="fu">write (*</span>,<span class="fu">*)</span> <span class="st">&#39;get three sets of random numbers&#39;</span></a>
+<a class="sourceLine" id="cb769-15" title="15">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="dv">3</span></a>
+<a class="sourceLine" id="cb769-16" title="16">      <span class="kw">call</span> <span class="fu">random_number</span>(x)</a>
+<a class="sourceLine" id="cb769-17" title="17">      <span class="fu">write(*</span>,<span class="fu">*)</span>x</a>
+<a class="sourceLine" id="cb769-18" title="18">   <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb769-19" title="19"></a>
+<a class="sourceLine" id="cb769-20" title="20">   <span class="co">! now randomize the seed several times, query</span></a>
+<a class="sourceLine" id="cb769-21" title="21">   <span class="co">! and print it, and then generate an array of PRN</span></a>
+<a class="sourceLine" id="cb769-22" title="22">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="dv">3</span></a>
+<a class="sourceLine" id="cb769-23" title="23">      <span class="kw">call</span> <span class="fu">random_seed</span>() <span class="co">! randomize seed if f2023</span></a>
+<a class="sourceLine" id="cb769-24" title="24">      <span class="kw">call</span> <span class="fu">random_seed</span>(get<span class="kw">=</span>seed)</a>
+<a class="sourceLine" id="cb769-25" title="25">      <span class="fu">write (*</span>, <span class="fu">*)</span> <span class="st">&#39;new seed=&#39;</span>,seed</a>
+<a class="sourceLine" id="cb769-26" title="26">      <span class="kw">call</span> <span class="fu">random_number</span>(x)</a>
+<a class="sourceLine" id="cb769-27" title="27">      <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;set with new seed=&#39;</span>,x</a>
+<a class="sourceLine" id="cb769-28" title="28">   <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb769-29" title="29"></a>
+<a class="sourceLine" id="cb769-30" title="30">   <span class="co">! now go back to initial seed and should reproduce</span></a>
+<a class="sourceLine" id="cb769-31" title="31">   <span class="co">! initial set</span></a>
+<a class="sourceLine" id="cb769-32" title="32">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;back to initial&#39;</span></a>
+<a class="sourceLine" id="cb769-33" title="33">   <span class="kw">call</span> <span class="fu">random_seed</span>(put<span class="kw">=</span>initial_seed)</a>
+<a class="sourceLine" id="cb769-34" title="34"></a>
+<a class="sourceLine" id="cb769-35" title="35">   <span class="co">! repeat first display</span></a>
+<a class="sourceLine" id="cb769-36" title="36">   <span class="kw">call</span> <span class="fu">random_seed</span>(get<span class="kw">=</span>seed)</a>
+<a class="sourceLine" id="cb769-37" title="37">   <span class="fu">write (*</span>, <span class="fu">*)</span> <span class="st">&#39;queried current seed=&#39;</span>,seed</a>
+<a class="sourceLine" id="cb769-38" title="38">   <span class="fu">write (*</span>,<span class="fu">*)</span> <span class="st">&#39;get three sets of random numbers,&#39;</span></a>
+<a class="sourceLine" id="cb769-39" title="39">   <span class="fu">write (*</span>,<span class="fu">*)</span> <span class="st">&#39;should be duplicates of first set&#39;</span></a>
+<a class="sourceLine" id="cb769-40" title="40">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">1</span>,<span class="dv">3</span></a>
+<a class="sourceLine" id="cb769-41" title="41">      <span class="kw">call</span> <span class="fu">random_number</span>(x)</a>
+<a class="sourceLine" id="cb769-42" title="42">      <span class="fu">write(*</span>,<span class="fu">*)</span>x</a>
+<a class="sourceLine" id="cb769-43" title="43">   <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb769-44" title="44"><span class="kw">end program</span> demo_random_seed</a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code> &gt;    -674862499 -1750483360  -183136071  -317862567   682500039
- &gt;    349459   344020729 -1725483289</code></pre>
+<pre class="text"><code> &gt; get three sets of random numbers
+ &gt; 0.728326082      0.733394623      0.807955265
+ &gt; 0.827496469      0.709796131      0.855553031
+ &gt; 0.850020826       2.29641199E-02  0.848301649
+ &gt; new seed=   532671634  1589724431  -702344385  -267089641
+ &gt;            -2127795903 1724481233 -1649777043  -673546294
+ &gt; set with new seed=  0.182621956  0.814420581  0.161144853
+ &gt; new seed=  -588602105 -1330109958 -1909200428  2013740993
+ &gt;             926921249 132638128 -1513550047 -1366162835
+ &gt; set with new seed=  0.922367275  0.226936579  0.626253545
+ &gt; new seed=   701608307 -1105671482   804077484    93609417
+ &lt;            -2030753861 94338487 -1850184744   417402487
+ &gt; set with new seed=  0.119894266  0.515091896  0.171295166
+ &gt; back to initial
+ &gt; queried current seed=    -2447268 -1354129540   374710663
+ &gt;   -1240608696 -1827405339  -257388164  2056470833   269047911
+ &gt; get three sets of random numbers,
+ &gt; should be duplicates of first set
+ &gt; 0.728326082      0.733394623      0.807955265
+ &gt; 0.827496469      0.709796131      0.855553031
+ &gt; 0.850020826       2.29641199E-02  0.848301649</code></pre>
 <h3 id="standard-170"><strong>Standard</strong></h3>
 <p>Fortran 95</p>
 <h3 id="see-also-170"><strong>See Also</strong></h3>
@@ -15505,7 +15850,7 @@ Case (iii)
 <li>a kind designated as ** may be any supported kind for the type</li>
 </ul>
 <h3 id="description-173"><strong>Description</strong></h3>
-<p><strong>rank</strong>(3) returns the rank of a scalar or array data object.</p>
+<p><strong>rank</strong>(3) returns the rank of a scalar or array data object. A data object is a constant or variable. It cannot be an expression or function call.</p>
 <p>The rank of an array is the number of dimensions it has (zero for a scalar).</p>
 <h3 id="options-171"><strong>Options</strong></h3>
 <ul>
@@ -15960,7 +16305,7 @@ Case (iii)
 <ul>
 <li><dl>
 <dt><strong>shape</strong></dt>
-<dd>This is the shape of the new array being generated. Being by definition a shape; all elements are either positive integers or zero, the size but be 1 or greater, it may have up to 16 elements but must be of constant fixed size and rank one.
+<dd>This is the shape of the new array being generated. Being by definition a shape; all elements are either positive integers or zero; the size mut be 1 or greater; it may have up to 16 elements but must be of constant fixed size and rank one.
 </dd>
 </dl></li>
 <li><dl>
@@ -16852,14 +17197,16 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 <a class="sourceLine" id="cb836-10" title="10"><span class="dt">real(kind=r400)</span> <span class="dt">::</span> z</a>
 <a class="sourceLine" id="cb836-11" title="11"></a>
 <a class="sourceLine" id="cb836-12" title="12">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;real_kinds    =&#39;</span>, real_kinds(:)</a>
-<a class="sourceLine" id="cb836-13" title="13">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;real constants=&#39;</span>, real16, real32, real64, real128 <span class="co">!, bfloat16</span></a>
-<a class="sourceLine" id="cb836-14" title="14">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;integer_kinds=&#39;</span>, integer_kinds(:)</a>
-<a class="sourceLine" id="cb836-15" title="15">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;int constants=&#39;</span>, int8, int16, int32, int64  <span class="co">!, int128</span></a>
-<a class="sourceLine" id="cb836-16" title="16"></a>
-<a class="sourceLine" id="cb836-17" title="17">   <span class="fu">print</span> <span class="kw">*</span>, <span class="dt">precision</span>(x), <span class="fu">range</span>(x)</a>
-<a class="sourceLine" id="cb836-18" title="18">   <span class="fu">print</span> <span class="kw">*</span>, <span class="dt">precision</span>(y), <span class="fu">range</span>(y)</a>
-<a class="sourceLine" id="cb836-19" title="19">   <span class="fu">print</span> <span class="kw">*</span>, <span class="dt">precision</span>(z), <span class="fu">range</span>(z)</a>
-<a class="sourceLine" id="cb836-20" title="20"><span class="kw">end program</span> demo_selected_real_kind</a></code></pre></div>
+<a class="sourceLine" id="cb836-13" title="13">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;real constants=&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb836-14" title="14">   <span class="kw">&amp;</span> real16, real32, real64, real128 <span class="co">!, bfloat16</span></a>
+<a class="sourceLine" id="cb836-15" title="15">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;integer_kinds=&#39;</span>, integer_kinds(:)</a>
+<a class="sourceLine" id="cb836-16" title="16">   <span class="fu">write(*</span>,<span class="fu">*)</span> <span class="st">&#39;int constants=&#39;</span>, <span class="kw">&amp;</span></a>
+<a class="sourceLine" id="cb836-17" title="17">   <span class="kw">&amp;</span> int8, int16, int32, int64  <span class="co">!, int128</span></a>
+<a class="sourceLine" id="cb836-18" title="18"></a>
+<a class="sourceLine" id="cb836-19" title="19">   <span class="fu">print</span> <span class="kw">*</span>, <span class="dt">precision</span>(x), <span class="fu">range</span>(x)</a>
+<a class="sourceLine" id="cb836-20" title="20">   <span class="fu">print</span> <span class="kw">*</span>, <span class="dt">precision</span>(y), <span class="fu">range</span>(y)</a>
+<a class="sourceLine" id="cb836-21" title="21">   <span class="fu">print</span> <span class="kw">*</span>, <span class="dt">precision</span>(z), <span class="fu">range</span>(z)</a>
+<a class="sourceLine" id="cb836-22" title="22"><span class="kw">end program</span> demo_selected_real_kind</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code>  &gt;            6          37
   &gt;           15         307
@@ -17077,9 +17424,15 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 <a class="sourceLine" id="cb848-33" title="33">   <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&quot;characteristics of the result are the same as input&quot;</span></a>
 <a class="sourceLine" id="cb848-34" title="34">   <span class="fu">write(*</span>,<span class="st">&#39;(*(g0,1x))&#39;</span><span class="fu">)</span> <span class="kw">&amp;</span></a>
 <a class="sourceLine" id="cb848-35" title="35">     <span class="kw">&amp;</span> <span class="st">&quot;kind=&quot;</span>,<span class="fu">kind</span>(shifta(arr,<span class="dv">3</span>)), <span class="st">&quot;shape=&quot;</span>,<span class="fu">shape</span>(shifta(arr,<span class="dv">3</span>)), <span class="kw">&amp;</span></a>
-<a class="sourceLine" id="cb848-36" title="36">     <span class="kw">&amp;</span> <span class="st">&quot;size=&quot;</span>,<span class="fu">size</span>(shifta(arr,<span class="dv">3</span>)) <span class="co">!, &quot;rank=&quot;,rank(shifta(arr,3))</span></a>
+<a class="sourceLine" id="cb848-36" title="36">     <span class="kw">&amp;</span> <span class="st">&quot;size=&quot;</span>,<span class="fu">size</span>(shifta(arr,<span class="dv">3</span>))</a>
 <a class="sourceLine" id="cb848-37" title="37"></a>
-<a class="sourceLine" id="cb848-38" title="38"><span class="kw">end program</span> demo_shifta</a></code></pre></div>
+<a class="sourceLine" id="cb848-38" title="38">     <span class="co">!</span><span class="al">NOTE</span><span class="co">: &quot;rank=&quot;,rank(shifta(arr,3)) will often work but if so</span></a>
+<a class="sourceLine" id="cb848-39" title="39">     <span class="co">!      is non-standard as the argument of RANK(3) is supposed</span></a>
+<a class="sourceLine" id="cb848-40" title="40">     <span class="co">!      to be a data object (ie., a constant, variable, or</span></a>
+<a class="sourceLine" id="cb848-41" title="41">     <span class="co">!      subobject of a constant, not an expression or function</span></a>
+<a class="sourceLine" id="cb848-42" title="42">     <span class="co">!      call)</span></a>
+<a class="sourceLine" id="cb848-43" title="43"></a>
+<a class="sourceLine" id="cb848-44" title="44"><span class="kw">end program</span> demo_shifta</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code> &gt;           12
  &gt;
@@ -17188,9 +17541,15 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 <a class="sourceLine" id="cb853-37" title="37">   <span class="fu">write(*</span>,<span class="st">&#39;(*(g0,1x))&#39;</span><span class="fu">)</span> <span class="kw">&amp;</span></a>
 <a class="sourceLine" id="cb853-38" title="38">     <span class="kw">&amp;</span> <span class="st">&quot;kind=&quot;</span>,<span class="fu">kind</span>(shiftl(arr,<span class="dv">3</span>)), <span class="st">&quot;shape=&quot;</span>,<span class="fu">shape</span>(shiftl(arr,<span class="dv">3</span>)), <span class="kw">&amp;</span></a>
 <a class="sourceLine" id="cb853-39" title="39">     <span class="kw">&amp;</span> <span class="st">&quot;size=&quot;</span>,<span class="fu">size</span>(shiftl(arr,<span class="dv">3</span>)) <span class="co">!, &quot;rank=&quot;,rank(shiftl(arr,3))</span></a>
-<a class="sourceLine" id="cb853-40" title="40">   endblock ELEM</a>
-<a class="sourceLine" id="cb853-41" title="41"></a>
-<a class="sourceLine" id="cb853-42" title="42"><span class="kw">end program</span> demo_shiftl</a></code></pre></div>
+<a class="sourceLine" id="cb853-40" title="40"></a>
+<a class="sourceLine" id="cb853-41" title="41">     <span class="co">!</span><span class="al">NOTE</span><span class="co">: &quot;rank=&quot;,rank(shifta(arr,3)) will often work but if so</span></a>
+<a class="sourceLine" id="cb853-42" title="42">     <span class="co">!      is non-standard as the argument of RANK(3) is supposed</span></a>
+<a class="sourceLine" id="cb853-43" title="43">     <span class="co">!      to be a data object (ie., a constant, variable, or</span></a>
+<a class="sourceLine" id="cb853-44" title="44">     <span class="co">!      subobject of a constant, not an expression or function</span></a>
+<a class="sourceLine" id="cb853-45" title="45">     <span class="co">!      call)</span></a>
+<a class="sourceLine" id="cb853-46" title="46">   endblock ELEM</a>
+<a class="sourceLine" id="cb853-47" title="47"></a>
+<a class="sourceLine" id="cb853-48" title="48"><span class="kw">end program</span> demo_shiftl</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code> &gt;    basic usage
  &gt;           100         800
@@ -17291,9 +17650,14 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 <a class="sourceLine" id="cb858-35" title="35">   <span class="fu">write(*</span>,<span class="st">&#39;(*(g0,1x))&#39;</span><span class="fu">)</span> <span class="kw">&amp;</span></a>
 <a class="sourceLine" id="cb858-36" title="36">     <span class="kw">&amp;</span> <span class="st">&quot;kind=&quot;</span>,<span class="fu">kind</span>(shiftr(arr,<span class="dv">3</span>)), <span class="st">&quot;shape=&quot;</span>,<span class="fu">shape</span>(shiftr(arr,<span class="dv">3</span>)), <span class="kw">&amp;</span></a>
 <a class="sourceLine" id="cb858-37" title="37">     <span class="kw">&amp;</span> <span class="st">&quot;size=&quot;</span>,<span class="fu">size</span>(shiftr(arr,<span class="dv">3</span>)) <span class="co">!, &quot;rank=&quot;,rank(shiftr(arr,3))</span></a>
-<a class="sourceLine" id="cb858-38" title="38">   endblock ELEM</a>
-<a class="sourceLine" id="cb858-39" title="39"></a>
-<a class="sourceLine" id="cb858-40" title="40"><span class="kw">end program</span> demo_shiftr</a></code></pre></div>
+<a class="sourceLine" id="cb858-38" title="38">     <span class="co">!</span><span class="al">NOTE</span><span class="co">: &quot;rank=&quot;,rank(shifta(arr,3)) will often work but if so</span></a>
+<a class="sourceLine" id="cb858-39" title="39">     <span class="co">!      is non-standard as the argument of RANK(3) is supposed</span></a>
+<a class="sourceLine" id="cb858-40" title="40">     <span class="co">!      to be a data object (ie., a constant, variable, or</span></a>
+<a class="sourceLine" id="cb858-41" title="41">     <span class="co">!      subobject of a constant, not an expression or function</span></a>
+<a class="sourceLine" id="cb858-42" title="42">     <span class="co">!      call)</span></a>
+<a class="sourceLine" id="cb858-43" title="43">   endblock ELEM</a>
+<a class="sourceLine" id="cb858-44" title="44"></a>
+<a class="sourceLine" id="cb858-45" title="45"><span class="kw">end program</span> demo_shiftr</a></code></pre></div>
 <p>Results:</p>
 <pre class="text"><code>  &gt;    basic usage
   &gt;           100          12
@@ -18266,7 +18630,7 @@ need an illustration of what happens with higher dimension array
 <h3 id="characteristics-198"><strong>Characteristics</strong></h3>
 <ul>
 <li><p>a kind designated as ** may be any supported kind for the type</p></li>
-<li><p><strong>a</strong> may be of any type and kind. If it is polymorphic it shall not be an undefined pointer. If it is unlimited polymorphic or has any deferred type parameters, it shall not be an unallocated allocatable variable or a disassociated or undefined pointer.</p></li>
+<li><p><strong>a</strong> may be of any type and kind. If it is polymorphic it shall not be an undefined pointer. If it is unlimited polymorphic or has any deferred type parameters, it shall not be an unallocated allocatable variable or a disassociated or undefined pointer. It must be a named variable or constant or subobject of a constant.</p></li>
 <li><p>The kind type parameter of the returned value is that specified by the value of <strong>kind</strong>; otherwise, the kind type parameter is that of default integer type.</p></li>
 <li><p>The result is an integer scalar of default kind unless <strong>kind</strong> is specified, in which case it has the kind specified by <strong>kind</strong>.</p></li>
 </ul>
@@ -18276,7 +18640,8 @@ need an illustration of what happens with higher dimension array
 <ul>
 <li><dl>
 <dt><strong>a</strong></dt>
-<dd>The entity to determine the storage size of
+<dd><p>The entity to determine the storage size of. Note that it may not be an expression, but must be a “data object”. That is, a constant, variable, or subobject of a constant.</p>
+<p>RANK STORAGE_SIZE</p>
 </dd>
 </dl></li>
 <li><dl>

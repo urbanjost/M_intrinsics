@@ -20,7 +20,8 @@
   - **a** may be of any type and kind. If it is polymorphic it shall not
     be an undefined pointer. If it is unlimited polymorphic or has any
     deferred type parameters, it shall not be an unallocated allocatable
-    variable or a disassociated or undefined pointer.
+    variable or a disassociated or undefined pointer. It must be a named
+    variable or constant or subobject of a constant.
 
   - The kind type parameter of the returned value is that specified by
     the value of **kind**; otherwise, the kind type parameter is that of
@@ -36,7 +37,12 @@
 ### **Options**
 
 - **a**
-  : The entity to determine the storage size of
+  : The entity to determine the storage size of. Note that it may not
+  be an expression, but must be a "data object". That is, a
+  constant, variable, or subobject of a constant.
+
+      RANK
+      STORAGE_SIZE
 
 - **kind**
   : a scalar integer constant expression that defines the kind of the

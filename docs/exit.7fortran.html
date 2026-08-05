@@ -228,8 +228,9 @@ Samples:
 <PRE>
        program demo_exit
        implicit none
-       integer,parameter :: arbitrary_size=10
-       integer :: i, j, k, iarr(arbitrary_size)
+       integer,parameter          :: arbitrary_size=10
+       integer                    :: i, j, iarr(arbitrary_size)
+       integer,volatile           :: k ! decrease odds loop is optimized away
        character(len=*),parameter :: gen=&#146;(*(g0:,1x))&#146;
        !
        ! the basics
@@ -283,26 +284,31 @@ Samples:
           else
              print gen,&#146;only did I=&#146;,i,&#146;passes to get 200 odd samples&#146;
           endif
-       ! ---------------------------
-       ! how to EXIT nested do-loops
-       ! ---------------------------
+       ! ---------------------
+       ! EXIT nested do-loops:
+       ! ---------------------
          ! EXIT with no name only exits an innermost loop
-         ! so in the following k will be 3, as all passes of the
-         ! outer loop still occur
-          k=0
-          do i=1,3
-             do j=1,5
+         ! so in the following k will be three, as all passes of the
+         ! outer loop still occur but i will be four and j one.
+          k=0          ! regular variable
+          do i=1,3     ! loop control variable
+             do j=1,5  ! loop control variable
                 exit
              enddo
              k=k+1
           enddo
+       ! -----------------------
+       ! loop control variables:
+       ! -----------------------
           ! at the end of a completed loop the counter is end_limit+step so
           ! you can tell if you exhausted the do loop or exited early:
-          print gen,&#146;I=&#146;,i,&#146;so &#146;,&
-          & merge(&#146;completed&#146;,&#146;exited   &#146;,i.gt.3),&#146; outer loop&#146;
-          print gen,&#146;J=&#146;,j,&#146;so &#146;,&
-          & merge(&#146;completed&#146;,&#146;exited   &#146;,j.gt.5),&#146; inner loop&#146;
+          print gen,&#146;I=&#146;,i,&#146;so &#146;, &
+          & merge(&#146;completed&#146;,&#146;exited   &#146;,i-1.eq.3),&#146; outer loop&#146;
+          print gen,&#146;J=&#146;,j,&#146;so &#146;, &
+          & merge(&#146;completed&#146;,&#146;exited   &#146;,j-1.eq.5),&#146; inner loop&#146;
           print gen,&#146;K=&#146;,k
+          print gen,&#146;nested loop test&#146;, &
+          & merge(&#146;PASSED&#146;,&#146;FAILED&#146;,all([i,j,k]==[4,1,3]))
 <P>
           ! COMMENTARY:
           ! A labeled exit is less prone to error so generally worth the

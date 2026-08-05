@@ -164,7 +164,7 @@ Sample program:
        ! so sign bits in the integer are treated just like any other
        do i=-128,127,32
           byte=i
-          write(*,&#146;(sp,i0.4,*(1x,1l,1x,b0.8))&#146;)i,blt(byte,64_int8),byte
+          write(*,&#146;(sp,i0.4,1x,l1,1x,b8.8)&#146;)i,blt(byte,64_int8),byte
        enddo
       ! BOZ literals
        write(*,*)blt(z&#146;1000&#146;, z&#146;101011010&#146;)
@@ -177,14 +177,14 @@ Sample program:
 Results:
 <P>
 <PRE>
-       &gt; -0128  F 10000000
-       &gt; -0096  F 10100000
-       &gt; -0064  F 11000000
-       &gt; -0032  F 11100000
-       &gt; +0000  T 00000000
-       &gt; +0032  T 00100000
-       &gt; +0064  F 01000000
-       &gt; +0096  F 01100000
+       &gt; -0128 F 10000000
+       &gt; -0096 F 10100000
+       &gt; -0064 F 11000000
+       &gt; -0032 F 11100000
+       &gt; +0000 T 00000000
+       &gt; +0032 T 00100000
+       &gt; +0064 F 01000000
+       &gt; +0096 F 01100000
        &gt; T
 <P>
 </PRE>

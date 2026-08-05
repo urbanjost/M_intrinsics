@@ -180,7 +180,8 @@ Sample program:
         & test(&#146;spaces&#146;,&#146; one two three four    five  six  &#146;,6), &
        ! note many characters might be special to a shell
         & test(&#146;special&#146;,&#146;"&lt;&gt;$@# " "$%&*()_-"&#146;,2), &
-        & test(&#146;many&#146;,&#146;a b c d e f g h i j k l m n o p q r s t u v w x y z&#146;,26)]
+        & test(&#146;many&#146;,&
+        & &#146;a b c d e f g h i j k l m n o p q r s t u v w x y z&#146;,26)]
        ! get name of program
        self=get_arg(0)
        ! if no options call all the test cases

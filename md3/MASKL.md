@@ -37,8 +37,8 @@
   size is specified by **kind**. That is, these Fortran statements must
   be _.true._ :
 ```fortran
-   i >= 0 .and. i < bitsize(i) ! if KIND is not specified
-   i >= 0 .and. i < bitsize(0_KIND) ! if KIND is specified
+   i >= 0 .and. i <= bitsize(i) ! if KIND is not specified
+   i >= 0 .and. i <= bitsize(0_KIND) ! if KIND is specified
 ```
 - **kind**
   : designates the kind of the _integer_ result.

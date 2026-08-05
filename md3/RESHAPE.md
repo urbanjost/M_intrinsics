@@ -54,7 +54,7 @@ C procedure.
 - **shape**
   : This is the shape of the new array being generated.
     Being by definition a shape; all elements are either positive integers
-    or zero, the size but be 1 or greater, it may have up to 16 elements
+    or zero; the size mut be 1 or greater; it may have up to 16 elements
     but must be of constant fixed size and rank one.
 
 - **pad**

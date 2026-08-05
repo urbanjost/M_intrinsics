@@ -370,40 +370,41 @@ An example of an OPEN statement is:
 <P>
 <PRE>
     program demo_open
-    integer :: ios
-    character(len=256) :: message
-    integer :: lun
+    integer            :: iostat
+    character(len=256) :: iomsg
+    integer            :: lun
        open  (                  &
        & newunit=lun,           &
        & file=&#146;employee.names&#146;, &
-       & action=&#146;read&#146;,         &
-       & iostat=ios,            &
-       & iomsg=message)
-       if (ios &lt; 0) then
-          ! Perform end-of-file processing on the file connected to unit
+       & action=&#146;readwrite&#146;,    & ! read write readwrite
+       & iostat=iostat,         &
+       & status=&#146;unknown&#146;,      & ! old new replace unknown
+       & iomsg=iomsg)
+       if (iostat &lt; 0) then
+          ! Perform end-of-file processing
           call end_processing()
-       elseif (ios &gt; 0) then
+       elseif (iostat &gt; 0) then
           ! Perform error processing
-          write(*,&#146;(a)&#146;)trim(message)
+          write(*,&#146;(a)&#146;)trim(iomsg)
           call error_processing()
           stop
        else
           write(*,*)&#146;OPENED FILE&#146;
        endif
     contains
-    !
-    subroutine end_processing()
-       write(*,*)&#146;END OF FILE:&#146;,ios,&#146;MESSAGE=&#146;,trim(message)
-       close(unit=lun,iostat=ios)
-       stop
-    end subroutine end_processing
-    !
-    subroutine error_processing()
-       write(*,*)&#146;ERROR:&#146;,ios,&#146;MESSAGE=&#146;,trim(message)
-       close(unit=lun,iostat=ios)
-       stop
-    end subroutine error_processing
-    !
+       !
+       subroutine end_processing()
+          write(*,*)&#146;&lt;END OF FILE&gt;:&#146;,iostat,&#146;iomsg=&#146;,trim(iomsg)
+          close(unit=lun,iostat=iostat)
+          stop
+       end subroutine end_processing
+       !
+       subroutine error_processing()
+          write(*,*)&#146;&lt;ERROR&gt;:&#146;,iostat,&#146;iomsg=&#146;,trim(iomsg)
+          close(unit=lun,iostat=iostat)
+          stop
+       end subroutine error_processing
+       !
     end program demo_open
 <P>
 </PRE>

@@ -95,8 +95,9 @@ Samples:
 ```fortran
    program demo_exit
    implicit none
-   integer,parameter :: arbitrary_size=10
-   integer :: i, j, k, iarr(arbitrary_size)
+   integer,parameter          :: arbitrary_size=10
+   integer                    :: i, j, iarr(arbitrary_size)
+   integer,volatile           :: k ! decrease odds loop is optimized away
    character(len=*),parameter :: gen='(*(g0:,1x))'
    !
    ! the basics
@@ -150,26 +151,31 @@ Samples:
       else
          print gen,'only did I=',i,'passes to get 200 odd samples'
       endif
-   ! ---------------------------
-   ! how to EXIT nested do-loops
-   ! ---------------------------
+   ! ---------------------
+   ! EXIT nested do-loops:
+   ! ---------------------
      ! EXIT with no name only exits an innermost loop
-     ! so in the following k will be 3, as all passes of the
-     ! outer loop still occur
-      k=0
-      do i=1,3
-         do j=1,5
+     ! so in the following k will be three, as all passes of the
+     ! outer loop still occur but i will be four and j one.
+      k=0          ! regular variable
+      do i=1,3     ! loop control variable
+         do j=1,5  ! loop control variable
             exit
          enddo
          k=k+1
       enddo
+   ! -----------------------
+   ! loop control variables:
+   ! -----------------------
       ! at the end of a completed loop the counter is end_limit+step so
       ! you can tell if you exhausted the do loop or exited early:
-      print gen,'I=',i,'so ',&
-      & merge('completed','exited   ',i.gt.3),' outer loop'
-      print gen,'J=',j,'so ',&
-      & merge('completed','exited   ',j.gt.5),' inner loop'
+      print gen,'I=',i,'so ', &
+      & merge('completed','exited   ',i-1.eq.3),' outer loop'
+      print gen,'J=',j,'so ', &
+      & merge('completed','exited   ',j-1.eq.5),' inner loop'
       print gen,'K=',k
+      print gen,'nested loop test', &
+      & merge('PASSED','FAILED',all([i,j,k]==[4,1,3]))
 
       ! COMMENTARY:
       ! A labeled exit is less prone to error so generally worth the

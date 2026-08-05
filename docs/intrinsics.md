@@ -4996,7 +4996,7 @@ integer(kind=int8),allocatable :: arr1(:), arr2(:)
    write(*,*)'so the results are as if values are unsigned integers.'
    do i=-128,127,32
       byte=i
-      write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,bge(byte,64_int8),byte
+      write(*,'(sp,i0.4,1x,l1,1x,b8.8)')i,bge(byte,64_int8),byte
    enddo
 
   ! SIGNED ZERO
@@ -5024,14 +5024,14 @@ Results:
     > Compare some one-byte values to 64.
     > Notice that the values are tested as bits not as integers
     > so the results are as if values are unsigned integers.
-    > -0128  T 10000000
-    > -0096  T 10100000
-    > -0064  T 11000000
-    > -0032  T 11100000
-    > +0000  F 00000000
-    > +0032  F 00100000
-    > +0064  T 01000000
-    > +0096  T 01100000
+    > -0128 T 10000000
+    > -0096 T 10100000
+    > -0064 T 11000000
+    > -0032 T 11100000
+    > +0000 F 00000000
+    > +0032 F 00100000
+    > +0064 T 01000000
+    > +0096 T 01100000
     > plus zero=0
     > minus zero=0
 ```
@@ -5111,14 +5111,14 @@ integer(kind=int8) :: byte
    write(*,'(a)') 'we will compare other values to 64'
    i=64
    byte=i
-   write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,bgt(byte,64_int8),byte
+   write(*,'(sp,i0.4,1x,l1,1x,b8.8)')i,bgt(byte,64_int8),byte
 
    write(*,'(a)') "comparing at the bit level, not as whole numbers."
    write(*,'(a)') "so pay particular attention to the negative"
    write(*,'(a)') "values on this two's complement platform ..."
    do i=-128,127,32
       byte=i
-      write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,bgt(byte,64_int8),byte
+      write(*,'(sp,i0.4,1x,l1,1x,b8.8)')i,bgt(byte,64_int8),byte
    enddo
 
    ! see the BGE() description for an extended description
@@ -5133,14 +5133,14 @@ Results:
  > comparing at the bit level, not as whole numbers.
  > so pay particular attention to the negative
  > values on this two's complement platform ...
- > -0128  T 10000000
- > -0096  T 10100000
- > -0064  T 11000000
- > -0032  T 11100000
- > +0000  F 00000000
- > +0032  F 00100000
- > +0064  F 01000000
- > +0096  T 01100000
+ > -0128 T 10000000
+ > -0096 T 10100000
+ > -0064 T 11000000
+ > -0032 T 11100000
+ > +0000 F 00000000
+ > +0032 F 00100000
+ > +0064 F 01000000
+ > +0096 T 01100000
 ```
 ### **Standard**
 
@@ -5295,8 +5295,8 @@ integer(kind=int8) :: byte
    ! so sign bits in the integer are treated just like any other
    do i=-128,127,32
       byte=i
-      write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,ble(byte,64_int8),byte
-      write(*,'(sp,i0.4,*(4x,b0.8))')64_int8,64_int8
+      write(*,'(sp,i0.4,1x,l1,1x,b8.8)')i,ble(byte,64_int8),byte
+      write(*,'(sp,i0.4,3x,b8.8)')64_int8,64_int8
    enddo
 
    ! see the BGE() description for an extended description
@@ -5306,22 +5306,22 @@ end program demo_ble
 ```
 Results:
 ```text
- >  -0128  F 10000000
- >  +0064    01000000
- >  -0096  F 10100000
- >  +0064    01000000
- >  -0064  F 11000000
- >  +0064    01000000
- >  -0032  F 11100000
- >  +0064    01000000
- >  +0000  T 00000000
- >  +0064    01000000
- >  +0032  T 00100000
- >  +0064    01000000
- >  +0064  T 01000000
- >  +0064    01000000
- >  +0096  F 01100000
- >  +0064    01000000
+ >  -0128 F 10000000
+ >  +0064   01000000
+ >  -0096 F 10100000
+ >  +0064   01000000
+ >  -0064 F 11000000
+ >  +0064   01000000
+ >  -0032 F 11100000
+ >  +0064   01000000
+ >  +0000 T 00000000
+ >  +0064   01000000
+ >  +0032 T 00100000
+ >  +0064   01000000
+ >  +0064 T 01000000
+ >  +0064   01000000
+ >  +0096 F 01100000
+ >  +0064   01000000
 ```
 ### **Standard**
 
@@ -5391,7 +5391,7 @@ integer(kind=int8) :: byte
    ! so sign bits in the integer are treated just like any other
    do i=-128,127,32
       byte=i
-      write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,blt(byte,64_int8),byte
+      write(*,'(sp,i0.4,1x,l1,1x,b8.8)')i,blt(byte,64_int8),byte
    enddo
   ! BOZ literals
    write(*,*)blt(z'1000', z'101011010')
@@ -5402,14 +5402,14 @@ end program demo_blt
 ```
 Results:
 ```text
-   > -0128  F 10000000
-   > -0096  F 10100000
-   > -0064  F 11000000
-   > -0032  F 11100000
-   > +0000  T 00000000
-   > +0032  T 00100000
-   > +0064  F 01000000
-   > +0096  F 01100000
+   > -0128 F 10000000
+   > -0096 F 10100000
+   > -0064 F 11000000
+   > -0032 F 11100000
+   > +0000 T 00000000
+   > +0032 T 00100000
+   > +0064 F 01000000
+   > +0096 F 01100000
    > T
 ```
 ### **Standard**
@@ -6939,7 +6939,8 @@ integer                       :: indx
     & test('spaces',' one two three four    five  six  ',6), &
    ! note many characters might be special to a shell
     & test('special','"<>$@# " "$%&*()_-"',2), &
-    & test('many','a b c d e f g h i j k l m n o p q r s t u v w x y z',26)]
+    & test('many',&
+    & 'a b c d e f g h i j k l m n o p q r s t u v w x y z',26)]
    ! get name of program
    self=get_arg(0)
    ! if no options call all the test cases
@@ -7078,7 +7079,7 @@ Fortran 2003
 Sample program:
 
 ```fortran
-program demo_compiler_version
+program demo_compiler_options
 use, intrinsic :: iso_fortran_env, only : compiler_version
 use, intrinsic :: iso_fortran_env, only : compiler_options
 implicit none
@@ -7087,7 +7088,7 @@ implicit none
       compiler_version(),           &
       ' using the options ',        &
       compiler_options()
-end program demo_compiler_version
+end program demo_compiler_options
 ```
 Results:
 ```text
@@ -7161,25 +7162,26 @@ Fortran 2008
 
 Sample program:
 ```fortran
-program demo_compiler_version
+program basic_compiler_version
 use, intrinsic :: iso_fortran_env, only : compiler_version
 implicit none
-      print '(4a)', 'This file was compiled by ', compiler_version()
-end program demo_compiler_version
+      print '(2a)', 'This file was compiled by ', compiler_version()
+end program basic_compiler_version
 ```
 Results (plain):
 ```text
  > This file was compiled by GCC version 10.3.0
 
- > This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler Classic for
- > applications running on Intel(R) 64, Version 2021.3.0 Build 20210609_000000
+ > This file was compiled by Intel(R) Fortran Intel(R) 64
+ > Compiler Classic for applications running on Intel(R) 64,
+ > Version 2021.3.0 Build 20210609_000000
 
  > This file was compiled by nvfortran 21.5-0 LLVM
 ```
 An extended version that wraps the version to a width of 80 columns
 and attempts to show the options used one per line:
 ```fortran
-program extended_compiler_version
+program demo_compiler_version
 implicit none
    call platform()
 contains
@@ -7240,7 +7242,7 @@ integer                      :: i
    enddo
 end function inset
 
-end program extended_compiler_version
+program demo_compiler_version
 ```
 Results (fancy):
 ```text
@@ -7799,21 +7801,22 @@ character(len=:),allocatable :: str
    write(str,'(*(g0))')&
    'For sides A=',a,', B=',b,' and X=',x,' degrees,',nl,'side C=',c
    str=trim(str)
-!
-!                        \
-!                       / \
-!                      / Y \
-!                     /     \
-!                    /       \
-!                   /         \
-!                b /           \ c
-!                 /             \
-!                /               \
-!               /                 \
-!              /                   \
-!             / X                 Z \
-!            -------------------------
-!                        a
+!=============================================!
+!                     \                       !
+!                    / \                      !
+!                   / Y \                     !
+!                  /     \                    !
+!                 /       \                   !
+!                /         \                  !
+!             b /           \ c               !
+!              /             \                !
+!             /               \               !
+!            /                 \              !
+!           /                   \             !
+!          / X                 Z \            !
+!         -------------------------           !
+!                     a                       !
+!=============================================!
 end function two_sides_and_degrees_between
 end program demo_cos
 ```
@@ -10450,14 +10453,16 @@ integer           :: i
    r_array = [0.0, 1.0, -1.0]
    r_array_result = exp(r_array)
    do i = 1, size(r_array)
-     write(*, '(A, I0, A, F15.10)') "exp(r_array(", i, ")) = ", r_array_result(i)
+     write(*,'(A, I0, A, F15.10)')"exp(r_array(", i, ")) = ",&
+     & r_array_result(i)
    enddo
 
    ! Complex array example
    c_array = [cmplx(0.0, 0.0, kind=dp), cmplx(1.0, 1.0, kind=dp)]
    c_array_result = exp(c_array)
    do i = 1, size(c_array)
-     write(*, '(A, I0, A, F15.10, A, F15.10, A)') "exp(c_array(", i, ")) = (", &
+     write(*, '(A, I0, A, F15.10, A, F15.10, A)') &
+     & "exp(c_array(", i, ")) = (", &
      real(c_array_result(i)), ", ", aimag(c_array_result(i)), ")"
    enddo
 end program demo_exp
@@ -11937,23 +11942,66 @@ Fortran 2003
 Sample program:
 ```fortran
 program demo_huge
+use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
+use,intrinsic :: iso_fortran_env, only : real32,real64,real128
 implicit none
 character(len=*),parameter :: f='(i2,1x,2(i11,1x),f14.0:,1x,l1,1x,a)'
 integer                    :: i, j, k, biggest
 real                       :: v, w
-doubleprecision            :: tally
-   ! basic
+integer,allocatable        :: undef(:,:,:)
+
+   print *,'basics:'
+
    print *, huge(0), huge(0.0), huge(0.0d0)
    print *, tiny(0.0), tiny(0.0d0)
+   print *, 'an array argument returns a scalar'
+   print *, huge([10_int8,20_int8,30_int8])
+   print *, 'the value of the argument does not matter, it does not'
+   print *, 'even need to be allocated, just the type and kind are'
+   print *, 'used',huge(1000),huge(-654321),huge(undef)
 
-   tally=0.0d0
-   ! note subtracting one because counter is the end value+1 on exit
-   do i=0,huge(0)-1
-      tally=tally+i
+   print *, 'dusty corners:'
+
+   print *, 'Perhaps instead of an "infinite" loop you want to make'
+   print *, 'a very large one so you have a counter handy.'
+   do i=1,huge(0)-1
+      call random_number(w)
+      if(w > 0.9999999)exit
    enddo
-   write(*,*)'tally=',tally
+   write(*,*)'exited with counter=',i
+   ! use huge(0)-1 not huge(0) because when a loop terminates normally
+   ! the counter is set to the last value + 1. If the loop reached
+   ! i=huge(0) adding 1 would cause an overflow!
 
-   ! advanced
+   ! Can HUGE(1.d0) be accurately formatted?
+   print '(E330.320)', huge(1.d0)
+   print *, huge(1.d0)
+   print '(g0)', huge(1.d0)
+
+   print *,'ranges for signed numbers  are symmetrical so if HUGE(0.0)'
+   print *,'is a valid number  so is -HUGE(0.0).'
+   print *, huge(0.0),-huge(0.0), huge(0.0)-huge(0.0)
+   print *,'but for 2''s-complement whole numbers -1-huge(0)='
+   print *,  -1-huge(0)
+   print *,'is a valid number too, but huge(0)+1 will cause an overflow!'
+   print *,'Almost all computers use 2''s-complement integers now-adays.'
+   print *,'so -huge(0)-1 is often used as a "magic number" to designate'
+   print *,'invalid whole numbers, as INTEGER types do not have a Nan'
+   print *,'or Infinite value like floats do if it is not a "possible"'
+   print *,'value for a computation.'
+   print *
+   print *,'for a single byte a value can be from -128 to 127 so maybe'
+   print *,'-128 is not unlikely to be used though, for example:'
+   print *,'range of a 2''scomplement one-byte kind is',-huge(0_int8)-1,&
+         & 'to',huge(0_int8)
+   print *,'so there is no "perfect" integer value to represent an '
+   print *,'invalid number except on a case-by-case basis.'
+
+   print *,'advanced:'
+
+   print *,'be careful of overflow; Fortran is not required to report it'
+   print *,'See OUT_OF_RANGE(3) for information on detecting overflows.'
+
    biggest=huge(0)
    ! be careful of overflow when using integers in computation
    do i=1,14
@@ -11968,6 +12016,7 @@ doubleprecision            :: tally
          write(*,f) i, j, k, v, v.eq.w
       endif
    enddo
+
    ! a simple check of the product of two 32-bit integers
    print *,checkprod([2,4,5,8],[10000,20000,3000000,400000000])
 
@@ -11991,11 +12040,50 @@ character(len=80)               :: message
 end function checkprod
 end program demo_huge
 ```
+#################################
+#################################
 Results:
 ```text
+ >  basics:
  >   2147483647   3.40282347E+38   1.7976931348623157E+308
  >    1.17549435E-38   2.2250738585072014E-308
- >  tally=   2.3058430049858406E+018
+ >  an array argument returns a scalar
+ >   127
+ >  the value of the argument does not matter, it does not
+ >  even need to be allocated, just the type and kind are
+ >  used  2147483647  2147483647  2147483647
+ >  dusty corners:
+ >  Perhaps instead of an "infinite" loop you want to make
+ >  a very large one so you have a counter handy.
+ >  exited with counter=      851169
+ >     0.17976931348623157081452742373170435679807056752584499
+ >     6598917476803157260780028538760589558632766878171540458
+ >     9535143824642343213268894641827684675467035375169860499
+ >     1057655128207624549009038932894407586850845513394230458
+ >     3236903222948165808559332123348274797826204144723168738
+ >     17718091929988125040402618412485836800000000000+309
+ >    1.7976931348623157E+308
+ > 0.17976931348623157E+309
+ >  ranges for signed numbers  are symmetrical so if HUGE(0.0)
+ >  is a valid number  so is -HUGE(0.0).
+ >    3.40282347E+38  -3.40282347E+38   0.00000000
+ >  but for 2's-complement whole numbers -1-huge(0)=
+ >  -2147483648
+ >  is a valid number too, but huge(0)+1 will cause an overflow!
+ >  Almost all computers use 2's-complement integers now-adays.
+ >  so -huge(0)-1 is often used as a "magic number" to designate
+ >  invalid whole numbers, as INTEGER types do not have a Nan
+ >  or Infinite value like floats do if it is not a "possible"
+ >  value for a computation.
+ >
+ >  for a single byte a value can be from -128 to 127 so maybe
+ >  -128 is not unlikely to be used though, for example:
+ >  range of a 2'scomplement one-byte kind is        -128 to  127
+ >  so there is no "perfect" integer value to represent an
+ >  invalid number except on a case-by-case basis.
+ >  advanced:
+ >  be careful of overflow; Fortran is not required to report it
+ >  See OUT_OF_RANGE(3) for information on detecting overflows.
  >  1           6           6             6. T
  >  2          36          36            36. T
  >  3         216         216           216. T
@@ -12011,6 +12099,53 @@ Results:
  > 13   175792128 -2147483648   13060694016. F wrong j and k and w
  > 14  1054752768 -2147483648   78364164096. F wrong j and k and w
  > STOP <ERROR>checkprod(3f):8*400000000=3200000000>2147483647
+
+### **Trivia**
+
+The Fortran standard does not specify what the largest value can be in
+a "Ew.d" edit descriptor, so "E330.320" will likely generate a value
+that fills all the positions without an error, or maybe cap it at some
+number of digits even though the vast majority will not be significant.
+
+But perhaps the bigger surprise is the same insignificant digits will
+likely be generated across platforms.
+
+Unless the platform chooses to pad with zeros it is likely a platform
+generates the number shown above, not random digits once it gets past
+the few significant digits.
+
+Most compilers print identical digits because IEEE 754 double
+precision defines an exact binary bit pattern for "HUGE(0.D0)", and
+runtime libraries use standard, deterministic conversion algorithms to
+translate those exact bits into decimal text. Trailing digits beyond
+the 17th significant figure are purely algorithmic padding or repeating
+representations.
+
+#### IEEE 754 Binary Representation
+
+  + The value "HUGE(0.D0)" in Fortran represents the maximum positive
+    finite double-precision number (1.7976931348623157 × 10\*\*308).
+  + Internally, this is stored as a fixed 64-bit binary floating-point
+    number with a 53-bit significand (mantissa) and an 11-bit exponent.
+  + Because the underlying binary value is identical across all
+    conforming hardware and compilers, the exact mathematical value
+    being converted is always the same.
+
+#### Decimal Conversion and Padding
+
+  + A standard double-precision number only contains about 15 to 17
+    significant decimal digits of true numerical precision.
+  + When you request 320 digits of precision using "E330.320", the
+    runtime formatting library runs out of real bits from the binary
+    number very quickly.
+  + To fulfill the large requested width, the compiler's runtime library
+    either pads the remaining lower-order digits with deterministic
+    zeros, or it mathematically exposes the repeating/terminating
+    behavior of the binary-to-decimal floating-point conversion routine
+    (such as Grisu or Ryu algorithms). Because different modern
+    compilers often link against similar standard math/io library
+    implementations or follow the exact same IEEE decimal formatting
+    specifications, the extended trailing digits match precisely.
 ```
 ### **Standard**
 
@@ -12084,52 +12219,157 @@ The result is the positive magnitude of the distance of the point
 ### **Examples**
 
 Sample program:
+```text
+   program demo_hypot
+   use, intrinsic :: iso_fortran_env, only : real32, real64, real128
+   implicit none
+   real(kind=real32)             :: x, y
+   real(kind=real32),allocatable :: xs(:), ys(:)
+   integer                       :: i
+   character(len=*),parameter    :: f='(a,/,SP,*(3x,g0,1x,g0:,/))'
 
-```fortran
-program demo_hypot
-use, intrinsic :: iso_fortran_env, only : real32, real64, real128
-implicit none
-real(kind=real32) :: x, y
-real(kind=real32),allocatable :: xs(:), ys(:)
-integer :: i
-character(len=*),parameter :: f='(a,/,SP,*(3x,g0,1x,g0:,/))'
+     ! basics
+      write(*,*)hypot(3.0,4.0)
+      write(*,*)hypot(1.0,0.25)
+      write(*,*)hypot(1.0,0.5)
 
-   x = 1.e0_real32
-   y = 0.5e0_real32
+      x=3.0
+      y=4.0
+      ! all equivalent
+      write(*,*)sqrt(x**2+y**2), hypot(x,y), abs(cmplx(x,y))
 
-   write(*,*)
-   write(*,'(*(g0))')'point <',x,',',y,'> is ',hypot(x,y)
-   write(*,'(*(g0))')'units away from the origin'
-   write(*,*)
+      ! a common use is to determine the distance of a point
+      ! from the origin
+      x = 1.e0_real32
+      y = 0.5e0_real32
 
-   ! elemental
-   xs=[  x,  x**2,  x*10.0,  x*15.0, -x**2  ]
-   ys=[  y,  y**2, -y*20.0,  y**2,   -y**2  ]
+      write(*,*)
+      write(*,'(*(g0))')'point <',x,',',y,'> is ',hypot(x,y)
+      write(*,'(*(g0))')'units away from the origin'
+      write(*,*)
 
-   write(*,f)"the points",(xs(i),ys(i),i=1,size(xs))
-   write(*,f)"have distances from the origin of ",hypot(xs,ys)
-   write(*,f)"the closest is",minval(hypot(xs,ys))
+     ! elemental
+      xs=[  x,  x**2,  x*10.0,  x*15.0, -x**2  ]
+      ys=[  y,  y**2, -y*20.0,  y**2,   -y**2  ]
 
-end program demo_hypot
+      write(*,f)"the points",(xs(i),ys(i),i=1,size(xs))
+      write(*,f)"have distances from the origin of ",hypot(xs,ys)
+      write(*,f)"the closest is",minval(hypot(xs,ys))
+
+   ! Finding primitive Euclidean triple sets, which are pairs of whole
+   ! numbers that form the sides of a right triangle with a hypotenuse
+   ! whose length is also a whole number (like [3,4,5]).
+   !
+   EUCLIDEAN: block
+   ! Euclid's formula is a fundamental formula for generating Pythagorean
+   ! triples given an arbitrary pair of integers m and n with m > n > 0.
+   ! The formula states that the integers
+   !
+   !    a = m**2 − n**2
+   !    b = 2*m*n
+   !    c = m**2 + n**2
+   !
+   ! form a Pythagorean triple.
+      integer :: i,j
+      real    :: m,n, a,b,c
+      integer,parameter :: maxside=100
+      ! find all primitive Euclidean triplets with sides a and b <= maxside
+      do i=1,maxside
+         do j=1,maxside
+            m=i
+            n=j
+            ! skip values unless m > 2
+            if(m.le.n)cycle
+            a=m**2-n**2
+            b=2*m*n
+            c=m**2+n**2
+            ! skip writing it if it is not a primitive Euclidean triplet
+            if (gcd_vector(nint([a,b,c])) > 1)cycle
+            if(a>maxside.or.b>maxside)cycle
+            ! c should be hypot(a,b) or equivalently abs(cmplx(a,b))
+            write(*,*) a, b, c, hypot(a,b), c==hypot(a,b)
+         enddo
+      enddo
+   endblock EUCLIDEAN
+   contains
+   function gcd(m,n) result(answer) ! greatest common denominator
+   integer,intent(in) :: m, n
+   integer            :: answer
+   integer            :: irest
+   intrinsic          :: mod,abs
+   integer            :: ifirst
+      ifirst=abs(m)
+      answer=abs(n)
+      if(answer.eq.0)then
+         answer=ifirst
+      else
+         do
+            irest = mod(ifirst,answer)
+            if(irest == 0)  exit
+            ifirst = answer
+            answer = irest
+         enddo
+         answer= iabs(answer)
+      endif
+   end function gcd
+   integer function gcd_vector(m)
+   integer,intent(in) :: m(:)
+   integer            :: vsize
+   integer            :: i
+      vsize=size(m)
+      if(vsize.gt.0)then
+         gcd_vector = m(1)
+         TILLONE: do i=1,vsize
+            gcd_vector = gcd(gcd_vector,iabs(m(i)))
+            if (gcd_vector.eq.1) exit TILLONE
+         enddo TILLONE
+      else
+         gcd_vector=0
+      endif
+   end function gcd_vector
+
+   end program demo_hypot
 ```
 Results:
 ```text
- >
- > point <1.00000000,0.500000000> is 1.11803401
- > units away from the origin
- >
- > the points
- >    +1.00000000 +0.500000000
- >    +1.00000000 +0.250000000
- >    +10.0000000 -10.0000000
- >    +15.0000000 +0.250000000
- >    -1.00000000 -0.250000000
- > have distances from the origin of
- >    +1.11803401 +1.03077638
- >    +14.1421356 +15.0020828
- >    +1.03077638
- > the closest is
- >    +1.03077638
+    >    5.00000000
+    >    1.03077638
+    >    1.11803401
+    >    5.00000000       5.00000000       5.00000000
+    >
+    > point <1.00000000,0.500000000> is 1.11803401
+    > units away from the origin
+    >
+    > the points
+    >    +1.00000000 +0.500000000
+    >    +1.00000000 +0.250000000
+    >    +10.0000000 -10.0000000
+    >    +15.0000000 +0.250000000
+    >    -1.00000000 -0.250000000
+    > have distances from the origin of
+    >    +1.11803401 +1.03077638
+    >    +14.1421356 +15.0020828
+    >    +1.03077638
+    > the closest is
+    >    +1.03077638
+    >    3.00000000     4.00000000     5.00000000     5.00000000 T
+    >    5.00000000     12.0000000     13.0000000     13.0000000 T
+    >    15.0000000     8.00000000     17.0000000     17.0000000 T
+    >    7.00000000     24.0000000     25.0000000     25.0000000 T
+    >    21.0000000     20.0000000     29.0000000     29.0000000 T
+    >    9.00000000     40.0000000     41.0000000     41.0000000 T
+    >    35.0000000     12.0000000     37.0000000     37.0000000 T
+    >    11.0000000     60.0000000     61.0000000     61.0000000 T
+    >    45.0000000     28.0000000     53.0000000     53.0000000 T
+    >    33.0000000     56.0000000     65.0000000     65.0000000 T
+    >    13.0000000     84.0000000     85.0000000     85.0000000 T
+    >    63.0000000     16.0000000     65.0000000     65.0000000 T
+    >    55.0000000     48.0000000     73.0000000     73.0000000 T
+    >    39.0000000     80.0000000     89.0000000     89.0000000 T
+    >    77.0000000     36.0000000     85.0000000     85.0000000 T
+    >    65.0000000     72.0000000     97.0000000     97.0000000 T
+    >    99.0000000     20.0000000     101.000000     101.000000 T
+    >    91.0000000     60.0000000     109.000000     109.000000 T
 ```
 ### **Standard**
 
@@ -15849,8 +16089,8 @@ FORTRAN 77
   size is specified by **kind**. That is, these Fortran statements must
   be _.true._ :
 ```fortran
-   i >= 0 .and. i < bitsize(i) ! if KIND is not specified
-   i >= 0 .and. i < bitsize(0_KIND) ! if KIND is specified
+   i >= 0 .and. i <= bitsize(i) ! if KIND is not specified
+   i >= 0 .and. i <= bitsize(0_KIND) ! if KIND is specified
 ```
 - **kind**
   : designates the kind of the _integer_ result.
@@ -15938,8 +16178,8 @@ Fortran 2008
   size is specified by **kind**. That is, these Fortran statements must
   be _.true._ :
 ```fortran
-   i >= 0 .and. i < bitsize(i) ! if KIND is not specified
-   i >= 0 .and. i < bitsize(0_KIND) ! if KIND is specified
+   i >= 0 .and. i <= bitsize(i)      ! if KIND is not specified
+   i >= 0 .and. i <= bitsize(0_KIND) ! if KIND is specified
 ```
 - **kind**
   : designates the kind of the _integer_ result.
@@ -15970,31 +16210,56 @@ integer :: i
   ! elemental
    print *,'elemental '
    print *,'(array argument accepted like called with each element)'
-   write(*,'(*(i11,1x,b0.32,1x,/))') maskr([(i,i,i=0,bit_size(0),4)])
+   write(*,'(*(i11,1x,b0.32,1x,/))') maskr([(i,i,i=0,bit_size(0),1)])
 
 end program demo_maskr
 ```
 Results:
 ```text
  >   basics
- >  1   00000000000000000000000000000001
- >  5   00000000000000000000000000011111
- >  11  00000000000000000000011111111111
- >   should be equivalent on two's-complement processors
- >  1   00000000000000000000000000000001
- >  5   00000000000000000000000000011111
- >  11  00000000000000000000011111111111
- >   elemental
- >   (array argument accepted like called with each element)
- >            0 00000000000000000000000000000000
- >           15 00000000000000000000000000001111
- >          255 00000000000000000000000011111111
- >         4095 00000000000000000000111111111111
- >        65535 00000000000000001111111111111111
- >      1048575 00000000000011111111111111111111
- >     16777215 00000000111111111111111111111111
- >    268435455 00001111111111111111111111111111
- >           -1 11111111111111111111111111111111
+ basics
+ > 1   00000000000000000000000000000001
+ > 5   00000000000000000000000000011111
+ > 11  00000000000000000000011111111111
+ >  should be equivalent on two's-complement processors
+ > 1   00000000000000000000000000000001
+ > 5   00000000000000000000000000011111
+ > 11  00000000000000000000011111111111
+ >  elemental
+ >  (array argument accepted like called with each element)
+ >           0 00000000000000000000000000000000
+ >           1 00000000000000000000000000000001
+ >           3 00000000000000000000000000000011
+ >           7 00000000000000000000000000000111
+ >          15 00000000000000000000000000001111
+ >          31 00000000000000000000000000011111
+ >          63 00000000000000000000000000111111
+ >         127 00000000000000000000000001111111
+ >         255 00000000000000000000000011111111
+ >         511 00000000000000000000000111111111
+ >        1023 00000000000000000000001111111111
+ >        2047 00000000000000000000011111111111
+ >        4095 00000000000000000000111111111111
+ >        8191 00000000000000000001111111111111
+ >       16383 00000000000000000011111111111111
+ >       32767 00000000000000000111111111111111
+ >       65535 00000000000000001111111111111111
+ >      131071 00000000000000011111111111111111
+ >      262143 00000000000000111111111111111111
+ >      524287 00000000000001111111111111111111
+ >     1048575 00000000000011111111111111111111
+ >     2097151 00000000000111111111111111111111
+ >     4194303 00000000001111111111111111111111
+ >     8388607 00000000011111111111111111111111
+ >    16777215 00000000111111111111111111111111
+ >    33554431 00000001111111111111111111111111
+ >    67108863 00000011111111111111111111111111
+ >   134217727 00000111111111111111111111111111
+ >   268435455 00001111111111111111111111111111
+ >   536870911 00011111111111111111111111111111
+ >  1073741823 00111111111111111111111111111111
+ >  2147483647 01111111111111111111111111111111
+ >          -1 11111111111111111111111111111111
 ```
 ### **Standard**
 
@@ -16720,7 +16985,9 @@ character(len=*),parameter   :: ind='(3x,*(g0,1x))'
    print ind, 'STRS() has a length of:', len(strs), &
     & 'a SHAPE of:',shape(strs), &
     & ':a SIZE of:',size(strs)
-   print ind, 'is maxval of null length strings a null character? ',ichar(maxval(strs))==0
+   print ind, &
+    & 'is maxval of null length strings a null character? ',&
+    & ichar(maxval(strs))==0
    print ind
    if(allocated(strs))deallocate(strs)
    allocate(character(len=5) :: strs(0))
@@ -18242,27 +18509,52 @@ Sample program:
 ```fortran
 program demo_nearest
 implicit none
+character(len=*),parameter :: g='(*(g0,1x))'
+character(len=*),parameter :: ref='(a,1x,*(g20.15,1x))'
+character(len=*),parameter :: lim='(a,1x,*(g20.15,1x))'
+real                       :: x, y
 
-   real :: x, y
+   write (*,g) 'The basics ...'
+
    x = nearest(42.0, 1.0)
    y = nearest(42.0, -1.0)
-   write (*,"(3(g20.15))") x, y, x - y
+   write (*,'(a,g20.15,a,g20.15,a,g20.15)')'for 42 +',x,'-', y,'delta',x-y
 
-!  write (*,"(3(g20.15))") &
-!   nearest(tiny(0.0),1.0), &
-!   nearest(tiny(0.0),-1.0), &
-!   nearest(tiny(0.0),1.0) -nearest(tiny(0.0),-1.0)
+   write (*,g) 'For reference ...'
 
-!  write (*,"(3(g20.15))") &
-!   nearest(huge(0.0),1.0), &
-!   nearest(huge(0.0),-1.0), &
-!   nearest(huge(0.0),1.0)- nearest(huge(0.0),-1.0)
+   write (*,ref) 'TINY    ',tiny(0.0)
+   write (*,ref) 'HUGE    ',huge(0.0)
+   write (*,ref) 'EPSILON ',epsilon(0.0)
+   write (*,ref) 'SPACING ',spacing(tiny(0.0)),spacing(huge(0.0))
+
+   write (*,g) 'Tesing the limits ...'
+
+   write (*,lim) 'For TINY()', &
+    nearest(tiny(0.0),1.0),    &
+    nearest(tiny(0.0),-1.0),   &
+    nearest(tiny(0.0),1.0) -nearest(tiny(0.0),-1.0)
+
+   write (*,lim) 'For HUGE()', &
+    nearest(huge(0.0),1.0),    &
+    nearest(huge(0.0),-1.0),   &
+    nearest(huge(0.0),1.0)- nearest(huge(0.0),-1.0)
 
 end program demo_nearest
 ```
 Results:
 ```text
-  > 42.0000038146973    41.9999961853027    .762939453125000E-05
+   > The basics ...
+   > for 42 +42.0000038146973 -41.9999961853027 delta.762939453125000E-05
+   > For reference ...
+   > TINY     .117549435082229E-37
+   > HUGE     .340282346638529E+39
+   > EPSILON  .119209289550781E-06
+   > SPACING  .117549435082229E-37 .202824096036517E+32
+   > Tesing the limits ...
+   > For TINY() .117549449095213E-37 .117549421069244E-37
+   > .280259692864963E-44
+   > For HUGE()             Infinity .340282326356119E+39
+   > Infinity
 ```
 ### **Standard**
 
@@ -20714,22 +21006,74 @@ data retrieved from the operating system.
 Sample program:
 
 ```fortran
-    program demo_random_seed
-    implicit none
-    integer, allocatable :: seed(:)
-    integer :: n
+program demo_random_seed
+   implicit none
+   integer, allocatable :: seed(:),initial_seed(:)
+   integer :: i,j,n
+   real :: x(3)
+   call random_seed() ! set random seed if f2023
 
-       call random_seed(size = n)
-       allocate(seed(n))
-       call random_seed(get=seed)
-       write (*, *) seed
+   call random_seed(size = n)
+   allocate(seed(n))
+   call random_seed(get=seed)
+   initial_seed=seed
 
-    end program demo_random_seed
+   write (*, *) 'queried initial seed=',seed
+   write (*,*) 'get three sets of random numbers'
+   do i=1,3
+      call random_number(x)
+      write(*,*)x
+   enddo
+
+   ! now randomize the seed several times, query
+   ! and print it, and then generate an array of PRN
+   do i=1,3
+      call random_seed() ! randomize seed if f2023
+      call random_seed(get=seed)
+      write (*, *) 'new seed=',seed
+      call random_number(x)
+      write(*,*)'set with new seed=',x
+   enddo
+
+   ! now go back to initial seed and should reproduce
+   ! initial set
+   write(*,*)'back to initial'
+   call random_seed(put=initial_seed)
+
+   ! repeat first display
+   call random_seed(get=seed)
+   write (*, *) 'queried current seed=',seed
+   write (*,*) 'get three sets of random numbers,'
+   write (*,*) 'should be duplicates of first set'
+   do i=1,3
+      call random_number(x)
+      write(*,*)x
+   enddo
+end program demo_random_seed
 ```
 Results:
 ```text
- >    -674862499 -1750483360  -183136071  -317862567   682500039
- >    349459   344020729 -1725483289
+ > get three sets of random numbers
+ > 0.728326082      0.733394623      0.807955265
+ > 0.827496469      0.709796131      0.855553031
+ > 0.850020826       2.29641199E-02  0.848301649
+ > new seed=   532671634  1589724431  -702344385  -267089641
+ >            -2127795903 1724481233 -1649777043  -673546294
+ > set with new seed=  0.182621956  0.814420581  0.161144853
+ > new seed=  -588602105 -1330109958 -1909200428  2013740993
+ >             926921249 132638128 -1513550047 -1366162835
+ > set with new seed=  0.922367275  0.226936579  0.626253545
+ > new seed=   701608307 -1105671482   804077484    93609417
+ <            -2030753861 94338487 -1850184744   417402487
+ > set with new seed=  0.119894266  0.515091896  0.171295166
+ > back to initial
+ > queried current seed=    -2447268 -1354129540   374710663
+ >   -1240608696 -1827405339  -257388164  2056470833   269047911
+ > get three sets of random numbers,
+ > should be duplicates of first set
+ > 0.728326082      0.733394623      0.807955265
+ > 0.827496469      0.709796131      0.855553031
+ > 0.850020826       2.29641199E-02  0.848301649
 ```
 ### **Standard**
 
@@ -20857,7 +21201,8 @@ Fortran 95
 
 ### **Description**
 
-  **rank**(3) returns the rank of a scalar or array data object.
+  **rank**(3) returns the rank of a scalar or array data object. A data object
+  is a constant or variable. It cannot be an expression or function call.
 
   The rank of an array is the number of dimensions it has (zero for a scalar).
 
@@ -21467,7 +21812,7 @@ C procedure.
 - **shape**
   : This is the shape of the new array being generated.
     Being by definition a shape; all elements are either positive integers
-    or zero, the size but be 1 or greater, it may have up to 16 elements
+    or zero; the size mut be 1 or greater; it may have up to 16 elements
     but must be of constant fixed size and rank one.
 
 - **pad**
@@ -22646,9 +22991,11 @@ real(kind=p10r100) :: y
 real(kind=r400) :: z
 
    write(*,*) 'real_kinds    =', real_kinds(:)
-   write(*,*) 'real constants=', real16, real32, real64, real128 !, bfloat16
+   write(*,*) 'real constants=', &
+   & real16, real32, real64, real128 !, bfloat16
    write(*,*) 'integer_kinds=', integer_kinds(:)
-   write(*,*) 'int constants=', int8, int16, int32, int64  !, int128
+   write(*,*) 'int constants=', &
+   & int8, int16, int32, int64  !, int128
 
    print *, precision(x), range(x)
    print *, precision(y), range(y)
@@ -22959,7 +23306,13 @@ integer(kind=int8)  :: arr(2,2)=reshape([2,4,8,16],[2,2])
    write(*,*)"characteristics of the result are the same as input"
    write(*,'(*(g0,1x))') &
      & "kind=",kind(shifta(arr,3)), "shape=",shape(shifta(arr,3)), &
-     & "size=",size(shifta(arr,3)) !, "rank=",rank(shifta(arr,3))
+     & "size=",size(shifta(arr,3))
+
+     !NOTE: "rank=",rank(shifta(arr,3)) will often work but if so
+     !      is non-standard as the argument of RANK(3) is supposed
+     !      to be a data object (ie., a constant, variable, or
+     !      subobject of a constant, not an expression or function
+     !      call)
 
 end program demo_shifta
 ```
@@ -23097,6 +23450,12 @@ integer             :: i
    write(*,'(*(g0,1x))') &
      & "kind=",kind(shiftl(arr,3)), "shape=",shape(shiftl(arr,3)), &
      & "size=",size(shiftl(arr,3)) !, "rank=",rank(shiftl(arr,3))
+
+     !NOTE: "rank=",rank(shifta(arr,3)) will often work but if so
+     !      is non-standard as the argument of RANK(3) is supposed
+     !      to be a data object (ie., a constant, variable, or
+     !      subobject of a constant, not an expression or function
+     !      call)
    endblock ELEM
 
 end program demo_shiftl
@@ -23227,6 +23586,11 @@ integer             :: i
    write(*,'(*(g0,1x))') &
      & "kind=",kind(shiftr(arr,3)), "shape=",shape(shiftr(arr,3)), &
      & "size=",size(shiftr(arr,3)) !, "rank=",rank(shiftr(arr,3))
+     !NOTE: "rank=",rank(shifta(arr,3)) will often work but if so
+     !      is non-standard as the argument of RANK(3) is supposed
+     !      to be a data object (ie., a constant, variable, or
+     !      subobject of a constant, not an expression or function
+     !      call)
    endblock ELEM
 
 end program demo_shiftr
@@ -24579,7 +24943,8 @@ FORTRAN 77
   - **a** may be of any type and kind. If it is polymorphic it shall not
     be an undefined pointer. If it is unlimited polymorphic or has any
     deferred type parameters, it shall not be an unallocated allocatable
-    variable or a disassociated or undefined pointer.
+    variable or a disassociated or undefined pointer. It must be a named
+    variable or constant or subobject of a constant.
 
   - The kind type parameter of the returned value is that specified by
     the value of **kind**; otherwise, the kind type parameter is that of
@@ -24595,7 +24960,12 @@ FORTRAN 77
 ### **Options**
 
 - **a**
-  : The entity to determine the storage size of
+  : The entity to determine the storage size of. Note that it may not
+  be an expression, but must be a "data object". That is, a
+  constant, variable, or subobject of a constant.
+
+      RANK
+      STORAGE_SIZE
 
 - **kind**
   : a scalar integer constant expression that defines the kind of the

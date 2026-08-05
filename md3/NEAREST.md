@@ -55,27 +55,52 @@ Sample program:
 ```fortran
 program demo_nearest
 implicit none
+character(len=*),parameter :: g='(*(g0,1x))'
+character(len=*),parameter :: ref='(a,1x,*(g20.15,1x))'
+character(len=*),parameter :: lim='(a,1x,*(g20.15,1x))'
+real                       :: x, y
 
-   real :: x, y
+   write (*,g) 'The basics ...'
+
    x = nearest(42.0, 1.0)
    y = nearest(42.0, -1.0)
-   write (*,"(3(g20.15))") x, y, x - y
+   write (*,'(a,g20.15,a,g20.15,a,g20.15)')'for 42 +',x,'-', y,'delta',x-y
 
-!  write (*,"(3(g20.15))") &
-!   nearest(tiny(0.0),1.0), &
-!   nearest(tiny(0.0),-1.0), &
-!   nearest(tiny(0.0),1.0) -nearest(tiny(0.0),-1.0)
+   write (*,g) 'For reference ...'
 
-!  write (*,"(3(g20.15))") &
-!   nearest(huge(0.0),1.0), &
-!   nearest(huge(0.0),-1.0), &
-!   nearest(huge(0.0),1.0)- nearest(huge(0.0),-1.0)
+   write (*,ref) 'TINY    ',tiny(0.0)
+   write (*,ref) 'HUGE    ',huge(0.0) 
+   write (*,ref) 'EPSILON ',epsilon(0.0)
+   write (*,ref) 'SPACING ',spacing(tiny(0.0)),spacing(huge(0.0))
+
+   write (*,g) 'Tesing the limits ...'
+
+   write (*,lim) 'For TINY()', &
+    nearest(tiny(0.0),1.0),    &
+    nearest(tiny(0.0),-1.0),   &
+    nearest(tiny(0.0),1.0) -nearest(tiny(0.0),-1.0)
+
+   write (*,lim) 'For HUGE()', &
+    nearest(huge(0.0),1.0),    &
+    nearest(huge(0.0),-1.0),   &
+    nearest(huge(0.0),1.0)- nearest(huge(0.0),-1.0)
 
 end program demo_nearest
 ```
 Results:
 ```text
-  > 42.0000038146973    41.9999961853027    .762939453125000E-05
+   > The basics ...
+   > for 42 +42.0000038146973 -41.9999961853027 delta.762939453125000E-05
+   > For reference ...
+   > TINY     .117549435082229E-37
+   > HUGE     .340282346638529E+39
+   > EPSILON  .119209289550781E-06
+   > SPACING  .117549435082229E-37 .202824096036517E+32
+   > Tesing the limits ...
+   > For TINY() .117549449095213E-37 .117549421069244E-37 
+   > .280259692864963E-44
+   > For HUGE()             Infinity .340282326356119E+39 
+   > Infinity
 ```
 ### **Standard**
 

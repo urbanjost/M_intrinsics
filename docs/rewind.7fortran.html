@@ -139,9 +139,9 @@ An example of a REWIND(7) statement is:
            write (*, *) &#146;wrote 100 lines, but now at line &#46;&#46;&#46;&#146;
            read (10, &#146;(a)&#146;) line
            write (*, &#146;(a)&#146;) line
-           read (10)
-           read (10)
-           read (10)
+           read (10,*)
+           read (10,*)
+           read (10,*)
            write (*, *) &#146;skipped a few lines, now at &#46;&#46;&#46;&#146;
            read (10, &#146;(a)&#146;) line
            write (*, &#146;(a)&#146;) line

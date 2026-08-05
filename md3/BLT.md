@@ -55,7 +55,7 @@ integer(kind=int8) :: byte
    ! so sign bits in the integer are treated just like any other
    do i=-128,127,32
       byte=i
-      write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,blt(byte,64_int8),byte
+      write(*,'(sp,i0.4,1x,l1,1x,b8.8)')i,blt(byte,64_int8),byte
    enddo
   ! BOZ literals
    write(*,*)blt(z'1000', z'101011010')
@@ -66,14 +66,14 @@ end program demo_blt
 ```
 Results:
 ```text
-   > -0128  F 10000000
-   > -0096  F 10100000
-   > -0064  F 11000000
-   > -0032  F 11100000
-   > +0000  T 00000000
-   > +0032  T 00100000
-   > +0064  F 01000000
-   > +0096  F 01100000
+   > -0128 F 10000000
+   > -0096 F 10100000
+   > -0064 F 11000000
+   > -0032 F 11100000
+   > +0000 T 00000000
+   > +0032 T 00100000
+   > +0064 F 01000000
+   > +0096 F 01100000
    > T
 ```
 ### **Standard**

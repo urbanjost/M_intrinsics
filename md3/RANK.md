@@ -20,7 +20,8 @@
 
 ### **Description**
 
-  **rank**(3) returns the rank of a scalar or array data object.
+  **rank**(3) returns the rank of a scalar or array data object. A data object
+  is a constant or variable. It cannot be an expression or function call.
 
   The rank of an array is the number of dimensions it has (zero for a scalar).
 

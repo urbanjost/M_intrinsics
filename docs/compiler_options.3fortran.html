@@ -131,7 +131,7 @@ containing the COMPILER_OPTIONS(3) call.
 Sample program:
 <P>
 <PRE>
-    program demo_compiler_version
+    program demo_compiler_options
     use, intrinsic :: iso_fortran_env, only : compiler_version
     use, intrinsic :: iso_fortran_env, only : compiler_options
     implicit none
@@ -140,7 +140,7 @@ Sample program:
           compiler_version(),           &
           &#146; using the options &#146;,        &
           compiler_options()
-    end program demo_compiler_version
+    end program demo_compiler_options
 <P>
 </PRE>
 Results:

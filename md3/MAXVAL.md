@@ -108,7 +108,9 @@ character(len=*),parameter   :: ind='(3x,*(g0,1x))'
    print ind, 'STRS() has a length of:', len(strs), &
     & 'a SHAPE of:',shape(strs), &
     & ':a SIZE of:',size(strs)
-   print ind, 'is maxval of null length strings a null character? ',ichar(maxval(strs))==0
+   print ind, &
+    & 'is maxval of null length strings a null character? ',&
+    & ichar(maxval(strs))==0
    print ind
    if(allocated(strs))deallocate(strs)
    allocate(character(len=5) :: strs(0))

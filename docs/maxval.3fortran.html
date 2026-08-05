@@ -228,7 +228,9 @@ sample program:
        print ind, &#146;STRS() has a length of:&#146;, len(strs), &
         & &#146;a SHAPE of:&#146;,shape(strs), &
         & &#146;:a SIZE of:&#146;,size(strs)
-       print ind, &#146;is maxval of null length strings a null character? &#146;,ichar(maxval(strs))==0
+       print ind, &
+        & &#146;is maxval of null length strings a null character? &#146;,&
+        & ichar(maxval(strs))==0
        print ind
        if(allocated(strs))deallocate(strs)
        allocate(character(len=5) :: strs(0))

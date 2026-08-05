@@ -88,12 +88,12 @@ End Module
 Here is an example of a program using that module.
 Program example
    Use enumeration_mod
-   Type(v_value) :: x = v_one
-   Type(v_value) :: y = v_value(2)   ! Explicit constructor producing v_two.
-   Type(v_value) :: z,nz             ! Initially undefined.
+   Type(v_value) :: x=v_one
+   Type(v_value) :: y=v_value(2) ! Explicit constructor producing v_two.
+   Type(v_value) :: z,nz         ! Initially undefined.
    Call sub(x)
    Call sub(v_three)
-   z = v_value(1)                    ! First value.
+   z = v_value(1)                ! First value.
    Do
       If (z==Huge(x)) Write (*,’(A)’,Advance=’No’) ’ Huge:’
       Call sub(z)

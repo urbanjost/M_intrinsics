@@ -87,7 +87,13 @@ integer(kind=int8)  :: arr(2,2)=reshape([2,4,8,16],[2,2])
    write(*,*)"characteristics of the result are the same as input"
    write(*,'(*(g0,1x))') &
      & "kind=",kind(shifta(arr,3)), "shape=",shape(shifta(arr,3)), &
-     & "size=",size(shifta(arr,3)) !, "rank=",rank(shifta(arr,3))
+     & "size=",size(shifta(arr,3)) 
+
+     !NOTE: "rank=",rank(shifta(arr,3)) will often work but if so
+     !      is non-standard as the argument of RANK(3) is supposed
+     !      to be a data object (ie., a constant, variable, or 
+     !      subobject of a constant, not an expression or function
+     !      call)
 
 end program demo_shifta
 ```

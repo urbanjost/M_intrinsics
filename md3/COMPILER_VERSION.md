@@ -35,25 +35,26 @@
 
 Sample program:
 ```fortran
-program demo_compiler_version
+program basic_compiler_version
 use, intrinsic :: iso_fortran_env, only : compiler_version
 implicit none
-      print '(4a)', 'This file was compiled by ', compiler_version()
-end program demo_compiler_version
+      print '(2a)', 'This file was compiled by ', compiler_version()
+end program basic_compiler_version
 ```
 Results (plain):
 ```text
  > This file was compiled by GCC version 10.3.0
 
- > This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler Classic for 
- > applications running on Intel(R) 64, Version 2021.3.0 Build 20210609_000000
+ > This file was compiled by Intel(R) Fortran Intel(R) 64 
+ > Compiler Classic for applications running on Intel(R) 64, 
+ > Version 2021.3.0 Build 20210609_000000
 
  > This file was compiled by nvfortran 21.5-0 LLVM
 ```
 An extended version that wraps the version to a width of 80 columns
 and attempts to show the options used one per line:
 ```fortran
-program extended_compiler_version
+program demo_compiler_version
 implicit none
    call platform()
 contains
@@ -68,7 +69,7 @@ integer                      :: where, start, break, i, last, col
    version=compiler_version()//' '
    options=' '//compiler_options()
    start=1
-   do 
+   do
       where=index(options(start:),' -')
       if(where.eq.0)exit
       break=where+start-1
@@ -76,7 +77,7 @@ integer                      :: where, start, break, i, last, col
       start=where
    enddo
    if(start.eq.1)then
-      do 
+      do
          where=index(options(start:),' /')
          if(where.eq.0)exit
          break=where+start-1
@@ -114,12 +115,12 @@ integer                      :: i
    enddo
 end function inset
 
-end program extended_compiler_version
+end program demo_compiler_version
 ```
 Results (fancy):
 ```text
  > This file was compiled by :
- >    GCC version 16.0.0 20250727 (experimental) 
+ >    GCC version 16.0.0 20250727 (experimental)
  > using the options :
  >    -mtune=generic
  >    -march=x86-64

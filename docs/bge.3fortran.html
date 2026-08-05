@@ -221,7 +221,7 @@ Sample program:
        write(*,*)&#146;so the results are as if values are unsigned integers.&#146;
        do i=-128,127,32
           byte=i
-          write(*,&#146;(sp,i0.4,*(1x,1l,1x,b0.8))&#146;)i,bge(byte,64_int8),byte
+          write(*,&#146;(sp,i0.4,1x,l1,1x,b8.8)&#146;)i,bge(byte,64_int8),byte
        enddo
 <P>
       ! SIGNED ZERO
@@ -250,14 +250,14 @@ just the values expected on Today&#146;s most common platforms &#46;&#46;&#46;
         &gt; Compare some one-byte values to 64.
         &gt; Notice that the values are tested as bits not as integers
         &gt; so the results are as if values are unsigned integers.
-        &gt; -0128  T 10000000
-        &gt; -0096  T 10100000
-        &gt; -0064  T 11000000
-        &gt; -0032  T 11100000
-        &gt; +0000  F 00000000
-        &gt; +0032  F 00100000
-        &gt; +0064  T 01000000
-        &gt; +0096  T 01100000
+        &gt; -0128 T 10000000
+        &gt; -0096 T 10100000
+        &gt; -0064 T 11000000
+        &gt; -0032 T 11100000
+        &gt; +0000 F 00000000
+        &gt; +0032 F 00100000
+        &gt; +0064 T 01000000
+        &gt; +0096 T 01100000
         &gt; plus zero=0
         &gt; minus zero=0
 <P>

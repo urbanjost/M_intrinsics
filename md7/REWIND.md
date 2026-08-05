@@ -59,9 +59,9 @@ An example of a REWIND(7) statement is:
        write (*, *) 'wrote 100 lines, but now at line ...'
        read (10, '(a)') line
        write (*, '(a)') line
-       read (10)
-       read (10)
-       read (10)
+       read (10,*)
+       read (10,*)
+       read (10,*)
        write (*, *) 'skipped a few lines, now at ...'
        read (10, '(a)') line
        write (*, '(a)') line
