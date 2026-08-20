@@ -153,5 +153,5 @@ showing several selections of one block:
     case default
        write(*,*)'default',n
    end select
-   program demo_select_case
+   end program demo_select_case
 ```

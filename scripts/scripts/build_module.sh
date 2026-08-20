@@ -286,7 +286,6 @@ function help_intrinsics_all(prefix,topic) result (textblock)
 logical,intent(in),optional     :: prefix
 logical,intent(in),optional     :: topic
 character(len=256),allocatable  :: textblock(:)
-character(len=256),allocatable  :: header(:)
 character(len=256),allocatable  :: add(:)
 character(len=10)               :: cnum
 integer                         :: icount

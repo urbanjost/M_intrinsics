@@ -7242,7 +7242,7 @@ integer                      :: i
    enddo
 end function inset
 
-program demo_compiler_version
+end program demo_compiler_version
 ```
 Results (fancy):
 ```text
@@ -12040,8 +12040,6 @@ character(len=80)               :: message
 end function checkprod
 end program demo_huge
 ```
-#################################
-#################################
 Results:
 ```text
  >  basics:
@@ -24188,21 +24186,24 @@ integer :: i
 real,parameter :: PI=acos(-1.0)
    do i=0,8
       x=i*0.25
-      write(*,*)'x=',x,' sinpi(x)=',sinpi(x)
+      write(*,*)'x=',x,' sinpi(x)=',
+      & sinpi(x),
+      & sin(PI*x),
+      & sinpi(x) - sin(PI*x)
    enddo
 end program demo_sinpi
 ```
 Results:
 ```text
- > x=   0.00000000  sinpi(x)=   0.00000000
- > x=  0.250000000  sinpi(x)=   0.707106769
- > x=  0.500000000  sinpi(x)=   1.00000000
- > x=  0.750000000  sinpi(x)=   0.707106769
- > x=   1.00000000  sinpi(x)=  -8.74227766E-08
- > x=   1.25000000  sinpi(x)=  -0.707106888
- > x=   1.50000000  sinpi(x)=  -1.00000000
- > x=   1.75000000  sinpi(x)=  -0.707106531
- > x=   2.00000000  sinpi(x)=   1.74845553E-07
+ > x=  0.000000  sinpi(x)= 0.00000000      0.00000000      0.0000
+ > x=  0.2500000 sinpi(x)= 0.707106769     0.707106769     0.0000
+ > x=  0.5000000 sinpi(x)= 1.00000000      1.00000000      0.0000
+ > x=  0.7500000 sinpi(x)= 0.707106769     0.707106769     0.0000
+ > x=  1.000000  sinpi(x)= -8.74227766E-08 -8.74227766E-08 0.0000
+ > x=  1.250000  sinpi(x)= -0.707106888    -0.707106888    0.0000
+ > x=  1.500000  sinpi(x)= -1.00000000     -1.00000000     0.0000
+ > x=  1.750000  sinpi(x)= -0.707106531    -0.707106531    0.0000
+ > x=  2.000000  sinpi(x)= 1.74845553E-07  1.74845553E-07  0.0000
 ```
 ### **Standard**
 

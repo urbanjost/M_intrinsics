@@ -5364,7 +5364,7 @@ all operations.</code></pre>
 <a class="sourceLine" id="cb282-59" title="59">   <span class="kw">enddo</span></a>
 <a class="sourceLine" id="cb282-60" title="60"><span class="kw">end function</span> inset</a>
 <a class="sourceLine" id="cb282-61" title="61"></a>
-<a class="sourceLine" id="cb282-62" title="62"><span class="kw">program</span> demo_compiler_version</a></code></pre></div>
+<a class="sourceLine" id="cb282-62" title="62"><span class="kw">end program</span> demo_compiler_version</a></code></pre></div>
 <p>Results (fancy):</p>
 <pre class="text"><code> &gt; This file was compiled by :
  &gt;    GCC version 16.0.0 20250727 (experimental)
@@ -8956,8 +8956,6 @@ $$</span><br /></p>
 <a class="sourceLine" id="cb455-96" title="96">   <span class="kw">endif</span></a>
 <a class="sourceLine" id="cb455-97" title="97"><span class="kw">end function</span> checkprod</a>
 <a class="sourceLine" id="cb455-98" title="98"><span class="kw">end program</span> demo_huge</a></code></pre></div>
-<p id="section"></p>
-<p id="section-1"></p>
 <p>Results:</p>
 <pre class="text"><code> &gt;  basics:
  &gt;   2147483647   3.40282347E+38   1.7976931348623157E+308
@@ -18071,19 +18069,22 @@ Before <strong>Fortran 2008</strong>, at least one of the arguments <strong>r</s
 <a class="sourceLine" id="cb890-5" title="5"><span class="dt">real</span>,<span class="dt">parameter</span> <span class="dt">::</span> PI<span class="kw">=</span><span class="bu">acos</span>(<span class="kw">-</span><span class="fl">1.0</span>)</a>
 <a class="sourceLine" id="cb890-6" title="6">   <span class="kw">do</span> i<span class="kw">=</span><span class="dv">0</span>,<span class="dv">8</span></a>
 <a class="sourceLine" id="cb890-7" title="7">      x<span class="kw">=</span>i<span class="kw">*</span><span class="fl">0.25</span></a>
-<a class="sourceLine" id="cb890-8" title="8">      <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;x=&#39;</span>,x,<span class="st">&#39; sinpi(x)=&#39;</span>,sinpi(x)</a>
-<a class="sourceLine" id="cb890-9" title="9">   <span class="kw">enddo</span></a>
-<a class="sourceLine" id="cb890-10" title="10"><span class="kw">end program</span> demo_sinpi</a></code></pre></div>
+<a class="sourceLine" id="cb890-8" title="8">      <span class="fu">write(*</span>,<span class="fu">*)</span><span class="st">&#39;x=&#39;</span>,x,<span class="st">&#39; sinpi(x)=&#39;</span>,</a>
+<a class="sourceLine" id="cb890-9" title="9">      <span class="kw">&amp;</span> sinpi(x),</a>
+<a class="sourceLine" id="cb890-10" title="10">      <span class="kw">&amp;</span> <span class="bu">sin</span>(PI<span class="kw">*</span>x),</a>
+<a class="sourceLine" id="cb890-11" title="11">      <span class="kw">&amp;</span> sinpi(x) <span class="kw">-</span> <span class="bu">sin</span>(PI<span class="kw">*</span>x)</a>
+<a class="sourceLine" id="cb890-12" title="12">   <span class="kw">enddo</span></a>
+<a class="sourceLine" id="cb890-13" title="13"><span class="kw">end program</span> demo_sinpi</a></code></pre></div>
 <p>Results:</p>
-<pre class="text"><code> &gt; x=   0.00000000  sinpi(x)=   0.00000000
- &gt; x=  0.250000000  sinpi(x)=   0.707106769
- &gt; x=  0.500000000  sinpi(x)=   1.00000000
- &gt; x=  0.750000000  sinpi(x)=   0.707106769
- &gt; x=   1.00000000  sinpi(x)=  -8.74227766E-08
- &gt; x=   1.25000000  sinpi(x)=  -0.707106888
- &gt; x=   1.50000000  sinpi(x)=  -1.00000000
- &gt; x=   1.75000000  sinpi(x)=  -0.707106531
- &gt; x=   2.00000000  sinpi(x)=   1.74845553E-07</code></pre>
+<pre class="text"><code> &gt; x=  0.000000  sinpi(x)= 0.00000000      0.00000000      0.0000
+ &gt; x=  0.2500000 sinpi(x)= 0.707106769     0.707106769     0.0000
+ &gt; x=  0.5000000 sinpi(x)= 1.00000000      1.00000000      0.0000
+ &gt; x=  0.7500000 sinpi(x)= 0.707106769     0.707106769     0.0000
+ &gt; x=  1.000000  sinpi(x)= -8.74227766E-08 -8.74227766E-08 0.0000
+ &gt; x=  1.250000  sinpi(x)= -0.707106888    -0.707106888    0.0000
+ &gt; x=  1.500000  sinpi(x)= -1.00000000     -1.00000000     0.0000
+ &gt; x=  1.750000  sinpi(x)= -0.707106531    -0.707106531    0.0000
+ &gt; x=  2.000000  sinpi(x)= 1.74845553E-07  1.74845553E-07  0.0000</code></pre>
 <h3 id="standard-193"><strong>Standard</strong></h3>
 <p>fortran 2023</p>
 <h3 id="see-also-193"><strong>See Also</strong></h3>
